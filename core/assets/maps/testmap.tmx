@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="64" height="64" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="ld27" tilewidth="16" tileheight="16">
+  <image source="tileset.png" width="1024" height="1024"/>
+  <tile id="0">
+   <properties>
+    <property name="entity" value="Grass"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="entity" value="Zombie"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="entity" value="Water"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="entity" value="Mountain"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="entity" value="Grass2"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="entity" value="Grass4"/>
+   </properties>
+  </tile>
+  <tile id="64">
+   <properties>
+    <property name="entity" value="Worker"/>
+   </properties>
+  </tile>
+  <tile id="65">
+   <properties>
+    <property name="entity" value="Rock"/>
+   </properties>
+  </tile>
+  <tile id="66">
+   <properties>
+    <property name="entity" value="Warrior"/>
+   </properties>
+  </tile>
+  <tile id="67">
+   <properties>
+    <property name="entity" value="Dirt"/>
+   </properties>
+  </tile>
+  <tile id="68">
+   <properties>
+    <property name="entity" value="Grass3"/>
+   </properties>
+  </tile>
+  <tile id="69">
+   <properties>
+    <property name="entity" value="Dirt2"/>
+   </properties>
+  </tile>
+  <tile id="70">
+   <properties>
+    <property name="entity" value="Dirt3"/>
+   </properties>
+  </tile>
+  <tile id="71">
+   <properties>
+    <property name="entity" value="Oil"/>
+   </properties>
+  </tile>
+  <tile id="128">
+   <properties>
+    <property name="entity" value="Tree"/>
+   </properties>
+  </tile>
+  <tile id="129">
+   <properties>
+    <property name="entity" value="Crop1"/>
+   </properties>
+  </tile>
+  <tile id="130">
+   <properties>
+    <property name="entity" value="Priest"/>
+   </properties>
+  </tile>
+  <tile id="131">
+   <properties>
+    <property name="entity" value="Grave"/>
+   </properties>
+  </tile>
+  <tile id="132">
+   <properties>
+    <property name="entity" value="Water2"/>
+   </properties>
+  </tile>
+  <tile id="133">
+   <properties>
+    <property name="entity" value="Water3"/>
+   </properties>
+  </tile>
+  <tile id="134">
+   <properties>
+    <property name="entity" value="Dirt4"/>
+   </properties>
+  </tile>
+  <tile id="192">
+   <properties>
+    <property name="entity" value="House"/>
+   </properties>
+  </tile>
+  <tile id="193">
+   <properties>
+    <property name="entity" value="Crop2"/>
+   </properties>
+  </tile>
+  <tile id="194">
+   <properties>
+    <property name="entity" value="Wall"/>
+   </properties>
+  </tile>
+  <tile id="195">
+   <properties>
+    <property name="entity" value="UFO"/>
+   </properties>
+  </tile>
+  <tile id="196">
+   <properties>
+    <property name="entity" value="Water4"/>
+   </properties>
+  </tile>
+  <tile id="197">
+   <properties>
+    <property name="entity" value="OilOre"/>
+   </properties>
+  </tile>
+  <tile id="198">
+   <properties>
+    <property name="entity" value="Grass"/>
+   </properties>
+  </tile>
+  <tile id="199">
+   <properties>
+    <property name="entity" value="Grass5"/>
+   </properties>
+  </tile>
+  <tile id="256">
+   <properties>
+    <property name="entity" value="Fire"/>
+   </properties>
+  </tile>
+  <tile id="257">
+   <properties>
+    <property name="entity" value="Crop3"/>
+   </properties>
+  </tile>
+  <tile id="260">
+   <properties>
+    <property name="entity" value="Sand"/>
+   </properties>
+  </tile>
+  <tile id="261">
+   <properties>
+    <property name="entity" value="Sand2"/>
+   </properties>
+  </tile>
+  <tile id="262">
+   <properties>
+    <property name="entity" value="MetalOre"/>
+   </properties>
+  </tile>
+  <tile id="324">
+   <properties>
+    <property name="entity" value="Sand3"/>
+   </properties>
+  </tile>
+  <tile id="325">
+   <properties>
+    <property name="entity" value="Sand4"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="tiled-background-only" width="64" height="64" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DAQkAAAwDoFVb/1KvMY6CTVJVVVVVVVVVVVVVVXU6AAAA8N8BWkY2rQBAAAA=
+  </data>
+ </layer>
+ <layer name="tiled-sprite-test-only" width="64" height="64" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAIC3AYbSVKsAQAAA
+  </data>
+ </layer>
+ <layer name="tiles" width="64" height="64" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAIC3AYbSVKsAQAAA
+  </data>
+ </layer>
+ <layer name="terrain" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2W2wqDMBBEE6R/5v9/U+uDINKYi9uO2T0DQ/tgYc5JCuaUUv50OTQH7pJwcXah3qF2oN4A///7yrHv/86/faq3KNiP/KMO1kPVTD0bLfjXQtW8LXvv8pfYn+7AYnvt90/nzxfnX2NoYZ/BQe3+93DO7KD2/4/CX3rGM3/Lu593/toz0flLDhYn/L+8/2o+Cwfe+XcH8I/xq7fDb8M/6kC93Yp91IF6v+XZ974PqbdbOvj2PUrP/NEcnHkjOSixRnFwxQi/fwc1xigOWhx59NDD5dFBL48nB6MsHhzcZZjdwczb1Wc/eyOzww8/pZRGKSGEEEIIIYQQQvznDYF6sK8AQAAA
+  </data>
+ </layer>
+ <layer name="objects" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3YbQ6DIAwGYFy4mO5kbl7Mmy1LJOkc34It8D6JgR9uWlohoBSMbDtazfoWSq3MzzdyxmEL3/JHSrwGd/65aEe/tnP+V0ebIqcOjRqxPyv8p1TTlP6bGnPAlRrgtDr6PXPNAdAeOtfFzKX0/l5rfyb9nPmR2gKtFPOpjdV63nfS98X+Oq5UreTf5X20vviXm96Fkyv+hVw2reZ/D9/yE7tvDKRLmfPo+tdL/CG+/VBs/CPtqUystjU1dX3l8H3/2ut6C/WQe6bxsPTPbUmpa0nu2IfGgf6vr86lfwO5+xoT/135r/mNXjnPi9HC91/CeQ2oVfsl8lQq13fmVvL+c5QalyC3DjS5RqVV3jj0tPdJGQPbvq/1+L9ixqBk7JLPQGzxu2LvIfexSsTOcRZW6hkj5pwaPX4AAAAAAAAAAAAAAACo4wNL9eo5AEAAAA==
+  </data>
+ </layer>
+ <layer name="tileset-no-populate" width="64" height="64" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3Uxw0CQRAF0Vm/aa3ftPCkhScsKglmkKgn1f33pUP4HRnlVFBJFdXUUJtwVywd9TTQSBPNtNCacFcsG9rSjvZ0oCOd6JxwVywXutKN7vSgJ73onXBXLBkPIKeCSqqopobaLPW67+u4saeBRppopoXWP7hfkiRJkiRJkiRJkiRJkiRJkiRJkiRJIXwAFmYQ3QBAAAA=
+  </data>
+ </layer>
+</map>

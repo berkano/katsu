@@ -1,0 +1,18 @@
+*** Help System ***
+O: Open Manual (PDF from the web)
+H: Display this Help
+*** Controls ***
+WASD: move person or ship around
+U: switch between Ship and Person view
+T: teleport
+*** Inventory and Trading ***
+I: pickup item into inventory or drop from inventory
+SPACE: use selected item
+1..9: buy from selected trade
+1..9: sell inventory to person (doesn't matter which number)
+*** General ***
+M: toggle music
+Z: toggle zoom level
+P: pause/resume game
+F / F11: toggle full screen
+Esc: quit game
