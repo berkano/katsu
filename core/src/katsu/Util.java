@@ -94,7 +94,8 @@ public class Util {
     public static TiledMap loadMap(String name) {
         try {
             TmxMapLoader.Parameters parameters = new TmxMapLoader.Parameters();
-            Porting.commented();
+            meta.commented();
+            meta.bug("probably causing the map issues");
 //            parameters.yUp = false;
             TiledMap tiledMap = new TmxMapLoader().load("maps/" + name, parameters);
             return tiledMap;
