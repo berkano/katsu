@@ -187,7 +187,7 @@ public class Util {
 
                                     Entity e = (Entity) Util.newInstance(c);
                                     e.x = x * Settings.tileWidth;
-                                    e.y = y * Settings.tileHeight;
+                                    e.y = (mapHeight - y - 1) * Settings.tileHeight;
                                     e.textureRegion = room.entityTextureRegions.get(c);
                                     e.room = room;
                                     room.entities.add(e);

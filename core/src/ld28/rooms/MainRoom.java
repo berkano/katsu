@@ -53,8 +53,14 @@ public class MainRoom extends Room {
 
     public void setZoom(int newZoom) {
         zoom = newZoom;
-        mainView.portWidth = 1024 / zoom;
-        mainView.portHeight = 768 / zoom;
+        if (DevTools.superZoomOut) {
+            DevTools.todo("Move away from fixed screen res");
+           mainView.portWidth = 1024*4;
+            mainView.portHeight = 768*4;
+        } else {
+            mainView.portWidth = 1024 / zoom;
+            mainView.portHeight = 768 / zoom;
+        }
     }
 
     public MainRoom(String tmx) {
@@ -341,6 +347,9 @@ public class MainRoom extends Room {
 
     private void checkInputAndMovePlayer(int keyCode, int dx, int dy) {
 
+        dx = dx * DevTools.moveFactor;
+        dy = dy * DevTools.moveFactor;
+
         int moveInterval = 100;
         if (!planetView) moveInterval = 25;
         long lastMovedMillis = System.currentTimeMillis() - mainView.following.lastMoved;
@@ -353,10 +362,12 @@ public class MainRoom extends Room {
                 ui.writeText(Messages.MAY_NOT_MOVE_SHIP_UNTIL_PLAYER_IS_AT_HELM);
                 return;
             }
-            if (gameState.fuel == 0) {
+            if (gameState.fuel == 0 && !DevTools.noFuelLimit) {
                 ui.writeText(Messages.OUT_OF_FUEL);
                 return;
             }
+            // Move the player to the helm
+            DevTools.investigate("these map coords still working?");
             player.x = 46 * Settings.tileWidth;
             player.y = 36 * Settings.tileHeight;
 
