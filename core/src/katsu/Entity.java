@@ -165,7 +165,7 @@ public abstract class Entity {
 
     protected void setWantsMove(int newX, int newY) {
 
-        DevTools.entityMovingEvent(this);
+        DevTools.entityMoving(this);
 
         wantsMove = true;
         this.newX = newX;

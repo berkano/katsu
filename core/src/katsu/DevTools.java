@@ -23,21 +23,14 @@ public class DevTools {
         }
     }
 
-    public static void todoMakeCompatible() {
-    }
-
-    public static void breakpointOnEntityClick() {
+    public static void entityClicked() {
         return;
     }
 
-    public static void entityMovingEvent(Entity entity) {
+    public static void entityMoving(Entity entity) {
         if (entity instanceof PlayerPerson) {
             return;
         }
-    }
-
-    public static void investigate(String s) {
-        return;
     }
 
     public static void todo(String s) {

@@ -367,7 +367,6 @@ public class MainRoom extends Room {
                 return;
             }
             // Move the player to the helm
-            DevTools.investigate("these map coords still working?");
             player.x = 46 * Settings.tileWidth;
             player.y = 36 * Settings.tileHeight;
 
@@ -578,7 +577,7 @@ public class MainRoom extends Room {
                                 Sounds.shipspeak.play();
                                 playedCustomSound = true;
                             }
-                            if (selectedEntity instanceof Sheep) {
+                                if (selectedEntity instanceof Sheep) {
                                 Sounds.sheep.play();
                                 playedCustomSound = true;
                             }
