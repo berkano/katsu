@@ -94,10 +94,8 @@ public class Util {
     public static TiledMap loadMap(String name) {
         try {
             TmxMapLoader.Parameters parameters = new TmxMapLoader.Parameters();
-            meta.commented();
-            meta.bug("probably causing the map issues");
-//            parameters.yUp = false;
             TiledMap tiledMap = new TmxMapLoader().load("maps/" + name, parameters);
+
             return tiledMap;
         } catch (Exception ex) {
             throw new RuntimeException(ex);
@@ -234,7 +232,9 @@ public class Util {
     public static TextureRegion tileStitch(int x, int y, TiledMapTileLayer tileLayer, int tilesWide, int tilesHigh, TiledMap map) {
 
         //TODO: support stitching
-        return tileLayer.getCell(x, y).getTile().getTextureRegion();
+        TextureRegion result = tileLayer.getCell(x, y).getTile().getTextureRegion();
+        result.flip(false, true);
+        return result;
 
 
         // Optimize common case!
