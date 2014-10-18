@@ -3,6 +3,7 @@ package ld28.rooms;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -119,14 +120,99 @@ public class MainRoom extends Room {
             ship.x = TeleportMap.findByName("Xorx").x * Settings.tileWidth;
             ship.y = TeleportMap.findByName("Xorx").y * Settings.tileHeight;
 
-//            if (Settings.devMode) {
-//                player.x = 611 * Settings.tileWidth;
-//                player.y = 88 * Settings.tileHeight;
-//            }
+        }
 
+        teleportLogic();
+
+        tradingLogic();
+
+        if (!shownWelcomeForLevel) {
+            if (Katsu.game.currentLevel == "0000") {
+                ui.writeText("welcome to ~singleton~, berkano's LD28 entry.");
+                ui.writeText("major tim is lost in space. one prisoner, one");
+                ui.writeText("sheep, one inventory slot, one goal:");
+                ui.writeText("help him find his way back to earth");
+                ui.writeText("press h for help.");
+            }
+            shownWelcomeForLevel = true;
+        }
+
+        if (!objectiveReached && !objectiveFailed) checkLevelCompleteCriteria();
+
+        if (Gdx.input.isKeyPressed(Keys.F3)) {
+            ui.writeText("entities=" + String.valueOf(entities.size()));
+        }
+
+        if (Katsu.game.isKeyTyped(Keys.I)) {
+            String result = runInventoryRules();
+            ui.writeText(result);
+        }
+
+        if (Katsu.game.isKeyTyped(Keys.SPACE)) {
+            useItemLogic();
         }
 
 
+        movePlayerLogic();
+
+        if (Katsu.game.isKeyTyped(Keys.X)) {
+            if (Settings.devMode) {
+                Teleport winTP = TeleportMap.findByName("Earth");
+                ship.x = winTP.x * 16;
+                ship.y = winTP.y * 16;
+            }
+        }
+
+        if (Katsu.game.isKeyTyped(Keys.U)) {
+            if (planetView) {
+                universeClicked();
+            } else {
+                planetClicked();
+            }
+        }
+
+        if (Katsu.game.isKeyTyped(Keys.SPACE)) {
+            if (objectiveReached) {
+                String nextLevel = LevelManager.nextLevel(Katsu.game.currentLevel);
+                if (nextLevel != "") {
+                    Katsu.game.startLevel(nextLevel);
+                }
+            }
+        }
+
+
+        if (Katsu.game.isKeyTyped(Keys.Z)) {
+            doZoom();
+        }
+    }
+
+    private void movePlayerLogic() {
+        checkInputAndMovePlayer(Keys.W, 0, -1);
+        checkInputAndMovePlayer(Keys.A, -1, 0);
+        checkInputAndMovePlayer(Keys.S, 0, 1);
+        checkInputAndMovePlayer(Keys.D, 1, 0);
+    }
+
+    private void useItemLogic() {
+        if (selectedEntity != null) {
+            if (selectedEntity instanceof Resource) {
+                selectedEntity.wantsDestroy = true;
+                if (selectedEntity instanceof Fuel) {
+                    gameState.fuel += GameParameters.refuelAmount;
+                }
+                if (selectedEntity instanceof Potato) {
+                    player.health += GameParameters.potatoGiveHealthAmount;
+                    if (player.health > 100) player.health = 100;
+                }
+                if (selectedEntity instanceof Iron) {
+                    ship.health += GameParameters.ironGiveRepairAmount;
+                    if (ship.health > 100) ship.health = 100;
+                }
+            }
+        }
+    }
+
+    private void teleportLogic() {
         LandingPad shipLandingPad = (LandingPad) ship.getInstanceUnderneath(LandingPad.class);
         LandingPad playerLandingPad = (LandingPad) player.getInstanceUnderneath(LandingPad.class);
         if (shipLandingPad != null) {
@@ -150,15 +236,6 @@ public class MainRoom extends Room {
             }
         }
 
-        if (Katsu.game.isKeyTyped(Keys.NUM_1)) tryTrade(1);
-        if (Katsu.game.isKeyTyped(Keys.NUM_2)) tryTrade(2);
-        if (Katsu.game.isKeyTyped(Keys.NUM_3)) tryTrade(3);
-        if (Katsu.game.isKeyTyped(Keys.NUM_4)) tryTrade(4);
-        if (Katsu.game.isKeyTyped(Keys.NUM_5)) tryTrade(5);
-        if (Katsu.game.isKeyTyped(Keys.NUM_6)) tryTrade(6);
-        if (Katsu.game.isKeyTyped(Keys.NUM_7)) tryTrade(7);
-        if (Katsu.game.isKeyTyped(Keys.NUM_8)) tryTrade(8);
-        if (Katsu.game.isKeyTyped(Keys.NUM_9)) tryTrade(9);
 
         if (Katsu.game.isKeyTyped(Keys.T)) {
             if (playerLandingPad != null) {
@@ -187,111 +264,18 @@ public class MainRoom extends Room {
                 ui.writeText(Messages.YOU_ARE_NOT_STANDING_ON_A_TELEPORT);
             }
         }
+    }
 
-
-        // TODO-LD28
-        if (!shownWelcomeForLevel) {
-            if (Katsu.game.currentLevel == "0000") {
-                ui.writeText("welcome to ~singleton~, berkano's LD28 entry.");
-                ui.writeText("major tim is lost in space. one prisoner, one");
-                ui.writeText("sheep, one inventory slot, one goal:");
-                ui.writeText("help him find his way back to earth");
-                ui.writeText("press h for help.");
-            }
-            shownWelcomeForLevel = true;
-        }
-
-        if (!objectiveReached && !objectiveFailed) checkLevelCompleteCriteria();
-
-        if (Gdx.input.isKeyPressed(Keys.F3)) {
-            ui.writeText("entities=" + String.valueOf(entities.size()));
-        }
-
-        if (Katsu.game.isKeyTyped(Keys.I)) {
-            String result = runInventoryRules();
-            ui.writeText(result);
-        }
-
-
-        if (Katsu.game.isKeyTyped(Keys.SPACE)) {
-            if (selectedEntity != null) {
-                if (selectedEntity instanceof Resource) {
-                    selectedEntity.wantsDestroy = true;
-                    if (selectedEntity instanceof Fuel) {
-                        gameState.fuel += GameParameters.refuelAmount;
-                    }
-                    if (selectedEntity instanceof Potato) {
-                        player.health += GameParameters.potatoGiveHealthAmount;
-                        if (player.health > 100) player.health = 100;
-                    }
-                    if (selectedEntity instanceof Iron) {
-                        ship.health += GameParameters.ironGiveRepairAmount;
-                        if (ship.health > 100) ship.health = 100;
-                    }
-                }
-            }
-        }
-
-//        if (Katsu.game.isKeyTyped(Keys.C)) {
-//            if (selectedEntity != null) {
-//                mainView.following = selectedEntity;
-//            }
-//        }
-
-        checkInputAndMovePlayer(Keys.W, 0, -1);
-        checkInputAndMovePlayer(Keys.A, -1, 0);
-        checkInputAndMovePlayer(Keys.S, 0, 1);
-        checkInputAndMovePlayer(Keys.D, 1, 0);
-
-
-        if (Katsu.game.isKeyTyped(Keys.X)) {
-            if (Settings.devMode) {
-                Teleport winTP = TeleportMap.findByName("Earth");
-                ship.x = winTP.x * 16;
-                ship.y = winTP.y * 16;
-                //if (Settings.devMode) {
-                //objectiveReached = true;
-                //}
-            }
-        }
-
-        if (Katsu.game.isKeyTyped(Keys.U)) {
-            if (planetView) {
-                universeClicked();
-            } else {
-                planetClicked();
-            }
-        }
-
-        if (Katsu.game.isKeyTyped(Keys.SPACE)) {
-            if (objectiveReached) {
-                String nextLevel = LevelManager.nextLevel(Katsu.game.currentLevel);
-                if (nextLevel != "") {
-                    Katsu.game.startLevel(nextLevel);
-                }
-            }
-        }
-
-
-//        if (Katsu.game.isKeyTyped(Keys.M)) {
-//            tryAssignObjective(Objective.MOVE);
-//        }
-
-//        if (Katsu.game.isKeyTyped(Keys.S)) {
-//            if (selectedEntity != null) {
-//                if (selectedEntity instanceof FriendlyMob) {
-//                    selectedEntity.health = -1;
-//                }
-//            }
-//        }
-
-//        if (Katsu.game.isKeyTyped(Keys.N)) {
-//            tryAssignObjective(Objective.NOTHING);
-//        }
-
-        if (Katsu.game.isKeyTyped(Keys.Z)) {
-            doZoom();
-        }
+    private void tradingLogic() {
+        if (Katsu.game.isKeyTyped(Keys.NUM_1)) tryTrade(1);
+        if (Katsu.game.isKeyTyped(Keys.NUM_2)) tryTrade(2);
+        if (Katsu.game.isKeyTyped(Keys.NUM_3)) tryTrade(3);
+        if (Katsu.game.isKeyTyped(Keys.NUM_4)) tryTrade(4);
+        if (Katsu.game.isKeyTyped(Keys.NUM_5)) tryTrade(5);
+        if (Katsu.game.isKeyTyped(Keys.NUM_6)) tryTrade(6);
+        if (Katsu.game.isKeyTyped(Keys.NUM_7)) tryTrade(7);
+        if (Katsu.game.isKeyTyped(Keys.NUM_8)) tryTrade(8);
+        if (Katsu.game.isKeyTyped(Keys.NUM_9)) tryTrade(9);
     }
 
     private void tryTrade(int i) {
