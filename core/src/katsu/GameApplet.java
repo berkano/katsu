@@ -3,7 +3,7 @@ package katsu;
 public class GameApplet { //extends LwjglApplet {
 
     static {
-        meta.makeCompatible();
+        DevTools.todoMakeCompatible();
     }
 
 //    private static final long serialVersionUID = 1L;

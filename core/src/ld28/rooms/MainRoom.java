@@ -175,10 +175,10 @@ public class MainRoom extends Room {
                     }
 
                 } else {
-                    ui.writeText("Cannot teleport until ship is docked.");
+                    ui.writeText(Messages.CANNOT_TELEPORT_UNTIL_SHIP_IS_DOCKED);
                 }
             } else {
-                ui.writeText("You are not standing on a teleport.");
+                ui.writeText(Messages.YOU_ARE_NOT_STANDING_ON_A_TELEPORT);
             }
         }
 
@@ -292,7 +292,7 @@ public class MainRoom extends Room {
         if (selectedEntity instanceof FriendlyPerson) {
             ((FriendlyPerson) selectedEntity).tryTrade(i);
         } else {
-            ui.writeText("Click on a friendly person before trading!");
+            ui.writeText(Messages.CLICK_ON_A_FRIENDLY_PERSON_BEFORE_TRADING);
         }
 
     }
@@ -348,13 +348,13 @@ public class MainRoom extends Room {
         if (!Katsu.game.isKeyDown(keyCode)) return;
 
         if (mainView.following instanceof Ship) {
-            if (player.isOnTopOf(LandingPad.class)) {
+            if (player.isOnTopOf(LandingPad.class) || DevTools.freeMoveCheat) {
             } else {
-                ui.writeText("May not move ship until player is at helm.");
+                ui.writeText(Messages.MAY_NOT_MOVE_SHIP_UNTIL_PLAYER_IS_AT_HELM);
                 return;
             }
             if (gameState.fuel == 0) {
-                ui.writeText("Out of fuel!");
+                ui.writeText(Messages.OUT_OF_FUEL);
                 return;
             }
             player.x = 46 * Settings.tileWidth;

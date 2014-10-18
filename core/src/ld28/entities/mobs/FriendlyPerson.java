@@ -4,6 +4,7 @@ import katsu.Katsu;
 import katsu.Util;
 import ld28.GameParameters;
 import ld28.GameState;
+import ld28.Messages;
 import ld28.entities.base.FriendlyMob;
 import ld28.entities.resources.*;
 import ld28.rooms.MainRoom;
@@ -48,14 +49,14 @@ public class FriendlyPerson extends FriendlyMob {
         GameState gameState = ((MainRoom)room).gameState;
         if (gameState.inventory != null) {
             gameState.credits += buyPriceFor(gameState.inventory);
-            ui.writeText("Sold!");
+            ui.writeText(Messages.SOLD);
             gameState.inventory = null;
         } else {
             int neededCredits = sellPriceFor(tradeClassByIndex(tradeNum));
             if (gameState.credits < neededCredits) {
-                ui.writeText("Not enough credits!");
+                ui.writeText(Messages.NOT_ENOUGH_CREDITS);
             } else {
-                ui.writeText("Bought!");
+                ui.writeText(Messages.BOUGHT);
                 gameState.credits -= neededCredits;
                 gameState.inventory = tradeClassByIndex(tradeNum);
             }

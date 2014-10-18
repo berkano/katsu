@@ -208,6 +208,7 @@ public abstract class Room {
 
         if (clickedEntities.size() >= 1) {
             if (leftClicking) {
+                DevTools.breakpointOnEntityClick();
                 ui.writeText(clickedEntities.get(clickedEntities.size() - 1).toString());
             }
         }
