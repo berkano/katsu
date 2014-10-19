@@ -1,11 +1,8 @@
 package katsu;
 
-import com.badlogic.gdx.ApplicationListener;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Graphics;
+import com.badlogic.gdx.*;
 import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.FPSLogger;
@@ -205,69 +202,50 @@ public class Game implements ApplicationListener, InputProcessor {
 
         }
 
-//        if (Katsu.game.isKeyTyped(Keys.T)) {
-//            ui.text.clear();
-//            LevelManager.showTutorial(tutorialPage, ui);
-//
-//            tutorialPage++;
-//            if (tutorialPage > LevelManager.tutorialPages) tutorialPage = 1;
-//
-//        }
-
-
-//        if (Katsu.game.isKeyTyped(Keys.J)) {
-//            ui.text.clear();
-//            LevelManager.showLevelInstructions(ui, this);
-//        }
-
-//        if (Katsu.game.isKeyTyped(Keys.R)) {
-//            startLevel(currentLevel);
-//        }
-
-        if (Settings.pinCodesEnabled) {
-
-            if (Katsu.game.isKeyTyped(Keys.NUM_0)) {
-                pinCode += "0";
-            }
-            if (Katsu.game.isKeyTyped(Keys.NUM_1)) {
-                pinCode += "1";
-            }
-            if (Katsu.game.isKeyTyped(Keys.NUM_2)) {
-                pinCode += "2";
-            }
-            if (Katsu.game.isKeyTyped(Keys.NUM_3)) {
-                pinCode += "3";
-            }
-            if (Katsu.game.isKeyTyped(Keys.NUM_4)) {
-                pinCode += "4";
-            }
-            if (Katsu.game.isKeyTyped(Keys.NUM_5)) {
-                pinCode += "5";
-            }
-            if (Katsu.game.isKeyTyped(Keys.NUM_6)) {
-                pinCode += "6";
-            }
-            if (Katsu.game.isKeyTyped(Keys.NUM_7)) {
-                pinCode += "7";
-            }
-            if (Katsu.game.isKeyTyped(Keys.NUM_8)) {
-                pinCode += "8";
-            }
-            if (Katsu.game.isKeyTyped(Keys.NUM_9)) {
-                pinCode += "9";
-            }
-
-            if (pinCode.length() > 4) {
-                pinCode = pinCode.substring(1, 5);
-            }
-
-            startLevel(pinCode);
-
-        }
+        if (Settings.pinCodesEnabled) handlePinCodes();
         if (Katsu.game.isKeyTyped(Keys.P)) {
             paused = !paused;
         }
 
+    }
+
+    private void handlePinCodes() {
+        if (Katsu.game.isKeyTyped(Keys.NUM_0)) {
+            pinCode += "0";
+        }
+        if (Katsu.game.isKeyTyped(Keys.NUM_1)) {
+            pinCode += "1";
+        }
+        if (Katsu.game.isKeyTyped(Keys.NUM_2)) {
+            pinCode += "2";
+        }
+        if (Katsu.game.isKeyTyped(Keys.NUM_3)) {
+            pinCode += "3";
+        }
+        if (Katsu.game.isKeyTyped(Keys.NUM_4)) {
+            pinCode += "4";
+        }
+        if (Katsu.game.isKeyTyped(Keys.NUM_5)) {
+            pinCode += "5";
+        }
+        if (Katsu.game.isKeyTyped(Keys.NUM_6)) {
+            pinCode += "6";
+        }
+        if (Katsu.game.isKeyTyped(Keys.NUM_7)) {
+            pinCode += "7";
+        }
+        if (Katsu.game.isKeyTyped(Keys.NUM_8)) {
+            pinCode += "8";
+        }
+        if (Katsu.game.isKeyTyped(Keys.NUM_9)) {
+            pinCode += "9";
+        }
+
+        if (pinCode.length() > 4) {
+            pinCode = pinCode.substring(1, 5);
+        }
+
+        startLevel(pinCode);
     }
 
     public void doHelp() {

@@ -99,8 +99,32 @@ public abstract class Room {
             v.update(gc);
         }
 
+        DevTools.todo("if need to bring back pathfinder");
         // Update collision map for pathfinder
         //pathMap = new GridMap(pathMapSizeX, pathMapSizeY); // TODO base this on size of tiled map
+
+        doEntityUpdates(gc);
+
+        for (Entity e : entities) {
+            if (e.wantsDestroy) {
+                destroyList.add(e);
+            }
+        }
+
+        for (Entity e : destroyList) {
+            e.beforeDeath(this);
+            entities.remove(e);
+        }
+        destroyList.clear();
+
+        for (Entity e : createList) {
+            e.textureRegion = entityTextureRegions.get(e.getClass());
+            entities.add(e);
+        }
+        createList.clear();
+    }
+
+    private void doEntityUpdates(Application gc) {
 
         ArrayList<Entity> interestedInTargetCollision = new ArrayList<Entity>();
         for (Entity e : entities) {
@@ -121,84 +145,72 @@ public abstract class Room {
                 if (e.solid) {
 
                     for (Entity e2 : interestedInTargetCollision) {
-                        if ((e2.solid)) {
-                            if (e == e2) continue;
-                            if (e.newX < e2.x - Settings.tileWidth * 2) continue;
-                            if (e.newY < e2.y - Settings.tileHeight * 2) continue;
-                            if (e.newX > e2.x + Settings.tileWidth * 2) continue;
-                            if (e.newY > e2.y + Settings.tileHeight * 2) continue;
-
-                            Rectangle r1 = new Rectangle(e.newX, e.newY, Settings.tileWidth, Settings.tileHeight);
-                            Rectangle r2 = new Rectangle(e2.x, e2.y, Settings.tileWidth, Settings.tileHeight);
-
-                            boolean oldCollision = collision;
-
-                            if (r1.overlaps(r2)) {
-                                if (!e.wantsDestroy && !e2.wantsDestroy) {
-
-                                    if (e.collide(e2)) {
-                                        collision = true;
-                                        if (Settings.collisionDebug)
-                                            ui.writeText("Collided " + e.getClass() + " with " + e2.getClass());
-
-                                    }
-                                    if (e2.collide(e)) {
-                                        collision = true;
-                                        if (Settings.collisionDebug)
-                                            ui.writeText("Collided " + e.getClass() + " with " + e2.getClass());
-                                    }
-                                }
-
-                            }
-
-                        }
+                        if ((e2.solid)) collision = detectCollision(e, collision, e2);
                     }
                 }
 
                 if (!collision) {
-
-                    if (e.orientSpriteByMovement) {
-                        if (e.newY < e.y) {
-                            e.orientation = KatsuOrientation.UP;
-                        }
-                        if (e.newY > e.y) {
-                            e.orientation = KatsuOrientation.DOWN;
-                        }
-                        if (e.newX < e.x) {
-                            e.orientation = KatsuOrientation.LEFT;
-                        }
-                        if (e.newX > e.x) {
-                            e.orientation = KatsuOrientation.RIGHT;
-                        }
-                    }
-
-
-                    e.x = e.newX;
-                    e.y = e.newY;
-                    e.afterMoved();
-                    e.lastMoved = System.currentTimeMillis();
+                    performWantedMovement(e);
                 }
                 e.wantsMove = false;
             }
         }
+    }
 
-        for (Entity e : entities) {
-            if (e.wantsDestroy) {
-                destroyList.add(e);
+    private void performWantedMovement(Entity e) {
+
+        if (e.orientSpriteByMovement) {
+            if (e.newY < e.y) {
+                e.orientation = KatsuOrientation.UP;
+            }
+            if (e.newY > e.y) {
+                e.orientation = KatsuOrientation.DOWN;
+            }
+            if (e.newX < e.x) {
+                e.orientation = KatsuOrientation.LEFT;
+            }
+            if (e.newX > e.x) {
+                e.orientation = KatsuOrientation.RIGHT;
             }
         }
 
-        for (Entity e : destroyList) {
-            e.beforeDeath(this);
-            entities.remove(e);
-        }
-        destroyList.clear();
 
-        for (Entity e : createList) {
-            e.textureRegion = entityTextureRegions.get(e.getClass());
-            entities.add(e);
+        e.x = e.newX;
+        e.y = e.newY;
+        e.afterMoved();
+        e.lastMoved = System.currentTimeMillis();
+    }
+
+    private boolean detectCollision(Entity e, boolean collision, Entity e2) {
+        if (e == e2) return collision;
+        if (e.newX < e2.x - Settings.tileWidth * 2) return collision;
+        if (e.newY < e2.y - Settings.tileHeight * 2) return collision;
+        if (e.newX > e2.x + Settings.tileWidth * 2) return collision;
+        if (e.newY > e2.y + Settings.tileHeight * 2) return collision;
+
+        Rectangle r1 = new Rectangle(e.newX, e.newY, Settings.tileWidth, Settings.tileHeight);
+        Rectangle r2 = new Rectangle(e2.x, e2.y, Settings.tileWidth, Settings.tileHeight);
+
+        boolean oldCollision = collision;
+
+        if (r1.overlaps(r2)) {
+            if (!e.wantsDestroy && !e2.wantsDestroy) {
+
+                if (e.collide(e2)) {
+                    collision = true;
+                    if (Settings.collisionDebug)
+                        ui.writeText("Collided " + e.getClass() + " with " + e2.getClass());
+
+                }
+                if (e2.collide(e)) {
+                    collision = true;
+                    if (Settings.collisionDebug)
+                        ui.writeText("Collided " + e.getClass() + " with " + e2.getClass());
+                }
+            }
+
         }
-        createList.clear();
+        return collision;
     }
 
     protected abstract void rawScreenClick(int x, int y);

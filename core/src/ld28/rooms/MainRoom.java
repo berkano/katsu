@@ -112,33 +112,22 @@ public class MainRoom extends Room {
             gameState.fuel = 0;
         }
 
-        if (firstUpdate) {
-            firstUpdate = false;
-
-            player.x = TeleportMap.findByName("Ship Helm").x * Settings.tileWidth;
-            player.y = TeleportMap.findByName("Ship Helm").y * Settings.tileHeight;
-            ship.x = TeleportMap.findByName("Xorx").x * Settings.tileWidth;
-            ship.y = TeleportMap.findByName("Xorx").y * Settings.tileHeight;
-
-        }
+        doFirstUpdateIfNeeded();
 
         teleportLogic();
 
         tradingLogic();
 
-        if (!shownWelcomeForLevel) {
-            if (Katsu.game.currentLevel == "0000") {
-                ui.writeText("welcome to ~singleton~, berkano's LD28 entry.");
-                ui.writeText("major tim is lost in space. one prisoner, one");
-                ui.writeText("sheep, one inventory slot, one goal:");
-                ui.writeText("help him find his way back to earth");
-                ui.writeText("press h for help.");
-            }
-            shownWelcomeForLevel = true;
-        }
+        showWelcomeIfNeeded();
 
         if (!objectiveReached && !objectiveFailed) checkLevelCompleteCriteria();
 
+        movePlayerLogic();
+
+        handleInputKeys();
+    }
+
+    private void handleInputKeys() {
         if (Gdx.input.isKeyPressed(Keys.F3)) {
             ui.writeText("entities=" + String.valueOf(entities.size()));
         }
@@ -151,9 +140,6 @@ public class MainRoom extends Room {
         if (Katsu.game.isKeyTyped(Keys.SPACE)) {
             useItemLogic();
         }
-
-
-        movePlayerLogic();
 
         if (Katsu.game.isKeyTyped(Keys.X)) {
             if (Settings.devMode) {
@@ -180,9 +166,33 @@ public class MainRoom extends Room {
             }
         }
 
-
         if (Katsu.game.isKeyTyped(Keys.Z)) {
             doZoom();
+        }
+    }
+
+    private void doFirstUpdateIfNeeded() {
+        if (firstUpdate) {
+            firstUpdate = false;
+
+            player.x = TeleportMap.findByName("Ship Helm").x * Settings.tileWidth;
+            player.y = TeleportMap.findByName("Ship Helm").y * Settings.tileHeight;
+            ship.x = TeleportMap.findByName("Xorx").x * Settings.tileWidth;
+            ship.y = TeleportMap.findByName("Xorx").y * Settings.tileHeight;
+
+        }
+    }
+
+    private void showWelcomeIfNeeded() {
+        if (!shownWelcomeForLevel) {
+            if (Katsu.game.currentLevel == "0000") {
+                ui.writeText("welcome to ~singleton~, berkano's LD28 entry.");
+                ui.writeText("major tim is lost in space. one prisoner, one");
+                ui.writeText("sheep, one inventory slot, one goal:");
+                ui.writeText("help him find his way back to earth");
+                ui.writeText("press h for help.");
+            }
+            shownWelcomeForLevel = true;
         }
     }
 
@@ -551,41 +561,7 @@ public class MainRoom extends Room {
                         }
                         selectedEntity = e;
                         selectedEntity.selected = true;
-                        if (!playedSelectSound) {
-                            boolean playedCustomSound = false;
-                            if (selectedEntity instanceof Robot) {
-                                Sounds.robotspeak.play();
-                                playedCustomSound = true;
-                            }
-                            if (selectedEntity instanceof Ship) {
-                                Sounds.shipspeak.play();
-                                playedCustomSound = true;
-                            }
-                                if (selectedEntity instanceof Sheep) {
-                                Sounds.sheep.play();
-                                playedCustomSound = true;
-                            }
-                            if (selectedEntity instanceof FriendlyPerson) {
-                                Sounds.friendlyspeak.play();
-                                playedCustomSound = true;
-                            }
-                            if (selectedEntity instanceof FriendlyShip) {
-                                Sounds.friendlyshipspeak.play();
-                                playedCustomSound = true;
-                            }
-                            if (selectedEntity instanceof EnemyShip) {
-                                Sounds.enemyshipspeak.play();
-                                playedCustomSound = true;
-                            }
-                            if (selectedEntity instanceof EnemyPerson) {
-                                Sounds.enemypersonspeak.play();
-                                playedCustomSound = true;
-                            }
-
-                            if (!playedCustomSound) {
-                                sounds.select.play();
-                            }
-                        }
+                        if (!playedSelectSound) playEntitySelectedSound();
                     }
                 } else {
                     selectedEntity = null;
@@ -594,6 +570,42 @@ public class MainRoom extends Room {
 
         }
 
+    }
+
+    private void playEntitySelectedSound() {
+        boolean playedCustomSound = false;
+        if (selectedEntity instanceof Robot) {
+            Sounds.robotspeak.play();
+            playedCustomSound = true;
+        }
+        if (selectedEntity instanceof Ship) {
+            Sounds.shipspeak.play();
+            playedCustomSound = true;
+        }
+        if (selectedEntity instanceof Sheep) {
+        Sounds.sheep.play();
+        playedCustomSound = true;
+    }
+        if (selectedEntity instanceof FriendlyPerson) {
+            Sounds.friendlyspeak.play();
+            playedCustomSound = true;
+        }
+        if (selectedEntity instanceof FriendlyShip) {
+            Sounds.friendlyshipspeak.play();
+            playedCustomSound = true;
+        }
+        if (selectedEntity instanceof EnemyShip) {
+            Sounds.enemyshipspeak.play();
+            playedCustomSound = true;
+        }
+        if (selectedEntity instanceof EnemyPerson) {
+            Sounds.enemypersonspeak.play();
+            playedCustomSound = true;
+        }
+
+        if (!playedCustomSound) {
+            sounds.select.play();
+        }
     }
 
     @Override

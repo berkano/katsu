@@ -92,74 +92,76 @@ public class Mob extends Entity {
         }
 
         if (currentObjective == Objective.MOVE) {
-            if (targetEntity != null) {
-                if (System.currentTimeMillis() - lastMoved > 10) {
-
-                    int newX = x;
-                    int newY = y;
-
-                    if (intermediateTargX == null) {
-                        intermediateTargX = targetEntity.x;
-                        intermediateTargY = targetEntity.y;
-                    }
-
-                    // Notice immediately when we are at intermediate path point and trigger re-calc
-                    if (x == intermediateTargX && y == intermediateTargY) {
-                        if ((x != targetEntity.x) || (y != targetEntity.y)) {
-                            if (System.currentTimeMillis() - lastIntermedArrival > 250) {
-                                lastIntermedArrival = System.currentTimeMillis();
-                                lastPathFind = 0;
-                            }
-                        }
-                    }
-
-                    // Performance - don't continually re-calc path
-                    if (System.currentTimeMillis() - lastPathFind > 1000) {
-                        lastPathFind = System.currentTimeMillis(); // + Game.instance.r.nextInt(50);
-                        // New: get path
-                        GridMap pathMap = Katsu.game.currentRoom.pathMap;
-                        GridLocation start = new GridLocation(Math.round(x / Settings.tileWidth), Math.round(y / Settings.tileHeight), false);
-                        GridLocation end = new GridLocation(targetEntity.x / Settings.tileWidth, targetEntity.y / Settings.tileHeight, false);
-                        GridPathfinding gridPathfinding = new GridPathfinding();
-
-                        // Don't block start of path where entity is
-                        double prevStartVal = pathMap.get(start.getX(), start.getY());
-                        double prevEndVal = pathMap.get(end.getX(), end.getY());
-                        pathMap.set(start.getX(), start.getY(), 1);
-                        pathMap.set(end.getX(), end.getY(), 1);
-                        GridPath gridPath = gridPathfinding.getPath(start, end, pathMap);
-                        Game.pathFinds++;
-                        pathMap.set(start.getX(), start.getY(), prevStartVal);
-                        pathMap.set(end.getX(), end.getY(), prevEndVal);
-
-                        if (gridPath != null) {
-                            ArrayList<GridLocation> gridLocations = gridPath.getList();
-                            //GridLocation gridLocation = gridPath.getNextMove();
-                            GridLocation gridLocation = null;
-                            if (gridLocations.size() >= 2) {
-                                gridLocation = gridLocations.get(gridLocations.size() - 2);
-                            }
-                            if (gridLocation != null) {
-                                intermediateTargX = gridLocation.getX() * Settings.tileWidth;
-                                intermediateTargY = gridLocation.getY() * Settings.tileHeight;
-                            }
-                        }
-                    }
-
-                    if (intermediateTargX > x) newX = x + 1;
-                    if (intermediateTargX < x) newX = x - 1;
-                    if (intermediateTargY > y) newY = y + 1;
-                    if (intermediateTargY < y) newY = y - 1;
-
-                    MainRoom mr = (MainRoom) Katsu.game.currentRoom;
-
-                    setWantsMove(newX, newY);
-                }
-
-            } else {
+            if (targetEntity != null) performMovementObjective();
+            else {
                 currentObjective = Objective.NOTHING;
             }
         }
 
+    }
+
+    private void performMovementObjective() {
+        if (System.currentTimeMillis() - lastMoved > 10) {
+
+            int newX = x;
+            int newY = y;
+
+            if (intermediateTargX == null) {
+                intermediateTargX = targetEntity.x;
+                intermediateTargY = targetEntity.y;
+            }
+
+            // Notice immediately when we are at intermediate path point and trigger re-calc
+            if (x == intermediateTargX && y == intermediateTargY) {
+                if ((x != targetEntity.x) || (y != targetEntity.y)) {
+                    if (System.currentTimeMillis() - lastIntermedArrival > 250) {
+                        lastIntermedArrival = System.currentTimeMillis();
+                        lastPathFind = 0;
+                    }
+                }
+            }
+
+            // Performance - don't continually re-calc path
+            if (System.currentTimeMillis() - lastPathFind > 1000) {
+                lastPathFind = System.currentTimeMillis(); // + Game.instance.r.nextInt(50);
+                // New: get path
+                GridMap pathMap = Katsu.game.currentRoom.pathMap;
+                GridLocation start = new GridLocation(Math.round(x / Settings.tileWidth), Math.round(y / Settings.tileHeight), false);
+                GridLocation end = new GridLocation(targetEntity.x / Settings.tileWidth, targetEntity.y / Settings.tileHeight, false);
+                GridPathfinding gridPathfinding = new GridPathfinding();
+
+                // Don't block start of path where entity is
+                double prevStartVal = pathMap.get(start.getX(), start.getY());
+                double prevEndVal = pathMap.get(end.getX(), end.getY());
+                pathMap.set(start.getX(), start.getY(), 1);
+                pathMap.set(end.getX(), end.getY(), 1);
+                GridPath gridPath = gridPathfinding.getPath(start, end, pathMap);
+                Game.pathFinds++;
+                pathMap.set(start.getX(), start.getY(), prevStartVal);
+                pathMap.set(end.getX(), end.getY(), prevEndVal);
+
+                if (gridPath != null) {
+                    ArrayList<GridLocation> gridLocations = gridPath.getList();
+                    //GridLocation gridLocation = gridPath.getNextMove();
+                    GridLocation gridLocation = null;
+                    if (gridLocations.size() >= 2) {
+                        gridLocation = gridLocations.get(gridLocations.size() - 2);
+                    }
+                    if (gridLocation != null) {
+                        intermediateTargX = gridLocation.getX() * Settings.tileWidth;
+                        intermediateTargY = gridLocation.getY() * Settings.tileHeight;
+                    }
+                }
+            }
+
+            if (intermediateTargX > x) newX = x + 1;
+            if (intermediateTargX < x) newX = x - 1;
+            if (intermediateTargY > y) newY = y + 1;
+            if (intermediateTargY < y) newY = y - 1;
+
+            MainRoom mr = (MainRoom) Katsu.game.currentRoom;
+
+            setWantsMove(newX, newY);
+        }
     }
 }
