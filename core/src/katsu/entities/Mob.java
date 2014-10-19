@@ -1,4 +1,4 @@
-package ld28.entities.base;
+package katsu.entities;
 
 import com.badlogic.gdx.Application;
 import ext.pathfinding.grid.GridLocation;
@@ -6,13 +6,7 @@ import ext.pathfinding.grid.GridMap;
 import ext.pathfinding.grid.GridPath;
 import ext.pathfinding.grid.GridPathfinding;
 import katsu.*;
-import ld28.Objective;
-import ld28.PlaceNames;
-import ld28.entities.mobs.EnemyPerson;
-import ld28.entities.mobs.EnemyShip;
-import ld28.entities.mobs.FriendlyPerson;
-import ld28.entities.mobs.FriendlyShip;
-import ld28.rooms.MainRoom;
+import katsu.Objective;
 
 import java.util.ArrayList;
 
@@ -32,19 +26,6 @@ public class Mob extends Entity {
     public Mob() {
         this.solid = true;
         this.isCollisionTarget = true;
-        if (this instanceof EnemyShip) {
-            friendlyName = PlaceNames.randomShipName();
-        }
-        if (this instanceof FriendlyShip) {
-            friendlyName = PlaceNames.randomShipName();
-        }
-        if (this instanceof EnemyPerson) {
-            friendlyName = PlaceNames.randomPersonName();
-        }
-        if (this instanceof FriendlyPerson) {
-            friendlyName = PlaceNames.randomPersonName();
-        }
-
     }
 
     @Override
@@ -74,9 +55,7 @@ public class Mob extends Entity {
         } else {
             mobName = friendlyName;
         }
-        if (this instanceof FriendlyPerson) {
-            mobName += ". "+((FriendlyPerson)this).tradesAsString();
-        }
+
         return mobName;
     }
 
@@ -158,8 +137,6 @@ public class Mob extends Entity {
             if (intermediateTargX < x) newX = x - 1;
             if (intermediateTargY > y) newY = y + 1;
             if (intermediateTargY < y) newY = y - 1;
-
-            MainRoom mr = (MainRoom) Katsu.game.currentRoom;
 
             setWantsMove(newX, newY);
         }

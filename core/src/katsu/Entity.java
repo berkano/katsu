@@ -5,7 +5,6 @@ import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import ld28.Objective;
 import ld28.Sounds;
 
 import java.util.ArrayList;

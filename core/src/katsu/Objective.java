@@ -1,4 +1,4 @@
-package ld28;
+package katsu;
 
 /**
  * Created with IntelliJ IDEA.

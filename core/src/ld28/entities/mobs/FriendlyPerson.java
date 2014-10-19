@@ -5,6 +5,7 @@ import katsu.Util;
 import ld28.GameParameters;
 import ld28.GameState;
 import ld28.Messages;
+import ld28.PlaceNames;
 import ld28.entities.base.FriendlyMob;
 import ld28.entities.resources.*;
 import ld28.rooms.MainRoom;
@@ -21,6 +22,8 @@ public class FriendlyPerson extends FriendlyMob {
 
     public FriendlyPerson() {
         super();
+        friendlyName = PlaceNames.randomPersonName();
+
         for (int i = 1; i < 10; i++) {
             if (i == 1) trades.put(Diamond.class, Util.randomInRange(GameParameters.diamondMinCost, GameParameters.diamondMaxCost));
             if (i == 2) trades.put(Wood.class, Util.randomInRange(GameParameters.woodMinCost, GameParameters.woodMaxCost));
@@ -80,4 +83,8 @@ public class FriendlyPerson extends FriendlyMob {
         return ((100+profitMargin)*trades.get(c)) / 100;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + ". "+tradesAsString();
+    }
 }

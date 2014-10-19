@@ -3,7 +3,6 @@ package ld28.rooms;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -50,8 +49,8 @@ public class MainRoom extends Room {
         zoom = newZoom;
         if (DevTools.superZoomOut) {
             DevTools.todo("Move away from fixed screen res");
-           mainView.portWidth = 1024*4;
-            mainView.portHeight = 768*4;
+            mainView.portWidth = 1024 * 4;
+            mainView.portHeight = 768 * 4;
         } else {
             mainView.portWidth = 1024 / zoom;
             mainView.portHeight = 768 / zoom;
@@ -114,7 +113,7 @@ public class MainRoom extends Room {
 
         showWelcomeIfNeeded();
 
-        if (!objectiveReached && !objectiveFailed) checkLevelCompleteCriteria();
+        checkLevelCompleteCriteria();
 
         movePlayerLogic();
 
@@ -518,7 +517,9 @@ public class MainRoom extends Room {
     }
 
     private void checkLevelCompleteCriteria() {
-
+        if (!objectiveReached && !objectiveFailed) {
+            // Custom logic to go here.
+        }
     }
 
     @Override
@@ -634,9 +635,9 @@ public class MainRoom extends Room {
             playedCustomSound = true;
         }
         if (selectedEntity instanceof Sheep) {
-        Sounds.sheep.play();
-        playedCustomSound = true;
-    }
+            Sounds.sheep.play();
+            playedCustomSound = true;
+        }
         if (selectedEntity instanceof FriendlyPerson) {
             Sounds.friendlyspeak.play();
             playedCustomSound = true;
