@@ -33,20 +33,14 @@ public class MainRoom extends Room {
 
     public View mainView = new View(this);
     public boolean gameOver = false;
-
     public boolean objectiveReached = false;
     public boolean objectiveFailed = false;
     public Entity selectedEntity;
     public Entity player;
     public Entity ship;
-
     public boolean firstUpdate = true;
-
     public boolean planetView = false;
-
-    // TODO-LD28 Flexible inventory/resources system
     public int zoom = 1;
-
     public boolean inCommand = false;
     public Objective objectiveToAssign = Objective.NOTHING;
 
@@ -128,27 +122,21 @@ public class MainRoom extends Room {
     }
 
     private void handleInputKeys() {
-        if (Gdx.input.isKeyPressed(Keys.F3)) {
-            ui.writeText("entities=" + String.valueOf(entities.size()));
-        }
+        Input_F3();
+        Input_I();
+        Input_SPACE();
+        Input_X();
+        Input_U();
+        Input_Z();
+    }
 
-        if (Katsu.game.isKeyTyped(Keys.I)) {
-            String result = runInventoryRules();
-            ui.writeText(result);
+    public void Input_Z() {
+        if (Katsu.game.isKeyTyped(Keys.Z)) {
+            doZoom();
         }
+    }
 
-        if (Katsu.game.isKeyTyped(Keys.SPACE)) {
-            useItemLogic();
-        }
-
-        if (Katsu.game.isKeyTyped(Keys.X)) {
-            if (Settings.devMode) {
-                Teleport winTP = TeleportMap.findByName("Earth");
-                ship.x = winTP.x * 16;
-                ship.y = winTP.y * 16;
-            }
-        }
-
+    private void Input_U() {
         if (Katsu.game.isKeyTyped(Keys.U)) {
             if (planetView) {
                 universeClicked();
@@ -156,8 +144,23 @@ public class MainRoom extends Room {
                 planetClicked();
             }
         }
+    }
+
+    private void Input_X() {
+        if (Katsu.game.isKeyTyped(Keys.X)) {
+            if (Settings.devMode) {
+                Teleport winTP = TeleportMap.findByName("Earth");
+                ship.x = winTP.x * 16;
+                ship.y = winTP.y * 16;
+            }
+        }
+    }
+
+    private void Input_SPACE() {
 
         if (Katsu.game.isKeyTyped(Keys.SPACE)) {
+            useItemLogic();
+
             if (objectiveReached) {
                 String nextLevel = LevelManager.nextLevel(Katsu.game.currentLevel);
                 if (nextLevel != "") {
@@ -166,8 +169,18 @@ public class MainRoom extends Room {
             }
         }
 
-        if (Katsu.game.isKeyTyped(Keys.Z)) {
-            doZoom();
+    }
+
+    private void Input_I() {
+        if (Katsu.game.isKeyTyped(Keys.I)) {
+            String result = runInventoryRules();
+            ui.writeText(result);
+        }
+    }
+
+    private void Input_F3() {
+        if (Gdx.input.isKeyPressed(Keys.F3)) {
+            ui.writeText("entities=" + String.valueOf(entities.size()));
         }
     }
 
@@ -227,7 +240,6 @@ public class MainRoom extends Room {
         LandingPad playerLandingPad = (LandingPad) player.getInstanceUnderneath(LandingPad.class);
         if (shipLandingPad != null) {
             if (playerLandingPad != null) {
-
                 if (playerLandingPad.teleport.name.equals("Ship Helm")) {
                     if (shipLandingPad.teleport != null) {
                         Teleport linkedSurfaceTeleport = shipLandingPad.teleport.link;
@@ -237,8 +249,6 @@ public class MainRoom extends Room {
                         }
                     }
                 }
-
-
             }
         } else {
             if (playerLandingPad != null) {
@@ -246,7 +256,10 @@ public class MainRoom extends Room {
             }
         }
 
+        Input_T(shipLandingPad, playerLandingPad);
+    }
 
+    private void Input_T(LandingPad shipLandingPad, LandingPad playerLandingPad) {
         if (Katsu.game.isKeyTyped(Keys.T)) {
             if (playerLandingPad != null) {
                 if (playerLandingPad.teleport.link != null) {
@@ -277,15 +290,51 @@ public class MainRoom extends Room {
     }
 
     private void tradingLogic() {
-        if (Katsu.game.isKeyTyped(Keys.NUM_1)) tryTrade(1);
-        if (Katsu.game.isKeyTyped(Keys.NUM_2)) tryTrade(2);
-        if (Katsu.game.isKeyTyped(Keys.NUM_3)) tryTrade(3);
-        if (Katsu.game.isKeyTyped(Keys.NUM_4)) tryTrade(4);
-        if (Katsu.game.isKeyTyped(Keys.NUM_5)) tryTrade(5);
-        if (Katsu.game.isKeyTyped(Keys.NUM_6)) tryTrade(6);
-        if (Katsu.game.isKeyTyped(Keys.NUM_7)) tryTrade(7);
-        if (Katsu.game.isKeyTyped(Keys.NUM_8)) tryTrade(8);
+        Input_1();
+        Input_2();
+        Input_3();
+        Input_4();
+        Input_5();
+        Input_6();
+        Input_7();
+        Input_8();
+        Input_9();
+    }
+
+    private void Input_9() {
         if (Katsu.game.isKeyTyped(Keys.NUM_9)) tryTrade(9);
+    }
+
+    private void Input_8() {
+        if (Katsu.game.isKeyTyped(Keys.NUM_8)) tryTrade(8);
+    }
+
+    private void Input_7() {
+        if (Katsu.game.isKeyTyped(Keys.NUM_7)) tryTrade(7);
+    }
+
+    private void Input_6() {
+        if (Katsu.game.isKeyTyped(Keys.NUM_6)) tryTrade(6);
+    }
+
+    private void Input_5() {
+        if (Katsu.game.isKeyTyped(Keys.NUM_5)) tryTrade(5);
+    }
+
+    private void Input_4() {
+        if (Katsu.game.isKeyTyped(Keys.NUM_4)) tryTrade(4);
+    }
+
+    private void Input_3() {
+        if (Katsu.game.isKeyTyped(Keys.NUM_3)) tryTrade(3);
+    }
+
+    private void Input_2() {
+        if (Katsu.game.isKeyTyped(Keys.NUM_2)) tryTrade(2);
+    }
+
+    private void Input_1() {
+        if (Katsu.game.isKeyTyped(Keys.NUM_1)) tryTrade(1);
     }
 
     private void tryTrade(int i) {
@@ -400,7 +449,7 @@ public class MainRoom extends Room {
         doZoom();
     }
 
-    private void doZoom() {
+    public void doZoom() {
 
         switch (zoom) {
             case 4:
@@ -540,36 +589,38 @@ public class MainRoom extends Room {
                 }
             }
 
-            if (leftClicking) {
-                if (e != null) {
-
-                    boolean playedSelectSound = false;
-
-                    if (e instanceof FriendlyMob) {
-                        //playedSelectSound = true;
-                    }
-
-                    if (inCommand) {
-                        selectedEntity.currentObjective = objectiveToAssign;
-                        selectedEntity.say("Command accepted");
-                        selectedEntity.targetEntity = e;
-                        objectiveToAssign = Objective.NOTHING;
-                        inCommand = false;
-                    } else {
-                        if (selectedEntity != null) {
-                            selectedEntity.selected = false;
-                        }
-                        selectedEntity = e;
-                        selectedEntity.selected = true;
-                        if (!playedSelectSound) playEntitySelectedSound();
-                    }
-                } else {
-                    selectedEntity = null;
-                }
-            }
+            if (leftClicking) doLeftClick(e);
 
         }
 
+    }
+
+    private void doLeftClick(Entity e) {
+        if (e != null) {
+
+            boolean playedSelectSound = false;
+
+            if (e instanceof FriendlyMob) {
+                //playedSelectSound = true;
+            }
+
+            if (inCommand) {
+                selectedEntity.currentObjective = objectiveToAssign;
+                selectedEntity.say("Command accepted");
+                selectedEntity.targetEntity = e;
+                objectiveToAssign = Objective.NOTHING;
+                inCommand = false;
+            } else {
+                if (selectedEntity != null) {
+                    selectedEntity.selected = false;
+                }
+                selectedEntity = e;
+                selectedEntity.selected = true;
+                if (!playedSelectSound) playEntitySelectedSound();
+            }
+        } else {
+            selectedEntity = null;
+        }
     }
 
     private void playEntitySelectedSound() {
