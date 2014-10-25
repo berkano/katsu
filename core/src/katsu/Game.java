@@ -68,6 +68,12 @@ public class Game implements ApplicationListener, InputProcessor {
     public int helpPage = 1;
     public int tutorialPage = 1;
 
+    private KatsuGame impl;
+
+    public Game(KatsuGame impl) {
+        this.impl = impl;
+    }
+
     @Override
     public void create() {
 
@@ -145,9 +151,6 @@ public class Game implements ApplicationListener, InputProcessor {
     }
 
     public static Game getInstance() {
-        if (instance == null) {
-            instance = new Game();
-        }
         return instance;
     }
 

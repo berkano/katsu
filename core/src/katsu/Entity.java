@@ -5,7 +5,6 @@ import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import ld28.Sounds;
 
 import java.util.ArrayList;
 
@@ -21,7 +20,6 @@ public abstract class Entity {
     public long age = 0;
 
     public Game game = Util.getGame();
-    public Sounds sounds = Util.getSounds();
     public UI ui = Util.getUI();
     public boolean activated = true;
     public boolean selected = false;
@@ -163,8 +161,6 @@ public abstract class Entity {
     }
 
     protected void setWantsMove(int newX, int newY) {
-
-        DevTools.entityMoving(this);
 
         wantsMove = true;
         this.newX = newX;

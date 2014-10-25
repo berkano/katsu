@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import ext.pathfinding.grid.GridMap;
+import ld28.DevTools;
 import ld28.LevelManager;
 import ld28.Sounds;
 

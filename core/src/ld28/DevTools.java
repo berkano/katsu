@@ -1,5 +1,6 @@
-package katsu;
+package ld28;
 
+import katsu.Entity;
 import ld28.entities.mobs.PlayerPerson;
 
 /**
