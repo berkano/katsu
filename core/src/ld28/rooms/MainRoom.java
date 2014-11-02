@@ -161,7 +161,7 @@ public class MainRoom extends Room {
             useItemLogic();
 
             if (objectiveReached) {
-                String nextLevel = LevelManager.nextLevel(Katsu.game.currentLevel);
+                String nextLevel = game.getLevelManager().nextLevel(Katsu.game.currentLevel);
                 if (nextLevel != "") {
                     Katsu.game.startLevel(nextLevel);
                 }

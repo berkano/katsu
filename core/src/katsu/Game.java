@@ -13,7 +13,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import ld28.LevelManager;
+import ld28.Documentation;
 import ld28.Sounds;
 import ld28.rooms.MainRoom;
 
@@ -69,6 +69,7 @@ public class Game implements ApplicationListener, InputProcessor {
     public int tutorialPage = 1;
 
     private KatsuGame impl;
+    private LevelManager levelManager;
 
     public Game(KatsuGame impl) {
         this.impl = impl;
@@ -253,15 +254,15 @@ public class Game implements ApplicationListener, InputProcessor {
 
     public void doHelp() {
         ui.text.clear();
-        LevelManager.showHelp(helpPage, ui);
+        getLevelManager().showHelp(helpPage, ui);
 
         helpPage++;
-        if (helpPage > LevelManager.helpPages) helpPage = 1;
+        if (helpPage > Documentation.getNumHelpPages()) helpPage = 1;
 
     }
 
     public void startLevel(String code) {
-        String tmx = LevelManager.tmxForLevelCode(code);
+        String tmx = getLevelManager().tmxForLevelCode(code);
         if (tmx.equals("")) return;
         pinCode = "";
         currentLevel = code;
@@ -271,7 +272,7 @@ public class Game implements ApplicationListener, InputProcessor {
         currentRoom = null;
         currentRoom = rooms.get(0);
 
-        LevelManager.showLevelInstructions(ui, this);
+        getLevelManager().showLevelInstructions(ui, this);
 
     }
 
@@ -345,5 +346,9 @@ public class Game implements ApplicationListener, InputProcessor {
     @Override
     public boolean scrolled(int amount) {
         return false;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    public LevelManager getLevelManager() {
+        return impl.getLevelManager();
     }
 }

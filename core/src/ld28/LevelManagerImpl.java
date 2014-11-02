@@ -1,6 +1,7 @@
 package ld28;
 
 import katsu.Game;
+import katsu.LevelManager;
 import katsu.UI;
 import ld28.entities.mobs.*;
 import ld28.entities.resources.*;
@@ -19,11 +20,10 @@ import java.util.HashMap;
  * Time: 21:39
  * To change this template use File | Settings | File Templates.
  */
-public class LevelManager {
+public class LevelManagerImpl implements LevelManager {
 
-    public static int helpPages = Documentation.numPages;
-
-    public static String nextLevel(String fromLevel) {
+    @Override
+    public String nextLevel(String fromLevel) {
         if (fromLevel.equals("0000")) return ("0001");
         if (fromLevel.equals("0001")) return ("0002");
         if (fromLevel.equals("0002")) return ("0003");
@@ -33,7 +33,8 @@ public class LevelManager {
         return "";
     }
 
-    public static String tmxForLevelCode(String code) {
+    @Override
+    public String tmxForLevelCode(String code) {
 
         if (code.equals("0000")) return "0000";
         if (code.equals("0001")) return "0001";
@@ -49,20 +50,23 @@ public class LevelManager {
         return "";
     }
 
-    public static void showLevelInstructions(UI ui, Game game) {
+    @Override
+    public void showLevelInstructions(UI ui, Game game) {
     }
 
-    public static void showHelp(int helpPage, UI ui) {
+    @Override
+    public void showHelp(int helpPage, UI ui) {
 
         String[] lines = Documentation.getHelpPage(helpPage).split("\n");
-        ui.writeText(String.format("*** HELP: Page (%s of %s). Press H for next page. ***", helpPage, helpPages));
+        ui.writeText(String.format("*** HELP: Page (%s of %s). Press H for next page. ***", helpPage, Documentation.getNumHelpPages()));
         for (String line : lines) {
             ui.writeText(line);
         }
 
     }
 
-    public static HashMap<String, Class> getTmxClassMapping() {
+    @Override
+    public HashMap<String, Class> getTmxClassMapping() {
 
         HashMap<String, Class> classLookup = new HashMap<String, Class>();
 

@@ -39,7 +39,7 @@ public class Mob extends Entity {
     public boolean collide(Entity other) {
         if (other == targetEntity) {
             if (currentObjective == Objective.MOVE) {
-                // TODO-LD28
+                // TODO-L D 2 8
             }
         }
         return true;

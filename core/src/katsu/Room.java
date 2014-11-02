@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import ext.pathfinding.grid.GridMap;
 import ld28.DevTools;
-import ld28.LevelManager;
 import ld28.Sounds;
 
 import java.util.ArrayList;
@@ -41,7 +40,7 @@ public abstract class Room {
     public List<Entity> destroyList = new ArrayList<Entity>();
     public List<Entity> createList = new ArrayList<Entity>();
 
-    public HashMap<String, Class> classLookup = LevelManager.getTmxClassMapping();
+    public HashMap<String, Class> classLookup = game.getLevelManager().getTmxClassMapping();
     public HashMap<Class, TextureRegion> entityTextureRegions = new HashMap<Class, TextureRegion>();
 
     public long tick = 0;

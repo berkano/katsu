@@ -110,7 +110,7 @@ public abstract class Entity {
 
             c.a = 0.5f + 0.5f * (float) Math.sin(3f * Game.tick / (float) Settings.targetFrameRate);
 
-            // TODO: hack to workaround issue introduced after changing texture rendering in LD28
+            // TODO: hack to workaround issue introduced after changing texture rendering in l d 2 8
             screenX -= 8;
             screenY -= 8;
 
