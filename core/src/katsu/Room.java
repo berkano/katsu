@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import ext.pathfinding.grid.GridMap;
-import ld28.DevTools;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -80,7 +79,7 @@ public abstract class Room {
         if (leftClicking || rightClicking) {
             int x = Gdx.input.getX();
             int y = Gdx.input.getY();
-            // TODO-LD28 hack
+            // TODO-L D 2 8 hack
             if (y > 16) {
                 Coord roomCoord = screenCoordsToRoomCoords(x, y);
                 if (roomCoord != null) {
@@ -97,7 +96,7 @@ public abstract class Room {
             v.update(gc);
         }
 
-        DevTools.todo("if need to bring back pathfinder");
+        // TODO: if need to bring back pathfinder
         // Update collision map for pathfinder
         //pathMap = new GridMap(pathMapSizeX, pathMapSizeY); // TODO base this on size of tiled map
 
@@ -218,7 +217,6 @@ public abstract class Room {
 
         if (clickedEntities.size() >= 1) {
             if (leftClicking) {
-                DevTools.entityClicked();
                 ui.writeText(clickedEntities.get(clickedEntities.size() - 1).toString());
             }
         }
