@@ -9,4 +9,6 @@ public interface KatsuGame {
     int getNumHelpPages();
 
     void stopAllMusic();
+
+    Room createRoomForTmx(String tmx);
 }

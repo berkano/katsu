@@ -13,7 +13,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import ld28.rooms.MainRoom;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -264,7 +263,7 @@ public class Game implements ApplicationListener, InputProcessor {
         currentLevel = code;
         ui.text.clear();
         rooms.clear();
-        rooms.add(new MainRoom(tmx));
+        rooms.add(impl.createRoomForTmx(tmx));
         currentRoom = null;
         currentRoom = rooms.get(0);
 
