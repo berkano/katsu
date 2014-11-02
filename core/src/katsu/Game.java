@@ -13,7 +13,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import ld28.Sounds;
 import ld28.rooms.MainRoom;
 
 import java.util.ArrayList;
@@ -60,7 +59,6 @@ public class Game implements ApplicationListener, InputProcessor {
 
     public boolean paused = false;
     public Random r = new Random();
-    public Sounds sounds;
     public UI ui = new UI();
     public boolean musicEnabled;
 
@@ -93,7 +91,6 @@ public class Game implements ApplicationListener, InputProcessor {
         uiSpriteBatch.setProjectionMatrix(camera.combined);
         Gdx.input.setInputProcessor(this);
         Logger.info("Game.create()");
-        sounds = new Sounds();
         if (Settings.startWithMusic) {
             musicEnabled = true;
             //Util.loopMusic(sounds.music);
@@ -194,7 +191,7 @@ public class Game implements ApplicationListener, InputProcessor {
         if (Katsu.game.isKeyTyped(Keys.M)) {
 
             if (musicEnabled) {
-                Sounds.stopAllMusic();
+                impl.stopAllMusic();
             }
             musicEnabled = !musicEnabled;
 

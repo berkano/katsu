@@ -23,7 +23,7 @@ public class Settings {
     public static int vres = 768;
     public static String gameName = "gameName";
     public static String gameAuthor = "berkano";
-    public static String gameDescription = "LD28";
+    public static String gameDescription = "LDXX";
     public static boolean grabMouse = false;
     public static int tileWidth = 16;
     public static int tileHeight = 16;

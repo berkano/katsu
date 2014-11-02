@@ -19,4 +19,9 @@ public class KatsuGameImpl implements KatsuGame {
     public int getNumHelpPages() {
         return Documentation.getNumHelpPages();
     }
+
+    @Override
+    public void stopAllMusic() {
+        Sounds.stopAllMusic();
+    }
 }

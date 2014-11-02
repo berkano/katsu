@@ -31,8 +31,7 @@ public class Sounds {
     public static Sound enemypersonspeak = Util.loadSound("enemy-person-speak.wav");
 
     public static void stopAllMusic() {
-        Sounds sounds = Katsu.game.sounds;
-        Util.stopAll(sounds.mus1, sounds.mus2, sounds.mus3, sounds.win);
+        Util.stopAll(mus1, mus2, mus3, win);
     }
 
     public static long nextAmbientMusic = chooseNextMusicPlayTime();

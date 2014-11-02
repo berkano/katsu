@@ -7,4 +7,6 @@ public interface KatsuGame {
     LevelManager getLevelManager();
 
     int getNumHelpPages();
+
+    void stopAllMusic();
 }

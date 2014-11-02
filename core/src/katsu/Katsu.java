@@ -1,7 +1,5 @@
 package katsu;
 
-import ld28.Sounds;
-
 import java.util.Random;
 
 /**
@@ -14,7 +12,6 @@ import java.util.Random;
 public class Katsu {
 
     public static Game game = Util.getGame();
-    public static Sounds sounds = Util.getSounds();
     public static UI ui = Util.getUI();
     public static Random random = game.r;
 }

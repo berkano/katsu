@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import ext.pathfinding.grid.GridMap;
 import ld28.DevTools;
-import ld28.Sounds;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,7 +30,6 @@ public abstract class Room {
     public int height = 768;
 
     public Game game = Util.getGame();
-    public Sounds sounds = Util.getSounds();
     public Random random = Util.getRandom();
     public UI ui = Util.getUI();
 

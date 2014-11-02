@@ -656,7 +656,7 @@ public class MainRoom extends Room {
         }
 
         if (!playedCustomSound) {
-            sounds.select.play();
+            Sounds.select.play();
         }
     }
 

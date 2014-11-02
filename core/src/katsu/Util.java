@@ -11,7 +11,6 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import ld28.Sounds;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -81,10 +80,6 @@ public class Util {
 
     public static Game getGame() {
         return Game.getInstance();
-    }
-
-    public static Sounds getSounds() {
-        return Game.getInstance().sounds;
     }
 
     public static UI getUI() {
