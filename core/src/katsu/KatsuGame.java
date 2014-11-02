@@ -5,4 +5,6 @@ package katsu;
  */
 public interface KatsuGame {
     LevelManager getLevelManager();
+
+    int getNumHelpPages();
 }

@@ -14,4 +14,9 @@ public class KatsuGameImpl implements KatsuGame {
     public LevelManager getLevelManager() {
         return levelManager;
     }
+
+    @Override
+    public int getNumHelpPages() {
+        return Documentation.getNumHelpPages();
+    }
 }

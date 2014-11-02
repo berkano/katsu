@@ -13,7 +13,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import ld28.Documentation;
 import ld28.Sounds;
 import ld28.rooms.MainRoom;
 
@@ -257,7 +256,7 @@ public class Game implements ApplicationListener, InputProcessor {
         getLevelManager().showHelp(helpPage, ui);
 
         helpPage++;
-        if (helpPage > Documentation.getNumHelpPages()) helpPage = 1;
+        if (helpPage > impl.getNumHelpPages()) helpPage = 1;
 
     }
 
