@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -58,7 +59,7 @@ public class Util {
 
     public static String loadTextResourceAsString(String name) {
         try {
-                FileHandle fh = getResource("text/"+name);
+                FileHandle fh = getResource(relativeResource("text/"+name));
                 InputStream is = fh.read();
                 String result = convertStreamToString(is);
                 is.close();
@@ -71,10 +72,10 @@ public class Util {
 
     public static Music loadMusic(String name) {
         try {
-            Music s = Gdx.audio.newMusic(getResource("music/" + name));
+            Music s = Gdx.audio.newMusic(getResource(relativeResource("music/" + name)));
             return s;
         } catch (Exception ex) {
-            return Gdx.audio.newMusic(getResource("sounds/generic-missing-sound.wav"));
+            return Gdx.audio.newMusic(getResource(relativeResource("sounds/generic-missing-sound.wav")));
         }
     }
 
@@ -86,10 +87,15 @@ public class Util {
         return Game.getInstance().ui;
     }
 
+    public static String relativeResource(String resourcePath) {
+        String resourceRoot = Katsu.game.getImpl().getResourceRoot();
+        return resourceRoot + "/" + resourcePath;
+    }
+
     public static TiledMap loadMap(String name) {
         try {
             TmxMapLoader.Parameters parameters = new TmxMapLoader.Parameters();
-            TiledMap tiledMap = new TmxMapLoader().load("maps/" + name, parameters);
+            TiledMap tiledMap = new TmxMapLoader().load(relativeResource("maps/" + name), parameters);
 
             return tiledMap;
         } catch (Exception ex) {
@@ -99,10 +105,10 @@ public class Util {
 
     public static Sound loadSound(String name) {
         try {
-            Sound s = Gdx.audio.newSound(getResource("sounds/" + name));
+            Sound s = Gdx.audio.newSound(getResource(relativeResource("sounds/" + name)));
             return s;
         } catch (Exception ex) {
-            return Gdx.audio.newSound(getResource("sounds/generic-missing-sound.wav"));
+            return Gdx.audio.newSound(getResource(relativeResource("sounds/generic-missing-sound.wav")));
         }
 
     }
@@ -291,6 +297,12 @@ public class Util {
     public static Integer randomInRange(int i, int i1) {
 
         return i + getRandom().nextInt(i1);
+
+    }
+
+    public static BitmapFont loadBitmapFont(String fntFile, String pngFile) {
+
+        return new BitmapFont(Gdx.files.internal(relativeResource(fntFile)), Gdx.files.internal(relativeResource(pngFile)), false);
 
     }
 }

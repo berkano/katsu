@@ -11,4 +11,6 @@ public interface KatsuGame {
     void stopAllMusic();
 
     Room createRoomForTmx(String tmx);
+
+    String getResourceRoot();
 }

@@ -1,9 +1,8 @@
-package ld28;
+package mini55;
 
 import katsu.KatsuGame;
 import katsu.LevelManager;
 import katsu.Room;
-import ld28.rooms.MainRoom;
 
 /**
  * Created by shaun on 19/10/2014.
@@ -19,7 +18,7 @@ public class KatsuGameImpl implements KatsuGame {
 
     @Override
     public int getNumHelpPages() {
-        return Documentation.getNumHelpPages();
+        return 0;
     }
 
     @Override
@@ -34,6 +33,6 @@ public class KatsuGameImpl implements KatsuGame {
 
     @Override
     public String getResourceRoot() {
-        return "ld28";
+        return "mini55";
     }
 }

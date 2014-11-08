@@ -346,4 +346,8 @@ public class Game implements ApplicationListener, InputProcessor {
     public LevelManager getLevelManager() {
         return impl.getLevelManager();
     }
+
+    public KatsuGame getImpl() {
+        return impl;
+    }
 }
