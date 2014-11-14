@@ -1,4 +1,4 @@
-package ld28;
+package katsu;
 
 import katsu.Util;
 

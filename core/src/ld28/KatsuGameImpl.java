@@ -1,9 +1,6 @@
 package ld28;
 
-import katsu.KatsuGame;
-import katsu.LevelManager;
-import katsu.Room;
-import katsu.Settings;
+import katsu.*;
 import ld28.rooms.MainRoom;
 
 /**

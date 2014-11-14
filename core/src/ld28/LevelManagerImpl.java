@@ -1,5 +1,6 @@
 package ld28;
 
+import katsu.Documentation;
 import katsu.Game;
 import katsu.LevelManager;
 import katsu.UI;

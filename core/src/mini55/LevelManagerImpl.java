@@ -3,14 +3,7 @@ package mini55;
 import katsu.Game;
 import katsu.LevelManager;
 import katsu.UI;
-import ld28.Documentation;
-import ld28.entities.mobs.*;
-import ld28.entities.resources.*;
-import ld28.entities.structures.Door;
-import ld28.entities.structures.LandingPad;
-import ld28.entities.structures.MetalWall;
-import ld28.entities.structures.Wall;
-import ld28.entities.terrain.*;
+import katsu.Documentation;
 
 import java.util.HashMap;
 

@@ -3,7 +3,7 @@ package starter;
 import katsu.Game;
 import katsu.LevelManager;
 import katsu.UI;
-import ld28.Documentation;
+import katsu.Documentation;
 
 import java.util.HashMap;
 

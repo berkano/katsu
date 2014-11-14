@@ -35,7 +35,7 @@ public class KatsuGameImpl implements KatsuGame {
 
     @Override
     public String getResourceRoot() {
-        return "mini55";
+        return "starter";
     }
 
     @Override
