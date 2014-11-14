@@ -76,7 +76,7 @@ public class Game implements ApplicationListener, InputProcessor {
 
         // Camera & GFX
         initialDisplayMode = Gdx.graphics.getDesktopDisplayMode();
-        Gdx.graphics.setTitle(Settings.gameName + " :: " + Settings.gameAuthor + " :: " + Settings.gameDescription);
+        Gdx.graphics.setTitle(Settings.getGameName() + " :: " + Settings.getGameAuthor() + " :: " + Settings.getGameDescription());
         instance = this;
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -90,11 +90,11 @@ public class Game implements ApplicationListener, InputProcessor {
         uiSpriteBatch.setProjectionMatrix(camera.combined);
         Gdx.input.setInputProcessor(this);
         Logger.info("Game.create()");
-        if (Settings.startWithMusic) {
+        if (Settings.isStartWithMusic()) {
             musicEnabled = true;
             //Util.loopMusic(sounds.music);
         }
-        startLevel(Settings.startLevel);
+        startLevel(Settings.getStartLevel());
     }
 
     @Override
@@ -109,12 +109,12 @@ public class Game implements ApplicationListener, InputProcessor {
     @Override
     public void render() {
         frame++;
-        int framesPerTick = Settings.targetFrameRate / Settings.ticksPerSecond;
+        int framesPerTick = Settings.getTargetFrameRate() / Settings.getTicksPerSecond();
         if (frame % framesPerTick == 0) {
             tick++;
             currentRoom.update(Gdx.app);
         }
-        if (Settings.showFPS) fpsLogger.log();
+        if (Settings.isShowFPS()) fpsLogger.log();
         processInput();
 
         // Clear screen
@@ -201,7 +201,7 @@ public class Game implements ApplicationListener, InputProcessor {
 
         }
 
-        if (Settings.pinCodesEnabled) handlePinCodes();
+        if (Settings.isPinCodesEnabled()) handlePinCodes();
         if (Katsu.game.isKeyTyped(Keys.P)) {
             paused = !paused;
         }

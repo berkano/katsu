@@ -43,8 +43,8 @@ public abstract class Entity {
     public int dx = 0;
     public int dy = 0;
 
-    public int width = Settings.tileWidth;
-    public int height = Settings.tileHeight;
+    public int width = Settings.getTileWidth();
+    public int height = Settings.getTileHeight();
 
     public int maxhealth = 100;
     public int health = maxhealth;
@@ -84,7 +84,7 @@ public abstract class Entity {
         } else {
 
             Game.shapeRenderer.setColor(Color.MAGENTA);
-            Game.shapeRenderer.rect(screenX, screenY, (int) (Settings.tileWidth * pixelHorzScale), (int) (Settings.tileHeight * pixelVertScale));
+            Game.shapeRenderer.rect(screenX, screenY, (int) (Settings.getTileWidth() * pixelHorzScale), (int) (Settings.getTileHeight() * pixelVertScale));
         }
 
         if (ui.showHealth && (health < maxhealth)) {
@@ -96,19 +96,19 @@ public abstract class Entity {
             if (dblhealth < 0.25d) rectColor = new Color(255, 0, 0, 0.75f);
 
             Game.shapeRenderer.setColor(rectColor);
-            Game.shapeRenderer.rect(screenX, screenY + (int) ((Settings.tileHeight - ui.healthBarSize) * pixelVertScale), (int) (Settings.tileWidth * pixelHorzScale * dblhealth), (int) (ui.healthBarSize * pixelVertScale));
+            Game.shapeRenderer.rect(screenX, screenY + (int) ((Settings.getTileHeight() - ui.healthBarSize) * pixelVertScale), (int) (Settings.getTileWidth() * pixelHorzScale * dblhealth), (int) (ui.healthBarSize * pixelVertScale));
         }
         if (!activated) {
             Color rectColor = new Color(255, 0, 0, 0.5f);
             Game.shapeRenderer.setColor(rectColor);
-            Game.shapeRenderer.rect(screenX, screenY, (int) (Settings.tileWidth * pixelHorzScale), (int) (Settings.tileHeight * pixelVertScale));
+            Game.shapeRenderer.rect(screenX, screenY, (int) (Settings.getTileWidth() * pixelHorzScale), (int) (Settings.getTileHeight() * pixelVertScale));
         }
 
 
         if (selected) {
             Color c = new Color(Color.CYAN);
 
-            c.a = 0.5f + 0.5f * (float) Math.sin(3f * Game.tick / (float) Settings.targetFrameRate);
+            c.a = 0.5f + 0.5f * (float) Math.sin(3f * Game.tick / (float) Settings.getTargetFrameRate());
 
             // TODO: hack to workaround issue introduced after changing texture rendering in l d 2 8
             screenX -= 8;
@@ -117,13 +117,13 @@ public abstract class Entity {
             Game.uiShapeRenderer.setColor(c);
             int selectBorderSize = 1;
             // Top border
-            Game.uiShapeRenderer.rect(screenX, screenY, (int) (Settings.tileWidth * pixelHorzScale), (int) (selectBorderSize * pixelVertScale));
+            Game.uiShapeRenderer.rect(screenX, screenY, (int) (Settings.getTileWidth() * pixelHorzScale), (int) (selectBorderSize * pixelVertScale));
             // Bottom border
-            Game.uiShapeRenderer.rect(screenX, screenY + (int) ((Settings.tileHeight - selectBorderSize) * pixelVertScale), (int) (Settings.tileWidth * pixelHorzScale), (int) (selectBorderSize * pixelVertScale));
+            Game.uiShapeRenderer.rect(screenX, screenY + (int) ((Settings.getTileHeight() - selectBorderSize) * pixelVertScale), (int) (Settings.getTileWidth() * pixelHorzScale), (int) (selectBorderSize * pixelVertScale));
             // Left border
-            Game.uiShapeRenderer.rect(screenX, screenY, (int) (selectBorderSize * pixelVertScale), (int) (Settings.tileHeight * pixelVertScale));
+            Game.uiShapeRenderer.rect(screenX, screenY, (int) (selectBorderSize * pixelVertScale), (int) (Settings.getTileHeight() * pixelVertScale));
             // Right border
-            Game.uiShapeRenderer.rect(screenX + (int) ((Settings.tileWidth - selectBorderSize) * pixelHorzScale), screenY, (int) (selectBorderSize * pixelVertScale), (int) (Settings.tileHeight * pixelVertScale));
+            Game.uiShapeRenderer.rect(screenX + (int) ((Settings.getTileWidth() - selectBorderSize) * pixelHorzScale), screenY, (int) (selectBorderSize * pixelVertScale), (int) (Settings.getTileHeight() * pixelVertScale));
         }
 
     }
@@ -137,7 +137,7 @@ public abstract class Entity {
     }
 
     public void moveRelative(int dx, int dy) {
-        moveRelativePixels(dx * Settings.tileWidth, dy * Settings.tileHeight);
+        moveRelativePixels(dx * Settings.getTileWidth(), dy * Settings.getTileHeight());
     }
 
     @Override

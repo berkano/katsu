@@ -120,8 +120,8 @@ public class Util {
             for (int ty = 0; ty < height; ty++) {
                 try {
                     Entity e = (Entity) c.newInstance();
-                    e.x = tx * Settings.tileWidth + x * Settings.tileWidth;
-                    e.y = ty * Settings.tileHeight + y * Settings.tileHeight;
+                    e.x = tx * Settings.getTileWidth() + x * Settings.getTileWidth();
+                    e.y = ty * Settings.getTileHeight() + y * Settings.getTileHeight();
                     r.entities.add(e);
                 } catch (Exception ex) {
                     log(ex.getMessage());
@@ -187,8 +187,8 @@ public class Util {
                                 } else {
 
                                     Entity e = (Entity) Util.newInstance(c);
-                                    e.x = x * Settings.tileWidth;
-                                    e.y = (mapHeight - y - 1) * Settings.tileHeight;
+                                    e.x = x * Settings.getTileWidth();
+                                    e.y = (mapHeight - y - 1) * Settings.getTileHeight();
                                     e.textureRegion = room.entityTextureRegions.get(c);
                                     e.room = room;
                                     room.entities.add(e);
@@ -223,9 +223,9 @@ public class Util {
     public static void toggleFullScreenMode() {
         if (Gdx.graphics.isFullscreen()) {
             //Gdx.graphics.setDisplayMode(Game.instance.initialDisplayMode.width, Game.instance.initialDisplayMode.height, false);
-            Gdx.graphics.setDisplayMode(Settings.hres, Settings.vres, false);
+            Gdx.graphics.setDisplayMode(Settings.getHres(), Settings.getVres(), false);
         } else {
-            Gdx.graphics.setDisplayMode(Settings.hres, Settings.vres, true);
+            Gdx.graphics.setDisplayMode(Settings.getHres(), Settings.getVres(), true);
         }
     }
 

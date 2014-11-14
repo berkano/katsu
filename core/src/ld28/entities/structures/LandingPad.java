@@ -30,7 +30,7 @@ public class LandingPad extends FixedItem {
 
         if (firstUpdate) {
             for (Teleport t : TeleportMap.teleportArrayList) {
-                if (t.x == x / Settings.tileWidth && t.y == y / Settings.tileHeight) {
+                if (t.x == x / Settings.getTileWidth() && t.y == y / Settings.getTileHeight()) {
                     teleport = t;
                 }
             }

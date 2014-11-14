@@ -180,13 +180,13 @@ public abstract class Room {
 
     private boolean detectCollision(Entity e, boolean collision, Entity e2) {
         if (e == e2) return collision;
-        if (e.newX < e2.x - Settings.tileWidth * 2) return collision;
-        if (e.newY < e2.y - Settings.tileHeight * 2) return collision;
-        if (e.newX > e2.x + Settings.tileWidth * 2) return collision;
-        if (e.newY > e2.y + Settings.tileHeight * 2) return collision;
+        if (e.newX < e2.x - Settings.getTileWidth() * 2) return collision;
+        if (e.newY < e2.y - Settings.getTileHeight() * 2) return collision;
+        if (e.newX > e2.x + Settings.getTileWidth() * 2) return collision;
+        if (e.newY > e2.y + Settings.getTileHeight() * 2) return collision;
 
-        Rectangle r1 = new Rectangle(e.newX, e.newY, Settings.tileWidth, Settings.tileHeight);
-        Rectangle r2 = new Rectangle(e2.x, e2.y, Settings.tileWidth, Settings.tileHeight);
+        Rectangle r1 = new Rectangle(e.newX, e.newY, Settings.getTileWidth(), Settings.getTileHeight());
+        Rectangle r2 = new Rectangle(e2.x, e2.y, Settings.getTileWidth(), Settings.getTileHeight());
 
         boolean oldCollision = collision;
 
@@ -195,13 +195,13 @@ public abstract class Room {
 
                 if (e.collide(e2)) {
                     collision = true;
-                    if (Settings.collisionDebug)
+                    if (Settings.isCollisionDebug())
                         ui.writeText("Collided " + e.getClass() + " with " + e2.getClass());
 
                 }
                 if (e2.collide(e)) {
                     collision = true;
-                    if (Settings.collisionDebug)
+                    if (Settings.isCollisionDebug())
                         ui.writeText("Collided " + e.getClass() + " with " + e2.getClass());
                 }
             }

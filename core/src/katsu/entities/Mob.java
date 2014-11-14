@@ -105,8 +105,8 @@ public class Mob extends Entity {
                 lastPathFind = System.currentTimeMillis(); // + Game.instance.r.nextInt(50);
                 // New: get path
                 GridMap pathMap = Katsu.game.currentRoom.pathMap;
-                GridLocation start = new GridLocation(Math.round(x / Settings.tileWidth), Math.round(y / Settings.tileHeight), false);
-                GridLocation end = new GridLocation(targetEntity.x / Settings.tileWidth, targetEntity.y / Settings.tileHeight, false);
+                GridLocation start = new GridLocation(Math.round(x / Settings.getTileWidth()), Math.round(y / Settings.getTileHeight()), false);
+                GridLocation end = new GridLocation(targetEntity.x / Settings.getTileWidth(), targetEntity.y / Settings.getTileHeight(), false);
                 GridPathfinding gridPathfinding = new GridPathfinding();
 
                 // Don't block start of path where entity is
@@ -127,8 +127,8 @@ public class Mob extends Entity {
                         gridLocation = gridLocations.get(gridLocations.size() - 2);
                     }
                     if (gridLocation != null) {
-                        intermediateTargX = gridLocation.getX() * Settings.tileWidth;
-                        intermediateTargY = gridLocation.getY() * Settings.tileHeight;
+                        intermediateTargX = gridLocation.getX() * Settings.getTileWidth();
+                        intermediateTargY = gridLocation.getY() * Settings.getTileHeight();
                     }
                 }
             }

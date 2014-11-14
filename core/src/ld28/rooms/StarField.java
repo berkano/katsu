@@ -23,7 +23,7 @@ public class StarField {
 
         for (int i = 0; i< 1000; i++) {
             Point2D.Float newStar = new Point2D.Float();
-            newStar.setLocation(Katsu.random.nextInt(Settings.hres), Katsu.random.nextInt(Settings.vres));
+            newStar.setLocation(Katsu.random.nextInt(Settings.getHres()), Katsu.random.nextInt(Settings.getVres()));
             stars.add(newStar);
         }
     }
@@ -32,8 +32,8 @@ public class StarField {
         int depth = 0;
 
         MainRoom r = (MainRoom) Katsu.game.currentRoom;
-        int shipX = (r.ship.x / 16) % Settings.hres;
-        int shipY = (r.ship.y / 16) % Settings.vres;
+        int shipX = (r.ship.x / 16) % Settings.getHres();
+        int shipY = (r.ship.y / 16) % Settings.getVres();
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Point);
         int c = 0;
@@ -59,10 +59,10 @@ public class StarField {
             float actualX = (float)star.getX() - shipX * moveScale;
             float actualY = (float)star.getY() - shipY * moveScale;
 
-            if (actualX < 0) actualX += Settings.hres;
-            if (actualY < 0) actualY += Settings.vres;
-            if (actualX > Settings.hres) actualX -= Settings.hres;
-            if (actualY > Settings.vres) actualY -= Settings.vres;
+            if (actualX < 0) actualX += Settings.getHres();
+            if (actualY < 0) actualY += Settings.getVres();
+            if (actualX > Settings.getHres()) actualX -= Settings.getHres();
+            if (actualY > Settings.getVres()) actualY -= Settings.getVres();
 
             shapeRenderer.point(actualX, actualY, 0f);
         }

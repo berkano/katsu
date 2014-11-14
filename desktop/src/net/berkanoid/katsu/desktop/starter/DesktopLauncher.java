@@ -1,11 +1,11 @@
-package net.berkanoid.katsu.desktop.ld28;
+package net.berkanoid.katsu.desktop.starter;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import katsu.Game;
 import katsu.KatsuGame;
 import katsu.Settings;
-import ld28.KatsuGameImpl;
+import starter.KatsuGameImpl;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {

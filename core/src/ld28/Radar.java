@@ -26,8 +26,8 @@ public class Radar {
 
         MainRoom r = (MainRoom) Katsu.game.currentRoom;
 
-        int shipX = (r.ship.x / 16) % Settings.hres;
-        int shipY = (r.ship.y / 16) % Settings.vres;
+        int shipX = (r.ship.x / 16) % Settings.getHres();
+        int shipY = (r.ship.y / 16) % Settings.getVres();
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 
@@ -41,11 +41,11 @@ public class Radar {
             Point2D.Double shipScreenPoint = r.mainView.entityPositionToScreenPoint(r.ship);
             Point2D.Double teleportScreenPoint = r.mainView.mapPositionToScreenPoint(new Point2D.Float(t.x*16, t.y*16));
 
-            double dx = teleportScreenPoint.getX() - Settings.hres / 2; //shipScreenPoint.getX();
-            double dy = teleportScreenPoint.getY() - Settings.vres / 2; //shipScreenPoint.getY();
+            double dx = teleportScreenPoint.getX() - Settings.getHres() / 2; //shipScreenPoint.getX();
+            double dy = teleportScreenPoint.getY() - Settings.getVres() / 2; //shipScreenPoint.getY();
 
-            double blobX = Settings.hres/2 + dx / 10; //shipScreenPoint.getX() + dx / 10;
-            double blobY = Settings.vres/2 + dy / 10; //shipScreenPoint.getY() + dy / 10;
+            double blobX = Settings.getHres() /2 + dx / 10; //shipScreenPoint.getX() + dx / 10;
+            double blobY = Settings.getVres() /2 + dy / 10; //shipScreenPoint.getY() + dy / 10;
 
 
             if (t.discovered) {

@@ -147,7 +147,7 @@ public class MainRoom extends Room {
 
     private void Input_X() {
         if (Katsu.game.isKeyTyped(Keys.X)) {
-            if (Settings.devMode) {
+            if (Settings.isDevMode()) {
                 Teleport winTP = TeleportMap.findByName("Earth");
                 ship.x = winTP.x * 16;
                 ship.y = winTP.y * 16;
@@ -187,10 +187,10 @@ public class MainRoom extends Room {
         if (firstUpdate) {
             firstUpdate = false;
 
-            player.x = TeleportMap.findByName("Ship Helm").x * Settings.tileWidth;
-            player.y = TeleportMap.findByName("Ship Helm").y * Settings.tileHeight;
-            ship.x = TeleportMap.findByName("Xorx").x * Settings.tileWidth;
-            ship.y = TeleportMap.findByName("Xorx").y * Settings.tileHeight;
+            player.x = TeleportMap.findByName("Ship Helm").x * Settings.getTileWidth();
+            player.y = TeleportMap.findByName("Ship Helm").y * Settings.getTileHeight();
+            ship.x = TeleportMap.findByName("Xorx").x * Settings.getTileWidth();
+            ship.y = TeleportMap.findByName("Xorx").y * Settings.getTileHeight();
 
         }
     }
@@ -263,8 +263,8 @@ public class MainRoom extends Room {
             if (playerLandingPad != null) {
                 if (playerLandingPad.teleport.link != null) {
                     planetClicked();
-                    player.x = playerLandingPad.teleport.link.x * Settings.tileWidth;
-                    player.y = playerLandingPad.teleport.link.y * Settings.tileWidth;
+                    player.x = playerLandingPad.teleport.link.x * Settings.getTileWidth();
+                    player.y = playerLandingPad.teleport.link.y * Settings.getTileWidth();
                     Sounds.transport.play();
                     playerLandingPad.teleport.link.discovered = true;
                     playerLandingPad.teleport.discovered = true;
@@ -409,8 +409,8 @@ public class MainRoom extends Room {
                 return;
             }
             // Move the player to the helm
-            player.x = 46 * Settings.tileWidth;
-            player.y = 36 * Settings.tileHeight;
+            player.x = 46 * Settings.getTileWidth();
+            player.y = 36 * Settings.getTileHeight();
 
         }
 
@@ -541,7 +541,7 @@ public class MainRoom extends Room {
         ui.drawString(info, Color.BLACK, 2, 2, batch);
         ui.drawString(info, Color.WHITE, 0, 2, batch);
 
-        if (Settings.showFPS) {
+        if (Settings.isShowFPS()) {
             String fps = String.valueOf(Gdx.graphics.getFramesPerSecond());
             info = "FPS: " + fps + " PF:" + Game.pathFinds;
             ui.drawString(info, Color.BLACK, 2, 32 + 18, batch);

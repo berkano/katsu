@@ -1,7 +1,6 @@
 package katsu;
 
 import com.badlogic.gdx.Application;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -52,7 +51,7 @@ public class UI {
         if (text.size() > 0) {
             Color shade = new Color(0, 0, 0, 0.5f);
             Katsu.game.uiShapeRenderer.setColor(shade);
-            Katsu.game.uiShapeRenderer.rect(fontHeight / 2, Settings.vres - (1 + text.size()) * fontHeight - fontHeight / 2, Settings.hres - fontHeight, (1 + text.size()) * fontHeight);
+            Katsu.game.uiShapeRenderer.rect(fontHeight / 2, Settings.getVres() - (1 + text.size()) * fontHeight - fontHeight / 2, Settings.getHres() - fontHeight, (1 + text.size()) * fontHeight);
         }
     }
 

@@ -13,11 +13,11 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
         KatsuGame impl = new KatsuGameImpl();
 
-        config.width = Settings.hres;
-        config.height = Settings.vres;
-        config.foregroundFPS = Settings.targetFrameRate;
-        config.backgroundFPS = Settings.targetFrameRate;
-        config.vSyncEnabled = Settings.vsync;
+        config.width = Settings.getHres();
+        config.height = Settings.getVres();
+        config.foregroundFPS = Settings.getTargetFrameRate();
+        config.backgroundFPS = Settings.getTargetFrameRate();
+        config.vSyncEnabled = Settings.isVsync();
         config.x = 0;
         config.y = 0;
 

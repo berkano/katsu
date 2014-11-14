@@ -13,4 +13,6 @@ public interface KatsuGame {
     Room createRoomForTmx(String tmx);
 
     String getResourceRoot();
+
+    Settings getSettings();
 }

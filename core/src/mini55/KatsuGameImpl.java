@@ -3,6 +3,7 @@ package mini55;
 import katsu.KatsuGame;
 import katsu.LevelManager;
 import katsu.Room;
+import katsu.Settings;
 
 /**
  * Created by shaun on 19/10/2014.
@@ -10,6 +11,7 @@ import katsu.Room;
 public class KatsuGameImpl implements KatsuGame {
 
     private LevelManagerImpl levelManager = new LevelManagerImpl();
+    private Mini55Settings settings = new Mini55Settings();
 
     @Override
     public LevelManager getLevelManager() {
@@ -34,5 +36,10 @@ public class KatsuGameImpl implements KatsuGame {
     @Override
     public String getResourceRoot() {
         return "mini55";
+    }
+
+    @Override
+    public Settings getSettings() {
+        return settings;
     }
 }

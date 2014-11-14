@@ -10,31 +10,31 @@ package katsu;
 public class Logger {
 
     public static void info(String str) {
-        if (Settings.logInfo) {
+        if (Settings.isLogInfo()) {
             log("[INFO]: " + str);
         }
     }
 
     public static void debug(String str) {
-        if (Settings.logDebug) {
+        if (Settings.isLogDebug()) {
             log("[DEBUG]: " + str);
         }
     }
 
     public static void trace(String str) {
-        if (Settings.logTrace) {
+        if (Settings.isLogTrace()) {
             log("[TRACE]: " + str);
         }
     }
 
     public static void log(String str) {
-        if (Settings.loggingEnabled) {
+        if (Settings.isLoggingEnabled()) {
             System.out.println(str);
         }
     }
 
     public static void error(String str) {
-        if (Settings.logError) {
+        if (Settings.isLogError()) {
             log("[ERROR]: " + str);
         }
     }
