@@ -10,10 +10,6 @@ public class Panko {
 
     private static PankoGame implementation;
 
-    public static PankoGame getImpl() {
-        return implementation;
-    }
-
     public static PankoGame getImplementation() {
         return implementation;
     }

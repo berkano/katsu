@@ -1,8 +1,5 @@
 package panko.components;
 
-import panko.components.Panko;
-import panko.components.PankoTmxData;
-
 import java.util.ArrayList;
 
 /**
@@ -11,7 +8,7 @@ import java.util.ArrayList;
 public class PankoTmxHelper {
 
     public static PankoTmxData dataFromMap(String tmxName) {
-        return new PankoTmxData(tmxName, Panko.getImpl().getClassLookup()).loadFromMap();
+        return new PankoTmxData(tmxName, Panko.getImplementation().getClassLookup()).loadFromMap();
     }
 
     public static ArrayList<PankoEntity> entitiesFromMap(String tmxName) {
