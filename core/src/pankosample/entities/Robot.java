@@ -11,6 +11,7 @@ import panko.PankoLog;
 public class Robot extends PankoEntityBase {
 
     public Robot() {
+        this.setSolid(true);
         Panko.getInputMultiplexer().addProcessor(this);
     }
 

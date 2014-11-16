@@ -39,6 +39,16 @@ public abstract class PankoRoomBase implements PankoRoom, InputProcessor {
     }
 
     @Override
+    public void setEntities(ArrayList<PankoEntity> entities) {
+        this.entities = entities;
+    }
+
+    @Override
+    public ArrayList<PankoEntity> getEntities() {
+        return entities;
+    }
+
+    @Override
     public boolean keyDown(int keycode) {
         return false;
     }

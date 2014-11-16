@@ -16,4 +16,9 @@ public interface PankoRoom {
     void render();
 
     InputProcessor getInputProcessor();
+
+    public void setEntities(ArrayList<PankoEntity> entities);
+
+    public ArrayList<PankoEntity> getEntities();
+
 }

@@ -12,6 +12,8 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     private int x;
     private int y;
     private TextureRegion textureRegion;
+    private boolean solid;
+    private PankoRoom room;
 
     @Override
     public void render() {
@@ -93,5 +95,21 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     @Override
     public boolean scrolled(int amount) {
         return false;
+    }
+
+    public void setSolid(boolean solid) {
+        this.solid = solid;
+    }
+
+    public boolean isSolid() {
+        return solid;
+    }
+
+    public PankoRoom getRoom() {
+        return room;
+    }
+
+    public void setRoom(PankoRoom room) {
+        this.room = room;
     }
 }

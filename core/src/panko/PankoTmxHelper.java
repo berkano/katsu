@@ -1,5 +1,7 @@
 package panko;
 
+import pankosample.rooms.StartRoom;
+
 import java.util.ArrayList;
 
 /**
@@ -15,4 +17,10 @@ public class PankoTmxHelper {
         return dataFromMap(tmxName).getEntities();
     }
 
+    public static void addEntitiesToRoomFromMap(String tmxName, PankoRoom room) {
+        room.setEntities(entitiesFromMap(tmxName));
+        for (PankoEntity e : room.getEntities()) {
+            e.setRoom(room);
+        }
+    }
 }

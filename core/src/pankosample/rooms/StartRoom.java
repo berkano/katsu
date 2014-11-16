@@ -11,7 +11,7 @@ public class StartRoom extends PankoRoomBase {
     public void start() {
         super.start();
         PankoLog.debug("StartRoom started");
-        entities = PankoTmxHelper.entitiesFromMap("startroom");
+        PankoTmxHelper.addEntitiesToRoomFromMap("startroom", this);
     }
 
 }

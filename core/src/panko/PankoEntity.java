@@ -22,4 +22,5 @@ public interface PankoEntity {
 
     boolean moveGrid(int dx, int dy);
 
+    void setRoom(PankoRoom room);
 }
