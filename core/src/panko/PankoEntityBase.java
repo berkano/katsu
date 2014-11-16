@@ -22,9 +22,11 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
 
     @Override
     public boolean moveGrid(int dx, int dy) {
-        setX(getX() + dx * Panko.getGridSize());
-        setY(getY()+ dy * Panko.getGridSize());
-        return true; // TODO collision detection here - return if it was successful or not
+        int newX = getX() + dx * Panko.getGridSize();
+        int newY = getY() + dy * Panko.getGridSize();
+
+        return PankoCollisionDetector.tryMoveEntity(this, newX, newY);
+
     }
 
     @Override
@@ -103,6 +105,21 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
 
     public boolean isSolid() {
         return solid;
+    }
+
+    @Override
+    public void onCollide(PankoEntity e) {
+
+    }
+
+    @Override
+    public int getWidth() {
+        return Panko.getSettings().getGridSize();
+    }
+
+    @Override
+    public int getHeight() {
+        return Panko.getSettings().getGridSize();
     }
 
     public PankoRoom getRoom() {
