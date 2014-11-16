@@ -108,7 +108,7 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     }
 
     @Override
-    public void onCollide(PankoEntity e) {
+    public void onCollide(PankoEntity other) {
 
     }
 
