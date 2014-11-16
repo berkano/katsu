@@ -12,7 +12,6 @@ public class PankoGraphics {
     public static TextureRegion tileStitch(int x, int y, TiledMapTileLayer tileLayer) {
 
         TextureRegion result = tileLayer.getCell(x, y).getTile().getTextureRegion();
-        result.flip(false, true);
         return result;
 
     }

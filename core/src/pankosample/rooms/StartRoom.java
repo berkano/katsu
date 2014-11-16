@@ -9,8 +9,8 @@ public class StartRoom extends PankoRoomBase {
 
     @Override
     public void start() {
+        super.start();
         PankoLog.debug("StartRoom started");
         entities = PankoTmxHelper.entitiesFromMap("startroom");
-        Panko.exit();
     }
 }

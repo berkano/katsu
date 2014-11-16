@@ -2,7 +2,9 @@ package pankosample;
 
 import panko.PankoGame;
 import panko.PankoRoom;
-import pankosample.entities.Player;
+import pankosample.entities.Floor;
+import pankosample.entities.Robot;
+import pankosample.entities.Wall;
 import pankosample.rooms.StartRoom;
 
 import java.util.ArrayList;
@@ -14,11 +16,16 @@ import java.util.HashMap;
  */
 public class PankoSampleGame implements PankoGame {
 
-    private HashMap<String, Class> classLookup;
+    private static HashMap<String, Class> classLookup;
+
+    static {
+        classLookup = new HashMap<String, Class>();
+        classLookup.put("Robot", Robot.class);
+        classLookup.put("Floor", Floor.class);
+        classLookup.put("Wall", Wall.class);
+    }
 
     public PankoSampleGame() {
-        classLookup = new HashMap<String, Class>();
-        classLookup.put("Robot", Player.class);
     }
 
     @Override

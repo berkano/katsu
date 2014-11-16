@@ -9,4 +9,7 @@ public interface PankoRoom {
 
     public void start();
 
+    public boolean isActive();
+
+    void render();
 }

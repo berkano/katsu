@@ -76,7 +76,7 @@ public class PankoTmxData {
                                 if (!currentLayer.getName().contains("no-populate")) { // no-populate just used for loading textures.
                                     PankoEntity e = (PankoEntity) c.newInstance();
                                     e.setX(x * tileWidth);
-                                    e.setY((mapHeight - y - 1) * tileHeight);
+                                    e.setY(y * tileHeight);
                                     e.setTextureRegion(entityTextureRegions.get(c));
                                     entities.add(e);
                                 }

@@ -1,5 +1,6 @@
 package panko;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 /**
@@ -10,6 +11,11 @@ public abstract class PankoEntityBase implements PankoEntity {
     private int x;
     private int y;
     private TextureRegion textureRegion;
+
+    @Override
+    public void render() {
+        Panko.getActiveSpriteBatch().draw(textureRegion, x, y);
+    }
 
     @Override
     public void setX(int x) {

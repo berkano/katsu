@@ -2,6 +2,7 @@ package panko;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.ArrayList;
 
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 public class PankoGameRunner implements ApplicationListener, InputProcessor {
 
     private PankoGame implementation;
+    private SpriteBatch mainSpriteBatch;
 
     private ArrayList<PankoRoom> rooms;
 
@@ -27,6 +29,8 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
             Panko.exitWithError("No rooms defined!");
         }
 
+        mainSpriteBatch = new SpriteBatch();
+
         startFirstRoom();
 
     }
@@ -42,6 +46,16 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
 
     @Override
     public void render() {
+
+        Panko.setActiveSpriteBatch(mainSpriteBatch);
+
+        Panko.getActiveSpriteBatch().begin();
+        for (PankoRoom room : rooms) {
+            if (room.isActive()) {
+                room.render();
+            }
+        }
+        Panko.getActiveSpriteBatch().end();
 
     }
 

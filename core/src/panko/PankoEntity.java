@@ -17,4 +17,6 @@ public interface PankoEntity {
     void setTextureRegion(TextureRegion textureRegion);
 
     TextureRegion getTextureRegion();
+
+    void render();
 }
