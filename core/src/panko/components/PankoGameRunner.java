@@ -1,7 +1,11 @@
 package panko.components;
 
 import com.badlogic.gdx.ApplicationListener;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+
+import javax.swing.*;
+import java.util.ArrayList;
 
 /**
  * Created by shaun on 16/11/2014.
@@ -10,6 +14,9 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
 
     private PankoGame implementation;
 
+    private ArrayList<PankoRoom> rooms;
+    private ArrayList<PankoObjekt> entities;
+
     public PankoGameRunner(PankoGame implementation) {
         this.implementation = implementation;
     }
@@ -17,6 +24,23 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
     @Override
     public void create() {
 
+        rooms = implementation.getRooms();
+        if (rooms.size() <= 0) {
+            exitWithError("No rooms defined!");
+        }
+        entities = new ArrayList<PankoObjekt>();
+
+        startFirstRoom();
+
+    }
+
+    private void exitWithError(String message) {
+        Panko.showAlert("Sorry, an error occurred: \n\n"+message);
+        Gdx.app.exit();
+    }
+
+    private void startFirstRoom() {
+        rooms.get(0).start();
     }
 
     @Override
