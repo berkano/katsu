@@ -5,7 +5,7 @@ import panko.*;
 /**
  * Created by shaun on 16/11/2014.
  */
-public class StartRoom extends PankoRoomBase implements PankoRoom {
+public class StartRoom extends PankoRoomBase {
 
     @Override
     public void start() {

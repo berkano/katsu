@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 /**
  * Created by shaun on 15/11/2014.
  */
-public class PankoEntityBase implements PankoEntity {
+public abstract class PankoEntityBase implements PankoEntity {
 
     private int x;
     private int y;
