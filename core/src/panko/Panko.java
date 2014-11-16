@@ -1,7 +1,6 @@
-package panko.components;
+package panko;
 
 import com.badlogic.gdx.Gdx;
-import katsu.KatsuGame;
 
 /**
  * Created by shaun on 16/11/2014.

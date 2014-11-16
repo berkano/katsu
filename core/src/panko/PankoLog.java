@@ -1,4 +1,4 @@
-package panko.components;
+package panko;
 
 /**
  * Created by shaun on 16/11/2014.

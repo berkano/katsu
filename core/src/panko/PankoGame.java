@@ -1,4 +1,4 @@
-package panko.components;
+package panko;
 
 import java.util.ArrayList;
 import java.util.HashMap;

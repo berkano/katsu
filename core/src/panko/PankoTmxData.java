@@ -1,4 +1,4 @@
-package panko.components;
+package panko;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapProperties;

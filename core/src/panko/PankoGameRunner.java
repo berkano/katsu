@@ -1,7 +1,6 @@
-package panko.components;
+package panko;
 
 import com.badlogic.gdx.ApplicationListener;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 
 import java.util.ArrayList;

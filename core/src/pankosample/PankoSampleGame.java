@@ -1,7 +1,7 @@
 package pankosample;
 
-import panko.components.PankoGame;
-import panko.components.PankoRoom;
+import panko.PankoGame;
+import panko.PankoRoom;
 import pankosample.entities.Player;
 import pankosample.rooms.StartRoom;
 

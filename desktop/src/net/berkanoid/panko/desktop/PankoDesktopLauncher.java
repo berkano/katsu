@@ -2,11 +2,10 @@ package net.berkanoid.panko.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import katsu.Game;
 import katsu.KatsuGame;
 import katsu.Settings;
-import panko.components.PankoGame;
-import panko.components.PankoGameRunner;
+import panko.PankoGame;
+import panko.PankoGameRunner;
 import starter.KatsuGameImpl;
 
 public class PankoDesktopLauncher {

@@ -1,12 +1,11 @@
 package pankosample.rooms;
 
-import com.badlogic.gdx.Gdx;
-import panko.components.*;
+import panko.*;
 
 /**
  * Created by shaun on 16/11/2014.
  */
-public class StartRoom extends PankoRoomBase implements PankoRoom  {
+public class StartRoom extends PankoRoomBase implements PankoRoom {
 
     @Override
     public void start() {

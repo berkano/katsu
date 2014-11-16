@@ -1,6 +1,6 @@
 package pankosample.entities;
 
-import panko.components.PankoEntityBase;
+import panko.PankoEntityBase;
 
 /**
  * Created by shaun on 16/11/2014.
