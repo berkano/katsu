@@ -1,6 +1,8 @@
 package panko;
 
 import com.badlogic.gdx.ApplicationListener;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -23,6 +25,8 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
     public void create() {
 
         mainSpriteBatch = new SpriteBatch();
+        Gdx.input.setInputProcessor(Panko.getInputMultiplexer());
+        Panko.getInputMultiplexer().addProcessor(this);
 
         rooms = Panko.getImplementation().getRooms();
         if (rooms.size() <= 0) {
@@ -70,27 +74,20 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
-        PankoLog.trace("PankoGameRunner: keyDown: "+keycode);
+        if (keycode == Input.Keys.ESCAPE) {
+            Panko.exit();
+        }
         return false;
     }
 
     @Override
     public boolean keyUp(int keycode) {
-        PankoLog.trace("PankoGameRunner: keyUp: "+keycode);
         return false;
     }
 
     @Override
     public boolean keyTyped(char character) {
-        PankoLog.trace("PankoGameRunner: keyTyped: "+character);
         return false;
-//        PankoLog.trace("PankoGameRunner: keyTyped: "+character);
-//        for (PankoRoom room : rooms) {
-//            if (room.isActive()) {
-//                return room.getInputProcessor().keyTyped(character);
-//            }
-//        }
-//        return false;
     }
 
     @Override

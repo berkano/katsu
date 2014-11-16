@@ -4,10 +4,12 @@ package panko;
  * Created by shaun on 16/11/2014.
  */
 public class PankoSettings {
+
     private int hres = 1024;
     private int vres = 768;
     private int targetFrameRate = 30;
     private boolean vsync = false;
+    private int gridSize = 16;
 
     public int getHres() {
         return hres;
@@ -39,5 +41,13 @@ public class PankoSettings {
 
     public void setVsync(boolean vsync) {
         this.vsync = vsync;
+    }
+
+    public int getGridSize() {
+        return gridSize;
+    }
+
+    public void setGridSize(int gridSize) {
+        this.gridSize = gridSize;
     }
 }

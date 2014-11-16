@@ -19,6 +19,13 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     }
 
     @Override
+    public boolean moveGrid(int dx, int dy) {
+        setX(getX() + dx * Panko.getGridSize());
+        setY(getY()+ dy * Panko.getGridSize());
+        return true; // TODO collision detection here - return if it was successful or not
+    }
+
+    @Override
     public void setX(int x) {
         this.x = x;
     }

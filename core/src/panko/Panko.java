@@ -1,6 +1,7 @@
 package panko;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
@@ -11,6 +12,8 @@ public class Panko {
     private static SpriteBatch activeSpriteBatch;
     private static PankoGameRunner runner;
     private static PankoGame implementation;
+    private static InputMultiplexer inputMultiplexer = new InputMultiplexer();
+    private static PankoSettings settings;
 
     public static void exitWithError(String message) {
         // TODO: show alert box in production mode
@@ -50,5 +53,25 @@ public class Panko {
 
     public static void setImplementation(PankoGame implementation) {
         Panko.implementation = implementation;
+    }
+
+    public static InputMultiplexer getInputMultiplexer() {
+        return inputMultiplexer;
+    }
+
+    public static void setInputMultiplexer(InputMultiplexer inputMultiplexer) {
+        Panko.inputMultiplexer = inputMultiplexer;
+    }
+
+    public static int getGridSize() {
+        return settings.getGridSize();
+    }
+
+    public static void setSettings(PankoSettings settings) {
+        Panko.settings = settings;
+    }
+
+    public static PankoSettings getSettings() {
+        return settings;
     }
 }

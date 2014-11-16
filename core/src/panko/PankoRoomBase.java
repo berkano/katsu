@@ -15,6 +15,7 @@ public abstract class PankoRoomBase implements PankoRoom, InputProcessor {
     @Override
     public void start() {
         setActive(true);
+        Panko.getInputMultiplexer().addProcessor(this);
     }
 
     public void setActive(boolean active) {

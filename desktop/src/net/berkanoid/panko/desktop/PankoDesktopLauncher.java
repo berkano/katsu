@@ -22,6 +22,8 @@ public class PankoDesktopLauncher {
         config.y = 0;
 
         Panko.setImplementation(implementation);
+        Panko.setSettings(settings);
+
         new LwjglApplication(new PankoGameRunner(), config);
 	}
 }

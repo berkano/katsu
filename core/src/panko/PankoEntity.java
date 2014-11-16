@@ -19,4 +19,7 @@ public interface PankoEntity {
     TextureRegion getTextureRegion();
 
     void render();
+
+    boolean moveGrid(int dx, int dy);
+
 }
