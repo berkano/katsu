@@ -1,7 +1,6 @@
 package panko;
 
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 /**
@@ -25,7 +24,7 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
         int newX = getX() + dx * Panko.getGridSize();
         int newY = getY() + dy * Panko.getGridSize();
 
-        return PankoCollisionDetector.tryMoveEntity(this, newX, newY);
+        return PankoCollisionDetector.moveEntityIfPossible(this, newX, newY);
 
     }
 

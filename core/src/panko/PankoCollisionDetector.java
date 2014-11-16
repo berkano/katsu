@@ -1,26 +1,25 @@
 package panko;
 
 import com.badlogic.gdx.math.Rectangle;
-import katsu.Settings;
 
 /**
  * Created by shaun on 16/11/2014.
  */
 public class PankoCollisionDetector {
 
-
-    public static boolean tryMoveEntity(PankoEntity entity, int newX, int newY) {
+    public static boolean moveEntityIfPossible(PankoEntity entity, int newX, int newY) {
 
         boolean couldMove = true;
 
         if (entity.isSolid()) {
+
             // First get the room
             PankoRoom room = entity.getRoom();
 
             // Get all possible collision targets
             for (PankoEntity other : room.getEntities()) {
                 if (other.isSolid()) {
-                    if (entitiesWouldOverLap(entity, newX, newY, other)) {
+                    if (entitiesWouldOverlap(entity, newX, newY, other)) {
                         couldMove = false;
                         entity.onCollide(other);
                         other.onCollide(entity);
@@ -39,7 +38,7 @@ public class PankoCollisionDetector {
 
     }
 
-    private static boolean entitiesWouldOverLap(PankoEntity entity, int newX, int newY, PankoEntity other) {
+    private static boolean entitiesWouldOverlap(PankoEntity entity, int newX, int newY, PankoEntity other) {
 
         // Quick optimisation for obvious cases
         if (newX > entity.getX() + other.getWidth()) return false;
