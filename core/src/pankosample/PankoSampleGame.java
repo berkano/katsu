@@ -20,4 +20,9 @@ public class PankoSampleGame implements PankoGame {
                 )
         );
     }
+
+    @Override
+    public String getResourceRoot() {
+        return "pankosample";
+    }
 }

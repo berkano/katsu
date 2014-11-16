@@ -1,4 +1,4 @@
-package net.berkanoid.panko.desktop.PankoSample;
+package net.berkanoid.panko.desktop.sample;
 
 import net.berkanoid.panko.desktop.PankoDesktopLauncher;
 import pankosample.PankoSampleGame;

@@ -7,4 +7,6 @@ import java.util.ArrayList;
  */
 public interface PankoGame {
     ArrayList<PankoRoom> getRooms();
+
+    String getResourceRoot();
 }
