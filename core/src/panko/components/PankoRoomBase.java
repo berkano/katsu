@@ -7,6 +7,6 @@ import java.util.ArrayList;
  */
 public class PankoRoomBase {
 
-    protected ArrayList<PankoObjekt> entities;
+    protected ArrayList<PankoEntity> entities;
 
 }

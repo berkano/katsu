@@ -1,1 +1,2 @@
-- Optionally show alert dialog when exiting on error (controlled via settings)
+- optionally show alert dialog when exiting on error (controlled via settings)
+- mod music support working in latest libgdx?
