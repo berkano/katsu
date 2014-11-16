@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.ArrayList;
@@ -46,6 +47,10 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
     public void render() {
 
         Panko.setActiveSpriteBatch(mainSpriteBatch);
+
+        // Clear screen
+        Gdx.gl.glClearColor(0f, 0f, 0f, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         Panko.getActiveSpriteBatch().begin();
         for (PankoRoom room : rooms) {
