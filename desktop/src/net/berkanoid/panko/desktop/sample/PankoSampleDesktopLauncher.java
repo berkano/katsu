@@ -1,6 +1,7 @@
 package net.berkanoid.panko.desktop.sample;
 
 import net.berkanoid.panko.desktop.PankoDesktopLauncher;
+import panko.PankoSettings;
 import pankosample.PankoSampleGame;
 
 /**
@@ -9,7 +10,8 @@ import pankosample.PankoSampleGame;
 public class PankoSampleDesktopLauncher extends PankoDesktopLauncher {
 
     public static void main(String[] args) {
-        launch(new PankoSampleGame());
+        PankoSettings settings = new PankoSettings();
+        launch(new PankoSampleGame(), settings);
     }
 
 }

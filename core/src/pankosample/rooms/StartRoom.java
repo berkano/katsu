@@ -13,4 +13,10 @@ public class StartRoom extends PankoRoomBase {
         PankoLog.debug("StartRoom started");
         entities = PankoTmxHelper.entitiesFromMap("startroom");
     }
+
+    @Override
+    public boolean keyTyped(char character) {
+        PankoLog.debug("StartRoom detected keyTyped: " + character);
+        return super.keyTyped(character);
+    }
 }

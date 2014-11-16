@@ -8,16 +8,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  */
 public class Panko {
 
-    private static PankoGame implementation;
     private static SpriteBatch activeSpriteBatch;
-
-    public static PankoGame getImplementation() {
-        return implementation;
-    }
-
-    public static void setImplementation(PankoGame implementation) {
-        Panko.implementation = implementation;
-    }
+    private static PankoGameRunner runner;
+    private static PankoGame implementation;
 
     public static void exitWithError(String message) {
         // TODO: show alert box in production mode
@@ -41,5 +34,21 @@ public class Panko {
 
     public static void setActiveSpriteBatch(SpriteBatch activeSpriteBatch) {
         Panko.activeSpriteBatch = activeSpriteBatch;
+    }
+
+    public static void setRunner(PankoGameRunner runner) {
+        Panko.runner = runner;
+    }
+
+    public static PankoGameRunner getRunner() {
+        return runner;
+    }
+
+    public static PankoGame getImplementation() {
+        return implementation;
+    }
+
+    public static void setImplementation(PankoGame implementation) {
+        Panko.implementation = implementation;
     }
 }

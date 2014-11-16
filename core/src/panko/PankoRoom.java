@@ -1,5 +1,7 @@
 package panko;
 
+import com.badlogic.gdx.InputProcessor;
+
 import java.util.ArrayList;
 
 /**
@@ -12,4 +14,6 @@ public interface PankoRoom {
     public boolean isActive();
 
     void render();
+
+    InputProcessor getInputProcessor();
 }

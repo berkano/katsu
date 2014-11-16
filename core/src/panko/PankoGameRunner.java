@@ -11,32 +11,26 @@ import java.util.ArrayList;
  */
 public class PankoGameRunner implements ApplicationListener, InputProcessor {
 
-    private PankoGame implementation;
     private SpriteBatch mainSpriteBatch;
 
     private ArrayList<PankoRoom> rooms;
 
-    public PankoGameRunner(PankoGame implementation) {
-        this.implementation = implementation;
-        Panko.setImplementation(implementation);
+    public PankoGameRunner() {
+        Panko.setRunner(this);
     }
 
     @Override
     public void create() {
 
-        rooms = implementation.getRooms();
+        mainSpriteBatch = new SpriteBatch();
+
+        rooms = Panko.getImplementation().getRooms();
         if (rooms.size() <= 0) {
             Panko.exitWithError("No rooms defined!");
         }
 
-        mainSpriteBatch = new SpriteBatch();
-
-        startFirstRoom();
-
-    }
-
-    private void startFirstRoom() {
         rooms.get(0).start();
+
     }
 
     @Override
@@ -76,17 +70,27 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
+        PankoLog.trace("PankoGameRunner: keyDown: "+keycode);
         return false;
     }
 
     @Override
     public boolean keyUp(int keycode) {
+        PankoLog.trace("PankoGameRunner: keyUp: "+keycode);
         return false;
     }
 
     @Override
     public boolean keyTyped(char character) {
+        PankoLog.trace("PankoGameRunner: keyTyped: "+character);
         return false;
+//        PankoLog.trace("PankoGameRunner: keyTyped: "+character);
+//        for (PankoRoom room : rooms) {
+//            if (room.isActive()) {
+//                return room.getInputProcessor().keyTyped(character);
+//            }
+//        }
+//        return false;
     }
 
     @Override
@@ -113,4 +117,5 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
     public boolean scrolled(int amount) {
         return false;
     }
+
 }
