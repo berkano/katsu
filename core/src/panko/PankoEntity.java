@@ -33,4 +33,8 @@ public interface PankoEntity {
     int getWidth();
 
     int getHeight();
+
+    void setLastMove(long time);
+
+    void update();
 }

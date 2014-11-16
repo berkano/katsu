@@ -49,6 +49,13 @@ public abstract class PankoRoomBase implements PankoRoom, InputProcessor {
     }
 
     @Override
+    public void update() {
+        for (PankoEntity e : entities) {
+            e.update();
+        }
+    }
+
+    @Override
     public boolean keyDown(int keycode) {
         return false;
     }

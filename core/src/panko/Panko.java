@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import java.util.HashMap;
+
 /**
  * Created by shaun on 16/11/2014.
  */
@@ -14,6 +16,7 @@ public class Panko {
     private static PankoGame implementation;
     private static InputMultiplexer inputMultiplexer = new InputMultiplexer();
     private static PankoSettings settings;
+    private static HashMap<Integer, Boolean> keysDown = new HashMap<Integer, Boolean>();
 
     public static void exitWithError(String message) {
         // TODO: show alert box in production mode
@@ -74,4 +77,24 @@ public class Panko {
     public static PankoSettings getSettings() {
         return settings;
     }
+
+    public static long currentTime() {
+        return System.currentTimeMillis();
+    }
+
+    public static boolean keyPressed(int keycode) {
+        return false;
+    }
+
+    public static void setKeyDown(int keycode, boolean isDown) {
+        keysDown.remove(keycode);
+        if (isDown) {
+            keysDown.put(keycode, true);
+        }
+    }
+
+    public static boolean isKeyDown(int keycode) {
+        return keysDown.get(keycode) != null;
+    }
+
 }

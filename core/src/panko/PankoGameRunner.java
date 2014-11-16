@@ -60,6 +60,19 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
         }
         Panko.getActiveSpriteBatch().end();
 
+        update();
+
+    }
+
+    private void update() {
+
+        for (PankoRoom room : rooms) {
+            if (room.isActive()) {
+                room.update();
+            }
+        }
+
+
     }
 
     @Override
@@ -79,14 +92,21 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
+
         if (keycode == Input.Keys.ESCAPE) {
             Panko.exit();
         }
+
+        Panko.setKeyDown(keycode, true);
+
         return false;
     }
 
     @Override
     public boolean keyUp(int keycode) {
+
+        Panko.setKeyDown(keycode, false);
+
         return false;
     }
 

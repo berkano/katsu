@@ -32,6 +32,7 @@ public class PankoCollisionDetector {
         if (couldMove) {
             entity.setX(newX);
             entity.setY(newY);
+            entity.setLastMove(Panko.currentTime());
         }
 
         return couldMove;

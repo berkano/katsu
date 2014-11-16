@@ -21,4 +21,5 @@ public interface PankoRoom {
 
     public ArrayList<PankoEntity> getEntities();
 
+    void update();
 }

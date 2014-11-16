@@ -16,28 +16,23 @@ public class Robot extends PankoEntityBase {
     }
 
     @Override
-    public boolean keyTyped(char character) {
-        return false;
-    }
+    public void update() {
+        super.update();
 
-    @Override
-    public boolean keyDown(int keycode) {
+        if (lastMovedMoreThan(50)) { // One grid move per this interval
 
-        switch(keycode) {
-            case Input.Keys.W:
-                    moveGrid(0, 1);
-                    return true;
-            case Input.Keys.A:
+            if (Panko.isKeyDown(Input.Keys.W)) {
+                moveGrid(0, 1);
+            }
+            if (Panko.isKeyDown(Input.Keys.A)) {
                 moveGrid(-1, 0);
-                return true;
-            case Input.Keys.S:
+            }
+            if (Panko.isKeyDown(Input.Keys.S)) {
                 moveGrid(0, -1);
-                return true;
-            case Input.Keys.D:
+            }
+            if (Panko.isKeyDown(Input.Keys.D)) {
                 moveGrid(1, 0);
-                return true;
-            default:
-                return super.keyDown(keycode);
+            }
         }
 
     }

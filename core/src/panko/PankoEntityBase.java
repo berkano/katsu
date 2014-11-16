@@ -13,6 +13,7 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     private TextureRegion textureRegion;
     private boolean solid;
     private PankoRoom room;
+    private long lastMove = Panko.currentTime();
 
     @Override
     public void render() {
@@ -121,6 +122,16 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
         return Panko.getSettings().getGridSize();
     }
 
+    @Override
+    public void setLastMove(long time) {
+        this.lastMove = time;
+    }
+
+    @Override
+    public void update() {
+
+    }
+
     public PankoRoom getRoom() {
         return room;
     }
@@ -128,4 +139,13 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     public void setRoom(PankoRoom room) {
         this.room = room;
     }
+
+    public long getLastMove() {
+        return lastMove;
+    }
+
+    public boolean lastMovedMoreThan(int timeLimit) {
+        return Panko.currentTime() > getLastMove() + timeLimit;
+    }
+
 }
