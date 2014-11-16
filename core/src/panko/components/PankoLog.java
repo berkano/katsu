@@ -16,4 +16,8 @@ public class PankoLog {
     public static void fatal(String message) {
         console("FATAL: "+message);
     }
+
+    public static void trace(String message) {
+        console("TRACE: "+message);
+    }
 }

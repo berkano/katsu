@@ -33,6 +33,8 @@ public class PankoTmxData {
     public PankoTmxData loadFromMap() {
 
         map = loadMap(tiledMapFile);
+        entities = new ArrayList<PankoEntity>();
+        entityTextureRegions = new HashMap<Class, TextureRegion>();
 
         List<TiledMapTileLayer> layerList = new ArrayList<TiledMapTileLayer>();
         layerList.add((TiledMapTileLayer) map.getLayers().get("terrain"));
@@ -76,9 +78,11 @@ public class PankoTmxData {
                                     e.setX(x * tileWidth);
                                     e.setY((mapHeight - y - 1) * tileHeight);
                                     e.setTextureRegion(entityTextureRegions.get(c));
+                                    entities.add(e);
                                 }
 
                             } catch (Exception ex) {
+                                ex.printStackTrace();
                                 Panko.exitDueToException("Failed to process tiled map: "+tiledMapFile, ex);
                             }
                         }
@@ -88,8 +92,7 @@ public class PankoTmxData {
             }
         }
 
-        PankoLog.debug("Successfully loaded map: "+tiledMapFile);
-
+        PankoLog.trace(entities.size() + " entities loaded from map: " + tiledMapFile);
         return this;
     }
 

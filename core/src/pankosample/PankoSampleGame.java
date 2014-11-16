@@ -18,7 +18,7 @@ public class PankoSampleGame implements PankoGame {
 
     public PankoSampleGame() {
         classLookup = new HashMap<String, Class>();
-        classLookup.put("Player", Player.class);
+        classLookup.put("Robot", Player.class);
     }
 
     @Override

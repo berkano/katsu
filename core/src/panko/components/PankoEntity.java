@@ -3,35 +3,18 @@ package panko.components;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 /**
- * Created by shaun on 15/11/2014.
+ * Created by shaun on 16/11/2014.
  */
-public class PankoEntity {
+public interface PankoEntity {
+    void setX(int x);
 
-    private int x;
-    private int y;
-    private TextureRegion textureRegion;
+    int getX();
 
-    public void setX(int x) {
-        this.x = x;
-    }
+    void setY(int y);
 
-    public int getX() {
-        return x;
-    }
+    int getY();
 
-    public void setY(int y) {
-        this.y = y;
-    }
+    void setTextureRegion(TextureRegion textureRegion);
 
-    public int getY() {
-        return y;
-    }
-
-    public void setTextureRegion(TextureRegion textureRegion) {
-        this.textureRegion = textureRegion;
-    }
-
-    public TextureRegion getTextureRegion() {
-        return textureRegion;
-    }
+    TextureRegion getTextureRegion();
 }

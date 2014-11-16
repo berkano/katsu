@@ -25,11 +25,15 @@ public class Panko {
     public static void exitWithError(String message) {
         // TODO: show alert box in production mode
         PankoLog.fatal(message);
-        Gdx.app.exit();
+        exit();
         throw new RuntimeException("Panko game runner closed due to error: "+message);
     }
 
     public static void exitDueToException(String message, Exception ex) {
         exitWithError(message + "\nCaused by: "+ex.toString());
+    }
+
+    public static void exit() {
+        Gdx.app.exit();
     }
 }

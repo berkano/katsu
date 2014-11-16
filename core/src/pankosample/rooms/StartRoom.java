@@ -1,5 +1,6 @@
 package pankosample.rooms;
 
+import com.badlogic.gdx.Gdx;
 import panko.components.*;
 
 /**
@@ -11,5 +12,6 @@ public class StartRoom extends PankoRoomBase implements PankoRoom  {
     public void start() {
         PankoLog.debug("StartRoom started");
         entities = PankoTmxHelper.entitiesFromMap("startroom");
+        Panko.exit();
     }
 }
