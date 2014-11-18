@@ -1,6 +1,29 @@
-- optionally show alert dialog when exiting on error (controlled via settings)
-- mod music support working in latest libgdx?
-- rename project etc
-- republish & "I'm in"
-- view-based rendering
-- feature parity with katsu...
+[TODO]
+[2] - optionally show alert dialog when exiting on error (controlled via settings)
+[5] - rename project etc
+[1] - republish & "I'm in"
+[3] - view-based rendering
+
+[*] - feature parity with katsu where it overlaps with GameMaker functionality
+[1] -- entity lifecycle within room: add / destroy
+[3] -- ???: pathfinding (step towards...)
+[1] -- UI: text box display + font support + text wrapping (clean + port most of it probably)
+[1] -- Documentation: documentation/help system
+[3] -- Entity: ability to rotate sprite based on direction of entity
+
+[*] - extra features from katsu which are important
+[2] -- find nearest entity to coord (optionally of specific type)
+[2] -- find entities which overlap a specific entity (e.g. "underneath" tests)
+[2] -- toggle FPS display
+
+[*] - extra features from katsu which are a nice to have
+[3] -- Entity: UI layer to show entity health
+[2] -- Entity: ability to select entity with mouse and see the glowing select box
+
+[*] - in prep for next LD
+[3] -- find different font to keep it interesting
+
+[PROGRESS]
+
+[DONE]
+- mod music support working in latest libgdx? (No)
