@@ -13,15 +13,19 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     private int y;
     private int dx = 0;
     private int dy = 0;
-    private int rotation = 0;
+    private double rotation = 0;
     private int velocity = 0;
     private TextureRegion textureRegion;
     private Sprite sprite;
     private boolean solid;
     private PankoRoom room;
     private long lastMove = Panko.currentTime();
+    private PankoEntity parent;
+    private int parentDistance;
+    private double speedOfRotationAroundParent = 0;
+    private double radius;
 
-    public void rotate(int dr) {
+    public void rotate(double dr) {
         this.setRotation(this.getRotation() + dr);
     }
 
@@ -44,8 +48,9 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     }
 
     @Override
-    public void setX(int x) {
+    public PankoEntity setX(int x) {
         this.x = x;
+        return this;
     }
 
     @Override
@@ -54,8 +59,9 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     }
 
     @Override
-    public void setY(int y) {
+    public PankoEntity setY(int y) {
         this.y = y;
+        return this;
     }
 
     @Override
@@ -64,8 +70,9 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     }
 
     @Override
-    public void setTextureRegion(TextureRegion textureRegion) {
+    public PankoEntity setTextureRegion(TextureRegion textureRegion) {
         this.textureRegion = textureRegion;
+        return this;
     }
 
     @Override
@@ -137,22 +144,35 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     }
 
     @Override
-    public void setLastMove(long time) {
+    public PankoEntity setLastMove(long time) {
         this.lastMove = time;
+        return this;
     }
 
     @Override
     public void update() {
         x -= velocity * Math.sin(getRotation() * 0.0174);
         y += velocity * Math.cos(getRotation() * 0.0174);
+
+        if (this.parent != null) {
+            double rx = -1 * (double)parentDistance * Math.sin(getRotation() * 0.0174);
+            double ry = (double)parentDistance * Math.cos(getRotation() * 0.0174);
+            setX(parent.getX() + (int)Math.round(rx));
+            setY(parent.getY() + (int) Math.round(ry));
+        }
+
+        if (this.speedOfRotationAroundParent != 0) {
+            rotation += this.speedOfRotationAroundParent;
+        }
     }
 
     public PankoRoom getRoom() {
         return room;
     }
 
-    public void setRoom(PankoRoom room) {
+    public PankoEntity setRoom(PankoRoom room) {
         this.room = room;
+        return this;
     }
 
     public long getLastMove() {
@@ -187,11 +207,26 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
         this.dy = dy;
     }
 
-    public int getRotation() {
+    public double getRotation() {
         return rotation;
     }
 
-    public void setRotation(int rotation) {
+    public void setRotation(double rotation) {
         this.rotation = rotation;
+    }
+
+    public PankoEntity setParentBody(PankoEntity parent, int distance, double speedOfRotationAroundParent) {
+        this.parent = parent;
+        this.parentDistance = distance;
+        this.speedOfRotationAroundParent = speedOfRotationAroundParent;
+        return this;
+    }
+
+    public void setRadius(double radius) {
+        this.radius = radius;
+    }
+
+    public double getRadius() {
+        return radius;
     }
 }

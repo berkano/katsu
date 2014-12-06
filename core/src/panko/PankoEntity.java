@@ -8,15 +8,15 @@ import com.badlogic.gdx.physics.box2d.World;
  * Created by shaun on 16/11/2014.
  */
 public interface PankoEntity {
-    void setX(int x);
+    PankoEntity setX(int x);
 
     int getX();
 
-    void setY(int y);
+    PankoEntity setY(int y);
 
     int getY();
 
-    void setTextureRegion(TextureRegion textureRegion);
+    PankoEntity setTextureRegion(TextureRegion textureRegion);
 
     TextureRegion getTextureRegion();
 
@@ -24,7 +24,7 @@ public interface PankoEntity {
 
     boolean moveGrid(int dx, int dy);
 
-    void setRoom(PankoRoom room);
+    PankoEntity setRoom(PankoRoom room);
 
     PankoRoom getRoom();
 
@@ -36,7 +36,7 @@ public interface PankoEntity {
 
     int getHeight();
 
-    void setLastMove(long time);
+    PankoEntity setLastMove(long time);
 
     void update();
 

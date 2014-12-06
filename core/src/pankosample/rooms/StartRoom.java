@@ -15,9 +15,4 @@ public class StartRoom extends PankoRoomBase {
         PankoTmxHelper.addEntitiesToRoomFromMap("startroom", this);
     }
 
-    @Override
-    public World getWorld() {
-        return null;
-    }
-
 }

@@ -12,6 +12,13 @@ public abstract class PankoRoomBase implements PankoRoom, InputProcessor {
     protected ArrayList<PankoEntity> entities;
     private boolean active;
 
+    public void bringEntityToFront(PankoEntity entity) {
+        entities.remove(entity);
+        entities.add(entity);
+
+    }
+
+
     @Override
     public void start() {
         setActive(true);

@@ -9,7 +9,7 @@ import panko.*;
 /**
  * Created by shaun on 06/12/2014.
  */
-public class Ship extends PankoEntityBase {
+public class Ship extends SpriteRenderedEntity {
 
     private boolean isPlayer;
     private long lastMoveKeyMillis = System.currentTimeMillis();
@@ -22,7 +22,6 @@ public class Ship extends PankoEntityBase {
     public Ship() {
         super();
         Panko.getInputMultiplexer().addProcessor(this);
-        setSprite(new Sprite(PankoResource.loadTexture("ship.png")));
     }
 
     @Override
@@ -54,16 +53,14 @@ public class Ship extends PankoEntityBase {
     }
 
     @Override
-    public void render() {
-        getSprite().setX(getX());
-        getSprite().setY(getY());
-        getSprite().setRotation(getRotation());
-        getSprite().draw(Panko.getActiveSpriteBatch());
+    public String getTextureResourceName() {
+        return "ship.png";
     }
 
     public static Ship newPlayerShip(PankoRoom room) {
         Ship result = new Ship();
         result.setPlayer(true);
+        result.setRadius(1000d);
         return result;
     }
 

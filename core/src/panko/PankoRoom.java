@@ -24,5 +24,4 @@ public interface PankoRoom {
 
     void update();
 
-    World getWorld();
 }

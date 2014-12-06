@@ -102,8 +102,9 @@ public class Panko {
     }
 
 
-    public static void addEntityToRoom(PankoRoom room, PankoEntity entity) {
+    public static PankoEntity addEntityToRoom(PankoRoom room, PankoEntity entity) {
         room.getEntities().add(entity);
         entity.setRoom(room);
+        return entity;
     }
 }

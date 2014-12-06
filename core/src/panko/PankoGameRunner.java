@@ -41,7 +41,7 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
 
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
-        float viewportSize = 10000;
+        float viewportSize = 20000;
         camera = new OrthographicCamera(viewportSize, viewportSize * (h / w));
         camera.position.set(0, 0, 0);
         //camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
@@ -85,7 +85,6 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
         for (PankoRoom room : rooms) {
             if (room.isActive()) {
                 room.update();
-                room.getWorld().step(1/60f, 6, 2);
             }
         }
 
