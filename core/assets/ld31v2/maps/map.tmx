@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="48" tilewidth="16" tileheight="16">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="24" tilewidth="16" tileheight="16">
  <tileset firstgid="1" name="ld31-tileset" tilewidth="16" tileheight="16">
   <image source="ld31-tileset.png" width="1024" height="1024"/>
   <tile id="0">
@@ -17,6 +17,11 @@
     <property name="entity" value="Dirt"/>
    </properties>
   </tile>
+  <tile id="3">
+   <properties>
+    <property name="entity" value="Hills"/>
+   </properties>
+  </tile>
   <tile id="64">
    <properties>
     <property name="entity" value="Tower"/>
@@ -32,20 +37,35 @@
     <property name="entity" value="WallVert"/>
    </properties>
   </tile>
+  <tile id="67">
+   <properties>
+    <property name="entity" value="Mountains"/>
+   </properties>
+  </tile>
   <tile id="128">
    <properties>
-    <property name="entity" value="Soldier"/>
+    <property name="entity" value="SoldierP1"/>
+   </properties>
+  </tile>
+  <tile id="129">
+   <properties>
+    <property name="entity" value="SoldierP2"/>
+   </properties>
+  </tile>
+  <tile id="130">
+   <properties>
+    <property name="entity" value="SoldierP3"/>
    </properties>
   </tile>
  </tileset>
- <layer name="terrain" width="64" height="48">
+ <layer name="terrain" width="32" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2USxbCMAwD3eb+d2bL41Eowfq00ULbVjN2vFXVliRJcqMMgw7h17Gr+fenrDb7vXT8brNne3BlZ3hwnj3agQO7cg+62bu+x3CAmH3nN9EOUHvf5QD5FtDvnrUDsx7QN4+5AzMOGDffeQeuxP/NwUwvFj/DgSM7YgeOHCj7uPl27OLiQNlBza+egfrfDv5XZs/dWZOdzT/Ki50xC0dmxA6Mg6jZ0PyfWK/iYbbfWTZ3B//wI3zdld/Vwdl32nnb3By840Pec0d+hWt1jzjwcBAP8fDqYXUXSZIkv+YBJyw+TAAwAAA=
+   H4sIAAAAAAAAC72VUQqAMAxDp+5ou/+Z/BJGSGrW6j6KKKMvaaMerbUjqHOq6Nzf5eroG3TsZrI5MHZFx1WcAet3ir7qmSrF73B187LiNeu/wmd+ro38t3ys8N39q31iDqJcZLxkzla/haxnlOUdfJc97zbDre4ONWT+T5X9zzOauSs6sOcwz+J+FEvp6AF/NK5l3pfLZxrwnX6eDSh3X86skY/+n3vmX2nppLfSjLNT88+Um3f8Vzr8KI/M2xc6VR6dbK36z2rIfGu+5mdyEmm4ARMQT7QADAAA
   </data>
  </layer>
- <layer name="objects" width="64" height="48">
+ <layer name="objects" width="32" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3ZsQkAIAwEQFdTJ3NzLbKAnfh38GSALxJIa/ymn4yaiebJqpkovX8A7qXvDrdDdv8AAAAAAAAAL0j/3frdZ/cP3NnX7sPuADAAAA==
+   H4sIAAAAAAAAC2NgGHjgCMROUHog7HIG4kYoTWvgjEbjchOtADl20dN92AC2MKMnGGj/EwID7T5QvDQxjMYPtQE1/EWJGdTId5SYMdD+HwVDA9Ayjokxm5b1E8jMZgJmU+p/fPqpHba42l/INC3BUGx/0RIAAJ5XYE4ADAAA
   </data>
  </layer>
 </map>

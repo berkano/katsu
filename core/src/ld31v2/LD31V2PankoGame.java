@@ -22,7 +22,11 @@ public class LD31V2PankoGame implements PankoGame {
         classLookup.put("Tower", Tower.class);
         classLookup.put("WallHorz", WallHorz.class);
         classLookup.put("WallVert", WallVert.class);
-        classLookup.put("Soldier", Soldier.class);
+        classLookup.put("SoldierP1", SoldierP1.class);
+        classLookup.put("SoldierP2", SoldierP2.class);
+        classLookup.put("SoldierP3", SoldierP3.class);
+        classLookup.put("Hills", Hills.class);
+        classLookup.put("Mountains", Mountains.class);
     }
 
     public LD31V2PankoGame() {
