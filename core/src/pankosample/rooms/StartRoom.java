@@ -1,5 +1,6 @@
 package pankosample.rooms;
 
+import com.badlogic.gdx.physics.box2d.World;
 import panko.*;
 
 /**
@@ -12,6 +13,11 @@ public class StartRoom extends PankoRoomBase {
         super.start();
         PankoLog.debug("StartRoom started");
         PankoTmxHelper.addEntitiesToRoomFromMap("startroom", this);
+    }
+
+    @Override
+    public World getWorld() {
+        return null;
     }
 
 }

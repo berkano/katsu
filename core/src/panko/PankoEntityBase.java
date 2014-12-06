@@ -1,7 +1,10 @@
 package panko;
 
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.World;
 
 /**
  * Created by shaun on 15/11/2014.
@@ -11,9 +14,13 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     private int x;
     private int y;
     private TextureRegion textureRegion;
+    private Sprite sprite;
     private boolean solid;
     private PankoRoom room;
     private long lastMove = Panko.currentTime();
+    private Body body;
+    private World world;
+    private boolean physics;
 
     @Override
     public void render() {
@@ -132,6 +139,16 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
 
     }
 
+    @Override
+    public Body getBody() {
+        return body;
+    }
+
+    @Override
+    public World getWorld() {
+        return world;
+    }
+
     public PankoRoom getRoom() {
         return room;
     }
@@ -148,4 +165,27 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
         return Panko.currentTime() > getLastMove() + timeLimit;
     }
 
+    public void setBody(Body body) {
+        this.body = body;
+    }
+
+    public void setWorld(World world) {
+        this.world = world;
+    }
+
+    public boolean isPhysics() {
+        return physics;
+    }
+
+    public void setPhysics(boolean physics) {
+        this.physics = physics;
+    }
+
+    public Sprite getSprite() {
+        return sprite;
+    }
+
+    public void setSprite(Sprite sprite) {
+        this.sprite = sprite;
+    }
 }

@@ -5,7 +5,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 
 import java.util.ArrayList;
 
@@ -15,6 +17,8 @@ import java.util.ArrayList;
 public class PankoGameRunner implements ApplicationListener, InputProcessor {
 
     private SpriteBatch mainSpriteBatch;
+    private Box2DDebugRenderer debugRenderer;
+    private OrthographicCamera camera;
 
     private ArrayList<PankoRoom> rooms;
 
@@ -24,6 +28,8 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
 
     @Override
     public void create() {
+
+        debugRenderer = new Box2DDebugRenderer();
 
         Gdx.graphics.setTitle(Panko.getSettings().getGameName() + " :: " + Panko.getSettings().getGameAuthor() + " :: " + Panko.getSettings().getGameDescription());
 
@@ -35,6 +41,13 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
         if (rooms.size() <= 0) {
             Panko.exitWithError("No rooms defined!");
         }
+
+        float w = Gdx.graphics.getWidth();
+        float h = Gdx.graphics.getHeight();
+        float viewportSize = 3000;
+        camera = new OrthographicCamera(viewportSize, viewportSize * (h / w));
+        camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
+        camera.update();
 
         rooms.get(0).start();
 
@@ -48,6 +61,9 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
     @Override
     public void render() {
 
+        camera.update();
+        mainSpriteBatch.setProjectionMatrix(camera.combined);
+
         Panko.setActiveSpriteBatch(mainSpriteBatch);
 
         // Clear screen
@@ -58,6 +74,7 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
         for (PankoRoom room : rooms) {
             if (room.isActive()) {
                 room.render();
+                debugRenderer.render(room.getWorld(), camera.combined);
             }
         }
         Panko.getActiveSpriteBatch().end();
@@ -71,9 +88,9 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
         for (PankoRoom room : rooms) {
             if (room.isActive()) {
                 room.update();
+                room.getWorld().step(1/60f, 6, 2);
             }
         }
-
 
     }
 

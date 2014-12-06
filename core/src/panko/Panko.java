@@ -5,6 +5,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import ld31.Universe;
+import ld31.entities.Ship;
 
 import java.util.HashMap;
 
@@ -100,5 +102,8 @@ public class Panko {
     }
 
 
-
+    public static void addEntityToRoom(PankoRoom room, PankoEntity entity) {
+        room.getEntities().add(entity);
+        entity.setRoom(room);
+    }
 }
