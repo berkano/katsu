@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import ld31.LD31Sounds;
 import panko.*;
 
 /**
@@ -12,7 +13,8 @@ import panko.*;
 public class Ship extends SpriteRenderedEntity {
 
     private boolean isPlayer;
-    private long lastMoveKeyMillis = System.currentTimeMillis();
+    private long lastMoveKeyMillis = 0;
+    private long lastAccelerateMillis = 0;
 
     @Override
     public boolean keyDown(int keycode) {
@@ -28,10 +30,24 @@ public class Ship extends SpriteRenderedEntity {
         bullet.setX(getX());
         bullet.setY(getY());
         bullet.setRotation(getRotation());
-        bullet.setVelocity(5 + getVelocity()*3);
+        bullet.setVelocity(5 + getVelocity() * 3);
         bullet.setRadius(250);
-        Panko.addEntityToRoom(getRoom(), bullet);
+        Panko.queueEntityToRoom(getRoom(), bullet);
+        Panko.queueEntityToTop(getRoom(), this);
+        LD31Sounds.bullet.play();
     }
+
+    private void createEngineSmoke(int speedFactor) {
+        Smoke smoke = new Smoke();
+        smoke.setX(getX());
+        smoke.setY(getY());
+        smoke.setRotation(getRotation());
+        smoke.setVelocity(-getVelocity() * 2 - speedFactor);
+        smoke.setRadius(500);
+        Panko.queueEntityToRoom(getRoom(), smoke);
+        Panko.queueEntityToTop(getRoom(), this);
+    }
+
 
     public Ship() {
         super();
@@ -52,6 +68,13 @@ public class Ship extends SpriteRenderedEntity {
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
             accelerate(1);
             lastMoveKeyMillis = System.currentTimeMillis();
+            if (System.currentTimeMillis() > lastAccelerateMillis + 5000) {
+                LD31Sounds.engine.play();
+                createEngineSmoke(2);
+                createEngineSmoke(3);
+                createEngineSmoke(5);
+            }
+            lastAccelerateMillis = System.currentTimeMillis();
         }
         if (Gdx.input.isKeyPressed(Input.Keys.S)) {
             accelerate(-1);
@@ -66,6 +89,7 @@ public class Ship extends SpriteRenderedEntity {
             lastMoveKeyMillis = System.currentTimeMillis();
         }
     }
+
 
     @Override
     public String getTextureResourceName() {

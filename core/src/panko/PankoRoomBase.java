@@ -3,6 +3,7 @@ package panko;
 import com.badlogic.gdx.InputProcessor;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by shaun on 16/11/2014.
@@ -10,6 +11,8 @@ import java.util.ArrayList;
 public abstract class PankoRoomBase implements PankoRoom, InputProcessor {
 
     protected ArrayList<PankoEntity> entities;
+    protected ArrayList<PankoEntity> newEntities;
+    protected ArrayList<PankoEntity> onTopQueue;
     private boolean active;
 
     public void bringEntityToFront(PankoEntity entity) {
@@ -18,12 +21,13 @@ public abstract class PankoRoomBase implements PankoRoom, InputProcessor {
 
     }
 
-
     @Override
     public void start() {
         setActive(true);
         Panko.getInputMultiplexer().addProcessor(this);
         entities = new ArrayList<PankoEntity>();
+        newEntities = new ArrayList<PankoEntity>();
+        onTopQueue = new ArrayList<PankoEntity>();
     }
 
     public void setActive(boolean active) {
@@ -36,6 +40,20 @@ public abstract class PankoRoomBase implements PankoRoom, InputProcessor {
 
     @Override
     public void render() {
+
+        for (PankoEntity e : newEntities) {
+            entities.add(e);
+        }
+
+        newEntities.clear();
+
+        for (PankoEntity e : onTopQueue) {
+            entities.remove(e);
+            entities.add(e);
+        }
+
+        onTopQueue.clear();
+        
         for (PankoEntity e : entities) {
             e.render();
         }
@@ -61,6 +79,16 @@ public abstract class PankoRoomBase implements PankoRoom, InputProcessor {
         for (PankoEntity e : entities) {
             e.update();
         }
+    }
+
+    @Override
+    public List getNewEntities() {
+        return newEntities;
+    }
+
+    @Override
+    public List getOnTopQueue() {
+        return onTopQueue;
     }
 
     @Override

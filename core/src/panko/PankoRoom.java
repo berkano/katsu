@@ -4,6 +4,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.physics.box2d.World;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by shaun on 15/11/2014.
@@ -24,4 +25,7 @@ public interface PankoRoom {
 
     void update();
 
+    List getNewEntities();
+
+    List getOnTopQueue();
 }

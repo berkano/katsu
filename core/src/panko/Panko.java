@@ -110,11 +110,22 @@ public class Panko {
         return entity;
     }
 
+    public static PankoEntity queueEntityToRoom(PankoRoom room, PankoEntity entity) {
+        room.getNewEntities().add(entity);
+        entity.setRoom(room);
+        return entity;
+    }
+
+
     public static Camera getMainCamera() {
         return mainCamera;
     }
 
     public static void setMainCamera(Camera mainCamera) {
         Panko.mainCamera = mainCamera;
+    }
+
+    public static void queueEntityToTop(PankoRoom room, PankoEntity entity) {
+        room.getOnTopQueue().add(entity);
     }
 }
