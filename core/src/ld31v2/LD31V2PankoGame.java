@@ -1,6 +1,6 @@
 package ld31v2;
 
-import ld31.Universe;
+import ld31v2.entities.*;
 import panko.PankoGame;
 import panko.PankoRoom;
 
@@ -12,6 +12,18 @@ import java.util.HashMap;
  * Created by shaun on 16/11/2014.
  */
 public class LD31V2PankoGame implements PankoGame {
+
+    private static HashMap<String, Class> classLookup = new HashMap<String, Class>();
+
+    static {
+        classLookup.put("Grass", Grass.class);
+        classLookup.put("Dirt", Dirt.class);
+        classLookup.put("Water", Water.class);
+        classLookup.put("Tower", Tower.class);
+        classLookup.put("WallHorz", WallHorz.class);
+        classLookup.put("WallVert", WallVert.class);
+        classLookup.put("Soldier", Soldier.class);
+    }
 
     public LD31V2PankoGame() {
     }
@@ -33,6 +45,6 @@ public class LD31V2PankoGame implements PankoGame {
 
     @Override
     public HashMap<String, Class> getClassLookup() {
-        return null;
+        return classLookup;
     }
 }
