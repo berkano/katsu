@@ -3,8 +3,6 @@ package panko;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.World;
 
 /**
  * Created by shaun on 15/11/2014.
@@ -13,14 +11,23 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
 
     private int x;
     private int y;
+    private int dx = 0;
+    private int dy = 0;
+    private int rotation = 0;
+    private int velocity = 0;
     private TextureRegion textureRegion;
     private Sprite sprite;
     private boolean solid;
     private PankoRoom room;
     private long lastMove = Panko.currentTime();
-    private Body body;
-    private World world;
-    private boolean physics;
+
+    public void rotate(int dr) {
+        this.setRotation(this.getRotation() + dr);
+    }
+
+    public void accelerate(int dv) {
+        this.velocity += dv;
+    }
 
     @Override
     public void render() {
@@ -136,17 +143,8 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
 
     @Override
     public void update() {
-
-    }
-
-    @Override
-    public Body getBody() {
-        return body;
-    }
-
-    @Override
-    public World getWorld() {
-        return world;
+        x -= velocity * Math.sin(getRotation() * 0.0174);
+        y += velocity * Math.cos(getRotation() * 0.0174);
     }
 
     public PankoRoom getRoom() {
@@ -165,27 +163,35 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
         return Panko.currentTime() > getLastMove() + timeLimit;
     }
 
-    public void setBody(Body body) {
-        this.body = body;
-    }
-
-    public void setWorld(World world) {
-        this.world = world;
-    }
-
-    public boolean isPhysics() {
-        return physics;
-    }
-
-    public void setPhysics(boolean physics) {
-        this.physics = physics;
-    }
-
     public Sprite getSprite() {
         return sprite;
     }
 
     public void setSprite(Sprite sprite) {
         this.sprite = sprite;
+    }
+
+    public int getDx() {
+        return dx;
+    }
+
+    public void setDx(int dx) {
+        this.dx = dx;
+    }
+
+    public int getDy() {
+        return dy;
+    }
+
+    public void setDy(int dy) {
+        this.dy = dy;
+    }
+
+    public int getRotation() {
+        return rotation;
+    }
+
+    public void setRotation(int rotation) {
+        this.rotation = rotation;
     }
 }

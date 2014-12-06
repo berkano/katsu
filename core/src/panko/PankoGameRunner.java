@@ -17,7 +17,6 @@ import java.util.ArrayList;
 public class PankoGameRunner implements ApplicationListener, InputProcessor {
 
     private SpriteBatch mainSpriteBatch;
-    private Box2DDebugRenderer debugRenderer;
     private OrthographicCamera camera;
 
     private ArrayList<PankoRoom> rooms;
@@ -28,8 +27,6 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
 
     @Override
     public void create() {
-
-        debugRenderer = new Box2DDebugRenderer();
 
         Gdx.graphics.setTitle(Panko.getSettings().getGameName() + " :: " + Panko.getSettings().getGameAuthor() + " :: " + Panko.getSettings().getGameDescription());
 
@@ -44,9 +41,10 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
 
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
-        float viewportSize = 3000;
+        float viewportSize = 10000;
         camera = new OrthographicCamera(viewportSize, viewportSize * (h / w));
-        camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
+        camera.position.set(0, 0, 0);
+        //camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
         camera.update();
 
         rooms.get(0).start();
@@ -74,7 +72,6 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
         for (PankoRoom room : rooms) {
             if (room.isActive()) {
                 room.render();
-                debugRenderer.render(room.getWorld(), camera.combined);
             }
         }
         Panko.getActiveSpriteBatch().end();

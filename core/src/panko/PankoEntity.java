@@ -40,10 +40,4 @@ public interface PankoEntity {
 
     void update();
 
-    Body getBody();
-
-    World getWorld();
-
-    boolean isPhysics();
-
 }
