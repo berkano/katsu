@@ -25,6 +25,8 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
     @Override
     public void create() {
 
+        Gdx.graphics.setTitle(Panko.getSettings().getGameName() + " :: " + Panko.getSettings().getGameAuthor() + " :: " + Panko.getSettings().getGameDescription());
+
         mainSpriteBatch = new SpriteBatch();
         Gdx.input.setInputProcessor(Panko.getInputMultiplexer());
         Panko.getInputMultiplexer().addProcessor(this);

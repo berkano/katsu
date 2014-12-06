@@ -50,4 +50,16 @@ public class PankoSettings {
     public void setGridSize(int gridSize) {
         this.gridSize = gridSize;
     }
+
+    public String getGameName() {
+        return "Game Name";
+    }
+
+    public String getGameAuthor() {
+        return "Author";
+    }
+
+    public String getGameDescription() {
+        return "Description";
+    }
 }
