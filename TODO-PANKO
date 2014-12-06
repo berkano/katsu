@@ -1,10 +1,4 @@
 [TODO]
-[-] COMMENT: General
-[1] TODO: republish & "I'm in"
-[2] optionally show alert dialog when exiting on error (controlled via settings)
-[2] related: flexible settings system including devmode support
-[5] rename project, naming etc
-[3] view-based rendering
 
 [-] COMMENT: feature parity with katsu where it overlaps with GameMaker functionality
 [1] - TODO: entity lifecycle within room: add / destroy
@@ -12,6 +6,13 @@
 [1] - TODO: Documentation: documentation/help system
 [4] - pathfinding (step towards...)
 [4] - Entity: ability to rotate sprite based on direction of entity
+
+[-] COMMENT: General
+[1] TODO: republish & "I'm in"
+[2] optionally show alert dialog when exiting on error (controlled via settings)
+[2] related: flexible settings system including devmode support
+[5] rename project, naming etc
+[3] view-based rendering
 
 [-] COMMENT: extra features from katsu which are important
 [2] - find nearest entity to coord (optionally of specific type)
@@ -26,4 +27,5 @@
 [3] - find different font to keep it interesting
 
 [DONE]
+
 [3] - mod music support working in latest libgdx? (No)
