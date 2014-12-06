@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="48" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="ld31-tileset" tilewidth="16" tileheight="16">
+  <image source="ld31-tileset.png" width="1024" height="1024"/>
+  <tile id="0">
+   <properties>
+    <property name="entity" value="Grass"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="entity" value="Water"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="entity" value="Dirt"/>
+   </properties>
+  </tile>
+  <tile id="64">
+   <properties>
+    <property name="entity" value="Tower"/>
+   </properties>
+  </tile>
+  <tile id="65">
+   <properties>
+    <property name="entity" value="WallHorz"/>
+   </properties>
+  </tile>
+  <tile id="66">
+   <properties>
+    <property name="entity" value="WallVert"/>
+   </properties>
+  </tile>
+  <tile id="128">
+   <properties>
+    <property name="entity" value="Soldier"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="terrain" width="64" height="48">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2USxbCMAwD3eb+d2bL41Eowfq00ULbVjN2vFXVliRJcqMMgw7h17Gr+fenrDb7vXT8brNne3BlZ3hwnj3agQO7cg+62bu+x3CAmH3nN9EOUHvf5QD5FtDvnrUDsx7QN4+5AzMOGDffeQeuxP/NwUwvFj/DgSM7YgeOHCj7uPl27OLiQNlBza+egfrfDv5XZs/dWZOdzT/Ki50xC0dmxA6Mg6jZ0PyfWK/iYbbfWTZ3B//wI3zdld/Vwdl32nnb3By840Pec0d+hWt1jzjwcBAP8fDqYXUXSZIkv+YBJyw+TAAwAAA=
+  </data>
+ </layer>
+ <layer name="objects" width="64" height="48">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3ZsQkAIAwEQFdTJ3NzLbKAnfh38GSALxJIa/ymn4yaiebJqpkovX8A7qXvDrdDdv8AAAAAAAAAL0j/3frdZ/cP3NnX7sPuADAAAA==
+  </data>
+ </layer>
+</map>

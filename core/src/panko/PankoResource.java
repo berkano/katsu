@@ -6,10 +6,14 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 
+import java.util.HashMap;
+
 /**
  * Created by shaun on 16/11/2014.
  */
 public class PankoResource {
+
+    private static HashMap<String, Texture> textureCache = new HashMap<String, Texture>();
 
     public static String relativeResource(String resourcePath) {
         String resourceRoot = Panko.getImplementation().getResourceRoot();
@@ -21,7 +25,14 @@ public class PankoResource {
     }
 
     public static Texture loadTexture(String textureName) {
-        return new Texture(getResource(relativeResource("textures/"+textureName)));
+        if (textureCache.get(textureName) != null) {
+            return textureCache.get(textureName);
+        }
+        else {
+            Texture result = new Texture(getResource(relativeResource("textures/" + textureName)));
+            textureCache.put(textureName, result);
+            return result;
+        }
     }
 
     private static FileHandle getResource(String fname) {

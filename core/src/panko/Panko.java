@@ -10,6 +10,7 @@ import ld31.Universe;
 import ld31.entities.Ship;
 
 import java.util.HashMap;
+import java.util.Random;
 
 /**
  * Created by shaun on 16/11/2014.
@@ -23,6 +24,7 @@ public class Panko {
     private static InputMultiplexer inputMultiplexer = new InputMultiplexer();
     private static PankoSettings settings;
     private static HashMap<Integer, Boolean> keysDown = new HashMap<Integer, Boolean>();
+    public static Random random = new Random();
 
     public static void exitWithError(String message) {
         // TODO: show alert box in production mode
