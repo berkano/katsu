@@ -52,6 +52,8 @@ public class Universe extends PankoRoomBase {
 
         bringEntityToFront(ship);
 
+        LD31Sounds.demoMusic.loop();
+
     }
 
 }

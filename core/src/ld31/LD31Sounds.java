@@ -10,5 +10,6 @@ public class LD31Sounds {
 
     public static Sound engine = PankoResource.loadSound("engine.wav");
     public static Sound bullet = PankoResource.loadSound("bullet.wav");
+    public static Sound demoMusic = PankoResource.loadSound("demo.mp3");
 
 }
