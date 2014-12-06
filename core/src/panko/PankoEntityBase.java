@@ -229,4 +229,13 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     public double getRadius() {
         return radius;
     }
+
+    public int getVelocity() {
+        return this.velocity;
+    }
+
+    public void setVelocity(int velocity) {
+        this.velocity = velocity;
+    }
+
 }

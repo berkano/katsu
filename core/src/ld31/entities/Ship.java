@@ -16,7 +16,21 @@ public class Ship extends SpriteRenderedEntity {
 
     @Override
     public boolean keyDown(int keycode) {
+        if (keycode == Input.Keys.SPACE) {
+            fireBullet();
+            return true;
+        }
         return false;
+    }
+
+    private void fireBullet() {
+        Bullet bullet = new Bullet();
+        bullet.setX(getX());
+        bullet.setY(getY());
+        bullet.setRotation(getRotation());
+        bullet.setVelocity(5 + getVelocity()*3);
+        bullet.setRadius(250);
+        Panko.addEntityToRoom(getRoom(), bullet);
     }
 
     public Ship() {
@@ -28,6 +42,7 @@ public class Ship extends SpriteRenderedEntity {
     public void update() {
         super.update();
         moveShipBasedOnKeyPress();
+        Panko.getMainCamera().position.set(getX(), getY(), 0);
     }
 
     private void moveShipBasedOnKeyPress() {

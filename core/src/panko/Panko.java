@@ -4,6 +4,7 @@ import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import ld31.Universe;
 import ld31.entities.Ship;
@@ -16,6 +17,7 @@ import java.util.HashMap;
 public class Panko {
 
     private static SpriteBatch activeSpriteBatch;
+    private static Camera mainCamera;
     private static PankoGameRunner runner;
     private static PankoGame implementation;
     private static InputMultiplexer inputMultiplexer = new InputMultiplexer();
@@ -106,5 +108,13 @@ public class Panko {
         room.getEntities().add(entity);
         entity.setRoom(room);
         return entity;
+    }
+
+    public static Camera getMainCamera() {
+        return mainCamera;
+    }
+
+    public static void setMainCamera(Camera mainCamera) {
+        Panko.mainCamera = mainCamera;
     }
 }
