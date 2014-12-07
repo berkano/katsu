@@ -18,20 +18,43 @@ public class Selection extends PankoEntityBase {
     }
 
     @Override
+    public void update() {
+        super.update();
+        if (selectedEntity != null) {
+            setX(selectedEntity.getX());
+            setY(selectedEntity.getY());
+        }
+    }
+
+    @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         Vector3 worldClickPoint = Panko.getMainCamera().unproject(new Vector3(screenX, screenY, 0));
+
+
+        PankoEntity candidateSelection = null;
 
         for (PankoEntity e : getRoom().getEntities()) {
             Rectangle rect = new Rectangle(e.getX(), e.getY(), e.getWidth(), e.getHeight());
             if (rect.contains(worldClickPoint.x, worldClickPoint.y)) {
-                selectedEntity = e;
+                candidateSelection = e;
             }
         }
 
-        if (selectedEntity != null) {
-            setX(selectedEntity.getX());
-            setY(selectedEntity.getY());
-            Panko.getUI().writeText("Selected!");
+        if (candidateSelection != null) {
+
+            if (candidateSelection instanceof ControllableMob) {
+                selectedEntity = candidateSelection;
+                setX(selectedEntity.getX());
+                setY(selectedEntity.getY());
+                Panko.getUI().writeText("Selected " + selectedEntity.getClass().getSimpleName());
+            } else {
+                Panko.getUI().writeText("That is a "+candidateSelection.getClass().getSimpleName());
+                if (selectedEntity != null) {
+                    selectedEntity.setX(candidateSelection.getX());
+                    selectedEntity.setY(candidateSelection.getY());
+                    Panko.queueEntityToTop(selectedEntity);
+                }
+            }
         }
 
         return false;

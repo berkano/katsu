@@ -8,9 +8,6 @@ import panko.PankoEntityBase;
 /**
  * Created by shaun on 06/12/2014.
  */
-public class SoldierP1 extends PankoEntityBase {
-
-    public SoldierP1() {
-    }
+public class SoldierP1 extends ControllableMob {
 
 }

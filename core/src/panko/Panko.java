@@ -165,4 +165,8 @@ public class Panko {
     public static void setUI(PankoUI UI) {
         Panko.ui = UI;
     }
+
+    public static void queueEntityToTop(PankoEntity entity) {
+        queueEntityToTop(entity.getRoom(), entity);
+    }
 }
