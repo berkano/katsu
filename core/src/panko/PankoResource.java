@@ -56,15 +56,8 @@ public class PankoResource {
 
     public static String loadText(String textName) {
 
-        FileHandle textHandle = getResource(relativeResource("text/"+textName));
-        File file = textHandle.file();
-
-        try {
-            String text = new Scanner(file).useDelimiter("\\A").next();
-            return text;
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
-        }
+        FileHandle textHandle = getResource(relativeResource("text/" + textName));
+        return textHandle.readString();
 
     }
 

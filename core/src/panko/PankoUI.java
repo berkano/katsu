@@ -95,7 +95,7 @@ public class PankoUI {
     private void renderHelpShadowBox() {
         if (isShowingHelp()) {
             
-            Color shade = new Color(0, 0, 0, 0.5f);
+            Color shade = new Color(0, 0, 0, 0.75f);
 
             Panko.getActiveShapeRenderer().setColor(shade);
 
