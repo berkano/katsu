@@ -50,7 +50,7 @@ public class PankoUI {
     public void renderShadowBox() {
         // shadow box behind text pane
         if (text.size() > 0) {
-            Color shade = new Color(0, 0, 0, 0.5f);
+            Color shade = new Color(0, 0, 0, 0.33f);
 
             Panko.getActiveShapeRenderer().setColor(shade);
 

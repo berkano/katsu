@@ -1,6 +1,7 @@
 package panko;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import ld31v2.entities.Mob;
 
 /**
  * Created by shaun on 16/11/2014.
@@ -39,4 +40,12 @@ public interface PankoEntity {
     void update();
 
     boolean isSelected();
+
+    void setTarget(PankoEntity targetEntity);
+
+    PankoEntity getTarget();
+
+    boolean overlaps(PankoEntity other);
+
+    boolean wouldOverlap(PankoEntity other, int nx, int ny);
 }

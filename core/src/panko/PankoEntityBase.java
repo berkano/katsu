@@ -27,6 +27,35 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     private double speedOfRotationAroundParent = 0;
     private double radius;
     private boolean selected = false;
+    private PankoEntity targetEntity;
+
+    @Override
+    public void setTarget(PankoEntity targetEntity) {
+        this.targetEntity = targetEntity;
+    }
+
+    @Override
+    public PankoEntity getTarget() {
+        return this.targetEntity;
+    }
+
+    @Override
+    public boolean overlaps(PankoEntity other) {
+        if (other.getX() <= getX() - other.getWidth()) return false;
+        if (other.getY() <= getY() - other.getHeight()) return false;
+        if (other.getX() >= getX() + getWidth()) return false;
+        if (other.getY() >= getY() + getHeight()) return false;
+        return true;
+    }
+
+    @Override
+    public boolean wouldOverlap(PankoEntity other, int nx, int ny) {
+        if (nx <= getX() - other.getWidth()) return false;
+        if (ny <= getY() - other.getHeight()) return false;
+        if (nx >= getX() + getWidth()) return false;
+        if (ny >= getY() + getHeight()) return false;
+        return true;
+    }
 
     public void rotate(double dr) {
         this.setRotation(this.getRotation() + dr);

@@ -50,9 +50,10 @@ public class Selection extends PankoEntityBase {
             } else {
                 Panko.getUI().writeText("That is a "+candidateSelection.getClass().getSimpleName());
                 if (selectedEntity != null) {
-                    selectedEntity.setX(candidateSelection.getX());
-                    selectedEntity.setY(candidateSelection.getY());
-                    Panko.queueEntityToTop(selectedEntity);
+                    selectedEntity.setTarget(candidateSelection);
+//                    selectedEntity.setX(candidateSelection.getX());
+//                    selectedEntity.setY(candidateSelection.getY());
+//                    Panko.queueEntityToTop(selectedEntity);
                 }
             }
         }
