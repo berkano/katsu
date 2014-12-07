@@ -54,6 +54,8 @@ public abstract class PankoRoomBase implements PankoRoom, InputProcessor {
 
         for (PankoEntity e : deadEntityQueue) {
             entities.remove(e);
+            onTopQueue.remove(e);
+            newEntities.remove(e);
         }
 
         deadEntityQueue.clear();

@@ -28,6 +28,7 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     private double radius;
     private boolean selected = false;
     private PankoEntity targetEntity;
+    private boolean beingRemoved = false;
 
     @Override
     public void setTarget(PankoEntity targetEntity) {
@@ -51,6 +52,16 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     @Override
     public int getGridY() {
         return getY() / getHeight();
+    }
+
+    @Override
+    public boolean isBeingRemoved() {
+        return this.beingRemoved;
+    }
+
+    @Override
+    public void setBeingRemoved(boolean beingRemoved) {
+        this.beingRemoved = beingRemoved;
     }
 
     @Override

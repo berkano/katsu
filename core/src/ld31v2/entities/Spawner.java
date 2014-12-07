@@ -99,6 +99,7 @@ public class Spawner extends BaseComponent {
         if (player2Mobs > mostMobs) mostMobs = player2Mobs;
         if (player3Mobs > mostMobs) mostMobs = player3Mobs;
 
+        // Player must have majority in the base
         if (player1Mobs == mostMobs && player2Mobs < player1Mobs && player3Mobs < player1Mobs) {
             return SoldierP1.class;
         }

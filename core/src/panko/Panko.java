@@ -169,4 +169,9 @@ public class Panko {
     public static void queueEntityToTop(PankoEntity entity) {
         queueEntityToTop(entity.getRoom(), entity);
     }
+
+    public static void queueRemoveEntity(PankoEntity entity) {
+        entity.getRoom().getDeadEntities().add(entity);
+        entity.setBeingRemoved(true);
+    }
 }

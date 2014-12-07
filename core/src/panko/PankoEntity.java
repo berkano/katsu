@@ -53,4 +53,7 @@ public interface PankoEntity {
 
     int getGridY();
 
+    void setBeingRemoved(boolean beingRemoved);
+
+    boolean isBeingRemoved();
 }

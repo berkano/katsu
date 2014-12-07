@@ -19,6 +19,7 @@ public class Mob extends PankoEntityBase {
     private long lastPathFind = 0;
     private Integer intermediateTargX = null;
     private Integer intermediateTargY = null;
+    private long lastCheckedNeighboursForCombat = 0;
 
     public Mob() {
         super();
@@ -36,7 +37,26 @@ public class Mob extends PankoEntityBase {
                 setTarget(null);
             }
         }
+        checkNeighboursForCombat();
         Panko.queueEntityToTop(this);
+    }
+
+    private void checkNeighboursForCombat() {
+        if (lastCheckedNeighboursForCombat > System.currentTimeMillis() - 500) return;
+        lastCheckedNeighboursForCombat = System.currentTimeMillis();
+        for (PankoEntity e : getRoom().getEntities()) {
+            int eGridX = e.getGridX();
+            int eGridY = e.getGridY();
+            int gridX = getGridX();
+            int gridY = getGridY();
+            int dx = Math.abs(eGridX - gridX);
+            int dy = Math.abs(eGridY - gridY);
+            if (dx <= 1 && dy <= 1) {
+                if (e instanceof Mob) {
+                    doCombat(this, e);
+                }
+            }
+        }
     }
 
     private void stepTowardsPathFinding(PankoEntity target) {
@@ -133,6 +153,9 @@ public class Mob extends PankoEntityBase {
             collisionDetected = true;
             e.onCollide(this);
             onCollide(e);
+            if (e instanceof Mob) {
+                doCombat(this, e);
+            }
         }
 
         // If no collisions then do the move
@@ -140,6 +163,27 @@ public class Mob extends PankoEntityBase {
             setX(nx);
             setY(ny);
         }
+
+    }
+
+    private void doCombat(PankoEntity mob1, PankoEntity mob2) {
+
+        // Check if one already died
+        if (mob1.isBeingRemoved()) return;
+        if (mob2.isBeingRemoved()) return;
+
+        // No combat between soldiers for same player
+        if (mob1.getClass().equals(mob2.getClass())) return;
+
+        boolean mob1Wins = Panko.random.nextBoolean();
+
+        if (mob1Wins) {
+            Panko.queueRemoveEntity(mob2);
+        } else {
+            Panko.queueRemoveEntity(mob1);
+        }
+
+
 
     }
 }
