@@ -176,4 +176,16 @@ public class Panko {
         entity.setBeingRemoved(true);
     }
 
+    public static void pauseGame() {
+        runner.pauseGame();
+    }
+
+    public static void unPauseGame() {
+        Panko.getUI().setShowingHelp(false);
+        runner.unPauseGame();
+    }
+
+    public static boolean gamePaused() {
+        return runner.gamePaused();
+    }
 }

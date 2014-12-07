@@ -12,4 +12,6 @@ public interface PankoGame {
     String getResourceRoot();
 
     HashMap<String,Class> getClassLookup();
+
+    void toggleMusic();
 }

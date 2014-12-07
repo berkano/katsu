@@ -34,4 +34,9 @@ public class LD31PankoGame implements PankoGame {
     public HashMap<String, Class> getClassLookup() {
         return null;
     }
+
+    @Override
+    public void toggleMusic() {
+
+    }
 }

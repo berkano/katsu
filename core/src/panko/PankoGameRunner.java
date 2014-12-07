@@ -20,6 +20,7 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
     private ShapeRenderer mainShapeRenderer;
     private OrthographicCamera camera;
     private PankoUI ui;
+    private boolean paused = false;
 
     private ArrayList<PankoRoom> rooms;
 
@@ -93,6 +94,8 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
 
     private void update() {
 
+        if (paused) return;
+
         for (PankoRoom room : rooms) {
             if (room.isActive()) {
                 room.update();
@@ -122,6 +125,29 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
         if (keycode == Input.Keys.ESCAPE) {
             Panko.exit();
         }
+
+        if (keycode == Input.Keys.P) {
+            if (gamePaused()) {
+                unPauseGame();
+            } else {
+                pauseGame();
+            }
+            return true;
+        }
+
+        if (keycode == Input.Keys.H) {
+            if (Panko.getUI().isShowingHelp()) {
+                Panko.getUI().setShowingHelp(false);
+            } else {
+                Panko.getUI().setShowingHelp(true);
+                pauseGame();
+            }
+        }
+
+        if (keycode == Input.Keys.M) {
+            Panko.getImplementation().toggleMusic();
+        }
+
 
         Panko.setKeyDown(keycode, true);
 
@@ -166,4 +192,18 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
         return false;
     }
 
+    public void pauseGame() {
+        Panko.getUI().writeText("@CYAN Game is paused. Press P to continue.");
+        this.paused = true;
+    }
+
+    public void unPauseGame() {
+        Panko.getUI().clearText();
+        Panko.getUI().setShowingHelp(false);
+        this.paused = false;
+    }
+
+    public boolean gamePaused() {
+        return this.paused;
+    }
 }

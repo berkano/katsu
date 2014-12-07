@@ -7,7 +7,11 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
+import java.io.File;
+import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by shaun on 16/11/2014.
@@ -47,6 +51,20 @@ public class PankoResource {
     public static BitmapFont loadBitmapFont(String fntFile, String pngFile) {
 
         return new BitmapFont(Gdx.files.internal(relativeResource(fntFile)), Gdx.files.internal(relativeResource(pngFile)), true);
+
+    }
+
+    public static String loadText(String textName) {
+
+        FileHandle textHandle = getResource(relativeResource("text/"+textName));
+        File file = textHandle.file();
+
+        try {
+            String text = new Scanner(file).useDelimiter("\\A").next();
+            return text;
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
 
     }
 

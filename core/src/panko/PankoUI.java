@@ -34,12 +34,18 @@ public class PankoUI {
     public int healthBarSize = 2;
 
     public ArrayList<TextLine> text = new ArrayList<TextLine>();
+    private boolean showingHelp = false;
+    private String helpText = "No help text provided";
 
     public void writeText(String s) {
         if (text.size() >= lineDisplay) {
             text.remove(0);
         }
         text.add(new TextLine(s));
+    }
+
+    public void clearText() {
+        text.clear();
     }
 
     public void loadFont() {
@@ -82,10 +88,32 @@ public class PankoUI {
     }
 
     private void renderShapes() {
+        renderHelpShadowBox();
         renderShadowBox();
     }
 
+    private void renderHelpShadowBox() {
+        if (isShowingHelp()) {
+            
+            Color shade = new Color(0, 0, 0, 0.5f);
+
+            Panko.getActiveShapeRenderer().setColor(shade);
+
+            float x = fontHeight; // Keep a left border
+            float y = fontHeight; // Keep a bottom border (text.size() - 1)* fontHeight; // Relative from bottom of screen and based on number of lines to display
+            float width = Panko.getSettings().getHres()/2 - fontHeight * 2; // Keep a right border
+            float height = Panko.getSettings().getVres()/2 - fontHeight * 2; // Based on number of lines to display
+
+            Panko.getActiveShapeRenderer().rect(x, y, width, height);
+
+        }
+    }
+
     private void renderBitmaps() {
+
+        renderHelpText();
+
+        boolean gameIsPaused = Panko.gamePaused();
 
         if (font == null) {
             loadFont();
@@ -96,7 +124,9 @@ public class PankoUI {
         while (itr.hasNext()) {
             TextLine tl = (TextLine) itr.next();
             if ((tl.added) < System.currentTimeMillis() - 5000) {
-                itr.remove();
+                if (!gameIsPaused) {
+                    itr.remove();
+                }
             }
         }
 
@@ -113,6 +143,27 @@ public class PankoUI {
 
     }
 
+    private void renderHelpText() {
+
+        if (!isShowingHelp()) return;
+
+        topMargin = Panko.getSettings().getVres() - fontHeight * 14;
+        leftMargin = fontHeight * 2;
+
+        for (String s : helpText.split("\n")) {
+            writeln(s, Color.WHITE);
+        }
+//        writeln("@BLUE HELP", Color.WHITE);
+//        writeln("@BLUE HELP", Color.WHITE);
+//        writeln("@BLUE HELP", Color.WHITE);
+//        writeln("@BLUE HELP", Color.WHITE);
+//        writeln("@BLUE HELP", Color.WHITE);
+//        writeln("@BLUE HELP", Color.WHITE);
+//        writeln("@BLUE HELP", Color.WHITE);
+//        writeln("@BLUE HELP", Color.WHITE);
+
+    }
+
     public static String wrap(String in, int len) {
         in = in.trim();
         if (in.length() < len) return in;
@@ -124,6 +175,8 @@ public class PankoUI {
 
 
     public void writeln(String s, Color c) {
+
+        if (font == null) loadFont();
 
         if (s.startsWith("@")) {
             String[] bits = s.split(" ");
@@ -162,4 +215,24 @@ public class PankoUI {
         font.draw(batch, s, x, y);
     }
 
+    public void modalDialog(String s) {
+        writeText("@BLUE "+s);
+
+    }
+
+    public boolean isShowingHelp() {
+        return showingHelp;
+    }
+
+    public void setShowingHelp(boolean showingHelp) {
+        this.showingHelp = showingHelp;
+    }
+
+    public String getHelpText() {
+        return helpText;
+    }
+
+    public void setHelpText(String helpText) {
+        this.helpText = helpText;
+    }
 }

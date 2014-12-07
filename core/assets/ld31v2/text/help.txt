@@ -1,0 +1,16 @@
+@CYAN War Game :: berkano :: LD31
+
+@ORANGE GOAL: Wipe out the enemy armies.
+@ORANGE You start with 2 blue soldiers.
+@YELLOW Click a soldier then click where it
+@YELLOW should move to. Combat is automatic.
+@GREEN If your soldier is on a base (tower
+@GREEN or wall), then after a while a new
+@GREEN soldier will be spawned in the middle
+@GREEN (if the space is free!)
+@CYAN If there are other armies in the base,
+@CYAN the one with the majority gets the
+@CYAN new soldier.
+@PINK Press H to show this help. ESC to quit.
+@PINK M to toggle music.
+@WHITE Good luck!

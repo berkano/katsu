@@ -5,10 +5,7 @@ import ld31v2.entities.Selection;
 import ld31v2.entities.SoldierP1;
 import ld31v2.entities.SoldierP2;
 import ld31v2.entities.SoldierP3;
-import panko.Panko;
-import panko.PankoEntity;
-import panko.PankoRoomBase;
-import panko.PankoTmxHelper;
+import panko.*;
 
 /**
  * Created by shaun on 06/12/2014.
@@ -61,41 +58,53 @@ public class CampaignMap extends PankoRoomBase {
             if (e instanceof SoldierP3) mob3count++;
         }
 
+        boolean needsPause = false;
+
         if (mob1count == 0) {
             if (!p1lost) {
                 p1lost = true;
-                Panko.getUI().writeText("@RED Blue lost the game!");
+                Panko.getUI().writeText("@RED YOU ARE DEFEATED :-(");
+                needsPause = true;
             }
         }
 
         if (mob2count == 0) {
             if (!p2lost) {
                 p2lost = true;
-                Panko.getUI().writeText("@RED Red lost the game!");
+                Panko.getUI().writeText("@RED Red is defeated!");
+                needsPause = true;
             }
         }
 
         if (mob3count == 0) {
             if (!p3lost) {
                 p3lost = true;
-                Panko.getUI().writeText("@RED Purple lost the game!");
+                Panko.getUI().writeText("@RED Purple is defeated!");
+                needsPause = true;
             }
         }
 
 
         if (!gameWon) {
             if (!p1lost && p2lost && p3lost) {
-                Panko.getUI().writeText("@GREEN Blue wins the game!");
+                Panko.getUI().writeText("@GREEN YOU ARE VICTORIOUS!");
                 gameWon = true;
+                needsPause = true;
             }
             if (!p2lost && p1lost && p3lost) {
-                Panko.getUI().writeText("@GREEN Red wins the game!");
+                Panko.getUI().writeText("@GREEN Red is victorious!");
                 gameWon = true;
+                needsPause = true;
             }
-            if (!p3lost && p1lost && p3lost) {
-                Panko.getUI().writeText("@GREEN Purple wins the game!");
+            if (!p3lost && p1lost && p2lost) {
+                Panko.getUI().writeText("@GREEN Purple is victorious!");
                 gameWon = true;
+                needsPause = true;
             }
+        }
+
+        if (needsPause) {
+            Panko.pauseGame();
         }
 
 
@@ -106,6 +115,10 @@ public class CampaignMap extends PankoRoomBase {
         super.start();
         PankoTmxHelper.addEntitiesToRoomFromMap("map", this);
         selection = (Selection)firstInstanceOfClass(Selection.class);
+
+        Panko.getUI().setHelpText(PankoResource.loadText("help.txt"));
+        Panko.getUI().setShowingHelp(true);
+        Panko.pauseGame();
     }
 
     public void showSelectionAt(int x, int y) {

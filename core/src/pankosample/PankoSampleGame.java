@@ -47,4 +47,9 @@ public class PankoSampleGame implements PankoGame {
     public HashMap<String, Class> getClassLookup() {
         return classLookup;
     }
+
+    @Override
+    public void toggleMusic() {
+
+    }
 }

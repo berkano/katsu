@@ -22,6 +22,8 @@ public class WarGame implements PankoGame {
     public static Sound soundtrack;
     public static Sound killed_enemy;
 
+    public static boolean musicPlaying = false;
+
     public void loadSounds() {
         vox1 = PankoResource.loadSound("vox1.wav");
         vox2 = PankoResource.loadSound("vox2.wav");
@@ -63,7 +65,7 @@ public class WarGame implements PankoGame {
     public ArrayList<PankoRoom> getRooms() {
 
         loadSounds();
-        soundtrack.loop();
+        toggleMusic();
 
         campaignMap = new CampaignMap();
 
@@ -82,5 +84,16 @@ public class WarGame implements PankoGame {
     @Override
     public HashMap<String, Class> getClassLookup() {
         return classLookup;
+    }
+
+    @Override
+    public void toggleMusic() {
+        if (musicPlaying) {
+            soundtrack.stop();
+            musicPlaying = false;
+        } else {
+            soundtrack.loop();
+            musicPlaying = true;
+        }
     }
 }
