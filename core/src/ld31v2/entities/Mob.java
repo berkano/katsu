@@ -5,6 +5,7 @@ import ext.pathfinding.grid.GridMap;
 import ext.pathfinding.grid.GridPath;
 import ext.pathfinding.grid.GridPathfinding;
 import ld31v2.CampaignMap;
+import ld31v2.WarGame;
 import panko.Panko;
 import panko.PankoEntity;
 import panko.PankoEntityBase;
@@ -20,6 +21,7 @@ public class Mob extends PankoEntityBase {
     private Integer intermediateTargX = null;
     private Integer intermediateTargY = null;
     private long lastCheckedNeighboursForCombat = 0;
+    private long lastTimeAlignedOK = 0;
 
     public Mob() {
         super();
@@ -39,6 +41,26 @@ public class Mob extends PankoEntityBase {
         }
         checkNeighboursForCombat();
         Panko.queueEntityToTop(this);
+        checkStuckAndDieIfNecessary();
+    }
+
+    private void checkStuckAndDieIfNecessary() {
+
+        boolean misAligned = false;
+        if (getX() % getWidth() != 0) misAligned = true;
+        if (getY() % getHeight() != 0) misAligned = true;
+
+        if (!misAligned) {
+            lastTimeAlignedOK = System.currentTimeMillis();
+        } else {
+            if (lastTimeAlignedOK < System.currentTimeMillis() - 5000) {
+                Panko.queueRemoveEntity(this);
+                Panko.getUI().writeText("@PINK A soldier got stuck and died!");
+                WarGame.death.play();
+            }
+        }
+
+
     }
 
     private void checkNeighboursForCombat() {
@@ -196,6 +218,8 @@ public class Mob extends PankoEntityBase {
     }
 
     private void showDeathMessage(PankoEntity mob) {
+
+        WarGame.death.play();
 
         if (mob instanceof SoldierP1) {
             Panko.getUI().writeText("@PINK Blue loses a soldier!");

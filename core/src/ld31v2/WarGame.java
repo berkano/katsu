@@ -1,7 +1,9 @@
 package ld31v2;
 
+import com.badlogic.gdx.audio.Sound;
 import ld31v2.entities.*;
 import panko.PankoGame;
+import panko.PankoResource;
 import panko.PankoRoom;
 
 import java.util.ArrayList;
@@ -12,6 +14,20 @@ import java.util.HashMap;
  * Created by shaun on 16/11/2014.
  */
 public class WarGame implements PankoGame {
+
+    public static Sound vox1;
+    public static Sound vox2;
+    public static Sound spawn;
+    public static Sound death;
+    public static Sound soundtrack;
+
+    public void loadSounds() {
+        vox1 = PankoResource.loadSound("vox1.wav");
+        vox2 = PankoResource.loadSound("vox2.wav");
+        spawn = PankoResource.loadSound("spawn.wav");
+        death = PankoResource.loadSound("death.wav");
+        soundtrack = PankoResource.loadSound("soundtrack.mp3");
+    }
 
     private static HashMap<String, Class> classLookup = new HashMap<String, Class>();
 
@@ -43,6 +59,9 @@ public class WarGame implements PankoGame {
 
     @Override
     public ArrayList<PankoRoom> getRooms() {
+
+        loadSounds();
+        soundtrack.loop();
 
         campaignMap = new CampaignMap();
 

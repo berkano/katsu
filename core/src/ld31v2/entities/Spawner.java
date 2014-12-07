@@ -1,5 +1,6 @@
 package ld31v2.entities;
 
+import ld31v2.WarGame;
 import panko.Panko;
 import panko.PankoEntity;
 
@@ -47,6 +48,7 @@ public class Spawner extends BaseComponent {
                 mob.setY(getY());
                 Panko.queueEntityToRoom(getRoom(), mob);
                 Panko.queueEntityToTop(mob);
+                WarGame.spawn.play();
                 lastSpawnMillis = System.currentTimeMillis();
             } catch (Exception ex) {
 

@@ -2,6 +2,7 @@ package ld31v2.entities;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import ld31v2.WarGame;
 import panko.Panko;
 import panko.PankoEntity;
 import panko.PankoEntityBase;
@@ -46,11 +47,13 @@ public class Selection extends PankoEntityBase {
                 selectedEntity = candidateSelection;
                 setX(selectedEntity.getX());
                 setY(selectedEntity.getY());
+                WarGame.vox1.play();
                 //Panko.getUI().writeText("Selected " + selectedEntity.getClass().getSimpleName());
             } else {
                 //Panko.getUI().writeText("That is a "+candidateSelection.getClass().getSimpleName());
                 if (selectedEntity != null) {
                     selectedEntity.setTarget(candidateSelection);
+                    WarGame.vox2.play();
 //                    selectedEntity.setX(candidateSelection.getX());
 //                    selectedEntity.setY(candidateSelection.getY());
 //                    Panko.queueEntityToTop(selectedEntity);
