@@ -5,6 +5,7 @@ import ext.pathfinding.grid.GridMap;
 import ext.pathfinding.grid.GridPath;
 import ext.pathfinding.grid.GridPathfinding;
 import ld31v2.CampaignMap;
+import ld31v2.Tuning;
 import ld31v2.WarGame;
 import panko.Panko;
 import panko.PankoEntity;
@@ -22,7 +23,7 @@ public class Mob extends PankoEntityBase {
     private Integer intermediateTargY = null;
     private long lastCheckedNeighboursForCombat = 0;
     private long lastTimeAlignedOK = 0;
-    private long lastAITime = 0;
+    private long lastAITime = System.currentTimeMillis();
 
     public Mob() {
         super();
@@ -43,15 +44,15 @@ public class Mob extends PankoEntityBase {
         checkNeighboursForCombat();
         Panko.queueEntityToTop(this);
         checkStuckAndDieIfNecessary();
-//        if (!(this instanceof ControllableMob)) {
-        runAI();
-//        }
+        if (!(this instanceof ControllableMob)) {
+            runAI();
+        }
     }
 
     private void runAI() {
 
         // Don't run AI all the time
-        if (lastAITime > System.currentTimeMillis() - 100) return;
+        if (lastAITime > System.currentTimeMillis() - Tuning.aiInterval) return;
         lastAITime = System.currentTimeMillis();
 
         /*
@@ -272,16 +273,16 @@ public class Mob extends PankoEntityBase {
         if (!misAligned) {
             lastTimeAlignedOK = System.currentTimeMillis();
         } else {
-            if (lastTimeAlignedOK < System.currentTimeMillis() - 5000) {
+            if (lastTimeAlignedOK < System.currentTimeMillis() - Tuning.dieAfterStuck) {
                 Panko.queueRemoveEntity(this);
-                Panko.getUI().writeText("@PINK A soldier got stuck and died!");
+                //Panko.getUI().writeText("@PINK A soldier got stuck and died!");
                 WarGame.death.play();
             }
         }
     }
 
     private void checkNeighboursForCombat() {
-        if (lastCheckedNeighboursForCombat > System.currentTimeMillis() - 500) return;
+        if (lastCheckedNeighboursForCombat > System.currentTimeMillis() - Tuning.checkNeighbourCombatInterval) return;
         lastCheckedNeighboursForCombat = System.currentTimeMillis();
         for (PankoEntity e : getRoom().getEntities()) {
             int eGridX = e.getGridX();
@@ -314,7 +315,7 @@ public class Mob extends PankoEntityBase {
     private void doPathFinding(PankoEntity target) {
 
         // Don't path find too often.
-        if (System.currentTimeMillis() - lastPathFind < 250) return;
+        if (System.currentTimeMillis() - lastPathFind < Tuning.pathFindInterval) return;
 
         lastPathFind = System.currentTimeMillis();
 
@@ -439,13 +440,13 @@ public class Mob extends PankoEntityBase {
         WarGame.death.play();
 
         if (mob instanceof SoldierP1) {
-            Panko.getUI().writeText("@PINK Blue loses a soldier!");
+            //Panko.getUI().writeText("@PINK Blue loses a soldier!");
         }
         if (mob instanceof SoldierP2) {
-            Panko.getUI().writeText("@PINK Red loses a soldier!");
+            //Panko.getUI().writeText("@PINK Red loses a soldier!");
         }
         if (mob instanceof SoldierP3) {
-            Panko.getUI().writeText("@PINK Purple loses a soldier!");
+            //Panko.getUI().writeText("@PINK Purple loses a soldier!");
         }
 
     }

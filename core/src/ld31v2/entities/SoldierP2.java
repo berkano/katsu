@@ -5,5 +5,5 @@ import panko.PankoEntityBase;
 /**
  * Created by shaun on 06/12/2014.
  */
-public class SoldierP2 extends ControllableMob {
+public class SoldierP2 extends Mob {
 }

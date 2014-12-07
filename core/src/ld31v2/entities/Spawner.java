@@ -1,5 +1,6 @@
 package ld31v2.entities;
 
+import ld31v2.Tuning;
 import ld31v2.WarGame;
 import panko.Panko;
 import panko.PankoEntity;
@@ -38,7 +39,7 @@ public class Spawner extends PankoEntityBase {
                 timeSpawningBecameViable = System.currentTimeMillis();
                 return;
             } else {
-                if (timeSpawningBecameViable > System.currentTimeMillis() - 5000) return;
+                if (timeSpawningBecameViable > System.currentTimeMillis() - Tuning.majorityTimeNeededForSpawn) return;
             }
 
             timeSpawningBecameViable = 0;
@@ -61,7 +62,7 @@ public class Spawner extends PankoEntityBase {
 
     private Class determineMobToSpawn() {
 
-        if (lastSpawnMillis > System.currentTimeMillis() - 5000) return null;
+        if (lastSpawnMillis > System.currentTimeMillis() - Tuning.maxSpawnInterval) return null;
 
         ArrayList<PankoEntity> neighbouringEntities = new ArrayList<PankoEntity>();
 
