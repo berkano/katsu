@@ -177,13 +177,35 @@ public class Mob extends PankoEntityBase {
 
         boolean mob1Wins = Panko.random.nextBoolean();
 
+        Skeleton skeleton = new Skeleton();
+
         if (mob1Wins) {
+            skeleton.setX(mob2.getX());
+            skeleton.setY(mob2.getY());
             Panko.queueRemoveEntity(mob2);
+            showDeathMessage(mob2);
         } else {
+            skeleton.setX(mob1.getX());
+            skeleton.setY(mob1.getY());
             Panko.queueRemoveEntity(mob1);
+            showDeathMessage(mob1);
         }
 
+        Panko.queueEntityToRoom(getRoom(), skeleton);
 
+    }
+
+    private void showDeathMessage(PankoEntity mob) {
+
+        if (mob instanceof SoldierP1) {
+            Panko.getUI().writeText("@PINK Blue loses a soldier!");
+        }
+        if (mob instanceof SoldierP2) {
+            Panko.getUI().writeText("@PINK Red loses a soldier!");
+        }
+        if (mob instanceof SoldierP3) {
+            Panko.getUI().writeText("@PINK Purple loses a soldier!");
+        }
 
     }
 }

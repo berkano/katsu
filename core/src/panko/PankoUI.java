@@ -2,6 +2,7 @@ package panko;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Colors;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -94,7 +95,7 @@ public class PankoUI {
         Iterator itr = text.iterator();
         while (itr.hasNext()) {
             TextLine tl = (TextLine) itr.next();
-            if ((tl.added) < System.currentTimeMillis() - 1000) {
+            if ((tl.added) < System.currentTimeMillis() - 5000) {
                 itr.remove();
             }
         }
@@ -123,6 +124,15 @@ public class PankoUI {
 
 
     public void writeln(String s, Color c) {
+
+        if (s.startsWith("@")) {
+            String[] bits = s.split(" ");
+            String colour = bits[0];
+            colour = colour.replaceAll("\\@", "");
+
+            c = Colors.get(colour);
+            s = s.replaceFirst("@"+colour+" ", "");
+        }
 
         String wrappedStr = wrap(s, 100);
         String[] lines = wrappedStr.split("\n");

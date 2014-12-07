@@ -46,9 +46,9 @@ public class Selection extends PankoEntityBase {
                 selectedEntity = candidateSelection;
                 setX(selectedEntity.getX());
                 setY(selectedEntity.getY());
-                Panko.getUI().writeText("Selected " + selectedEntity.getClass().getSimpleName());
+                //Panko.getUI().writeText("Selected " + selectedEntity.getClass().getSimpleName());
             } else {
-                Panko.getUI().writeText("That is a "+candidateSelection.getClass().getSimpleName());
+                //Panko.getUI().writeText("That is a "+candidateSelection.getClass().getSimpleName());
                 if (selectedEntity != null) {
                     selectedEntity.setTarget(candidateSelection);
 //                    selectedEntity.setX(candidateSelection.getX());

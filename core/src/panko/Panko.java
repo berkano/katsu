@@ -5,6 +5,7 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import ld31v2.entities.Skeleton;
 
 import java.util.HashMap;
 import java.util.Random;
@@ -174,4 +175,5 @@ public class Panko {
         entity.getRoom().getDeadEntities().add(entity);
         entity.setBeingRemoved(true);
     }
+
 }
