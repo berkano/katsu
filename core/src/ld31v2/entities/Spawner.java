@@ -12,6 +12,7 @@ public class Spawner extends BaseComponent {
 
     private long lastSpawnMillis = 0;
     private long lastTriedSpawn = 0;
+    private long timeSpawningBecameViable = 0;
 
     @Override
     public void update() {
@@ -30,6 +31,16 @@ public class Spawner extends BaseComponent {
         Class newMobClass = determineMobToSpawn();
 
         if (newMobClass != null) {
+            // Don't spawn immediately - conditions must be right for a minimum period of time.
+            if (timeSpawningBecameViable == 0) {
+                timeSpawningBecameViable = System.currentTimeMillis();
+                return;
+            } else {
+                if (timeSpawningBecameViable > System.currentTimeMillis() - 5000) return;
+            }
+
+            timeSpawningBecameViable = 0;
+
             try {
                 Mob mob = (Mob)newMobClass.newInstance();
                 mob.setX(getX());
