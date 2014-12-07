@@ -56,4 +56,7 @@ public interface PankoEntity {
     void setBeingRemoved(boolean beingRemoved);
 
     boolean isBeingRemoved();
+
+
+
 }

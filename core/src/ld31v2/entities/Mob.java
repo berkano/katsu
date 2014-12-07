@@ -22,6 +22,7 @@ public class Mob extends PankoEntityBase {
     private Integer intermediateTargY = null;
     private long lastCheckedNeighboursForCombat = 0;
     private long lastTimeAlignedOK = 0;
+    private long lastAITime = 0;
 
     public Mob() {
         super();
@@ -42,6 +43,224 @@ public class Mob extends PankoEntityBase {
         checkNeighboursForCombat();
         Panko.queueEntityToTop(this);
         checkStuckAndDieIfNecessary();
+//        if (!(this instanceof ControllableMob)) {
+        runAI();
+//        }
+    }
+
+    private void runAI() {
+
+        // Don't run AI all the time
+        if (lastAITime > System.currentTimeMillis() - 100) return;
+        lastAITime = System.currentTimeMillis();
+
+        /*
+         Strategies:
+
+         - Move from spawner pad to castle wall
+         - Go to the nearest:
+             castle which is not this one, as long as it would maintain a majority in this castle
+             or enemy player (whichever is closest
+
+          */
+
+        if (isOnSpawner()) {
+            targetNearestBaseComponent();
+            return;
+        }
+
+        if (isInBase()) {
+            if (weWouldHaveTheMajorityIfILeft()) {
+                targetNearestBaseOrEnemy();
+            }
+        } else {
+            targetNearestBaseOrEnemy();
+        }
+
+    }
+
+    private void targetNearestBaseOrEnemy() {
+
+        PankoEntity closest = null;
+        int closestDist = 9999;
+
+        for (PankoEntity e : getRoom().getEntities()) {
+            if (e instanceof BaseComponent || e instanceof Mob) {
+
+                // Ignore soldiers from same player
+                if (e.getClass().equals(getClass())) continue;
+
+                int dx = e.getGridX() - getGridX();
+                int dy = e.getGridY() - getGridY();
+                int d = (int)Math.round(Math.sqrt(dx*dx+dy*dy));
+
+                // Don't target bases we already have a majority for
+                if (e instanceof BaseComponent) {
+                    Spawner spawner = nearestSpawnerTo(e);
+                    if (spawner != null) {
+                        if (spawnerHasMajorityFor(spawner, this)) continue;
+                    }
+                }
+
+                if (d < closestDist) {
+                    closestDist = d;
+                    closest = e;
+                }
+
+            }
+        }
+
+        if (closest != null) {
+            setTarget(closest);
+        }
+    }
+
+    private boolean spawnerHasMajorityFor(Spawner spawner, Mob mob) {
+
+        int player = 0;
+        if (mob instanceof SoldierP1) player = 1;
+        if (mob instanceof SoldierP2) player = 2;
+        if (mob instanceof SoldierP3) player = 3;
+
+        if (getMajorityPlayer(spawner, 0) == player) return true;
+        return false;
+
+    }
+
+    private Spawner nearestSpawnerTo(PankoEntity entity) {
+
+        PankoEntity closest = null;
+        int closestDist = 9999;
+
+        for (PankoEntity e : getRoom().getEntities()) {
+            if (e instanceof Spawner) {
+
+                int dx = e.getGridX() - entity.getGridX();
+                int dy = e.getGridY() - entity.getGridY();
+                int d = (int)Math.round(Math.sqrt(dx*dx+dy*dy));
+
+                if (d < closestDist) {
+                    closestDist = d;
+                    closest = e;
+                }
+
+            }
+        }
+
+        return (Spawner)closest;
+
+
+    }
+
+    private boolean weWouldHaveTheMajorityIfILeft() {
+
+        // First work out where the spawner is
+
+        Spawner spawner = null;
+        for (int x = -1; x <= 1; x++) {
+            for (int y = -1; y <= 1; y++) {
+                for (PankoEntity e : getRoom().getEntities()) {
+                    if (e.getGridX() == getGridX() + x) {
+                        if (e.getGridY() == getGridY() + y) {
+                            if (e instanceof Spawner) {
+                                spawner = (Spawner) e;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if (spawner == null) return false;
+
+        int majorityPlayer = getMajorityPlayer(spawner, 2);
+
+        if (this instanceof SoldierP1 && majorityPlayer == 1) return true;
+        if (this instanceof SoldierP2 && majorityPlayer == 2) return true;
+        if (this instanceof SoldierP3 && majorityPlayer == 3) return true;
+
+        return false;
+    }
+
+    private int getMajorityPlayer(Spawner spawner, int neededMajority) {
+        // work out which player has the majority
+        int p1count = 0;
+        int p2count = 0;
+        int p3count = 0;
+        for (int x = -1; x <= 1; x++) {
+            for (int y = -1; y <= 1; y++) {
+                for (PankoEntity e : getRoom().getEntities()) {
+                    if (e.getGridX() == spawner.getGridX() + x) {
+                        if (e.getGridY() == spawner.getGridY() + y) {
+                            if (e instanceof SoldierP1) p1count++;
+                            if (e instanceof SoldierP2) p2count++;
+                            if (e instanceof SoldierP3) p3count++;
+                        }
+                    }
+                }
+            }
+        }
+
+        int majority = 0;
+        if (p1count > (p2count+neededMajority) && p1count > (p3count+neededMajority)) majority = 1;
+        if (p2count > (p1count+neededMajority) && p2count > (p3count+neededMajority)) majority = 2;
+        if (p3count > (p2count+neededMajority) && p3count > (p1count+neededMajority)) majority = 3;
+
+        return majority;
+
+    }
+
+    private boolean isInBase() {
+        for (PankoEntity e : getRoom().getEntities()) {
+            if (e instanceof Spawner || e instanceof BaseComponent) {
+                if (e.overlaps(this)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private void targetNearestBaseComponent() {
+        // Find part of base which is not occupied and try to move there
+
+
+        for (int x = -1; x <= 1; x++) {
+            for (int y = -1; y <= 1; y++) {
+                boolean canMoveToSpace = true;
+                PankoEntity potentialTarget = null;
+                for (PankoEntity e : getRoom().getEntities()) {
+                    if (e.getGridX() == getGridX() + x) {
+                        if (e.getGridY() == getGridY() + y) {
+                            if (e instanceof Mob) {
+                                canMoveToSpace = false;
+                            } else {
+                                potentialTarget = e;
+                            }
+                        }
+                    }
+                }
+                if (canMoveToSpace) {
+                    if (potentialTarget != null) {
+                        setTarget(potentialTarget);
+                    }
+                }
+
+            }
+
+        }
+
+    }
+
+    private boolean isOnSpawner() {
+        for (PankoEntity e : getRoom().getEntities()) {
+            if (e instanceof Spawner) {
+                if (e.overlaps(this)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private void checkStuckAndDieIfNecessary() {
@@ -59,8 +278,6 @@ public class Mob extends PankoEntityBase {
                 WarGame.death.play();
             }
         }
-
-
     }
 
     private void checkNeighboursForCombat() {

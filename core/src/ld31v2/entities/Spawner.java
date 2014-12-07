@@ -3,13 +3,14 @@ package ld31v2.entities;
 import ld31v2.WarGame;
 import panko.Panko;
 import panko.PankoEntity;
+import panko.PankoEntityBase;
 
 import java.util.ArrayList;
 
 /**
  * Created by shaun on 06/12/2014.
  */
-public class Spawner extends BaseComponent {
+public class Spawner extends PankoEntityBase {
 
     private long lastSpawnMillis = 0;
     private long lastTriedSpawn = 0;
@@ -74,7 +75,7 @@ public class Spawner extends BaseComponent {
             int dx = Math.abs(eGridX - gridX);
             int dy = Math.abs(eGridY - gridY);
 
-            if (dx <=1 && dy <= 1) {
+            if (dx <= 1 && dy <= 1) {
                 neighbouringEntities.add(e);
             }
 
