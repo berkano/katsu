@@ -13,4 +13,4 @@
 @CYAN new knight.
 @PINK Press H to show this help. ESC to quit.
 @PINK M to toggle music. F for fullscreen.
-@WHITE Good luck and have fun! ~berkano
+@WHITE Good luck & hope you enjoy it! ~berkano
