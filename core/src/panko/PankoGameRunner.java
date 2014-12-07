@@ -85,11 +85,7 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
         }
         Panko.getActiveSpriteBatch().end();
 
-        Panko.getActiveSpriteBatch().begin();
-//        Panko.getActiveShapeRenderer().begin(ShapeRenderer.ShapeType.Filled);
         ui.render();
-//        Panko.getActiveShapeRenderer().end();
-        Panko.getActiveSpriteBatch().end();
 
         update();
 

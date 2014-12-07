@@ -1,8 +1,11 @@
 package panko;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -50,11 +53,38 @@ public class PankoUI {
             Color shade = new Color(0, 0, 0, 0.5f);
 
             Panko.getActiveShapeRenderer().setColor(shade);
-            Panko.getActiveShapeRenderer().rect(fontHeight / 2, Panko.getSettings().getVres() - (1 + text.size()) * fontHeight - fontHeight / 2, Panko.getSettings().getHres() - fontHeight, (1 + text.size()) * fontHeight);
+
+            float x = fontHeight/2; // Keep a left border
+            float y = fontHeight + fontHeight / 4; // Keep a bottom border (text.size() - 1)* fontHeight; // Relative from bottom of screen and based on number of lines to display
+            float width = Panko.getSettings().getHres()/2 - fontHeight; // Keep a right border
+            float height = 1 + text.size() * fontHeight; // Based on number of lines to display
+
+            Panko.getActiveShapeRenderer().rect(x, y, width, height);
         }
     }
 
     public void render() {
+
+        Gdx.gl.glEnable(GL20.GL_BLEND);
+        Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+
+        Panko.getActiveShapeRenderer().begin(ShapeRenderer.ShapeType.Filled);
+        renderShapes();
+        Panko.getActiveShapeRenderer().end();
+
+        Gdx.gl.glDisable(GL20.GL_BLEND);
+
+        Panko.getActiveSpriteBatch().begin();
+        renderBitmaps();
+        Panko.getActiveSpriteBatch().end();
+
+    }
+
+    private void renderShapes() {
+        renderShadowBox();
+    }
+
+    private void renderBitmaps() {
 
         if (font == null) {
             loadFont();
@@ -79,7 +109,6 @@ public class PankoUI {
             Color c = Color.WHITE;
             writeln(tl.text, c);
         }
-
 
     }
 
