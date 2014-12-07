@@ -113,7 +113,11 @@ public class CampaignMap extends PankoRoomBase {
     @Override
     public void start() {
         super.start();
-        PankoTmxHelper.addEntitiesToRoomFromMap("map", this);
+        int mapNum = Panko.random.nextInt(3);
+        String mapName = "map";
+        if (mapNum==1) mapName = "map2";
+        if (mapNum==2) mapName = "map3";
+        PankoTmxHelper.addEntitiesToRoomFromMap(mapName, this);
         selection = (Selection)firstInstanceOfClass(Selection.class);
 
         Panko.getUI().setHelpText(PankoResource.loadText("help.txt"));
