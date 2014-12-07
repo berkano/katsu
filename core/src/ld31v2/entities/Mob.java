@@ -19,7 +19,6 @@ public class Mob extends PankoEntityBase {
     private long lastPathFind = 0;
     private Integer intermediateTargX = null;
     private Integer intermediateTargY = null;
-    private boolean justCollided = false;
 
     public Mob() {
         super();
@@ -32,14 +31,12 @@ public class Mob extends PankoEntityBase {
         if (getTarget() != null) {
             // Check it hasn't been destroyed
             if (getTarget().getRoom().getEntities().contains(getTarget())) {
-//                stepTowardsNaive(getTarget());
                 stepTowardsPathFinding(getTarget());
             } else {
                 setTarget(null);
             }
         }
         Panko.queueEntityToTop(this);
-        justCollided = false;
     }
 
     private void stepTowardsPathFinding(PankoEntity target) {
@@ -61,7 +58,7 @@ public class Mob extends PankoEntityBase {
         if (System.currentTimeMillis() - lastPathFind < 250) return;
 
         lastPathFind = System.currentTimeMillis();
-        // New: get path
+
         GridMap pathMap = CampaignMap.getPathMap();
         GridLocation start = new GridLocation(Math.round(getX() / getWidth()), Math.round(getY() / getHeight()), false);
         GridLocation end = new GridLocation(target.getX() / target.getWidth(), target.getY() / target.getHeight(), false);
@@ -78,7 +75,6 @@ public class Mob extends PankoEntityBase {
 
         if (gridPath != null) {
             ArrayList<GridLocation> gridLocations = gridPath.getList();
-//            GridLocation gridLocation = gridPath.getNextMove();
             GridLocation gridLocation = null;
             if (gridLocations.size() >= 2) {
                 gridLocation = gridLocations.get(gridLocations.size() - 2);
@@ -137,7 +133,6 @@ public class Mob extends PankoEntityBase {
             collisionDetected = true;
             e.onCollide(this);
             onCollide(e);
-            justCollided = true;
         }
 
         // If no collisions then do the move
