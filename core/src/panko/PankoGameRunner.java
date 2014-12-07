@@ -148,6 +148,11 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
             Panko.getImplementation().toggleMusic();
         }
 
+        if ((keycode == Input.Keys.F || keycode == Input.Keys.F11)) {
+            Panko.toggleFullScreenMode();
+        }
+
+
 
         Panko.setKeyDown(keycode, true);
 

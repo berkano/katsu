@@ -5,7 +5,6 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import ld31v2.entities.Skeleton;
 
 import java.util.HashMap;
 import java.util.Random;
@@ -187,5 +186,14 @@ public class Panko {
 
     public static boolean gamePaused() {
         return runner.gamePaused();
+    }
+
+    public static void toggleFullScreenMode() {
+        if (Gdx.graphics.isFullscreen()) {
+            //Gdx.graphics.setDisplayMode(Game.instance.initialDisplayMode.width, Game.instance.initialDisplayMode.height, false);
+            Gdx.graphics.setDisplayMode(getSettings().getHres(), getSettings().getVres(), false);
+        } else {
+            Gdx.graphics.setDisplayMode(getSettings().getHres(), getSettings().getVres(), true);
+        }
     }
 }

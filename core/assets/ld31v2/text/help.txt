@@ -12,5 +12,5 @@
 @CYAN the one with the majority gets the
 @CYAN new soldier.
 @PINK Press H to show this help. ESC to quit.
-@PINK M to toggle music.
+@PINK M to toggle music. F for fullscreen.
 @WHITE Good luck!
