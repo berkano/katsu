@@ -50,7 +50,9 @@ public class Spawner extends PankoEntityBase {
                 mob.setY(getY());
                 Panko.queueEntityToRoom(getRoom(), mob);
                 Panko.queueEntityToTop(mob);
-                WarGame.spawn.play();
+                if (mob instanceof SoldierP1) {
+                    WarGame.spawn.play();
+                }
                 lastSpawnMillis = System.currentTimeMillis();
             } catch (Exception ex) {
 

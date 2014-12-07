@@ -20,6 +20,7 @@ public class WarGame implements PankoGame {
     public static Sound spawn;
     public static Sound death;
     public static Sound soundtrack;
+    public static Sound killed_enemy;
 
     public void loadSounds() {
         vox1 = PankoResource.loadSound("vox1.wav");
@@ -27,6 +28,7 @@ public class WarGame implements PankoGame {
         spawn = PankoResource.loadSound("spawn.wav");
         death = PankoResource.loadSound("death.wav");
         soundtrack = PankoResource.loadSound("soundtrack.mp3");
+        killed_enemy = PankoResource.loadSound("killed_enemy.wav");
     }
 
     private static HashMap<String, Class> classLookup = new HashMap<String, Class>();

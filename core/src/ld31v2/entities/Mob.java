@@ -276,7 +276,9 @@ public class Mob extends PankoEntityBase {
             if (lastTimeAlignedOK < System.currentTimeMillis() - Tuning.dieAfterStuck) {
                 Panko.queueRemoveEntity(this);
                 //Panko.getUI().writeText("@PINK A soldier got stuck and died!");
-                WarGame.death.play();
+                if (this instanceof SoldierP1) {
+                    WarGame.death.play();
+                }
             }
         }
     }
@@ -423,21 +425,28 @@ public class Mob extends PankoEntityBase {
             skeleton.setX(mob2.getX());
             skeleton.setY(mob2.getY());
             Panko.queueRemoveEntity(mob2);
-            showDeathMessage(mob2);
+            showDeathMessage(mob2, mob1);
         } else {
             skeleton.setX(mob1.getX());
             skeleton.setY(mob1.getY());
             Panko.queueRemoveEntity(mob1);
-            showDeathMessage(mob1);
+            showDeathMessage(mob1, mob2);
         }
 
         Panko.queueEntityToRoom(getRoom(), skeleton);
 
     }
 
-    private void showDeathMessage(PankoEntity mob) {
+    private void showDeathMessage(PankoEntity mob, PankoEntity killer) {
 
-        WarGame.death.play();
+        if (mob instanceof SoldierP1) {
+            WarGame.death.play();
+        }
+
+        if (killer instanceof SoldierP1) {
+            WarGame.killed_enemy.play();
+        }
+
 
         if (mob instanceof SoldierP1) {
             //Panko.getUI().writeText("@PINK Blue loses a soldier!");
