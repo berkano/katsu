@@ -1,16 +1,16 @@
-@CYAN War Game :: berkano :: LD31
-
-@ORANGE GOAL: Wipe out the enemy armies.
-@ORANGE You start with 2 blue soldiers.
-@YELLOW Click a soldier then click where it
-@YELLOW should move to. Combat is automatic.
-@GREEN If your soldier is on a base (tower
-@GREEN or wall), then after a while a new
-@GREEN soldier will be spawned in the middle
-@GREEN (if the space is free!)
-@CYAN If there are other armies in the base,
+@CYAN [A game of...]
+@RED GOAL: Wipe out the enemy armies.
+@CYAN You start with 2 blue knights.
+@YELLOW Click a knight then click where it
+@YELLOW should move to. Combat is automatic:
+@YELLOW just move your knight next to an enemy.
+@GREEN If your knight is on a castle tower
+@GREEN or wall, then after a while a new
+@GREEN knight will be spawned in the middle
+@GREEN if the space is free.
+@CYAN If there are other armies in the castle,
 @CYAN the one with the majority gets the
-@CYAN new soldier.
+@CYAN new knight.
 @PINK Press H to show this help. ESC to quit.
 @PINK M to toggle music. F for fullscreen.
-@WHITE Good luck!
+@WHITE Good luck and have fun! ~berkano
