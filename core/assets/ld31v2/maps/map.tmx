@@ -62,6 +62,11 @@
     <property name="entity" value="Selection"/>
    </properties>
   </tile>
+  <tile id="192">
+   <properties>
+    <property name="entity" value="Spawner"/>
+   </properties>
+  </tile>
  </tileset>
  <layer name="terrain" width="32" height="24">
   <data encoding="base64" compression="gzip">
@@ -70,7 +75,7 @@
  </layer>
  <layer name="objects" width="32" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGHjgCMROUHog7HIG4kYoTWvgjEbjchOtADl20dN92AC2MKMnGGj/EwID7T5QvDQxjMYPtQE1/EWJGdTId5SYMdD+HwVDA9Ayjokxm5b1E8jMZgJmU+p/fPqpHba42l/INC3BUGx/0Qq0ADEA8nZbLAAMAAA=
+   H4sIAAAAAAAAC2NgGHjgCMROUHog7HIG4oNQmhLQRIQabHYNtP9poYeagFrxQy4YaP8TAgPtvuEQP41Ucgs1ATX8RYkZ1IhXSswYaP+PAuqDZhqYScs4JsZsWpZ/xJhNqf/x6ad22NKy/UUMGIrtL1qBFiAGALe0m+gADAAA
   </data>
  </layer>
 </map>
