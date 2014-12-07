@@ -7,7 +7,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 import java.util.ArrayList;
 
@@ -17,7 +17,9 @@ import java.util.ArrayList;
 public class PankoGameRunner implements ApplicationListener, InputProcessor {
 
     private SpriteBatch mainSpriteBatch;
+    private ShapeRenderer mainShapeRenderer;
     private OrthographicCamera camera;
+    private PankoUI ui;
 
     private ArrayList<PankoRoom> rooms;
 
@@ -31,6 +33,7 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
         Gdx.graphics.setTitle(Panko.getSettings().getGameName() + " :: " + Panko.getSettings().getGameAuthor() + " :: " + Panko.getSettings().getGameDescription());
 
         mainSpriteBatch = new SpriteBatch();
+        mainShapeRenderer = new ShapeRenderer();
         Gdx.input.setInputProcessor(Panko.getInputMultiplexer());
         Panko.getInputMultiplexer().addProcessor(this);
 
@@ -48,6 +51,9 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
         //camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
         camera.update();
 
+        ui = new PankoUI();
+        Panko.setUI(ui);
+
         rooms.get(0).start();
 
     }
@@ -62,8 +68,10 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
 
         camera.update();
         mainSpriteBatch.setProjectionMatrix(camera.combined);
+        mainShapeRenderer.setProjectionMatrix(camera.combined);
 
         Panko.setActiveSpriteBatch(mainSpriteBatch);
+        Panko.setActiveShapeRenderer(mainShapeRenderer);
 
         // Clear screen
         Gdx.gl.glClearColor(0f, 0f, 0f, 1);
@@ -75,6 +83,12 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
                 room.render();
             }
         }
+        Panko.getActiveSpriteBatch().end();
+
+        Panko.getActiveSpriteBatch().begin();
+//        Panko.getActiveShapeRenderer().begin(ShapeRenderer.ShapeType.Filled);
+        ui.render();
+//        Panko.getActiveShapeRenderer().end();
         Panko.getActiveSpriteBatch().end();
 
         update();

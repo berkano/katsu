@@ -1,8 +1,6 @@
 package panko;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.World;
 
 /**
  * Created by shaun on 16/11/2014.
@@ -40,4 +38,5 @@ public interface PankoEntity {
 
     void update();
 
+    boolean isSelected();
 }

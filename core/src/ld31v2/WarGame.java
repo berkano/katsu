@@ -11,9 +11,15 @@ import java.util.HashMap;
 /**
  * Created by shaun on 16/11/2014.
  */
-public class LD31V2PankoGame implements PankoGame {
+public class WarGame implements PankoGame {
 
     private static HashMap<String, Class> classLookup = new HashMap<String, Class>();
+
+    private static CampaignMap campaignMap;
+
+    public static CampaignMap getRoom() {
+        return campaignMap;
+    }
 
     static {
         classLookup.put("Grass", Grass.class);
@@ -27,17 +33,20 @@ public class LD31V2PankoGame implements PankoGame {
         classLookup.put("SoldierP3", SoldierP3.class);
         classLookup.put("Hills", Hills.class);
         classLookup.put("Mountains", Mountains.class);
+        classLookup.put("Selection", Selection.class);
     }
 
-    public LD31V2PankoGame() {
+    public WarGame() {
     }
 
     @Override
     public ArrayList<PankoRoom> getRooms() {
 
+        campaignMap = new CampaignMap();
+
         return new ArrayList<PankoRoom>(
                 Arrays.asList(
-                        new CampaignMap()
+                        campaignMap
                 )
         );
     }

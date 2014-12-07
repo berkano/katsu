@@ -3,6 +3,8 @@ package panko;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector3;
 
 /**
  * Created by shaun on 15/11/2014.
@@ -24,6 +26,7 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     private int parentDistance;
     private double speedOfRotationAroundParent = 0;
     private double radius;
+    private boolean selected = false;
 
     public void rotate(double dr) {
         this.setRotation(this.getRotation() + dr);
@@ -36,6 +39,9 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     @Override
     public void render() {
         Panko.getActiveSpriteBatch().draw(textureRegion, x, y);
+        if (isSelected()) {
+            Panko.getActiveSpriteBatch().draw(textureRegion, x, y);
+        }
     }
 
     @Override
@@ -237,5 +243,20 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     public void setVelocity(int velocity) {
         this.velocity = velocity;
     }
+
+    public boolean doesContain(Vector3 point) {
+        Rectangle rect = new Rectangle(getX(), getY(), getWidth(), getHeight());
+        return rect.contains(point.x, point.y);
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+
 
 }

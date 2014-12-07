@@ -1,7 +1,6 @@
 package panko;
 
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.physics.box2d.World;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,4 +27,7 @@ public interface PankoRoom {
     List getNewEntities();
 
     List getOnTopQueue();
+
+    ArrayList<PankoEntity> getDeadEntities();
+
 }

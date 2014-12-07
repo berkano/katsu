@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 import java.util.HashMap;
 
@@ -42,6 +43,13 @@ public class PankoResource {
         }
         return result;
     }
+
+    public static BitmapFont loadBitmapFont(String fntFile, String pngFile) {
+
+        return new BitmapFont(Gdx.files.internal(relativeResource(fntFile)), Gdx.files.internal(relativeResource(pngFile)), true);
+
+    }
+
 
 
 

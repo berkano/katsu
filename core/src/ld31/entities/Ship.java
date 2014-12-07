@@ -2,10 +2,9 @@ package ld31.entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import ld31.LD31Sounds;
-import panko.*;
+import panko.Panko;
+import panko.PankoRoom;
 
 /**
  * Created by shaun on 06/12/2014.

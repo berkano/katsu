@@ -1,9 +1,9 @@
 package mini55;
 
+import katsu.Documentation;
 import katsu.Game;
 import katsu.LevelManager;
 import katsu.UI;
-import katsu.Documentation;
 
 import java.util.HashMap;
 

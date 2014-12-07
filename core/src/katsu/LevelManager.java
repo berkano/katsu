@@ -1,8 +1,5 @@
 package katsu;
 
-import katsu.Game;
-import katsu.UI;
-
 import java.util.HashMap;
 
 /**

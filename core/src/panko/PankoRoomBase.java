@@ -13,12 +13,22 @@ public abstract class PankoRoomBase implements PankoRoom, InputProcessor {
     protected ArrayList<PankoEntity> entities;
     protected ArrayList<PankoEntity> newEntities;
     protected ArrayList<PankoEntity> onTopQueue;
+    protected ArrayList<PankoEntity> deadEntityQueue;
     private boolean active;
 
     public void bringEntityToFront(PankoEntity entity) {
         entities.remove(entity);
         entities.add(entity);
 
+    }
+
+    public PankoEntity firstInstanceOfClass(Class clazz) {
+        for (PankoEntity e : entities) {
+            if (clazz.isInstance(e)) {
+                return e;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -28,6 +38,7 @@ public abstract class PankoRoomBase implements PankoRoom, InputProcessor {
         entities = new ArrayList<PankoEntity>();
         newEntities = new ArrayList<PankoEntity>();
         onTopQueue = new ArrayList<PankoEntity>();
+        deadEntityQueue = new ArrayList<PankoEntity>();
     }
 
     public void setActive(boolean active) {
@@ -40,6 +51,12 @@ public abstract class PankoRoomBase implements PankoRoom, InputProcessor {
 
     @Override
     public void render() {
+
+        for (PankoEntity e : deadEntityQueue) {
+            entities.remove(e);
+        }
+
+        deadEntityQueue.clear();
 
         for (PankoEntity e : newEntities) {
             entities.add(e);
@@ -89,6 +106,11 @@ public abstract class PankoRoomBase implements PankoRoom, InputProcessor {
     @Override
     public List getOnTopQueue() {
         return onTopQueue;
+    }
+
+    @Override
+    public ArrayList<PankoEntity> getDeadEntities() {
+        return deadEntityQueue;
     }
 
     @Override

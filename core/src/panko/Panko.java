@@ -1,13 +1,10 @@
 package panko;
 
-import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import ld31.Universe;
-import ld31.entities.Ship;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 import java.util.HashMap;
 import java.util.Random;
@@ -18,6 +15,7 @@ import java.util.Random;
 public class Panko {
 
     private static SpriteBatch activeSpriteBatch;
+    private static ShapeRenderer activeShapeRenderer;
     private static Camera mainCamera;
     private static PankoGameRunner runner;
     private static PankoGame implementation;
@@ -25,6 +23,7 @@ public class Panko {
     private static PankoSettings settings;
     private static HashMap<Integer, Boolean> keysDown = new HashMap<Integer, Boolean>();
     public static Random random = new Random();
+    private static PankoUI ui;
 
     public static void exitWithError(String message) {
         // TODO: show alert box in production mode
@@ -129,5 +128,41 @@ public class Panko {
 
     public static void queueEntityToTop(PankoRoom room, PankoEntity entity) {
         room.getOnTopQueue().add(entity);
+    }
+
+    public static void deleteEntitiesOfClassFromRoom(PankoRoom room, Class clazz) {
+        for (PankoEntity e : room.getEntities()) {
+            if (clazz.isInstance(e)) {
+                queueEntityToRemove(room, e);
+            }
+        }
+    }
+
+    private static void queueEntityToRemove(PankoRoom room, PankoEntity e) {
+        room.getDeadEntities().add(e);
+    }
+
+    public static ShapeRenderer getActiveShapeRenderer() {
+        return activeShapeRenderer;
+    }
+
+    public static void setActiveShapeRenderer(ShapeRenderer activeShapeRenderer) {
+        Panko.activeShapeRenderer = activeShapeRenderer;
+    }
+
+    public static PankoUI getUI() {
+        return ui;
+    }
+
+    public static PankoUI getUi() {
+        return ui;
+    }
+
+    public static void setUi(PankoUI ui) {
+        Panko.ui = ui;
+    }
+
+    public static void setUI(PankoUI UI) {
+        Panko.ui = UI;
     }
 }

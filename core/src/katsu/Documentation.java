@@ -1,7 +1,5 @@
 package katsu;
 
-import katsu.Util;
-
 /**
  * Created by shaun on 15/12/13.
  */

@@ -1,7 +1,8 @@
 package pankosample.rooms;
 
-import com.badlogic.gdx.physics.box2d.World;
-import panko.*;
+import panko.PankoLog;
+import panko.PankoRoomBase;
+import panko.PankoTmxHelper;
 
 /**
  * Created by shaun on 16/11/2014.

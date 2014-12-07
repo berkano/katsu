@@ -6,7 +6,6 @@ import ext.pathfinding.grid.GridMap;
 import ext.pathfinding.grid.GridPath;
 import ext.pathfinding.grid.GridPathfinding;
 import katsu.*;
-import katsu.Objective;
 
 import java.util.ArrayList;
 

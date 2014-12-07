@@ -2,8 +2,8 @@ package ld28.entities.base;
 
 import com.badlogic.gdx.Application;
 import katsu.Katsu;
-import katsu.Room;
 import katsu.Objective;
+import katsu.Room;
 import katsu.entities.Mob;
 import ld28.entities.mobs.PlayerPerson;
 import ld28.entities.mobs.Ship;

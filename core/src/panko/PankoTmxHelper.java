@@ -1,7 +1,5 @@
 package panko;
 
-import pankosample.rooms.StartRoom;
-
 import java.util.ArrayList;
 
 /**
