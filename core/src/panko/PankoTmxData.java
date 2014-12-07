@@ -34,7 +34,7 @@ public class PankoTmxData {
 
         map = loadMap(tiledMapFile);
         entities = new ArrayList<PankoEntity>();
-        entityTextureRegions = new HashMap<Class, TextureRegion>();
+        entityTextureRegions = PankoGraphics.getTextureCache(); // new HashMap<Class, TextureRegion>();
 
         List<TiledMapTileLayer> layerList = new ArrayList<TiledMapTileLayer>();
         layerList.add((TiledMapTileLayer) map.getLayers().get("terrain"));

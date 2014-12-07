@@ -49,6 +49,16 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     }
 
     @Override
+    public int getGridY() {
+        return getY() / getHeight();
+    }
+
+    @Override
+    public int getGridX() {
+        return getX() / getWidth();
+    }
+
+    @Override
     public boolean wouldOverlap(PankoEntity other, int nx, int ny) {
         if (nx <= getX() - other.getWidth()) return false;
         if (ny <= getY() - other.getHeight()) return false;
@@ -67,6 +77,9 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
 
     @Override
     public void render() {
+        if (textureRegion == null) {
+            textureRegion = PankoGraphics.getTextureCache().get(this.getClass());
+        }
         Panko.getActiveSpriteBatch().draw(textureRegion, x, y);
         if (isSelected()) {
             Panko.getActiveSpriteBatch().draw(textureRegion, x, y);

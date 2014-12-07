@@ -48,4 +48,9 @@ public interface PankoEntity {
     boolean overlaps(PankoEntity other);
 
     boolean wouldOverlap(PankoEntity other, int nx, int ny);
+
+    int getGridX();
+
+    int getGridY();
+
 }
