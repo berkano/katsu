@@ -72,15 +72,25 @@
     <property name="entity" value="Skeleton"/>
    </properties>
   </tile>
+  <tile id="194">
+   <properties>
+    <property name="entity" value="Snowman"/>
+   </properties>
+  </tile>
+  <tile id="195">
+   <properties>
+    <property name="entity" value="Tree"/>
+   </properties>
+  </tile>
  </tileset>
  <layer name="terrain" width="32" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC72VUQqAMAxDp+5ou/+Z/BJGSGrW6j6KKKMvaaMerbUjqHOq6Nzf5eroG3TsZrI5MHZFx1WcAet3ir7qmSrF73B187LiNeu/wmd+ro38t3ys8N39q31iDqJcZLxkzla/haxnlOUdfJc97zbDre4ONWT+T5X9zzOauSs6sOcwz+J+FEvp6AF/NK5l3pfLZxrwnX6eDSh3X86skY/+n3vmX2nppLfSjLNT88+Um3f8Vzr8KI/M2xc6VR6dbK36z2rIfGu+5mdyEmm4ARMQT7QADAAA
+   H4sIAAAAAAAAC71WQQ7DIAyjhKfx/zftUqQoi42BsYM1rU1jp3baPqWUh6A62AtWfwOW6EC17aIGA/y3OJkfGXfUseLVSm0V+yGv0DEExN/Cr5qX0wzP5j/lz/Jkf+Sf5aO6Y8hLtquIP/OT5YLNwc6f7oWS/9WeKMs7+dvhV7kH/44GxTcVNcHp/Eqtv0f+nch0zPavi/zRnxrqkA4L12f8veRaLLleyaHXYOV7p0e/HqD6pXge+eP84382P9LSQm+WcY+M/zT/K3XZ/UdgeYwzznruPCdYFrz3K/yr32iZhrhbyrvo1/w7OWEaPqEjD3UADAAA
   </data>
  </layer>
  <layer name="objects" width="32" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGFjQCMSOQOwEpWkNsNnlDMQHoTStATa7Btr/+AC94wcboGf8YAMD7X9CYKDdNxo/tAHU8BclZlAjXikxg9r+b6bAnFEweAGt8n8TkWbTsvwjxmxS/I+eBwj5kdphO9r+Qth1iA724QMtQAwAVCRNHQAMAAA=
+   H4sIAAAAAAAAC92W2Q2AIAyGWU2dzGMxj8GsCSaEVFpLW6Jf0vCg0vMXQmjLCNaB9XG9OKJZkPu6GMDWuKb+LWLIfWExSfzvxPN7Lyz/Elh/vMFqJiGvJ7e+rfOnkMSnOdvc/nhoejby4c0UeH2lalozu291h8VSo10N3f1xNjSgzosvYfV/5mpQ63yS7l2bf+l77dpy7l+WcO5flqS+tod3vLS5gJ1Z4dyqAAwAAA==
   </data>
  </layer>
 </map>

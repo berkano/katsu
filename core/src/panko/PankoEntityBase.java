@@ -29,6 +29,16 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     private boolean selected = false;
     private PankoEntity targetEntity;
     private boolean beingRemoved = false;
+    private int spriteRotation = 0;
+    private float spriteScale = 1.0f;
+
+    public int getSpriteRotation(){
+        return this.spriteRotation;
+    }
+
+    public void setSpriteRotation(int spriteRotation) {
+        this.spriteRotation = spriteRotation;
+    }
 
     @Override
     public void setTarget(PankoEntity targetEntity) {
@@ -91,10 +101,17 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
         if (textureRegion == null) {
             textureRegion = PankoGraphics.getTextureCache().get(this.getClass());
         }
-        Panko.getActiveSpriteBatch().draw(textureRegion, x, y);
-        if (isSelected()) {
-            Panko.getActiveSpriteBatch().draw(textureRegion, x, y);
-        }
+        //Panko.getActiveSpriteBatch().draw(textureRegion, x, y);
+        Panko.getActiveSpriteBatch().draw(
+                textureRegion,
+                x, y, getWidth()/2,getHeight()/2,
+                getWidth(), getHeight(),
+                spriteScale, spriteScale, (float)spriteRotation
+        );
+
+//    public void draw (TextureRegion region, float x, float y, float originX, float originY, float width, float height,
+  //                    float scaleX, float scaleY, float rotation) {
+
     }
 
     @Override
@@ -311,5 +328,11 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     }
 
 
+    public float getSpriteScale() {
+        return spriteScale;
+    }
 
+    public void setSpriteScale(float spriteScale) {
+        this.spriteScale = spriteScale;
+    }
 }

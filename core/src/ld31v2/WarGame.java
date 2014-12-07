@@ -56,6 +56,8 @@ public class WarGame implements PankoGame {
         classLookup.put("Selection", Selection.class);
         classLookup.put("Spawner", Spawner.class);
         classLookup.put("Skeleton", Skeleton.class);
+        classLookup.put("Snowman", Snowman.class);
+        classLookup.put("Tree", Tree.class);
     }
 
     public WarGame() {

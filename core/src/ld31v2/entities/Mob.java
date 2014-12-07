@@ -273,6 +273,9 @@ public class Mob extends PankoEntityBase {
         if (!misAligned) {
             lastTimeAlignedOK = System.currentTimeMillis();
         } else {
+            if (lastTimeAlignedOK < System.currentTimeMillis() - Tuning.tryToGetUnstuck) {
+                linearStepTowardsPoint(getX(), getY(), getGridX() * getWidth(), getGridY() * getHeight());
+            }
             if (lastTimeAlignedOK < System.currentTimeMillis() - Tuning.dieAfterStuck) {
                 Panko.queueRemoveEntity(this);
                 //Panko.getUI().writeText("@PINK A soldier got stuck and died!");
