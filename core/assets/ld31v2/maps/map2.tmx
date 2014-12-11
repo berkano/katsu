@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="24" tilewidth="16" tileheight="16">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="48" tilewidth="16" tileheight="16">
  <tileset firstgid="1" name="ld31-tileset" tilewidth="16" tileheight="16">
   <image source="ld31-tileset.png" width="1024" height="1024"/>
   <tile id="0">
@@ -62,6 +62,11 @@
     <property name="entity" value="Selection"/>
    </properties>
   </tile>
+  <tile id="132">
+   <properties>
+    <property name="entity" value="SoldierP4"/>
+   </properties>
+  </tile>
   <tile id="192">
    <properties>
     <property name="entity" value="Spawner"/>
@@ -82,15 +87,25 @@
     <property name="entity" value="Tree"/>
    </properties>
   </tile>
+  <tile id="196">
+   <properties>
+    <property name="entity" value="SoldierP5"/>
+   </properties>
+  </tile>
+  <tile id="260">
+   <properties>
+    <property name="entity" value="SoldierP6"/>
+   </properties>
+  </tile>
  </tileset>
- <layer name="terrain" width="32" height="24">
+ <layer name="terrain" width="64" height="48">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC72WQQ7EMAgDsyVP6//ftJciIS8Yh0p7sHpowhAwae+11i3oEtdN9GlkD99lZO0W4rlUvudgBf+EOeW7vAYZG/NgdUJ+txZzUHuWxbWCX6nib3iqfsn4pz1449eOn/nJ/sivYiK/6o8RNuNn/WS+YJ5l70/Oz/w3VcavvDzx34Svsp0/yQH7Np2/mEPU2/Mr/Y81cn/jvHUxkM9ysIKNPmB5GOzP+Owuxf2KD2MOtn5nGvmsDtUMdj1HPju/6sMNsZnHoxh/6v+Tdaz+2b7Ok3i/Vncty7Pid3XJvi0dP7vbuvPjO5wt5Vuk8FVN/sGvZt8XKB/sXgAMAAA=
+   H4sIAAAAAAAAC+2awRLDIAhENfn/f+6p00wqBoEVxBw4dSL7dtFknNZSSgXWcSnEmtpCslN6I/kwgx/pAceHWTq8fBjN1ZMfoeFsFLd/Bn7Jvh7pTe2rEb+RGVDaLHpzz1GJD8gZmM3P6RlpBnbml5wTnNLoRvC3PJCekwj+0XeWRusp1Ew9tws/1wOtZi07Zx9Y81tqteKnPIjGb+3l0/pahrOxRsTsqV6oGR6tlo7ZGjyqNT87+EBxf3/P7AF31jN6INnnWTzQ5LnyLFiea6t5gPw2jO4D+ju2AtaOzt6bBW/mmewevaJmEmkOvHRE4PfOwbO/N7unjijsL/+/nt3Ye5qs7pO9vNZ4cAD4I2bf03e9c9GuLflvgbcP9zunXfjvmq3mNvLs9/jv2qUMq/E/MYxyrM6uzTILuyTPTNlLMs3Izs01a/YctszsL/+P8QMCXuZHADAAAA==
   </data>
  </layer>
- <layer name="objects" width="32" height="24">
+ <layer name="objects" width="64" height="48">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC9VW2w2AIAxkNXUy0cV8DCZNMCGk0lpa0EsaPpDe9SU41x9DsDGugDNaCy7AFGyLa8pvoSHnwjRJ+A9i//aFxe8L5/zDmZbAciZBnk9ufnvHT0GiT7O3ufVpMdOL0IeVNikgDk5dKd01vft27jAtNbOrMXepj5nx/df6wArUffEXQE0t/88c31r3k9R3bfyl89q55by/LMF5f1nORsq1G/JwsAa7ACJo7VIADAAA
+   H4sIAAAAAAAAC+VaC07DMAwt0jgY0IvB4GBAdy8WqZWMZceOP0mmPqlqleXj55c4TmBdlmU9+fNyf17395lw8H+7P9/7+93R38Z8W/DhbK+BRX8vLy16zMmDP/dbDTU//NrM+Qc4J73gfIn5X5jyEYjUn/MlxzOSe6/1UoNW/5Uomw1W267g+9AEcs3gHam9RxvODpwHFFyYur1Qy1OyxuqF2nyQeGboUhvPmgc9Ui5J8ffa79m3e+R8EBR/b95B+U+bF9d8D3OqDTweePWPjh+U7/G635Zc/iP6OKDxfRZ/6OfWWKvxgddWaNNM+uO+euynI/hr40Iv/hFjt/CPPI9moKwPzEU6h2foPwqWtUe1oe4DotHqS019y7qj7j96xDG4lp6f2upz4Gyu+U66/8ryQYb+BZS9Nd9JHGe/C8HAtpb5bNW/pc4s4Gy9EmW1+lQ9D3ruHS16wbreecKhxDcpfkXHXG1/sA600bPvUTlHlm8lSH7Q6h8N6N+RsWV0bNOOH63NZ+P4o5F19qDyv8i+oxCt/8/+ztKfu1eZDTX+ks+lmK4dv7VNJCB/vG9Ja671b6oz4rAVz9HbYtffyn20/hjSur019gfrQIy8V8nIOXGZVKdlb4v4vxLJHsudqvXuqeDR9e91hswAtn1jvrXtvbZI42SdEz3to37jyri4IvnDqp9l/WvGkcbVtPOAijNe/aPjsQRrrPxa6H0mO1eLXLMchwI8Z6k5nKF/b0TvlVQcOdvzB1UTebIAMAAA
   </data>
  </layer>
 </map>

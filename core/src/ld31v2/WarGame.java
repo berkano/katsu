@@ -51,6 +51,9 @@ public class WarGame implements PankoGame {
         classLookup.put("SoldierP1", SoldierP1.class);
         classLookup.put("SoldierP2", SoldierP2.class);
         classLookup.put("SoldierP3", SoldierP3.class);
+        classLookup.put("SoldierP4", SoldierP4.class);
+        classLookup.put("SoldierP5", SoldierP5.class);
+        classLookup.put("SoldierP6", SoldierP6.class);
         classLookup.put("Hills", Hills.class);
         classLookup.put("Mountains", Mountains.class);
         classLookup.put("Selection", Selection.class);

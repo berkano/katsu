@@ -94,27 +94,35 @@ public class Spawner extends PankoEntityBase {
         int player1Mobs = 0;
         int player2Mobs = 0;
         int player3Mobs = 0;
+        int player4Mobs = 0;
+        int player5Mobs = 0;
+        int player6Mobs = 0;
         int mostMobs = 0;
 
         for (PankoEntity e : neighbouringEntities) {
             if (e instanceof SoldierP1) player1Mobs++;
             if (e instanceof SoldierP2) player2Mobs++;
             if (e instanceof SoldierP3) player3Mobs++;
+            if (e instanceof SoldierP4) player4Mobs++;
+            if (e instanceof SoldierP5) player5Mobs++;
+            if (e instanceof SoldierP6) player6Mobs++;
         }
-        if (player1Mobs > mostMobs) mostMobs = player1Mobs;
-        if (player2Mobs > mostMobs) mostMobs = player2Mobs;
-        if (player3Mobs > mostMobs) mostMobs = player3Mobs;
+
+        int secondMostMobs = 0;
+        if (player1Mobs > mostMobs) { mostMobs = player1Mobs; secondMostMobs = mostMobs; }
+        if (player2Mobs > mostMobs) { mostMobs = player2Mobs; secondMostMobs = mostMobs; }
+        if (player3Mobs > mostMobs) { mostMobs = player3Mobs; secondMostMobs = mostMobs; }
+        if (player4Mobs > mostMobs) { mostMobs = player4Mobs; secondMostMobs = mostMobs; }
+        if (player5Mobs > mostMobs) { mostMobs = player5Mobs; secondMostMobs = mostMobs; }
+        if (player6Mobs > mostMobs) { mostMobs = player6Mobs; secondMostMobs = mostMobs; }
 
         // Player must have majority in the base
-        if (player1Mobs == mostMobs && player2Mobs < player1Mobs && player3Mobs < player1Mobs) {
-            return SoldierP1.class;
-        }
-        if (player2Mobs == mostMobs && player1Mobs < player2Mobs && player3Mobs < player2Mobs) {
-            return SoldierP2.class;
-        }
-        if (player3Mobs == mostMobs && player2Mobs < player3Mobs && player1Mobs < player3Mobs) {
-            return SoldierP3.class;
-        }
+        if (player1Mobs == mostMobs && secondMostMobs < player1Mobs) { return SoldierP1.class; }
+        if (player2Mobs == mostMobs && secondMostMobs < player2Mobs) { return SoldierP2.class; }
+        if (player3Mobs == mostMobs && secondMostMobs < player3Mobs) { return SoldierP3.class; }
+        if (player4Mobs == mostMobs && secondMostMobs < player4Mobs) { return SoldierP4.class; }
+        if (player5Mobs == mostMobs && secondMostMobs < player5Mobs) { return SoldierP5.class; }
+        if (player6Mobs == mostMobs && secondMostMobs < player6Mobs) { return SoldierP6.class; }
 
         return null;
 

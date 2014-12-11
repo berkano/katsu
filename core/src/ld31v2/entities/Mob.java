@@ -122,6 +122,9 @@ public class Mob extends PankoEntityBase {
         if (mob instanceof SoldierP1) player = 1;
         if (mob instanceof SoldierP2) player = 2;
         if (mob instanceof SoldierP3) player = 3;
+        if (mob instanceof SoldierP4) player = 4;
+        if (mob instanceof SoldierP5) player = 5;
+        if (mob instanceof SoldierP6) player = 6;
 
         if (getMajorityPlayer(spawner, 0) == player) return true;
         return false;
@@ -179,6 +182,9 @@ public class Mob extends PankoEntityBase {
         if (this instanceof SoldierP1 && majorityPlayer == 1) return true;
         if (this instanceof SoldierP2 && majorityPlayer == 2) return true;
         if (this instanceof SoldierP3 && majorityPlayer == 3) return true;
+        if (this instanceof SoldierP4 && majorityPlayer == 4) return true;
+        if (this instanceof SoldierP5 && majorityPlayer == 5) return true;
+        if (this instanceof SoldierP6 && majorityPlayer == 6) return true;
 
         return false;
     }
@@ -188,6 +194,9 @@ public class Mob extends PankoEntityBase {
         int p1count = 0;
         int p2count = 0;
         int p3count = 0;
+        int p4count = 0;
+        int p5count = 0;
+        int p6count = 0;
         for (int x = -1; x <= 1; x++) {
             for (int y = -1; y <= 1; y++) {
                 for (PankoEntity e : getRoom().getEntities()) {
@@ -196,18 +205,58 @@ public class Mob extends PankoEntityBase {
                             if (e instanceof SoldierP1) p1count++;
                             if (e instanceof SoldierP2) p2count++;
                             if (e instanceof SoldierP3) p3count++;
+                            if (e instanceof SoldierP4) p4count++;
+                            if (e instanceof SoldierP5) p5count++;
+                            if (e instanceof SoldierP6) p6count++;
                         }
                     }
                 }
             }
         }
 
-        int majority = 0;
-        if (p1count > (p2count+neededMajority) && p1count > (p3count+neededMajority)) majority = 1;
-        if (p2count > (p1count+neededMajority) && p2count > (p3count+neededMajority)) majority = 2;
-        if (p3count > (p2count+neededMajority) && p3count > (p1count+neededMajority)) majority = 3;
+        // Does a player have majority in the base, and if so, by how much?
+        int biggestMajorityPlayerSoFar = 0;
+        int majorityForBiggestSoFar = 0;
+        int majorityForSecondBestSoFar = 0;
 
-        return majority;
+        if (p1count > majorityForBiggestSoFar) {
+            majorityForSecondBestSoFar = majorityForBiggestSoFar;
+            biggestMajorityPlayerSoFar = 1;
+            majorityForBiggestSoFar = p1count;
+        }
+        if (p2count > majorityForBiggestSoFar) {
+            majorityForSecondBestSoFar = majorityForBiggestSoFar;
+            biggestMajorityPlayerSoFar = 2;
+            majorityForBiggestSoFar = p1count;
+        }
+        if (p3count > majorityForBiggestSoFar) {
+            majorityForSecondBestSoFar = majorityForBiggestSoFar;
+            biggestMajorityPlayerSoFar = 3;
+            majorityForBiggestSoFar = p1count;
+        }
+        if (p4count > majorityForBiggestSoFar) {
+            majorityForSecondBestSoFar = majorityForBiggestSoFar;
+            biggestMajorityPlayerSoFar = 4;
+            majorityForBiggestSoFar = p1count;
+        }
+        if (p5count > majorityForBiggestSoFar) {
+            majorityForSecondBestSoFar = majorityForBiggestSoFar;
+            biggestMajorityPlayerSoFar = 5;
+            majorityForBiggestSoFar = p1count;
+        }
+        if (p6count > majorityForBiggestSoFar) {
+            majorityForSecondBestSoFar = majorityForBiggestSoFar;
+            biggestMajorityPlayerSoFar = 6;
+            majorityForBiggestSoFar = p1count;
+        }
+
+        if (majorityForBiggestSoFar > majorityForSecondBestSoFar + neededMajority) {
+            return biggestMajorityPlayerSoFar;
+        } else {
+            return 0;
+        }
+
+
 
     }
 
@@ -448,17 +497,6 @@ public class Mob extends PankoEntityBase {
 
         if (killer instanceof SoldierP1) {
             WarGame.killed_enemy.play();
-        }
-
-
-        if (mob instanceof SoldierP1) {
-            //Panko.getUI().writeText("@PINK Blue loses a soldier!");
-        }
-        if (mob instanceof SoldierP2) {
-            //Panko.getUI().writeText("@PINK Red loses a soldier!");
-        }
-        if (mob instanceof SoldierP3) {
-            //Panko.getUI().writeText("@PINK Purple loses a soldier!");
         }
 
     }

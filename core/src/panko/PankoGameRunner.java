@@ -45,10 +45,10 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
 
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
-        float viewportSize = 512;
+        float viewportSize = 1024;
         camera = new OrthographicCamera(viewportSize, viewportSize * (h / w));
         Panko.setMainCamera(camera);
-        camera.position.set(256, 768/4, 0);
+        camera.position.set(512, 768/2, 0);
         //camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
         camera.update();
 

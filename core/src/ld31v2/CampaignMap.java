@@ -1,10 +1,7 @@
 package ld31v2;
 
 import ext.pathfinding.grid.GridMap;
-import ld31v2.entities.Selection;
-import ld31v2.entities.SoldierP1;
-import ld31v2.entities.SoldierP2;
-import ld31v2.entities.SoldierP3;
+import ld31v2.entities.*;
 import panko.*;
 
 /**
@@ -17,6 +14,9 @@ public class CampaignMap extends PankoRoomBase {
     private boolean p1lost = false;
     private boolean p2lost = false;
     private boolean p3lost = false;
+    private boolean p4lost = false;
+    private boolean p5lost = false;
+    private boolean p6lost = false;
     private boolean gameWon = false;
 
     public static GridMap getPathMap() {
@@ -33,7 +33,7 @@ public class CampaignMap extends PankoRoomBase {
 
         checkWinLoseState();
 
-        pathMap = new GridMap(32, 24);
+        pathMap = new GridMap(64, 48);
 
         for (PankoEntity e : getEntities()) {
             if (e.isSolid()) {
@@ -51,11 +51,17 @@ public class CampaignMap extends PankoRoomBase {
         int mob1count = 0;
         int mob2count = 0;
         int mob3count = 0;
+        int mob4count = 0;
+        int mob5count = 0;
+        int mob6count = 0;
 
         for (PankoEntity e : getEntities()) {
             if (e instanceof SoldierP1) mob1count++;
             if (e instanceof SoldierP2) mob2count++;
             if (e instanceof SoldierP3) mob3count++;
+            if (e instanceof SoldierP4) mob4count++;
+            if (e instanceof SoldierP5) mob5count++;
+            if (e instanceof SoldierP6) mob6count++;
         }
 
         boolean needsPause = false;
@@ -84,20 +90,59 @@ public class CampaignMap extends PankoRoomBase {
             }
         }
 
+        if (mob4count == 0) {
+            if (!p4lost) {
+                p4lost = true;
+                Panko.getUI().writeText("@RED Green is defeated!");
+                needsPause = true;
+            }
+        }
+
+        if (mob5count == 0) {
+            if (!p5lost) {
+                p5lost = true;
+                Panko.getUI().writeText("@RED Blue is defeated!");
+                needsPause = true;
+            }
+        }
+
+        if (mob6count == 0) {
+            if (!p6lost) {
+                p6lost = true;
+                Panko.getUI().writeText("@RED Yellow is defeated!");
+                needsPause = true;
+            }
+        }
+
 
         if (!gameWon) {
-            if (!p1lost && p2lost && p3lost) {
+            if (!p1lost && p2lost && p3lost && p4lost && p5lost && p6lost) {
                 Panko.getUI().writeText("@GREEN YOU ARE VICTORIOUS!");
                 gameWon = true;
                 needsPause = true;
             }
-            if (!p2lost && p1lost && p3lost) {
+            if (!p2lost && p1lost && p3lost && p4lost && p5lost && p6lost) {
                 Panko.getUI().writeText("@GREEN Red is victorious!");
                 gameWon = true;
                 needsPause = true;
             }
-            if (!p3lost && p1lost && p2lost) {
+            if (!p3lost && p1lost && p2lost && p4lost && p5lost && p6lost) {
                 Panko.getUI().writeText("@GREEN Purple is victorious!");
+                gameWon = true;
+                needsPause = true;
+            }
+            if (!p4lost && p1lost && p2lost && p3lost && p5lost && p6lost) {
+                Panko.getUI().writeText("@GREEN Green is victorious!");
+                gameWon = true;
+                needsPause = true;
+            }
+            if (!p5lost && p1lost && p2lost && p3lost && p4lost && p6lost) {
+                Panko.getUI().writeText("@GREEN Blue is victorious!");
+                gameWon = true;
+                needsPause = true;
+            }
+            if (!p6lost && p1lost && p2lost && p3lost && p4lost && p6lost) {
+                Panko.getUI().writeText("@GREEN Yellow is victorious!");
                 gameWon = true;
                 needsPause = true;
             }
@@ -113,10 +158,10 @@ public class CampaignMap extends PankoRoomBase {
     @Override
     public void start() {
         super.start();
-        int mapNum = Panko.random.nextInt(3);
-        String mapName = "map";
-        if (mapNum==1) mapName = "map2";
-        if (mapNum==2) mapName = "map3";
+//        int mapNum = Panko.random.nextInt(3);
+        String mapName = "map2";
+//        if (mapNum==1) mapName = "map2";
+//        if (mapNum==2) mapName = "map3";
         PankoTmxHelper.addEntitiesToRoomFromMap(mapName, this);
         selection = (Selection)firstInstanceOfClass(Selection.class);
 

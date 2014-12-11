@@ -21,4 +21,9 @@ public class LD31V2PankoSettings extends PankoSettings {
     public String getGameName() {
         return "lord wars";
     }
+
+    @Override
+    public int getTargetFrameRate() {
+        return 20;
+    }
 }
