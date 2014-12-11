@@ -24,6 +24,6 @@ public class LD31V2PankoSettings extends PankoSettings {
 
     @Override
     public int getTargetFrameRate() {
-        return 20;
+        return 60;
     }
 }

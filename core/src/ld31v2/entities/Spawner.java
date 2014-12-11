@@ -109,12 +109,12 @@ public class Spawner extends PankoEntityBase {
         }
 
         int secondMostMobs = 0;
-        if (player1Mobs > mostMobs) { mostMobs = player1Mobs; secondMostMobs = mostMobs; }
-        if (player2Mobs > mostMobs) { mostMobs = player2Mobs; secondMostMobs = mostMobs; }
-        if (player3Mobs > mostMobs) { mostMobs = player3Mobs; secondMostMobs = mostMobs; }
-        if (player4Mobs > mostMobs) { mostMobs = player4Mobs; secondMostMobs = mostMobs; }
-        if (player5Mobs > mostMobs) { mostMobs = player5Mobs; secondMostMobs = mostMobs; }
-        if (player6Mobs > mostMobs) { mostMobs = player6Mobs; secondMostMobs = mostMobs; }
+        if (player1Mobs > mostMobs) { secondMostMobs = mostMobs;mostMobs = player1Mobs;  }
+        if (player2Mobs > mostMobs) { secondMostMobs = mostMobs;mostMobs = player2Mobs; }
+        if (player3Mobs > mostMobs) { secondMostMobs = mostMobs;mostMobs = player3Mobs; }
+        if (player4Mobs > mostMobs) { secondMostMobs = mostMobs;mostMobs = player4Mobs; }
+        if (player5Mobs > mostMobs) { secondMostMobs = mostMobs;mostMobs = player5Mobs; }
+        if (player6Mobs > mostMobs) { secondMostMobs = mostMobs;mostMobs = player6Mobs; }
 
         // Player must have majority in the base
         if (player1Mobs == mostMobs && secondMostMobs < player1Mobs) { return SoldierP1.class; }
