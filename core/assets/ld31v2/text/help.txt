@@ -1,4 +1,4 @@
-@CYAN [A game of...]
+@CYAN ~~ LORD WARS ~~
 @RED GOAL: Wipe out the enemy armies.
 @CYAN You start with 2 blue knights.
 @YELLOW Click a knight then click where it

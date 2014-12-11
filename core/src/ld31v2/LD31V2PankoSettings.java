@@ -19,6 +19,6 @@ public class LD31V2PankoSettings extends PankoSettings {
 
     @Override
     public String getGameName() {
-        return "tba";
+        return "lord wars";
     }
 }
