@@ -7,6 +7,7 @@ import ext.pathfinding.grid.GridPathfinding;
 import ld31v2.CampaignMap;
 import ld31v2.Tuning;
 import ld31v2.WarGame;
+import panko.Meta;
 import panko.Panko;
 import panko.PankoEntity;
 import panko.PankoEntityBase;
@@ -82,6 +83,7 @@ public class Mob extends PankoEntityBase {
 
     private void targetNearestBaseOrEnemy() {
 
+        Meta.pankoTODO("extract nearest entity logic?");
         PankoEntity closest = null;
         int closestDist = 9999;
 
@@ -190,6 +192,8 @@ public class Mob extends PankoEntityBase {
     }
 
     private int getMajorityPlayer(Spawner spawner, int neededMajority) {
+        Meta.pankoTODO("grouped count of entities within a certain radius or cell extent");
+
         // work out which player has the majority
         int p1count = 0;
         int p2count = 0;
@@ -314,6 +318,7 @@ public class Mob extends PankoEntityBase {
     }
 
     private void checkStuckAndDieIfNecessary() {
+        Meta.pankoTODO("algo for preventing this situation");
 
         boolean misAligned = false;
         if (getX() % getWidth() != 0) misAligned = true;
@@ -354,6 +359,7 @@ public class Mob extends PankoEntityBase {
     }
 
     private void stepTowardsPathFinding(PankoEntity target) {
+        Meta.pankoTODO("extract this out + related stuff");
 
         doPathFinding(target);
 
@@ -422,6 +428,8 @@ public class Mob extends PankoEntityBase {
     }
 
     private void linearStepTowardsPoint(int x, int y, int targetX, int targetY) {
+        Meta.pankoTODO("extract this out");
+
         int nx = x;
         int ny = y;
 
@@ -434,6 +442,8 @@ public class Mob extends PankoEntityBase {
     }
 
     private void tryMove(int nx, int ny) {
+        Meta.pankoTODO("extract this out (conditionally)");
+
 
         boolean collisionDetected = false;
 

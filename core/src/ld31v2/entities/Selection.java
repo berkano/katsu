@@ -3,6 +3,7 @@ package ld31v2.entities;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import ld31v2.WarGame;
+import panko.Meta;
 import panko.Panko;
 import panko.PankoEntity;
 import panko.PankoEntityBase;
@@ -15,6 +16,8 @@ public class Selection extends PankoEntityBase {
     private static PankoEntity selectedEntity;
 
     public Selection() {
+        Meta.pankoTODO("this is generic enough to be a standard entity");
+
         Panko.getInputMultiplexer().addProcessor(this);
     }
 
