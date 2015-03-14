@@ -6,7 +6,7 @@ package ld31v2;
 public class Tuning {
 
     public static final int checkNeighbourCombatInterval = 500;
-    public static final int pathFindInterval = 250;
+    public static final int pathFindInterval = 500;
     public static final int aiInterval = 2500;
     public static final int maxSpawnInterval = 7000;
     public static final int majorityTimeNeededForSpawn = 3500;

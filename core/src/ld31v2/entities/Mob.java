@@ -227,27 +227,27 @@ public class Mob extends PankoEntityBase {
         if (p2count > majorityForBiggestSoFar) {
             majorityForSecondBestSoFar = majorityForBiggestSoFar;
             biggestMajorityPlayerSoFar = 2;
-            majorityForBiggestSoFar = p1count;
+            majorityForBiggestSoFar = p2count;
         }
         if (p3count > majorityForBiggestSoFar) {
             majorityForSecondBestSoFar = majorityForBiggestSoFar;
             biggestMajorityPlayerSoFar = 3;
-            majorityForBiggestSoFar = p1count;
+            majorityForBiggestSoFar = p3count;
         }
         if (p4count > majorityForBiggestSoFar) {
             majorityForSecondBestSoFar = majorityForBiggestSoFar;
             biggestMajorityPlayerSoFar = 4;
-            majorityForBiggestSoFar = p1count;
+            majorityForBiggestSoFar = p4count;
         }
         if (p5count > majorityForBiggestSoFar) {
             majorityForSecondBestSoFar = majorityForBiggestSoFar;
             biggestMajorityPlayerSoFar = 5;
-            majorityForBiggestSoFar = p1count;
+            majorityForBiggestSoFar = p5count;
         }
         if (p6count > majorityForBiggestSoFar) {
             majorityForSecondBestSoFar = majorityForBiggestSoFar;
             biggestMajorityPlayerSoFar = 6;
-            majorityForBiggestSoFar = p1count;
+            majorityForBiggestSoFar = p6count;
         }
 
         if (majorityForBiggestSoFar > majorityForSecondBestSoFar + neededMajority) {
@@ -425,10 +425,10 @@ public class Mob extends PankoEntityBase {
         int nx = x;
         int ny = y;
 
-        if (x < targetX) nx = nx + 1;
-        if (y < targetY) ny = ny + 1;
-        if (x > targetX) nx = nx - 1;
-        if (y > targetY) ny = ny - 1;
+        if (x < targetX) nx = nx + 2;
+        if (y < targetY) ny = ny + 2;
+        if (x > targetX) nx = nx - 2;
+        if (y > targetY) ny = ny - 2;
 
         tryMove(nx, ny);
     }
