@@ -39,7 +39,7 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
         Panko.getInputMultiplexer().addProcessor(this);
 
         rooms = Panko.getImplementation().getRooms();
-        if (rooms.size() <= 0) {
+        if (rooms == null || rooms.size() <= 0) {
             Panko.exitWithError("No rooms defined!");
         }
 
