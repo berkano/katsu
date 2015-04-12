@@ -1,7 +1,9 @@
 package ld32;
 
+import katsu.Room;
 import panko.PankoGame;
 import panko.PankoRoom;
+import panko.PankoRoomBase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,7 +15,11 @@ public class LD32Game implements PankoGame {
 
     @Override
     public ArrayList<PankoRoom> getRooms() {
-        return null;
+
+        ArrayList<PankoRoom> rooms = new ArrayList<PankoRoom>();
+        rooms.add(new EmptyRoom());
+        return rooms;
+
     }
 
     @Override
