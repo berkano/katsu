@@ -1,20 +1,15 @@
-package mini58;
+package ld32;
 
-import com.badlogic.gdx.audio.Sound;
-import ld31v2.CampaignMap;
-import ld31v2.entities.*;
 import panko.PankoGame;
-import panko.PankoResource;
 import panko.PankoRoom;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 /**
  * Created by shaun on 16/11/2014.
  */
-public class Mini58Game implements PankoGame {
+public class LD32Game implements PankoGame {
 
     @Override
     public ArrayList<PankoRoom> getRooms() {
@@ -23,7 +18,7 @@ public class Mini58Game implements PankoGame {
 
     @Override
     public String getResourceRoot() {
-        return "mini58";
+        return "ld32";
     }
 
     @Override

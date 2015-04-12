@@ -1,7 +1,6 @@
 package panko;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import ld31v2.entities.Mob;
 
 /**
  * Created by shaun on 16/11/2014.

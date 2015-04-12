@@ -3,7 +3,7 @@ apply plugin: "java"
 sourceCompatibility = 1.6
 sourceSets.main.java.srcDirs = [ "src/" ]
 
-project.ext.mainClassName = "net.berkanoid.panko.desktop.mini58.Mini58Runner"
+project.ext.mainClassName = "net.berkanoid.panko.desktop.ld32.LD32Runner"
 project.ext.assetsDir = new File("../core/assets");
 
 task run(dependsOn: classes, type: JavaExec) {
