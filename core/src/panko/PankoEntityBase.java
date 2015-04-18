@@ -31,6 +31,7 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     private boolean beingRemoved = false;
     private int spriteRotation = 0;
     private float spriteScale = 1.0f;
+    private int maxMoveInterval = 0;
 
     public int getSpriteRotation(){
         return this.spriteRotation;
@@ -334,5 +335,13 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
 
     public void setSpriteScale(float spriteScale) {
         this.spriteScale = spriteScale;
+    }
+
+    public int getMaxMoveInterval() {
+        return maxMoveInterval;
+    }
+
+    public void setMaxMoveInterval(int maxMoveInterval) {
+        this.maxMoveInterval = maxMoveInterval;
     }
 }

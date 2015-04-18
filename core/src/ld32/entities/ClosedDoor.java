@@ -5,5 +5,5 @@ import panko.PankoEntityBase;
 /**
  * Created by shaun on 18/04/2015.
  */
-public class ClosedDoor extends PankoEntityBase {
+public class ClosedDoor extends SolidEntity {
 }

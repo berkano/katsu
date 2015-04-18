@@ -10,6 +10,11 @@ import panko.PankoEntityBase;
  */
 public class Mole extends Mob {
 
+    public Mole() {
+        super();
+        setMaxMoveInterval(100);
+    }
+
     @Override
     public void update() {
         super.update();
