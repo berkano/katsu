@@ -216,6 +216,11 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     }
 
     @Override
+    public void onMoved() {
+
+    }
+
+    @Override
     public int getHeight() {
         return Panko.getSettings().getGridSize();
     }

@@ -36,6 +36,12 @@ public interface PankoEntity {
 
     PankoEntity setLastMove(long time);
 
+    long getLastMove();
+
+    int getMaxMoveInterval();
+
+    void setMaxMoveInterval(int interval);
+
     void update();
 
     boolean isSelected();
@@ -56,6 +62,6 @@ public interface PankoEntity {
 
     boolean isBeingRemoved();
 
-
+    void onMoved();
 
 }

@@ -9,6 +9,8 @@ public class PankoCollisionDetector {
 
     public static boolean moveEntityIfPossible(PankoEntity entity, int newX, int newY) {
 
+        if (entity.getLastMove() > System.currentTimeMillis() - entity.getMaxMoveInterval()) return false;
+
         boolean couldMove = true;
 
         if (entity.isSolid()) {
@@ -33,6 +35,7 @@ public class PankoCollisionDetector {
             entity.setX(newX);
             entity.setY(newY);
             entity.setLastMove(Panko.currentTime());
+            entity.onMoved();
         }
 
         return couldMove;

@@ -13,11 +13,22 @@ public class Mole extends Mob {
     public Mole() {
         super();
         setMaxMoveInterval(100);
+        lookAtMe();
     }
 
     @Override
-    public void update() {
-        super.update();
+    public void onMoved() {
+        super.onMoved();
+        lookAtMe();
+    }
+
+    @Override
+    public void render() {
+        super.render();
+        lookAtMe();
+    }
+
+    private void lookAtMe() {
         Panko.getMainCamera().position.x = getX();
         Panko.getMainCamera().position.y = getY();
     }

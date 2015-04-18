@@ -8,6 +8,11 @@ import panko.PankoEntityBase;
  */
 public class Mob extends SolidEntity {
 
+    public Mob() {
+        super();
+        setMaxMoveInterval(1000);
+    }
+
     public void moveRequested(PankoDirection direction) {
 
         setSpriteRotation(direction.rotation());
