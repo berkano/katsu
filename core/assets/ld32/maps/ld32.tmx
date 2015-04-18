@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="ld32" tilewidth="32" tileheight="32">
+  <image source="ld32-tileset.png" width="1024" height="1024"/>
+  <tile id="0">
+   <properties>
+    <property name="entity" value="Mole"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="Entity" value="BlackSpider"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="entity" value="Worm"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="entity" value="RedSpider"/>
+   </properties>
+  </tile>
+  <tile id="32">
+   <properties>
+    <property name="entity" value="Dirt"/>
+   </properties>
+  </tile>
+  <tile id="33">
+   <properties>
+    <property name="entity" value="Rock"/>
+   </properties>
+  </tile>
+  <tile id="34">
+   <properties>
+    <property name="entity" value="Web"/>
+   </properties>
+  </tile>
+  <tile id="35">
+   <properties>
+    <property name="entity" value="Lava"/>
+   </properties>
+  </tile>
+  <tile id="64">
+   <properties>
+    <property name="entity" value="EmptyDirt"/>
+   </properties>
+  </tile>
+  <tile id="65">
+   <properties>
+    <property name="entity" value="Water"/>
+   </properties>
+  </tile>
+  <tile id="66">
+   <properties>
+    <property name="entity" value="Sky"/>
+   </properties>
+  </tile>
+  <tile id="67">
+   <properties>
+    <property name="entity" value="Grass"/>
+   </properties>
+  </tile>
+  <tile id="96">
+   <properties>
+    <property name="entity" value="Wall"/>
+   </properties>
+  </tile>
+  <tile id="97">
+   <properties>
+    <property name="entity" value="ClosedDoor"/>
+   </properties>
+  </tile>
+  <tile id="98">
+   <properties>
+    <property name="entity" value="OpenDoor"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="objects" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbnEAAAQ==
+  </data>
+ </layer>
+ <layer name="scenery" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt21tOwzAQRuFw2UhKNlJgI2X/i4AHKkWW4zjO2PPbOQ9HiEvteL6m5aWPaZoeJNUXuYWHVnhohYdWeNj2HcnSI7Z+6V6l56mxj+We68fMkY6sF/PYWz/cy3IuLfYJ57i152dmezPKOcfzWmIeR9YvmdXW8zFnHwuX3P1yTI7Oan2O2NktPOYKc6h1T1rsXzMrj9SMrBxiz7Gc+a+/9553qcfLX/cTMzryOnSmGq8nih5zgcfzsa1fE0axOOvxuuFBPh6xtbzP03t46LXl8Zb5+A88qlmsZ3qP/H34nhGuFf7sXeCMPXXUY28t7/P0nqXHj8B5ei/lUbKW93l6Dw+tPDxuAudW7azHLVgLA3uPM3mfp/dqzpR7QsuD6nlYPNdvxuuNWo6HRRhoedRo+c/7OlQ8tp7zre6FZRrP5IyHV0sk72uqYVHTxPL9fESL1h5WxQxGcbHwaPl/097ce3ex8GjptKy+jnif1PSoUeiwRH7nfY1X8kj59G6R8ujJZKTw0AoPnVIWmOChnPXn1kpNvOfgXe5nCPEY02PPxHseVwwLrfDQCg+t8NBpywIPPAgPpVIWeOBx9bDQCg+t8NAKD61SHpjgcfXw0AoPrfDQCg+t8NALD63w0CrlgQkeVw8LrfDQCg+t8NAKD63w0CrlgQkeVw8PrfDQCg+t8NAKD63w0AoLrfDQCg+t8NAKD63w0AoPrfDQCg+9RjXp9TytPaz3S63nYZLaI+cacq/d4txH19i7/tL1atik1m8xo1FjJkREx/sFEiKiuw==
+  </data>
+ </layer>
+</map>

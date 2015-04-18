@@ -5,5 +5,5 @@ import panko.PankoRoomBase;
 /**
  * Created by shaun on 12/04/2015.
  */
-public class EmptyRoom extends PankoRoomBase {
+public class World extends PankoRoomBase {
 }
