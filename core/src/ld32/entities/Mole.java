@@ -13,6 +13,8 @@ public class Mole extends Mob {
 
     private long lastDig = Panko.currentTime();
     private int maxDigInterval = 500;
+    public boolean invincible = true;
+    private long invincibleUntil = Panko.currentTime();
 
     public Mole() {
         super();
@@ -28,8 +30,23 @@ public class Mole extends Mob {
     }
 
     @Override
+    public void update() {
+        super.update();
+        if (getInvincibleUntil() < Panko.currentTime()) {
+            invincible = false;
+        }
+    }
+
+    @Override
     public void render() {
-        super.render();
+
+        boolean shouldRender = true;
+        // When not harmable flicker the rendering
+        if (invincible) {
+            if ((Panko.currentTime() % 500) < 250) shouldRender = false;
+        }
+
+         if (shouldRender) super.render();
         lookAtMe();
     }
 
@@ -63,5 +80,13 @@ public class Mole extends Mob {
             }
         }
 
+    }
+
+    public long getInvincibleUntil() {
+        return invincibleUntil;
+    }
+
+    public void setInvincibleUntil(long invincibleUntil) {
+        this.invincibleUntil = invincibleUntil;
     }
 }
