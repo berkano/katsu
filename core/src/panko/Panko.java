@@ -16,6 +16,9 @@ public class Panko {
 
     private static SpriteBatch activeSpriteBatch;
     private static ShapeRenderer activeShapeRenderer;
+    private static SpriteBatch uiSpriteBatch;
+    private static ShapeRenderer uiShapeRenderer;
+    private static Camera uiCamera;
     private static Camera mainCamera;
     private static PankoGameRunner runner;
     private static PankoGame implementation;
@@ -195,5 +198,29 @@ public class Panko {
         } else {
             Gdx.graphics.setDisplayMode(getSettings().getHres(), getSettings().getVres(), true);
         }
+    }
+
+    public static SpriteBatch getUiSpriteBatch() {
+        return uiSpriteBatch;
+    }
+
+    public static void setUiSpriteBatch(SpriteBatch uiSpriteBatch) {
+        Panko.uiSpriteBatch = uiSpriteBatch;
+    }
+
+    public static ShapeRenderer getUiShapeRenderer() {
+        return uiShapeRenderer;
+    }
+
+    public static void setUiShapeRenderer(ShapeRenderer uiShapeRenderer) {
+        Panko.uiShapeRenderer = uiShapeRenderer;
+    }
+
+    public static Camera getUiCamera() {
+        return uiCamera;
+    }
+
+    public static void setUiCamera(Camera uiCamera) {
+        Panko.uiCamera = uiCamera;
     }
 }

@@ -16,13 +16,9 @@ import java.util.ArrayList;
  */
 public class PankoGameRunner implements ApplicationListener, InputProcessor {
 
-    private SpriteBatch mainSpriteBatch;
-    private ShapeRenderer mainShapeRenderer;
-    private OrthographicCamera camera;
-    private PankoUI ui;
-    private boolean paused = false;
-
     private ArrayList<PankoRoom> rooms;
+
+    private Boolean paused = false;
 
     public PankoGameRunner() {
         Panko.setRunner(this);
@@ -33,8 +29,8 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
 
         Gdx.graphics.setTitle(Panko.getSettings().getGameName() + " :: " + Panko.getSettings().getGameAuthor() + " :: " + Panko.getSettings().getGameDescription());
 
-        mainSpriteBatch = new SpriteBatch();
-        mainShapeRenderer = new ShapeRenderer();
+        Panko.setActiveSpriteBatch(new SpriteBatch());
+        Panko.setActiveShapeRenderer(new ShapeRenderer());
         Gdx.input.setInputProcessor(Panko.getInputMultiplexer());
         Panko.getInputMultiplexer().addProcessor(this);
 
@@ -46,14 +42,11 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
         float viewportSize = 1024;
-        camera = new OrthographicCamera(viewportSize, viewportSize * (h / w));
-        Panko.setMainCamera(camera);
-        camera.position.set(512, 768/2, 0);
-        //camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
-        camera.update();
+        Panko.setMainCamera(new OrthographicCamera(viewportSize, viewportSize * (h / w)));
+        Panko.getMainCamera().position.set(512, 768/2, 0);
+        Panko.getMainCamera().update();
 
-        ui = new PankoUI();
-        Panko.setUI(ui);
+        Panko.setUI(new PankoUI());
 
         rooms.get(0).start();
 
@@ -67,12 +60,9 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
     @Override
     public void render() {
 
-        camera.update();
-        mainSpriteBatch.setProjectionMatrix(camera.combined);
-        mainShapeRenderer.setProjectionMatrix(camera.combined);
-
-        Panko.setActiveSpriteBatch(mainSpriteBatch);
-        Panko.setActiveShapeRenderer(mainShapeRenderer);
+        Panko.getMainCamera().update();
+        Panko.getActiveSpriteBatch().setProjectionMatrix(Panko.getMainCamera().combined);
+        Panko.getActiveShapeRenderer().setProjectionMatrix(Panko.getMainCamera().combined);
 
         // Clear screen
         Gdx.gl.glClearColor(0f, 0f, 0f, 1);
@@ -86,7 +76,7 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
         }
         Panko.getActiveSpriteBatch().end();
 
-        ui.render();
+        Panko.getUI().render();
 
         update();
 
