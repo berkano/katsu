@@ -12,10 +12,16 @@ import panko.*;
 public class World extends PankoRoomBase {
 
     private Mole mole;
+    public static int numLives;
+    public static int level;
 
     @Override
     public void start() {
         super.start();
+
+        numLives = 5;
+        level = 1;
+        
         String mapName = "ld32";
         PankoTmxHelper.addEntitiesToRoomFromMap(mapName, this);
 
@@ -31,10 +37,15 @@ public class World extends PankoRoomBase {
         mole.update();
 
         Panko.getUI().setHelpText(PankoResource.loadText("help.txt"));
-        Panko.getUI().setShowingHelp(true);
-        Panko.pauseGame();
 
-        LD32Sounds.toggleMusic();
+        if (LD32Settings.startWithPausedHelp) {
+            Panko.getUI().setShowingHelp(true);
+            Panko.pauseGame();
+        }
+
+        if (LD32Settings.startWithMusic) LD32Sounds.toggleMusic();
+
+        if (LD32Settings.startWithFewerLives) numLives -= 1;
     }
 
     @Override
@@ -48,6 +59,15 @@ public class World extends PankoRoomBase {
         if (Panko.isKeyDown(Input.Keys.A)) mole.moveRequested(PankoDirection.LEFT);
         if (Panko.isKeyDown(Input.Keys.D)) mole.moveRequested(PankoDirection.RIGHT);
         if (Panko.isKeyDown(Input.Keys.SPACE)) mole.digRequested();
+
+        updateUITopText();
+
+    }
+
+    private void updateUITopText() {
+
+        String topText = "Level: " + level + "  Lives: " + numLives;
+        Panko.getUI().setTopText(topText);
 
     }
 

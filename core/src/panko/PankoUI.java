@@ -37,6 +37,8 @@ public class PankoUI {
     private boolean showingHelp = false;
     private String helpText = "No help text provided";
 
+    private String topText = "";
+
     public void writeText(String s) {
         if (text.size() >= lineDisplay) {
             text.remove(0);
@@ -141,6 +143,21 @@ public class PankoUI {
             writeln(tl.text, c);
         }
 
+        renderTopText();
+
+    }
+
+    private void renderTopText() {
+
+        SpriteBatch batch = Panko.getUiSpriteBatch();
+
+        int yOffset = 768;
+
+        font.setColor(Color.BLACK);
+        font.draw(batch, getTopText(), 4, yOffset - 4);
+        font.setColor(Color.WHITE);
+        font.draw(batch, getTopText(), 6, yOffset - 6);
+
     }
 
     private void renderHelpText() {
@@ -225,5 +242,13 @@ public class PankoUI {
 
     public void setHelpText(String helpText) {
         this.helpText = helpText;
+    }
+
+    public String getTopText() {
+        return topText;
+    }
+
+    public void setTopText(String topText) {
+        this.topText = topText;
     }
 }
