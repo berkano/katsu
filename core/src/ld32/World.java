@@ -1,5 +1,6 @@
 package ld32;
 
+import ld32.entities.Mole;
 import panko.Panko;
 import panko.PankoResource;
 import panko.PankoRoomBase;
@@ -15,6 +16,14 @@ public class World extends PankoRoomBase {
         super.start();
         String mapName = "ld32";
         PankoTmxHelper.addEntitiesToRoomFromMap(mapName, this);
+
+        Panko.getMainCamera().viewportHeight = 768 / 4;
+        Panko.getMainCamera().viewportWidth = 1024 / 4;
+
+        Mole mole = (Mole)firstInstanceOfClass(Mole.class);
+        if (mole != null) {
+            mole.update();
+        }
 
         Panko.getUI().setHelpText(PankoResource.loadText("help.txt"));
         Panko.getUI().setShowingHelp(true);
