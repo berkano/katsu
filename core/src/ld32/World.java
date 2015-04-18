@@ -14,13 +14,14 @@ public class World extends PankoRoomBase {
     private Mole mole;
     public static int numLives;
     public static int level;
+    private static long lastRestart = Panko.currentTime();
 
     @Override
     public void start() {
         super.start();
 
-        numLives = 5;
-        level = 1;
+        numLives = LD32Settings.startLives;
+        level = LD32Settings.startLevel;
         
         String mapName = "ld32";
         PankoTmxHelper.addEntitiesToRoomFromMap(mapName, this);
@@ -45,7 +46,18 @@ public class World extends PankoRoomBase {
 
         if (LD32Settings.startWithMusic) LD32Sounds.toggleMusic();
 
-        if (LD32Settings.startWithFewerLives) numLives -= 1;
+    }
+
+    @Override
+    public void render() {
+        super.render();
+        if (Panko.isKeyDown(Input.Keys.R)) {
+            if (lastRestart < Panko.currentTime() - 5000) {
+                lastRestart = Panko.currentTime();
+                LD32Sounds.game_restart.play();
+                start();
+            }
+        }
     }
 
     @Override
@@ -61,6 +73,12 @@ public class World extends PankoRoomBase {
         if (Panko.isKeyDown(Input.Keys.SPACE)) mole.digRequested();
 
         updateUITopText();
+
+        if (numLives <= 0) {
+            Panko.getUI().clearText();
+            Panko.getUI().writeText("GAME OVER! Press R to restart.");
+            Panko.pauseGame();
+        }
 
     }
 

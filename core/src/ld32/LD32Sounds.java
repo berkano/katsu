@@ -13,6 +13,7 @@ public class LD32Sounds {
     public static Sound mole_dig = PankoResource.loadSound("mole-dig.wav");
     public static Sound mole_eat = PankoResource.loadSound("mole-eat.wav");
     public static Sound mole_die = PankoResource.loadSound("mole-die.wav");
+    public static Sound game_restart = PankoResource.loadSound("game-restart.wav");
     public static Sound music1 = PankoResource.loadSound("music1.mp3");
     public static boolean musicPlaying = false;
 
