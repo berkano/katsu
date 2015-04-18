@@ -38,6 +38,9 @@ public class World extends PankoRoomBase {
     @Override
     public void update() {
         super.update();
+
+        bringAllInstancesToFront(Mob.class);
+
         if (Panko.isKeyDown(Input.Keys.W)) mole.moveRequested(PankoDirection.UP);
         if (Panko.isKeyDown(Input.Keys.S)) mole.moveRequested(PankoDirection.DOWN);
         if (Panko.isKeyDown(Input.Keys.A)) mole.moveRequested(PankoDirection.LEFT);

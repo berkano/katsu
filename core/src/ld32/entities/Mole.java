@@ -58,6 +58,7 @@ public class Mole extends Mob {
                         e.createInPlace(EmptyDirt.class);
                         e.setHealth(0);
                         Panko.queueEntityToTop(this);
+                        LD32Sounds.mole_dig.play();
                     }
                 }
 

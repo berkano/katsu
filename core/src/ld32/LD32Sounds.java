@@ -9,5 +9,6 @@ import panko.PankoResource;
 public class LD32Sounds {
 
     public static Sound mole_move = PankoResource.loadSound("mole-move.wav");
+    public static Sound mole_dig = PankoResource.loadSound("mole-dig.wav");
 
 }
