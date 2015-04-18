@@ -53,6 +53,6 @@ public class LD32Game implements PankoGame {
 
     @Override
     public void toggleMusic() {
-
+        LD32Sounds.toggleMusic();
     }
 }

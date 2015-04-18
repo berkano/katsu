@@ -34,7 +34,7 @@ public class World extends PankoRoomBase {
         Panko.getUI().setShowingHelp(true);
         Panko.pauseGame();
 
-        LD32Sounds.music1.loop();
+        LD32Sounds.toggleMusic();
     }
 
     @Override

@@ -1,1 +1,8 @@
-todo!
+WASD: move
+SPACE: dig/eat
+P: pause
+H: help
+M: music
+
+Kill spiders!
+Eat worms!

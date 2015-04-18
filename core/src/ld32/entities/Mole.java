@@ -1,11 +1,8 @@
 package ld32.entities;
 
-import com.badlogic.gdx.Input;
 import ld32.LD32Sounds;
 import panko.Panko;
-import panko.PankoDirection;
 import panko.PankoEntity;
-import panko.PankoEntityBase;
 
 import java.util.ArrayList;
 

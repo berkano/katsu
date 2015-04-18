@@ -12,5 +12,24 @@ public class LD32Sounds {
     public static Sound mole_move = PankoResource.loadSound("mole-move.wav");
     public static Sound mole_dig = PankoResource.loadSound("mole-dig.wav");
     public static Sound music1 = PankoResource.loadSound("music1.mp3");
+    public static boolean musicPlaying = false;
 
+    public static void stopAllMusic() {
+        music1.stop();
+        musicPlaying = false;
+    }
+
+    public static void playMusic() {
+        music1.loop();
+        musicPlaying = true;
+    }
+
+
+    public static void toggleMusic() {
+        if (!musicPlaying) {
+            playMusic();
+        } else {
+            stopAllMusic();
+        }
+    }
 }
