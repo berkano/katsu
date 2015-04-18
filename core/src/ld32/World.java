@@ -33,6 +33,8 @@ public class World extends PankoRoomBase {
         Panko.getUI().setHelpText(PankoResource.loadText("help.txt"));
         Panko.getUI().setShowingHelp(true);
         Panko.pauseGame();
+
+        LD32Sounds.music1.loop();
     }
 
     @Override

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class Mole extends Mob {
 
     private long lastDig = Panko.currentTime();
-    private int maxDigInterval = 1000;
+    private int maxDigInterval = 500;
 
     public Mole() {
         super();
