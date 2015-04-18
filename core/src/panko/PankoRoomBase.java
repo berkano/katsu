@@ -22,6 +22,22 @@ public abstract class PankoRoomBase implements PankoRoom, InputProcessor {
 
     }
 
+    public void createInstancesBehindAll(Class find, Class toAdd) {
+        for (PankoEntity e : entities) {
+            if (find.isInstance(e)) {
+                try {
+                    PankoEntity newEntity = (PankoEntity)toAdd.newInstance();
+                    newEntity.setX(e.getX());
+                    newEntity.setY(e.getY());
+                    newEntities.add(newEntity);
+                } catch (Exception ex) {
+
+                }
+
+            }
+        }
+    }
+
     public void bringAllInstancesToFront(Class clazz) {
         for (PankoEntity e : entities) {
             if (clazz.isInstance(e)) {
