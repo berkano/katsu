@@ -1,6 +1,7 @@
 package ld32.entities;
 
 import com.badlogic.gdx.Input;
+import ld32.LD32Sounds;
 import panko.Panko;
 import panko.PankoDirection;
 import panko.PankoEntityBase;
@@ -19,6 +20,7 @@ public class Mole extends Mob {
     @Override
     public void onMoved() {
         super.onMoved();
+        LD32Sounds.mole_move.play();
         lookAtMe();
     }
 

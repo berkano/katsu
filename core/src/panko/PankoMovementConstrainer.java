@@ -10,6 +10,8 @@ public class PankoMovementConstrainer {
 
     public static boolean moveEntityIfPossible(PankoEntity entity, int newX, int newY) {
 
+        if (Panko.gamePaused()) return false;
+
         long millisMovedAgo = Panko.currentTime() - entity.getLastMove();
         if (millisMovedAgo < entity.getMaxMoveInterval()) return false;
 

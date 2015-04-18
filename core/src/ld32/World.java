@@ -36,23 +36,33 @@ public class World extends PankoRoomBase {
     }
 
     @Override
+    public void update() {
+        super.update();
+        if (Panko.isKeyDown(Input.Keys.W)) mole.moveRequested(PankoDirection.UP);
+        if (Panko.isKeyDown(Input.Keys.S)) mole.moveRequested(PankoDirection.DOWN);
+        if (Panko.isKeyDown(Input.Keys.A)) mole.moveRequested(PankoDirection.LEFT);
+        if (Panko.isKeyDown(Input.Keys.D)) mole.moveRequested(PankoDirection.RIGHT);
+
+    }
+
+    @Override
     public boolean keyDown(int keycode) {
-        if (keycode == Input.Keys.W) {
-            mole.moveRequested(PankoDirection.UP);
-            return true;
-        }
-        if (keycode == Input.Keys.A) {
-            mole.moveRequested(PankoDirection.LEFT);
-            return true;
-        }
-        if (keycode == Input.Keys.S) {
-            mole.moveRequested(PankoDirection.DOWN);
-            return true;
-        }
-        if (keycode == Input.Keys.D) {
-            mole.moveRequested(PankoDirection.RIGHT);
-            return true;
-        }
+//        if (keycode == Input.Keys.W) {
+//            mole.moveRequested(PankoDirection.UP);
+//            return true;
+//        }
+//        if (keycode == Input.Keys.A) {
+//            mole.moveRequested(PankoDirection.LEFT);
+//            return true;
+//        }
+//        if (keycode == Input.Keys.S) {
+//            mole.moveRequested(PankoDirection.DOWN);
+//            return true;
+//        }
+//        if (keycode == Input.Keys.D) {
+//            mole.moveRequested(PankoDirection.RIGHT);
+//            return true;
+//        }
         return super.keyDown(keycode);
     }
 }
