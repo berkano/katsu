@@ -22,7 +22,7 @@ public abstract class PankoRoomBase implements PankoRoom, InputProcessor {
 
     }
 
-    public void createInstancesBehindAll(Class find, Class toAdd) {
+    public void createInstancesAtAll(Class find, Class toAdd) {
         for (PankoEntity e : entities) {
             if (find.isInstance(e)) {
                 try {
