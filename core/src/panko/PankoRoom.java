@@ -30,4 +30,6 @@ public interface PankoRoom {
 
     ArrayList<PankoEntity> getDeadEntities();
 
+    ArrayList<PankoEntity> findEntitiesAtPoint(int x, int y);
+
 }

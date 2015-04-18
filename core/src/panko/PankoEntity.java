@@ -1,6 +1,7 @@
 package panko;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import ld32.entities.EmptyDirt;
 
 /**
  * Created by shaun on 16/11/2014.
@@ -64,4 +65,13 @@ public interface PankoEntity {
 
     void onMoved();
 
+    int getHealth();
+
+    void setHealth(int health);
+
+    int getMaxHealth();
+
+    void setMaxHealth(int maxHealth);
+
+    void createInPlace(Class clazz);
 }

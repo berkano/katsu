@@ -32,6 +32,8 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     private int spriteRotation = 0;
     private float spriteScale = 1.0f;
     private int maxMoveInterval = 0;
+    private int health = 100;
+    private int maxHealth = 100;
 
     public int getSpriteRotation(){
         return this.spriteRotation;
@@ -232,6 +234,19 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     }
 
     @Override
+    public void createInPlace(Class clazz) {
+        try {
+            PankoEntity newEntity = (PankoEntity)clazz.newInstance();
+            newEntity.setX(getX());
+            newEntity.setY(getY());
+            getRoom().getEntities().add(newEntity);
+        } catch (Exception ex) {
+
+        }
+
+    }
+
+    @Override
     public void update() {
         x -= velocity * Math.sin(getRotation() * 0.0174);
         y += velocity * Math.cos(getRotation() * 0.0174);
@@ -245,6 +260,11 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
 
         if (this.speedOfRotationAroundParent != 0) {
             rotation += this.speedOfRotationAroundParent;
+        }
+
+        if (getHealth() <= 0) {
+            setBeingRemoved(true);
+            getRoom().getDeadEntities().add(this);
         }
     }
 
@@ -348,5 +368,25 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
 
     public void setMaxMoveInterval(int maxMoveInterval) {
         this.maxMoveInterval = maxMoveInterval;
+    }
+
+    @Override
+    public int getHealth() {
+        return health;
+    }
+
+    @Override
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    @Override
+    public int getMaxHealth() {
+        return maxHealth;
+    }
+
+    @Override
+    public void setMaxHealth(int maxHealth) {
+        this.maxHealth = maxHealth;
     }
 }

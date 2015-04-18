@@ -1,6 +1,7 @@
 package panko;
 
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.math.Rectangle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -137,6 +138,29 @@ public abstract class PankoRoomBase implements PankoRoom, InputProcessor {
     @Override
     public ArrayList<PankoEntity> getDeadEntities() {
         return deadEntityQueue;
+    }
+
+    @Override
+    public ArrayList<PankoEntity> findEntitiesAtPoint(int x, int y) {
+
+            ArrayList<PankoEntity> result = new ArrayList<PankoEntity>();
+
+            for (PankoEntity e : entities) {
+
+                // Quick optimization
+                if (e.getX() > x) continue;
+                if (e.getY() > y) continue;
+                if (e.getX() < x - e.getWidth()) continue;
+                if (e.getY() < y - e.getHeight()) continue;
+
+                Rectangle r = new Rectangle(e.getX(), e.getY(), e.getWidth(), e.getHeight());
+
+                if (r.contains(x, y)) {
+                    result.add(e);
+                }
+
+            }
+            return result;
     }
 
     @Override

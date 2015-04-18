@@ -8,6 +8,8 @@ import panko.PankoEntityBase;
  */
 public class Mob extends SolidEntity {
 
+    private PankoDirection facing;
+
     public Mob() {
         super();
         setMaxMoveInterval(1000);
@@ -18,8 +20,22 @@ public class Mob extends SolidEntity {
         if (moveGrid(direction.dx(), direction.dy())) {
             if (!(this instanceof Spider)) {
                 setSpriteRotation(direction.rotation());
+                setFacing(direction);
             }
+        }
+
+        // Set rotation no matter what
+        if (this instanceof Mole) {
+            setSpriteRotation(direction.rotation());
+            setFacing(direction);
         }
     }
 
+    public void setFacing(PankoDirection facing) {
+        this.facing = facing;
+    }
+
+    public PankoDirection getFacing() {
+        return facing;
+    }
 }
