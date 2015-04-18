@@ -46,9 +46,6 @@ public class LD32Game implements PankoGame {
         result.put("ClosedDoor", ClosedDoor.class);
         result.put("OpenDoor", OpenDoor.class);
 
-
-
-
         return result;
 
     }
