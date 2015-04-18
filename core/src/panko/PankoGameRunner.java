@@ -28,9 +28,12 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
     public void create() {
 
         Gdx.graphics.setTitle(Panko.getSettings().getGameName() + " :: " + Panko.getSettings().getGameAuthor() + " :: " + Panko.getSettings().getGameDescription());
-
         Panko.setActiveSpriteBatch(new SpriteBatch());
         Panko.setActiveShapeRenderer(new ShapeRenderer());
+
+        Panko.setUiSpriteBatch(new SpriteBatch());
+        Panko.setUiShapeRenderer(new ShapeRenderer());
+
         Gdx.input.setInputProcessor(Panko.getInputMultiplexer());
         Panko.getInputMultiplexer().addProcessor(this);
 
@@ -42,9 +45,14 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
         float viewportSize = 1024;
+
         Panko.setMainCamera(new OrthographicCamera(viewportSize, viewportSize * (h / w)));
         Panko.getMainCamera().position.set(512, 768/2, 0);
         Panko.getMainCamera().update();
+
+        Panko.setUiCamera(new OrthographicCamera(viewportSize, viewportSize * (h / w)));
+        Panko.getUiCamera().position.set(512, 768/2, 0);
+        Panko.getUiCamera().update();
 
         Panko.setUI(new PankoUI());
 

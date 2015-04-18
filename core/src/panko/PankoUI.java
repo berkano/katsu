@@ -59,14 +59,14 @@ public class PankoUI {
         if (text.size() > 0) {
             Color shade = new Color(0, 0, 0, 0.33f);
 
-            Panko.getActiveShapeRenderer().setColor(shade);
+            Panko.getUiShapeRenderer().setColor(shade);
 
             float x = fontHeight/2; // Keep a left border
             float y = fontHeight + fontHeight / 4; // Keep a bottom border (text.size() - 1)* fontHeight; // Relative from bottom of screen and based on number of lines to display
             float width = Panko.getSettings().getHres()/2 - fontHeight; // Keep a right border
             float height = 1 + text.size() * fontHeight; // Based on number of lines to display
 
-            Panko.getActiveShapeRenderer().rect(x, y, width, height);
+            Panko.getUiShapeRenderer().rect(x, y, width, height);
         }
     }
 
@@ -75,15 +75,15 @@ public class PankoUI {
         Gdx.gl.glEnable(GL20.GL_BLEND);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 
-        Panko.getActiveShapeRenderer().begin(ShapeRenderer.ShapeType.Filled);
+        Panko.getUiShapeRenderer().begin(ShapeRenderer.ShapeType.Filled);
         renderShapes();
-        Panko.getActiveShapeRenderer().end();
+        Panko.getUiShapeRenderer().end();
 
         Gdx.gl.glDisable(GL20.GL_BLEND);
 
-        Panko.getActiveSpriteBatch().begin();
+        Panko.getUiSpriteBatch().begin();
         renderBitmaps();
-        Panko.getActiveSpriteBatch().end();
+        Panko.getUiSpriteBatch().end();
 
     }
 
@@ -97,14 +97,14 @@ public class PankoUI {
             
             Color shade = new Color(0, 0, 0, 0.75f);
 
-            Panko.getActiveShapeRenderer().setColor(shade);
+            Panko.getUiShapeRenderer().setColor(shade);
 
             float x = fontHeight; // Keep a left border
             float y = fontHeight; // Keep a bottom border (text.size() - 1)* fontHeight; // Relative from bottom of screen and based on number of lines to display
             float width = Panko.getSettings().getHres()/2 - fontHeight * 2; // Keep a right border
             float height = Panko.getSettings().getVres()/2 - fontHeight * 2; // Based on number of lines to display
 
-            Panko.getActiveShapeRenderer().rect(x, y, width, height);
+            Panko.getUiShapeRenderer().rect(x, y, width, height);
 
         }
     }
@@ -153,15 +153,6 @@ public class PankoUI {
         for (String s : helpText.split("\n")) {
             writeln(s, Color.WHITE);
         }
-//        writeln("@BLUE HELP", Color.WHITE);
-//        writeln("@BLUE HELP", Color.WHITE);
-//        writeln("@BLUE HELP", Color.WHITE);
-//        writeln("@BLUE HELP", Color.WHITE);
-//        writeln("@BLUE HELP", Color.WHITE);
-//        writeln("@BLUE HELP", Color.WHITE);
-//        writeln("@BLUE HELP", Color.WHITE);
-//        writeln("@BLUE HELP", Color.WHITE);
-
     }
 
     public static String wrap(String in, int len) {
@@ -190,7 +181,7 @@ public class PankoUI {
         String wrappedStr = wrap(s, 100);
         String[] lines = wrappedStr.split("\n");
 
-        SpriteBatch batch = Panko.getActiveSpriteBatch();
+        SpriteBatch batch = Panko.getUiSpriteBatch();
 
         for (int i = 0; i < lines.length; i++) {
             int stringX = leftMargin;
