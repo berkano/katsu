@@ -15,9 +15,9 @@ public class Mob extends SolidEntity {
 
     public void moveRequested(PankoDirection direction) {
 
-        setSpriteRotation(direction.rotation());
-        moveGrid(direction.dx(), direction.dy());
-
+        if (moveGrid(direction.dx(), direction.dy())) {
+            setSpriteRotation(direction.rotation());
+        }
     }
 
 }

@@ -1,6 +1,7 @@
 package ld32;
 
 import com.badlogic.gdx.Input;
+import ld32.entities.Mob;
 import ld32.entities.Mole;
 import panko.*;
 
@@ -19,6 +20,8 @@ public class World extends PankoRoomBase {
 
         Panko.getMainCamera().viewportHeight = 768 / 4;
         Panko.getMainCamera().viewportWidth = 1024 / 4;
+
+        bringAllInstancesToFront(Mob.class);
 
         mole = (Mole)firstInstanceOfClass(Mole.class);
         bringEntityToFront(mole);

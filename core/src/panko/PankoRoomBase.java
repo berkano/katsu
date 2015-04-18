@@ -22,6 +22,14 @@ public abstract class PankoRoomBase implements PankoRoom, InputProcessor {
 
     }
 
+    public void bringAllInstancesToFront(Class clazz) {
+        for (PankoEntity e : entities) {
+            if (clazz.isInstance(e)) {
+                onTopQueue.add(e);
+            }
+        }
+    }
+
     public PankoEntity firstInstanceOfClass(Class clazz) {
         for (PankoEntity e : entities) {
             if (clazz.isInstance(e)) {

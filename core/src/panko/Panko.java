@@ -223,4 +223,8 @@ public class Panko {
     public static void setUiCamera(Camera uiCamera) {
         Panko.uiCamera = uiCamera;
     }
+
+    public static void breakpoint() {
+
+    }
 }

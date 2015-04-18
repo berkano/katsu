@@ -1,15 +1,17 @@
 package panko;
 
 import com.badlogic.gdx.math.Rectangle;
+import ld32.entities.Worm;
 
 /**
  * Created by shaun on 16/11/2014.
  */
-public class PankoCollisionDetector {
+public class PankoMovementConstrainer {
 
     public static boolean moveEntityIfPossible(PankoEntity entity, int newX, int newY) {
 
-        if (entity.getLastMove() > System.currentTimeMillis() - entity.getMaxMoveInterval()) return false;
+        long millisMovedAgo = Panko.currentTime() - entity.getLastMove();
+        if (millisMovedAgo < entity.getMaxMoveInterval()) return false;
 
         boolean couldMove = true;
 

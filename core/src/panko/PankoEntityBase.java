@@ -120,7 +120,7 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
         int newX = getX() + dx * Panko.getGridSize();
         int newY = getY() + dy * Panko.getGridSize();
 
-        return PankoCollisionDetector.moveEntityIfPossible(this, newX, newY);
+        return PankoMovementConstrainer.moveEntityIfPossible(this, newX, newY);
 
     }
 
