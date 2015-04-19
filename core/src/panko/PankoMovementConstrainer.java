@@ -24,7 +24,7 @@ public class PankoMovementConstrainer {
 
             // Get all possible collision targets
             for (PankoEntity other : room.getEntities()) {
-                if (other.isSolid()) {
+                if (other.isSolid() && other.canCollideWith(entity.getClass()) && entity.canCollideWith(other.getClass())) {
                     if (entitiesWouldOverlap(entity, newX, newY, other)) {
                         couldMove = false;
                         entity.onCollide(other);

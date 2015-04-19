@@ -74,4 +74,6 @@ public interface PankoEntity {
     void setMaxHealth(int maxHealth);
 
     void createInPlace(Class clazz);
+
+    boolean canCollideWith(Class clazz);
 }

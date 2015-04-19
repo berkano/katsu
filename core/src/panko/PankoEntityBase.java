@@ -268,6 +268,11 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
         }
     }
 
+    @Override
+    public boolean canCollideWith(Class clazz) {
+        return true;
+    }
+
     public PankoRoom getRoom() {
         return room;
     }
