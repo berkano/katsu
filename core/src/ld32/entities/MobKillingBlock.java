@@ -13,6 +13,14 @@ public class MobKillingBlock extends RotatingTerrain {
     private long lastFallTryMillis = Panko.currentTime();
 
     @Override
+    public void render() {
+        if (Panko.random.nextInt(10) == 0) {
+            setSpriteRotation(Panko.random.nextInt(10) - 5);
+        }
+        super.render();
+    }
+
+    @Override
     public void update() {
         super.update();
 

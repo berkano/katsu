@@ -70,10 +70,13 @@ public class World extends PankoRoomBase {
 
         if (LD32Settings.startWithPausedHelp) {
             Panko.getUI().setShowingHelp(true);
-            Panko.pauseGame();
         }
 
         if (LD32Settings.startWithMusic) LD32Sounds.toggleMusic();
+
+        Panko.getUI().clearText();
+        updateUITopText();
+        Panko.pauseGame();
 
     }
 
