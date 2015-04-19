@@ -24,6 +24,7 @@ public class LD32Sounds {
     public static Sound win_game = PankoResource.loadSound("newsounds-wingame.wav");
     public static Sound waypoint = PankoResource.loadSound("waypoint.wav");
     public static Sound hurt = PankoResource.loadSound("hurt.wav");
+    public static Sound winMusic = PankoResource.loadSound("ld32-music-win.mp3");
 
     public static boolean musicPlaying = false;
 

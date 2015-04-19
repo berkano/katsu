@@ -1,13 +1,12 @@
-~~ Moleificent ~~
+@CYAN ~~ Noel and the Spiders ~~
 
-WASD: move
-SPACE: eat dirt (once you've eaten 8 dirt blocks, u have to poop)
-P: poop (warning: explosive)
-ENTER: pause
-H: show this help
-M: music
+Kill spiders! Eat worms!
+Help Noel find his way back to the colony.
 
-Kill spiders!
-Avoid moving stuff!
-Eat worms for lives!
-Find your way back to the colony!
+@YELLOW WASD: move
+@YELLOW SPACE: eat dirt (until you are full up)
+@YELLOW and then... P: poop
+
+@GREEN Also: ENTER to pause; H: show this help;
+@GREEN M: toggle music.
+

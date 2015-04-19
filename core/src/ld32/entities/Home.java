@@ -23,8 +23,11 @@ public class Home extends LD32ScenicBase {
         for (PankoEntity e : entities) {
             if (e instanceof Mole) {
                 wonGame = true;
-                Panko.getUI().writeText("You win! Reunited with le molies! Well done!");
-                LD32Sounds.win_game.play();
+                Panko.getUI().writeText("");
+                Panko.getUI().writeText("*** WIN: Noel found his way home! Well done! ***");
+                Panko.getUI().writeText("");
+                LD32Sounds.stopAllMusic();
+                LD32Sounds.winMusic.loop();
                 Panko.pauseGame();
             }
         }

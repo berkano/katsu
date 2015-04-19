@@ -7,8 +7,22 @@ import panko.PankoSettings;
  * Created by shaun on 18/04/2015.
  */
 public class LD32Settings extends PankoSettings {
+    @Override
+    public String getGameName() {
+        return "Noel and the Spiders";
+    }
 
-    public static boolean devMode = true;
+    @Override
+    public String getGameAuthor() {
+        return "berkano";
+    }
+
+    @Override
+    public String getGameDescription() {
+        return "LD32";
+    }
+
+    public static boolean devMode = false;
     public static boolean startWithMusic = !devMode;
     public static boolean startWithPausedHelp = !devMode;
     public static int maxLives = 5;
