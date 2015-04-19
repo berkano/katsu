@@ -3,6 +3,7 @@ package ld32;
 import com.badlogic.gdx.Input;
 import ld32.entities.EmptyDirt;
 import ld32.entities.Mob;
+import ld32.entities.MobKillingBlock;
 import ld32.entities.Mole;
 import panko.*;
 
@@ -33,6 +34,7 @@ public class World extends PankoRoomBase {
 
         createInstancesAtAll(Mob.class, EmptyDirt.class);
 
+        bringAllInstancesToFront(MobKillingBlock.class);
         bringAllInstancesToFront(Mob.class);
 
         mole = (Mole) firstInstanceOfClass(Mole.class);
