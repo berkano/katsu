@@ -48,6 +48,7 @@ public class LD32Game implements PankoGame {
         result.put("InvisibleObstacle", InvisibleObstacle.class);
         result.put("Poop", Poop.class);
         result.put("WayPoint", WayPoint.class);
+        result.put("PathFindingHint", PathFindingHint.class);
 
         return result;
 

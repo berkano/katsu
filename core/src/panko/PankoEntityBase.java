@@ -34,6 +34,7 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     private int maxMoveInterval = 0;
     private int health = 100;
     private int maxHealth = 100;
+    private PankoDirection pathFinderNextDirection;
 
     public int getSpriteRotation(){
         return this.spriteRotation;
@@ -393,5 +394,13 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     @Override
     public void setMaxHealth(int maxHealth) {
         this.maxHealth = maxHealth;
+    }
+
+    public PankoDirection getPathFinderNextDirection() {
+        return pathFinderNextDirection;
+    }
+
+    public void setPathFinderNextDirection(PankoDirection pathFinderNextDirection) {
+        this.pathFinderNextDirection = pathFinderNextDirection;
     }
 }

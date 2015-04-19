@@ -1,9 +1,14 @@
 package ld32.entities;
 
+import ext.pathfinding.grid.GridLocation;
+import ext.pathfinding.grid.GridMap;
+import ext.pathfinding.grid.GridPath;
+import ext.pathfinding.grid.GridPathfinding;
 import ld32.LD32Settings;
 import ld32.LD32Sounds;
 import ld32.World;
 import panko.Panko;
+import panko.PankoDirection;
 import panko.PankoEntity;
 
 import java.util.ArrayList;
@@ -17,6 +22,7 @@ public class Mole extends Mob {
     private int maxDigInterval = 500;
     public boolean invincible = true;
     private long invincibleUntil = Panko.currentTime();
+    private long lastEnemyPathFind = Panko.currentTime();
 
     public Mole() {
         super();
@@ -37,6 +43,104 @@ public class Mole extends Mob {
         if (getInvincibleUntil() < Panko.currentTime()) {
             invincible = false;
         }
+        doEnemyPathFinding();
+    }
+
+    private void doEnemyPathFinding() {
+        if (lastEnemyPathFind > Panko.currentTime() - LD32Settings.enemyPathFindInterval) return;
+        lastEnemyPathFind = Panko.currentTime();
+
+        int pfDistance = LD32Settings.enemyPathFindingDistance;
+
+        GridMap pathMap = createPathMap();
+
+        GridPathfinding gridPathfinding = new GridPathfinding();
+
+        // For each enemy within a certain distance, calculate a path to the mole and set it as their preferred next movement
+        for (PankoEntity e : getRoom().getEntities()) {
+            if (e instanceof Spider) {
+                int dx = getGridX() - e.getGridX();
+                int dy = getGridY() - e.getGridY();
+                if (Math.abs(dx) <= pfDistance && Math.abs(dy) <= pfDistance) {
+                    GridLocation end = new GridLocation(e.getGridX(), e.getGridY(), true);
+                    GridLocation start = new GridLocation(this.getGridX(), this.getGridY(), false);
+                    GridPath gridPath = gridPathfinding.getPath(start, end, pathMap);
+
+                    if (gridPath != null) {
+                        GridLocation nextMove = gridPath.getNextMove(); // pop the current location
+                        if (nextMove != null) nextMove = gridPath.getNextMove(); // next place
+                        if (nextMove != null) {
+//                            Panko.getUI().writeText("Spider " + e.toString() + " next move would be " + nextMove.getX() + "," + nextMove.getY());
+                            if (nextMove.getX() < e.getGridX())  ((Spider) e).setPathFinderNextDirection(PankoDirection.LEFT);
+                            if (nextMove.getX() > e.getGridX())  ((Spider) e).setPathFinderNextDirection(PankoDirection.RIGHT);
+                            if (nextMove.getY() < e.getGridY())  ((Spider) e).setPathFinderNextDirection(PankoDirection.DOWN);
+                            if (nextMove.getY() > e.getGridY())  ((Spider) e).setPathFinderNextDirection(PankoDirection.UP);
+                        }
+                    }
+                }
+            }
+        }
+
+
+//        GridPathfinding gridPathfinding = new GridPathfinding();
+//
+//        // Don't block start of path where entity is
+//        double prevStartVal = pathMap.get(start.getX(), start.getY());
+//        double prevEndVal = pathMap.get(end.getX(), end.getY());
+//        pathMap.set(start.getX(), start.getY(), 1);
+//        pathMap.set(end.getX(), end.getY(), 1);
+//        GridPath gridPath = gridPathfinding.getPath(start, end, pathMap);
+//        pathMap.set(start.getX(), start.getY(), prevStartVal);
+//        pathMap.set(end.getX(), end.getY(), prevEndVal);
+
+
+
+
+    }
+
+    private GridMap createPathMap() {
+
+        GridMap pathMap = new GridMap(100, 100);
+
+        for (PankoEntity e : getRoom().getEntities()) {
+            if (e instanceof Spider) continue; // Don't let spiders block their own paths
+            if (e instanceof EmptyDirt) continue;
+            if (e instanceof Web) continue;
+            if (e instanceof WayPoint) continue;
+            if (e instanceof Mole) continue; // otherwise can't get there
+            if (e.isSolid()) {
+                int cellX = e.getGridX();
+                int cellY = e.getGridY();
+
+                pathMap.set(cellX, cellY, GridMap.WALL);
+            }
+        }
+
+        if (LD32Settings.displayPathFindingHints) {
+
+            // Remove any existing
+            for (PankoEntity e : getRoom().getEntities()) {
+                if (e instanceof PathFindingHint) {
+                    e.setHealth(0);
+                    getRoom().getDeadEntities().add(e);
+                }
+            }
+
+            for (int x = 0; x < 100; x++) {
+                for (int y = 0; y < 100; y++) {
+                    if (pathMap.get(x,y) == -1) {
+                        PathFindingHint hint = new PathFindingHint();
+                        hint.setX(x * getWidth());
+                        hint.setY(y * getHeight());
+                        getRoom().getNewEntities().add(hint);
+                        hint.setRoom(getRoom());
+                    }
+                }
+            }
+        }
+
+        return pathMap;
+
     }
 
     @Override
@@ -62,6 +166,7 @@ public class Mole extends Mob {
         if (World.poop >= LD32Settings.maxPoop) return;
 
         if (lastDig < Panko.currentTime() - maxDigInterval) {
+
             if (getFacing() != null) {
 
                 // Target point to check is the middle of me... then 1 grid size in the direction being faced
@@ -98,7 +203,9 @@ public class Mole extends Mob {
     }
 
     public void poopRequested() {
+
         if (World.poop < LD32Settings.maxPoop) return;
+
         World.poop = 0;
         Poop poop = new Poop();
         poop.setX(getX());
@@ -106,9 +213,11 @@ public class Mole extends Mob {
         poop.setRoom(getRoom());
         getRoom().getNewEntities().add(poop);
         LD32Sounds.mole_poop.play();
+
     }
 
     public void tryLoseLife() {
+
         if (invincible) return;
 
         World.numLives -= 1;

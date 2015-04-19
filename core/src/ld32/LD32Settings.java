@@ -15,4 +15,7 @@ public class LD32Settings {
     public static int startPoop = devMode ? maxPoop : 0;
 
     public static boolean nerfLava = false;
+    public static long enemyPathFindInterval = 500;
+    public static int enemyPathFindingDistance = 8;
+    public static boolean displayPathFindingHints = false;
 }

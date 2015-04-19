@@ -92,6 +92,11 @@
     <property name="entity" value="WayPoint"/>
    </properties>
   </tile>
+  <tile id="130">
+   <properties>
+    <property name="entity" value="PathFindingHint"/>
+   </properties>
+  </tile>
  </tileset>
  <layer name="objects" width="100" height="100">
   <data encoding="base64" compression="zlib">
