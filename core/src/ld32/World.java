@@ -17,6 +17,24 @@ public class World extends PankoRoomBase {
     public static int level;
     private static long lastRestart = Panko.currentTime();
     public static int poop;
+    private static int waypointX = 0;
+    private static int waypointY = 0;
+
+    public static void setWaypointX(int waypointX) {
+        World.waypointX = waypointX;
+    }
+
+    public static int getWaypointX() {
+        return waypointX;
+    }
+
+    public static void setWaypointY(int waypointY) {
+        World.waypointY = waypointY;
+    }
+
+    public static int getWaypointY() {
+        return waypointY;
+    }
 
     @Override
     public void start() {
@@ -39,6 +57,11 @@ public class World extends PankoRoomBase {
 
         mole = (Mole) firstInstanceOfClass(Mole.class);
         bringEntityToFront(mole);
+
+        if (waypointX != 0) {
+            mole.setX(waypointX);
+            mole.setY(waypointY);
+        }
         mole.update();
 
         Panko.getUI().setHelpText(PankoResource.loadText("help.txt"));
