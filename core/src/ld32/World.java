@@ -60,6 +60,13 @@ public class World extends PankoRoomBase {
             mole.setX(waypointX);
             mole.setY(waypointY);
         }
+
+        if (LD32Settings.teleportToSpecialPosition) {
+            // 37, 17 - level 2
+            mole.setX(37 * mole.getWidth());
+            mole.setY((99-17) * mole.getHeight());
+        }
+
         mole.update();
 
         Panko.getUI().setHelpText(PankoResource.loadText("help.txt"));
