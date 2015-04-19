@@ -22,7 +22,7 @@ public class LD32Settings extends PankoSettings {
         return "LD32";
     }
 
-    public static boolean devMode = true;
+    public static boolean devMode = false;
     public static boolean startWithMusic = !devMode;
     public static boolean startWithPausedHelp = !devMode;
     public static int maxLives = 5;
@@ -30,7 +30,7 @@ public class LD32Settings extends PankoSettings {
     public static int startLives = devMode ? maxLives : maxLives;
     public static int startLevel = devMode ? 1 : 1;
     public static int startPoop = devMode ? 0 : 0;
-    public static boolean teleportToSpecialPosition = devMode;
+    public static boolean teleportToSpecialPosition = false;
 
     public static boolean nerfLava = false;
     public static long enemyPathFindInterval = 500;

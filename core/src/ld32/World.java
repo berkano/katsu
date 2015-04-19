@@ -62,9 +62,14 @@ public class World extends PankoRoomBase {
         }
 
         if (LD32Settings.teleportToSpecialPosition) {
-            // 37, 17 - level 2
-            mole.setX(37 * mole.getWidth());
-            mole.setY((99-17) * mole.getHeight());
+//            int toX = 34; int toY = 43; // Level 4
+//            int toX = 19; int toY = 66; // Level 5
+//            int toX = 37; int toY = 85; // Level 6
+//            int toX = 64; int toY = 81; // Level 7
+//            int toX = 74; int toY = 59; // Level 8
+            int toX = 80; int toY = 27; // Win Level
+            mole.setX(toX * mole.getWidth());
+            mole.setY((99-toY) * mole.getHeight());
         }
 
         mole.update();
