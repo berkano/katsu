@@ -27,6 +27,7 @@ public class Panko {
     private static HashMap<Integer, Boolean> keysDown = new HashMap<Integer, Boolean>();
     public static Random random = new Random();
     private static PankoUI ui;
+    private static HashMap<String, Long> explanations = new HashMap<String, Long>();
 
     public static void exitWithError(String message) {
         // TODO: show alert box in production mode
@@ -225,6 +226,16 @@ public class Panko {
     }
 
     public static void breakpoint() {
+
+    }
+
+    public static void explain(String text) {
+
+        Long lastExplainedThis = explanations.get(text);
+        if (lastExplainedThis == null || lastExplainedThis < currentTime() - 2000) {
+            getUI().writeText(text);
+            explanations.put(text, currentTime());
+        }
 
     }
 }

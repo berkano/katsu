@@ -166,7 +166,10 @@ public class Mole extends Mob {
 
     public void digRequested() {
 
-        if (World.poop >= LD32Settings.maxPoop) return;
+        if (World.poop >= LD32Settings.maxPoop) {
+            Panko.explain("Can't dig no more, need to poop! (Press P then move away quick...)");
+            return;
+        }
 
         if (lastDig < Panko.currentTime() - maxDigInterval) {
 

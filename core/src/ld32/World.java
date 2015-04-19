@@ -53,6 +53,7 @@ public class World extends PankoRoomBase {
 
         bringAllInstancesToFront(MobKillingBlock.class);
         bringAllInstancesToFront(Mob.class);
+        bringAllInstancesToFront(WayPoint.class);
 
         mole = (Mole) firstInstanceOfClass(Mole.class);
         bringEntityToFront(mole);

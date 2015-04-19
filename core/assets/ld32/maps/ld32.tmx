@@ -97,10 +97,20 @@
     <property name="entity" value="PathFindingHint"/>
    </properties>
   </tile>
+  <tile id="163">
+   <properties>
+    <property name="entity" value="NPCMole"/>
+   </properties>
+  </tile>
+  <tile id="195">
+   <properties>
+    <property name="entity" value="Home"/>
+   </properties>
+  </tile>
  </tileset>
  <layer name="objects" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt21FSgzAURmG0bsTqRqjdSF2KK3c6U2ZivAkJvSE/cB7OWBkhzf2o+OJtGIYbSfVF3cJDKzy0wkMrPHy7Gnl6XDPr1K61dD8t1vFcMzzn3ajmepZHfP3x8fUSFK7lORdrP97rxHNMrXkpLHV+zT6m92J5nINCD69Zpe7Hkr14uJSuV2JSYxHvw9q75RGfb3mcou+95+DpX/oZVKjG4/R4PQ7/jXIz8nKw7rHaz2LveS/1eEnM/v760/CIZ7TWDFr8PlH0mGYf/7xlFF5rcllzD3uxWOIRHn9NeFA7j3s/wev4GTKFxzoe1jnxcTzamkzH479pUx4fCY9xSD9rqMwinKk1x1fj+BhcK7Z4w6Oph3U89hiNeu9zK3l53Pse/j77e+9ti+U8UhapWc+dS74e45D/HYTH+h7T8/wZj3Phzx2xGo+52ebOxWC5xzP13s/WazlTPhNaHtTOw+NePztfb6+VeHiEgZYHtfdI3fN8Fvp4UFuLliY8z7U8aB0P7nUtD5y24UF4bL2UByZ4EB5K5SwwwUM57/9bW2rSew69K/0fQjz26TFn0nseRwwLrfDQCg+t8NApZYEHHoSHUjkLPPA4elhohYdWeGiFh1Y5D0zwOHp4aIWHVnhohYdWeOiFh1Z4aJXzwASPo4eFVnhohYdWeGiFh1Z4aJXzwASPo4eHVnhohYdWeGiFh1Z4aIWFVnhohYdWeGiFh1Z4aIWHVnhohYdeezXZ6n7W9vBeL3e9Hia5NUreQ+l799h37TXm3v/S67WwyV1/jRntNWZCRFTfLz+bqd0=
+   eJzt21FO4zAURuEMzEYos5EAG4GlsBaWwsJQJSx5zL2uHW7iP8l5OJpO1MTx/VrCC6/TNL2SVM80LDy0wkMrPLTCI7YXo0iPl8o6vWst3c8a60SumZ/zYNRzPcujvP78/e9TVr5W5Fys/USvU87RW/OpMe/8nn2ke7E8Llm5R9SsvM9jy14iXFrXazHpsSj3Ye3d8ijPtzzui/9HzyHSv/U7qFCPx/3363n6aVSbUZSD9Rnr/S6OnvdSjz/O7K+v/xke5Yy2msEaP08UPdLsy/dbRvm1ksuWeziKxRKP/Pid40HreVx7z16Xz5AUHtt4WOeUx/FY1yQdL3+n9TweHY958p811GaRz9Sa451xfM6uVVr8xWNVD+t46TEbjd7nXoryuPY2/f/sH723PVbz8Cy8Wd86l2I95qn+MwiP7T3S8/w3HpfG952xHo9bs62di8Fyj7K58X29ltTmEXVtvhNaHhTvMTstWevivKa6SWnxYXh8/NKD+j08h/R69H0fNc8jzf3TcEke3mee70K8R25iWdD6FpZJVDzPtTxoGw8+61oeOO3Dg/DYe54HJngQHkrVLDDBQ7nov1tbajJ6DqNr/RtCPI7pcctk9DzOGBZa4aEVHlrhoZNngQcehIdSNQs88Dh7WGiFh1Z4aIWHVjUPTPA4e3hohYdWeGiFh1Z46IWHVnhoVfPABI+zh4VWeGiFh1Z4aIWHVnhoVfPABI+zh4dWeGiFh1Z4aIWHVnhohYVWeGiFh1Z4aIWHVnhohYdWeGiFh15HNdnrfrb2iF6vdr0RJrU1Wu6h9d4j9t17jVv3v/R6a9jUrr/FjI4aMyEi6u8LeyewSw==
   </data>
  </layer>
  <layer name="invisible" width="100" height="100">
