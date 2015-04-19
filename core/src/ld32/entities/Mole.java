@@ -1,6 +1,7 @@
 package ld32.entities;
 
 import ld32.LD32Sounds;
+import ld32.World;
 import panko.Panko;
 import panko.PankoEntity;
 
@@ -56,6 +57,9 @@ public class Mole extends Mob {
     }
 
     public void digRequested() {
+
+        if (World.poop >= 10) return;
+
         if (lastDig < Panko.currentTime() - maxDigInterval) {
             if (getFacing() != null) {
 
@@ -73,6 +77,8 @@ public class Mole extends Mob {
                         e.setHealth(0);
                         Panko.queueEntityToTop(this);
                         LD32Sounds.mole_dig.play();
+                        World.poop++;
+                        if (World.poop > 10) World.poop = 0;
                     }
                 }
 
@@ -88,5 +94,26 @@ public class Mole extends Mob {
 
     public void setInvincibleUntil(long invincibleUntil) {
         this.invincibleUntil = invincibleUntil;
+    }
+
+    public void poopRequested() {
+        if (World.poop < 10) return;
+        World.poop = 0;
+        Poop poop = new Poop();
+        poop.setX(getX());
+        poop.setY(getY());
+        poop.setRoom(getRoom());
+        getRoom().getNewEntities().add(poop);
+        LD32Sounds.mole_poop.play();
+    }
+
+    public void tryLoseLife() {
+        if (invincible) return;
+
+        World.numLives -= 1;
+        invincible = true;
+        setInvincibleUntil(Panko.currentTime() + 5000);
+        LD32Sounds.mole_die.play();
+
     }
 }

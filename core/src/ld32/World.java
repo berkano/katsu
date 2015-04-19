@@ -15,6 +15,7 @@ public class World extends PankoRoomBase {
     public static int numLives;
     public static int level;
     private static long lastRestart = Panko.currentTime();
+    public static int poop;
 
     @Override
     public void start() {
@@ -22,6 +23,7 @@ public class World extends PankoRoomBase {
 
         numLives = LD32Settings.startLives;
         level = LD32Settings.startLevel;
+        poop = LD32Settings.startPoop;
         
         String mapName = "ld32";
         PankoTmxHelper.addEntitiesToRoomFromMap(mapName, this);
@@ -71,6 +73,7 @@ public class World extends PankoRoomBase {
         if (Panko.isKeyDown(Input.Keys.A)) mole.moveRequested(PankoDirection.LEFT);
         if (Panko.isKeyDown(Input.Keys.D)) mole.moveRequested(PankoDirection.RIGHT);
         if (Panko.isKeyDown(Input.Keys.SPACE)) mole.digRequested();
+        if (Panko.isKeyDown(Input.Keys.ENTER)) mole.poopRequested();
 
         updateUITopText();
 
@@ -84,7 +87,7 @@ public class World extends PankoRoomBase {
 
     private void updateUITopText() {
 
-        String topText = "Level: " + level + "  Lives: " + numLives;
+        String topText = "Level: " + level + "  Lives: " + numLives + " Poopmeter: " + poop + "/10";
         Panko.getUI().setTopText(topText);
 
     }

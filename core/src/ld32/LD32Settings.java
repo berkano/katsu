@@ -10,5 +10,6 @@ public class LD32Settings {
     public static boolean startWithPausedHelp = !devMode;
     public static int startLives = devMode ? 1 : 5;
     public static int startLevel = devMode ? 1 : 1;
+    public static int startPoop = devMode ? 10 : 0;
 
 }

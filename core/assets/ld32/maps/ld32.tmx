@@ -82,6 +82,11 @@
     <property name="entity" value="InvisibleObstacle"/>
    </properties>
   </tile>
+  <tile id="128">
+   <properties>
+    <property name="entity" value="Poop"/>
+   </properties>
+  </tile>
  </tileset>
  <layer name="objects" width="100" height="100">
   <data encoding="base64" compression="zlib">
@@ -91,6 +96,11 @@
  <layer name="invisible" width="100" height="100">
   <data encoding="base64" compression="zlib">
    eJzt1FEKgCAMAFAP2/3P0G9ExWRbUrwHfgTqdJuNAQC8aXsY3ftXx4rEqxa9X0UeMveYXZfNVTReRU066ztzhvN3R29H5mR7P3vulXU4eqMv7vZeVf+KNV939RY7Y1X93/9KDgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACgzg6K7Sat
+  </data>
+ </layer>
+ <layer name="no-populate" width="100" height="100" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztzkd1AgAURcFPwAgBIxQjCRihGKEYoRihCOGtY+BnMXPO3d8qAAAAAP4apK80TKPmF6rG6TtN0rT5hapZmqdFWja/UPWTftMqrZtfqNqkbdqlffMLVYd0TKd0bn6h6pKu6ZbuzS9UPdIzvdK7+QUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/qMPuhkOUQ==
   </data>
  </layer>
 </map>

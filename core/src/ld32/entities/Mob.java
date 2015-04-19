@@ -1,6 +1,7 @@
 package ld32.entities;
 
 import panko.PankoDirection;
+import panko.PankoEntity;
 import panko.PankoEntityBase;
 
 /**
@@ -13,6 +14,23 @@ public class Mob extends SolidEntity {
     public Mob() {
         super();
         setMaxMoveInterval(1000);
+    }
+
+    @Override
+    public void update() {
+        super.update();
+        // Check if we are on a killing block
+        for (PankoEntity e : getRoom().getEntities()) {
+            if (e instanceof MobKillingBlock) {
+                if (e.overlaps(this)) {
+                    if (this instanceof Mole) {
+                        ((Mole) this).tryLoseLife();
+                    } else {
+                        setHealth(0);
+                    }
+                }
+            }
+        }
     }
 
     public void moveRequested(PankoDirection direction) {

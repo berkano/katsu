@@ -21,12 +21,7 @@ public class Spider extends Mob {
         super.onCollide(other);
         if (other instanceof Mole) {
             Mole mole = (Mole) other;
-            if (mole.invincible == false) {
-                World.numLives -= 1;
-                mole.invincible = true;
-                mole.setInvincibleUntil(Panko.currentTime() + 5000);
-                LD32Sounds.mole_die.play();
-            }
+            mole.tryLoseLife();
         }
     }
 }
