@@ -1,5 +1,6 @@
 package ld32.entities;
 
+import ld32.LD32Sounds;
 import ld32.World;
 import panko.Panko;
 import panko.PankoEntity;
@@ -18,6 +19,7 @@ public class WayPoint extends SolidEntity {
                 World.setWaypointY(getY());
                 getRoom().getDeadEntities().add(this);
                 Panko.getUI().writeText("Waypoint reached!");
+                LD32Sounds.waypoint.play();
             }
         }
         super.onCollide(other);

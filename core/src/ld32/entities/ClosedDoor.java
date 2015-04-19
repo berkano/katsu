@@ -1,5 +1,6 @@
 package ld32.entities;
 
+import ld32.LD32Sounds;
 import panko.Panko;
 import panko.PankoEntity;
 import panko.PankoEntityBase;
@@ -55,6 +56,7 @@ public class ClosedDoor extends SolidEntity {
             getRoom().getNewEntities().add(openDoor);
             openDoor.setRoom(getRoom());
             Panko.getUI().writeText("Level "+myLevel + " complete! Door to next level is open.");
+            LD32Sounds.complete_level.play();
         }
 
     }

@@ -17,7 +17,8 @@ public class Worm extends Mob {
             if (World.numLives < 5 && this.getHealth() > 0) {
                 World.numLives++;
                 this.setHealth(0);
-                LD32Sounds.mole_eat.play();
+//                LD32Sounds.mole_eat.play();
+                LD32Sounds.eat_worm.play();
             }
         }
     }

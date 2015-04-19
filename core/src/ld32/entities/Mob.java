@@ -1,5 +1,6 @@
 package ld32.entities;
 
+import ld32.LD32Sounds;
 import panko.PankoDirection;
 import panko.PankoEntity;
 import panko.PankoEntityBase;
@@ -27,6 +28,9 @@ public class Mob extends SolidEntity {
                         ((Mole) this).tryLoseLife();
                     } else {
                         setHealth(0);
+                        if (this instanceof Spider) {
+                            LD32Sounds.kill_enemy.play();
+                        }
                     }
                 }
             }

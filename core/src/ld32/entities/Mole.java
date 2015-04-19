@@ -218,7 +218,7 @@ public class Mole extends Mob {
         poop.setY(getY());
         poop.setRoom(getRoom());
         getRoom().getNewEntities().add(poop);
-        LD32Sounds.mole_poop.play();
+        LD32Sounds.poop.play();
 
     }
 
@@ -229,7 +229,7 @@ public class Mole extends Mob {
         World.numLives -= 1;
         invincible = true;
         setInvincibleUntil(Panko.currentTime() + 5000);
-        LD32Sounds.mole_die.play();
+        LD32Sounds.hurt.play();
 
     }
 }
