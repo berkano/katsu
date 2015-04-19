@@ -51,8 +51,10 @@ public class World extends PankoRoomBase {
         Panko.getMainCamera().viewportWidth = 1024 / 4;
 
         createInstancesAtAll(Mob.class, EmptyDirt.class);
+        createInstancesAtAll(MobKillingBlock.class, EmptyDirt.class);
 
-        bringAllInstancesToFront(MobKillingBlock.class);
+
+        bringAllInstancesToFront(MobKillingBlock.class);d
         bringAllInstancesToFront(Mob.class);
 
         mole = (Mole) firstInstanceOfClass(Mole.class);

@@ -108,11 +108,14 @@ public class Mole extends Mob {
             if (e instanceof Web) continue;
             if (e instanceof WayPoint) continue;
             if (e instanceof Mole) continue; // otherwise can't get there
-            if (e.isSolid()) {
+            if (e.isSolid() || (e instanceof MobKillingBlock)) {
+
                 int cellX = e.getGridX();
                 int cellY = e.getGridY();
 
-                pathMap.set(cellX, cellY, GridMap.WALL);
+                if (cellX >= 0 && cellY >= 0 && cellX <= 100 && cellY <= 100) {
+                    pathMap.set(cellX, cellY, GridMap.WALL);
+                }
             }
         }
 
