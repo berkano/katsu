@@ -1,5 +1,6 @@
 package ld32.entities;
 
+import ld32.LD32Settings;
 import ld32.LD32Sounds;
 import panko.Panko;
 import panko.PankoEntity;
@@ -27,7 +28,9 @@ public class Poop extends PankoEntityBase {
                     for (int dy = -1; dy <= 1; dy++) {
 
                         // Nerf for now
-                        if (dx != 0 || dy != 0) continue;
+                        if (LD32Settings.nerfLava) {
+                            if (dx != 0 || dy != 0) continue;
+                        }
 
                         // Only create lava if there is empty dirt underneath
                         ArrayList<PankoEntity> entities = getRoom().findEntitiesAtPoint(getX() + getWidth() / 2, getY() + getHeight()/2);

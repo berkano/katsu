@@ -1,7 +1,10 @@
 package ld32.entities;
 
 import panko.Panko;
+import panko.PankoEntity;
 import panko.PankoEntityBase;
+
+import java.util.ArrayList;
 
 /**
  * Created by shaun on 18/04/2015.
@@ -42,7 +45,7 @@ public class ClosedDoor extends SolidEntity {
             Panko.getUI().writeText("err: closed door @ "+getGridX()+","+getGridY()+" could not determine level");
         }
 
-        levelComplete = true;
+        levelComplete = noEnemiesInBoundingBox(topX, topY, bottomX, bottomY);
         if (levelComplete && getHealth() >0) {
             setHealth(0);
             getRoom().getDeadEntities().add(this);
@@ -51,8 +54,21 @@ public class ClosedDoor extends SolidEntity {
             openDoor.setY(getY());
             getRoom().getNewEntities().add(openDoor);
             openDoor.setRoom(getRoom());
-            Panko.getUI().writeText("Level "+myLevel + "complete!");
+            Panko.getUI().writeText("Level "+myLevel + " complete! Door to next level is open.");
         }
 
+    }
+
+    private boolean noEnemiesInBoundingBox(int topX, int topY, int bottomX, int bottomY) {
+        // Careful since coords are flipped
+        for (int x = topX; x <= bottomX; x++) {
+            for (int y = bottomY; y <= topY; y++) {
+                ArrayList<PankoEntity> entities = getRoom().findEntitiesAtPoint(x * getWidth(), y * getHeight());
+                for (PankoEntity e : entities) {
+                    if (e instanceof Spider) return false;
+                }
+            }
+        }
+        return true;
     }
 }

@@ -1,5 +1,6 @@
 package ld32.entities;
 
+import ld32.LD32Settings;
 import ld32.LD32Sounds;
 import ld32.World;
 import panko.Panko;
@@ -58,7 +59,7 @@ public class Mole extends Mob {
 
     public void digRequested() {
 
-        if (World.poop >= 10) return;
+        if (World.poop >= LD32Settings.maxPoop) return;
 
         if (lastDig < Panko.currentTime() - maxDigInterval) {
             if (getFacing() != null) {
@@ -78,7 +79,7 @@ public class Mole extends Mob {
                         Panko.queueEntityToTop(this);
                         LD32Sounds.mole_dig.play();
                         World.poop++;
-                        if (World.poop > 10) World.poop = 0;
+                        if (World.poop > LD32Settings.maxPoop) World.poop = LD32Settings.maxPoop;
                     }
                 }
 
@@ -97,7 +98,7 @@ public class Mole extends Mob {
     }
 
     public void poopRequested() {
-        if (World.poop < 10) return;
+        if (World.poop < LD32Settings.maxPoop) return;
         World.poop = 0;
         Poop poop = new Poop();
         poop.setX(getX());

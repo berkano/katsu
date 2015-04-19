@@ -89,7 +89,7 @@ public class World extends PankoRoomBase {
 
     private void updateUITopText() {
 
-        String topText = "Level: " + level + "  Lives: " + numLives + " Poopmeter: " + poop + "/10";
+        String topText = "Level: " + level + "  Lives: " + numLives + " Poopmeter: " + poop + "/" + LD32Settings.maxPoop;
         Panko.getUI().setTopText(topText);
 
     }
