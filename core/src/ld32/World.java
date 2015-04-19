@@ -54,7 +54,7 @@ public class World extends PankoRoomBase {
         createInstancesAtAll(MobKillingBlock.class, EmptyDirt.class);
 
 
-        bringAllInstancesToFront(MobKillingBlock.class);d
+        bringAllInstancesToFront(MobKillingBlock.class);
         bringAllInstancesToFront(Mob.class);
 
         mole = (Mole) firstInstanceOfClass(Mole.class);
