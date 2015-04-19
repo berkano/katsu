@@ -124,7 +124,7 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
             Panko.exit();
         }
 
-        if (keycode == Input.Keys.P) {
+        if (keycode == Panko.getSettings().getPauseKey()) {
             if (gamePaused()) {
                 unPauseGame();
             } else {
@@ -196,7 +196,8 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
     }
 
     public void pauseGame() {
-        Panko.getUI().writeText("@CYAN Game is paused. Press P to continue.");
+        String key = Input.Keys.toString(Panko.getSettings().getPauseKey());
+        Panko.getUI().writeText("@CYAN Game is paused. Press "+key+" to continue.");
         this.paused = true;
     }
 

@@ -1,5 +1,7 @@
 package panko;
 
+import com.badlogic.gdx.Input;
+
 /**
  * Created by shaun on 16/11/2014.
  */
@@ -10,6 +12,8 @@ public class PankoSettings {
     private int targetFrameRate = 30;
     private boolean vsync = false;
     private int gridSize = 16;
+
+    private int pauseKey = Input.Keys.P;
 
     public int getHres() {
         return hres;
@@ -61,5 +65,13 @@ public class PankoSettings {
 
     public String getGameDescription() {
         return "Description";
+    }
+
+    public int getPauseKey() {
+        return pauseKey;
+    }
+
+    public void setPauseKey(int pauseKey) {
+        this.pauseKey = pauseKey;
     }
 }

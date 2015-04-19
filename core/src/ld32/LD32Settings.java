@@ -1,9 +1,12 @@
 package ld32;
 
+import com.badlogic.gdx.Input;
+import panko.PankoSettings;
+
 /**
  * Created by shaun on 18/04/2015.
  */
-public class LD32Settings {
+public class LD32Settings extends PankoSettings {
 
     public static boolean devMode = true;
     public static boolean startWithMusic = !devMode;
@@ -18,4 +21,9 @@ public class LD32Settings {
     public static long enemyPathFindInterval = 500;
     public static int enemyPathFindingDistance = 8;
     public static boolean displayPathFindingHints = false;
+
+    @Override
+    public int getPauseKey() {
+        return Input.Keys.ENTER;
+    }
 }

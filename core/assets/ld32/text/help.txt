@@ -1,8 +1,13 @@
+~~ Moleificent ~~
+
 WASD: move
-SPACE: dig/eat
-P: pause
-H: help
+SPACE: eat dirt (once you've eaten 8 dirt blocks, u have to poop)
+P: poop (warning: explosive)
+ENTER: pause
+H: show this help
 M: music
 
 Kill spiders!
-Eat worms!
+Avoid moving stuff!
+Eat worms for lives!
+Find your way back to the colony!

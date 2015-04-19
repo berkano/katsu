@@ -103,7 +103,7 @@ public class World extends PankoRoomBase {
         if (Panko.isKeyDown(Input.Keys.A)) mole.moveRequested(PankoDirection.LEFT);
         if (Panko.isKeyDown(Input.Keys.D)) mole.moveRequested(PankoDirection.RIGHT);
         if (Panko.isKeyDown(Input.Keys.SPACE)) mole.digRequested();
-        if (Panko.isKeyDown(Input.Keys.ENTER)) mole.poopRequested();
+        if (Panko.isKeyDown(Input.Keys.P)) mole.poopRequested();
 
         updateUITopText();
 
