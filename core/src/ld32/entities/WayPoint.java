@@ -18,7 +18,7 @@ public class WayPoint extends SolidEntity {
                 World.setWaypointX(getX());
                 World.setWaypointY(getY());
                 getRoom().getDeadEntities().add(this);
-                Panko.getUI().writeText("Waypoint reached!");
+                Panko.getUI().writeText("Waypoint reached! Restarting the level will continue from here.");
                 LD32Sounds.waypoint.play();
             }
         }
