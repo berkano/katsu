@@ -230,6 +230,7 @@ public class Mole extends Mob {
         invincible = true;
         setInvincibleUntil(Panko.currentTime() + 5000);
         LD32Sounds.hurt.play();
+        Panko.explain("Life lost! :-(");
 
     }
 }

@@ -34,6 +34,7 @@ public class LD32Sounds {
     }
 
     public static void playMusic() {
+        stopAllMusic();
         music1.loop();
         musicPlaying = true;
     }

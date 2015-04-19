@@ -1,12 +1,16 @@
-@CYAN ~~ Noel and the Spiders ~~
+@CYAN ** Noel and the Spiders **
 
 Kill spiders! Eat worms!
 Help Noel find his way back to the colony.
 
+@PINK Kill all spiders on each level using your special weapon
+@PINK and the door to the next level will open.
+
+** Controls **
 @YELLOW WASD: move
 @YELLOW SPACE: eat dirt (until you are full up)
 @YELLOW and then... P: poop
 
 @GREEN Also: ENTER to pause; H: show this help;
-@GREEN M: toggle music.
+@GREEN M: toggle music; F: fullscreen. R: restart level.
 

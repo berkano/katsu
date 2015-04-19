@@ -70,7 +70,7 @@ public class World extends PankoRoomBase {
             Panko.getUI().setShowingHelp(true);
         }
 
-        if (LD32Settings.startWithMusic) LD32Sounds.toggleMusic();
+        if (LD32Settings.startWithMusic) LD32Sounds.playMusic();
 
         Panko.getUI().clearText();
         updateUITopText();
