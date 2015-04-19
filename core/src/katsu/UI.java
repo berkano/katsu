@@ -41,7 +41,7 @@ public class UI {
     }
 
     public void loadFont() {
-        font = Util.loadBitmapFont("fonts/minecraftia-16px.fnt", "fonts/minecraftia-16px.png");
+        font = Util.loadBitmapFont("fonts/font.fnt", "fonts/font.png");
         font.setColor(1f, 1f, 1f, 1f);
         font.setScale(1, -1);
     }

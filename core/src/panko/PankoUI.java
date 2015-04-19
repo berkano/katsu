@@ -51,7 +51,7 @@ public class PankoUI {
     }
 
     public void loadFont() {
-        font = PankoResource.loadBitmapFont("fonts/minecraftia-16px.fnt", "fonts/minecraftia-16px.png");
+        font = PankoResource.loadBitmapFont("fonts/font.fnt", "fonts/font.png");
         font.setColor(1f, 1f, 1f, 1f);
         font.setScale(1, -1);
     }
