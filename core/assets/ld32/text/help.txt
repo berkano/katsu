@@ -14,3 +14,5 @@ Help Noel find his way back to the colony.
 @GREEN Also: ENTER to pause; H: show this help;
 @GREEN M: toggle music; F: fullscreen. R: restart level.
 
+Enjoy! -berkano, LD32
+
