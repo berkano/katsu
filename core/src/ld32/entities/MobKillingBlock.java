@@ -10,6 +10,11 @@ import java.util.ArrayList;
  */
 public class MobKillingBlock extends RotatingTerrain {
 
+    public MobKillingBlock() {
+        super();
+        setzLayer(2);
+    }
+
     private long lastFallTryMillis = K.currentTime();
 
     @Override

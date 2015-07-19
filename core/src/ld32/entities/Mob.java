@@ -14,6 +14,7 @@ public class Mob extends SolidEntity {
     public Mob() {
         super();
         setMaxMoveInterval(1000);
+        setzLayer(3);
     }
 
     @Override

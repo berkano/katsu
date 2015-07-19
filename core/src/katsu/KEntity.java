@@ -75,4 +75,6 @@ public interface KEntity {
     void createInPlace(Class clazz);
 
     boolean canCollideWith(Class clazz);
+
+    int getzLayer();
 }

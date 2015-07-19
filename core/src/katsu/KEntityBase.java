@@ -35,6 +35,7 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
     private int health = 100;
     private int maxHealth = 100;
     private KDirection pathFinderNextDirection;
+    private int zLayer = 0;
 
     public int getSpriteRotation(){
         return this.spriteRotation;
@@ -402,5 +403,14 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
 
     public void setPathFinderNextDirection(KDirection pathFinderNextDirection) {
         this.pathFinderNextDirection = pathFinderNextDirection;
+    }
+
+    @Override
+    public int getzLayer() {
+        return zLayer;
+    }
+
+    public void setzLayer(int zLayer) {
+        this.zLayer = zLayer;
     }
 }

@@ -10,6 +10,11 @@ import katsu.KEntity;
  */
 public class WayPoint extends SolidEntity {
 
+    public WayPoint() {
+        super();
+        setzLayer(1);
+    }
+
     @Override
     public void onCollide(KEntity other) {
         if (other instanceof Mole) {

@@ -4,6 +4,8 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Rectangle;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -73,6 +75,15 @@ public abstract class KRoomBase implements KRoom, InputProcessor {
         }
 
         newEntities.clear();
+
+        // render lowest zLayer first
+        Collections.sort(entities, new Comparator<KEntity>() {
+            public int compare(KEntity o1, KEntity o2) {
+                if (o1.getzLayer() == o2.getzLayer())
+                    return 0;
+                return o1.getzLayer() < o2.getzLayer() ? -1 : 1;
+            }
+        });
 
         for (KEntity e : entities) {
             e.render();
