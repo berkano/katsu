@@ -12,12 +12,12 @@ import java.util.HashMap;
 /**
  * Created by shaun on 16/11/2014.
  */
-public class PankoResource {
+public class KResource {
 
     private static HashMap<String, Texture> textureCache = new HashMap<String, Texture>();
 
     public static String relativeResource(String resourcePath) {
-        String resourceRoot = Panko.getImplementation().getResourceRoot();
+        String resourceRoot = K.getImplementation().getResourceRoot();
         return resourceRoot + "/" + resourcePath;
     }
 

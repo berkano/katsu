@@ -2,22 +2,22 @@ package ld32.entities;
 
 import ld32.LD32Settings;
 import ld32.LD32Sounds;
-import katsu.Panko;
-import katsu.PankoEntity;
-import katsu.PankoEntityBase;
+import katsu.K;
+import katsu.KEntity;
+import katsu.KEntityBase;
 
 import java.util.ArrayList;
 
 /**
  * Created by shaun on 18/04/2015.
  */
-public class Poop extends PankoEntityBase {
+public class Poop extends KEntityBase {
 
-    private long start = Panko.currentTime();
+    private long start = K.currentTime();
 
     @Override
     public void update() {
-        long ageMillis = Panko.currentTime() - start;
+        long ageMillis = K.currentTime() - start;
 
         if (ageMillis > 5000) {
             if (getHealth() > 0) {
@@ -33,9 +33,9 @@ public class Poop extends PankoEntityBase {
                         }
 
                         // Only create lava if there is empty dirt underneath
-                        ArrayList<PankoEntity> entities = getRoom().findEntitiesAtPoint(getX() + getWidth() / 2, getY() + getHeight()/2);
+                        ArrayList<KEntity> entities = getRoom().findEntitiesAtPoint(getX() + getWidth() / 2, getY() + getHeight()/2);
                         boolean canCreate = true;
-                        for (PankoEntity e : entities) {
+                        for (KEntity e : entities) {
                             if (!(e instanceof EmptyDirt) && !(e instanceof Mob) && !(e instanceof Poop)) {
                                 canCreate = false;
                             }
@@ -46,7 +46,7 @@ public class Poop extends PankoEntityBase {
                             lava.setX(getX() + dx * getHeight());
                             lava.setY(getY() + dy * getHeight());
                             lava.setRoom(getRoom());
-                            Panko.queueEntityToTop(lava);
+                            K.queueEntityToTop(lava);
                             getRoom().getNewEntities().add(lava);
                         }
                     }

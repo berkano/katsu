@@ -2,14 +2,14 @@ package net.berkanoid.panko.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import katsu.Panko;
-import katsu.PankoGame;
-import katsu.PankoGameRunner;
-import katsu.PankoSettings;
+import katsu.K;
+import katsu.KGame;
+import katsu.KGameRunner;
+import katsu.KSettings;
 
 public class PankoDesktopLauncher {
 
-        public static void launch(PankoGame implementation, PankoSettings settings) {
+        public static void launch(KGame implementation, KSettings settings) {
 
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 
@@ -21,9 +21,9 @@ public class PankoDesktopLauncher {
         config.x = 0;
         config.y = 0;
 
-        Panko.setImplementation(implementation);
-        Panko.setSettings(settings);
+        K.setImplementation(implementation);
+        K.setSettings(settings);
 
-        new LwjglApplication(new PankoGameRunner(), config);
+        new LwjglApplication(new KGameRunner(), config);
 	}
 }

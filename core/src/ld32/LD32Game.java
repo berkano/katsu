@@ -1,8 +1,8 @@
 package ld32;
 
 import ld32.entities.*;
-import katsu.PankoGame;
-import katsu.PankoRoom;
+import katsu.KGame;
+import katsu.KRoom;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,12 +10,12 @@ import java.util.HashMap;
 /**
  * Created by shaun on 16/11/2014.
  */
-public class LD32Game implements PankoGame {
+public class LD32Game implements KGame {
 
     @Override
-    public ArrayList<PankoRoom> getRooms() {
+    public ArrayList<KRoom> getRooms() {
 
-        ArrayList<PankoRoom> rooms = new ArrayList<PankoRoom>();
+        ArrayList<KRoom> rooms = new ArrayList<KRoom>();
         rooms.add(new World());
         return rooms;
 

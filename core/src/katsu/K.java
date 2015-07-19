@@ -12,7 +12,7 @@ import java.util.Random;
 /**
  * Created by shaun on 16/11/2014.
  */
-public class Panko {
+public class K {
 
     private static SpriteBatch activeSpriteBatch;
     private static ShapeRenderer activeShapeRenderer;
@@ -20,18 +20,18 @@ public class Panko {
     private static ShapeRenderer uiShapeRenderer;
     private static Camera uiCamera;
     private static Camera mainCamera;
-    private static PankoGameRunner runner;
-    private static PankoGame implementation;
+    private static KGameRunner runner;
+    private static KGame implementation;
     private static InputMultiplexer inputMultiplexer = new InputMultiplexer();
-    private static PankoSettings settings;
+    private static KSettings settings;
     private static HashMap<Integer, Boolean> keysDown = new HashMap<Integer, Boolean>();
     public static Random random = new Random();
-    private static PankoUI ui;
+    private static KUI ui;
     private static HashMap<String, Long> explanations = new HashMap<String, Long>();
 
     public static void exitWithError(String message) {
         // TODO: show alert box in production mode
-        PankoLog.fatal(message);
+        KLog.fatal(message);
         exit();
         throw new RuntimeException("Panko game runner closed due to error: "+message);
     }
@@ -41,7 +41,7 @@ public class Panko {
     }
 
     public static void exit() {
-        PankoLog.debug("Panko game runner exiting by request.");
+        KLog.debug("Panko game runner exiting by request.");
         Gdx.app.exit();
     }
 
@@ -50,23 +50,23 @@ public class Panko {
     }
 
     public static void setActiveSpriteBatch(SpriteBatch activeSpriteBatch) {
-        Panko.activeSpriteBatch = activeSpriteBatch;
+        K.activeSpriteBatch = activeSpriteBatch;
     }
 
-    public static void setRunner(PankoGameRunner runner) {
-        Panko.runner = runner;
+    public static void setRunner(KGameRunner runner) {
+        K.runner = runner;
     }
 
-    public static PankoGameRunner getRunner() {
+    public static KGameRunner getRunner() {
         return runner;
     }
 
-    public static PankoGame getImplementation() {
+    public static KGame getImplementation() {
         return implementation;
     }
 
-    public static void setImplementation(PankoGame implementation) {
-        Panko.implementation = implementation;
+    public static void setImplementation(KGame implementation) {
+        K.implementation = implementation;
     }
 
     public static InputMultiplexer getInputMultiplexer() {
@@ -74,18 +74,18 @@ public class Panko {
     }
 
     public static void setInputMultiplexer(InputMultiplexer inputMultiplexer) {
-        Panko.inputMultiplexer = inputMultiplexer;
+        K.inputMultiplexer = inputMultiplexer;
     }
 
     public static int getGridSize() {
         return settings.getGridSize();
     }
 
-    public static void setSettings(PankoSettings settings) {
-        Panko.settings = settings;
+    public static void setSettings(KSettings settings) {
+        K.settings = settings;
     }
 
-    public static PankoSettings getSettings() {
+    public static KSettings getSettings() {
         return settings;
     }
 
@@ -109,13 +109,13 @@ public class Panko {
     }
 
 
-    public static PankoEntity addEntityToRoom(PankoRoom room, PankoEntity entity) {
+    public static KEntity addEntityToRoom(KRoom room, KEntity entity) {
         room.getEntities().add(entity);
         entity.setRoom(room);
         return entity;
     }
 
-    public static PankoEntity queueEntityToRoom(PankoRoom room, PankoEntity entity) {
+    public static KEntity queueEntityToRoom(KRoom room, KEntity entity) {
         room.getNewEntities().add(entity);
         entity.setRoom(room);
         return entity;
@@ -127,22 +127,22 @@ public class Panko {
     }
 
     public static void setMainCamera(Camera mainCamera) {
-        Panko.mainCamera = mainCamera;
+        K.mainCamera = mainCamera;
     }
 
-    public static void queueEntityToTop(PankoRoom room, PankoEntity entity) {
+    public static void queueEntityToTop(KRoom room, KEntity entity) {
         room.getOnTopQueue().add(entity);
     }
 
-    public static void deleteEntitiesOfClassFromRoom(PankoRoom room, Class clazz) {
-        for (PankoEntity e : room.getEntities()) {
+    public static void deleteEntitiesOfClassFromRoom(KRoom room, Class clazz) {
+        for (KEntity e : room.getEntities()) {
             if (clazz.isInstance(e)) {
                 queueEntityToRemove(room, e);
             }
         }
     }
 
-    private static void queueEntityToRemove(PankoRoom room, PankoEntity e) {
+    private static void queueEntityToRemove(KRoom room, KEntity e) {
         room.getDeadEntities().add(e);
     }
 
@@ -151,30 +151,30 @@ public class Panko {
     }
 
     public static void setActiveShapeRenderer(ShapeRenderer activeShapeRenderer) {
-        Panko.activeShapeRenderer = activeShapeRenderer;
+        K.activeShapeRenderer = activeShapeRenderer;
     }
 
-    public static PankoUI getUI() {
+    public static KUI getUI() {
         return ui;
     }
 
-    public static PankoUI getUi() {
+    public static KUI getUi() {
         return ui;
     }
 
-    public static void setUi(PankoUI ui) {
-        Panko.ui = ui;
+    public static void setUi(KUI ui) {
+        K.ui = ui;
     }
 
-    public static void setUI(PankoUI UI) {
-        Panko.ui = UI;
+    public static void setUI(KUI UI) {
+        K.ui = UI;
     }
 
-    public static void queueEntityToTop(PankoEntity entity) {
+    public static void queueEntityToTop(KEntity entity) {
         queueEntityToTop(entity.getRoom(), entity);
     }
 
-    public static void queueRemoveEntity(PankoEntity entity) {
+    public static void queueRemoveEntity(KEntity entity) {
         entity.getRoom().getDeadEntities().add(entity);
         entity.setBeingRemoved(true);
     }
@@ -184,7 +184,7 @@ public class Panko {
     }
 
     public static void unPauseGame() {
-        Panko.getUI().setShowingHelp(false);
+        K.getUI().setShowingHelp(false);
         runner.unPauseGame();
     }
 
@@ -206,7 +206,7 @@ public class Panko {
     }
 
     public static void setUiSpriteBatch(SpriteBatch uiSpriteBatch) {
-        Panko.uiSpriteBatch = uiSpriteBatch;
+        K.uiSpriteBatch = uiSpriteBatch;
     }
 
     public static ShapeRenderer getUiShapeRenderer() {
@@ -214,7 +214,7 @@ public class Panko {
     }
 
     public static void setUiShapeRenderer(ShapeRenderer uiShapeRenderer) {
-        Panko.uiShapeRenderer = uiShapeRenderer;
+        K.uiShapeRenderer = uiShapeRenderer;
     }
 
     public static Camera getUiCamera() {
@@ -222,7 +222,7 @@ public class Panko {
     }
 
     public static void setUiCamera(Camera uiCamera) {
-        Panko.uiCamera = uiCamera;
+        K.uiCamera = uiCamera;
     }
 
     public static void breakpoint() {

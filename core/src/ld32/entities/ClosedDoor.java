@@ -2,8 +2,8 @@ package ld32.entities;
 
 import ld32.LD32Sounds;
 import ld32.LevelBounds;
-import katsu.Panko;
-import katsu.PankoEntity;
+import katsu.K;
+import katsu.KEntity;
 
 import java.util.ArrayList;
 
@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class ClosedDoor extends SolidEntity {
 
-    private long lastLevelCompleteChecked = Panko.currentTime();
+    private long lastLevelCompleteChecked = K.currentTime();
 
     private static ArrayList<LevelBounds> levelBoundses = new ArrayList<LevelBounds>();
 
@@ -90,8 +90,8 @@ public class ClosedDoor extends SolidEntity {
     }
 
     private void checkLevelCompleted() {
-        if (lastLevelCompleteChecked > Panko.currentTime() - 3000) return;
-        lastLevelCompleteChecked = Panko.currentTime();
+        if (lastLevelCompleteChecked > K.currentTime() - 3000) return;
+        lastLevelCompleteChecked = K.currentTime();
 
         boolean levelComplete = false;
 
@@ -103,7 +103,7 @@ public class ClosedDoor extends SolidEntity {
         }
 
         if (myLevel == null) {
-            Panko.getUI().writeText("err: closed door @ "+getGridX()+","+getGridY()+" could not determine level");
+            K.getUI().writeText("err: closed door @ "+getGridX()+","+getGridY()+" could not determine level");
             return;
         }
 
@@ -116,7 +116,7 @@ public class ClosedDoor extends SolidEntity {
             openDoor.setY(getY());
             getRoom().getNewEntities().add(openDoor);
             openDoor.setRoom(getRoom());
-            Panko.getUI().writeText("Level " + myLevel.level + "/8 complete! Door to next level is open.");
+            K.getUI().writeText("Level " + myLevel.level + "/8 complete! Door to next level is open.");
             LD32Sounds.complete_level.play();
         }
 
@@ -126,8 +126,8 @@ public class ClosedDoor extends SolidEntity {
         // Careful since coords are flipped
         for (int x = topX; x <= bottomX; x++) {
             for (int y = bottomY; y <= topY; y++) {
-                ArrayList<PankoEntity> entities = getRoom().findEntitiesAtPoint(x * getWidth(), y * getHeight());
-                for (PankoEntity e : entities) {
+                ArrayList<KEntity> entities = getRoom().findEntitiesAtPoint(x * getWidth(), y * getHeight());
+                for (KEntity e : entities) {
                     if (e instanceof Spider) return false;
                 }
             }

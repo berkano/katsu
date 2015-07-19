@@ -7,11 +7,11 @@ import katsu.*;
 /**
  * Created by shaun on 12/04/2015.
  */
-public class World extends PankoRoomBase {
+public class World extends KRoomBase {
 
     private Mole mole;
     public static int numLives;
-    private static long lastRestart = Panko.currentTime();
+    private static long lastRestart = K.currentTime();
     public static int poop;
     private static int waypointX = 0;
     private static int waypointY = 0;
@@ -40,10 +40,10 @@ public class World extends PankoRoomBase {
         poop = LD32Settings.startPoop;
         
         String mapName = "ld32";
-        PankoTmxHelper.addEntitiesToRoomFromMap(mapName, this);
+        KTmxHelper.addEntitiesToRoomFromMap(mapName, this);
 
-        Panko.getMainCamera().viewportHeight = 768 / 4;
-        Panko.getMainCamera().viewportWidth = 1024 / 4;
+        K.getMainCamera().viewportHeight = 768 / 4;
+        K.getMainCamera().viewportWidth = 1024 / 4;
 
         createInstancesAtAll(Mob.class, EmptyDirt.class);
         createInstancesAtAll(WayPoint.class, EmptyDirt.class);
@@ -74,26 +74,26 @@ public class World extends PankoRoomBase {
 
         mole.update();
 
-        Panko.getUI().setHelpText(PankoResource.loadText("help.txt"));
+        K.getUI().setHelpText(KResource.loadText("help.txt"));
 
         if (LD32Settings.startWithPausedHelp) {
-            Panko.getUI().setShowingHelp(true);
+            K.getUI().setShowingHelp(true);
         }
 
         if (LD32Settings.startWithMusic) LD32Sounds.playMusic();
 
-        Panko.getUI().clearText();
+        K.getUI().clearText();
         updateUITopText();
-        Panko.pauseGame();
+        K.pauseGame();
 
     }
 
     @Override
     public void render() {
         super.render();
-        if (Panko.isKeyDown(Input.Keys.R)) {
-            if (lastRestart < Panko.currentTime() - 5000) {
-                lastRestart = Panko.currentTime();
+        if (K.isKeyDown(Input.Keys.R)) {
+            if (lastRestart < K.currentTime() - 5000) {
+                lastRestart = K.currentTime();
                 LD32Sounds.game_restart.play();
                 start();
             }
@@ -106,19 +106,19 @@ public class World extends PankoRoomBase {
 
         bringAllInstancesToFront(Mob.class);
 
-        if (Panko.isKeyDown(Input.Keys.W)) mole.moveRequested(PankoDirection.UP);
-        if (Panko.isKeyDown(Input.Keys.S)) mole.moveRequested(PankoDirection.DOWN);
-        if (Panko.isKeyDown(Input.Keys.A)) mole.moveRequested(PankoDirection.LEFT);
-        if (Panko.isKeyDown(Input.Keys.D)) mole.moveRequested(PankoDirection.RIGHT);
-        if (Panko.isKeyDown(Input.Keys.SPACE)) mole.digRequested();
-        if (Panko.isKeyDown(Input.Keys.P)) mole.poopRequested();
+        if (K.isKeyDown(Input.Keys.W)) mole.moveRequested(KDirection.UP);
+        if (K.isKeyDown(Input.Keys.S)) mole.moveRequested(KDirection.DOWN);
+        if (K.isKeyDown(Input.Keys.A)) mole.moveRequested(KDirection.LEFT);
+        if (K.isKeyDown(Input.Keys.D)) mole.moveRequested(KDirection.RIGHT);
+        if (K.isKeyDown(Input.Keys.SPACE)) mole.digRequested();
+        if (K.isKeyDown(Input.Keys.P)) mole.poopRequested();
 
         updateUITopText();
 
         if (numLives <= 0) {
-            Panko.getUI().clearText();
-            Panko.getUI().writeText("GAME OVER! Press R to restart.");
-            Panko.pauseGame();
+            K.getUI().clearText();
+            K.getUI().writeText("GAME OVER! Press R to restart.");
+            K.pauseGame();
         }
 
     }
@@ -126,7 +126,7 @@ public class World extends PankoRoomBase {
     private void updateUITopText() {
 
         String topText = "Lives: " + numLives + " Poopmeter: " + poop + "/" + LD32Settings.maxPoop;
-        Panko.getUI().setTopText(topText);
+        K.getUI().setTopText(topText);
 
     }
 

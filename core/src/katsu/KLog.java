@@ -3,7 +3,7 @@ package katsu;
 /**
  * Created by shaun on 16/11/2014.
  */
-public class PankoLog {
+public class KLog {
 
     public static void debug(String message) {
         console("DEBUG: "+message);

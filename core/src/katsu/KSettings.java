@@ -5,7 +5,7 @@ import com.badlogic.gdx.Input;
 /**
  * Created by shaun on 16/11/2014.
  */
-public class PankoSettings {
+public class KSettings {
 
     private int hres = 1024;
     private int vres = 768;

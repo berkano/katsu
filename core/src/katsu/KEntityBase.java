@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Vector3;
 /**
  * Created by shaun on 15/11/2014.
  */
-public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
+public abstract class KEntityBase implements KEntity, InputProcessor {
 
     private int x;
     private int y;
@@ -20,21 +20,21 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     private TextureRegion textureRegion;
     private Sprite sprite;
     private boolean solid;
-    private PankoRoom room;
-    private long lastMove = Panko.currentTime();
-    private PankoEntity parent;
+    private KRoom room;
+    private long lastMove = K.currentTime();
+    private KEntity parent;
     private int parentDistance;
     private double speedOfRotationAroundParent = 0;
     private double radius;
     private boolean selected = false;
-    private PankoEntity targetEntity;
+    private KEntity targetEntity;
     private boolean beingRemoved = false;
     private int spriteRotation = 0;
     private float spriteScale = 1.0f;
     private int maxMoveInterval = 0;
     private int health = 100;
     private int maxHealth = 100;
-    private PankoDirection pathFinderNextDirection;
+    private KDirection pathFinderNextDirection;
 
     public int getSpriteRotation(){
         return this.spriteRotation;
@@ -45,17 +45,17 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     }
 
     @Override
-    public void setTarget(PankoEntity targetEntity) {
+    public void setTarget(KEntity targetEntity) {
         this.targetEntity = targetEntity;
     }
 
     @Override
-    public PankoEntity getTarget() {
+    public KEntity getTarget() {
         return this.targetEntity;
     }
 
     @Override
-    public boolean overlaps(PankoEntity other) {
+    public boolean overlaps(KEntity other) {
         if (other.getX() <= getX() - other.getWidth()) return false;
         if (other.getY() <= getY() - other.getHeight()) return false;
         if (other.getX() >= getX() + getWidth()) return false;
@@ -84,7 +84,7 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     }
 
     @Override
-    public boolean wouldOverlap(PankoEntity other, int nx, int ny) {
+    public boolean wouldOverlap(KEntity other, int nx, int ny) {
         if (nx <= getX() - other.getWidth()) return false;
         if (ny <= getY() - other.getHeight()) return false;
         if (nx >= getX() + getWidth()) return false;
@@ -103,10 +103,10 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     @Override
     public void render() {
         if (textureRegion == null) {
-            textureRegion = PankoGraphics.getTextureCache().get(this.getClass());
+            textureRegion = KGraphics.getTextureCache().get(this.getClass());
         }
         //Panko.getActiveSpriteBatch().draw(textureRegion, x, y);
-        Panko.getActiveSpriteBatch().draw(
+        K.getActiveSpriteBatch().draw(
                 textureRegion,
                 x, y, getWidth()/2,getHeight()/2,
                 getWidth(), getHeight(),
@@ -120,15 +120,15 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
 
     @Override
     public boolean moveGrid(int dx, int dy) {
-        int newX = getX() + dx * Panko.getGridSize();
-        int newY = getY() + dy * Panko.getGridSize();
+        int newX = getX() + dx * K.getGridSize();
+        int newY = getY() + dy * K.getGridSize();
 
-        return PankoMovementConstrainer.moveEntityIfPossible(this, newX, newY);
+        return KMovementConstrainer.moveEntityIfPossible(this, newX, newY);
 
     }
 
     @Override
-    public PankoEntity setX(int x) {
+    public KEntity setX(int x) {
         this.x = x;
         return this;
     }
@@ -139,7 +139,7 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     }
 
     @Override
-    public PankoEntity setY(int y) {
+    public KEntity setY(int y) {
         this.y = y;
         return this;
     }
@@ -150,7 +150,7 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     }
 
     @Override
-    public PankoEntity setTextureRegion(TextureRegion textureRegion) {
+    public KEntity setTextureRegion(TextureRegion textureRegion) {
         this.textureRegion = textureRegion;
         return this;
     }
@@ -209,13 +209,13 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     }
 
     @Override
-    public void onCollide(PankoEntity other) {
+    public void onCollide(KEntity other) {
 
     }
 
     @Override
     public int getWidth() {
-        return Panko.getSettings().getGridSize();
+        return K.getSettings().getGridSize();
     }
 
     @Override
@@ -225,11 +225,11 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
 
     @Override
     public int getHeight() {
-        return Panko.getSettings().getGridSize();
+        return K.getSettings().getGridSize();
     }
 
     @Override
-    public PankoEntity setLastMove(long time) {
+    public KEntity setLastMove(long time) {
         this.lastMove = time;
         return this;
     }
@@ -237,7 +237,7 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     @Override
     public void createInPlace(Class clazz) {
         try {
-            PankoEntity newEntity = (PankoEntity)clazz.newInstance();
+            KEntity newEntity = (KEntity)clazz.newInstance();
             newEntity.setX(getX());
             newEntity.setY(getY());
             getRoom().getEntities().add(newEntity);
@@ -274,11 +274,11 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
         return true;
     }
 
-    public PankoRoom getRoom() {
+    public KRoom getRoom() {
         return room;
     }
 
-    public PankoEntity setRoom(PankoRoom room) {
+    public KEntity setRoom(KRoom room) {
         this.room = room;
         return this;
     }
@@ -288,7 +288,7 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
     }
 
     public boolean lastMovedMoreThan(int timeLimit) {
-        return Panko.currentTime() > getLastMove() + timeLimit;
+        return K.currentTime() > getLastMove() + timeLimit;
     }
 
     public Sprite getSprite() {
@@ -323,7 +323,7 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
         this.rotation = rotation;
     }
 
-    public PankoEntity setParentBody(PankoEntity parent, int distance, double speedOfRotationAroundParent) {
+    public KEntity setParentBody(KEntity parent, int distance, double speedOfRotationAroundParent) {
         this.parent = parent;
         this.parentDistance = distance;
         this.speedOfRotationAroundParent = speedOfRotationAroundParent;
@@ -396,11 +396,11 @@ public abstract class PankoEntityBase implements PankoEntity, InputProcessor {
         this.maxHealth = maxHealth;
     }
 
-    public PankoDirection getPathFinderNextDirection() {
+    public KDirection getPathFinderNextDirection() {
         return pathFinderNextDirection;
     }
 
-    public void setPathFinderNextDirection(PankoDirection pathFinderNextDirection) {
+    public void setPathFinderNextDirection(KDirection pathFinderNextDirection) {
         this.pathFinderNextDirection = pathFinderNextDirection;
     }
 }

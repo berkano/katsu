@@ -8,7 +8,7 @@ import java.util.HashMap;
 /**
  * Created by shaun on 16/11/2014.
  */
-public class PankoGraphics {
+public class KGraphics {
 
     private static HashMap<Class, TextureRegion> textureCache = new HashMap<Class, TextureRegion>();
 
@@ -24,6 +24,6 @@ public class PankoGraphics {
     }
 
     public static void setTextureCache(HashMap<Class, TextureRegion> textureCache) {
-        PankoGraphics.textureCache = textureCache;
+        KGraphics.textureCache = textureCache;
     }
 }

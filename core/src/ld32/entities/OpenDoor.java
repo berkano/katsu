@@ -1,6 +1,6 @@
 package ld32.entities;
 
-import katsu.PankoEntity;
+import katsu.KEntity;
 
 import java.util.ArrayList;
 
@@ -23,9 +23,9 @@ public class OpenDoor extends SolidEntity {
     public void update() {
         super.update();
 
-        ArrayList<PankoEntity> entities = getRoom().findEntitiesAtPoint(getX() + getWidth()/2, getY() + getWidth() / 2);
+        ArrayList<KEntity> entities = getRoom().findEntitiesAtPoint(getX() + getWidth()/2, getY() + getWidth() / 2);
 
-        for (PankoEntity e : entities) {
+        for (KEntity e : entities) {
             if (e instanceof Mole) {
                 moleAlreadyAllowed = true;
             }

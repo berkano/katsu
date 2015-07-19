@@ -1,12 +1,12 @@
 package ld32;
 
 import com.badlogic.gdx.Input;
-import katsu.PankoSettings;
+import katsu.KSettings;
 
 /**
  * Created by shaun on 18/04/2015.
  */
-public class LD32Settings extends PankoSettings {
+public class LD32Settings extends KSettings {
     @Override
     public String getGameName() {
         return "Noel and the Spiders";

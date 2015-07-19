@@ -14,47 +14,47 @@ import java.util.ArrayList;
 /**
  * Created by shaun on 16/11/2014.
  */
-public class PankoGameRunner implements ApplicationListener, InputProcessor {
+public class KGameRunner implements ApplicationListener, InputProcessor {
 
-    private ArrayList<PankoRoom> rooms;
+    private ArrayList<KRoom> rooms;
 
     private Boolean paused = false;
 
-    public PankoGameRunner() {
-        Panko.setRunner(this);
+    public KGameRunner() {
+        K.setRunner(this);
     }
 
     @Override
     public void create() {
 
-        Gdx.graphics.setTitle(Panko.getSettings().getGameName() + " :: " + Panko.getSettings().getGameAuthor() + " :: " + Panko.getSettings().getGameDescription());
-        Panko.setActiveSpriteBatch(new SpriteBatch());
-        Panko.setActiveShapeRenderer(new ShapeRenderer());
+        Gdx.graphics.setTitle(K.getSettings().getGameName() + " :: " + K.getSettings().getGameAuthor() + " :: " + K.getSettings().getGameDescription());
+        K.setActiveSpriteBatch(new SpriteBatch());
+        K.setActiveShapeRenderer(new ShapeRenderer());
 
-        Panko.setUiSpriteBatch(new SpriteBatch());
-        Panko.setUiShapeRenderer(new ShapeRenderer());
+        K.setUiSpriteBatch(new SpriteBatch());
+        K.setUiShapeRenderer(new ShapeRenderer());
 
-        Gdx.input.setInputProcessor(Panko.getInputMultiplexer());
-        Panko.getInputMultiplexer().addProcessor(this);
+        Gdx.input.setInputProcessor(K.getInputMultiplexer());
+        K.getInputMultiplexer().addProcessor(this);
 
-        rooms = Panko.getImplementation().getRooms();
+        rooms = K.getImplementation().getRooms();
         if (rooms == null || rooms.size() <= 0) {
-            Panko.exitWithError("No rooms defined!");
+            K.exitWithError("No rooms defined!");
         }
 
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
         float viewportSize = 1024;
 
-        Panko.setMainCamera(new OrthographicCamera(viewportSize, viewportSize * (h / w)));
-        Panko.getMainCamera().position.set(512, 768/2, 0);
-        Panko.getMainCamera().update();
+        K.setMainCamera(new OrthographicCamera(viewportSize, viewportSize * (h / w)));
+        K.getMainCamera().position.set(512, 768/2, 0);
+        K.getMainCamera().update();
 
-        Panko.setUiCamera(new OrthographicCamera(viewportSize, viewportSize * (h / w)));
-        Panko.getUiCamera().position.set(512, 768/2, 0);
-        Panko.getUiCamera().update();
+        K.setUiCamera(new OrthographicCamera(viewportSize, viewportSize * (h / w)));
+        K.getUiCamera().position.set(512, 768/2, 0);
+        K.getUiCamera().update();
 
-        Panko.setUI(new PankoUI());
+        K.setUI(new KUI());
 
         rooms.get(0).start();
 
@@ -68,23 +68,23 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
     @Override
     public void render() {
 
-        Panko.getMainCamera().update();
-        Panko.getActiveSpriteBatch().setProjectionMatrix(Panko.getMainCamera().combined);
-        Panko.getActiveShapeRenderer().setProjectionMatrix(Panko.getMainCamera().combined);
+        K.getMainCamera().update();
+        K.getActiveSpriteBatch().setProjectionMatrix(K.getMainCamera().combined);
+        K.getActiveShapeRenderer().setProjectionMatrix(K.getMainCamera().combined);
 
         // Clear screen
         Gdx.gl.glClearColor(0f, 0f, 0f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        Panko.getActiveSpriteBatch().begin();
-        for (PankoRoom room : rooms) {
+        K.getActiveSpriteBatch().begin();
+        for (KRoom room : rooms) {
             if (room.isActive()) {
                 room.render();
             }
         }
-        Panko.getActiveSpriteBatch().end();
+        K.getActiveSpriteBatch().end();
 
-        Panko.getUI().render();
+        K.getUI().render();
 
         update();
 
@@ -94,7 +94,7 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
 
         if (paused) return;
 
-        for (PankoRoom room : rooms) {
+        for (KRoom room : rooms) {
             if (room.isActive()) {
                 room.update();
             }
@@ -121,10 +121,10 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
     public boolean keyDown(int keycode) {
 
         if (keycode == Input.Keys.ESCAPE) {
-            Panko.exit();
+            K.exit();
         }
 
-        if (keycode == Panko.getSettings().getPauseKey()) {
+        if (keycode == K.getSettings().getPauseKey()) {
             if (gamePaused()) {
                 unPauseGame();
             } else {
@@ -134,25 +134,25 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
         }
 
         if (keycode == Input.Keys.H) {
-            if (Panko.getUI().isShowingHelp()) {
-                Panko.getUI().setShowingHelp(false);
+            if (K.getUI().isShowingHelp()) {
+                K.getUI().setShowingHelp(false);
             } else {
-                Panko.getUI().setShowingHelp(true);
+                K.getUI().setShowingHelp(true);
                 pauseGame();
             }
         }
 
         if (keycode == Input.Keys.M) {
-            Panko.getImplementation().toggleMusic();
+            K.getImplementation().toggleMusic();
         }
 
         if ((keycode == Input.Keys.F || keycode == Input.Keys.F11)) {
-            Panko.toggleFullScreenMode();
+            K.toggleFullScreenMode();
         }
 
 
 
-        Panko.setKeyDown(keycode, true);
+        K.setKeyDown(keycode, true);
 
         return false;
     }
@@ -160,7 +160,7 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
     @Override
     public boolean keyUp(int keycode) {
 
-        Panko.setKeyDown(keycode, false);
+        K.setKeyDown(keycode, false);
 
         return false;
     }
@@ -196,14 +196,14 @@ public class PankoGameRunner implements ApplicationListener, InputProcessor {
     }
 
     public void pauseGame() {
-        String key = Input.Keys.toString(Panko.getSettings().getPauseKey());
-        Panko.getUI().writeText("@CYAN Game is paused. Press "+key+" to continue.");
+        String key = Input.Keys.toString(K.getSettings().getPauseKey());
+        K.getUI().writeText("@CYAN Game is paused. Press "+key+" to continue.");
         this.paused = true;
     }
 
     public void unPauseGame() {
-        Panko.getUI().clearText();
-        Panko.getUI().setShowingHelp(false);
+        K.getUI().clearText();
+        K.getUI().setShowingHelp(false);
         this.paused = false;
     }
 

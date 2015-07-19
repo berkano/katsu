@@ -1,16 +1,16 @@
 package ld32.entities;
 
-import katsu.PankoDirection;
-import katsu.PankoEntityBase;
+import katsu.KDirection;
+import katsu.KEntityBase;
 
 /**
  * Created by shaun on 18/04/2015.
  */
-public class RotatingTerrain extends PankoEntityBase {
+public class RotatingTerrain extends KEntityBase {
 
     public RotatingTerrain() {
         super();
-        setSpriteRotation(PankoDirection.random().rotation());
+        setSpriteRotation(KDirection.random().rotation());
     }
 
 }

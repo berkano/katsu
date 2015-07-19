@@ -14,9 +14,9 @@ import java.util.List;
 /**
  * Created by shaun on 16/11/2014.
  */
-public class PankoTmxData {
+public class KTmxData {
 
-    private ArrayList<PankoEntity> entities;
+    private ArrayList<KEntity> entities;
     private HashMap<Class, TextureRegion> entityTextureRegions;
 
     private String tiledMapFile;
@@ -25,16 +25,16 @@ public class PankoTmxData {
     private int tileWidth = 16; // TODO determine from TMX
     private int tileHeight = 16;
 
-    public PankoTmxData(String tmxFile, HashMap<String, Class> classLookup) {
+    public KTmxData(String tmxFile, HashMap<String, Class> classLookup) {
         this.classLookup = classLookup;
         this.tiledMapFile = tmxFile;
     }
 
-    public PankoTmxData loadFromMap() {
+    public KTmxData loadFromMap() {
 
         map = loadMap(tiledMapFile);
-        entities = new ArrayList<PankoEntity>();
-        entityTextureRegions = PankoGraphics.getTextureCache(); // new HashMap<Class, TextureRegion>();
+        entities = new ArrayList<KEntity>();
+        entityTextureRegions = KGraphics.getTextureCache(); // new HashMap<Class, TextureRegion>();
 
         List<TiledMapTileLayer> layerList = new ArrayList<TiledMapTileLayer>();
         layerList.add((TiledMapTileLayer) map.getLayers().get("terrain"));
@@ -70,12 +70,12 @@ public class PankoTmxData {
                             try {
 
                                 if (entityTextureRegions.get(c) == null) {
-                                    TextureRegion textureRegion = PankoGraphics.tileStitch(x, y, currentLayer);
+                                    TextureRegion textureRegion = KGraphics.tileStitch(x, y, currentLayer);
                                     entityTextureRegions.put(c, textureRegion);
                                 }
 
                                 if (!currentLayer.getName().contains("no-populate")) { // no-populate just used for loading textures.
-                                    PankoEntity e = (PankoEntity) c.newInstance();
+                                    KEntity e = (KEntity) c.newInstance();
                                     e.setX(x * tileWidth);
                                     e.setY(y * tileHeight);
                                     e.setTextureRegion(entityTextureRegions.get(c));
@@ -84,7 +84,7 @@ public class PankoTmxData {
 
                             } catch (Exception ex) {
                                 ex.printStackTrace();
-                                Panko.exitDueToException("Failed to process tiled map: "+tiledMapFile, ex);
+                                K.exitDueToException("Failed to process tiled map: " + tiledMapFile, ex);
                             }
                         }
 
@@ -93,7 +93,7 @@ public class PankoTmxData {
             }
         }
 
-        PankoLog.trace(entities.size() + " entities loaded from map: " + tiledMapFile);
+        KLog.trace(entities.size() + " entities loaded from map: " + tiledMapFile);
         return this;
     }
 
@@ -101,15 +101,15 @@ public class PankoTmxData {
         try {
             TmxMapLoader.Parameters parameters = new TmxMapLoader.Parameters();
 
-            String resourceName = PankoResource.relativeResource("maps/" + name + ".tmx");
+            String resourceName = KResource.relativeResource("maps/" + name + ".tmx");
             return new TmxMapLoader().load(resourceName, parameters);
         } catch (Exception ex) {
-            Panko.exitDueToException("Failed to load tiled map: " + name, ex);
+            K.exitDueToException("Failed to load tiled map: " + name, ex);
             return null;
         }
     }
 
-    public ArrayList<PankoEntity> getEntities() {
+    public ArrayList<KEntity> getEntities() {
         return entities;
     }
 }

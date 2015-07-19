@@ -1,15 +1,15 @@
 package ld32.entities;
 
 import ld32.LD32Sounds;
-import katsu.PankoDirection;
-import katsu.PankoEntity;
+import katsu.KDirection;
+import katsu.KEntity;
 
 /**
  * Created by shaun on 18/04/2015.
  */
 public class Mob extends SolidEntity {
 
-    private PankoDirection facing;
+    private KDirection facing;
 
     public Mob() {
         super();
@@ -20,7 +20,7 @@ public class Mob extends SolidEntity {
     public void update() {
         super.update();
         // Check if we are on a killing block
-        for (PankoEntity e : getRoom().getEntities()) {
+        for (KEntity e : getRoom().getEntities()) {
             if (e instanceof MobKillingBlock) {
                 if (e.overlaps(this)) {
                     if (this instanceof Mole) {
@@ -36,7 +36,7 @@ public class Mob extends SolidEntity {
         }
     }
 
-    public void moveRequested(PankoDirection direction) {
+    public void moveRequested(KDirection direction) {
 
         if (moveGrid(direction.dx(), direction.dy())) {
             if (!(this instanceof Spider)) {
@@ -52,11 +52,11 @@ public class Mob extends SolidEntity {
         }
     }
 
-    public void setFacing(PankoDirection facing) {
+    public void setFacing(KDirection facing) {
         this.facing = facing;
     }
 
-    public PankoDirection getFacing() {
+    public KDirection getFacing() {
         return facing;
     }
 }

@@ -1,11 +1,11 @@
 package ld32.entities;
 
-import katsu.PankoEntityBase;
+import katsu.KEntityBase;
 
 /**
  * Created by shaun on 18/04/2015.
  */
-public class SolidEntity extends PankoEntityBase {
+public class SolidEntity extends KEntityBase {
 
     public SolidEntity() {
         super();

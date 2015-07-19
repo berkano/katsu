@@ -5,13 +5,13 @@ import com.badlogic.gdx.math.Rectangle;
 /**
  * Created by shaun on 16/11/2014.
  */
-public class PankoMovementConstrainer {
+public class KMovementConstrainer {
 
-    public static boolean moveEntityIfPossible(PankoEntity entity, int newX, int newY) {
+    public static boolean moveEntityIfPossible(KEntity entity, int newX, int newY) {
 
-        if (Panko.gamePaused()) return false;
+        if (K.gamePaused()) return false;
 
-        long millisMovedAgo = Panko.currentTime() - entity.getLastMove();
+        long millisMovedAgo = K.currentTime() - entity.getLastMove();
         if (millisMovedAgo < entity.getMaxMoveInterval()) return false;
 
         boolean couldMove = true;
@@ -19,10 +19,10 @@ public class PankoMovementConstrainer {
         if (entity.isSolid()) {
 
             // First get the room
-            PankoRoom room = entity.getRoom();
+            KRoom room = entity.getRoom();
 
             // Get all possible collision targets
-            for (PankoEntity other : room.getEntities()) {
+            for (KEntity other : room.getEntities()) {
                 if (other.isSolid() && other.canCollideWith(entity.getClass()) && entity.canCollideWith(other.getClass())) {
                     if (entitiesWouldOverlap(entity, newX, newY, other)) {
                         couldMove = false;
@@ -37,7 +37,7 @@ public class PankoMovementConstrainer {
         if (couldMove) {
             entity.setX(newX);
             entity.setY(newY);
-            entity.setLastMove(Panko.currentTime());
+            entity.setLastMove(K.currentTime());
             entity.onMoved();
         }
 
@@ -45,7 +45,7 @@ public class PankoMovementConstrainer {
 
     }
 
-    private static boolean entitiesWouldOverlap(PankoEntity entity, int newX, int newY, PankoEntity other) {
+    private static boolean entitiesWouldOverlap(KEntity entity, int newX, int newY, KEntity other) {
 
         // Quick optimisation for obvious cases
         if (newX > entity.getX() + other.getWidth()) return false;

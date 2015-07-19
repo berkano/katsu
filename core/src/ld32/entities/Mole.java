@@ -7,9 +7,9 @@ import ext.pathfinding.grid.GridPathfinding;
 import ld32.LD32Settings;
 import ld32.LD32Sounds;
 import ld32.World;
-import katsu.Panko;
-import katsu.PankoDirection;
-import katsu.PankoEntity;
+import katsu.K;
+import katsu.KDirection;
+import katsu.KEntity;
 
 import java.util.ArrayList;
 
@@ -18,11 +18,11 @@ import java.util.ArrayList;
  */
 public class Mole extends Mob {
 
-    private long lastDig = Panko.currentTime();
+    private long lastDig = K.currentTime();
     private int maxDigInterval = 500;
     public boolean invincible = true;
-    private long invincibleUntil = Panko.currentTime();
-    private long lastEnemyPathFind = Panko.currentTime();
+    private long invincibleUntil = K.currentTime();
+    private long lastEnemyPathFind = K.currentTime();
 
     public Mole() {
         super();
@@ -40,15 +40,15 @@ public class Mole extends Mob {
     @Override
     public void update() {
         super.update();
-        if (getInvincibleUntil() < Panko.currentTime()) {
+        if (getInvincibleUntil() < K.currentTime()) {
             invincible = false;
         }
         doEnemyPathFinding();
     }
 
     private void doEnemyPathFinding() {
-        if (lastEnemyPathFind > Panko.currentTime() - LD32Settings.enemyPathFindInterval) return;
-        lastEnemyPathFind = Panko.currentTime();
+        if (lastEnemyPathFind > K.currentTime() - LD32Settings.enemyPathFindInterval) return;
+        lastEnemyPathFind = K.currentTime();
 
         int pfDistance = LD32Settings.enemyPathFindingDistance;
 
@@ -57,7 +57,7 @@ public class Mole extends Mob {
         GridPathfinding gridPathfinding = new GridPathfinding();
 
         // For each enemy within a certain distance, calculate a path to the mole and set it as their preferred next movement
-        for (PankoEntity e : getRoom().getEntities()) {
+        for (KEntity e : getRoom().getEntities()) {
             if (e instanceof Spider) {
                 int dx = getGridX() - e.getGridX();
                 int dy = getGridY() - e.getGridY();
@@ -71,10 +71,10 @@ public class Mole extends Mob {
                         if (nextMove != null) nextMove = gridPath.getNextMove(); // next place
                         if (nextMove != null) {
 //                            Panko.getUI().writeText("Spider " + e.toString() + " next move would be " + nextMove.getX() + "," + nextMove.getY());
-                            if (nextMove.getX() < e.getGridX())  ((Spider) e).setPathFinderNextDirection(PankoDirection.LEFT);
-                            if (nextMove.getX() > e.getGridX())  ((Spider) e).setPathFinderNextDirection(PankoDirection.RIGHT);
-                            if (nextMove.getY() < e.getGridY())  ((Spider) e).setPathFinderNextDirection(PankoDirection.DOWN);
-                            if (nextMove.getY() > e.getGridY())  ((Spider) e).setPathFinderNextDirection(PankoDirection.UP);
+                            if (nextMove.getX() < e.getGridX())  ((Spider) e).setPathFinderNextDirection(KDirection.LEFT);
+                            if (nextMove.getX() > e.getGridX())  ((Spider) e).setPathFinderNextDirection(KDirection.RIGHT);
+                            if (nextMove.getY() < e.getGridY())  ((Spider) e).setPathFinderNextDirection(KDirection.DOWN);
+                            if (nextMove.getY() > e.getGridY())  ((Spider) e).setPathFinderNextDirection(KDirection.UP);
                         }
                     }
                 }
@@ -102,7 +102,7 @@ public class Mole extends Mob {
 
         GridMap pathMap = new GridMap(100, 100);
 
-        for (PankoEntity e : getRoom().getEntities()) {
+        for (KEntity e : getRoom().getEntities()) {
             if (e instanceof Spider) continue; // Don't let spiders block their own paths
             if (e instanceof EmptyDirt) continue;
             if (e instanceof Web) continue;
@@ -122,7 +122,7 @@ public class Mole extends Mob {
         if (LD32Settings.displayPathFindingHints) {
 
             // Remove any existing
-            for (PankoEntity e : getRoom().getEntities()) {
+            for (KEntity e : getRoom().getEntities()) {
                 if (e instanceof PathFindingHint) {
                     e.setHealth(0);
                     getRoom().getDeadEntities().add(e);
@@ -152,7 +152,7 @@ public class Mole extends Mob {
         boolean shouldRender = true;
         // When not harmable flicker the rendering
         if (invincible) {
-            if ((Panko.currentTime() % 500) < 250) shouldRender = false;
+            if ((K.currentTime() % 500) < 250) shouldRender = false;
         }
 
          if (shouldRender) super.render();
@@ -160,18 +160,18 @@ public class Mole extends Mob {
     }
 
     private void lookAtMe() {
-        Panko.getMainCamera().position.x = getX();
-        Panko.getMainCamera().position.y = getY();
+        K.getMainCamera().position.x = getX();
+        K.getMainCamera().position.y = getY();
     }
 
     public void digRequested() {
 
         if (World.poop >= LD32Settings.maxPoop) {
-            Panko.explain("Can't dig no more, need to poop! (Press P then move away quick...)");
+            K.explain("Can't dig no more, need to poop! (Press P then move away quick...)");
             return;
         }
 
-        if (lastDig < Panko.currentTime() - maxDigInterval) {
+        if (lastDig < K.currentTime() - maxDigInterval) {
 
             if (getFacing() != null) {
 
@@ -181,20 +181,20 @@ public class Mole extends Mob {
                 int checkX = myMiddleX + getWidth() * getFacing().dx();
                 int checkY = myMiddleY + getHeight() * getFacing().dy();
 
-                ArrayList<PankoEntity> digEntities = getRoom().findEntitiesAtPoint(checkX, checkY);
+                ArrayList<KEntity> digEntities = getRoom().findEntitiesAtPoint(checkX, checkY);
 
-                for (PankoEntity e : digEntities) {
+                for (KEntity e : digEntities) {
                     if (e instanceof Dirt) {
                         e.createInPlace(EmptyDirt.class);
                         e.setHealth(0);
-                        Panko.queueEntityToTop(this);
+                        K.queueEntityToTop(this);
                         LD32Sounds.mole_dig.play();
                         World.poop++;
                         if (World.poop > LD32Settings.maxPoop) World.poop = LD32Settings.maxPoop;
                     }
                 }
 
-                lastDig = Panko.currentTime();
+                lastDig = K.currentTime();
             }
         }
 
@@ -228,9 +228,9 @@ public class Mole extends Mob {
 
         World.numLives -= 1;
         invincible = true;
-        setInvincibleUntil(Panko.currentTime() + 5000);
+        setInvincibleUntil(K.currentTime() + 5000);
         LD32Sounds.hurt.play();
-        Panko.explain("Life lost! :-(");
+        K.explain("Life lost! :-(");
 
     }
 }

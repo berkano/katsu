@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by shaun on 15/11/2014.
  */
-public interface PankoRoom {
+public interface KRoom {
 
     public void start();
 
@@ -18,9 +18,9 @@ public interface PankoRoom {
 
     InputProcessor getInputProcessor();
 
-    public void setEntities(ArrayList<PankoEntity> entities);
+    public void setEntities(ArrayList<KEntity> entities);
 
-    public ArrayList<PankoEntity> getEntities();
+    public ArrayList<KEntity> getEntities();
 
     void update();
 
@@ -28,8 +28,8 @@ public interface PankoRoom {
 
     List getOnTopQueue();
 
-    ArrayList<PankoEntity> getDeadEntities();
+    ArrayList<KEntity> getDeadEntities();
 
-    ArrayList<PankoEntity> findEntitiesAtPoint(int x, int y);
+    ArrayList<KEntity> findEntitiesAtPoint(int x, int y);
 
 }

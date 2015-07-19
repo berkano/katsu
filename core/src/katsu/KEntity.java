@@ -5,16 +5,16 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 /**
  * Created by shaun on 16/11/2014.
  */
-public interface PankoEntity {
-    PankoEntity setX(int x);
+public interface KEntity {
+    KEntity setX(int x);
 
     int getX();
 
-    PankoEntity setY(int y);
+    KEntity setY(int y);
 
     int getY();
 
-    PankoEntity setTextureRegion(TextureRegion textureRegion);
+    KEntity setTextureRegion(TextureRegion textureRegion);
 
     TextureRegion getTextureRegion();
 
@@ -22,19 +22,19 @@ public interface PankoEntity {
 
     boolean moveGrid(int dx, int dy);
 
-    PankoEntity setRoom(PankoRoom room);
+    KEntity setRoom(KRoom room);
 
-    PankoRoom getRoom();
+    KRoom getRoom();
 
     boolean isSolid();
 
-    void onCollide(PankoEntity e);
+    void onCollide(KEntity e);
 
     int getWidth();
 
     int getHeight();
 
-    PankoEntity setLastMove(long time);
+    KEntity setLastMove(long time);
 
     long getLastMove();
 
@@ -46,13 +46,13 @@ public interface PankoEntity {
 
     boolean isSelected();
 
-    void setTarget(PankoEntity targetEntity);
+    void setTarget(KEntity targetEntity);
 
-    PankoEntity getTarget();
+    KEntity getTarget();
 
-    boolean overlaps(PankoEntity other);
+    boolean overlaps(KEntity other);
 
-    boolean wouldOverlap(PankoEntity other, int nx, int ny);
+    boolean wouldOverlap(KEntity other, int nx, int ny);
 
     int getGridX();
 

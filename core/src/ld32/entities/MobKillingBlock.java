@@ -1,7 +1,7 @@
 package ld32.entities;
 
-import katsu.Panko;
-import katsu.PankoEntity;
+import katsu.K;
+import katsu.KEntity;
 
 import java.util.ArrayList;
 
@@ -10,12 +10,12 @@ import java.util.ArrayList;
  */
 public class MobKillingBlock extends RotatingTerrain {
 
-    private long lastFallTryMillis = Panko.currentTime();
+    private long lastFallTryMillis = K.currentTime();
 
     @Override
     public void render() {
-        if (Panko.random.nextInt(10) == 0) {
-            setSpriteRotation(Panko.random.nextInt(10) - 5);
+        if (K.random.nextInt(10) == 0) {
+            setSpriteRotation(K.random.nextInt(10) - 5);
         }
         super.render();
     }
@@ -25,15 +25,15 @@ public class MobKillingBlock extends RotatingTerrain {
         super.update();
 
         fallIfPossible();
-        Panko.queueEntityToTop(this);
+        K.queueEntityToTop(this);
 
 
     }
 
     private void fallIfPossible() {
 
-        if (lastFallTryMillis > Panko.currentTime() - 500) return;
-        lastFallTryMillis = Panko.currentTime();
+        if (lastFallTryMillis > K.currentTime() - 500) return;
+        lastFallTryMillis = K.currentTime();
 
 
         // Directly below
@@ -42,7 +42,7 @@ public class MobKillingBlock extends RotatingTerrain {
         // Randomly diag left down or diag right down - unless it's rock
         if (this instanceof Rock) return;
 
-        boolean rightFirst = Panko.random.nextBoolean();
+        boolean rightFirst = K.random.nextBoolean();
 
         if (rightFirst) {
             if (tryFallDownRight()) return;
@@ -71,12 +71,12 @@ public class MobKillingBlock extends RotatingTerrain {
 
         // check if we can fall directly down
         boolean canFall = true;
-        ArrayList<PankoEntity> entities = getRoom().findEntitiesAtPoint(checkX, checkY);
-        for (PankoEntity e : entities) {
+        ArrayList<KEntity> entities = getRoom().findEntitiesAtPoint(checkX, checkY);
+        for (KEntity e : entities) {
             if (!(e instanceof EmptyDirt) && !(e instanceof Mob) && !(e instanceof Web)) {
                 canFall = false;
                 if (this instanceof Lava) {
-                    Panko.breakpoint();
+                    K.breakpoint();
                 }
             }
         }

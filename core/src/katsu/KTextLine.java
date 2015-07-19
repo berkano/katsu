@@ -7,12 +7,12 @@ package katsu;
  * Time: 19:24
  * To change this template use File | Settings | File Templates.
  */
-public class TextLine {
+public class KTextLine {
 
     public long added;
     public String text;
 
-    public TextLine(String s) {
+    public KTextLine(String s) {
         this.text = s;
         this.added = System.currentTimeMillis();
     }

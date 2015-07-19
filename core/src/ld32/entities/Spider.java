@@ -1,8 +1,8 @@
 package ld32.entities;
 
-import katsu.Panko;
-import katsu.PankoDirection;
-import katsu.PankoEntity;
+import katsu.K;
+import katsu.KDirection;
+import katsu.KEntity;
 
 /**
  * Created by shaun on 18/04/2015.
@@ -10,7 +10,7 @@ import katsu.PankoEntity;
 public class Spider extends Mob {
 
     private boolean hasDoneFirstPathFind = false;
-    private long didLastPathFind = Panko.currentTime();
+    private long didLastPathFind = K.currentTime();
 
     public Spider() {
         super();
@@ -22,22 +22,22 @@ public class Spider extends Mob {
         super.update();
         if (getPathFinderNextDirection() != null) {
 //            Panko.getUI().writeText("Spider trying to move "+getPathFinderNextDirection() + " due to path finding");
-            didLastPathFind = Panko.currentTime();
+            didLastPathFind = K.currentTime();
             moveRequested(getPathFinderNextDirection());
             hasDoneFirstPathFind = true;
             setPathFinderNextDirection(null);
         } else {
             if (hasDoneFirstPathFind) {
                 // Don't move randomly if we have tried path finding recently
-                if (didLastPathFind < Panko.currentTime() - 2000) {
-                    moveRequested(PankoDirection.random());
+                if (didLastPathFind < K.currentTime() - 2000) {
+                    moveRequested(KDirection.random());
                 }
             }
         }
     }
 
     @Override
-    public void onCollide(PankoEntity other) {
+    public void onCollide(KEntity other) {
         super.onCollide(other);
         if (other instanceof Mole) {
             Mole mole = (Mole) other;
