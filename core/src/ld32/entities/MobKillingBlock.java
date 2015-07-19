@@ -23,11 +23,7 @@ public class MobKillingBlock extends RotatingTerrain {
     @Override
     public void update() {
         super.update();
-
         fallIfPossible();
-        K.queueEntityToTop(this);
-
-
     }
 
     private void fallIfPossible() {

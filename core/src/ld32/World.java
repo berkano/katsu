@@ -49,12 +49,7 @@ public class World extends KRoomBase {
         createInstancesAtAll(WayPoint.class, EmptyDirt.class);
         createInstancesAtAll(MobKillingBlock.class, EmptyDirt.class);
 
-        bringAllInstancesToFront(MobKillingBlock.class);
-        bringAllInstancesToFront(WayPoint.class);
-        bringAllInstancesToFront(Mob.class);
-
         mole = (Mole) firstInstanceOfClass(Mole.class);
-        bringEntityToFront(mole);
 
         if (waypointX != 0) {
             mole.setX(waypointX);
@@ -103,8 +98,6 @@ public class World extends KRoomBase {
     @Override
     public void update() {
         super.update();
-
-        bringAllInstancesToFront(Mob.class);
 
         if (K.isKeyDown(Input.Keys.W)) mole.moveRequested(KDirection.UP);
         if (K.isKeyDown(Input.Keys.S)) mole.moveRequested(KDirection.DOWN);

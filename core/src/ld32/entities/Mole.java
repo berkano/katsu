@@ -187,7 +187,6 @@ public class Mole extends Mob {
                     if (e instanceof Dirt) {
                         e.createInPlace(EmptyDirt.class);
                         e.setHealth(0);
-                        K.queueEntityToTop(this);
                         LD32Sounds.mole_dig.play();
                         World.poop++;
                         if (World.poop > LD32Settings.maxPoop) World.poop = LD32Settings.maxPoop;

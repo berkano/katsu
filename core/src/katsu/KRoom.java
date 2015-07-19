@@ -26,8 +26,6 @@ public interface KRoom {
 
     List getNewEntities();
 
-    List getOnTopQueue();
-
     ArrayList<KEntity> getDeadEntities();
 
     ArrayList<KEntity> findEntitiesAtPoint(int x, int y);

@@ -130,10 +130,6 @@ public class K {
         K.mainCamera = mainCamera;
     }
 
-    public static void queueEntityToTop(KRoom room, KEntity entity) {
-        room.getOnTopQueue().add(entity);
-    }
-
     public static void deleteEntitiesOfClassFromRoom(KRoom room, Class clazz) {
         for (KEntity e : room.getEntities()) {
             if (clazz.isInstance(e)) {
@@ -168,10 +164,6 @@ public class K {
 
     public static void setUI(KUI UI) {
         K.ui = UI;
-    }
-
-    public static void queueEntityToTop(KEntity entity) {
-        queueEntityToTop(entity.getRoom(), entity);
     }
 
     public static void queueRemoveEntity(KEntity entity) {

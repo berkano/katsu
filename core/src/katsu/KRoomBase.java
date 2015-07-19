@@ -13,15 +13,8 @@ public abstract class KRoomBase implements KRoom, InputProcessor {
 
     protected ArrayList<KEntity> entities;
     protected ArrayList<KEntity> newEntities;
-    protected ArrayList<KEntity> onTopQueue;
     protected ArrayList<KEntity> deadEntityQueue;
     private boolean active;
-
-    public void bringEntityToFront(KEntity entity) {
-        entities.remove(entity);
-        entities.add(entity);
-
-    }
 
     public void createInstancesAtAll(Class find, Class toAdd) {
         for (KEntity e : entities) {
@@ -39,23 +32,6 @@ public abstract class KRoomBase implements KRoom, InputProcessor {
         }
     }
 
-    public void bringAllInstancesToFront(Class clazz) {
-        for (KEntity e : entities) {
-            if (clazz.isInstance(e)) {
-                onTopQueue.add(e);
-            }
-        }
-    }
-
-    public void sendAllInstancesToBack(Class clazz) {
-        for (KEntity e : entities) {
-            if (!clazz.isInstance(e)) {
-                onTopQueue.add(e);
-            }
-        }
-    }
-
-
     public KEntity firstInstanceOfClass(Class clazz) {
         for (KEntity e : entities) {
             if (clazz.isInstance(e)) {
@@ -71,7 +47,6 @@ public abstract class KRoomBase implements KRoom, InputProcessor {
         K.getInputMultiplexer().addProcessor(this);
         entities = new ArrayList<KEntity>();
         newEntities = new ArrayList<KEntity>();
-        onTopQueue = new ArrayList<KEntity>();
         deadEntityQueue = new ArrayList<KEntity>();
     }
 
@@ -88,7 +63,6 @@ public abstract class KRoomBase implements KRoom, InputProcessor {
 
         for (KEntity e : deadEntityQueue) {
             entities.remove(e);
-            onTopQueue.remove(e);
             newEntities.remove(e);
         }
 
@@ -100,13 +74,6 @@ public abstract class KRoomBase implements KRoom, InputProcessor {
 
         newEntities.clear();
 
-        for (KEntity e : onTopQueue) {
-            entities.remove(e);
-            entities.add(e);
-        }
-
-        onTopQueue.clear();
-        
         for (KEntity e : entities) {
             e.render();
         }
@@ -137,11 +104,6 @@ public abstract class KRoomBase implements KRoom, InputProcessor {
     @Override
     public List getNewEntities() {
         return newEntities;
-    }
-
-    @Override
-    public List getOnTopQueue() {
-        return onTopQueue;
     }
 
     @Override

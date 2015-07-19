@@ -46,7 +46,6 @@ public class Poop extends KEntityBase {
                             lava.setX(getX() + dx * getHeight());
                             lava.setY(getY() + dy * getHeight());
                             lava.setRoom(getRoom());
-                            K.queueEntityToTop(lava);
                             getRoom().getNewEntities().add(lava);
                         }
                     }
