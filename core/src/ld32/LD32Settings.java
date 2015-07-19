@@ -7,6 +7,12 @@ import katsu.KSettings;
  * Created by shaun on 18/04/2015.
  */
 public class LD32Settings extends KSettings {
+
+    @Override
+    public boolean isLogFPS() {
+        return isDevMode();
+    }
+
     @Override
     public String getGameName() {
         return "Noel and the Spiders";
@@ -22,23 +28,30 @@ public class LD32Settings extends KSettings {
         return "LD32";
     }
 
-    public static boolean devMode = false;
-    public static boolean startWithMusic = !devMode;
-    public static boolean startWithPausedHelp = !devMode;
-    public static int maxLives = 5;
-    public static int maxPoop = 8;
-    public static int startLives = devMode ? maxLives : maxLives;
-    public static int startLevel = devMode ? 1 : 1;
-    public static int startPoop = devMode ? 0 : 0;
-    public static boolean teleportToSpecialPosition = false;
+    public boolean startWithMusic = !isDevMode();
+    public boolean startWithPausedHelp = !isDevMode();
+    public int maxLives = 5;
+    public int maxPoop = 8;
+    public int startLives = isDevMode() ? maxLives : maxLives;
+    public int startLevel = isDevMode() ? 1 : 1;
+    public int startPoop = isDevMode() ? 0 : 0;
+    public boolean teleportToSpecialPosition = false;
 
-    public static boolean nerfLava = false;
-    public static long enemyPathFindInterval = 500;
-    public static int enemyPathFindingDistance = 8;
-    public static boolean displayPathFindingHints = false;
+    public boolean nerfLava = false;
+    public long enemyPathFindInterval = 500;
+    public int enemyPathFindingDistance = 8;
+    public boolean displayPathFindingHints = false;
+    private static LD32Settings _instance;
 
     @Override
     public int getPauseKey() {
         return Input.Keys.ENTER;
+    }
+
+    public static LD32Settings get() {
+        if (_instance == null) {
+            _instance = new LD32Settings();
+        }
+        return _instance;
     }
 }

@@ -1,6 +1,7 @@
 package katsu;
 
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.math.Rectangle;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public abstract class KRoomBase implements KRoom, InputProcessor {
     protected ArrayList<KEntity> entities;
     protected ArrayList<KEntity> newEntities;
     private boolean active;
+    private FPSLogger fpsLogger = new FPSLogger();
 
     public void createInstancesAtAll(Class find, Class toAdd) {
         for (KEntity e : entities) {
@@ -60,6 +62,10 @@ public abstract class KRoomBase implements KRoom, InputProcessor {
 
     @Override
     public void render() {
+
+        if (K.getSettings().isLogFPS()) {
+            fpsLogger.log();
+        }
 
         List<KEntity> destroyList = new ArrayList<KEntity>();
         for (KEntity e : entities) {

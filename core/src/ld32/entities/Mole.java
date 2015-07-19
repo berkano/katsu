@@ -47,10 +47,10 @@ public class Mole extends Mob {
     }
 
     private void doEnemyPathFinding() {
-        if (lastEnemyPathFind > K.currentTime() - LD32Settings.enemyPathFindInterval) return;
+        if (lastEnemyPathFind > K.currentTime() - LD32Settings.get().enemyPathFindInterval) return;
         lastEnemyPathFind = K.currentTime();
 
-        int pfDistance = LD32Settings.enemyPathFindingDistance;
+        int pfDistance = LD32Settings.get().enemyPathFindingDistance;
 
         GridMap pathMap = createPathMap();
 
@@ -119,7 +119,7 @@ public class Mole extends Mob {
             }
         }
 
-        if (LD32Settings.displayPathFindingHints) {
+        if (LD32Settings.get().displayPathFindingHints) {
 
             // Remove any existing
             for (KEntity e : getRoom().getEntities()) {
@@ -166,7 +166,7 @@ public class Mole extends Mob {
 
     public void digRequested() {
 
-        if (World.poop >= LD32Settings.maxPoop) {
+        if (World.poop >= LD32Settings.get().maxPoop) {
             K.explain("Can't dig no more, need to poop! (Press P then move away quick...)");
             return;
         }
@@ -189,7 +189,7 @@ public class Mole extends Mob {
                         e.setHealth(0);
                         LD32Sounds.mole_dig.play();
                         World.poop++;
-                        if (World.poop > LD32Settings.maxPoop) World.poop = LD32Settings.maxPoop;
+                        if (World.poop > LD32Settings.get().maxPoop) World.poop = LD32Settings.get().maxPoop;
                     }
                 }
 
@@ -209,7 +209,7 @@ public class Mole extends Mob {
 
     public void poopRequested() {
 
-        if (World.poop < LD32Settings.maxPoop) return;
+        if (World.poop < LD32Settings.get().maxPoop) return;
 
         World.poop = 0;
         Poop poop = new Poop();

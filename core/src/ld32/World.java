@@ -36,8 +36,8 @@ public class World extends KRoomBase {
     public void start() {
         super.start();
 
-        numLives = LD32Settings.startLives;
-        poop = LD32Settings.startPoop;
+        numLives = LD32Settings.get().startLives;
+        poop = LD32Settings.get().startPoop;
         
         String mapName = "ld32";
         KTmxHelper.addEntitiesToRoomFromMap(mapName, this);
@@ -56,7 +56,7 @@ public class World extends KRoomBase {
             mole.setY(waypointY);
         }
 
-        if (LD32Settings.teleportToSpecialPosition) {
+        if (LD32Settings.get().teleportToSpecialPosition) {
 //            int toX = 34; int toY = 43; // Level 4
 //            int toX = 19; int toY = 66; // Level 5
 //            int toX = 37; int toY = 85; // Level 6
@@ -71,11 +71,11 @@ public class World extends KRoomBase {
 
         K.getUI().setHelpText(KResource.loadText("help.txt"));
 
-        if (LD32Settings.startWithPausedHelp) {
+        if (LD32Settings.get().startWithPausedHelp) {
             K.getUI().setShowingHelp(true);
         }
 
-        if (LD32Settings.startWithMusic) LD32Sounds.playMusic();
+        if (LD32Settings.get().startWithMusic) LD32Sounds.playMusic();
 
         K.getUI().clearText();
         updateUITopText();
@@ -118,7 +118,7 @@ public class World extends KRoomBase {
 
     private void updateUITopText() {
 
-        String topText = "Lives: " + numLives + " Poopmeter: " + poop + "/" + LD32Settings.maxPoop;
+        String topText = "Lives: " + numLives + " Poopmeter: " + poop + "/" + LD32Settings.get().maxPoop;
         K.getUI().setTopText(topText);
 
     }

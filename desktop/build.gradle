@@ -12,6 +12,7 @@ task run(dependsOn: classes, type: JavaExec) {
     standardInput = System.in
     workingDir = project.assetsDir
     ignoreExitValue = true
+    systemProperties = System.getProperties()
 }
 
 task dist(type: Jar) {

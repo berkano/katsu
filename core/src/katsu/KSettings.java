@@ -12,6 +12,12 @@ public class KSettings {
     private int targetFrameRate = 30;
     private boolean vsync = false;
     private int gridSize = 16;
+    private boolean logFPS = false;
+    private boolean devMode = getDevModeFromSystemProps();
+
+    private boolean getDevModeFromSystemProps() {
+        return Boolean.parseBoolean(System.getProperty("devMode", "false"));
+    }
 
     private int pauseKey = Input.Keys.P;
 
@@ -73,5 +79,21 @@ public class KSettings {
 
     public void setPauseKey(int pauseKey) {
         this.pauseKey = pauseKey;
+    }
+
+    public boolean isLogFPS() {
+        return logFPS;
+    }
+
+    public void setLogFPS(boolean logFPS) {
+        this.logFPS = logFPS;
+    }
+
+    public boolean isDevMode() {
+        return devMode;
+    }
+
+    public void setDevMode(boolean devMode) {
+        this.devMode = devMode;
     }
 }

@@ -28,7 +28,7 @@ public class Poop extends KEntityBase {
                     for (int dy = -1; dy <= 1; dy++) {
 
                         // Nerf for now
-                        if (LD32Settings.nerfLava) {
+                        if (LD32Settings.get().nerfLava) {
                             if (dx != 0 || dy != 0) continue;
                         }
 
