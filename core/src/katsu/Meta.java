@@ -1,4 +1,4 @@
-package panko;
+package katsu;
 
 /**
  * Created by shaun on 14/03/2015.

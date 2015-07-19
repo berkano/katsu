@@ -2,7 +2,7 @@ package ld32;
 
 import com.badlogic.gdx.Input;
 import ld32.entities.*;
-import panko.*;
+import katsu.*;
 
 /**
  * Created by shaun on 12/04/2015.

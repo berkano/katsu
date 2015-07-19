@@ -3,7 +3,7 @@ package net.berkanoid.panko.desktop.ld32;
 import ld32.LD32Game;
 import ld32.LD32Settings;
 import net.berkanoid.panko.desktop.PankoDesktopLauncher;
-import panko.PankoSettings;
+import katsu.PankoSettings;
 
 /**
  * Created by shaun on 16/11/2014.

@@ -1,4 +1,4 @@
-package panko;
+package katsu;
 
 import java.util.ArrayList;
 import java.util.HashMap;

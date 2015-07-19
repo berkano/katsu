@@ -1,8 +1,8 @@
 package ld32;
 
 import ld32.entities.*;
-import panko.PankoGame;
-import panko.PankoRoom;
+import katsu.PankoGame;
+import katsu.PankoRoom;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -2,10 +2,8 @@ package ld32.entities;
 
 import ld32.LD32Sounds;
 import ld32.LevelBounds;
-import ld32.World;
-import panko.Panko;
-import panko.PankoEntity;
-import panko.PankoEntityBase;
+import katsu.Panko;
+import katsu.PankoEntity;
 
 import java.util.ArrayList;
 

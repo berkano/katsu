@@ -2,9 +2,8 @@ package ld32.entities;
 
 import ld32.LD32Sounds;
 import ld32.World;
-import panko.PankoDirection;
-import panko.PankoEntity;
-import panko.PankoEntityBase;
+import katsu.PankoDirection;
+import katsu.PankoEntity;
 
 /**
  * Created by shaun on 18/04/2015.

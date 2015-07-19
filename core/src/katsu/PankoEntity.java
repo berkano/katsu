@@ -1,7 +1,6 @@
-package panko;
+package katsu;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import ld32.entities.EmptyDirt;
 
 /**
  * Created by shaun on 16/11/2014.

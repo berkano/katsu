@@ -1,4 +1,4 @@
-package panko;
+package katsu;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapProperties;

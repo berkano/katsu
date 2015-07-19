@@ -1,7 +1,7 @@
 package ld32;
 
 import com.badlogic.gdx.Input;
-import panko.PankoSettings;
+import katsu.PankoSettings;
 
 /**
  * Created by shaun on 18/04/2015.

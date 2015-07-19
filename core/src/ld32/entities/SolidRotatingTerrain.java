@@ -1,8 +1,7 @@
 package ld32.entities;
 
-import panko.Panko;
-import panko.PankoDirection;
-import panko.PankoEntityBase;
+import katsu.Panko;
+import katsu.PankoDirection;
 
 /**
  * Created by shaun on 18/04/2015.

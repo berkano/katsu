@@ -2,9 +2,9 @@ package ld32.entities;
 
 import ld32.LD32Settings;
 import ld32.LD32Sounds;
-import panko.Panko;
-import panko.PankoEntity;
-import panko.PankoEntityBase;
+import katsu.Panko;
+import katsu.PankoEntity;
+import katsu.PankoEntityBase;
 
 import java.util.ArrayList;
 

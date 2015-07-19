@@ -1,4 +1,4 @@
-package panko;
+package katsu;
 
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Gdx;
@@ -7,11 +7,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
-import java.io.File;
-import java.nio.file.Paths;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
 
 /**
  * Created by shaun on 16/11/2014.

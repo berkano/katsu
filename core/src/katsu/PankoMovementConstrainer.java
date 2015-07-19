@@ -1,7 +1,6 @@
-package panko;
+package katsu;
 
 import com.badlogic.gdx.math.Rectangle;
-import ld32.entities.Worm;
 
 /**
  * Created by shaun on 16/11/2014.

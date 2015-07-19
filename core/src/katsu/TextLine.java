@@ -1,4 +1,4 @@
-package panko;
+package katsu;
 
 /**
  * Created with IntelliJ IDEA.

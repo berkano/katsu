@@ -7,9 +7,9 @@ import ext.pathfinding.grid.GridPathfinding;
 import ld32.LD32Settings;
 import ld32.LD32Sounds;
 import ld32.World;
-import panko.Panko;
-import panko.PankoDirection;
-import panko.PankoEntity;
+import katsu.Panko;
+import katsu.PankoDirection;
+import katsu.PankoEntity;
 
 import java.util.ArrayList;
 

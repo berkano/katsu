@@ -1,4 +1,4 @@
-package panko;
+package katsu;
 
 import com.badlogic.gdx.InputProcessor;
 

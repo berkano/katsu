@@ -1,7 +1,7 @@
 package ld32.entities;
 
-import panko.Panko;
-import panko.PankoEntity;
+import katsu.Panko;
+import katsu.PankoEntity;
 
 import java.util.ArrayList;
 

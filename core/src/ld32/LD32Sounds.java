@@ -1,8 +1,7 @@
 package ld32;
 
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
-import panko.PankoResource;
+import katsu.PankoResource;
 
 /**
  * Created by shaun on 18/04/2015.
