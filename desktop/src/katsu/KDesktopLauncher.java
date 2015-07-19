@@ -1,13 +1,9 @@
-package net.berkanoid.panko.desktop;
+package katsu;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import katsu.K;
-import katsu.KGame;
-import katsu.KGameRunner;
-import katsu.KSettings;
 
-public class PankoDesktopLauncher {
+public class KDesktopLauncher {
 
         public static void launch(KGame implementation, KSettings settings) {
 
