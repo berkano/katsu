@@ -15,7 +15,6 @@ public abstract class KRoomBase implements KRoom, InputProcessor {
 
     protected ArrayList<KEntity> entities;
     protected ArrayList<KEntity> newEntities;
-    protected ArrayList<KEntity> deadEntityQueue;
     private boolean active;
 
     public void createInstancesAtAll(Class find, Class toAdd) {
@@ -49,7 +48,6 @@ public abstract class KRoomBase implements KRoom, InputProcessor {
         K.getInputMultiplexer().addProcessor(this);
         entities = new ArrayList<KEntity>();
         newEntities = new ArrayList<KEntity>();
-        deadEntityQueue = new ArrayList<KEntity>();
     }
 
     public void setActive(boolean active) {
@@ -63,12 +61,17 @@ public abstract class KRoomBase implements KRoom, InputProcessor {
     @Override
     public void render() {
 
-        for (KEntity e : deadEntityQueue) {
+        List<KEntity> destroyList = new ArrayList<KEntity>();
+        for (KEntity e : entities) {
+            if (e.isDestroyed()) {
+                destroyList.add(e);
+            }
+        }
+
+        for (KEntity e : destroyList) {
             entities.remove(e);
             newEntities.remove(e);
         }
-
-        deadEntityQueue.clear();
 
         for (KEntity e : newEntities) {
             entities.add(e);
@@ -115,11 +118,6 @@ public abstract class KRoomBase implements KRoom, InputProcessor {
     @Override
     public List getNewEntities() {
         return newEntities;
-    }
-
-    @Override
-    public ArrayList<KEntity> getDeadEntities() {
-        return deadEntityQueue;
     }
 
     @Override

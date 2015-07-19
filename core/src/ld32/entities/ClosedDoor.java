@@ -110,7 +110,7 @@ public class ClosedDoor extends SolidEntity {
         levelComplete = noEnemiesInBoundingBox(myLevel.topLeftX, myLevel.topLeftY, myLevel.bottomRightX, myLevel.bottomRightY);
         if (levelComplete && getHealth() >0) {
             setHealth(0);
-            getRoom().getDeadEntities().add(this);
+            destroy();
             OpenDoor openDoor = new OpenDoor();
             openDoor.setX(getX());
             openDoor.setY(getY());

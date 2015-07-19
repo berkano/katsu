@@ -125,7 +125,7 @@ public class Mole extends Mob {
             for (KEntity e : getRoom().getEntities()) {
                 if (e instanceof PathFindingHint) {
                     e.setHealth(0);
-                    getRoom().getDeadEntities().add(e);
+                    destroy();
                 }
             }
 

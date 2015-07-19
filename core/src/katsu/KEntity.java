@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
  * Created by shaun on 16/11/2014.
  */
 public interface KEntity {
+
     KEntity setX(int x);
 
     int getX();
@@ -58,10 +59,6 @@ public interface KEntity {
 
     int getGridY();
 
-    void setBeingRemoved(boolean beingRemoved);
-
-    boolean isBeingRemoved();
-
     void onMoved();
 
     int getHealth();
@@ -75,6 +72,12 @@ public interface KEntity {
     void createInPlace(Class clazz);
 
     boolean canCollideWith(Class clazz);
+
+    boolean isDestroyed();
+
+    void setDestroyed(boolean destroyed);
+
+    void destroy();
 
     int getzLayer();
 }

@@ -133,13 +133,9 @@ public class K {
     public static void deleteEntitiesOfClassFromRoom(KRoom room, Class clazz) {
         for (KEntity e : room.getEntities()) {
             if (clazz.isInstance(e)) {
-                queueEntityToRemove(room, e);
+                e.destroy();
             }
         }
-    }
-
-    private static void queueEntityToRemove(KRoom room, KEntity e) {
-        room.getDeadEntities().add(e);
     }
 
     public static ShapeRenderer getActiveShapeRenderer() {
@@ -164,11 +160,6 @@ public class K {
 
     public static void setUI(KUI UI) {
         K.ui = UI;
-    }
-
-    public static void queueRemoveEntity(KEntity entity) {
-        entity.getRoom().getDeadEntities().add(entity);
-        entity.setBeingRemoved(true);
     }
 
     public static void pauseGame() {

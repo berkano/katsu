@@ -28,7 +28,7 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
     private double radius;
     private boolean selected = false;
     private KEntity targetEntity;
-    private boolean beingRemoved = false;
+    private boolean destroyed = false;
     private int spriteRotation = 0;
     private float spriteScale = 1.0f;
     private int maxMoveInterval = 0;
@@ -36,6 +36,16 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
     private int maxHealth = 100;
     private KDirection pathFinderNextDirection;
     private int zLayer = 0;
+
+    @Override
+    public boolean isDestroyed() {
+        return destroyed;
+    }
+
+    public void setDestroyed(boolean destroyed) {
+        this.destroyed = destroyed;
+    }
+
 
     public int getSpriteRotation(){
         return this.spriteRotation;
@@ -67,16 +77,6 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
     @Override
     public int getGridY() {
         return getY() / getHeight();
-    }
-
-    @Override
-    public boolean isBeingRemoved() {
-        return this.beingRemoved;
-    }
-
-    @Override
-    public void setBeingRemoved(boolean beingRemoved) {
-        this.beingRemoved = beingRemoved;
     }
 
     @Override
@@ -265,8 +265,7 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
         }
 
         if (getHealth() <= 0) {
-            setBeingRemoved(true);
-            getRoom().getDeadEntities().add(this);
+            destroy();
         }
     }
 
@@ -282,6 +281,11 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
     public KEntity setRoom(KRoom room) {
         this.room = room;
         return this;
+    }
+
+    @Override
+    public void destroy() {
+        setDestroyed(true);
     }
 
     public long getLastMove() {

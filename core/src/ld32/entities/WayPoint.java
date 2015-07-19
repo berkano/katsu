@@ -22,7 +22,7 @@ public class WayPoint extends SolidEntity {
                 this.setHealth(0);
                 World.setWaypointX(getX());
                 World.setWaypointY(getY());
-                getRoom().getDeadEntities().add(this);
+                destroy();
                 K.getUI().writeText("Waypoint reached! Restarting the level will continue from here.");
                 LD32Sounds.waypoint.play();
             }

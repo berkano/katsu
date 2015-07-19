@@ -22,7 +22,7 @@ public class Poop extends KEntityBase {
         if (ageMillis > 5000) {
             if (getHealth() > 0) {
                 setHealth(0);
-                getRoom().getDeadEntities().add(this);
+                destroy();
                 LD32Sounds.poop_explode.play();
                 for (int dx = -1; dx <= 1; dx++) {
                     for (int dy = -1; dy <= 1; dy++) {
