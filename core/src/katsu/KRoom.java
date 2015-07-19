@@ -29,4 +29,6 @@ public interface KRoom {
     ArrayList<KEntity> findEntitiesAtPoint(int x, int y);
 
     void addNewEntity(KEntity entity);
+
+    void updateSpatialMap(KEntity entity);
 }

@@ -3,11 +3,10 @@ package katsu;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.math.Rectangle;
+import net.sf.jsi.SpatialIndex;
+import net.sf.jsi.rtree.RTree;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by shaun on 16/11/2014.
@@ -18,6 +17,37 @@ public abstract class KRoomBase implements KRoom, InputProcessor {
     protected ArrayList<KEntity> newEntities;
     private boolean active;
     private FPSLogger fpsLogger = new FPSLogger();
+
+    // Spatial indexing of entities
+    SpatialIndex si = new RTree();
+    int lastID = 0;
+    HashMap<Integer, KEntity> idToEntity = new HashMap<Integer, KEntity>();
+    HashMap<Integer, net.sf.jsi.Rectangle> idToRectangle = new HashMap<Integer, net.sf.jsi.Rectangle>();
+    HashMap<KEntity, Integer> entityToID = new HashMap<KEntity, Integer>();
+
+    @Override
+    public void updateSpatialMap(KEntity entity) {
+        // Remove any existing entries in the index
+        Integer id = entityToID.get(entity);
+        if (id != null) {
+            si.delete(idToRectangle.get(id), id);
+        }
+
+        // Create rectangle
+        net.sf.jsi.Rectangle rect = new net.sf.jsi.Rectangle(entity.getX(), entity.getY(), entity.getX() + entity.getWidth(), entity.getY() + entity.getHeight());
+
+        id = lastID;
+        lastID++;
+
+        // Add to spatial index
+        si.add(rect, id);
+
+        // Keep track of rectangles and entities for later
+        idToEntity.put(id, entity);
+        idToRectangle.put(id, rect);
+
+    }
+
 
     public void createInstancesAtAll(Class find, Class toAdd) {
         for (KEntity e : entities) {
@@ -75,6 +105,14 @@ public abstract class KRoomBase implements KRoom, InputProcessor {
         }
 
         for (KEntity e : destroyList) {
+            Integer id = entityToID.get(e);
+            // Cleanup spatial index
+            if (id != null) {
+                si.delete(idToRectangle.get(id), id);
+                idToRectangle.remove(id);
+                idToEntity.remove(id);
+                entityToID.remove(e);
+            }
             entities.remove(e);
             newEntities.remove(e);
         }
@@ -112,6 +150,11 @@ public abstract class KRoomBase implements KRoom, InputProcessor {
     @Override
     public ArrayList<KEntity> getEntities() {
         return entities;
+    }
+
+    public KRoomBase() {
+        super();
+        si.init(null);
     }
 
     @Override

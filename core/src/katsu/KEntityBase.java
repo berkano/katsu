@@ -11,8 +11,8 @@ import com.badlogic.gdx.math.Vector3;
  */
 public abstract class KEntityBase implements KEntity, InputProcessor {
 
-    private int x;
-    private int y;
+    private int _x;
+    private int _y;
     private int dx = 0;
     private int dy = 0;
     private double rotation = 0;
@@ -36,6 +36,7 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
     private int maxHealth = 100;
     private KDirection pathFinderNextDirection;
     private int zLayer = 0;
+    private boolean needsSpatialUpdate = false;
 
     @Override
     public boolean isDestroyed() {
@@ -45,7 +46,6 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
     public void setDestroyed(boolean destroyed) {
         this.destroyed = destroyed;
     }
-
 
     public int getSpriteRotation(){
         return this.spriteRotation;
@@ -109,7 +109,7 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
         //Panko.getActiveSpriteBatch().draw(textureRegion, x, y);
         K.getActiveSpriteBatch().draw(
                 textureRegion,
-                x, y, getWidth()/2,getHeight()/2,
+                getX(), getY(), getWidth()/2,getHeight()/2,
                 getWidth(), getHeight(),
                 spriteScale, spriteScale, (float)spriteRotation
         );
@@ -130,24 +130,35 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
 
     @Override
     public KEntity setX(int x) {
-        this.x = x;
+        this._x = x;
+        this.updateSpatialMap();
         return this;
+    }
+
+    private void updateSpatialMap() {
+        if (getRoom() != null) {
+            getRoom().updateSpatialMap(this);
+            needsSpatialUpdate = false;
+        } else {
+            needsSpatialUpdate = true;
+        }
     }
 
     @Override
     public int getX() {
-        return x;
+        return _x;
     }
 
     @Override
     public KEntity setY(int y) {
-        this.y = y;
+        this._y = y;
+        this.updateSpatialMap();
         return this;
     }
 
     @Override
     public int getY() {
-        return y;
+        return _y;
     }
 
     @Override
@@ -255,8 +266,10 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
 
     @Override
     public void update() {
-        x -= velocity * Math.sin(getRotation() * 0.0174);
-        y += velocity * Math.cos(getRotation() * 0.0174);
+
+        if (needsSpatialUpdate) {
+            updateSpatialMap();
+        }
 
         if (this.parent != null) {
             double rx = -1 * (double)parentDistance * Math.sin(getRotation() * 0.0174);
