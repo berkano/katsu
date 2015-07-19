@@ -114,7 +114,7 @@ public class ClosedDoor extends SolidEntity {
             OpenDoor openDoor = new OpenDoor();
             openDoor.setX(getX());
             openDoor.setY(getY());
-            getRoom().getNewEntities().add(openDoor);
+            addNewEntity(openDoor);
             openDoor.setRoom(getRoom());
             K.getUI().writeText("Level " + myLevel.level + "/8 complete! Door to next level is open.");
             LD32Sounds.complete_level.play();

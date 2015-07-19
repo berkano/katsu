@@ -135,7 +135,7 @@ public class Mole extends Mob {
                         PathFindingHint hint = new PathFindingHint();
                         hint.setX(x * getWidth());
                         hint.setY(y * getHeight());
-                        getRoom().getNewEntities().add(hint);
+                        addNewEntity(hint);
                         hint.setRoom(getRoom());
                     }
                 }
@@ -216,7 +216,7 @@ public class Mole extends Mob {
         poop.setX(getX());
         poop.setY(getY());
         poop.setRoom(getRoom());
-        getRoom().getNewEntities().add(poop);
+        addNewEntity(poop);
         LD32Sounds.poop.play();
 
     }

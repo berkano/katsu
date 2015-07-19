@@ -116,6 +116,11 @@ public abstract class KRoomBase implements KRoom, InputProcessor {
     }
 
     @Override
+    public void addNewEntity(KEntity entity) {
+        newEntities.add(entity);
+    }
+
+    @Override
     public List getNewEntities() {
         return newEntities;
     }

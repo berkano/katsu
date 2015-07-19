@@ -80,4 +80,6 @@ public interface KEntity {
     void destroy();
 
     int getzLayer();
+
+    void addNewEntity(KEntity entity);
 }

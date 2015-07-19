@@ -108,20 +108,6 @@ public class K {
         return keysDown.get(keycode) != null;
     }
 
-
-    public static KEntity addEntityToRoom(KRoom room, KEntity entity) {
-        room.getEntities().add(entity);
-        entity.setRoom(room);
-        return entity;
-    }
-
-    public static KEntity queueEntityToRoom(KRoom room, KEntity entity) {
-        room.getNewEntities().add(entity);
-        entity.setRoom(room);
-        return entity;
-    }
-
-
     public static Camera getMainCamera() {
         return mainCamera;
     }

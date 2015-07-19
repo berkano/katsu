@@ -249,6 +249,11 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
     }
 
     @Override
+    public void addNewEntity(KEntity entity) {
+        getRoom().addNewEntity(entity);
+    }
+
+    @Override
     public void update() {
         x -= velocity * Math.sin(getRotation() * 0.0174);
         y += velocity * Math.cos(getRotation() * 0.0174);
