@@ -110,12 +110,12 @@
  </tileset>
  <layer name="objects" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt21FO4zAURuEMzEYos5EAG4GlsBaWwsJQJSx5zL2uHW7iP8l5OJpO1MTx/VrCC6/TNL2SVM80LDy0wkMrPLTCI7YXo0iPl8o6vWst3c8a60SumZ/zYNRzPcujvP78/e9TVr5W5Fys/USvU87RW/OpMe/8nn2ke7E8Llm5R9SsvM9jy14iXFrXazHpsSj3Ye3d8ijPtzzui/9HzyHSv/U7qFCPx/3363n6aVSbUZSD9Rnr/S6OnvdSjz/O7K+v/xke5Yy2msEaP08UPdLsy/dbRvm1ksuWeziKxRKP/Pid40HreVx7z16Xz5AUHtt4WOeUx/FY1yQdL3+n9TweHY958p811GaRz9Sa451xfM6uVVr8xWNVD+t46TEbjd7nXoryuPY2/f/sH723PVbz8Cy8Wd86l2I95qn+MwiP7T3S8/w3HpfG952xHo9bs62di8Fyj7K58X29ltTmEXVtvhNaHhTvMTstWevivKa6SWnxYXh8/NKD+j08h/R69H0fNc8jzf3TcEke3mee70K8R25iWdD6FpZJVDzPtTxoGw8+61oeOO3Dg/DYe54HJngQHkrVLDDBQ7nov1tbajJ6DqNr/RtCPI7pcctk9DzOGBZa4aEVHlrhoZNngQcehIdSNQs88Dh7WGiFh1Z4aIWHVjUPTPA4e3hohYdWeGiFh1Z46IWHVnhoVfPABI+zh4VWeGiFh1Z4aIWHVnhoVfPABI+zh4dWeGiFh1Z4aIWHVnhohYVWeGiFh1Z4aIWHVnhohYdWeGiFh15HNdnrfrb2iF6vdr0RJrU1Wu6h9d4j9t17jVv3v/R6a9jUrr/FjI4aMyEi6u8LeyewSw==
+   eJzt2GFOg0AQQGHUkzSepKkXqfc/hD8sEcZdmMJaXt33kklMoRjny7aJ12EYro5TmB47eud6zNuzr8tttr6vNnps393SPvc8S492HiWTLe/vsb/yiCZ65NKDFdHD7/Nlj4/bnCYzvnYJ94wTnxOv10aP5YkOL0PZ5VSZ8Tm163Gmlj225hH3dS681sriFH53j+nBqpXHW+G1ez3i7+6xvR7nyZT2m919aXos63Eefnuch7rH0tnIXNOj7hENxs+ntbMRd7507vT4bs/52PJZFO+NZ+xz8nOPbT0fSzPdb+l7Pt7n+fip5fmYOrwO5X3H8+Dn1bw1j/gZc+/5KHmMVu+F9+rR3mPtnGXOhh757+CMRW3PGTs99ptk7s08W492Hveco4xZj+nBqoVH1kyP9fZ6tLTQY5tH5loLkx7LehwxPXb0zvWYd/TO9ZjnLljpwUoPVnqw0oOVHqz0YKUHKz1Y6cFKD1Z6sNKDlR6s9GClBys9WOnBSg9WerDSg5UerPRgpQcrPVjpwUoPVnqw0oOVHqz0YKUHKz041Sz0OCY9WOnBaslDm8enBys9WOnBSg9WerDSg5UerPRgpQcrPVjpwUoPVnqwcves9GClBys9WOnBSg9WerDSg5UerPRgpQcrPVjpwUoPVv/1/+3Zv+tZ59k6el+O4zxmvgDqTosP
   </data>
  </layer>
- <layer name="invisible" width="100" height="100">
+ <layer name="invisible" width="100" height="100" visible="0">
   <data encoding="base64" compression="zlib">
-   eJzt1FEKgCAMAFAP2/3P0G9ExWRbUrwHfgTqdJuNAQC8aXsY3ftXx4rEqxa9X0UeMveYXZfNVTReRU066ztzhvN3R29H5mR7P3vulXU4eqMv7vZeVf+KNV939RY7Y1X93/9KDgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACgzg6K7Sat
+   eJzt2UsOwCAIBUCv2qT3P0OvUOMHwZmke3iCLtoaAADc4w36dtYQ3fPNZubhPOZZnYn8+8kIAAAAAAAAAAAAAOZ4ogs4jDzYzcwBVWW43zLUCOTnroE87CvEsoNQmx0HAAAAAAAY438LnKPCPlboAf4y72RjZgFgnPe0pkrnWqkXAAAAAAAA+n2LPjTu
   </data>
  </layer>
  <layer name="no-populate" width="100" height="100" visible="0">

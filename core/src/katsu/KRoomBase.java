@@ -3,6 +3,7 @@ package katsu;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.math.Rectangle;
+import gnu.trove.procedure.TIntProcedure;
 import net.sf.jsi.SpatialIndex;
 import net.sf.jsi.rtree.RTree;
 
@@ -34,7 +35,7 @@ public abstract class KRoomBase implements KRoom, InputProcessor {
         }
 
         // Create rectangle
-        net.sf.jsi.Rectangle rect = new net.sf.jsi.Rectangle(entity.getX(), entity.getY(), entity.getX() + entity.getWidth(), entity.getY() + entity.getHeight());
+        net.sf.jsi.Rectangle rect = new net.sf.jsi.Rectangle(entity.getX(), entity.getY(), entity.getX() + entity.getWidth() - 1, entity.getY() - entity.getHeight() + 1);
 
         id = lastID;
         lastID++;
@@ -45,8 +46,36 @@ public abstract class KRoomBase implements KRoom, InputProcessor {
         // Keep track of rectangles and entities for later
         idToEntity.put(id, entity);
         idToRectangle.put(id, rect);
+        entityToID.put(entity, id);
 
     }
+
+    @Override
+    public List<KEntity> spatialSearchByIntersection(net.sf.jsi.Rectangle rect) {
+
+        ArrayList<KEntity> results = new ArrayList<KEntity>();
+        SaveToListProcedure myProc = new SaveToListProcedure();
+        si.intersects(rect, myProc);
+        for (int id : myProc.getIds()) {
+            results.add(idToEntity.get(id));
+        }
+        return results;
+
+    }
+
+    class SaveToListProcedure implements TIntProcedure {
+        private List<Integer> ids = new ArrayList<Integer>();
+
+        public boolean execute(int id) {
+            ids.add(id);
+            return true;
+        };
+
+        private List<Integer> getIds() {
+            return ids;
+        }
+    };
+
 
 
     public void createInstancesAtAll(Class find, Class toAdd) {
@@ -177,24 +206,32 @@ public abstract class KRoomBase implements KRoom, InputProcessor {
     @Override
     public ArrayList<KEntity> findEntitiesAtPoint(int x, int y) {
 
-            ArrayList<KEntity> result = new ArrayList<KEntity>();
+        return findEntitiesAtPoint(entities, x, y);
 
-            for (KEntity e : entities) {
+    }
 
-                // Quick optimization
-                if (e.getX() > x) continue;
-                if (e.getY() > y) continue;
-                if (e.getX() < x - e.getWidth()) continue;
-                if (e.getY() < y - e.getHeight()) continue;
+    @Override
+    public ArrayList<KEntity> findEntitiesAtPoint(List<KEntity> entities, int x, int y) {
 
-                Rectangle r = new Rectangle(e.getX(), e.getY(), e.getWidth(), e.getHeight());
+        ArrayList<KEntity> result = new ArrayList<KEntity>();
 
-                if (r.contains(x, y)) {
-                    result.add(e);
-                }
+        for (KEntity e : entities) {
 
+            // Quick optimization
+            if (e.getX() > x) continue;
+            if (e.getY() > y) continue;
+            if (e.getX() < x - e.getWidth()) continue;
+            if (e.getY() < y - e.getHeight()) continue;
+
+            Rectangle r = new Rectangle(e.getX(), e.getY(), e.getWidth(), e.getHeight());
+
+            if (r.contains(x, y)) {
+                result.add(e);
             }
-            return result;
+
+        }
+        return result;
+
     }
 
     @Override

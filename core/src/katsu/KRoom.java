@@ -1,6 +1,7 @@
 package katsu;
 
 import com.badlogic.gdx.InputProcessor;
+import net.sf.jsi.Rectangle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,11 @@ public interface KRoom {
 
     ArrayList<KEntity> findEntitiesAtPoint(int x, int y);
 
+    ArrayList<KEntity> findEntitiesAtPoint(List<KEntity> entities, int x, int y);
+
     void addNewEntity(KEntity entity);
 
     void updateSpatialMap(KEntity entity);
+
+    List<KEntity> spatialSearchByIntersection(Rectangle rectangle);
 }
