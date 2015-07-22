@@ -106,16 +106,13 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
         if (textureRegion == null) {
             textureRegion = KGraphics.getTextureCache().get(this.getClass());
         }
-        //Panko.getActiveSpriteBatch().draw(textureRegion, x, y);
+
         K.getActiveSpriteBatch().draw(
                 textureRegion,
                 getX(), getY(), getWidth()/2,getHeight()/2,
                 getWidth(), getHeight(),
                 spriteScale, spriteScale, (float)spriteRotation
         );
-
-//    public void draw (TextureRegion region, float x, float y, float originX, float originY, float width, float height,
-  //                    float scaleX, float scaleY, float rotation) {
 
     }
 
