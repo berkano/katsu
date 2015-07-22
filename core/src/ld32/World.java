@@ -111,11 +111,10 @@ public class World extends KRoomBase {
     public void update() {
         super.update();
 
-        if (K.isKeyDown(Input.Keys.W)) moveOrDig(KDirection.UP); //mole.moveRequested(KDirection.UP);
-        if (K.isKeyDown(Input.Keys.S)) moveOrDig(KDirection.DOWN);//mole.moveRequested(KDirection.DOWN);
-        if (K.isKeyDown(Input.Keys.A)) moveOrDig(KDirection.LEFT);//mole.moveRequested(KDirection.LEFT);
-        if (K.isKeyDown(Input.Keys.D)) moveOrDig(KDirection.RIGHT);//mole.moveRequested(KDirection.RIGHT);
-//        if (K.isKeyDown(Input.Keys.SPACE)) mole.digRequested();
+        if (K.isKeyDown(Input.Keys.W)) moveOrDig(KDirection.UP);
+        if (K.isKeyDown(Input.Keys.S)) moveOrDig(KDirection.DOWN);
+        if (K.isKeyDown(Input.Keys.A)) moveOrDig(KDirection.LEFT);
+        if (K.isKeyDown(Input.Keys.D)) moveOrDig(KDirection.RIGHT);
         if (K.isKeyDown(Input.Keys.P)) mole.poopRequested();
 
         updateUITopText();
