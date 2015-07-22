@@ -7,8 +7,7 @@ Help Noel find his way back to the colony.
 @PINK and the door to the next level will open.
 
 ** Controls **
-@YELLOW WASD: move
-@YELLOW SPACE: eat dirt (until you are full up)
+@YELLOW WASD: move and eat dirt (until you are full up)
 @YELLOW and then... P: poop
 
 @GREEN Also: ENTER to pause; H: show this help;

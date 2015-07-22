@@ -82,20 +82,6 @@ public class Mole extends Mob {
         }
 
 
-//        GridPathfinding gridPathfinding = new GridPathfinding();
-//
-//        // Don't block start of path where entity is
-//        double prevStartVal = pathMap.get(start.getX(), start.getY());
-//        double prevEndVal = pathMap.get(end.getX(), end.getY());
-//        pathMap.set(start.getX(), start.getY(), 1);
-//        pathMap.set(end.getX(), end.getY(), 1);
-//        GridPath gridPath = gridPathfinding.getPath(start, end, pathMap);
-//        pathMap.set(start.getX(), start.getY(), prevStartVal);
-//        pathMap.set(end.getX(), end.getY(), prevEndVal);
-
-
-
-
     }
 
     private GridMap createPathMap() {

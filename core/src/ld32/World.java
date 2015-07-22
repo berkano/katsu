@@ -27,7 +27,7 @@ public class World extends KRoomBase {
     public World() {
         super();
         setRenderFog(true);
-        setFogRadius(80);
+        setFogRadius(180);
     }
 
     public static void setWaypointY(int waypointY) {
@@ -111,11 +111,11 @@ public class World extends KRoomBase {
     public void update() {
         super.update();
 
-        if (K.isKeyDown(Input.Keys.W)) mole.moveRequested(KDirection.UP);
-        if (K.isKeyDown(Input.Keys.S)) mole.moveRequested(KDirection.DOWN);
-        if (K.isKeyDown(Input.Keys.A)) mole.moveRequested(KDirection.LEFT);
-        if (K.isKeyDown(Input.Keys.D)) mole.moveRequested(KDirection.RIGHT);
-        if (K.isKeyDown(Input.Keys.SPACE)) mole.digRequested();
+        if (K.isKeyDown(Input.Keys.W)) moveOrDig(KDirection.UP); //mole.moveRequested(KDirection.UP);
+        if (K.isKeyDown(Input.Keys.S)) moveOrDig(KDirection.DOWN);//mole.moveRequested(KDirection.DOWN);
+        if (K.isKeyDown(Input.Keys.A)) moveOrDig(KDirection.LEFT);//mole.moveRequested(KDirection.LEFT);
+        if (K.isKeyDown(Input.Keys.D)) moveOrDig(KDirection.RIGHT);//mole.moveRequested(KDirection.RIGHT);
+//        if (K.isKeyDown(Input.Keys.SPACE)) mole.digRequested();
         if (K.isKeyDown(Input.Keys.P)) mole.poopRequested();
 
         updateUITopText();
@@ -126,6 +126,12 @@ public class World extends KRoomBase {
             K.pauseGame();
         }
 
+    }
+
+    private void moveOrDig(KDirection direction) {
+        if (!mole.moveRequested(direction)) {
+            mole.digRequested();
+        }
     }
 
     private void updateUITopText() {

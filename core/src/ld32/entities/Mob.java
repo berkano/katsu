@@ -37,9 +37,12 @@ public class Mob extends SolidEntity {
         }
     }
 
-    public void moveRequested(KDirection direction) {
+    public boolean moveRequested(KDirection direction) {
+
+        boolean result = false;
 
         if (moveGrid(direction.dx(), direction.dy())) {
+            result = true;
             if (!(this instanceof Spider)) {
                 setSpriteRotation(direction.rotation());
                 setFacing(direction);
@@ -51,6 +54,7 @@ public class Mob extends SolidEntity {
             setSpriteRotation(direction.rotation());
             setFacing(direction);
         }
+        return result;
     }
 
     public void setFacing(KDirection facing) {
