@@ -8,6 +8,8 @@ import katsu.KSettings;
  */
 public class LD32Settings extends KSettings {
 
+    public boolean startPaused = !isDevMode();
+
     @Override
     public boolean isLogFPS() {
         return isDevMode();

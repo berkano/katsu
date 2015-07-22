@@ -24,6 +24,12 @@ public class World extends KRoomBase {
         return waypointX;
     }
 
+    public World() {
+        super();
+        setRenderFog(true);
+        setFogRadius(80);
+    }
+
     public static void setWaypointY(int waypointY) {
         World.waypointY = waypointY;
     }
@@ -79,12 +85,18 @@ public class World extends KRoomBase {
 
         K.getUI().clearText();
         updateUITopText();
-        K.pauseGame();
+        if (LD32Settings.get().startPaused) {
+            K.pauseGame();
+        }
 
     }
 
     @Override
     public void render() {
+
+        setFogX(mole.getX());
+        setFogY(mole.getY());
+
         super.render();
         if (K.isKeyDown(Input.Keys.R)) {
             if (lastRestart < K.currentTime() - 5000) {

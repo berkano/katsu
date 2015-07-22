@@ -18,6 +18,10 @@ public abstract class KRoomBase implements KRoom, InputProcessor {
     protected ArrayList<KEntity> newEntities;
     private boolean active;
     private FPSLogger fpsLogger = new FPSLogger();
+    private int fogX = 0;
+    private int fogY = 0;
+    private int fogRadius = 0;
+    private boolean renderFog = false;
 
     // Spatial indexing of entities
     SpatialIndex si = new RTree();
@@ -61,6 +65,38 @@ public abstract class KRoomBase implements KRoom, InputProcessor {
         }
         return results;
 
+    }
+
+    public boolean isRenderFog() {
+        return renderFog;
+    }
+
+    public void setRenderFog(boolean renderFog) {
+        this.renderFog = renderFog;
+    }
+
+    public int getFogX() {
+        return fogX;
+    }
+
+    public void setFogX(int fogX) {
+        this.fogX = fogX;
+    }
+
+    public int getFogY() {
+        return fogY;
+    }
+
+    public void setFogY(int fogY) {
+        this.fogY = fogY;
+    }
+
+    public int getFogRadius() {
+        return fogRadius;
+    }
+
+    public void setFogRadius(int fogRadius) {
+        this.fogRadius = fogRadius;
     }
 
     class SaveToListProcedure implements TIntProcedure {
@@ -162,7 +198,23 @@ public abstract class KRoomBase implements KRoom, InputProcessor {
         });
 
         for (KEntity e : entities) {
-            e.render();
+            if (!isFogged(e)) {
+                e.render();
+            }
+        }
+    }
+
+    private boolean isFogged(KEntity e) {
+        if (isRenderFog()) {
+            int dx = e.getX() - getFogX();
+            int dy = e.getY() - getFogY();
+            long d = Math.round(Math.sqrt(dx * dx + dy * dy));
+            if (d > getFogRadius()) {
+                return true;
+            }
+            return false;
+        } else {
+            return false;
         }
     }
 
@@ -189,7 +241,9 @@ public abstract class KRoomBase implements KRoom, InputProcessor {
     @Override
     public void update() {
         for (KEntity e : entities) {
-            e.update();
+            if (!isFogged(e)) {
+                e.update();
+            }
         }
     }
 
