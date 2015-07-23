@@ -16,7 +16,7 @@ Enjoy, and good luck! ~ berkano (http://ludumdare.com/compo/author/berkano/)
 
 - The game library itself is under core/src/katsu.
 - Each game has its own:
-    - implementation package e.g. core/src/ld32 is my LD28 entry
+    - implementation package e.g. core/src/ld32 is my LD32 entry
     - resources folder e.g. core/assets/ld32/...
     - desktop launcher e.g. desktop/src/ld32/LD32Runner
         - this is set as the main class in build.gradle
