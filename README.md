@@ -20,7 +20,7 @@ Enjoy, and good luck! ~ berkano (http://ludumdare.com/compo/author/berkano/)
     - resources folder e.g. core/assets/ld32/...
     - desktop launcher e.g. desktop/src/ld32/LD32Runner
         - this is set as the main class in build.gradle
-        - the launcher must pass an instance of your implementation of KatsuGame which is responsible for implementation specific details (level manager, sounds, settings and so on - the LD28 implementation hopefully shows what's needed here).
+        - the launcher must pass an instance of your implementation of KGame which is responsible for implementation specific details (level manager, sounds, settings and so on - the LD32 implementation hopefully shows what's needed here).
 
 # Credits & License
 
