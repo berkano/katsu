@@ -17,8 +17,10 @@ Enjoy, and good luck! ~ berkano (http://ludumdare.com/compo/author/berkano/)
 - Tested under Yosemite + IntelliJ IDEA 14 + JDK 7 (YMMV)
 - To get it working I had to install JDK 7 from http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html
 - Then edit the IntelliJ config file at /Applications/IntelliJ IDEA 14.app/Contents/Info.plist, setting:
-```<key>JVMVersion</key>
-<string>1.7</string>```
+```
+<key>JVMVersion</key>
+<string>1.7</string>
+```
 
 # Implementing a game
 
