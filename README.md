@@ -1,7 +1,7 @@
 # Katsu - Java 2D Game Framework based on LibGDX
 
-This is my personal game framework for Ludum Dare - http://ludumdare.com/compo/ -
-which I have been  
+This is my personal game framework for Ludum Dare (http://ludumdare.com/compo/)
+which I have been extending over time based on my needs during the compo.
 It's based on LibGDX and contains the source code and assets for my latest LD entry.
 
 Enjoy, and good luck! ~ berkano (http://ludumdare.com/compo/author/berkano/)
