@@ -17,12 +17,12 @@ public class LD33Settings extends KSettings {
 
     @Override
     public int getHres() {
-        return 1400;
+        return 1024;
     }
 
     @Override
     public int getVres() {
-        return 900;
+        return 768;
     }
 
     @Override

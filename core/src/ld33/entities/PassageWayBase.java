@@ -21,7 +21,7 @@ public class PassageWayBase extends KEntityBase {
     public void update() {
         super.update();
         if (!hasDissolved) {
-            List<KEntity> entities = getRoom().findEntitiesAtPoint(getX(), getY());
+            List<KEntity> entities = getRoom().findEntitiesAtPoint(getX()+1, getY()+1);
             for (KEntity e : entities) {
                 e.setSolid(false);
             }
