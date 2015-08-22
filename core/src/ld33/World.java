@@ -1,5 +1,6 @@
 package ld33;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import katsu.*;
 import ld33.entities.Monster;
@@ -12,6 +13,7 @@ public class World extends KRoomBase {
     public World() {
         super();
     }
+
     private Monster player;
 
     @Override
@@ -20,7 +22,7 @@ public class World extends KRoomBase {
 
         String mapName = "ld33";
         KTmxHelper.addEntitiesToRoomFromMap(mapName, this);
-        player = (Monster)firstInstanceOfClass(Monster.class);
+        player = (Monster) firstInstanceOfClass(Monster.class);
 
         K.getMainCamera().viewportHeight = K.getWindowHeight() / 4;
         K.getMainCamera().viewportWidth = K.getWindowWidth() / 4;
@@ -51,11 +53,34 @@ public class World extends KRoomBase {
 
         super.update();
 
-        if (K.isKeyDown(Input.Keys.W)) player.moveRequested(KDirection.UP);
-        if (K.isKeyDown(Input.Keys.S)) player.moveRequested(KDirection.DOWN);
-        if (K.isKeyDown(Input.Keys.A)) player.moveRequested(KDirection.LEFT);
-        if (K.isKeyDown(Input.Keys.D)) player.moveRequested(KDirection.RIGHT);
+        boolean somethingHappened = false;
+        KDirection directionToMove = null;
 
+        if (Gdx.input.isKeyJustPressed(Input.Keys.W)) directionToMove = KDirection.UP;
+        if (Gdx.input.isKeyJustPressed(Input.Keys.A)) directionToMove = KDirection.LEFT;
+        if (Gdx.input.isKeyJustPressed(Input.Keys.S)) directionToMove = KDirection.DOWN;
+        if (Gdx.input.isKeyJustPressed(Input.Keys.D)) directionToMove = KDirection.RIGHT;
+
+        if (!K.isKeyDown(Input.Keys.SHIFT_LEFT) && !K.isKeyDown(Input.Keys.SHIFT_RIGHT)) {
+
+            if (K.isKeyDown(Input.Keys.W)) directionToMove = KDirection.UP;
+            if (K.isKeyDown(Input.Keys.A)) directionToMove = KDirection.LEFT;
+            if (K.isKeyDown(Input.Keys.S)) directionToMove = KDirection.DOWN;
+            if (K.isKeyDown(Input.Keys.D)) directionToMove = KDirection.RIGHT;
+
+
+        }
+
+
+        if (directionToMove != null) {
+            if (player.moveRequested(directionToMove)) {
+                somethingHappened = true;
+            }
+        }
+
+        if (somethingHappened) {
+//            K.getUI().writeText("You moved!");
+        }
 
     }
 

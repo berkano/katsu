@@ -1,6 +1,7 @@
 package ld33.entities;
 
 import katsu.K;
+import katsu.KDirection;
 import katsu.KEntityBase;
 
 /**
@@ -8,10 +9,24 @@ import katsu.KEntityBase;
  */
 public class Monster extends KEntityBase {
 
-    @Override
-    public void render() {
-        super.render();
-        lookAtMe();
+    public Monster()
+    {
+        super();
+        this.setSolid(true);
+        this.setRotateSpriteOnMove(false);
+        this.setMaxMoveInterval(50);
     }
 
+    @Override
+    public void render() {
+        lookAtMe();
+        super.render();
+    }
+
+    @Override
+    public boolean moveRequested(KDirection direction) {
+        boolean result = super.moveRequested(direction);
+        lookAtMe();
+        return result;
+    }
 }

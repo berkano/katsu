@@ -25,7 +25,7 @@ public class K {
     private static InputMultiplexer inputMultiplexer = new InputMultiplexer();
     private static KSettings settings;
     private static HashMap<Integer, Boolean> keysDown = new HashMap<Integer, Boolean>();
-    public static Random random = new Random();
+    public static  Random random = new Random();
     private static KUI ui;
     private static HashMap<String, Long> explanations = new HashMap<String, Long>();
     private static int windowWidth;

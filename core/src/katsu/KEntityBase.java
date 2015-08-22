@@ -40,6 +40,8 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
     private int zLayer = 0;
     private boolean needsSpatialUpdate = false;
     private KDirection facing;
+    private boolean rotateSpriteOnMove = true;
+    private long minMoveWait = 0;
 
     @Override
     public boolean isDestroyed() {
@@ -131,6 +133,9 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
 
     @Override
     public KEntity setX(int x) {
+        if (x != _x) {
+            setLastMove(System.currentTimeMillis());
+        }
         this._x = x;
         this.updateSpatialMap();
         return this;
@@ -152,6 +157,9 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
 
     @Override
     public KEntity setY(int y) {
+        if (y != _y) {
+            setLastMove(System.currentTimeMillis());
+        }
         this._y = y;
         this.updateSpatialMap();
         return this;
@@ -444,10 +452,15 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
 
     public boolean moveRequested(KDirection direction) {
 
+        if (!lastMovedMoreThan(getMaxMoveInterval())) return false;
+
         boolean result = false;
 
-        setSpriteRotation(direction.rotation());
         setFacing(direction);
+
+        if (isRotateSpriteOnMove()) {
+            setSpriteRotation(direction.rotation());
+        }
 
         if (moveGrid(direction.dx(), direction.dy())) {
             result = true;
@@ -462,5 +475,21 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
 
     public KDirection getFacing() {
         return facing;
+    }
+
+    public void setRotateSpriteOnMove(boolean rotateSpriteOnMove) {
+        this.rotateSpriteOnMove = rotateSpriteOnMove;
+    }
+
+    public boolean isRotateSpriteOnMove() {
+        return rotateSpriteOnMove;
+    }
+
+    public long getMinMoveWait() {
+        return minMoveWait;
+    }
+
+    public void setMinMoveWait(long minMoveWait) {
+        this.minMoveWait = minMoveWait;
     }
 }
