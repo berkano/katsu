@@ -145,11 +145,6 @@ public class Mole extends Mob {
         lookAtMe();
     }
 
-    private void lookAtMe() {
-        K.getMainCamera().position.x = getX();
-        K.getMainCamera().position.y = getY();
-    }
-
     public void digRequested() {
 
         if (World.poop >= LD32Settings.get().maxPoop) {

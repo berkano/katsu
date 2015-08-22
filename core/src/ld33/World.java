@@ -2,6 +2,7 @@ package ld33;
 
 import com.badlogic.gdx.Input;
 import katsu.*;
+import ld33.entities.Monster;
 
 /**
  * Created by shaun on 12/04/2015.
@@ -11,6 +12,7 @@ public class World extends KRoomBase {
     public World() {
         super();
     }
+    private Monster player;
 
     @Override
     public void start() {
@@ -18,9 +20,10 @@ public class World extends KRoomBase {
 
         String mapName = "ld33";
         KTmxHelper.addEntitiesToRoomFromMap(mapName, this);
+        player = (Monster)firstInstanceOfClass(Monster.class);
 
-        K.getMainCamera().viewportHeight = 768 / 4;
-        K.getMainCamera().viewportWidth = 1024 / 4;
+        K.getMainCamera().viewportHeight = K.getWindowHeight() / 4;
+        K.getMainCamera().viewportWidth = K.getWindowWidth() / 4;
 
         K.getUI().setHelpText(KResource.loadText("help.txt"));
 

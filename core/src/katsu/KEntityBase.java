@@ -432,4 +432,10 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
     public void setzLayer(int zLayer) {
         this.zLayer = zLayer;
     }
+
+    public void lookAtMe() {
+        K.getMainCamera().position.x = getX();
+        K.getMainCamera().position.y = getY();
+    }
+
 }

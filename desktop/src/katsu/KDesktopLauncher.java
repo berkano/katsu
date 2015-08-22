@@ -26,6 +26,8 @@ public class KDesktopLauncher {
 
         K.setImplementation(implementation);
         K.setSettings(settings);
+        K.setWindowWidth(config.width);
+        K.setWindowHeight(config.height);
 
         new LwjglApplication(new KGameRunner(), config);
     }

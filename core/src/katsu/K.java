@@ -28,6 +28,8 @@ public class K {
     public static Random random = new Random();
     private static KUI ui;
     private static HashMap<String, Long> explanations = new HashMap<String, Long>();
+    private static int windowWidth;
+    private static int windowHeight;
 
     public static void exitWithError(String message) {
         // TODO: show alert box in production mode
@@ -206,5 +208,21 @@ public class K {
             explanations.put(text, currentTime());
         }
 
+    }
+
+    public static int getWindowWidth() {
+        return windowWidth;
+    }
+
+    public static void setWindowWidth(int windowWidth) {
+        K.windowWidth = windowWidth;
+    }
+
+    public static int getWindowHeight() {
+        return windowHeight;
+    }
+
+    public static void setWindowHeight(int windowHeight) {
+        K.windowHeight = windowHeight;
     }
 }
