@@ -24,7 +24,7 @@
   </tile>
   <tile id="32">
    <properties>
-    <property name="entity" value="tba"/>
+    <property name="entity" value="Warrior"/>
    </properties>
   </tile>
   <tile id="33">
@@ -115,7 +115,7 @@
  </layer>
  <layer name="objects" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt2DEKwCAQRUHj/Q9tnxBWzCdsMQOClcU+RHCOMWZgkZGYpR45p7O8AmfwNF/2p2fwjR693HucvN965FT3Y2fWeuTo0Us1Sz3+tdOjekf0yHE/etGjF/8lvST+EvUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACguwV+gwCy
+   eJzt2EsKgCAUBVBzJ+1/k82lj9kl3uAcEITAwb08DHtrrQcWGYks9ZFzl+V+822bPIN3+sV+9Qy+0UctYx8r97c+cp7mYyZrfeToo5anLPXxrzHL8R935h7RR475qGWlj7MZIsN7SS2Jt0R9AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUN0Bc8sBFQ==
   </data>
  </layer>
  <layer name="invisible" width="100" height="100" visible="0">
