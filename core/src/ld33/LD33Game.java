@@ -2,6 +2,7 @@ package ld33;
 
 import katsu.KGame;
 import katsu.KRoom;
+import ld33.entities.Floor;
 import ld33.entities.Monster;
 import ld33.entities.Wall;
 
@@ -33,6 +34,7 @@ public class LD33Game implements KGame {
         HashMap<String, Class> result = new HashMap<String, Class>();
         result.put("Monster", Monster.class);
         result.put("Wall", Wall.class);
+        result.put("Floor", Floor.class);
         return result;
 
     }

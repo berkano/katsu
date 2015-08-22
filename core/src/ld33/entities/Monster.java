@@ -15,6 +15,7 @@ public class Monster extends KEntityBase {
         this.setSolid(true);
         this.setRotateSpriteOnMove(false);
         this.setMaxMoveInterval(50);
+        this.setzLayer(100);
     }
 
     @Override
