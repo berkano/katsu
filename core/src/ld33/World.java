@@ -53,6 +53,11 @@ public class World extends KRoomBase {
 
         super.update();
 
+//        setRenderFog(true);
+//        setFogRadius(96);
+//        setFogX(player.getX());
+//        setFogY(player.getY());
+
         boolean somethingHappened = false;
         KDirection directionToMove = null;
 
