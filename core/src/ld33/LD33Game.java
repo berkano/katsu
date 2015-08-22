@@ -2,10 +2,7 @@ package ld33;
 
 import katsu.KGame;
 import katsu.KRoom;
-import ld33.entities.Floor;
-import ld33.entities.Monster;
-import ld33.entities.Wall;
-import ld33.entities.Warrior;
+import ld33.entities.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,6 +34,9 @@ public class LD33Game implements KGame {
         result.put("Wall", Wall.class);
         result.put("Floor", Floor.class);
         result.put("Warrior", Warrior.class);
+        result.put("Human", Human.class);
+        result.put("Dwarf", Dwarf.class);
+        result.put("Violet", Violet.class);
         return result;
 
     }

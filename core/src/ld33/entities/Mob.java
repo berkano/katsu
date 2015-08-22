@@ -9,6 +9,11 @@ import katsu.KEntityBase;
  */
 public class Mob extends KEntityBase {
 
+    public Mob() {
+        super();
+        this.setFlipSpriteOnMove(true);
+    }
+
     public boolean isEnemy(KEntity other) {
 
         if (!(this instanceof Monster)) {
