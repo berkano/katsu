@@ -44,6 +44,8 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
     private long minMoveWait = 0;
     private boolean updateAsRogueLike = false;
     private long lastUpdate = K.currentTime();
+    private boolean flipSpriteOnMove = false;
+    private boolean spriteFlip = false;
 
     @Override
     public boolean isDestroyed() {
@@ -114,11 +116,16 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
             textureRegion = KGraphics.getTextureCache().get(this.getClass());
         }
 
+        float xScale = spriteScale;
+        float yScale = spriteScale;
+        if (isSpriteFlip()) {
+            xScale = -xScale;
+        }
         K.getActiveSpriteBatch().draw(
                 textureRegion,
-                getX(), getY(), getWidth()/2,getHeight()/2,
+                getX(), getY(), getWidth() / 2, getHeight() / 2,
                 getWidth(), getHeight(),
-                spriteScale, spriteScale, (float)spriteRotation
+                xScale, yScale, (float) spriteRotation
         );
 
     }
@@ -465,6 +472,14 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
         if (isRotateSpriteOnMove()) {
             setSpriteRotation(direction.rotation());
         }
+        if (isFlipSpriteOnMove()) {
+            if (direction.equals(KDirection.LEFT)) {
+                setSpriteFlip(true);
+            }
+            if (direction.equals(KDirection.RIGHT)) {
+                setSpriteFlip(false);
+            }
+        }
 
         if (moveGrid(direction.dx(), direction.dy())) {
             result = true;
@@ -515,5 +530,21 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
     @Override
     public void setLastUpdate(long lastUpdate) {
         this.lastUpdate = lastUpdate;
+    }
+
+    public void setFlipSpriteOnMove(boolean flipSpriteOnMove) {
+        this.flipSpriteOnMove = flipSpriteOnMove;
+    }
+
+    public boolean isFlipSpriteOnMove() {
+        return flipSpriteOnMove;
+    }
+
+    public void setSpriteFlip(boolean spriteFlip) {
+        this.spriteFlip = spriteFlip;
+    }
+
+    public boolean isSpriteFlip() {
+        return spriteFlip;
     }
 }

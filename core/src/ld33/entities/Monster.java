@@ -14,6 +14,7 @@ public class Monster extends Mob {
         super();
         this.setSolid(true);
         this.setRotateSpriteOnMove(false);
+        this.setFlipSpriteOnMove(true);
         this.setMaxMoveInterval(75);
         this.setzLayer(100);
     }
