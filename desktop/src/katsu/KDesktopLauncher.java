@@ -5,12 +5,19 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
 public class KDesktopLauncher {
 
-        public static void launch(KGame implementation, KSettings settings) {
+    public static void launch(KGame implementation, KSettings settings) {
 
-		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+        LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 
         config.width = settings.getHres();
         config.height = settings.getVres();
+
+        if (settings.isFullScreenBorderless()) {
+            System.setProperty("org.lwjgl.opengl.Window.undecorated", "true");
+            config.width = LwjglApplicationConfiguration.getDesktopDisplayMode().width;
+            config.height = LwjglApplicationConfiguration.getDesktopDisplayMode().height;
+        }
+
         config.foregroundFPS = settings.getTargetFrameRate();
         config.backgroundFPS = settings.getTargetFrameRate();
         config.vSyncEnabled = settings.isVsync();
@@ -21,5 +28,5 @@ public class KDesktopLauncher {
         K.setSettings(settings);
 
         new LwjglApplication(new KGameRunner(), config);
-	}
+    }
 }

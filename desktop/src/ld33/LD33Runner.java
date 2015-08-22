@@ -9,6 +9,7 @@ import katsu.KSettings;
 public class LD33Runner extends KDesktopLauncher {
 
     public static void main(String[] args) {
+
         KSettings settings = new LD33Settings();
         launch(new LD33Game(), settings);
     }

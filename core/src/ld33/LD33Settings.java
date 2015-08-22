@@ -11,6 +11,11 @@ public class LD33Settings extends KSettings {
     public boolean startPaused = !isDevMode();
 
     @Override
+    public boolean isFullScreenBorderless() {
+        return true;
+    }
+
+    @Override
     public boolean isLogFPS() {
         return isDevMode();
     }

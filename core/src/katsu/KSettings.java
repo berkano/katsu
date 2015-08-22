@@ -15,6 +15,16 @@ public class KSettings {
     private boolean logFPS = false;
     private boolean devMode = getDevModeFromSystemProps();
 
+    public boolean isFullScreenBorderless() {
+        return fullScreenBorderless;
+    }
+
+    public void setFullScreenBorderless(boolean fullScreenBorderless) {
+        this.fullScreenBorderless = fullScreenBorderless;
+    }
+
+    private boolean fullScreenBorderless = false;
+
     private boolean getDevModeFromSystemProps() {
         return Boolean.parseBoolean(System.getProperty("devMode", "false"));
     }
