@@ -19,7 +19,7 @@
   </tile>
   <tile id="3">
    <properties>
-    <property name="entity" value="tba"/>
+    <property name="entity" value="Cat"/>
    </properties>
   </tile>
   <tile id="32">
@@ -130,7 +130,7 @@
  </layer>
  <layer name="objects" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt2EEKgzAQBdBUT9KjVK/S+5+hCBVKiMmos+jiPRArCVnMdzR2KqVMCQc5Mmopjzy9Wj47Y4/gGpwzHfy+usbu3TgYq/NYb64xf89b/X/7Sx4xdR5X3t9H/dG7pm30vIo8w0Z5LEUeUWfyWAJr7PTHNaP7vzf+6szZ6r9W14zVtaz3uJH3iP1Vnjv9Uc+Zu7OIaO1Vj8Z3rR4iR7SWve8SeeTJ+C9RHgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPy7D/VuCp0=
+   eJzt2E0OgjAQBtAKXMSjiFfx/mcwJJKYprQDzsLFewnxp00X8zm0OJVSpoSLHBm1lEeeXi3vnbFbcA3OmQ7eX11j92pcjNV5PH9cY/68bvX/7i95xNR5XNm/j/qj95m20f0qcg8b5bEWeUSdyWMdrLF8fac/rhn9/nvjj86crf77XrQUeUTVtazPuJF9xPkqT7Q/lsCcuTOHmNZZ9Wh81+ohckRr2XsukUeejP8S5QEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMC/ewOpNwqp
   </data>
  </layer>
  <layer name="passageways" width="100" height="100">

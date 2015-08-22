@@ -43,6 +43,7 @@ public class LD33Game implements KGame {
         result.put("Water", Water.class);
         result.put("Grass", Grass.class);
         result.put("Sheep", Sheep.class);
+        result.put("Cat", Cat.class);
         return result;
 
     }
