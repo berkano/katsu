@@ -39,7 +39,7 @@
   </tile>
   <tile id="35">
    <properties>
-    <property name="entity" value="tba"/>
+    <property name="entity" value="StairsUp"/>
    </properties>
   </tile>
   <tile id="64">
@@ -59,7 +59,7 @@
   </tile>
   <tile id="67">
    <properties>
-    <property name="entity" value="tba"/>
+    <property name="entity" value="StairsDown"/>
    </properties>
   </tile>
   <tile id="96">
@@ -130,7 +130,7 @@
  </layer>
  <layer name="objects" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt2E0OgjAQBtAKXMSjiFfx/mcwJJKYprQDzsLFewnxp00X8zm0OJVSpoSLHBm1lEeeXi3vnbFbcA3OmQ7eX11j92pcjNV5PH9cY/68bvX/7i95xNR5XNm/j/qj95m20f0qcg8b5bEWeUSdyWMdrLF8fac/rhn9/nvjj86crf77XrQUeUTVtazPuJF9xPkqT7Q/lsCcuTOHmNZZ9Wh81+ohckRr2XsukUeejP8S5QEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMC/ewOpNwqp
+   eJzt2EsKwjAQANDY9iKCF7F6FO9/BilYKCGfsWbh4j0IahNmMeM0aaeU0jRgMMaWy9uAGIzRyuW1MXcJxuA7U+X72Ri7V2HQl9fj8WOM+fO55f/YX+oRk9fjzP5d64/Wb8p696vIPaxXjzWpR1StHs/CtbUTYzlc0x/n9P7/rfl7Y82W/30vWpJ6ROW5zM+4kX3E+WqcaH8sgTVzYw0xpbNqbX5X6iHGiOay9VyiHuOMeJeoHgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPy7N//LCxE=
   </data>
  </layer>
  <layer name="passageways" width="100" height="100">
