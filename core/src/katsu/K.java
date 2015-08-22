@@ -30,6 +30,7 @@ public class K {
     private static HashMap<String, Long> explanations = new HashMap<String, Long>();
     private static int windowWidth;
     private static int windowHeight;
+    private static long lastRogueUpdate = System.currentTimeMillis();
 
     public static void exitWithError(String message) {
         // TODO: show alert box in production mode
@@ -224,5 +225,13 @@ public class K {
 
     public static void setWindowHeight(int windowHeight) {
         K.windowHeight = windowHeight;
+    }
+
+    public static long getLastRogueUpdate() {
+        return lastRogueUpdate;
+    }
+
+    public static void setLastRogueUpdate(long lastRogueUpdate) {
+        K.lastRogueUpdate = lastRogueUpdate;
     }
 }

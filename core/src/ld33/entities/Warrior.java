@@ -14,6 +14,12 @@ public class Warrior extends KEntityBase {
         this.setSolid(true);
         this.setRotateSpriteOnMove(false);
         this.setzLayer(10);
+        this.setUpdateAsRogueLike(true);
     }
 
+    @Override
+    public void update() {
+        super.update();
+        moveRequested(KDirection.random());
+    }
 }

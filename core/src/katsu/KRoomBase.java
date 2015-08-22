@@ -241,7 +241,16 @@ public abstract class KRoomBase implements KRoom, InputProcessor {
     @Override
     public void update() {
         for (KEntity e : entities) {
-            if (!isFogged(e)) {
+            boolean canUpdate = true;
+            if (isFogged(e)) canUpdate = false;
+            if (e.isUpdateAsRogueLike()) {
+                if (e.getLastUpdate() >= K.getLastRogueUpdate()) {
+                    canUpdate = false;
+                }
+            }
+
+            if (canUpdate) {
+
                 e.update();
             }
         }

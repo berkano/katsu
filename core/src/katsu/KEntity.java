@@ -82,4 +82,12 @@ public interface KEntity {
     int getzLayer();
 
     void addNewEntity(KEntity entity);
+
+    void setUpdateAsRogueLike(boolean updateAsRogueLike);
+
+    boolean isUpdateAsRogueLike();
+
+    long getLastUpdate();
+
+    void setLastUpdate(long lastUpdate);
 }

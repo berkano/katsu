@@ -42,6 +42,8 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
     private KDirection facing;
     private boolean rotateSpriteOnMove = true;
     private long minMoveWait = 0;
+    private boolean updateAsRogueLike = false;
+    private long lastUpdate = K.currentTime();
 
     @Override
     public boolean isDestroyed() {
@@ -276,6 +278,8 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
     @Override
     public void update() {
 
+        lastUpdate = System.currentTimeMillis();
+
         if (needsSpatialUpdate) {
             updateSpatialMap();
         }
@@ -491,5 +495,25 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
 
     public void setMinMoveWait(long minMoveWait) {
         this.minMoveWait = minMoveWait;
+    }
+
+    @Override
+    public void setUpdateAsRogueLike(boolean updateAsRogueLike) {
+        this.updateAsRogueLike = updateAsRogueLike;
+    }
+
+    @Override
+    public boolean isUpdateAsRogueLike() {
+        return updateAsRogueLike;
+    }
+
+    @Override
+    public long getLastUpdate() {
+        return lastUpdate;
+    }
+
+    @Override
+    public void setLastUpdate(long lastUpdate) {
+        this.lastUpdate = lastUpdate;
     }
 }

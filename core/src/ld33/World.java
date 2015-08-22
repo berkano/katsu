@@ -79,7 +79,7 @@ public class World extends KRoomBase {
         }
 
         if (somethingHappened) {
-//            K.getUI().writeText("You moved!");
+            K.setLastRogueUpdate(System.currentTimeMillis());
         }
 
     }
