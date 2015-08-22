@@ -12,7 +12,17 @@ public class LD33Settings extends KSettings {
 
     @Override
     public boolean isFullScreenBorderless() {
-        return true;
+        return false;
+    }
+
+    @Override
+    public int getHres() {
+        return 1400;
+    }
+
+    @Override
+    public int getVres() {
+        return 900;
     }
 
     @Override

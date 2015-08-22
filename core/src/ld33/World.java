@@ -48,7 +48,14 @@ public class World extends KRoomBase {
 
     @Override
     public void update() {
+
         super.update();
+
+        if (K.isKeyDown(Input.Keys.W)) player.moveRequested(KDirection.UP);
+        if (K.isKeyDown(Input.Keys.S)) player.moveRequested(KDirection.DOWN);
+        if (K.isKeyDown(Input.Keys.A)) player.moveRequested(KDirection.LEFT);
+        if (K.isKeyDown(Input.Keys.D)) player.moveRequested(KDirection.RIGHT);
+
 
     }
 

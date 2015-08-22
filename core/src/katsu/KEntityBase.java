@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import ld32.entities.Mole;
+import ld32.entities.Spider;
 
 /**
  * Created by shaun on 15/11/2014.
@@ -37,6 +39,7 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
     private KDirection pathFinderNextDirection;
     private int zLayer = 0;
     private boolean needsSpatialUpdate = false;
+    private KDirection facing;
 
     @Override
     public boolean isDestroyed() {
@@ -118,6 +121,7 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
 
     @Override
     public boolean moveGrid(int dx, int dy) {
+
         int newX = getX() + dx * K.getGridSize();
         int newY = getY() + dy * K.getGridSize();
 
@@ -438,4 +442,25 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
         K.getMainCamera().position.y = getY();
     }
 
+    public boolean moveRequested(KDirection direction) {
+
+        boolean result = false;
+
+        setSpriteRotation(direction.rotation());
+        setFacing(direction);
+
+        if (moveGrid(direction.dx(), direction.dy())) {
+            result = true;
+        }
+
+        return result;
+    }
+
+    public void setFacing(KDirection facing) {
+        this.facing = facing;
+    }
+
+    public KDirection getFacing() {
+        return facing;
+    }
 }

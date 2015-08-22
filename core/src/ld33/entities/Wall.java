@@ -6,4 +6,9 @@ import katsu.KEntityBase;
  * Created by shaun on 22/08/2015.
  */
 public class Wall extends KEntityBase {
+
+    public Wall() {
+        super();
+        this.setSolid(true);
+    }
 }
