@@ -1,11 +1,14 @@
 package ld33.entities;
 
 import katsu.KDirection;
+import katsu.KGraphics;
 
 /**
  * Created by shaun on 22/08/2015.
  */
 public class Monster extends MobBase {
+
+    private boolean looksHuman = true;
 
     public Monster()
     {
@@ -19,6 +22,11 @@ public class Monster extends MobBase {
 
     @Override
     public void render() {
+        if (looksHuman) {
+            setTextureRegion(KGraphics.getTextureCache().get(Human.class));
+        } else {
+            setTextureRegion(KGraphics.getTextureCache().get(Monster.class));
+        }
         lookAtMe();
         super.render();
     }
@@ -28,5 +36,13 @@ public class Monster extends MobBase {
         boolean result = super.moveRequested(direction);
         lookAtMe();
         return result;
+    }
+
+    public boolean isLooksHuman() {
+        return looksHuman;
+    }
+
+    public void setLooksHuman(boolean looksHuman) {
+        this.looksHuman = looksHuman;
     }
 }
