@@ -27,6 +27,8 @@ public interface KEntity {
 
     KRoom getRoom();
 
+    void setSolid(boolean solid);
+
     boolean isSolid();
 
     void onCollide(KEntity e);

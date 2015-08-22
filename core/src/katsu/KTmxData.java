@@ -37,11 +37,15 @@ public class KTmxData {
         entityTextureRegions = KGraphics.getTextureCache(); // new HashMap<Class, TextureRegion>();
 
         List<TiledMapTileLayer> layerList = new ArrayList<TiledMapTileLayer>();
+
+
+        // In order of instantiation
+        layerList.add((TiledMapTileLayer) map.getLayers().get("no-populate"));
+        layerList.add((TiledMapTileLayer) map.getLayers().get("invisible"));
         layerList.add((TiledMapTileLayer) map.getLayers().get("background"));
         layerList.add((TiledMapTileLayer) map.getLayers().get("terrain"));
         layerList.add((TiledMapTileLayer) map.getLayers().get("objects"));
-        layerList.add((TiledMapTileLayer) map.getLayers().get("no-populate"));
-        layerList.add((TiledMapTileLayer) map.getLayers().get("invisible"));
+        layerList.add((TiledMapTileLayer) map.getLayers().get("passageways"));
 
         MapProperties prop = map.getProperties();
         int mapWidth = prop.get("width", Integer.class);

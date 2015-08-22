@@ -7,11 +7,12 @@ import katsu.KEntityBase;
 /**
  * Created by shaun on 22/08/2015.
  */
-public class Mob extends KEntityBase {
+public class MobBase extends KEntityBase {
 
-    public Mob() {
+    public MobBase() {
         super();
         this.setFlipSpriteOnMove(true);
+        this.setzLayer(10);
     }
 
     public boolean isEnemy(KEntity other) {
@@ -21,7 +22,7 @@ public class Mob extends KEntityBase {
         }
 
         if ((this instanceof Monster)) {
-            if (other instanceof Mob) {
+            if (other instanceof MobBase) {
                 if (!(other instanceof Monster)) return true;
             }
         }

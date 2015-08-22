@@ -230,6 +230,7 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
         return false;
     }
 
+    @Override
     public void setSolid(boolean solid) {
         this.solid = solid;
     }

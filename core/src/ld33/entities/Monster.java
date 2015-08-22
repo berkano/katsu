@@ -1,13 +1,11 @@
 package ld33.entities;
 
-import katsu.K;
 import katsu.KDirection;
-import katsu.KEntityBase;
 
 /**
  * Created by shaun on 22/08/2015.
  */
-public class Monster extends Mob {
+public class Monster extends MobBase {
 
     public Monster()
     {

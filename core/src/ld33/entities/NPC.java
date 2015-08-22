@@ -5,7 +5,7 @@ import katsu.KDirection;
 /**
  * Created by shaun on 22/08/2015.
  */
-public class NPC extends Mob {
+public class NPC extends MobBase {
 
     public NPC()
     {

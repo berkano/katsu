@@ -34,7 +34,7 @@
   </tile>
   <tile id="34">
    <properties>
-    <property name="entity" value="tba"/>
+    <property name="entity" value="Lava"/>
    </properties>
   </tile>
   <tile id="35">
@@ -64,22 +64,22 @@
   </tile>
   <tile id="96">
    <properties>
-    <property name="entity" value="tba"/>
+    <property name="entity" value="Grass"/>
    </properties>
   </tile>
   <tile id="97">
    <properties>
-    <property name="entity" value="tba"/>
+    <property name="entity" value="Water"/>
    </properties>
   </tile>
   <tile id="98">
    <properties>
-    <property name="entity" value="tba"/>
+    <property name="entity" value="Door"/>
    </properties>
   </tile>
   <tile id="99">
    <properties>
-    <property name="entity" value="tba"/>
+    <property name="entity" value="Wall2"/>
    </properties>
   </tile>
   <tile id="128">
@@ -97,6 +97,11 @@
     <property name="entity" value="tba"/>
    </properties>
   </tile>
+  <tile id="131">
+   <properties>
+    <property name="entity" value="Carpet"/>
+   </properties>
+  </tile>
   <tile id="163">
    <properties>
     <property name="entity" value="tba"/>
@@ -108,14 +113,9 @@
    </properties>
   </tile>
  </tileset>
- <layer name="background" width="100" height="100">
+ <layer name="no-populate" width="100" height="100" visible="0">
   <data encoding="base64" compression="zlib">
-   eJztwwEJAAAMBKHL8v1DDpZDwVVTVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVX/AYIuMGw=
-  </data>
- </layer>
- <layer name="objects" width="100" height="100">
-  <data encoding="base64" compression="zlib">
-   eJzt2DsKwzAQBFBFN8lRktz/Tu5FIq+kKVK8BwaDzBYzyL/eWuuBg4xElvrImWX5nKw9ijNY03+c787gzNjH53AGZ8Y+dp7f+si5u19VstZHzkof78IMztxlOVt/FWdQN2Y5vuNWniP6yDnZHyvXULPTx7c9REY1y9l3iT5yEv8S9QEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMC/uwCIKgIe
+   eJztwTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbnEAAAQ==
   </data>
  </layer>
  <layer name="invisible" width="100" height="100" visible="0">
@@ -123,9 +123,19 @@
    eJztwTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbnEAAAQ==
   </data>
  </layer>
- <layer name="no-populate" width="100" height="100" visible="0">
+ <layer name="background" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbnEAAAQ==
+   eJzt1jEOgCAMQFHOws3wLB7cxYEwEE0IreYNb27Tv7SWUuoCx0srZqLHV7Rbf/M20GN/jxk9YnucHT3y9eibRO/7d3rkokcueuTiv8rlaQctYnqMDfTYa3Z/HXL1iN4NAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALglFWaU=
+  </data>
+ </layer>
+ <layer name="objects" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt2D0OhCAQBlDWm3iU1at4/zNsLGyIwoBTbPFeYiKRUMwnP7qUUpaEixwZtZRHnlYt18azT3AMxiwP97NjXI6bi746j/3lGJez/mvVpq/OY2b/fsqj1eZeb72KrGG9PLYij6iRPLbAGBfzY07v/W89/zb6nPXfqzZ9dS3rM25kH3G+yvNmfoz0IWYmj7s5RI5oLVvfJfLIk/EvUR4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD8ux/uCwqU
+  </data>
+ </layer>
+ <layer name="passageways" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt0QENAAAIwzC84t8DLngIrYLlrwKAjE4HPGPv+3wIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwYwCSBAEq
   </data>
  </layer>
 </map>
