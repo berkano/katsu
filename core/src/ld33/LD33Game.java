@@ -46,6 +46,7 @@ public class LD33Game implements KGame {
         result.put("Cat", Cat.class);
         result.put("StairsUp", StairsUp.class);
         result.put("StairsDown", StairsDown.class);
+        result.put("Bed", Bed.class);
         return result;
 
     }

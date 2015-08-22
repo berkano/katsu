@@ -43,6 +43,7 @@ public class KTmxData {
         layerList.add((TiledMapTileLayer) map.getLayers().get("no-populate"));
         layerList.add((TiledMapTileLayer) map.getLayers().get("invisible"));
         layerList.add((TiledMapTileLayer) map.getLayers().get("background"));
+        layerList.add((TiledMapTileLayer) map.getLayers().get("background-ontop"));
         layerList.add((TiledMapTileLayer) map.getLayers().get("terrain"));
         layerList.add((TiledMapTileLayer) map.getLayers().get("objects"));
         layerList.add((TiledMapTileLayer) map.getLayers().get("passageways"));

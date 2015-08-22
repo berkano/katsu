@@ -84,7 +84,7 @@
   </tile>
   <tile id="128">
    <properties>
-    <property name="entity" value="tba"/>
+    <property name="entity" value="Bed"/>
    </properties>
   </tile>
   <tile id="129">
@@ -125,17 +125,22 @@
  </layer>
  <layer name="background" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt1jEOgCAMQFHOws3wLB7cxYEwEE0IreYNb27Tv7SWUuoCx0srZqLHV7Rbf/M20GN/jxk9YnucHT3y9eibRO/7d3rkokcueuTiv8rlaQctYnqMDfTYa3Z/HXL1iN4NAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALglFWaU=
+   eJzt1rENgDAMAMHMks1gFganobBSRCAhbKIrrrblb9xba/0F+0NvzESPv9gu8ebbQI/ve8zokdvjCPSo1yM2yd53dXrUokctetTiv6rlbgctcnqMDfT41uz+OtTqkb3byuLPlL0LelSjBwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA0QkFhF0X
+  </data>
+ </layer>
+ <layer name="background-ontop" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztzkERAAAIA6BVt7m3FPqABCQAAAAAAADUXAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHhhAacmAII=
   </data>
  </layer>
  <layer name="objects" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt2EsKwjAQANDY9iKCF7F6FO9/BilYKCGfsWbh4j0IahNmMeM0aaeU0jRgMMaWy9uAGIzRyuW1MXcJxuA7U+X72Ri7V2HQl9fj8WOM+fO55f/YX+oRk9fjzP5d64/Wb8p696vIPaxXjzWpR1StHs/CtbUTYzlc0x/n9P7/rfl7Y82W/30vWpJ6ROW5zM+4kX3E+WqcaH8sgTVzYw0xpbNqbX5X6iHGiOay9VyiHuOMeJeoHgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPy7N//LCxE=
+   eJzt2NEJgzAUBdBUXaTQRbQdpfvPUIQKIjF5tQH9OAfE1oR8vGtMtEspdQ0O2phr+WgwBm2UankvtN2CY/Cbbuf30TEW78xB3TaP559j9N/zXP/1/JJHzDaPI+v33vwo/Sev9ryKPMNqeUxJHlF7ebwy16bKGMPqmvlxTO3+L7WPhT5z/Ze1aEjyiNrWcrvHjawj9lftROfHEOjTF/oQk9ur7rUvcnOINqK1LL2XyKOdFt8S5XEOe9hrkce1rOs/JnmczTsFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAFHxutD54=
   </data>
  </layer>
  <layer name="passageways" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt0QENAAAIwzC84t8DLngIrYLlrwKAjE4HPGPv+3wIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwYwCSBAEq
+   eJzt1kENAAAIAkC72r+DMRjzLgGDDzMAkLHpAM/ou58NAQBo5csCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQ5gAS0wGN
   </data>
  </layer>
 </map>
