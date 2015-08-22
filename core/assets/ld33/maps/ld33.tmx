@@ -14,7 +14,7 @@
   </tile>
   <tile id="2">
    <properties>
-    <property name="entity" value="tba"/>
+    <property name="entity" value="Sheep"/>
    </properties>
   </tile>
   <tile id="3">
@@ -130,7 +130,7 @@
  </layer>
  <layer name="objects" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt2D0OhCAQBlDWm3iU1at4/zNsLGyIwoBTbPFeYiKRUMwnP7qUUpaEixwZtZRHnlYt18azT3AMxiwP97NjXI6bi746j/3lGJez/mvVpq/OY2b/fsqj1eZeb72KrGG9PLYij6iRPLbAGBfzY07v/W89/zb6nPXfqzZ9dS3rM25kH3G+yvNmfoz0IWYmj7s5RI5oLVvfJfLIk/EvUR4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD8ux/uCwqU
+   eJzt2EEKgzAQBdBUT9KjVK/S+5+hCBVKiMmos+jiPRArCVnMdzR2KqVMCQc5Mmopjzy9Wj47Y4/gGpwzHfy+usbu3TgYq/NYb64xf89b/X/7Sx4xdR5X3t9H/dG7pm30vIo8w0Z5LEUeUWfyWAJr7PTHNaP7vzf+6szZ6r9W14zVtaz3uJH3iP1Vnjv9Uc+Zu7OIaO1Vj8Z3rR4iR7SWve8SeeTJ+C9RHgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPy7D/VuCp0=
   </data>
  </layer>
  <layer name="passageways" width="100" height="100">
