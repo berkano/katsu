@@ -47,6 +47,15 @@ public class MobBase extends KEntityBase {
     @Override
     public void onCollide(KEntity other) {
         super.onCollide(other);
+        if (this instanceof Monster) {
+            if (other instanceof NPC) {
+                Monster me = (Monster) this;
+                NPC npc = (NPC) other;
+                if (me.isLooksHuman()) {
+                    K.getUI().writeText(npc.getDisplayName());
+                }
+            }
+        }
         if (other instanceof MobBase) {
             if (isEnemy(other)) {
                 String thisStr = this.getClass().getSimpleName();
