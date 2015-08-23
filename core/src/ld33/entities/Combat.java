@@ -23,6 +23,10 @@ public class Combat {
         int effectiveAttack = attack1 - attack2;
         if (effectiveAttack <= 0) effectiveAttack = 1;
 
+        if (K.random.nextBoolean()) {
+            effectiveAttack *= 2;
+        }
+
         String attackerName = attacker.getClass().getSimpleName();
         String enemyName = enemy.getClass().getSimpleName();
 

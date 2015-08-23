@@ -39,11 +39,11 @@ public class Stats {
     }
 
     private static int maxHealthForLevel(int level) {
-        return 5;
+        return 5 + level * 2;
     }
 
     public int getStrength() {
-        return 5;
+        return 5 + level * 3;
     }
 
     public void damage(int amount) {
@@ -51,7 +51,7 @@ public class Stats {
     }
 
     public int getSkill() {
-        return 1;
+        return 1 + level * 2;
     }
 
     public void fullHealth() {
@@ -65,6 +65,14 @@ public class Stats {
     public int levelUpAvailable() {
         if (xp >= 2 && level < 1) return 1;
         if (xp >= 5 && level < 2) return 2;
+        if (xp >= 10 && level < 3) return 3;
+        if (xp >= 25 && level < 4) return 4;
+        if (xp >= 50 && level < 5) return 5;
+        if (xp >= 100 && level < 6) return 6;
+        if (xp >= 250 && level < 7) return 7;
+        if (xp >= 500 && level < 8) return 8;
+        if (xp >= 1000 && level < 9) return 9;
+        if (xp >= 2500 && level < 10) return 10;
         return 0;
     }
 
@@ -74,4 +82,8 @@ public class Stats {
         }
     }
 
+    public void addHealth(int amount) {
+        health += amount;
+        if (health > maxHealthForLevel(level)) health = maxHealthForLevel(level);
+    }
 }

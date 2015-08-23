@@ -11,6 +11,7 @@ import ld33.Stats;
 public class MobBase extends KEntityBase {
 
     private Stats stats = new Stats();
+    private long lastHealthIncrement = System.currentTimeMillis();
 
     public MobBase() {
         super();
@@ -50,6 +51,17 @@ public class MobBase extends KEntityBase {
                 String thatStr = other.getClass().getSimpleName();
 //                K.getUI().writeText(thisStr + " attacks " + thatStr + "!");
                 Combat.run(this, (MobBase)other);
+            }
+        }
+    }
+
+    @Override
+    public void update() {
+        super.update();
+        if (lastHealthIncrement != K.getLastRogueUpdate()) {
+            lastHealthIncrement = K.getLastRogueUpdate();
+            if (K.random.nextInt(3) == 1) {
+                getStats().addHealth(1 + getStats().getLevel());
             }
         }
     }
