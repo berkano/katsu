@@ -91,6 +91,10 @@ public class Combat {
         if (nearestBed != null) {
             mob.setX(nearestBed.getX());
             mob.setY(nearestBed.getY());
+            if (mob instanceof Monster) {
+                Monster monster = (Monster) mob;
+                monster.setLooksHuman(true);
+            }
         } else {
             K.getUI().writeText("Error - could not find nearest bed for " + mob.getClass().getSimpleName());
         }
