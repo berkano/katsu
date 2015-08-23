@@ -94,7 +94,7 @@
   </tile>
   <tile id="130">
    <properties>
-    <property name="entity" value="tba"/>
+    <property name="entity" value="Tree"/>
    </properties>
   </tile>
   <tile id="131">
@@ -102,9 +102,24 @@
     <property name="entity" value="Carpet"/>
    </properties>
   </tile>
+  <tile id="160">
+   <properties>
+    <property name="entity" value="Skeleton"/>
+   </properties>
+  </tile>
+  <tile id="161">
+   <properties>
+    <property name="entity" value="WaterSlick"/>
+   </properties>
+  </tile>
+  <tile id="162">
+   <properties>
+    <property name="entity" value="OilSlick"/>
+   </properties>
+  </tile>
   <tile id="163">
    <properties>
-    <property name="entity" value="tba"/>
+    <property name="entity" value="Bar"/>
    </properties>
   </tile>
   <tile id="195">
@@ -130,12 +145,12 @@
  </layer>
  <layer name="background-ontop" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt2rEKACAIBUB/3T9vkqBozuJudHJ64MMIAAAAIG8vAAAAwPfcngAAAAAAAAAAAADT+luZhzkAAABA0RsAvE+WAwAAAABAb7p8AAAAAAAAAAAA2A3jugQJ
+   eJzt3FEOgjAMAFCuTjiJ4EGN8UNECLAM1833fjBGk2Z17RzOrgMAACCysXQAf6IvHQCnDInvu2WNglym0gE0Zj4/9JB6mRfXSO0fUKNh47r3OuBavnuWY20Mn8yJuOQG1o2LK79l3IFa2OOKSV7gbdh4DBCROgUA5+mfAABplr+t7Deev4L74S/R17Jnz9i0dibnXjqADa2N81FH8qG2xBEtF9HiacleTfrXmjX3/PxF7/lcxxwBWuSs5jlrtX6v/qeuX/WVWPzXUn7GNB+1HI6bOj02MrmJS27qZ08zrmVu5Ar2mScAANTIXj4AAAAAAAAAAAB8ewCA9SR8
   </data>
  </layer>
  <layer name="objects" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt3F2OgjAUBlBG3Yhb0f3vacIDCTLQn5G2N3pOYiTIg/bz2gKt0wQAAEBvl8SD/o7aXR5jyCOWvXa/HeynPf1HDNfRb4CsbUZnZqb2yvSqkzmDuV96TPKo1SKjJQNjhRiW+li2GetysM0Y+nMAAGDPs+LYW/4Q+Gg19bLHvRYgMr9RAADUMoYc7ygD2fDNUvPO13NmzKHpY2/+2NE+c2Lbq8lj+xrnm9v3Z7W9fr7v7JNHW7m+Qv/RV659tX9fqfZuvYaiZGxX+vgUIz9r7Rpoa6bbkkcs23F1rj5Ltvm/1Pd9b82ZPNoq+f2RRz/GV7Gk6uM+vV4f2B6vPv569zsqj3O92yal46uacdc3y7XJdUrfX3T+ca6jPErv8crjXLn+Y14/kKoR4ysAAHhl/mpcsonnMfoNfInc+bfa6Mv121jkEYs8YlnuEfqf6RhcTwcAAAAAAAAAAIjjFzxnBJM=
+   eJzt3FGOgjAUBVBG3Yhb0f3vacIHCTKFtiNtX/ScxEiQD+312QKt0wQAAEBvl4MH/e21uzzGkEcsqXa/7eynPf1HDNfRb4CsbUZnZqb2yvSqkzmDuV96TPKo1SKjJQNjhRiW+li2Geuys80Y+nMAACDlWXHsLX8IfLSaeklxrwWIzG8UAAC1jCHH28tANnyzo3nn6zkz5tD0kZo/trfPnNj2avLYvsb55vb9WW2vn++JffJoK9dX6D/6yrWv9u9r6adTWq+hKBnblT4+xcjPWrsG2prptuQRy3ZcnavPkm3+7+j7nlpzJo+2Sn5/5NGP8VUsR/Vxn16vD2yPVx9/vfsdlce53m2T0vFVzbjrm+Xa5Dod3190/nGuvTxK7/HK41y5/mNeP3BUI8ZXAADwyvzVuGQTz2P0G/gSufNvtdGX67exyCMWecSy3CP0P9MxuJ4OAAAAAAAAAAAQxy8E0gTV
   </data>
  </layer>
  <layer name="passageways" width="100" height="100">
