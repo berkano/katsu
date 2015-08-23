@@ -1,1 +1,17 @@
-@YELLOW LD33 here we go!!
+@GREEN Gorgon Zoë
+@YELLOW ~~~~~~~~~
+
+@ORANGE Set free Zoë's inner monster by terrorising the peaceful land of Patoot.
+@CYAN Hint: reach level 10 to win.
+
+Controls:
+- M: transform between monster and human. Only if nobody is looking!
+- WASD: move (turn-based, but hold shift to play it fast)
+- Attack: just move towards your target.
+- R: restart
+- H: show this help
+- P: (un)pause game
+- U: toggle music
+- ESC: quit
+
+@ORANGE Enjoy! ~berkano

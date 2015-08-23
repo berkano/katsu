@@ -40,7 +40,7 @@ public class LD33Settings extends KSettings {
 
     @Override
     public String getGameName() {
-        return "Gorgonzoë";
+        return "Gorgon Zoë";
     }
 
     @Override
