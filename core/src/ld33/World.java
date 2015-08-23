@@ -17,6 +17,10 @@ public class World extends KRoomBase {
 
     public World() {
         super();
+        KUI.getMessageReplacements().put("Monster attacks", "You attack");
+        KUI.getMessageReplacements().put("attacks Monster", "attacks you");
+        KUI.getMessageReplacements().put("Monster swings", "You swing");
+        KUI.getMessageReplacements().put("swings for Monster", "swings for you");
     }
 
     private Monster player;

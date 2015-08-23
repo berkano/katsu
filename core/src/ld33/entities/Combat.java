@@ -28,7 +28,17 @@ public class Combat {
         }
 
         String attackerName = attacker.getClass().getSimpleName();
+
+        if (attacker instanceof NPC) {
+            attackerName = ((NPC)attacker).getDisplayName();
+        }
+
         String enemyName = enemy.getClass().getSimpleName();
+
+        if (enemy instanceof NPC) {
+            enemyName = ((NPC)enemy).getDisplayName();
+        }
+
 
         boolean attackSuccessful = false;
         int skill1 = attacker.getStats().getSkill();

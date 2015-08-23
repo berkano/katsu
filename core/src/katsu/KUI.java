@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 /**
@@ -32,6 +33,12 @@ public class KUI {
     public int lineDisplay = 10;
     public boolean showHealth = true;
     public int healthBarSize = 2;
+
+    public static HashMap<String, String> messageReplacements = new HashMap<String, String>();
+
+    public static HashMap<String, String> getMessageReplacements() {
+        return messageReplacements;
+    }
 
     public ArrayList<KTextLine> text = new ArrayList<KTextLine>();
     private boolean showingHelp = false;
@@ -155,15 +162,22 @@ public class KUI {
         int yOffset = K.getWindowHeight();
 
         font.setColor(Color.BLACK);
-        font.draw(batch, getTopText(), 4, yOffset - 4);
+        font.draw(batch, doReplacements(getTopText()), 4, yOffset - 4);
         font.setColor(Color.WHITE);
-        font.draw(batch, getTopText(), 6, yOffset - 6);
+        font.draw(batch, doReplacements(getTopText()), 6, yOffset - 6);
 
         font.setColor(Color.BLACK);
-        font.draw(batch, getSecondaryText(), 4, yOffset - 4 - 16);
+        font.draw(batch, doReplacements(getSecondaryText()), 4, yOffset - 4 - 16);
         font.setColor(Color.PINK);
-        font.draw(batch, getSecondaryText(), 6, yOffset - 6 - 16);
+        font.draw(batch, doReplacements(getSecondaryText()), 6, yOffset - 6 - 16);
 
+    }
+
+    private String doReplacements(String originalText) {
+        for (String r : messageReplacements.keySet()) {
+            originalText = originalText.replace(r, messageReplacements.get(r));
+        }
+        return originalText;
     }
 
     private void renderHelpText() {
@@ -211,9 +225,9 @@ public class KUI {
             int stringY = topMargin - fontHeight * (lineCount - 1);
 
             font.setColor(Color.BLACK);
-            font.draw(batch, lines[i], stringX + 2, stringY + 2);
+            font.draw(batch, doReplacements(lines[i]), stringX + 2, stringY + 2);
             font.setColor(c);
-            font.draw(batch, lines[i], stringX, stringY);
+            font.draw(batch, doReplacements(lines[i]), stringX, stringY);
 
             lineCount++;
         }
@@ -226,7 +240,7 @@ public class KUI {
         }
 
         font.setColor(c);
-        font.draw(batch, s, x, y);
+        font.draw(batch, doReplacements(s), x, y);
     }
 
     public void modalDialog(String s) {
