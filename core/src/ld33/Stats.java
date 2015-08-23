@@ -68,11 +68,11 @@ public class Stats {
     }
 
     private static int maxHealthForLevel(int level) {
-        return 5 + level * 2;
+        return 10 + level * 2;
     }
 
     public int getStrength() {
-        return 5 + level * 3;
+        return 1 + (level * 3) / 2;
     }
 
     public void damage(int amount) {
@@ -80,7 +80,7 @@ public class Stats {
     }
 
     public int getSkill() {
-        return 1 + level * 2;
+        return 1 + level;
     }
 
     public void fullHealth() {

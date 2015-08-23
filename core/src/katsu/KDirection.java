@@ -33,7 +33,8 @@ public enum KDirection {
         if (choice == 1) return KDirection.DOWN;
         if (choice == 2) return KDirection.LEFT;
         if (choice == 3) return KDirection.RIGHT;
-        return null;
+        // blah
+        return KDirection.UP;
     }
 
 }

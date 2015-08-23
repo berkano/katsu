@@ -89,7 +89,7 @@
   </tile>
   <tile id="129">
    <properties>
-    <property name="entity" value="tba"/>
+    <property name="entity" value="Blood"/>
    </properties>
   </tile>
   <tile id="130">
@@ -140,7 +140,7 @@
  </layer>
  <layer name="no-populate" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJztwSEBAAAAAiCv+f+UyRdAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA3ABK2ABC
+   eJztwQENAAAIwKBXs5rJnT2AqTYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAdpfEAxA==
   </data>
  </layer>
 </map>

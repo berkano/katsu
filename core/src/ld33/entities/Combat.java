@@ -49,6 +49,12 @@ public class Combat {
                 colourCode = "@PINK ";
             }
             K.getUI().writeText(colourCode + attackerName + " attacks " + enemyName + " with damage " + effectiveAttack + "!");
+
+            Blood blood = new Blood();
+            blood.setX(enemy.getX());
+            blood.setY(enemy.getY());
+            enemy.getRoom().addNewEntity(blood);
+
             enemy.getStats().damage(effectiveAttack);
             if (enemy.getStats().getHealth() <= 0) {
                 int livesLeft = enemy.getStats().getLives() - 1;
