@@ -8,9 +8,9 @@
 - WASD: move (turn-based, but hold shift to play it fast)
 - Attack: just move towards your target.
 - R: restart game
-- H: show this help
 - P: (un)pause game
 - U: toggle music
+- H: show help
 - ESC: quit
 
 @CYAN Hints:
@@ -20,6 +20,7 @@
 - Mobs chase you if you are in monster form.
 - Health regenerates if you're moving around.
 - Every mob has 3 lives (including you), after which PERMADEATH kicks in.
+- Press H to show this help at any time.
 
 @ORANGE Enjoy! ~berkano
 
