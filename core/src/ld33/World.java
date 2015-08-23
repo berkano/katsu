@@ -89,15 +89,14 @@ public class World extends KRoomBase {
             player.tryFlipMonsterState();
         }
 
-
         if (directionToMove != null) {
-            if (player.moveRequested(directionToMove)) {
-                somethingHappened = true;
-            }
+            somethingHappened = true;
+            player.moveRequested(directionToMove);
         }
 
         if (somethingHappened) {
             K.setLastRogueUpdate(System.currentTimeMillis());
+            player.doEnemyPathFinding();
         }
 
     }
