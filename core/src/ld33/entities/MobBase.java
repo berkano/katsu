@@ -3,6 +3,7 @@ package ld33.entities;
 import katsu.K;
 import katsu.KEntity;
 import katsu.KEntityBase;
+import ld33.LD33Sounds;
 import ld33.Stats;
 
 /**
@@ -51,8 +52,26 @@ public class MobBase extends KEntityBase {
             if (other instanceof NPC) {
                 Monster me = (Monster) this;
                 NPC npc = (NPC) other;
-                if (me.isLooksHuman()) {
+                if (me.isLooksHuman() && nextX == null) {
                     K.getUI().writeText(npc.getDisplayName());
+                    if (other instanceof Sheep) {
+                        LD33Sounds.sheep.play();
+                    }
+                    if (other instanceof Cat) {
+                        LD33Sounds.meow.play();
+                    }
+                    if (other instanceof Violet) {
+                        LD33Sounds.hello_female.play();
+                    }
+                    if (other instanceof Human) {
+                        LD33Sounds.randomHello();
+                    }
+                    if (other instanceof Warrior) {
+                        LD33Sounds.randomHello();
+                    }
+                    if (other instanceof Dwarf) {
+                        LD33Sounds.randomHello();
+                    }
                 }
             }
         }

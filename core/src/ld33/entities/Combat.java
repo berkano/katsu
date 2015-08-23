@@ -71,6 +71,7 @@ public class Combat {
             if (enemy.getStats().getHealth() <= 0) {
                 int livesLeft = enemy.getStats().getLives() - 1;
                 if (livesLeft < 0) livesLeft = 0;
+                LD33Sounds.death.play();
                 if (enemy instanceof Monster) {
                     K.getUI().writeText("@RED You have been killed and will respawn in the nearest bed! (" + livesLeft + " lives left).");
                 } else {
