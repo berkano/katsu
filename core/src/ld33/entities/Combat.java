@@ -60,7 +60,7 @@ public class Combat {
                 // TODO respawn them - for now just reset health
                 if (enemy.getStats().getLives() == 0) {
                     K.getUI().writeText("@RED *** PERMADEATH!! ***");
-                    enemy.setHealth(-1);
+                    enemy.destroy();
                 } else {
                     enemy.getStats().setLives(enemy.getStats().getLives() - 1);
                     enemy.getStats().fullHealth();
