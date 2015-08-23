@@ -30,9 +30,7 @@ public class Monster extends MobBase {
     @Override
     public void update() {
         super.update();
-        if (!looksHuman) {
-            doEnemyPathFinding();
-        }
+        doEnemyPathFinding();
     }
 
     @Override
@@ -74,14 +72,27 @@ public class Monster extends MobBase {
 
         // For each enemy within a certain distance, calculate a path to the mole and set it as their preferred next movement
         for (KEntity e : getRoom().getEntities()) {
+
             boolean wantsPathFind = false;
+
             if (e instanceof MobBase) wantsPathFind = true;
             if (e instanceof Monster) wantsPathFind = false;
+
             if (wantsPathFind) {
+
                 MobBase mob = (MobBase) e;
                 int dx = getGridX() - e.getGridX();
                 int dy = getGridY() - e.getGridY();
+
                 if (Math.abs(dx) <= pfDistance && Math.abs(dy) <= pfDistance) {
+
+                    // Allows NPCs to start moving when they're within pathfinding range - even if in human mode
+                    if (e instanceof NPC) {
+                        ((NPC) e).setHasDoneFirstPathFind(true);
+                    }
+
+                    if (isLooksHuman()) break;
+
                     GridLocation end = new GridLocation(e.getGridX(), e.getGridY(), true);
                     GridLocation start = new GridLocation(this.getGridX(), this.getGridY(), false);
                     GridPath gridPath = gridPathfinding.getPath(start, end, pathMap);

@@ -11,6 +11,14 @@ public class NPC extends MobBase {
     private long didLastPathFind;
     private boolean hasDoneFirstPathFind = false;
 
+    public boolean isHasDoneFirstPathFind() {
+        return hasDoneFirstPathFind;
+    }
+
+    public void setHasDoneFirstPathFind(boolean hasDoneFirstPathFind) {
+        this.hasDoneFirstPathFind = hasDoneFirstPathFind;
+    }
+
     public NPC()
     {
         super();
@@ -31,11 +39,9 @@ public class NPC extends MobBase {
             hasDoneFirstPathFind = true;
             setPathFinderNextDirection(null);
         } else {
+            // Don't start moving randomly until we have at least been in range of the player
             if (hasDoneFirstPathFind) {
-                // Don't move randomly if we have tried path finding recently
-                if (didLastPathFind < K.currentTime() - 2000) {
-                    moveRequested(KDirection.random());
-                }
+                moveRequested(KDirection.random());
             }
         }
 

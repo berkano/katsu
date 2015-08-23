@@ -9,8 +9,8 @@ import katsu.KSettings;
 public class LD33Settings extends KSettings {
 
     public boolean startPaused = !isDevMode();
-    public long enemyPathFindInterval = 100;
-    public int enemyPathFindingDistance = 256;
+    public long enemyPathFindInterval = 1000;
+    public int enemyPathFindingDistance = 4;
 
     @Override
     public boolean isFullScreenBorderless() {
