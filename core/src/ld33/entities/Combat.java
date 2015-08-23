@@ -59,7 +59,11 @@ public class Combat {
             if (enemy.getStats().getHealth() <= 0) {
                 int livesLeft = enemy.getStats().getLives() - 1;
                 if (livesLeft < 0) livesLeft = 0;
-                K.getUI().writeText("@RED " + enemyName + " dies! ("+livesLeft + " lives left)");
+                if (enemy instanceof Monster) {
+                    K.getUI().writeText("@RED You have been killed and will respawn in the nearest bed! (" + livesLeft + " lives left).");
+                } else {
+                    K.getUI().writeText("@RED " + enemyName + " dies! (" + livesLeft + " lives left)");
+                }
                 if (isPlayerAttack) {
                     world.setLastMobAttackedByPlayer(null);
                 }
@@ -107,9 +111,10 @@ public class Combat {
         }
 
         if (nearestBed != null) {
-            mob.setX(nearestBed.getX());
-            mob.setY(nearestBed.getY());
+            mob.setNextX(nearestBed.getX());
+            mob.setNextY(nearestBed.getY());
             if (mob instanceof Monster) {
+                K.pauseGame();
                 Monster monster = (Monster) mob;
                 monster.setLooksHuman(true);
             }

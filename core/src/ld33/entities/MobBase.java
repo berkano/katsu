@@ -12,6 +12,8 @@ public class MobBase extends KEntityBase {
 
     private Stats stats = new Stats();
     private long lastHealthIncrement = System.currentTimeMillis();
+    private Integer nextX = null;
+    private Integer nextY = null;
 
     public MobBase() {
         super();
@@ -64,6 +66,18 @@ public class MobBase extends KEntityBase {
                 getStats().addHealth(1 + getStats().getLevel());
             }
         }
+
+        if (!K.gamePaused()) {
+            if (nextX != null) {
+                if (nextY != null) {
+                    setX(nextX);
+                    setY(nextY);
+                    nextX = null;
+                    nextY = null;
+                }
+            }
+        }
+
     }
 
     public Stats getStats() {
@@ -72,5 +86,21 @@ public class MobBase extends KEntityBase {
 
     public void setStats(Stats stats) {
         this.stats = stats;
+    }
+
+    public int getNextX() {
+        return nextX;
+    }
+
+    public void setNextX(int nextX) {
+        this.nextX = nextX;
+    }
+
+    public int getNextY() {
+        return nextY;
+    }
+
+    public void setNextY(int nextY) {
+        this.nextY = nextY;
     }
 }
