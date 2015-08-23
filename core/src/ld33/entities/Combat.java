@@ -2,6 +2,7 @@ package ld33.entities;
 
 import katsu.K;
 import katsu.KEntity;
+import ld33.LD33Sounds;
 import ld33.World;
 
 import java.util.List;
@@ -59,6 +60,7 @@ public class Combat {
                 colourCode = "@PINK ";
             }
             K.getUI().writeText(colourCode + attackerName + " attacks " + enemyName + " with damage " + effectiveAttack + "!");
+            LD33Sounds.combatSound();
 
             Blood blood = new Blood();
             blood.setX(enemy.getX());
