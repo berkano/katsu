@@ -22,3 +22,5 @@
 - Every mob has 3 lives (including you), after which PERMADEATH kicks in.
 
 @ORANGE Enjoy! ~berkano
+
+@CYAN Press P to continue...
