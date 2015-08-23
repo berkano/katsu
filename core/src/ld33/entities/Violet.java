@@ -5,4 +5,8 @@ package ld33.entities;
  */
 public class Violet extends NPC {
 
+    public Violet() {
+        super();
+        getStats().jumpToLevel(10);
+    }
 }

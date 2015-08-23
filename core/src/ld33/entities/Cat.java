@@ -5,4 +5,8 @@ package ld33.entities;
  */
 public class Cat extends NPC {
 
+    public Cat() {
+        super();
+        getStats().jumpToLevel(1);
+    }
 }

@@ -56,6 +56,11 @@ public class World extends KRoomBase {
 
         super.update();
 
+        if (player.getHealth() <= 0) {
+            K.getUI().writeText("permadeath paid you a friendly visit. game over");
+            K.pauseGame();
+        }
+
         K.getUI().setTopText(player.getStats().toString());
         if (lastMobAttackedByPlayer != null) {
             String enemyName = getLastMobAttackedByPlayer().getClass().getSimpleName();

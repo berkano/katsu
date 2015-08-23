@@ -5,4 +5,8 @@ package ld33.entities;
  */
 public class Dwarf extends NPC {
 
+    public Dwarf() {
+        super();
+        getStats().jumpToLevel(5);
+    }
 }

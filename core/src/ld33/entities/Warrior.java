@@ -8,4 +8,8 @@ import katsu.KEntityBase;
  */
 public class Warrior extends NPC {
 
+    public Warrior() {
+        super();
+        getStats().jumpToLevel(3);
+    }
 }

@@ -51,13 +51,21 @@ public class Combat {
             K.getUI().writeText(colourCode + attackerName + " attacks " + enemyName + " with damage " + effectiveAttack + "!");
             enemy.getStats().damage(effectiveAttack);
             if (enemy.getStats().getHealth() <= 0) {
-                K.getUI().writeText("@RED " + enemyName + " dies!");
+                int livesLeft = enemy.getStats().getLives() - 1;
+                if (livesLeft < 0) livesLeft = 0;
+                K.getUI().writeText("@RED " + enemyName + " dies! ("+livesLeft + " lives left)");
                 if (isPlayerAttack) {
                     world.setLastMobAttackedByPlayer(null);
                 }
                 // TODO respawn them - for now just reset health
-                enemy.getStats().fullHealth();
-                teleportToNearestBed(enemy);
+                if (enemy.getStats().getLives() == 0) {
+                    K.getUI().writeText("@RED *** PERMADEATH!! ***");
+                    enemy.setHealth(-1);
+                } else {
+                    enemy.getStats().setLives(enemy.getStats().getLives() - 1);
+                    enemy.getStats().fullHealth();
+                    teleportToNearestBed(enemy);
+                }
 
                 // XP earned
                 int xp = 1 + (enemy.getStats().getXp() / 3);
