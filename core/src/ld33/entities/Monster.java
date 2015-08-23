@@ -10,6 +10,7 @@ import katsu.KEntity;
 import katsu.KGraphics;
 import ld33.LD33Settings;
 import ld33.LD33Sounds;
+import ld33.Stats;
 import net.sf.jsi.Rectangle;
 
 import java.util.List;
@@ -29,6 +30,16 @@ public class Monster extends MobBase {
         this.setFlipSpriteOnMove(true);
         this.setMaxMoveInterval(75);
         this.setzLayer(100);
+        getStats().jumpToLevel(1);
+
+        // Almost level 10... test game win state
+        boolean testWinState = false;
+        if (testWinState) {
+            if (LD33Settings.get().isDevMode()) {
+                getStats().jumpToLevel(9);
+                getStats().setXp(Stats.levelXPs.get(10) - 1);
+            }
+        }
     }
 
     @Override

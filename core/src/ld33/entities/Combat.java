@@ -97,6 +97,13 @@ public class Combat {
                 if (newLevel > 0) {
                     K.getUI().writeText("@YELLOW " + attackerName + " rises to level " + newLevel + "!");
                     attacker.getStats().levelUp();
+                    if (isPlayerAttack) {
+                        if (newLevel == 10) {
+                            K.getUI().writeText("@ORANGE **YOU WIN!!** LEVEL 10 ACHIEVED. Hope you had fun :-) ~berkano");
+                            K.getUI().writeText("@CYAN You can continue playing as you wish by pressing P.");
+                            K.pauseGame();
+                        }
+                    }
                 }
             }
         } else {

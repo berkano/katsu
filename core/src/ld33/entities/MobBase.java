@@ -53,7 +53,7 @@ public class MobBase extends KEntityBase {
                 Monster me = (Monster) this;
                 NPC npc = (NPC) other;
                 if (me.isLooksHuman() && nextX == null) {
-                    K.getUI().writeText(npc.getDisplayName());
+                    K.getUI().writeText(npc.getDisplayName() + ". " + npc.getStats().toString());
                     if (other instanceof Sheep) {
                         LD33Sounds.sheep.play();
                     }

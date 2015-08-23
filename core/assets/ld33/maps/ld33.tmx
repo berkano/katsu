@@ -113,32 +113,37 @@
    </properties>
   </tile>
  </tileset>
- <layer name="invisible" width="100" height="100">
+ <layer name="invisible" width="100" height="100" visible="0">
   <data encoding="base64" compression="zlib">
    eJztwTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbnEAAAQ==
   </data>
  </layer>
  <layer name="background" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt1rENgDAMAMHMks1gFganobBSRCAhbKIrrrblb9xba/0F+0NvzESPv9gu8ebbQI/ve8zokdvjCPSo1yM2yd53dXrUokctetTiv6rlbgctcnqMDfT41uz+OtTqkb3byuLPlL0LelSjBwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA0QkFhF0X
+   eJzt3E1ywyAMQGHOws3qs/TgXWWGOvwIEEjGb/E2qRvb+iYx6cS9QggXEREREREd3c9A1sd8aiMWuOzx+M2EybM8Ws8fM1mfs+csPHBpW6y6ftQ8MJF5xEUW933gsc+jZpHux3oGXqrNWeLRev6axefahMcej1gp9WCtrOdxn2Vp9rnw6DORzDS3vXRNhseci6ZF73WI/hvl5h0Lj2Ox10TLAY9xi9p7Uml7PNZZfDwkc8RjbubSeeKx1qE3PPx5SEzwWOsRg/6aCos+j9L88djnEUP7dVD7GRZj3efeMsiZ4KDrMDPPmeewnoGXUotr0mP0NWI9Aw/F8G1h4WE9Bw/lHPDwZ6Fh0uNhPQvrJBYSj9q2Eg/rOXhIatFbr4f1HHbVeg9ZYVFyf9PcZzx2HMfbPXqvt3j4scDDl8UOkzd63Oebfn+sdH/G6u+YxUrW83qLR83gTSYePHos4sTvPKHatUHjHjJti5msZz3ikbuvr3Z/31Ms3uAxu2882h4717p4lE16bTT2i4fO60VrX3j4Cg9/YeGjXQ54+HJ4u4fVvLH4dkj/F0LafX2Gx36P1poZi30e0s+UeKz1yIWHL4+aER7+bFb7Wc/CYxoWo+931uf+1EY8JEbW53VCmibW53JSGibW53BaMYy54LHHBA/7Yug3wWOfh8QEj7Ueub8ds77y7xEDHl49rI/71Eoeqcn9cTzWeoxkfdwnh4Wv8PAXFv7CgoiIiIiIiIiIiIiIiIiISK8/a30omg==
+  </data>
+ </layer>
+ <layer name="layout" width="100" height="100" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztmVGOwzAIRPcuvf8dV/mIFHW3qTEwDGSeVPUnxsQvdmzy8yOEEEIIIYSfF9GvApY8Tqr7P0Hn8Wnsq71M97E7F6vmzFQfkWMpH/5Y0fFQsPg4iHqWM+Yaiok+opGPvbaZewIUE3xk74FQeywmFwc7+Uwaq+4+Ks6QneNbseRTcYaWj5hro5CPz9dNrC919lGFfOxfFw1iX82E3h9cMPtAvLPkY70vnQfjrvWA3MvJx338aedNKyz1kqrzjXxg47L2+wkGH1PP/juw+Kikuv8rOz46fytn7P9K9fcohrFgyOEg4tv53W+lLQNPyWPHVQUs+bDkUc3KXM/8XfPoSod5t8rU3Lt76cjKWMtJPtYxnubD817KygfRhhWGOso19m78KU5YfHjnXnZeqDWCyUdl+/dYltpDZV1pqo+dcf3vnOf1Ix9ca/DTfSD2AZn7d6Z3mbfd2ZbJydN9RMaI6KO7j+h9VTbf+mDyccZfXUOi1hpkfbKbj/e+sus26HP9ig/LfU+qS7C5sMRBzukIKmuidzk9EdbnBpUTy/N35sIKsub53l+Vm+rn4RsZue3sydDjxOqFwce1XdV8YXHD5MPb1gvLXiu6z64+PoF2xOQjon022U7kw4588JF5XmCKJx9csbr4OGDbn2bE6uTjgG38zjiR33+6EXHvKzFWvn9Ef/9h8LGTB+K92fWbjLXPb/VPSyxPHpnxLVTVE+/6RPpgcrHbl2Ut3Vlbn+rD4yITZJ16gg8E3vdB5Fxkvmfm3KztLc4Q95255nrJ9FGxp87sgzm3uxie59y6BqL2MZ52FX1Enp1395Hy8TdWZe0B8Z5i3fMyYrkX+chHPriQDy7kgwfrOzq7Ts0YGwnKRUT76vgI5IMLxPk8qn11fCSIOrJ8rPNtnmTW6yJ/k8i+19flf9rYdUUehBBCCCGE6MkvtPFckA==
   </data>
  </layer>
  <layer name="background-ontop" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJztzkERAAAIA6BVt7m3FPqABCQAAAAAAADUXAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHhhAacmAII=
+   eJzt2rEKACAIBUB/3T9vkqBozuJudHJ64MMIAAAAIG8vAAAAwPfcngAAAAAAAAAAAADT+luZhzkAAABA0RsAvE+WAwAAAABAb7p8AAAAAAAAAAAA2A3jugQJ
   </data>
  </layer>
  <layer name="objects" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt2F0KgkAUBtDJ3EjQRvpZSvtfQwgJIuPMzS7kwzkglQ7zcL+uMzqUUoaEgxxTLa8Jc5CjVctLwhx8Z9j4vneO2aty0LfO4/HjHOfP51T/ZX/JI2adx571e6s/Wr+p692vIvewXh73Io+orTyelXP3zhzj4pz+2Kf3/29dvzXGTPWf16KxyCNqXcv1Hjeyjthf5Yn2xxgYc26MIaa2V926Pqv1EDmitWw9l8gjT8a7RHn8hz3sscjjWJb1PxV5/JtnCgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgCN6+xw9d
+   eJzt3F2OgjAUBlBG3Yhb0f3vacIDCTLQn5G2N3pOYiTIg/bz2gKt0wQAAEBvl8SD/o7aXR5jyCOWvXa/HeynPf1HDNfRb4CsbUZnZqb2yvSqkzmDuV96TPKo1SKjJQNjhRiW+li2GetysM0Y+nMAAGDPs+LYW/4Q+Gg19bLHvRYgMr9RAADUMoYc7ygD2fDNUvPO13NmzKHpY2/+2NE+c2Lbq8lj+xrnm9v3Z7W9fr7v7JNHW7m+Qv/RV659tX9fqfZuvYaiZGxX+vgUIz9r7Rpoa6bbkkcs23F1rj5Ltvm/1Pd9b82ZPNoq+f2RRz/GV7Gk6uM+vV4f2B6vPv569zsqj3O92yal46uacdc3y7XJdUrfX3T+ca6jPErv8crjXLn+Y14/kKoR4ysAAHhl/mpcsonnMfoNfInc+bfa6Mv121jkEYs8YlnuEfqf6RhcTwcAAAAAAAAAAIjjFzxnBJM=
   </data>
  </layer>
  <layer name="passageways" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt1kENAAAIAkC72r+DMRjzLgGDDzMAkLHpAM/ou58NAQBo5csCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQ5gAS0wGN
+   eJzt2lEKgCAMAFChbtZRvP8d6luEgmJz9B6IH/sZDjYFWwMAAAAAqunZCQDAwGwCAAAAAAAAAACA9fjfB1TQh30WA/gzvbAmdQPgqbuZsYVkATDnXvte5BmqF1CNvgUAAAAxvMEBAIBMx7X27CQAAAAAAAAAAD5wAvZmBbU=
   </data>
  </layer>
- <layer name="no-populate" width="100" height="100">
+ <layer name="no-populate" width="100" height="100" visible="0">
   <data encoding="base64" compression="zlib">
    eJztwQENAAAIwKBXs5rJnT2AqTYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAdpfEAxA==
   </data>

@@ -11,7 +11,7 @@ public class Stats {
     private int xp = 0;
     private int health = Stats.maxHealthForLevel(level);
 
-    static HashMap<Integer, Integer> levelXPs = new HashMap<Integer, Integer>();
+    public static HashMap<Integer, Integer> levelXPs = new HashMap<Integer, Integer>();
 
     static {
         levelXPs.put(0, 0);
