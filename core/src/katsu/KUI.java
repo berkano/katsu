@@ -38,6 +38,7 @@ public class KUI {
     private String helpText = "No help text provided";
 
     private String topText = "";
+    private String secondaryText = "";
 
     public void writeText(String s) {
         if (text.size() >= lineDisplay) {
@@ -151,12 +152,17 @@ public class KUI {
 
         SpriteBatch batch = K.getUiSpriteBatch();
 
-        int yOffset = 768;
+        int yOffset = K.getWindowHeight();
 
         font.setColor(Color.BLACK);
         font.draw(batch, getTopText(), 4, yOffset - 4);
         font.setColor(Color.WHITE);
         font.draw(batch, getTopText(), 6, yOffset - 6);
+
+        font.setColor(Color.BLACK);
+        font.draw(batch, getSecondaryText(), 4, yOffset - 4 - 16);
+        font.setColor(Color.PINK);
+        font.draw(batch, getSecondaryText(), 6, yOffset - 6 - 16);
 
     }
 
@@ -224,7 +230,7 @@ public class KUI {
     }
 
     public void modalDialog(String s) {
-        writeText("@BLUE "+s);
+        writeText("@BLUE " + s);
 
     }
 
@@ -250,5 +256,13 @@ public class KUI {
 
     public void setTopText(String topText) {
         this.topText = topText;
+    }
+
+    public void setSecondaryText(String secondaryText) {
+        this.secondaryText = secondaryText;
+    }
+
+    public String getSecondaryText() {
+        return secondaryText;
     }
 }

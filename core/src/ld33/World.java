@@ -3,12 +3,15 @@ package ld33;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import katsu.*;
+import ld33.entities.MobBase;
 import ld33.entities.Monster;
 
 /**
  * Created by shaun on 12/04/2015.
  */
 public class World extends KRoomBase {
+
+    private MobBase lastMobAttackedByPlayer;
 
     public World() {
         super();
@@ -53,10 +56,13 @@ public class World extends KRoomBase {
 
         super.update();
 
-//        setRenderFog(true);
-//        setFogRadius(96);
-//        setFogX(player.getX());
-//        setFogY(player.getY());
+        K.getUI().setTopText(player.getStats().toString());
+        if (lastMobAttackedByPlayer != null) {
+            String enemyName = getLastMobAttackedByPlayer().getClass().getSimpleName();
+            K.getUI().setSecondaryText(enemyName + ": " + getLastMobAttackedByPlayer().getStats().toString());
+        } else {
+            K.getUI().setSecondaryText("");
+        }
 
         boolean somethingHappened = false;
         KDirection directionToMove = null;
@@ -91,4 +97,11 @@ public class World extends KRoomBase {
 
     }
 
+    public void setLastMobAttackedByPlayer(MobBase lastMobAttackedByPlayer) {
+        this.lastMobAttackedByPlayer = lastMobAttackedByPlayer;
+    }
+
+    public MobBase getLastMobAttackedByPlayer() {
+        return lastMobAttackedByPlayer;
+    }
 }
