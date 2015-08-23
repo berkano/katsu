@@ -24,11 +24,22 @@ public abstract class KRoomBase implements KRoom, InputProcessor {
     private boolean renderFog = false;
 
     // Spatial indexing of entities
-    SpatialIndex si = new RTree();
-    int lastID = 0;
-    HashMap<Integer, KEntity> idToEntity = new HashMap<Integer, KEntity>();
-    HashMap<Integer, net.sf.jsi.Rectangle> idToRectangle = new HashMap<Integer, net.sf.jsi.Rectangle>();
-    HashMap<KEntity, Integer> entityToID = new HashMap<KEntity, Integer>();
+    SpatialIndex si;
+    int lastID;
+    HashMap<Integer, KEntity> idToEntity;
+    HashMap<Integer, net.sf.jsi.Rectangle> idToRectangle;
+    HashMap<KEntity, Integer> entityToID;
+
+    public void wipeData() {
+        entities = new ArrayList<KEntity>();
+        newEntities = new ArrayList<KEntity>();
+        idToEntity = new HashMap<Integer, KEntity>();
+        idToRectangle = new HashMap<Integer, net.sf.jsi.Rectangle>();
+        entityToID = new HashMap<KEntity, Integer>();
+        si = new RTree();
+        si.init(null);
+        lastID = 0;
+    }
 
     @Override
     public void updateSpatialMap(KEntity entity) {
@@ -235,7 +246,7 @@ public abstract class KRoomBase implements KRoom, InputProcessor {
 
     public KRoomBase() {
         super();
-        si.init(null);
+        wipeData();
     }
 
     @Override

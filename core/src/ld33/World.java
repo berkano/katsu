@@ -6,6 +6,8 @@ import katsu.*;
 import ld33.entities.MobBase;
 import ld33.entities.Monster;
 
+import java.util.ArrayList;
+
 /**
  * Created by shaun on 12/04/2015.
  */
@@ -19,11 +21,14 @@ public class World extends KRoomBase {
 
     private Monster player;
 
+    private long lastRestart = System.currentTimeMillis();
+
     @Override
     public void start() {
         super.start();
 
         String mapName = "ld33";
+        wipeData();
         KTmxHelper.addEntitiesToRoomFromMap(mapName, this);
         player = (Monster) firstInstanceOfClass(Monster.class);
 
@@ -49,6 +54,14 @@ public class World extends KRoomBase {
     @Override
     public void render() {
         super.render();
+
+        if (K.isKeyDown(Input.Keys.R)) {
+            if (lastRestart < K.currentTime() - 5000) {
+                lastRestart = K.currentTime();
+                start();
+            }
+        }
+
     }
 
     @Override
@@ -57,7 +70,7 @@ public class World extends KRoomBase {
         super.update();
 
         if (player.getHealth() <= 0 || player.isDestroyed()) {
-            K.getUI().writeText("permadeath paid you a friendly visit. game over");
+            K.getUI().writeText("permadeath paid you a friendly visit. game over. press R to retry");
             K.pauseGame();
         }
 
