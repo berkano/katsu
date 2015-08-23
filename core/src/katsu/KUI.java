@@ -117,7 +117,7 @@ public class KUI {
             float x = fontHeight; // Keep a left border
             float y = fontHeight; // Keep a bottom border (text.size() - 1)* fontHeight; // Relative from bottom of screen and based on number of lines to display
             float width = K.getSettings().getHres() - fontHeight * 2; // Keep a right border
-            float height = K.getSettings().getVres()/2 - fontHeight * 2; // Based on number of lines to display
+            float height = K.getSettings().getVres()/2 + 224 - fontHeight * 2; // Based on number of lines to display
 
             K.getUiShapeRenderer().rect(x, y, width, height);
 
@@ -193,7 +193,7 @@ public class KUI {
 
         if (!isShowingHelp()) return;
 
-        topMargin = K.getSettings().getVres() - fontHeight * 14;
+        topMargin = K.getSettings().getVres() - fontHeight - 8;
         leftMargin = fontHeight * 2;
 
         for (String s : helpText.split("\n")) {
