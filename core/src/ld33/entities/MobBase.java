@@ -18,12 +18,20 @@ public class MobBase extends KEntityBase {
     public boolean isEnemy(KEntity other) {
 
         if (!(this instanceof Monster)) {
-            if (other instanceof Monster) return true;
+            if (other instanceof Monster) {
+                Monster monster = (Monster)other;
+                if (!monster.isLooksHuman()) {
+                    return true;
+                }
+            }
         }
 
         if ((this instanceof Monster)) {
-            if (other instanceof MobBase) {
-                if (!(other instanceof Monster)) return true;
+            Monster monster = (Monster) this;
+            if (!monster.isLooksHuman()) {
+                if (other instanceof MobBase) {
+                    if (!(other instanceof Monster)) return true;
+                }
             }
         }
 

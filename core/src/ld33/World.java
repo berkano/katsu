@@ -74,6 +74,10 @@ public class World extends KRoomBase {
             if (K.isKeyDown(Input.Keys.D)) directionToMove = KDirection.RIGHT;
         }
 
+        if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
+            player.setLooksHuman(!player.isLooksHuman());
+        }
+
 
         if (directionToMove != null) {
             if (player.moveRequested(directionToMove)) {
