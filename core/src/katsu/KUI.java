@@ -35,6 +35,7 @@ public class KUI {
     public int healthBarSize = 2;
 
     public static HashMap<String, String> messageReplacements = new HashMap<String, String>();
+    private String lastTextWritten = "";
 
     public static HashMap<String, String> getMessageReplacements() {
         return messageReplacements;
@@ -48,6 +49,10 @@ public class KUI {
     private String secondaryText = "";
 
     public void writeText(String s) {
+
+        if (s.equals(lastTextWritten)) return;
+        lastTextWritten = s;
+
         if (text.size() >= lineDisplay) {
             text.remove(0);
         }
@@ -133,7 +138,7 @@ public class KUI {
         Iterator itr = text.iterator();
         while (itr.hasNext()) {
             KTextLine tl = (KTextLine) itr.next();
-            if ((tl.added) < System.currentTimeMillis() - 5000) {
+            if ((tl.added) < System.currentTimeMillis() - 15000) {
                 if (!gameIsPaused) {
                     itr.remove();
                 }

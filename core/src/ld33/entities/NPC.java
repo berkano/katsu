@@ -108,8 +108,8 @@ public class NPC extends MobBase {
 
     private void haveSomeChat() {
 
-        if (lastTalked > System.currentTimeMillis() - 10000) return;
-        if (lastCheckedTalkCriteria > System.currentTimeMillis() - 1000) return;
+        if (lastTalked > System.currentTimeMillis() - 5000) return;
+        if (lastCheckedTalkCriteria > System.currentTimeMillis() - 500) return;
         lastCheckedTalkCriteria = System.currentTimeMillis();
 
         // Only if player is nearby
@@ -120,7 +120,7 @@ public class NPC extends MobBase {
         int dy = Math.abs(getY() - player.getY());
         long dist = Math.round(Math.sqrt(dx * dx + dy * dy));
 
-        if (dist > 100) return;
+        if (dist > 128) return;
 
         String chat = "";
 
