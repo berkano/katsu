@@ -106,4 +106,8 @@ public class KSettings {
     public void setDevMode(boolean devMode) {
         this.devMode = devMode;
     }
+
+    public int getToggleMusicKey() {
+        return Input.Keys.M;
+    }
 }

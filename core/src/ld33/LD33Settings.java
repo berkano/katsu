@@ -10,6 +10,12 @@ public class LD33Settings extends KSettings {
 
     public boolean startPaused = !isDevMode();
     public long enemyPathFindInterval = 1000;
+
+    @Override
+    public int getToggleMusicKey() {
+        return Input.Keys.U;
+    }
+
     public int enemyPathFindingDistance = 4;
 
     @Override

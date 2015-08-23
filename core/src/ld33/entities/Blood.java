@@ -22,7 +22,7 @@ public class Blood extends KEntityBase {
         super.update();
         long age = System.currentTimeMillis() - createdTime;
         if (age > 3000) setzLayer(1);
-        if (age > 60000) {
+        if (age > 10000) {
             destroy();
         }
     }

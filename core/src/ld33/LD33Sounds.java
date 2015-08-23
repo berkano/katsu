@@ -22,6 +22,8 @@ public class LD33Sounds {
     public static Sound sheep = KResource.loadSound("sheep.wav");
     public static Sound transform = KResource.loadSound("transform.wav");
 
+    public static Sound music = KResource.loadSound("full-music.mp3");
+
     public static void combatSound() {
         int pick = K.random.nextInt(4);
         switch (pick) {
@@ -44,16 +46,15 @@ public class LD33Sounds {
     public static boolean musicPlaying = false;
 
     public static void stopAllMusic() {
-//        music.stop();
+        music.stop();
         musicPlaying = false;
     }
 
     public static void playMusic() {
         stopAllMusic();
-//        music.loop();
+        music.loop();
         musicPlaying = true;
     }
-
 
     public static void toggleMusic() {
         if (!musicPlaying) {

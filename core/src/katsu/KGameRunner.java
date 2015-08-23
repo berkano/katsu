@@ -142,7 +142,7 @@ public class KGameRunner implements ApplicationListener, InputProcessor {
             }
         }
 
-        if (keycode == Input.Keys.M) {
+        if (keycode == K.getSettings().getToggleMusicKey()) {
             K.getImplementation().toggleMusic();
         }
 

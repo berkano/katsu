@@ -177,6 +177,10 @@ public class KUI {
         for (String r : messageReplacements.keySet()) {
             originalText = originalText.replace(r, messageReplacements.get(r));
         }
+        // TODO - LD33 specific!!
+        if (originalText.startsWith("You swing")) {
+            originalText = originalText.replace("but misses", "but you miss");
+        }
         return originalText;
     }
 
