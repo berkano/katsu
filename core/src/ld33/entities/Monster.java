@@ -9,6 +9,7 @@ import katsu.KDirection;
 import katsu.KEntity;
 import katsu.KGraphics;
 import ld33.LD33Settings;
+import ld33.LD33Sounds;
 import net.sf.jsi.Rectangle;
 
 import java.util.List;
@@ -162,6 +163,7 @@ public class Monster extends MobBase {
 
         if (canFlip) {
             setLooksHuman(!isLooksHuman());
+            LD33Sounds.transform.play();
         } else {
             K.getUI().writeText("You can't transform now, there is someone nearby!");
         }
