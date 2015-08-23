@@ -9,6 +9,9 @@ import katsu.KDirection;
 import katsu.KEntity;
 import katsu.KGraphics;
 import ld33.LD33Settings;
+import net.sf.jsi.Rectangle;
+
+import java.util.List;
 
 /**
  * Created by shaun on 22/08/2015.
@@ -138,4 +141,29 @@ public class Monster extends MobBase {
     }
 
 
+    public void tryFlipMonsterState() {
+
+        // first check for mobs nearby
+//        public float minX, minY, maxX, maxY;
+        float minX = getX() - getWidth() * 1.5f;
+        float minY = getY() - getHeight() * 1.5f;
+        float maxX = getX() + getWidth() * 2.5f;
+        float maxY = getY() + getHeight() * 2.5f;
+
+        Rectangle rectangle = new Rectangle(minX, minY, maxX, maxY);
+        List<KEntity> entities = getRoom().spatialSearchByIntersection(rectangle);
+        boolean canFlip = true;
+        for (KEntity e : entities) {
+            if (e instanceof NPC) {
+                canFlip = false;
+            }
+        }
+
+        if (canFlip) {
+            setLooksHuman(!isLooksHuman());
+        } else {
+            K.getUI().writeText("You can't transform now, there is someone nearby!");
+        }
+
+    }
 }

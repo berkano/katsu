@@ -86,7 +86,7 @@ public class World extends KRoomBase {
         }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
-            player.setLooksHuman(!player.isLooksHuman());
+            player.tryFlipMonsterState();
         }
 
 
