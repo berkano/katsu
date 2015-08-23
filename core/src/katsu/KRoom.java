@@ -39,4 +39,5 @@ public interface KRoom {
     List<KEntity> spatialSearchByIntersection(Rectangle rectangle);
 
 
+
 }

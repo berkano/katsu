@@ -25,6 +25,14 @@ public class World extends KRoomBase {
 
     private Monster player;
 
+    public Monster getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Monster player) {
+        this.player = player;
+    }
+
     private long lastRestart = System.currentTimeMillis();
 
     @Override

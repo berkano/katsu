@@ -2,6 +2,7 @@ package ld33.entities;
 
 import katsu.K;
 import katsu.KDirection;
+import ld33.World;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,6 +17,8 @@ public class NPC extends MobBase {
     private boolean hasDoneFirstPathFind = false;
     private String name;
     private String title;
+    private long lastTalked = System.currentTimeMillis();
+    private long lastCheckedTalkCriteria = System.currentTimeMillis();
 
     public boolean isHasDoneFirstPathFind() {
         return hasDoneFirstPathFind;
@@ -39,6 +42,9 @@ public class NPC extends MobBase {
 
         List<String> genericNames = new ArrayList<String>();
         genericNames.add("Bob");
+        genericNames.add("Dave");
+        genericNames.add("Dave");
+        genericNames.add("Dave");
         genericNames.add("Dave");
         genericNames.add("Steve");
         genericNames.add("Jim");
@@ -95,6 +101,60 @@ public class NPC extends MobBase {
                 moveRequested(KDirection.random());
             }
         }
+
+        haveSomeChat();
+
+    }
+
+    private void haveSomeChat() {
+
+        if (lastTalked > System.currentTimeMillis() - 10000) return;
+        if (lastCheckedTalkCriteria > System.currentTimeMillis() - 1000) return;
+        lastCheckedTalkCriteria = System.currentTimeMillis();
+
+        // Only if player is nearby
+        Monster player = ((World)getRoom()).getPlayer();
+        if (player == null) return;
+
+        int dx = Math.abs(getX() - player.getX());
+        int dy = Math.abs(getY() - player.getY());
+        long dist = Math.round(Math.sqrt(dx * dx + dy * dy));
+
+        if (dist > 100) return;
+
+        String chat = "";
+
+        List<String> randomQuotes = new ArrayList<String>();
+        randomQuotes.add("Super creeps everywhere.");
+        randomQuotes.add("She's a monster!");
+        randomQuotes.add("Not tonight Josephine.");
+        randomQuotes.add("Don't gaze too long into the abyss.");
+        randomQuotes.add("Is that you Herobrine?");
+        randomQuotes.add("Feed me!");
+        randomQuotes.add("Oh, globbits!");
+        randomQuotes.add("Nice day for it.");
+        randomQuotes.add("I'll be back.");
+        Collections.shuffle(randomQuotes);
+        chat = randomQuotes.get(0);
+
+        if (getName().equals("Dave")) {
+            List<String> daveQuotes = new ArrayList<String>();
+            daveQuotes.add("You remind me of the babe.");
+            daveQuotes.add("I have a horror of rooms.");
+            daveQuotes.add("Is that Jimmie's guitar sound?");
+            daveQuotes.add("It'll be alright.");
+            daveQuotes.add("I've heard a rumour from Ground Control.");
+            daveQuotes.add("What's said is said.");
+            Collections.shuffle(daveQuotes);
+            chat = daveQuotes.get(0);
+        }
+
+
+        if (K.random.nextInt(8) == 0) {
+            K.getUI().writeText("@CYAN <" + getDisplayName() + ">: " + chat);
+        }
+
+        lastTalked = System.currentTimeMillis();
 
     }
 
