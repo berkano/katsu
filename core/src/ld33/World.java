@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class World extends KRoomBase {
 
     private MobBase lastMobAttackedByPlayer;
+    private boolean hasStartedMusicAtLeastOnce = false;
 
     public World() {
         super();
@@ -53,8 +54,6 @@ public class World extends KRoomBase {
         if (LD33Settings.get().startWithPausedHelp) {
             K.getUI().setShowingHelp(true);
         }
-
-        if (LD33Settings.get().startWithMusic) LD33Sounds.playMusic();
 
         K.getUI().clearText();
 
@@ -124,6 +123,16 @@ public class World extends KRoomBase {
         if (somethingHappened) {
             K.setLastRogueUpdate(System.currentTimeMillis());
             player.doEnemyPathFinding();
+        }
+
+        if (!K.gamePaused()) {
+            if (LD33Settings.get().startWithMusic) {
+                if (!hasStartedMusicAtLeastOnce) {
+                    LD33Sounds.playMusic();
+                    hasStartedMusicAtLeastOnce = true;
+                }
+            }
+
         }
 
     }
