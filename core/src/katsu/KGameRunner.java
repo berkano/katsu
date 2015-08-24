@@ -134,6 +134,7 @@ public class KGameRunner implements ApplicationListener, InputProcessor {
         }
 
         if (keycode == Input.Keys.H) {
+            K.getUI().clearText();
             if (K.getUI().isShowingHelp()) {
                 K.getUI().setShowingHelp(false);
                 K.unPauseGame();

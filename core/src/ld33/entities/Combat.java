@@ -14,6 +14,12 @@ public class Combat {
 
     public static void run(MobBase attacker, MobBase enemy) {
 
+        // rate limiting on combat to stop it going crazy
+        if (attacker.getLastAttacked() > System.currentTimeMillis() - 750) return;
+        attacker.setLastAttacked(System.currentTimeMillis());
+
+        LD33Sounds.combatSound();
+
         boolean isPlayerAttack = false;
         World world = (World) attacker.getRoom();
         if (attacker instanceof Monster) isPlayerAttack = true;
@@ -23,6 +29,10 @@ public class Combat {
 
         int effectiveAttack = attack1 - attack2;
         if (effectiveAttack <= 0) effectiveAttack = 1;
+
+        if (K.random.nextBoolean()) {
+            effectiveAttack += 2;
+        }
 
         if (K.random.nextBoolean()) {
             effectiveAttack *= 2;
@@ -60,7 +70,6 @@ public class Combat {
                 colourCode = "@PINK ";
             }
             K.getUI().writeText(colourCode + attackerName + " attacks " + enemyName + " with damage " + effectiveAttack + "!");
-            LD33Sounds.combatSound();
 
             Blood blood = new Blood();
             blood.setX(enemy.getX());

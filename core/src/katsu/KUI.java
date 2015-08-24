@@ -50,7 +50,7 @@ public class KUI {
 
     public void writeText(String s) {
 
-        if (s.equals(lastTextWritten)) return;
+        if (s.equals(lastTextWritten) && !s.contains("Paused")) return;
         lastTextWritten = s;
 
         if (text.size() >= lineDisplay) {

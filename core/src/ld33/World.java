@@ -95,21 +95,23 @@ public class World extends KRoomBase {
             K.getUI().setSecondaryText("");
         }
 
+        if (!K.gamePaused()) {
+            if (LD33Settings.get().startWithMusic) {
+                if (!hasStartedMusicAtLeastOnce) {
+                    LD33Sounds.playMusic();
+                    hasStartedMusicAtLeastOnce = true;
+                }
+            }
+
+        }
+
         boolean somethingHappened = false;
         KDirection directionToMove = null;
 
-        // Hold down shift to sprint (rather than single press per turn)
-//        if (!K.isKeyDown(Input.Keys.SHIFT_LEFT) && !K.isKeyDown(Input.Keys.SHIFT_RIGHT)) {
-//            if (Gdx.input.isKeyJustPressed(Input.Keys.W)) directionToMove = KDirection.UP;
-//            if (Gdx.input.isKeyJustPressed(Input.Keys.A)) directionToMove = KDirection.LEFT;
-//            if (Gdx.input.isKeyJustPressed(Input.Keys.S)) directionToMove = KDirection.DOWN;
-//            if (Gdx.input.isKeyJustPressed(Input.Keys.D)) directionToMove = KDirection.RIGHT;
-//        } else {
             if (K.isKeyDown(Input.Keys.W)) directionToMove = KDirection.UP;
             if (K.isKeyDown(Input.Keys.A)) directionToMove = KDirection.LEFT;
             if (K.isKeyDown(Input.Keys.S)) directionToMove = KDirection.DOWN;
             if (K.isKeyDown(Input.Keys.D)) directionToMove = KDirection.RIGHT;
-//        }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
             player.tryFlipMonsterState();
@@ -123,16 +125,6 @@ public class World extends KRoomBase {
         if (somethingHappened) {
             K.setLastRogueUpdate(System.currentTimeMillis());
             player.doEnemyPathFinding();
-        }
-
-        if (!K.gamePaused()) {
-            if (LD33Settings.get().startWithMusic) {
-                if (!hasStartedMusicAtLeastOnce) {
-                    LD33Sounds.playMusic();
-                    hasStartedMusicAtLeastOnce = true;
-                }
-            }
-
         }
 
     }

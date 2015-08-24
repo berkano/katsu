@@ -15,6 +15,7 @@ public class MobBase extends KEntityBase {
     private long lastHealthIncrement = System.currentTimeMillis();
     private Integer nextX = null;
     private Integer nextY = null;
+    private long lastAttacked = System.currentTimeMillis();
 
     public MobBase() {
         super();
@@ -90,8 +91,9 @@ public class MobBase extends KEntityBase {
         super.update();
         if (lastHealthIncrement != K.getLastRogueUpdate()) {
             lastHealthIncrement = K.getLastRogueUpdate();
-            if (K.random.nextInt(3) == 1) {
-                getStats().addHealth(1 + getStats().getLevel());
+            // not too quick please!
+            if (K.random.nextInt(10) == 1) {
+                getStats().addHealth(1 + 2 * getStats().getLevel());
             }
         }
 
@@ -130,5 +132,13 @@ public class MobBase extends KEntityBase {
 
     public void setNextY(int nextY) {
         this.nextY = nextY;
+    }
+
+    public long getLastAttacked() {
+        return lastAttacked;
+    }
+
+    public void setLastAttacked(long lastAttacked) {
+        this.lastAttacked = lastAttacked;
     }
 }
