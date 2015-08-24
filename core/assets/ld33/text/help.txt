@@ -5,7 +5,7 @@
 
 @CYAN Controls:
 - M: transform between human and monster. Only if nobody is looking!
-- WASD: move (turn-based, but hold shift to play it fast)
+- WASD: move (turn-based)
 - Attack: just move towards your target.
 - R: restart game
 - P: (un)pause game
