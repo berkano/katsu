@@ -18,13 +18,13 @@ public class Stats {
         levelXPs.put(1, 2);
         levelXPs.put(2, 5);
         levelXPs.put(3, 10);
-        levelXPs.put(4, 25);
-        levelXPs.put(5, 50);
-        levelXPs.put(6, 100);
-        levelXPs.put(7, 250);
-        levelXPs.put(8, 500);
-        levelXPs.put(9, 1000);
-        levelXPs.put(10, 2500);
+        levelXPs.put(4, 20);
+        levelXPs.put(5, 35);
+        levelXPs.put(6, 65);
+        levelXPs.put(7, 110);
+        levelXPs.put(8, 150);
+        levelXPs.put(9, 175);
+        levelXPs.put(10, 250);
     }
 
     public int getLives() {

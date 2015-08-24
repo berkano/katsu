@@ -7,6 +7,6 @@ public class Violet extends NPC {
 
     public Violet() {
         super();
-        getStats().jumpToLevel(10);
+        getStats().jumpToLevel(9);
     }
 }

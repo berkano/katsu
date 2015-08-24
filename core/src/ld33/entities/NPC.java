@@ -151,7 +151,7 @@ public class NPC extends MobBase {
 
 
         if (K.random.nextInt(8) == 0) {
-            K.getUI().writeText("@CYAN <" + getDisplayName() + ">: " + chat);
+            K.getUI().writeText("@CYAN <" + getDisplayName() + "> " + chat);
         }
 
         lastTalked = System.currentTimeMillis();

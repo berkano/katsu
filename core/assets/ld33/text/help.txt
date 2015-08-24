@@ -4,7 +4,7 @@
 @ORANGE Set free Zoë's inner monster by terrorising the peaceful land of Patoot.
 
 @CYAN Controls:
-- M: transform between monster and human. Only if nobody is looking!
+- M: transform between human and monster. Only if nobody is looking!
 - WASD: move (turn-based, but hold shift to play it fast)
 - Attack: just move towards your target.
 - R: restart game
