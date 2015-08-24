@@ -83,7 +83,7 @@ public class World extends KRoomBase {
         super.update();
 
         if (player.getHealth() <= 0 || player.isDestroyed()) {
-            K.getUI().writeText("permadeath paid you a friendly visit. game over. press R to retry");
+            K.getUI().writeText("PERMADEATH paid you a friendly visit. game over. press R to restart");
             K.pauseGame();
         }
 
