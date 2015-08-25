@@ -8,15 +8,15 @@ import katsu.KSettings;
  */
 public class LD33Settings extends KSettings {
 
-    public boolean startPaused = !isDevMode();
-    public long enemyPathFindInterval = 1000;
+    public final boolean startPaused = !isDevMode();
+    public final long enemyPathFindInterval = 1000;
 
     @Override
     public int getToggleMusicKey() {
         return Input.Keys.U;
     }
 
-    public int enemyPathFindingDistance = 4;
+    public final int enemyPathFindingDistance = 4;
 
     @Override
     public boolean isFullScreenBorderless() {
@@ -53,8 +53,8 @@ public class LD33Settings extends KSettings {
         return "LD33";
     }
 
-    public boolean startWithMusic = !isDevMode();
-    public boolean startWithPausedHelp = !isDevMode();
+    public final boolean startWithMusic = !isDevMode();
+    public final boolean startWithPausedHelp = !isDevMode();
 
     private static LD33Settings _instance;
 

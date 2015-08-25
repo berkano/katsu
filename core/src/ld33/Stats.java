@@ -11,7 +11,7 @@ public class Stats {
     private int xp = 0;
     private int health = Stats.maxHealthForLevel(level);
 
-    public static HashMap<Integer, Integer> levelXPs = new HashMap<Integer, Integer>();
+    public static final HashMap<Integer, Integer> levelXPs = new HashMap<Integer, Integer>();
 
     static {
         levelXPs.put(0, 0);
@@ -35,7 +35,7 @@ public class Stats {
         this.lives = lives;
     }
 
-    private int startLives = 3;
+    private final int startLives = 3;
     private int lives = startLives;
 
     @Override

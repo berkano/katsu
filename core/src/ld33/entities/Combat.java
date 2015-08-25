@@ -57,7 +57,7 @@ public class Combat {
         int totalSkill = skill1 + skill2;
         int roll = K.random.nextInt(totalSkill);
         if (roll < skill1) attackSuccessful = true;
-        String colourCode = "";
+        String colourCode;
 
         if (isPlayerAttack) {
             world.setLastMobAttackedByPlayer(enemy);

@@ -122,7 +122,7 @@ public class NPC extends MobBase {
 
         if (dist > 128) return;
 
-        String chat = "";
+        String chat;
 
         List<String> randomQuotes = new ArrayList<String>();
         randomQuotes.add("Super creeps everywhere.");

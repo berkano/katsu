@@ -1,7 +1,6 @@
 package ld33.entities;
 
 import katsu.K;
-import katsu.KDirection;
 import katsu.KEntityBase;
 
 /**
@@ -9,7 +8,7 @@ import katsu.KEntityBase;
  */
 public class Blood extends KEntityBase {
 
-    private long createdTime = System.currentTimeMillis();
+    private final long createdTime = System.currentTimeMillis();
 
     public Blood() {
         this.setSolid(false);

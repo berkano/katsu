@@ -6,8 +6,6 @@ import katsu.*;
 import ld33.entities.MobBase;
 import ld33.entities.Monster;
 
-import java.util.ArrayList;
-
 /**
  * Created by shaun on 12/04/2015.
  */

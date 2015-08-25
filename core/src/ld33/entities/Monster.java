@@ -32,14 +32,6 @@ public class Monster extends MobBase {
         this.setzLayer(100);
         getStats().jumpToLevel(1);
 
-        // Almost level 10... test game win state
-        boolean testWinState = false;
-        if (testWinState) {
-            if (LD33Settings.get().isDevMode()) {
-                getStats().jumpToLevel(9);
-                getStats().setXp(Stats.levelXPs.get(10) - 1);
-            }
-        }
     }
 
     @Override
