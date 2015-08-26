@@ -16,6 +16,7 @@ public class World extends KRoomBase {
 
     public World() {
         super();
+        // TODO review changes to KUI / generify / review other changes to framework for LD33
         KUI.getMessageReplacements().put("Monster attacks", "You attack");
         KUI.getMessageReplacements().put("attacks Monster", "attacks you");
         KUI.getMessageReplacements().put("Monster swings", "You swing");

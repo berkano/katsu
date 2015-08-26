@@ -70,6 +70,7 @@ public class Monster extends MobBase {
     }
 
 
+    // TODO move everything pathfinding related into framework
     public void doEnemyPathFinding() {
 
         int pfDistance = LD33Settings.get().enemyPathFindingDistance;
