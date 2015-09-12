@@ -41,5 +41,7 @@ Enjoy, and good luck! ~ berkano (http://ludumdare.com/compo/author/berkano/)
 
 # TODO
 
+- [x] review changes to framework during LD33 to check stuff that needs cleaning
 - [ ] support overriding KUI - move out LD33 specific logic to LD33UI class
 - [ ] try to remove static stuff where possible
+- [ ] review LD33 impl code for useful stuff to move to framework
