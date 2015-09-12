@@ -1,7 +1,6 @@
 package katsu;
 
 import com.badlogic.gdx.InputProcessor;
-import ld33.entities.MobBase;
 import net.sf.jsi.Rectangle;
 
 import java.util.ArrayList;
