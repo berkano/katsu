@@ -54,7 +54,7 @@ public class KGameRunner implements ApplicationListener, InputProcessor {
         K.getUiCamera().position.set(512, 768/2, 0);
         K.getUiCamera().update();
 
-        K.setUI(new KUI());
+        K.setUI(K.getImplementation().createUI());
 
         rooms.get(0).start();
 

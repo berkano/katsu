@@ -1,5 +1,6 @@
 package ld32;
 
+import katsu.KUI;
 import ld32.entities.*;
 import katsu.KGame;
 import katsu.KRoom;
@@ -60,5 +61,10 @@ public class LD32Game implements KGame {
     @Override
     public void toggleMusic() {
         LD32Sounds.toggleMusic();
+    }
+
+    @Override
+    public KUI createUI() {
+        return new KUI();
     }
 }

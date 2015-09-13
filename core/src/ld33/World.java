@@ -36,11 +36,13 @@ public class World extends KRoomBase {
     public void start() {
         super.start();
 
-        K.getUI().getMessageReplacements().put("Monster attacks", "You attack");
-        K.getUI().getMessageReplacements().put("attacks Monster", "attacks you");
-        K.getUI().getMessageReplacements().put("Monster swings", "You swing");
-        K.getUI().getMessageReplacements().put("swings for Monster", "swings for you");
-        K.getUI().getMessageReplacements().put("Monster rises ", "You rise ");
+        LD33UI ui = (LD33UI)K.getUI();
+
+        ui.getMessageReplacements().put("Monster attacks", "You attack");
+        ui.getMessageReplacements().put("attacks Monster", "attacks you");
+        ui.getMessageReplacements().put("Monster swings", "You swing");
+        ui.getMessageReplacements().put("swings for Monster", "swings for you");
+        ui.getMessageReplacements().put("Monster rises ", "You rise ");
 
         String mapName = "ld33";
         wipeData();

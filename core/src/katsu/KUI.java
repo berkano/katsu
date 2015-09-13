@@ -34,13 +34,6 @@ public class KUI {
     public boolean showHealth = true;
     public int healthBarSize = 2;
 
-    public HashMap<String, String> messageReplacements = new HashMap<String, String>();
-    private String lastTextWritten = "";
-
-    public HashMap<String, String> getMessageReplacements() {
-        return messageReplacements;
-    }
-
     public ArrayList<KTextLine> text = new ArrayList<KTextLine>();
     private boolean showingHelp = false;
     private String helpText = "No help text provided";
@@ -49,9 +42,6 @@ public class KUI {
     private String secondaryText = "";
 
     public void writeText(String s) {
-
-        if (s.equals(lastTextWritten) && !s.contains("Paused")) return;
-        lastTextWritten = s;
 
         if (text.size() >= lineDisplay) {
             text.remove(0);
@@ -167,26 +157,15 @@ public class KUI {
         int yOffset = K.getWindowHeight();
 
         font.setColor(Color.BLACK);
-        font.draw(batch, doReplacements(getTopText()), 4, yOffset - 4);
+        font.draw(batch, getTopText(), 4, yOffset - 4);
         font.setColor(Color.WHITE);
-        font.draw(batch, doReplacements(getTopText()), 6, yOffset - 6);
+        font.draw(batch, getTopText(), 6, yOffset - 6);
 
         font.setColor(Color.BLACK);
-        font.draw(batch, doReplacements(getSecondaryText()), 4, yOffset - 4 - 16);
+        font.draw(batch, getSecondaryText(), 4, yOffset - 4 - 16);
         font.setColor(Color.PINK);
-        font.draw(batch, doReplacements(getSecondaryText()), 6, yOffset - 6 - 16);
+        font.draw(batch, getSecondaryText(), 6, yOffset - 6 - 16);
 
-    }
-
-    private String doReplacements(String originalText) {
-        for (String r : messageReplacements.keySet()) {
-            originalText = originalText.replace(r, messageReplacements.get(r));
-        }
-        // TODO - LD33 specific!!
-        if (originalText.startsWith("You swing")) {
-            originalText = originalText.replace("but misses", "but you miss");
-        }
-        return originalText;
     }
 
     private void renderHelpText() {
@@ -234,9 +213,9 @@ public class KUI {
             int stringY = topMargin - fontHeight * (lineCount - 1);
 
             font.setColor(Color.BLACK);
-            font.draw(batch, doReplacements(lines[i]), stringX + 2, stringY + 2);
+            font.draw(batch, lines[i], stringX + 2, stringY + 2);
             font.setColor(c);
-            font.draw(batch, doReplacements(lines[i]), stringX, stringY);
+            font.draw(batch, lines[i], stringX, stringY);
 
             lineCount++;
         }
@@ -249,7 +228,7 @@ public class KUI {
         }
 
         font.setColor(c);
-        font.draw(batch, doReplacements(s), x, y);
+        font.draw(batch, s, x, y);
     }
 
     public void modalDialog(String s) {

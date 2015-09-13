@@ -2,6 +2,7 @@ package ld33;
 
 import katsu.KGame;
 import katsu.KRoom;
+import katsu.KUI;
 import ld33.entities.*;
 
 import java.util.ArrayList;
@@ -60,5 +61,10 @@ public class LD33Game implements KGame {
     @Override
     public void toggleMusic() {
         LD33Sounds.toggleMusic();
+    }
+
+    @Override
+    public KUI createUI() {
+        return new LD33UI();
     }
 }
