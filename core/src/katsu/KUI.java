@@ -89,25 +89,21 @@ public class KUI {
         this.mainCamera = mainCamera;
     }
 
-    public static void setTextureCache(HashMap<Class, TextureRegion> textureCache) {
-        KUI.textureCache = textureCache;
-    }
-
     private ShapeRenderer uiShapeRenderer;
     private Camera uiCamera;
     private Camera mainCamera;
 
 
-    private static HashMap<Class, TextureRegion> textureCache = new HashMap<Class, TextureRegion>();
+    private HashMap<Class, TextureRegion> textureCache = new HashMap<Class, TextureRegion>();
 
-    public static TextureRegion tileStitch(int x, int y, TiledMapTileLayer tileLayer) {
+    public TextureRegion tileStitch(int x, int y, TiledMapTileLayer tileLayer) {
 
         TextureRegion result = tileLayer.getCell(x, y).getTile().getTextureRegion();
         return result;
 
     }
 
-    public static HashMap<Class, TextureRegion> getTextureCache() {
+    public HashMap<Class, TextureRegion> getTextureCache() {
         return textureCache;
     }
 

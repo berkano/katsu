@@ -34,7 +34,7 @@ public class KTmxData {
 
         map = loadMap(tiledMapFile);
         entities = new ArrayList<KEntity>();
-        entityTextureRegions = KUI.getTextureCache(); // new HashMap<Class, TextureRegion>();
+        entityTextureRegions = K.getUI().getTextureCache(); // new HashMap<Class, TextureRegion>();
 
         List<TiledMapTileLayer> layerList = new ArrayList<TiledMapTileLayer>();
 
@@ -76,7 +76,7 @@ public class KTmxData {
                             try {
 
                                 if (entityTextureRegions.get(c) == null) {
-                                    TextureRegion textureRegion = KUI.tileStitch(x, y, currentLayer);
+                                    TextureRegion textureRegion = K.getUI().tileStitch(x, y, currentLayer);
                                     entityTextureRegions.put(c, textureRegion);
                                 }
 

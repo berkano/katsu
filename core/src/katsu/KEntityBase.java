@@ -114,7 +114,7 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
     @Override
     public void render() {
         if (textureRegion == null) {
-            textureRegion = KUI.getTextureCache().get(this.getClass());
+            textureRegion = K.getUI().getTextureCache().get(this.getClass());
         }
 
         float xScale = spriteScale;
