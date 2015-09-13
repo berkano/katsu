@@ -28,11 +28,14 @@ public class KGameRunner implements ApplicationListener, InputProcessor {
     public void create() {
 
         Gdx.graphics.setTitle(K.getSettings().getGameName() + " :: " + K.getSettings().getGameAuthor() + " :: " + K.getSettings().getGameDescription());
-        K.setActiveSpriteBatch(new SpriteBatch());
-        K.setActiveShapeRenderer(new ShapeRenderer());
 
-        K.setUiSpriteBatch(new SpriteBatch());
-        K.setUiShapeRenderer(new ShapeRenderer());
+        K.setUI(K.getImplementation().createUI());
+
+        K.getUI().setActiveSpriteBatch(new SpriteBatch());
+        K.getUI().setActiveShapeRenderer(new ShapeRenderer());
+
+        K.getUI().setUiSpriteBatch(new SpriteBatch());
+        K.getUI().setUiShapeRenderer(new ShapeRenderer());
 
         Gdx.input.setInputProcessor(K.getInputMultiplexer());
         K.getInputMultiplexer().addProcessor(this);
@@ -46,15 +49,13 @@ public class KGameRunner implements ApplicationListener, InputProcessor {
         float h = Gdx.graphics.getHeight();
         float viewportSize = 1024;
 
-        K.setMainCamera(new OrthographicCamera(viewportSize, viewportSize * (h / w)));
-        K.getMainCamera().position.set(512, 768/2, 0);
-        K.getMainCamera().update();
+        K.getUI().setMainCamera(new OrthographicCamera(viewportSize, viewportSize * (h / w)));
+        K.getUI().getMainCamera().position.set(512, 768 / 2, 0);
+        K.getUI().getMainCamera().update();
 
-        K.setUiCamera(new OrthographicCamera(viewportSize, viewportSize * (h / w)));
-        K.getUiCamera().position.set(512, 768/2, 0);
-        K.getUiCamera().update();
-
-        K.setUI(K.getImplementation().createUI());
+        K.getUI().setUiCamera(new OrthographicCamera(viewportSize, viewportSize * (h / w)));
+        K.getUI().getUiCamera().position.set(512, 768 / 2, 0);
+        K.getUI().getUiCamera().update();
 
         rooms.get(0).start();
 
@@ -68,21 +69,21 @@ public class KGameRunner implements ApplicationListener, InputProcessor {
     @Override
     public void render() {
 
-        K.getMainCamera().update();
-        K.getActiveSpriteBatch().setProjectionMatrix(K.getMainCamera().combined);
-        K.getActiveShapeRenderer().setProjectionMatrix(K.getMainCamera().combined);
+        K.getUI().getMainCamera().update();
+        K.getUI().getActiveSpriteBatch().setProjectionMatrix(K.getUI().getMainCamera().combined);
+        K.getUI().getActiveShapeRenderer().setProjectionMatrix(K.getUI().getMainCamera().combined);
 
         // Clear screen
         Gdx.gl.glClearColor(0f, 0f, 0f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        K.getActiveSpriteBatch().begin();
+        K.getUI().getActiveSpriteBatch().begin();
         for (KRoom room : rooms) {
             if (room.isActive()) {
                 room.render();
             }
         }
-        K.getActiveSpriteBatch().end();
+        K.getUI().getActiveSpriteBatch().end();
 
         K.getUI().render();
 

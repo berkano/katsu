@@ -2,9 +2,6 @@ package katsu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 import java.util.HashMap;
 import java.util.Random;
@@ -14,12 +11,6 @@ import java.util.Random;
  */
 public class K {
 
-    private static SpriteBatch activeSpriteBatch;
-    private static ShapeRenderer activeShapeRenderer;
-    private static SpriteBatch uiSpriteBatch;
-    private static ShapeRenderer uiShapeRenderer;
-    private static Camera uiCamera;
-    private static Camera mainCamera;
     private static KGameRunner runner;
     private static KGame implementation;
     private static InputMultiplexer inputMultiplexer = new InputMultiplexer();
@@ -46,14 +37,6 @@ public class K {
     public static void exit() {
         KLog.debug("game runner exiting by request.");
         Gdx.app.exit();
-    }
-
-    public static SpriteBatch getActiveSpriteBatch() {
-        return activeSpriteBatch;
-    }
-
-    public static void setActiveSpriteBatch(SpriteBatch activeSpriteBatch) {
-        K.activeSpriteBatch = activeSpriteBatch;
     }
 
     public static void setRunner(KGameRunner runner) {
@@ -111,30 +94,6 @@ public class K {
         return keysDown.get(keycode) != null;
     }
 
-    public static Camera getMainCamera() {
-        return mainCamera;
-    }
-
-    public static void setMainCamera(Camera mainCamera) {
-        K.mainCamera = mainCamera;
-    }
-
-    public static void deleteEntitiesOfClassFromRoom(KRoom room, Class clazz) {
-        for (KEntity e : room.getEntities()) {
-            if (clazz.isInstance(e)) {
-                e.destroy();
-            }
-        }
-    }
-
-    public static ShapeRenderer getActiveShapeRenderer() {
-        return activeShapeRenderer;
-    }
-
-    public static void setActiveShapeRenderer(ShapeRenderer activeShapeRenderer) {
-        K.activeShapeRenderer = activeShapeRenderer;
-    }
-
     public static KUI getUI() {
         return ui;
     }
@@ -166,35 +125,10 @@ public class K {
 
     public static void toggleFullScreenMode() {
         if (Gdx.graphics.isFullscreen()) {
-            //Gdx.graphics.setDisplayMode(Game.instance.initialDisplayMode.width, Game.instance.initialDisplayMode.height, false);
             Gdx.graphics.setDisplayMode(getSettings().getHres(), getSettings().getVres(), false);
         } else {
             Gdx.graphics.setDisplayMode(getSettings().getHres(), getSettings().getVres(), true);
         }
-    }
-
-    public static SpriteBatch getUiSpriteBatch() {
-        return uiSpriteBatch;
-    }
-
-    public static void setUiSpriteBatch(SpriteBatch uiSpriteBatch) {
-        K.uiSpriteBatch = uiSpriteBatch;
-    }
-
-    public static ShapeRenderer getUiShapeRenderer() {
-        return uiShapeRenderer;
-    }
-
-    public static void setUiShapeRenderer(ShapeRenderer uiShapeRenderer) {
-        K.uiShapeRenderer = uiShapeRenderer;
-    }
-
-    public static Camera getUiCamera() {
-        return uiCamera;
-    }
-
-    public static void setUiCamera(Camera uiCamera) {
-        K.uiCamera = uiCamera;
     }
 
     public static void breakpoint() {

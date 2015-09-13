@@ -4,10 +4,7 @@ import ext.pathfinding.grid.GridLocation;
 import ext.pathfinding.grid.GridMap;
 import ext.pathfinding.grid.GridPath;
 import ext.pathfinding.grid.GridPathfinding;
-import katsu.K;
-import katsu.KDirection;
-import katsu.KEntity;
-import katsu.KGraphics;
+import katsu.*;
 import ld33.LD33Settings;
 import ld33.LD33Sounds;
 import ld33.Stats;
@@ -46,9 +43,9 @@ public class Monster extends MobBase {
     @Override
     public void render() {
         if (looksHuman) {
-            setTextureRegion(KGraphics.getTextureCache().get(Human.class));
+            setTextureRegion(KUI.getTextureCache().get(Human.class));
         } else {
-            setTextureRegion(KGraphics.getTextureCache().get(Monster.class));
+            setTextureRegion(KUI.getTextureCache().get(Monster.class));
         }
         lookAtMe();
         super.render();

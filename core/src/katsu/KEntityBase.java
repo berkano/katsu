@@ -114,7 +114,7 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
     @Override
     public void render() {
         if (textureRegion == null) {
-            textureRegion = KGraphics.getTextureCache().get(this.getClass());
+            textureRegion = KUI.getTextureCache().get(this.getClass());
         }
 
         float xScale = spriteScale;
@@ -122,7 +122,7 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
         if (isSpriteFlip()) {
             xScale = -xScale;
         }
-        K.getActiveSpriteBatch().draw(
+        K.getUI().getActiveSpriteBatch().draw(
                 textureRegion,
                 getX(), getY(), getWidth() / 2, getHeight() / 2,
                 getWidth(), getHeight(),
@@ -459,8 +459,8 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
     }
 
     public void lookAtMe() {
-        K.getMainCamera().position.x = getX();
-        K.getMainCamera().position.y = getY();
+        K.getUI().getMainCamera().position.x = getX();
+        K.getUI().getMainCamera().position.y = getY();
     }
 
     public boolean moveRequested(KDirection direction) {

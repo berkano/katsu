@@ -1,24 +1,20 @@
 package katsu;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Colors;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
-/**
- * Created with IntelliJ IDEA.
- * User: shaun
- * Date: 13/04/13
- * Time: 13:07
- * To change this template use File | Settings | File Templates.
- */
 public class KUI {
 
     BitmapFont font;
@@ -40,6 +36,80 @@ public class KUI {
 
     private String topText = "";
     private String secondaryText = "";
+
+    private SpriteBatch activeSpriteBatch;
+    private ShapeRenderer activeShapeRenderer;
+    private SpriteBatch uiSpriteBatch;
+
+    public SpriteBatch getActiveSpriteBatch() {
+        return activeSpriteBatch;
+    }
+
+    public void setActiveSpriteBatch(SpriteBatch activeSpriteBatch) {
+        this.activeSpriteBatch = activeSpriteBatch;
+    }
+
+    public ShapeRenderer getActiveShapeRenderer() {
+        return activeShapeRenderer;
+    }
+
+    public void setActiveShapeRenderer(ShapeRenderer activeShapeRenderer) {
+        this.activeShapeRenderer = activeShapeRenderer;
+    }
+
+    public SpriteBatch getUiSpriteBatch() {
+        return uiSpriteBatch;
+    }
+
+    public void setUiSpriteBatch(SpriteBatch uiSpriteBatch) {
+        this.uiSpriteBatch = uiSpriteBatch;
+    }
+
+    public ShapeRenderer getUiShapeRenderer() {
+        return uiShapeRenderer;
+    }
+
+    public void setUiShapeRenderer(ShapeRenderer uiShapeRenderer) {
+        this.uiShapeRenderer = uiShapeRenderer;
+    }
+
+    public Camera getUiCamera() {
+        return uiCamera;
+    }
+
+    public void setUiCamera(Camera uiCamera) {
+        this.uiCamera = uiCamera;
+    }
+
+    public Camera getMainCamera() {
+        return mainCamera;
+    }
+
+    public void setMainCamera(Camera mainCamera) {
+        this.mainCamera = mainCamera;
+    }
+
+    public static void setTextureCache(HashMap<Class, TextureRegion> textureCache) {
+        KUI.textureCache = textureCache;
+    }
+
+    private ShapeRenderer uiShapeRenderer;
+    private Camera uiCamera;
+    private Camera mainCamera;
+
+
+    private static HashMap<Class, TextureRegion> textureCache = new HashMap<Class, TextureRegion>();
+
+    public static TextureRegion tileStitch(int x, int y, TiledMapTileLayer tileLayer) {
+
+        TextureRegion result = tileLayer.getCell(x, y).getTile().getTextureRegion();
+        return result;
+
+    }
+
+    public static HashMap<Class, TextureRegion> getTextureCache() {
+        return textureCache;
+    }
 
     public void writeText(String s) {
 
@@ -64,14 +134,14 @@ public class KUI {
         if (text.size() > 0) {
             Color shade = new Color(0, 0, 0, 0.33f);
 
-            K.getUiShapeRenderer().setColor(shade);
+            K.getUI().getUiShapeRenderer().setColor(shade);
 
             float x = fontHeight/2; // Keep a left border
             float y = fontHeight + fontHeight / 4; // Keep a bottom border (text.size() - 1)* fontHeight; // Relative from bottom of screen and based on number of lines to display
             float width = K.getSettings().getHres() - fontHeight; // Keep a right border
             float height = 1 + text.size() * fontHeight; // Based on number of lines to display
 
-            K.getUiShapeRenderer().rect(x, y, width, height);
+            K.getUI().getUiShapeRenderer().rect(x, y, width, height);
         }
     }
 
@@ -80,15 +150,15 @@ public class KUI {
         Gdx.gl.glEnable(GL20.GL_BLEND);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 
-        K.getUiShapeRenderer().begin(ShapeRenderer.ShapeType.Filled);
+        K.getUI().getUiShapeRenderer().begin(ShapeRenderer.ShapeType.Filled);
         renderShapes();
-        K.getUiShapeRenderer().end();
+        K.getUI().getUiShapeRenderer().end();
 
         Gdx.gl.glDisable(GL20.GL_BLEND);
 
-        K.getUiSpriteBatch().begin();
+        K.getUI().getUiSpriteBatch().begin();
         renderBitmaps();
-        K.getUiSpriteBatch().end();
+        K.getUI().getUiSpriteBatch().end();
 
     }
 
@@ -102,14 +172,14 @@ public class KUI {
             
             Color shade = new Color(0, 0, 0, 0.75f);
 
-            K.getUiShapeRenderer().setColor(shade);
+            K.getUI().getUiShapeRenderer().setColor(shade);
 
             float x = fontHeight; // Keep a left border
             float y = fontHeight; // Keep a bottom border (text.size() - 1)* fontHeight; // Relative from bottom of screen and based on number of lines to display
             float width = K.getSettings().getHres() - fontHeight * 2; // Keep a right border
             float height = K.getSettings().getVres()/2 + 224 - fontHeight * 2; // Based on number of lines to display
 
-            K.getUiShapeRenderer().rect(x, y, width, height);
+            K.getUI().getUiShapeRenderer().rect(x, y, width, height);
 
         }
     }
@@ -152,7 +222,7 @@ public class KUI {
 
     private void renderTopText() {
 
-        SpriteBatch batch = K.getUiSpriteBatch();
+        SpriteBatch batch = K.getUI().getUiSpriteBatch();
 
         int yOffset = K.getWindowHeight();
 
@@ -206,7 +276,7 @@ public class KUI {
         String wrappedStr = wrap(s, 100);
         String[] lines = wrappedStr.split("\n");
 
-        SpriteBatch batch = K.getUiSpriteBatch();
+        SpriteBatch batch = K.getUI().getUiSpriteBatch();
 
         for (int i = 0; i < lines.length; i++) {
             int stringX = leftMargin;

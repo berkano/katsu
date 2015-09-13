@@ -49,8 +49,8 @@ public class World extends KRoomBase {
         KTmxHelper.addEntitiesToRoomFromMap(mapName, this);
         player = (Monster) firstInstanceOfClass(Monster.class);
 
-        K.getMainCamera().viewportHeight = K.getWindowHeight() / 4;
-        K.getMainCamera().viewportWidth = K.getWindowWidth() / 4;
+        K.getUI().getMainCamera().viewportHeight = K.getWindowHeight() / 4;
+        K.getUI().getMainCamera().viewportWidth = K.getWindowWidth() / 4;
 
         K.getUI().setHelpText(KResource.loadText("help.txt"));
 

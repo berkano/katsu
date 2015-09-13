@@ -48,8 +48,8 @@ public class World extends KRoomBase {
         String mapName = "ld32";
         KTmxHelper.addEntitiesToRoomFromMap(mapName, this);
 
-        K.getMainCamera().viewportHeight = 768 / 4;
-        K.getMainCamera().viewportWidth = 1024 / 4;
+        K.getUI().getMainCamera().viewportHeight = 768 / 4;
+        K.getUI().getMainCamera().viewportWidth = 1024 / 4;
 
         createInstancesAtAll(Mob.class, EmptyDirt.class);
         createInstancesAtAll(WayPoint.class, EmptyDirt.class);
