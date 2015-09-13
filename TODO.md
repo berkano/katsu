@@ -8,8 +8,8 @@
 # To Do - tech debt
 
 - [x] separation of concerns out of K. A lot of it could be moved to KGraphics
-- [ ] review actual need for interfaces? or just extend from base impls
-- [ ] KMovementConstrainer probably doesn't need to be its own class
+- [x] KMovementConstrainer probably doesn't need to be its own class
 - [ ] probably don't need nearly so much static stuff all over the place
 - [ ] KSound is empty - probably can strip out
 - [ ] remove static methods from KGraphics
+- [ ] review actual need for interfaces? or just extend from base impls
