@@ -21,7 +21,7 @@ import java.util.Iterator;
  */
 public class KUI {
 
-    static BitmapFont font;
+    BitmapFont font;
     public static final String FONT_CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789][_!$%#@|\\/?-+=()*&.;,{}\"´`'<>";
 
     public int lineCount = 0;
@@ -34,10 +34,10 @@ public class KUI {
     public boolean showHealth = true;
     public int healthBarSize = 2;
 
-    public static HashMap<String, String> messageReplacements = new HashMap<String, String>();
+    public HashMap<String, String> messageReplacements = new HashMap<String, String>();
     private String lastTextWritten = "";
 
-    public static HashMap<String, String> getMessageReplacements() {
+    public HashMap<String, String> getMessageReplacements() {
         return messageReplacements;
     }
 
@@ -201,7 +201,7 @@ public class KUI {
         }
     }
 
-    public static String wrap(String in, int len) {
+    public String wrap(String in, int len) {
         in = in.trim();
         if (in.length() < len) return in;
         if (in.substring(0, len).contains("\n"))

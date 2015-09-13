@@ -18,11 +18,6 @@ public class World extends KRoomBase {
 
     public World() {
         super();
-        KUI.getMessageReplacements().put("Monster attacks", "You attack");
-        KUI.getMessageReplacements().put("attacks Monster", "attacks you");
-        KUI.getMessageReplacements().put("Monster swings", "You swing");
-        KUI.getMessageReplacements().put("swings for Monster", "swings for you");
-        KUI.getMessageReplacements().put("Monster rises ", "You rise ");
     }
 
     private Monster player;
@@ -40,6 +35,12 @@ public class World extends KRoomBase {
     @Override
     public void start() {
         super.start();
+
+        K.getUI().getMessageReplacements().put("Monster attacks", "You attack");
+        K.getUI().getMessageReplacements().put("attacks Monster", "attacks you");
+        K.getUI().getMessageReplacements().put("Monster swings", "You swing");
+        K.getUI().getMessageReplacements().put("swings for Monster", "swings for you");
+        K.getUI().getMessageReplacements().put("Monster rises ", "You rise ");
 
         String mapName = "ld33";
         wipeData();
