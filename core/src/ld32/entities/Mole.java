@@ -70,7 +70,6 @@ public class Mole extends Mob {
                         GridLocation nextMove = gridPath.getNextMove(); // pop the current location
                         if (nextMove != null) nextMove = gridPath.getNextMove(); // next place
                         if (nextMove != null) {
-//                            Panko.getUI().writeText("Spider " + e.toString() + " next move would be " + nextMove.getX() + "," + nextMove.getY());
                             if (nextMove.getX() < e.getGridX())  ((Spider) e).setPathFinderNextDirection(KDirection.LEFT);
                             if (nextMove.getX() > e.getGridX())  ((Spider) e).setPathFinderNextDirection(KDirection.RIGHT);
                             if (nextMove.getY() < e.getGridY())  ((Spider) e).setPathFinderNextDirection(KDirection.DOWN);

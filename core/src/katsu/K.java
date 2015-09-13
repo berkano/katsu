@@ -36,7 +36,7 @@ public class K {
         // TODO: show alert box in production mode
         KLog.fatal(message);
         exit();
-        throw new RuntimeException("Panko game runner closed due to error: "+message);
+        throw new RuntimeException("game runner closed due to error: "+message);
     }
 
     public static void exitDueToException(String message, Exception ex) {
@@ -44,7 +44,7 @@ public class K {
     }
 
     public static void exit() {
-        KLog.debug("Panko game runner exiting by request.");
+        KLog.debug("game runner exiting by request.");
         Gdx.app.exit();
     }
 
