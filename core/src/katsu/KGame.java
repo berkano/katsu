@@ -14,4 +14,6 @@ public interface KGame {
     HashMap<String,Class> getClassLookup();
 
     void toggleMusic();
+
+    KUI createUI();
 }

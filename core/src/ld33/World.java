@@ -6,6 +6,8 @@ import katsu.*;
 import ld33.entities.MobBase;
 import ld33.entities.Monster;
 
+import java.util.ArrayList;
+
 /**
  * Created by shaun on 12/04/2015.
  */
@@ -16,12 +18,6 @@ public class World extends KRoomBase {
 
     public World() {
         super();
-        // TODO review changes to KUI / generify / review other changes to framework for LD33
-        KUI.getMessageReplacements().put("Monster attacks", "You attack");
-        KUI.getMessageReplacements().put("attacks Monster", "attacks you");
-        KUI.getMessageReplacements().put("Monster swings", "You swing");
-        KUI.getMessageReplacements().put("swings for Monster", "swings for you");
-        KUI.getMessageReplacements().put("Monster rises ", "You rise ");
     }
 
     private Monster player;
@@ -39,6 +35,14 @@ public class World extends KRoomBase {
     @Override
     public void start() {
         super.start();
+
+        LD33UI ui = (LD33UI)K.getUI();
+
+        ui.getMessageReplacements().put("Monster attacks", "You attack");
+        ui.getMessageReplacements().put("attacks Monster", "attacks you");
+        ui.getMessageReplacements().put("Monster swings", "You swing");
+        ui.getMessageReplacements().put("swings for Monster", "swings for you");
+        ui.getMessageReplacements().put("Monster rises ", "You rise ");
 
         String mapName = "ld33";
         wipeData();

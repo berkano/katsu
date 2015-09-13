@@ -21,7 +21,6 @@ public class Spider extends Mob {
     public void update() {
         super.update();
         if (getPathFinderNextDirection() != null) {
-//            Panko.getUI().writeText("Spider trying to move "+getPathFinderNextDirection() + " due to path finding");
             didLastPathFind = K.currentTime();
             moveRequested(getPathFinderNextDirection());
             hasDoneFirstPathFind = true;

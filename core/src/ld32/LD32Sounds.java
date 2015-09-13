@@ -10,12 +10,10 @@ public class LD32Sounds {
 
     public static Sound mole_move = KResource.loadSound("mole-move.wav");
     public static Sound mole_dig = KResource.loadSound("mole-dig.wav");
-//    public static Sound mole_eat = PankoResource.loadSound("mole-eat.wav");
     public static Sound mole_die = KResource.loadSound("mole-die.wav");
     public static Sound game_restart = KResource.loadSound("game-restart.wav");
     public static Sound music1 = KResource.loadSound("music1.mp3");
     public static Sound poop_explode = KResource.loadSound("poop-explode.wav");
-//    public static Sound mole_poop = PankoResource.loadSound("mole-poop.wav");
     public static Sound complete_level = KResource.loadSound("newsounds-complete-level.wav");
     public static Sound eat_worm = KResource.loadSound("newsounds-eatworm.wav");
     public static Sound kill_enemy = KResource.loadSound("newsounds-kill-enemy.wav");

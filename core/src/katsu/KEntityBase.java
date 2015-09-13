@@ -5,8 +5,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
-import ld32.entities.Mole;
-import ld32.entities.Spider;
+import ld33.entities.Bed;
+
+import java.util.List;
 
 /**
  * Created by shaun on 15/11/2014.
@@ -56,7 +57,7 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
         this.destroyed = destroyed;
     }
 
-    public int getSpriteRotation(){
+    public int getSpriteRotation() {
         return this.spriteRotation;
     }
 
@@ -268,7 +269,7 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
     @Override
     public void createInPlace(Class clazz) {
         try {
-            KEntity newEntity = (KEntity)clazz.newInstance();
+            KEntity newEntity = (KEntity) clazz.newInstance();
             newEntity.setX(getX());
             newEntity.setY(getY());
             getRoom().getEntities().add(newEntity);
@@ -293,9 +294,9 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
         }
 
         if (this.parent != null) {
-            double rx = -1 * (double)parentDistance * Math.sin(getRotation() * 0.0174);
-            double ry = (double)parentDistance * Math.cos(getRotation() * 0.0174);
-            setX(parent.getX() + (int)Math.round(rx));
+            double rx = -1 * (double) parentDistance * Math.sin(getRotation() * 0.0174);
+            double ry = (double) parentDistance * Math.cos(getRotation() * 0.0174);
+            setX(parent.getX() + (int) Math.round(rx));
             setY(parent.getY() + (int) Math.round(ry));
         }
 
@@ -548,4 +549,29 @@ public abstract class KEntityBase implements KEntity, InputProcessor {
     public boolean isSpriteFlip() {
         return spriteFlip;
     }
+
+    public KEntity nearestEntityOf(Class clazz) {
+
+        KEntity result = null;
+
+        long nearestDistance = 99999999;
+
+        List<KEntity> entities = getRoom().getEntities();
+        for (KEntity e : entities) {
+            if (clazz.isInstance(e)) {
+
+                int dx = Math.abs(getX() - e.getX());
+                int dy = Math.abs(getY() - e.getY());
+                long dist = Math.round(Math.sqrt(dx * dx + dy * dy));
+                if (dist < nearestDistance) {
+                    nearestDistance = dist;
+                    result = e;
+                }
+            }
+        }
+
+        return result;
+
+    }
+
 }
