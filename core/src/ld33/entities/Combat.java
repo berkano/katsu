@@ -124,21 +124,7 @@ public class Combat {
 
     private static void teleportToNearestBed(MobBase mob) {
 
-        Bed nearestBed = null;
-        long nearestBedDistance = 99999999;
-        List<KEntity> entities = mob.getRoom().getEntities();
-        for (KEntity e : entities) {
-            if (e instanceof Bed) {
-                Bed bed = (Bed) e;
-                int dx = Math.abs(mob.getX() - bed.getX());
-                int dy = Math.abs(mob.getY() - bed.getY());
-                long dist = Math.round(Math.sqrt(dx * dx + dy * dy));
-                if (dist < nearestBedDistance) {
-                    nearestBedDistance = dist;
-                    nearestBed = bed;
-                }
-            }
-        }
+        Bed nearestBed = (Bed)mob.nearestEntityOf(Bed.class);
 
         if (nearestBed != null) {
             mob.setNextX(nearestBed.getX());
