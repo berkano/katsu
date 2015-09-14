@@ -11,5 +11,5 @@
 - [x] KMovementConstrainer probably doesn't need to be its own class
 - [x] KSound is empty - probably can strip out
 - [x] probably don't need nearly so much static stuff all over the place
-- [ ] remove interfaces
+- [x] remove interfaces
 - [ ] replace trivial getters/setters with lombok
