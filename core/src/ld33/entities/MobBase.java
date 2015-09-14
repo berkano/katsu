@@ -2,14 +2,14 @@ package ld33.entities;
 
 import katsu.K;
 import katsu.KEntity;
-import katsu.KEntityBase;
+import katsu.KEntity;
 import ld33.LD33Sounds;
 import ld33.Stats;
 
 /**
  * Created by shaun on 22/08/2015.
  */
-public class MobBase extends KEntityBase {
+public class MobBase extends KEntity {
 
     private Stats stats = new Stats();
     private long lastHealthIncrement = System.currentTimeMillis();

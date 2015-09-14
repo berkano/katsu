@@ -1,12 +1,12 @@
 package ld33.entities;
 
 import katsu.K;
-import katsu.KEntityBase;
+import katsu.KEntity;
 
 /**
  * Created by shaun on 22/08/2015.
  */
-public class WallBase extends KEntityBase {
+public class WallBase extends KEntity {
 
     public WallBase() {
         super();

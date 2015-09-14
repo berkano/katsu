@@ -1,10 +1,10 @@
 package ld33.entities;
 
-import katsu.KEntityBase;
+import katsu.KEntity;
 
 /**
  * Created by shaun on 22/08/2015.
  */
-public class Bar extends KEntityBase {
+public class Bar extends KEntity {
 
 }

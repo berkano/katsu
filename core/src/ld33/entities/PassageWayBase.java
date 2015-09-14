@@ -1,14 +1,14 @@
 package ld33.entities;
 
 import katsu.KEntity;
-import katsu.KEntityBase;
+import katsu.KEntity;
 
 import java.util.List;
 
 /**
  * Created by shaun on 22/08/2015.
  */
-public class PassageWayBase extends KEntityBase {
+public class PassageWayBase extends KEntity {
 
     private boolean hasDissolved = false;
 

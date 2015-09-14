@@ -4,14 +4,14 @@ import ld32.LD32Settings;
 import ld32.LD32Sounds;
 import katsu.K;
 import katsu.KEntity;
-import katsu.KEntityBase;
+import katsu.KEntity;
 
 import java.util.ArrayList;
 
 /**
  * Created by shaun on 18/04/2015.
  */
-public class Poop extends KEntityBase {
+public class Poop extends KEntity {
 
     private long start = K.currentTime();
 

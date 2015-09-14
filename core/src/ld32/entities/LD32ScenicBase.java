@@ -1,12 +1,12 @@
 package ld32.entities;
 
 import katsu.K;
-import katsu.KEntityBase;
+import katsu.KEntity;
 
 /**
  * Created by shaun on 19/04/2015.
  */
-public class LD32ScenicBase extends KEntityBase {
+public class LD32ScenicBase extends KEntity {
 
     public LD32ScenicBase() {
         super();

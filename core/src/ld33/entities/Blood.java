@@ -1,12 +1,12 @@
 package ld33.entities;
 
 import katsu.K;
-import katsu.KEntityBase;
+import katsu.KEntity;
 
 /**
  * Created by shaun on 23/08/2015.
  */
-public class Blood extends KEntityBase {
+public class Blood extends KEntity {
 
     private final long createdTime = System.currentTimeMillis();
 

@@ -1,10 +1,10 @@
 package ld32.entities;
 
-import katsu.KEntityBase;
+import katsu.KEntity;
 
 /**
  * Created by shaun on 18/04/2015.
  */
-public class PathFindingHint extends KEntityBase {
+public class PathFindingHint extends KEntity {
 
 }
