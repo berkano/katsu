@@ -12,4 +12,4 @@
 - [x] KSound is empty - probably can strip out
 - [x] probably don't need nearly so much static stuff all over the place
 - [x] remove interfaces
-- [ ] replace trivial getters/setters with lombok
+- [x] consider replacement of trivial getters/setters with lombok
