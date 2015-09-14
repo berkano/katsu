@@ -11,7 +11,7 @@ import java.util.ArrayList;
 /**
  * Created by shaun on 12/04/2015.
  */
-public class World extends KRoomBase {
+public class World extends KRoom {
 
     private MobBase lastMobAttackedByPlayer;
     private boolean hasStartedMusicAtLeastOnce = false;

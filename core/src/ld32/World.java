@@ -7,7 +7,7 @@ import katsu.*;
 /**
  * Created by shaun on 12/04/2015.
  */
-public class World extends KRoomBase {
+public class World extends KRoom {
 
     private Mole mole;
     public static int numLives;
