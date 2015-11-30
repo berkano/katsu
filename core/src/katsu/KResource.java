@@ -7,6 +7,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
+import java.nio.charset.Charset;
 import java.util.HashMap;
 
 /**
@@ -53,7 +54,7 @@ public class KResource {
     public static String loadText(String textName) {
 
         FileHandle textHandle = getResource(relativeResource("text/" + textName));
-        return textHandle.readString();
+        return textHandle.readString("UTF-8");
 
     }
 
