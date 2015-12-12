@@ -1,6 +1,6 @@
-@GREEN LD34
-@YELLOW  ~~~~
+@GREEN growing
+@YELLOW  ~~~~~
 
-@ORANGE Let's do this
+@ORANGE berkano's Ludum Dare 34 entry
 
 @CYAN Press P to continue...

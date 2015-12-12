@@ -40,7 +40,7 @@ public class LD34Settings extends KSettings {
 
     @Override
     public String getGameName() {
-        return "TBA";
+        return "growing";
     }
 
     @Override
@@ -50,7 +50,7 @@ public class LD34Settings extends KSettings {
 
     @Override
     public String getGameDescription() {
-        return "LD34";
+        return "ld34";
     }
 
     public final boolean startWithMusic = !isDevMode();
