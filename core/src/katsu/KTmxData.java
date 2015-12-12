@@ -6,6 +6,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import ld34.entities.Snowman;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -86,6 +87,9 @@ public class KTmxData {
                                     e.setY(y * tileHeight);
                                     e.setTextureRegion(entityTextureRegions.get(c));
                                     entities.add(e);
+                                    if (e instanceof Snowman) {
+                                        KLog.trace("Added Snowman to map from xy=" + x + "," + y);
+                                    }
                                 }
 
                             } catch (Exception ex) {

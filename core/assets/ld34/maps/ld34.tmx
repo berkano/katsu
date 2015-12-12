@@ -42,100 +42,15 @@
     <property name="entity" value="FenceLeft"/>
    </properties>
   </tile>
-  <tile id="64">
-   <properties>
-    <property name="entity" value="Human"/>
-   </properties>
-  </tile>
-  <tile id="65">
-   <properties>
-    <property name="entity" value="Violet"/>
-   </properties>
-  </tile>
-  <tile id="66">
-   <properties>
-    <property name="entity" value="Dwarf"/>
-   </properties>
-  </tile>
-  <tile id="67">
-   <properties>
-    <property name="entity" value="StairsDown"/>
-   </properties>
-  </tile>
-  <tile id="96">
-   <properties>
-    <property name="entity" value="Grass"/>
-   </properties>
-  </tile>
-  <tile id="97">
-   <properties>
-    <property name="entity" value="Water"/>
-   </properties>
-  </tile>
-  <tile id="98">
-   <properties>
-    <property name="entity" value="Door"/>
-   </properties>
-  </tile>
-  <tile id="99">
-   <properties>
-    <property name="entity" value="Wall2"/>
-   </properties>
-  </tile>
-  <tile id="128">
-   <properties>
-    <property name="entity" value="Bed"/>
-   </properties>
-  </tile>
-  <tile id="129">
-   <properties>
-    <property name="entity" value="Blood"/>
-   </properties>
-  </tile>
-  <tile id="130">
-   <properties>
-    <property name="entity" value="Tree"/>
-   </properties>
-  </tile>
-  <tile id="131">
-   <properties>
-    <property name="entity" value="Carpet"/>
-   </properties>
-  </tile>
-  <tile id="160">
-   <properties>
-    <property name="entity" value="Skeleton"/>
-   </properties>
-  </tile>
-  <tile id="161">
-   <properties>
-    <property name="entity" value="WaterSlick"/>
-   </properties>
-  </tile>
-  <tile id="162">
-   <properties>
-    <property name="entity" value="OilSlick"/>
-   </properties>
-  </tile>
-  <tile id="163">
-   <properties>
-    <property name="entity" value="Bar"/>
-   </properties>
-  </tile>
-  <tile id="195">
-   <properties>
-    <property name="entity" value="tba"/>
-   </properties>
-  </tile>
  </tileset>
- <layer name="invisible" width="100" height="100" visible="0">
+ <layer name="invisible" width="100" height="100">
   <data encoding="base64" compression="zlib">
    eJztwTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbnEAAAQ==
   </data>
  </layer>
  <layer name="background" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt3N2KgmAUhtHoUrozu5a58DkKRDT/v/2m62ARDEaf+8GUKXs9Ho8XAABwad0G1Wv+eM6oXl+LFkldrtzjb0R6Ez1yWuihR6sWzh/1vs34jBZJHRO17JF4bCWZm/OZLT7npuoZJGnZY/i6/WuF6jmk2NtjySynnqfHunkt7Tbcfuk1mR77uhzZwjl9X6OxeS9pqcX5TY7qoMf2Ft/ek949erRp0Y387T1Bj30zn+ugR5sOW+amR1aPJU30OLfHES212Ndjals92vVYs40WdZ3G5qhD+7nPzVOLjB5bj5HqfU7Wukf1/qbTI0+rHtX7+SvWzHFLj+r9u7K1ParXWzWXyhncae56ZNtyvtUjo4UeWS1aNblbj+F8+98fm7o/w3fM9LgLPbJ8Ozf8wj1kVzN1fCy9v696/Vezp0f12q8o+Vr3rrreoxZZtAAAyDH1Wwiuz+p7uGaut+Z33jSpoUc+PX6bfjm832XxGUAeTfJokkmPLHrk0SOPHrXG/nesRX6P6nXehR5Z5j7rql4fAAAAAAAAAAAAVPgHzyk2og==
+   eJzt0bENACAQA7GIUX7/IRmBkiBcuD/pJskAAACUWge3+37jRxc/uvjRxY8ufgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPCaDc0UKmw=
   </data>
  </layer>
  <layer name="layout" width="100" height="100">
@@ -150,15 +65,15 @@
  </layer>
  <layer name="objects" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt3FGOgjAUBVAc3YiZWYmz/z1N+GhSK4V2FGjhnISIyAdwebZCcRgAAIDYd2Yaole2cStY52f1rVjH18zUqjiPS/JZeN9zHjXLW3D0+qhZ3oKQR1obsSPlccssb0WuPuJ8es6j5/bjnlmntzyue2/Am67RlL7vfd+CdD8+uV+91N7etjqXxgzG75nHII9aa2QUMmi9r3AWoT7CPPv6ysyzD+05AAAw5bdi3ZJ7dXBkNfUy5Sj3I4Bj8h0FAEAtfcj95TKQDWc2N+48HjNjDM02psaP5ZYZE7u+mjzSz/i88fheovn49T6xTB7rWmortB/bWjq+jv+2Qjs9Ze1nKEr6dqXTUey5r7XPQPf4zHRP5NGWtF+9VJ8l8/zf3Pk+9cyZPNZV8v0jj+3oX7Vlrj7uw/P1gfTamfp49e45WpNHur48Xr17TEr7VzX9rjNbOiZL/7ni98dn5fIovccrj89aaj/G5wfmakT/CgAAnhm/2i7ZtOex9wacxNLvb7WxLddv2yKPtsijLeEeof+ZboPr6QAAAAAAAAAAAO34AzPsBzY=
+   eJzt09EGwDAMBdBO9yOz/f837ilECXtZjJ1DVDSlXBkDAADIzqJGOumxP5i5Xv8FIeexLXfRy6OP/fiWyGPdjUwefar9yPnIo0/O4yhm5NFrplr7WT0CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4mRv/RAIg
   </data>
  </layer>
- <layer name="passageways" width="100" height="100">
+ <layer name="passageways" width="100" height="100" visible="0">
   <data encoding="base64" compression="zlib">
-   eJzt2lEKgCAMAFChbtZRvP8d6luKgso5fA9EwZ8xxSFaCgAAAACQTY0OAAAaahMAAAAAAAAAAACMx/8+IIPa9GdzADNzFuZk3WLIO5DR3dm1dImCp9QaZmPPv/d3DuvFGGZj/4/PGwAAAADEcQcHAAAibUdbo4MAAAAAAAAAAPjADnGPB6Q=
+   eJztwTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbnEAAAQ==
   </data>
  </layer>
- <layer name="no-populate" width="100" height="100">
+ <layer name="no-populate" width="100" height="100" visible="0">
   <data encoding="base64" compression="zlib">
    eJztwQENAAAIwKBXs5rJnT2AqTYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAdpfEAxA==
   </data>
