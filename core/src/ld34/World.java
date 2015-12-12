@@ -2,7 +2,10 @@ package ld34;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.math.Vector3;
 import katsu.*;
+
+import java.util.ArrayList;
 
 /**
  * Created by shaun on 12/04/2015.
@@ -29,6 +32,8 @@ public class World extends KRoom {
 
         K.getUI().getMainCamera().viewportHeight = K.getWindowHeight() / 4;
         K.getUI().getMainCamera().viewportWidth = K.getWindowWidth() / 4;
+
+        K.getInputMultiplexer().addProcessor(this);
 
         K.getUI().setHelpText(KResource.loadText("help.txt"));
 
@@ -74,5 +79,18 @@ public class World extends KRoom {
 
         }
     }
+
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        Vector3 worldPos = K.getUI().getMainCamera().unproject(new Vector3(screenX, screenY, 0));
+        KLog.trace("World detected touchDown at " + screenX + "," + screenY);
+        KLog.trace("World pos is " + worldPos.toString());
+        ArrayList<KEntity> entities = findEntitiesAtPoint(Math.round(worldPos.x), Math.round(worldPos.y));
+        for (KEntity e : entities) {
+            KLog.trace("There is a " + e.getClass().getSimpleName() + " at this point");
+        }
+        return super.touchDown(screenX, screenY, pointer, button);
+    }
+
 
 }
