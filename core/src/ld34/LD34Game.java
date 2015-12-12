@@ -3,6 +3,7 @@ package ld34;
 import katsu.KGame;
 import katsu.KRoom;
 import katsu.KUI;
+import ld34.entities.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,7 +31,16 @@ public class LD34Game implements KGame {
     public HashMap<String, Class> getClassLookup() {
 
         HashMap<String, Class> result = new HashMap<String, Class>();
+        addClassesTo(result, FenceBottom.class, FenceLeft.class, FenceRight.class, Grass.class, Land.class, Snowman.class, TreeLarge.class);
         return result;
+
+    }
+
+    private void addClassesTo(HashMap<String, Class> classHashMap, Class... classes) {
+
+        for (Class c: classes) {
+            classHashMap.put(c.getSimpleName(), c);
+        }
 
     }
 
