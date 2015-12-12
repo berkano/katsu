@@ -42,6 +42,21 @@
     <property name="entity" value="FenceLeft"/>
    </properties>
   </tile>
+  <tile id="64">
+   <properties>
+    <property name="entity" value="TreeMedium"/>
+   </properties>
+  </tile>
+  <tile id="96">
+   <properties>
+    <property name="entity" value="Sapling"/>
+   </properties>
+  </tile>
+  <tile id="128">
+   <properties>
+    <property name="entity" value="TreeSmall"/>
+   </properties>
+  </tile>
  </tileset>
  <layer name="invisible" width="100" height="100">
   <data encoding="base64" compression="zlib">
@@ -65,7 +80,7 @@
  </layer>
  <layer name="objects" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt09EGwDAMBdBO9yOz/f837ilECXtZjJ1DVDSlXBkDAADIzqJGOumxP5i5Xv8FIeexLXfRy6OP/fiWyGPdjUwefar9yPnIo0/O4yhm5NFrplr7WT0CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4mRv/RAIg
+   eJzt09sJgDAMBdCKLiK6iKM4ipuLQiGUFv/y4zkQSvqAwiWlAAAA0TaoElZyLJ29s+n3jI/winlMzVnt5ZHnaz6uIo9MNY86C0fnjjzy9ObjUfMxH7liHuvgjjxyzaHafh49AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+JkbsQEEJQ==
   </data>
  </layer>
  <layer name="passageways" width="100" height="100" visible="0">

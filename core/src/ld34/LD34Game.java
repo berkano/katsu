@@ -31,7 +31,7 @@ public class LD34Game implements KGame {
     public HashMap<String, Class> getClassLookup() {
 
         HashMap<String, Class> result = new HashMap<String, Class>();
-        addClassesTo(result, Grass.class, Land.class, Snowman.class, TreeLarge.class);
+        addClassesTo(result, Grass.class, Land.class, Snowman.class, TreeLarge.class, TreeMedium.class, TreeSmall.class, Sapling.class);
         return result;
 
     }
