@@ -8,6 +8,7 @@ public class Grass extends LD34EntityBase {
     public Grass() {
         super();
         juiceMySprite(0.1f);
+        setzLayer(-100);
     }
 
 }

@@ -10,6 +10,11 @@ import katsu.KResource;
 public class LD34Sounds {
 
     public static boolean musicPlaying = false;
+    public static Sound chop = KResource.loadSound("chop.wav");
+    public static Sound walk = KResource.loadSound("walk.wav");
+    public static Sound buy_land = KResource.loadSound("buy_land.wav");
+    public static Sound plant = KResource.loadSound("plant.wav");
+    public static Sound gone_wrong = KResource.loadSound("gone_wrong.wav");
 
     public static void stopAllMusic() {
 //        music.stop();

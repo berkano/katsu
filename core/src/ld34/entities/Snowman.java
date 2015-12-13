@@ -5,6 +5,7 @@ import ext.pathfinding.grid.GridMap;
 import ext.pathfinding.grid.GridPath;
 import ext.pathfinding.grid.GridPathfinding;
 import katsu.*;
+import ld34.LD34Sounds;
 
 import java.util.List;
 
@@ -112,7 +113,9 @@ public class Snowman extends LD34EntityBase {
                 }
 
                 if (!goneFarEnough) {
-                    moveRequested(nextDX, nextDY);
+                    if (moveRequested(nextDX, nextDY)) {
+                        LD34Sounds.walk.play();
+                    }
                 }
                 didLastPathFind = K.currentTime();
                 hasDoneFirstPathFind = true;
@@ -139,7 +142,9 @@ public class Snowman extends LD34EntityBase {
                 if (targetAction == Action.CHOP) {
                     Tree toChop = (Tree) findFirstEntityOnGrid(Tree.class, targetGridX, targetGridY);
                     if (toChop != null) {
-                        K.getUI().writeText("Choppy chop!");
+//                        K.getUI().writeText("Choppy chop!");
+                        LD34Sounds.chop.play();
+
 
                         int earned = toChop.getMarketValue();
                         money += earned;
@@ -161,7 +166,8 @@ public class Snowman extends LD34EntityBase {
                             sapling.setGridY(targetGridY);
                             sapling.setStage(Tree.Stage.sapling);
                             getRoom().addNewEntity(sapling);
-                            K.getUI().writeText("Planty plant!");
+//                            K.getUI().writeText("Planty plant!");
+                            LD34Sounds.plant.play();
 
                             // don't let snowman be on top of tree
                             targetGridX = getGridX();
@@ -169,22 +175,26 @@ public class Snowman extends LD34EntityBase {
                             money = money - 1;
                         } else {
                             K.getUI().writeText("I don't have enough money :-( Need £1");
+                            LD34Sounds.gone_wrong.play();
                         }
 
                     } else {
                         K.getUI().writeText("I can't plant here :-(");
+                        LD34Sounds.gone_wrong.play();
                     }
 
                     performedAction = true;
 
                 }
                 if (targetAction == Action.BUY_LAND) {
-                    Land land = (Land)findFirstEntityOnGrid(Land.class, targetGridX, targetGridY);
+                    Land land = (Land) findFirstEntityOnGrid(Land.class, targetGridX, targetGridY);
                     if (land == null) {
                         K.getUI().writeText("There's no land to buy here :-(");
+                        LD34Sounds.gone_wrong.play();
                     } else {
                         if (money < 100) {
                             K.getUI().writeText("I don't have enough money :-( Need £100");
+                            LD34Sounds.gone_wrong.play();
                         } else {
                             Grass grass = new Grass();
                             grass.setX(land.getX());
@@ -193,6 +203,8 @@ public class Snowman extends LD34EntityBase {
                             land.destroy();
                             money -= 100;
                             K.getUI().writeText("New land! Woo!");
+                            LD34Sounds.buy_land.play();
+
                         }
                     }
                     performedAction = true;
@@ -200,10 +212,10 @@ public class Snowman extends LD34EntityBase {
             }
 
             if (performedAction) {
-                targetAction = null;
-                hasTarget = false;
-                targetGridX = getGridX();
-                targetGridY = getGridY();
+                targetAction = Action.WALK;
+//                hasTarget = false;
+//                targetGridX = getGridX();
+//                targetGridY = getGridY();
             }
 
 

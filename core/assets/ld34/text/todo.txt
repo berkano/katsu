@@ -1,12 +1,12 @@
 todo
-- P for planting mode
-- one click: walk, plant, chop, buy land depending on target and planting mode
+- sfx: chop, walk, buy, plant, acknowledge, couldn't do
+- music
 - hazards/fire
 - smooth snowman move
-- sfx
-- music
 - help
 - darken help text vs. significant event text
+- upgrade snowman to santa etc.
+- pause before carrying out action
 
 done
 - pathfinding
@@ -17,3 +17,5 @@ done
 - earn money from chopping
 - buy land
 - buggy planting - can sometimes plant on top of snowman
+- P for planting mode
+- one click: walk, plant, chop, buy land depending on target and planting mode

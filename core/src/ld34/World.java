@@ -26,6 +26,9 @@ public class World extends KRoom {
 
     int lastClickedX = 0;
     int lastClickedY = 0;
+    boolean plantingMode = false;
+
+    boolean waitingForKeyUp = false;
 
     int money = 0;
 
@@ -81,33 +84,50 @@ public class World extends KRoom {
 
         K.getUI().setTopText("Money: £" + player.getMoney());
 
-        if (K.isKeyDown(Input.Keys.W)) {
-            player.setHasTarget(true);
-            player.setTargetGridX(lastClickedX);
-            player.setTargetGridY(lastClickedY);
-            player.setTargetAction(Snowman.Action.WALK);
+//        if (K.isKeyDown(Input.Keys.W)) {
+//            player.setHasTarget(true);
+//            player.setTargetGridX(lastClickedX);
+//            player.setTargetGridY(lastClickedY);
+//            player.setTargetAction(Snowman.Action.WALK);
+//        }
+
+//        if (K.isKeyDown(Input.Keys.C)) {
+//            player.setHasTarget(true);
+//            player.setTargetGridX(lastClickedX);
+//            player.setTargetGridY(lastClickedY);
+//            player.setTargetAction(Snowman.Action.CHOP);
+//        }
+
+        if (K.isKeyDown(Input.Keys.M)) {
+            if (K.getSettings().isDevMode()) {
+                player.setMoney(1000);
+            }
         }
 
-        if (K.isKeyDown(Input.Keys.C)) {
-            player.setHasTarget(true);
-            player.setTargetGridX(lastClickedX);
-            player.setTargetGridY(lastClickedY);
-            player.setTargetAction(Snowman.Action.CHOP);
+        if (!K.isKeyDown(Input.Keys.P)) {
+            waitingForKeyUp = false;
         }
 
-        if (K.isKeyDown(Input.Keys.P)) {
-            player.setHasTarget(true);
-            player.setTargetGridX(lastClickedX);
-            player.setTargetGridY(lastClickedY);
-            player.setTargetAction(Snowman.Action.PLANT);
+        if (K.isKeyDown(Input.Keys.P) && !waitingForKeyUp) {
+            waitingForKeyUp = true;
+            plantingMode = !plantingMode;
+            if (plantingMode) {
+                K.getUI().writeText("OK I'll plant trees where you like!");
+            } else {
+                K.getUI().writeText("OK I won't plant trees unless you ask me again!");
+            }
+//            player.setHasTarget(true);
+//            player.setTargetGridX(lastClickedX);
+//            player.setTargetGridY(lastClickedY);
+//            player.setTargetAction(Snowman.Action.PLANT);
         }
 
-        if (K.isKeyDown(Input.Keys.B)) {
-            player.setHasTarget(true);
-            player.setTargetGridX(lastClickedX);
-            player.setTargetGridY(lastClickedY);
-            player.setTargetAction(Snowman.Action.BUY_LAND);
-        }
+//        if (K.isKeyDown(Input.Keys.B)) {
+//            player.setHasTarget(true);
+//            player.setTargetGridX(lastClickedX);
+//            player.setTargetGridY(lastClickedY);
+//            player.setTargetAction(Snowman.Action.BUY_LAND);
+//        }
 
 
         if (!doneFirstUpdate) {
@@ -157,22 +177,51 @@ public class World extends KRoom {
             }
         }
 
-        boolean explained = false;
+        boolean responded = false;
 
-        if (foundMe && !explained) {
+        if (foundMe && !responded) {
             K.getUI().writeText("Hello!");
-            explained = true;
+            responded = true;
         }
-        if (foundTree && !explained) {
-            K.getUI().writeText("Press C to go and CHOP this tree down.");
-            explained = true;
+        if (foundTree && !responded) {
+
+            K.getUI().writeText("OK I'll go chop that!");
+
+            player.setHasTarget(true);
+            player.setTargetGridX(lastClickedX);
+            player.setTargetGridY(lastClickedY);
+            player.setTargetAction(Snowman.Action.CHOP);
+
+            responded = true;
         }
-        if (foundLand && !explained) {
-            K.getUI().writeText("Press B to BUY this land and expand your farm.");
-            explained = true;
+        if (foundLand && !responded) {
+            K.getUI().writeText("OK I'll go and buy that new land!");
+
+            player.setHasTarget(true);
+            player.setTargetGridX(lastClickedX);
+            player.setTargetGridY(lastClickedY);
+            player.setTargetAction(Snowman.Action.BUY_LAND);
+
+
+            responded = true;
         }
-        if (!explained) {
-            K.getUI().writeText("Press W to WALK over to this spot, or P to PLANT a sapling here.");
+        if (!responded) {
+
+            if (plantingMode) {
+                K.getUI().writeText("OK time to plant some trees!");
+                player.setHasTarget(true);
+                player.setTargetGridX(lastClickedX);
+                player.setTargetGridY(lastClickedY);
+                player.setTargetAction(Snowman.Action.PLANT);
+
+
+            } else {
+                K.getUI().writeText("Off I go!");
+                player.setHasTarget(true);
+                player.setTargetGridX(lastClickedX);
+                player.setTargetGridY(lastClickedY);
+                player.setTargetAction(Snowman.Action.WALK);
+            }
         }
 
         return super.touchDown(screenX, screenY, pointer, button);
