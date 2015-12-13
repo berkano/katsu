@@ -26,6 +26,11 @@ public class World extends KRoom {
 
     private boolean doneFirstUpdate = false;
 
+    int lastClickedX = 0;
+    int lastClickedY = 0;
+
+    Snowman player;
+
     @Override
     public void start() {
         super.start();
@@ -42,6 +47,8 @@ public class World extends KRoom {
         K.getInputMultiplexer().addProcessor(this);
 
         K.getUI().setHelpText(KResource.loadText("help.txt"));
+
+        player = (Snowman)firstInstanceOfClass(Snowman.class);
 
         if (LD34Settings.get().startWithPausedHelp) {
             K.getUI().setShowingHelp(true);
@@ -71,6 +78,13 @@ public class World extends KRoom {
     public void update() {
 
         super.update();
+
+        if (K.isKeyDown(Input.Keys.NUM_1)) {
+            player.setHasTarget(true);
+            KLog.trace("Set target to " + lastClickedX + "," + lastClickedY);
+            player.setTargetGridX(lastClickedX);
+            player.setTargetGridY(lastClickedY);
+        }
 
         if (!doneFirstUpdate) {
             if (LD34Settings.get().startPaused) {
@@ -103,6 +117,10 @@ public class World extends KRoom {
         boolean foundMe = false;
 
         for (KEntity e : entities) {
+
+            lastClickedX = e.getGridX();
+            lastClickedY = e.getGridY();
+
             KLog.trace("There is a " + e.getClass().getSimpleName() + " at this point");
             if (e instanceof Tree) {
                 foundTree = true;

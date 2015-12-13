@@ -1,0 +1,9 @@
+todo
+- pathfinding
+- chop tree
+- plant sapling
+- tree growth
+- hazards/fire
+- smooth snowman move
+
+done
