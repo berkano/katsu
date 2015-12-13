@@ -52,9 +52,19 @@
     <property name="entity" value="Fire"/>
    </properties>
   </tile>
+  <tile id="66">
+   <properties>
+    <property name="entity" value="Water"/>
+   </properties>
+  </tile>
   <tile id="96">
    <properties>
     <property name="entity" value="Sapling"/>
+   </properties>
+  </tile>
+  <tile id="97">
+   <properties>
+    <property name="entity" value="Dirt"/>
    </properties>
   </tile>
   <tile id="128">
@@ -70,7 +80,7 @@
  </layer>
  <layer name="background" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt0bENwCAAwDDEKfx/JCe0nUiFB++RssYYCwAAIGq+cLrxJn60+NHiR4sfLX78hx8tfrT40TIfnO67jR8tfrT40eIHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAX2ygpyPs
+   eJzt1cFtwzAQRFEhpaQVd8L+iwhyC4hI5FK7nCX5D+8QIJbl+ab8ua7rg+V8OyqDr1NvkIFnh6ce1vdT77JSj9a16h6j76/eJkuPt9crxmvRxK/Ff68rjvdzUhOPZ8rT74fnd0W91cwevZuUSs/vuVeP3Zvcfc7fv7869PYY3fG0Z9fT88a7h3XH1vNQvd0OPSw70mNOD8u2pzXJ0uNu49Z11PvNaqHsUe/cuo56x1k9ekT1+LszPeJ7WFqVxv2qdzy1x919q3fM0mJmj3r7U3qUpO72372H5/mIeN1u52KnHrt1oUc+9MgpY4/ee1Rv57n/2y5RPSzfGfWWUedhpEtED+v5VW8Z1WOkCz3ie9SfU92j9z5X1rvb7B4nno2VepxwNqw9LP//toflPdUbntLDcl+7oEcuyhb0sDeJbEEPW4/oFvSw94hs4dHjpCYlmdN7zMD5oMcqVuyh3my3JvSI7WG95pse6q1W6DKrh3qflZt4P+PUu6hFnxEaxLbx7KH+vCsZ3Y39AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1vED0nVnKg==
   </data>
  </layer>
  <layer name="layout" width="100" height="100">
@@ -85,7 +95,7 @@
  </layer>
  <layer name="objects" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt09sJwzAMBVCXZJHQLuJRMko2Dy0YhLHxn9rCOSCM/ADDRaUAAADRc1IlrOTYB3tn178yPsJHzOPRnbVeHnlW83EVeWRqebRZqIM78sgzmo+3lo/5yBXzOCZ35JFrC9X32+wRACzUSfE9MvgtsgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAID/cwMhrgZu
+   eJzt01sGwDAQBdAh3Ui1G+v+N5GvMELoT2PoOYw8zBCuRAAAANm1qEgrexwveu7PX8Ew8njS3byXxz7+Ry3yqEUeteQ8zkWPPPZqqeZzWw0BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD8TAcsAAM/
   </data>
  </layer>
  <layer name="passageways" width="100" height="100" visible="0">

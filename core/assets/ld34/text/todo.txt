@@ -1,12 +1,13 @@
 todo
-- can put out fire
-- burnt trees get no money
-- bug when planting / moves back and forth annoyingly
-- help
+- juice map / level design
 - upgrade snowman to santa etc.
-- terrain, obstacles, hazards etc.
-- level design
+- win state?
+- help
+- tuning / playthru
 - publish
+
+postcompo
+- bug when planting / moves back and forth annoyingly
 
 done
 - pathfinding
@@ -25,3 +26,5 @@ done
 - darken help text vs. significant event text
 - music
 - fire spreading
+- can put out fire
+- burnt trees get no money
