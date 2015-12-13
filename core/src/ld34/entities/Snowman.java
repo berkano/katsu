@@ -70,14 +70,13 @@ public class Snowman extends LD34EntityBase {
         setRotateSpriteOnMove(false);
         setFlipSpriteOnMove(true);
         setMaxMoveInterval(250);
+
     }
 
     @Override
     public void render() {
 
         //KLog.trace("Snowman instance " + toString() + " rendering");
-
-        lookAtMe();
         super.render();
     }
 
@@ -149,8 +148,10 @@ public class Snowman extends LD34EntityBase {
 
         }
 
-
         super.update();
+
+        lookAtMe();
+
     }
 
     private boolean gridIsEmpty(int gridX, int gridY) {

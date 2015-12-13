@@ -9,12 +9,22 @@ import katsu.KLog;
 public class Tree extends LD34EntityBase {
 
 
+    int age = 0; // seconds
+    long lastSecond = K.currentTime();
 
     enum Stage {
-        sapling,
-        small,
-        medium,
-        large
+
+        sapling(0), // seconds old at beginning of stage
+        small(10),
+        medium(20),
+        large(60);
+
+        int beginsAt = 0;
+
+        Stage(int beginsAt) {
+            this.beginsAt = beginsAt;
+        }
+
     }
 
     private Stage stage;
@@ -42,6 +52,8 @@ public class Tree extends LD34EntityBase {
         if (stage == Stage.large) {
             setTextureRegion(K.getUI().getTextureCache().get(TreeLarge.class));
         }
+
+        age = stage.beginsAt;
     }
 
 
