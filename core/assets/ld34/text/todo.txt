@@ -1,5 +1,4 @@
 todo
-- tree growth
 - pay for saplings
 - earn money from chopping
 - hazards/fire
@@ -10,3 +9,4 @@ done
 - pathfinding
 - chop tree
 - plant sapling
+- tree growth

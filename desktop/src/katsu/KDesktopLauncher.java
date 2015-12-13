@@ -22,13 +22,19 @@ public class KDesktopLauncher {
         config.foregroundFPS = settings.getTargetFrameRate();
         config.backgroundFPS = settings.getTargetFrameRate();
         config.vSyncEnabled = settings.isVsync();
-        config.x = 0;
-        config.y = 0;
+
+        // Centre it!
+        config.x = LwjglApplicationConfiguration.getDesktopDisplayMode().width/2 - config.width / 2;
+        config.y = LwjglApplicationConfiguration.getDesktopDisplayMode().height/2 - config.height / 2;
 
         K.setImplementation(implementation);
         K.setSettings(settings);
         K.setWindowWidth(config.width);
         K.setWindowHeight(config.height);
+
+
+
+
 
         new LwjglApplication(new KGameRunner(), config);
     }
