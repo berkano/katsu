@@ -15,6 +15,7 @@ public class KSettings {
     private boolean logFPS = false;
     private boolean devMode = getDevModeFromSystemProps();
     private boolean logging = devMode;
+    private boolean logPathfinding = false;
 
     public boolean isFullScreenBorderless() {
         return fullScreenBorderless;
@@ -118,5 +119,13 @@ public class KSettings {
 
     public void setLogging(boolean logging) {
         this.logging = logging;
+    }
+
+    public boolean isLogPathfinding() {
+        return logPathfinding;
+    }
+
+    public void setLogPathfinding(boolean logPathfinding) {
+        this.logPathfinding = logPathfinding;
     }
 }

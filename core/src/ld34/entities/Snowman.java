@@ -19,6 +19,8 @@ public class Snowman extends LD34EntityBase {
     boolean hasDoneFirstPathFind = false;
     int targetGridX = 0;
     int targetGridY = 0;
+    int nextDX = 0;
+    int nextDY = 0;
     boolean hasTarget = false;
 
     public int getTargetGridX() {
@@ -48,7 +50,7 @@ public class Snowman extends LD34EntityBase {
     public Snowman() {
 
         super();
-
+        setSolid(true);
         setRotateSpriteOnMove(false);
         setFlipSpriteOnMove(true);
         setMaxMoveInterval(250);
@@ -70,15 +72,14 @@ public class Snowman extends LD34EntityBase {
         doPathFinding();
 
         if (hasTarget) {
-            if (getPathFinderNextDirection() != null) {
+            if (nextDX != 0 || nextDY != 0) {
+                moveRequested(nextDX, nextDY);
                 didLastPathFind = K.currentTime();
-                moveRequested(getPathFinderNextDirection());
                 hasDoneFirstPathFind = true;
-                setPathFinderNextDirection(null);
-
+                nextDX = 0;
+                nextDY = 0;
             }
         }
-
 
         super.update();
     }
@@ -89,22 +90,28 @@ public class Snowman extends LD34EntityBase {
 
         GridPathfinding gridPathfinding = new GridPathfinding();
 
-        GridLocation start = new GridLocation(getGridX(), getGridY(), false);
-        GridLocation end = new GridLocation(targetGridX, targetGridY, true);
+
+        int startX = getGridX();
+        int startY = getGridY();
+        int endX = targetGridX;
+        int endY = targetGridY;
+
+        KLog.pathfinder(this, "get path from " + startX + "," + startY + " to "+endX + "," + endY);
+
+        GridLocation start = new GridLocation(startX, startY, false);
+        GridLocation end = new GridLocation(endX, endY, true);
         GridPath gridPath = gridPathfinding.getPath(start, end, pathMap);
 
         if (gridPath != null) {
-            GridLocation nextMove = gridPath.getNextMove(); // pop the current location
-            if (nextMove != null) nextMove = gridPath.getNextMove(); // next place
-            if (nextMove != null) {
-                if (nextMove.getX() < getGridX())
-                    setPathFinderNextDirection(KDirection.LEFT);
-                if (nextMove.getX() > getGridX())
-                    setPathFinderNextDirection(KDirection.RIGHT);
-                if (nextMove.getY() < getGridY())
-                    setPathFinderNextDirection(KDirection.DOWN);
-                if (nextMove.getY() > getGridY()) setPathFinderNextDirection(KDirection.UP);
+            if (gridPath.getList().size() > 1) {
+                GridLocation nextMove = gridPath.getList().get(gridPath.getList().size() - 2); // last entry?
+                if (nextMove != null) {
+                    nextDX = nextMove.getX() - getGridX();
+                    nextDY = nextMove.getY() - getGridY();
+                    KLog.pathfinder(this, "pathfinder suggests delta of " + nextDX + "," + nextDY);
+                }
             }
+
         }
 
     }
@@ -119,6 +126,8 @@ public class Snowman extends LD34EntityBase {
 
             int cellX = e.getGridX();
             int cellY = e.getGridY();
+
+            if (cellX == targetGridX && cellY == targetGridY) continue; // allow attempted path finds up to the target
 
             if (cellX >= 0 && cellY >= 0 && cellX <= 100 && cellY <= 100) {
                 pathMap.set(cellX, cellY, GridMap.WALL);

@@ -150,10 +150,16 @@ public class KEntity implements InputProcessor {
 
     private boolean moveEntityIfPossible(KEntity entity, int newX, int newY) {
 
-        if (K.gamePaused()) return false;
+        if (K.gamePaused()) {
+            KLog.pathfinder(this, "game paused");
+            return false;
+        }
 
         long millisMovedAgo = K.currentTime() - entity.getLastMove();
-        if (millisMovedAgo < entity.getMaxMoveInterval()) return false;
+        if (millisMovedAgo < entity.getMaxMoveInterval()) {
+            KLog.pathfinder(this, "last move was too recent");
+            return false;
+        }
 
         boolean couldMove = true;
 
@@ -165,14 +171,18 @@ public class KEntity implements InputProcessor {
             // Get all possible collision targets
             for (KEntity other : overlappingEntities) {
                 if (other.isSolid() && other.canCollideWith(entity.getClass()) && entity.canCollideWith(other.getClass())) {
-                    couldMove = false;
-                    entity.onCollide(other);
-                    other.onCollide(entity);
+                    if (other != entity) {
+                        couldMove = false;
+                        KLog.pathfinder(this, "Would collide with entity " + other.getClass().getSimpleName());
+                        entity.onCollide(other);
+                        other.onCollide(entity);
+                    }
                 }
             }
         }
 
         if (couldMove) {
+            KLog.pathfinder(this, "passed movement rules! going from " + getX() + "," + getY() + " to " + newX + "," + newY);
             entity.setX(newX);
             entity.setY(newY);
             entity.setLastMove(K.currentTime());
@@ -505,9 +515,15 @@ public class KEntity implements InputProcessor {
         K.getUI().getMainCamera().position.y = getY();
     }
 
+    public boolean moveRequested(int dx, int dy) {
+        return moveRequested(KDirection.fromDelta(dx, dy));
+    }
+
     public boolean moveRequested(KDirection direction) {
 
         if (!lastMovedMoreThan(getMaxMoveInterval())) return false;
+
+        KLog.pathfinder(this, "trying to move in direction " + direction);
 
         boolean result = false;
 

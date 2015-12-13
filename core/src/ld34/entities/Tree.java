@@ -18,7 +18,9 @@ public class Tree extends LD34EntityBase {
     private Stage stage;
 
     public Tree() {
+        super();
         setStage(Stage.sapling);
+        setSolid(true);
     }
 
     public void setStage(Stage stage) {

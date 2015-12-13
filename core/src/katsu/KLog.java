@@ -22,4 +22,16 @@ public class KLog {
     public static void trace(String message) {
         console("TRACE: "+message);
     }
+
+    public static void pathfinder(KEntity kEntity, String s) {
+
+        if (K.getSettings().isLogPathfinding()) {
+
+            if (kEntity == null) {
+                trace("pathfinder: " + s);
+            } else {
+                trace("pathfinder: " + kEntity.getClass().getSimpleName() + ": " + s);
+            }
+        }
+    }
 }

@@ -75,7 +75,7 @@
  </layer>
  <layer name="background-ontop" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt3FEOgjAMAFCuTjiJ4EGN8UNECLAM1833fjBGk2Z17RzOrgMAACCysXQAf6IvHQCnDInvu2WNglym0gE0Zj4/9JB6mRfXSO0fUKNh47r3OuBavnuWY20Mn8yJuOQG1o2LK79l3IFa2OOKSV7gbdh4DBCROgUA5+mfAABplr+t7Deev4L74S/R17Jnz9i0dibnXjqADa2N81FH8qG2xBEtF9HiacleTfrXmjX3/PxF7/lcxxwBWuSs5jlrtX6v/qeuX/WVWPzXUn7GNB+1HI6bOj02MrmJS27qZ08zrmVu5Ar2mScAANTIXj4AAAAAAAAAAAB8ewCA9SR8
+   eJztwTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbnEAAAQ==
   </data>
  </layer>
  <layer name="objects" width="100" height="100">
@@ -83,14 +83,14 @@
    eJzt09sJgDAMBdCKLiK6iKM4ipuLQiGUFv/y4zkQSvqAwiWlAAAA0TaoElZyLJ29s+n3jI/winlMzVnt5ZHnaz6uIo9MNY86C0fnjjzy9ObjUfMxH7liHuvgjjxyzaHafh49AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+JkbsQEEJQ==
   </data>
  </layer>
- <layer name="passageways" width="100" height="100" visible="0">
+ <layer name="passageways" width="100" height="100">
   <data encoding="base64" compression="zlib">
    eJztwTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbnEAAAQ==
   </data>
  </layer>
  <layer name="no-populate" width="100" height="100" visible="0">
   <data encoding="base64" compression="zlib">
-   eJztwQENAAAIwKBXs5rJnT2AqTYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAdpfEAxA==
+   eJztzkdRBAEAAMEl6yDrIOsg64Aj6CDrINtiJPDbx3ZXzX/mhmGYr4VarKVarpWBMazWWq3XRm3WVm2POTVhO7Vbe7VfB3VYR2NOTdhxndRpndV5XdTlmFMTdlXXNaubuq27uh9zasIe6rGe6rle6rXexpyasPf6qM/6qu/6qd8xpwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPi3PxOBEyU=
   </data>
  </layer>
 </map>

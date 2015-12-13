@@ -6,6 +6,7 @@ import ext.pathfinding.core.Pathfinding;
 import ext.pathfinding.grid.astar.GridAstar;
 import ext.pathfinding.grid.astar.GridHeuristic;
 import ext.pathfinding.grid.astar.GridHeuristicManathan;
+import katsu.KLog;
 
 public class GridPathfinding implements Pathfinding{
 
@@ -18,6 +19,7 @@ public class GridPathfinding implements Pathfinding{
 	
 	@Override
 	public GridPath getPath(Location s, Location e, Map m) {
+
 		GridLocation start = (GridLocation)s;
 		GridLocation end = (GridLocation)e;
 		GridMap map = (GridMap)m;
