@@ -27,6 +27,8 @@ public class World extends KRoom {
     int lastClickedX = 0;
     int lastClickedY = 0;
 
+    int money = 0;
+
     Snowman player;
 
     @Override
@@ -76,6 +78,8 @@ public class World extends KRoom {
     public void update() {
 
         super.update();
+
+        K.getUI().setTopText("Money: £" + player.getMoney());
 
         if (K.isKeyDown(Input.Keys.W)) {
             player.setHasTarget(true);

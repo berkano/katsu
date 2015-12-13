@@ -12,6 +12,14 @@ public class Tree extends LD34EntityBase {
     int age = 0; // seconds
     long lastSecond = K.currentTime();
 
+    public int getMarketValue() {
+        if (stage == Stage.sapling) return 0;
+        if (stage == Stage.large) return 45;
+        if (stage == Stage.medium) return 20;
+        if (stage == Stage.small) return 7;
+        throw new RuntimeException("Can't get market value for tree stage " + stage);
+    }
+
     enum Stage {
 
         sapling(0), // seconds old at beginning of stage

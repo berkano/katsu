@@ -1,15 +1,19 @@
 todo
-- pay for saplings
-- earn money from chopping
+- P for planting mode
+- one click: walk, plant, chop, buy land depending on target and planting mode
 - hazards/fire
 - smooth snowman move
-- buggy planting - can sometimes plant on top of snowman
 - sfx
 - music
 - help
+- darken help text vs. significant event text
 
 done
 - pathfinding
 - chop tree
 - plant sapling
 - tree growth
+- pay for saplings
+- earn money from chopping
+- buy land
+- buggy planting - can sometimes plant on top of snowman

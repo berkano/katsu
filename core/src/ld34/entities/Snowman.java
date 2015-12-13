@@ -20,6 +20,7 @@ public class Snowman extends LD34EntityBase {
     int nextDX = 0;
     int nextDY = 0;
     boolean hasTarget = false;
+    private int money = 0;
 
     public Action getTargetAction() {
         return targetAction;
@@ -30,6 +31,14 @@ public class Snowman extends LD34EntityBase {
     }
 
     Action targetAction = null;
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
 
     public enum Action {
         WALK,
@@ -69,7 +78,7 @@ public class Snowman extends LD34EntityBase {
         setSolid(true);
         setRotateSpriteOnMove(false);
         setFlipSpriteOnMove(true);
-        setMaxMoveInterval(250);
+        setMaxMoveInterval(100);
 
     }
 
@@ -131,6 +140,11 @@ public class Snowman extends LD34EntityBase {
                     Tree toChop = (Tree) findFirstEntityOnGrid(Tree.class, targetGridX, targetGridY);
                     if (toChop != null) {
                         K.getUI().writeText("Choppy chop!");
+
+                        int earned = toChop.getMarketValue();
+                        money += earned;
+                        K.getUI().writeText("Yay, I earned £" + earned + "!");
+
                         toChop.destroy();
                         performedAction = true;
                     }
@@ -139,16 +153,23 @@ public class Snowman extends LD34EntityBase {
 
                     if (gridIsEmpty(targetGridX, targetGridY)) {
 
-                        Tree sapling = new Tree();
-                        sapling.setGridX(targetGridX);
-                        sapling.setGridY(targetGridY);
-                        sapling.setStage(Tree.Stage.sapling);
-                        getRoom().addNewEntity(sapling);
-                        K.getUI().writeText("Planty plant!");
 
-                        // don't let snowman be on top of tree
-                        targetGridX = getGridX();
-                        targetGridY = getGridY();
+                        if (money >= 1) {
+
+                            Tree sapling = new Tree();
+                            sapling.setGridX(targetGridX);
+                            sapling.setGridY(targetGridY);
+                            sapling.setStage(Tree.Stage.sapling);
+                            getRoom().addNewEntity(sapling);
+                            K.getUI().writeText("Planty plant!");
+
+                            // don't let snowman be on top of tree
+                            targetGridX = getGridX();
+                            targetGridY = getGridY();
+                            money = money - 1;
+                        } else {
+                            K.getUI().writeText("I don't have enough money :-( Need £1");
+                        }
 
                     } else {
                         K.getUI().writeText("I can't plant here :-(");
@@ -156,6 +177,25 @@ public class Snowman extends LD34EntityBase {
 
                     performedAction = true;
 
+                }
+                if (targetAction == Action.BUY_LAND) {
+                    Land land = (Land)findFirstEntityOnGrid(Land.class, targetGridX, targetGridY);
+                    if (land == null) {
+                        K.getUI().writeText("There's no land to buy here :-(");
+                    } else {
+                        if (money < 100) {
+                            K.getUI().writeText("I don't have enough money :-( Need £100");
+                        } else {
+                            Grass grass = new Grass();
+                            grass.setX(land.getX());
+                            grass.setY(land.getY());
+                            getRoom().addNewEntity(grass);
+                            land.destroy();
+                            money -= 100;
+                            K.getUI().writeText("New land! Woo!");
+                        }
+                    }
+                    performedAction = true;
                 }
             }
 
