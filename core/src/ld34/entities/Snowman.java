@@ -23,6 +23,10 @@ public class Snowman extends LD34EntityBase {
     boolean hasTarget = false;
     private int money = 0;
 
+    boolean isTweening = false;
+    int tweenToX = 0;
+    int tweenToY = 0;
+
     public Action getTargetAction() {
         return targetAction;
     }
@@ -94,6 +98,11 @@ public class Snowman extends LD34EntityBase {
     @Override
     public void update() {
 
+        if (isTweening) {
+            tweenMe();
+            return;
+        }
+
         doPathFinding();
 
         if (hasTarget) {
@@ -113,7 +122,15 @@ public class Snowman extends LD34EntityBase {
                 }
 
                 if (!goneFarEnough) {
+                    int oldX = getX();
+                    int oldY = getY();
                     if (moveRequested(nextDX, nextDY)) {
+                        isTweening = true;
+                        setX(oldX);
+                        setY(oldY);
+                        tweenToX=(oldX + nextDX * K.getGridSize());
+                        tweenToY=(oldY + nextDY * K.getGridSize());
+
                         LD34Sounds.walk.play();
                     }
                 }
@@ -222,6 +239,32 @@ public class Snowman extends LD34EntityBase {
         }
 
         super.update();
+
+        lookAtMe();
+
+    }
+
+    private void tweenMe() {
+
+        int oldX = getX();
+        int oldY = getY();
+
+        if (tweenToX > getX()) {
+            setX(getX() + 2);
+        }
+        if (tweenToX < getX()) {
+            setX(getX() - 2);
+        }
+        if (tweenToY > getY()) {
+            setY(getY() + 2);
+        }
+        if (tweenToY < getY()) {
+            setY(getY() - 2);
+        }
+
+        isTweening = false;
+        if (oldX != getX()) isTweening = true;
+        if (oldY != getY()) isTweening = true;
 
         lookAtMe();
 
