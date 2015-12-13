@@ -81,10 +81,32 @@ public class World extends KRoom {
 
         if (K.isKeyDown(Input.Keys.NUM_1)) {
             player.setHasTarget(true);
-            KLog.trace("Set target to " + lastClickedX + "," + lastClickedY);
             player.setTargetGridX(lastClickedX);
             player.setTargetGridY(lastClickedY);
+            player.setTargetAction(Snowman.Action.GO);
         }
+
+        if (K.isKeyDown(Input.Keys.NUM_2)) {
+            player.setHasTarget(true);
+            player.setTargetGridX(lastClickedX);
+            player.setTargetGridY(lastClickedY);
+            player.setTargetAction(Snowman.Action.CHOP);
+        }
+
+        if (K.isKeyDown(Input.Keys.NUM_3)) {
+            player.setHasTarget(true);
+            player.setTargetGridX(lastClickedX);
+            player.setTargetGridY(lastClickedY);
+            player.setTargetAction(Snowman.Action.PLANT);
+        }
+
+        if (K.isKeyDown(Input.Keys.NUM_4)) {
+            player.setHasTarget(true);
+            player.setTargetGridX(lastClickedX);
+            player.setTargetGridY(lastClickedY);
+            player.setTargetAction(Snowman.Action.BUY_LAND);
+        }
+
 
         if (!doneFirstUpdate) {
             if (LD34Settings.get().startPaused) {

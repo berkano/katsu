@@ -8,6 +8,8 @@ import katsu.KLog;
  */
 public class Tree extends LD34EntityBase {
 
+
+
     enum Stage {
         sapling,
         small,

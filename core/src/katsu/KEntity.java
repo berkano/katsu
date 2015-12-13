@@ -632,4 +632,11 @@ public class KEntity implements InputProcessor {
 
     }
 
+    public void setGridX(int gridX) {
+        setX(gridX * K.getGridSize());
+    }
+
+    public void setGridY(int gridY) {
+        setY(gridY * K.getGridSize());
+    }
 }
