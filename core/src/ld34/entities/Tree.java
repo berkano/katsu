@@ -35,6 +35,32 @@ public class Tree extends LD34EntityBase {
         setSolid(true);
     }
 
+    @Override
+    public void update() {
+        super.update();
+        if (K.currentTime() > lastSecond + 1000) {
+            lastSecond = K.currentTime();
+            handleSecond();
+        }
+    }
+
+    private void handleSecond() {
+
+        age += 1;
+        Stage iShouldBe = stage;
+
+        for (Stage s : Stage.values()) {
+            if (age >= s.beginsAt) {
+                iShouldBe = s;
+            }
+        }
+
+        if (iShouldBe != stage) {
+            setStage(iShouldBe);
+        }
+
+    }
+
     public void setStage(Stage stage) {
 
         KLog.trace("Tree " + toString() + " set to stage " + stage);
