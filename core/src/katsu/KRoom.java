@@ -269,6 +269,7 @@ public class KRoom implements InputProcessor {
 
     
     public void addNewEntity(KEntity entity) {
+        entity.setRoom(this);
         newEntities.add(entity);
     }
 

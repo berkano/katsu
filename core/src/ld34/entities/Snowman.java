@@ -271,36 +271,6 @@ public class Snowman extends LD34EntityBase {
 
     }
 
-    private boolean gridIsEmpty(int gridX, int gridY) {
-
-        List<KEntity> entities = getRoom().findEntitiesAtPoint(gridX * K.getGridSize(), gridY * K.getGridSize());
-        for (KEntity e : entities) {
-            if (e.getGridX() == gridX) {
-                if (e.getGridY() == gridY) {
-
-                    if (e.isSolid()) {
-                        KLog.trace("grid is not empty due to " + e.getClass().getSimpleName());
-
-                        return false;
-                    }
-                }
-            }
-        }
-        return true;
-    }
-
-    private KEntity findFirstEntityOnGrid(Class clazz, int gridX, int gridY) {
-        List<KEntity> entities = getRoom().findEntitiesAtPoint(gridX * K.getGridSize(), gridY * K.getGridSize());
-        for (KEntity e : entities) {
-            if (e.getGridX() == gridX) {
-                if (e.getGridY() == gridY) {
-                    if (clazz.isInstance(e)) return e;
-                }
-            }
-        }
-        return null;
-    }
-
     private void doPathFinding() {
 
         GridMap pathMap = createPathMap();

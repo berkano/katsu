@@ -2,6 +2,7 @@ package ld34.entities;
 
 import katsu.K;
 import katsu.KDirection;
+import katsu.KLog;
 import ld34.LD34Sounds;
 
 /**
@@ -10,6 +11,7 @@ import ld34.LD34Sounds;
 public class Fire extends LD34EntityBase {
 
     boolean playedSound = false;
+    long lastTriedToSpreadFire = K.currentTime();
 
     public Fire() {
         setzLayer(5);
@@ -20,7 +22,7 @@ public class Fire extends LD34EntityBase {
 
         if (!playedSound) {
             LD34Sounds.fire.play();
-            K.getUI().writeText("Oh no! I think my trees are on fire!");
+            K.getUI().writeText("Oh noes! I think my trees are on fire!");
             playedSound = true;
         }
 
@@ -31,6 +33,35 @@ public class Fire extends LD34EntityBase {
                 setSpriteFlip(false);
             }
         }
+
+        spreadFire();
+
         super.update();
+    }
+
+    private void spreadFire() {
+
+        if (lastTriedToSpreadFire < K.currentTime() - 7500) {
+
+            lastTriedToSpreadFire = K.currentTime();
+
+            // possible for fire to not have its room set yet and crash le world... blah
+            if (getRoom() == null) {
+                KLog.warn("Fire had a null room when trying to spread");
+                return;
+            }
+
+            for (KDirection direction : KDirection.values()) {
+
+                Tree burnyFriend = (Tree)findFirstEntityOnGrid(Tree.class,
+                        getGridX() + direction.dx(), getGridY() + direction.dy());
+
+                if (burnyFriend != null) {
+                    burnyFriend.setOnFire();
+                }
+            }
+
+        }
+
     }
 }

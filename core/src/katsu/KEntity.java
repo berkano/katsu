@@ -647,4 +647,38 @@ public class KEntity implements InputProcessor {
     public void setGridY(int gridY) {
         setY(gridY * K.getGridSize());
     }
+
+    public boolean gridIsEmpty(int gridX, int gridY) {
+
+        List<KEntity> entities = getRoom().findEntitiesAtPoint(gridX * K.getGridSize(), gridY * K.getGridSize());
+        for (KEntity e : entities) {
+            if (e.getGridX() == gridX) {
+                if (e.getGridY() == gridY) {
+
+                    if (e.isSolid()) {
+                        KLog.trace("grid is not empty due to " + e.getClass().getSimpleName());
+
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    public KEntity findFirstEntityOnGrid(Class clazz, int gridX, int gridY) {
+        if (clazz == null) {
+            throw new RuntimeException("Null class provided to findFirstEntityOnGrid");
+        }
+        List<KEntity> entities = getRoom().findEntitiesAtPoint(gridX * K.getGridSize(), gridY * K.getGridSize());
+        for (KEntity e : entities) {
+            if (e.getGridX() == gridX) {
+                if (e.getGridY() == gridY) {
+                    if (clazz.isInstance(e)) return e;
+                }
+            }
+        }
+        return null;
+    }
+
 }

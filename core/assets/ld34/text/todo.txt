@@ -1,5 +1,7 @@
 todo
-- hazards/fire
+- fire spreading
+- can put out fire
+- burnt trees get no money
 - bug when planting / moves back and forth annoyingly
 - help
 - upgrade snowman to santa etc.

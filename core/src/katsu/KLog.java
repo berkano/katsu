@@ -34,4 +34,8 @@ public class KLog {
             }
         }
     }
+
+    public static void warn(String message) {
+        console("WARN: " + message);
+    }
 }
