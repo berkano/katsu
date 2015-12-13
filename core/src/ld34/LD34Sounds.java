@@ -17,6 +17,8 @@ public class LD34Sounds {
     public static Sound buy_land = KResource.loadSound("buy_land.wav");
     public static Sound plant = KResource.loadSound("plant.wav");
     public static Sound gone_wrong = KResource.loadSound("gone_wrong.wav");
+    public static Sound lightning = KResource.loadSound("lightning.wav");
+    public static Sound fire = KResource.loadSound("fire.wav");
     public static Sound music = KResource.loadSound("snowman-music.ogg");
 
     public static void stopAllMusic() {

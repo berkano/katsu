@@ -11,6 +11,7 @@ public class Tree extends LD34EntityBase {
 
     int age = 0; // seconds
     long lastSecond = K.currentTime();
+    boolean burnt = false;
 
     public int getMarketValue() {
         if (stage == Stage.sapling) return 0;
@@ -18,6 +19,17 @@ public class Tree extends LD34EntityBase {
         if (stage == Stage.medium) return 20;
         if (stage == Stage.small) return 7;
         throw new RuntimeException("Can't get market value for tree stage " + stage);
+    }
+
+    public void setOnFire() {
+        if (!burnt) {
+            burnt = true;
+            Fire fire = new Fire();
+            fire.setX(getX());
+            fire.setY(getY());
+            getRoom().addNewEntity(fire);
+//            K.getUI().writeText("I AM A TREE AND I AM ON FIRE!!!");
+        }
     }
 
     enum Stage {

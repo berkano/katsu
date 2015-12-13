@@ -1,9 +1,10 @@
 todo
-- bug when planting / moves back and forth annoyingly
 - hazards/fire
+- bug when planting / moves back and forth annoyingly
 - help
 - upgrade snowman to santa etc.
 - terrain, obstacles, hazards etc.
+- level design
 - publish
 
 done

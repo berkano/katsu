@@ -8,6 +8,9 @@ import ld34.entities.Snowman;
 import ld34.entities.Tree;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by shaun on 12/04/2015.
@@ -16,6 +19,7 @@ public class World extends KRoom {
 
     private boolean hasStartedMusicAtLeastOnce = false;
     private boolean waitingForTouchUp = false;
+    private HashMap<String, Long> onlyEveryTracker = new HashMap<String, Long>();
 
     public World() {
         super();
@@ -157,6 +161,63 @@ public class World extends KRoom {
             }
 
         }
+
+        setStuffOnFire();
+    }
+
+    private void setStuffOnFire() {
+
+        if (!timeFor("setStuffOnFire", 1000L)) return;
+
+        // approx once every 30 secs
+        if (K.random.nextInt(LD34Settings.fireChance) != 0) return;
+
+        Tree victim = (Tree)pickAny(Tree.class);
+
+        if (victim == null) return;
+
+        victim.setOnFire();
+
+
+    }
+
+    private KEntity pickAny(Class clazz) {
+
+        List<KEntity> picks = new ArrayList<KEntity>();
+
+        for (KEntity e: getEntities() ) {
+            if (clazz.isInstance(e)) {
+                picks.add(e);
+            }
+        }
+
+        Collections.shuffle(picks);
+
+        if (picks.size() > 0) {
+            return picks.get(0);
+        } else {
+            return null;
+        }
+
+
+    }
+
+    private boolean timeFor(String key, Long interval) {
+
+        Long lastOccurred = onlyEveryTracker.get(key);
+
+        if (lastOccurred == null) {
+            onlyEveryTracker.put(key, K.currentTime());
+            return false;
+        }
+
+        if (lastOccurred < K.currentTime() - interval) {
+            onlyEveryTracker.put(key, K.currentTime());
+            return true;
+        }
+
+        return false;
+
     }
 
     @Override
@@ -196,7 +257,7 @@ public class World extends KRoom {
         }
 
         boolean responded = false;
-        K.getUI().clearText();
+        K.getUI().writeText("");
 
         if (foundMe && !responded) {
             K.getUI().writeText("Hello!");
