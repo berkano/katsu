@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class World extends KRoom {
 
     private boolean hasStartedMusicAtLeastOnce = false;
+    private boolean waitingForTouchUp = false;
 
     public World() {
         super();
@@ -77,6 +78,8 @@ public class World extends KRoom {
 
     }
 
+
+
     @Override
     public void update() {
 
@@ -98,21 +101,28 @@ public class World extends KRoom {
 //            player.setTargetAction(Snowman.Action.CHOP);
 //        }
 
-        if (K.isKeyDown(Input.Keys.M)) {
+        if (K.isKeyDown(Input.Keys.Z)) {
             if (K.getSettings().isDevMode()) {
                 player.setMoney(1000);
             }
         }
 
-        if (!K.isKeyDown(Input.Keys.P)) {
+        if (!K.isKeyDown(Input.Keys.P) && !K.isKeyDown(Input.Keys.M)) {
             waitingForKeyUp = false;
+        }
+
+        if (K.isKeyDown(Input.Keys.M)) {
+            if (!waitingForKeyUp) {
+                LD34Sounds.toggleMusic();
+                waitingForKeyUp = true;
+            }
         }
 
         if (K.isKeyDown(Input.Keys.P) && !waitingForKeyUp) {
             waitingForKeyUp = true;
             plantingMode = !plantingMode;
             if (plantingMode) {
-                K.getUI().writeText("OK I'll plant trees where you like!");
+                K.getUI().writeText("OK I'll plant trees where you click!");
             } else {
                 K.getUI().writeText("OK I won't plant trees unless you ask me again!");
             }
@@ -150,7 +160,15 @@ public class World extends KRoom {
     }
 
     @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        waitingForTouchUp = false;
+        return true;
+    }
+
+    @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        if (waitingForTouchUp) return false;
+        waitingForTouchUp = true;
         Vector3 worldPos = K.getUI().getMainCamera().unproject(new Vector3(screenX, screenY, 0));
         KLog.trace("World detected touchDown at " + screenX + "," + screenY);
         KLog.trace("World pos is " + worldPos.toString());
@@ -178,6 +196,7 @@ public class World extends KRoom {
         }
 
         boolean responded = false;
+        K.getUI().clearText();
 
         if (foundMe && !responded) {
             K.getUI().writeText("Hello!");
@@ -208,15 +227,13 @@ public class World extends KRoom {
         if (!responded) {
 
             if (plantingMode) {
-                K.getUI().writeText("OK time to plant some trees!");
+                K.getUI().writeText("OK time to plant some trees! Press P if you want me to stop!");
                 player.setHasTarget(true);
                 player.setTargetGridX(lastClickedX);
                 player.setTargetGridY(lastClickedY);
                 player.setTargetAction(Snowman.Action.PLANT);
-
-
             } else {
-                K.getUI().writeText("Off I go!");
+                K.getUI().writeText("Off I go! If you want me to plant trees, press P!");
                 player.setHasTarget(true);
                 player.setTargetGridX(lastClickedX);
                 player.setTargetGridY(lastClickedY);

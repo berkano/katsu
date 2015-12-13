@@ -191,7 +191,7 @@ public class Snowman extends LD34EntityBase {
                             targetGridY = getGridY();
                             money = money - 1;
                         } else {
-                            K.getUI().writeText("I don't have enough money :-( Need £1");
+                            K.getUI().writeText("I don't have enough money :-( I need £1. I'd better go chop some trees!");
                             LD34Sounds.gone_wrong.play();
                         }
 
@@ -210,7 +210,7 @@ public class Snowman extends LD34EntityBase {
                         LD34Sounds.gone_wrong.play();
                     } else {
                         if (money < 100) {
-                            K.getUI().writeText("I don't have enough money :-( Need £100");
+                            K.getUI().writeText("I don't have enough money :-( I need £100. I'd better go chop some trees!");
                             LD34Sounds.gone_wrong.play();
                         } else {
                             Grass grass = new Grass();

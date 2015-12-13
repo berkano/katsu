@@ -2,8 +2,8 @@ todo
 - music
 - hazards/fire
 - help
-- darken help text vs. significant event text
 - upgrade snowman to santa etc.
+- terrain, obstacles, hazards etc.
 
 done
 - pathfinding
@@ -19,3 +19,4 @@ done
 - sfx: chop, walk, buy, plant, acknowledge, couldn't do
 - smooth snowman move
 - pause before carrying out action
+- darken help text vs. significant event text
