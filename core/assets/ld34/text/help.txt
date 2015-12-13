@@ -3,4 +3,8 @@
 
 @ORANGE berkano's Ludum Dare 34 entry
 
-@CYAN Press P to continue...
+@CYAN Press H to display this help screen at any time.
+@CYAN Grow and harvest trees to make money!
+@CYAN M to toggle music
+@CYAN SPACE to pause
+@CYAN ESC to quit

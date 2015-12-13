@@ -1,9 +1,10 @@
 todo
-- music
+- bug when planting / moves back and forth annoyingly
 - hazards/fire
 - help
 - upgrade snowman to santa etc.
 - terrain, obstacles, hazards etc.
+- publish
 
 done
 - pathfinding
@@ -20,3 +21,4 @@ done
 - smooth snowman move
 - pause before carrying out action
 - darken help text vs. significant event text
+- music
