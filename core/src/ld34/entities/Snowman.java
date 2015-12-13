@@ -88,12 +88,40 @@ public class Snowman extends LD34EntityBase {
 
         if (hasTarget) {
 
+            // Do the moving first or we get in a tangle
+            if (nextDX != 0 || nextDY != 0) {
+                boolean almostThere = false;
+                // if our action should be performed adjacent to the target, don't go all the way there.
+                if (getGridX() + nextDX == targetGridX && getGridY() + nextDY == targetGridY) {
+                    almostThere = true;
+                }
+                boolean goneFarEnough = false;
+                if (almostThere) {
+                    if (targetAction.equals(Action.PLANT) || targetAction.equals(Action.BUY_LAND) || targetAction.equals(Action.CHOP)) {
+                        goneFarEnough = true;
+                    }
+                }
+
+                if (!goneFarEnough) {
+                    moveRequested(nextDX, nextDY);
+                }
+                didLastPathFind = K.currentTime();
+                hasDoneFirstPathFind = true;
+                nextDX = 0;
+                nextDY = 0;
+            }
+
             // If we have an action and a target then check if we're adjacent and do it
             int dx = targetGridX - getGridX();
             int dy = targetGridY - getGridY();
             boolean adjacent = false;
+
             if ((Math.abs(dx) <= 1) && (Math.abs(dy) <= 1)) {
                 adjacent = true;
+            }
+            // but not if we're right on it
+            if (dx == 0 && dy == 0) {
+                adjacent = false;
             }
 
             boolean performedAction = false;
@@ -138,13 +166,6 @@ public class Snowman extends LD34EntityBase {
                 targetGridY = getGridY();
             }
 
-            if (nextDX != 0 || nextDY != 0) {
-                moveRequested(nextDX, nextDY);
-                didLastPathFind = K.currentTime();
-                hasDoneFirstPathFind = true;
-                nextDX = 0;
-                nextDY = 0;
-            }
 
         }
 

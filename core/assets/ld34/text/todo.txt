@@ -4,6 +4,9 @@ todo
 - hazards/fire
 - smooth snowman move
 - buggy planting - can sometimes plant on top of snowman
+- sfx
+- music
+- help
 
 done
 - pathfinding
