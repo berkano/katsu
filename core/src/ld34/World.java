@@ -20,6 +20,8 @@ public class World extends KRoom {
 
     private long lastRestart = System.currentTimeMillis();
 
+    private boolean doneFirstUpdate = false;
+
     @Override
     public void start() {
         super.start();
@@ -43,9 +45,6 @@ public class World extends KRoom {
 
         K.getUI().clearText();
 
-        if (LD34Settings.get().startPaused) {
-            K.pauseGame();
-        }
 
     }
 
@@ -68,6 +67,13 @@ public class World extends KRoom {
 
         super.update();
 
+        if (!doneFirstUpdate) {
+            if (LD34Settings.get().startPaused) {
+                K.pauseGame();
+            }
+        }
+
+        doneFirstUpdate = true;
 
         if (!K.gamePaused()) {
             if (LD34Settings.get().startWithMusic) {

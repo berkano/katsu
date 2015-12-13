@@ -46,7 +46,15 @@ public class KEntity implements InputProcessor {
     private long lastUpdate = K.currentTime();
     private boolean flipSpriteOnMove = false;
     private boolean spriteFlip = false;
+    private static TextureRegion defaultTextureRegion = null;
 
+    public static void setDefaultTextureRegion(TextureRegion region) {
+        defaultTextureRegion = region;
+    }
+
+    public static TextureRegion getDefaultTextureRegion() {
+        return defaultTextureRegion;
+    }
     
     public boolean isDestroyed() {
         return destroyed;
