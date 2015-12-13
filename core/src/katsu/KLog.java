@@ -10,7 +10,9 @@ public class KLog {
     }
 
     public static void console(String message) {
-        System.out.println(message);
+        if (K.getSettings().isLogging()) {
+            System.out.println(message);
+        }
     }
 
     public static void fatal(String message) {

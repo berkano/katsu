@@ -14,6 +14,7 @@ public class KSettings {
     private int gridSize = 16;
     private boolean logFPS = false;
     private boolean devMode = getDevModeFromSystemProps();
+    private boolean logging = devMode;
 
     public boolean isFullScreenBorderless() {
         return fullScreenBorderless;
@@ -109,5 +110,13 @@ public class KSettings {
 
     public int getToggleMusicKey() {
         return Input.Keys.M;
+    }
+
+    public boolean isLogging() {
+        return logging;
+    }
+
+    public void setLogging(boolean logging) {
+        this.logging = logging;
     }
 }

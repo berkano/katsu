@@ -4,6 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector3;
 import katsu.*;
+import ld34.entities.Grass;
+import ld34.entities.Land;
+import ld34.entities.Snowman;
+import ld34.entities.Tree;
 
 import java.util.ArrayList;
 
@@ -45,6 +49,7 @@ public class World extends KRoom {
 
         K.getUI().clearText();
 
+//        K.getUI().setTopText("1 = GO, 2 = CHOP, 3 = PLANT, 4 = BUY");
 
     }
 
@@ -92,9 +97,42 @@ public class World extends KRoom {
         KLog.trace("World detected touchDown at " + screenX + "," + screenY);
         KLog.trace("World pos is " + worldPos.toString());
         ArrayList<KEntity> entities = findEntitiesAtPoint(Math.round(worldPos.x), Math.round(worldPos.y));
+
+        boolean foundTree = false;
+        boolean foundLand = false;
+        boolean foundMe = false;
+
         for (KEntity e : entities) {
             KLog.trace("There is a " + e.getClass().getSimpleName() + " at this point");
+            if (e instanceof Tree) {
+                foundTree = true;
+            }
+            if (e instanceof Land) {
+                foundLand = true;
+            }
+            if (e instanceof Snowman) {
+                foundMe = true;
+            }
         }
+
+        boolean explained = false;
+
+        if (foundMe && !explained) {
+            K.getUI().writeText("Hello!");
+            explained = true;
+        }
+        if (foundTree && !explained) {
+            K.getUI().writeText("Press [2] to go and chop this tree down.");
+            explained = true;
+        }
+        if (foundLand && !explained) {
+            K.getUI().writeText("Press [4] to buy this land and expand your farm.");
+            explained = true;
+        }
+        if (!explained) {
+            K.getUI().writeText("Press [1] to walk over to this spot, or [3] to plant a sapling here.");
+        }
+
         return super.touchDown(screenX, screenY, pointer, button);
     }
 
