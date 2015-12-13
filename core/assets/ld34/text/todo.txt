@@ -1,8 +1,5 @@
 todo
-- upgrade snowman to santa etc.
-- win state?
 - help
-- tuning / playthru
 - publish
 
 postcompo
@@ -28,3 +25,6 @@ done
 - can put out fire
 - burnt trees get no money
 - juice map / level design
+- upgrade snowman to santa etc.
+- win state?
+- tuning / playthru
