@@ -32,7 +32,7 @@ public class Snowman extends LD34EntityBase {
     Action targetAction = null;
 
     public enum Action {
-        GO,
+        WALK,
         CHOP,
         PLANT,
         BUY_LAND

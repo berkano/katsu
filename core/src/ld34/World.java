@@ -1,10 +1,8 @@
 package ld34;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector3;
 import katsu.*;
-import ld34.entities.Grass;
 import ld34.entities.Land;
 import ld34.entities.Snowman;
 import ld34.entities.Tree;
@@ -56,7 +54,7 @@ public class World extends KRoom {
 
         K.getUI().clearText();
 
-//        K.getUI().setTopText("1 = GO, 2 = CHOP, 3 = PLANT, 4 = BUY");
+//        K.getUI().setTopText("1 = WALK, 2 = CHOP, 3 = PLANT, 4 = BUY");
 
     }
 
@@ -79,28 +77,28 @@ public class World extends KRoom {
 
         super.update();
 
-        if (K.isKeyDown(Input.Keys.NUM_1)) {
+        if (K.isKeyDown(Input.Keys.W)) {
             player.setHasTarget(true);
             player.setTargetGridX(lastClickedX);
             player.setTargetGridY(lastClickedY);
-            player.setTargetAction(Snowman.Action.GO);
+            player.setTargetAction(Snowman.Action.WALK);
         }
 
-        if (K.isKeyDown(Input.Keys.NUM_2)) {
+        if (K.isKeyDown(Input.Keys.C)) {
             player.setHasTarget(true);
             player.setTargetGridX(lastClickedX);
             player.setTargetGridY(lastClickedY);
             player.setTargetAction(Snowman.Action.CHOP);
         }
 
-        if (K.isKeyDown(Input.Keys.NUM_3)) {
+        if (K.isKeyDown(Input.Keys.P)) {
             player.setHasTarget(true);
             player.setTargetGridX(lastClickedX);
             player.setTargetGridY(lastClickedY);
             player.setTargetAction(Snowman.Action.PLANT);
         }
 
-        if (K.isKeyDown(Input.Keys.NUM_4)) {
+        if (K.isKeyDown(Input.Keys.B)) {
             player.setHasTarget(true);
             player.setTargetGridX(lastClickedX);
             player.setTargetGridY(lastClickedY);
@@ -162,15 +160,15 @@ public class World extends KRoom {
             explained = true;
         }
         if (foundTree && !explained) {
-            K.getUI().writeText("Press [2] to go and chop this tree down.");
+            K.getUI().writeText("Press C to go and CHOP this tree down.");
             explained = true;
         }
         if (foundLand && !explained) {
-            K.getUI().writeText("Press [4] to buy this land and expand your farm.");
+            K.getUI().writeText("Press B to BUY this land and expand your farm.");
             explained = true;
         }
         if (!explained) {
-            K.getUI().writeText("Press [1] to walk over to this spot, or [3] to plant a sapling here.");
+            K.getUI().writeText("Press W to WALK over to this spot, or P to PLANT a sapling here.");
         }
 
         return super.touchDown(screenX, screenY, pointer, button);

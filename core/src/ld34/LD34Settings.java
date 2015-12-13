@@ -53,6 +53,11 @@ public class LD34Settings extends KSettings {
         return "ld34";
     }
 
+    @Override
+    public int getPauseKey() {
+        return Input.Keys.SPACE;
+    }
+
     public final boolean startWithMusic = !isDevMode();
     public final boolean startWithPausedHelp = !isDevMode();
 
