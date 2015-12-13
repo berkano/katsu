@@ -8,7 +8,7 @@ import katsu.KSettings;
  */
 public class LD34Settings extends KSettings {
 
-    public static int fireChance = get().isDevMode() ? 5 : 30; // chance 1 in X every 1 second
+    public static int fireChance = get().isDevMode() ? 30 : 30; // chance 1 in X every 1 second
     public final boolean startPaused = !isDevMode();
     public final long enemyPathFindInterval = 1000;
 

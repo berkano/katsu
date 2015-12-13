@@ -106,12 +106,15 @@ public class World extends KRoom {
 //        }
 
         if (K.isKeyDown(Input.Keys.Z)) {
-            if (K.getSettings().isDevMode()) {
-                player.setMoney(1000);
+            if (!waitingForKeyUp) {
+                if (K.getSettings().isDevMode()) {
+                    player.setMoney(player.getMoney() + 100);
+                    waitingForKeyUp = true;
+                }
             }
         }
 
-        if (!K.isKeyDown(Input.Keys.P) && !K.isKeyDown(Input.Keys.M)) {
+        if (!K.isKeyDown(Input.Keys.P) && !K.isKeyDown(Input.Keys.M) && !K.isKeyDown(Input.Keys.Z)) {
             waitingForKeyUp = false;
         }
 

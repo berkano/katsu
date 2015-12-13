@@ -14,7 +14,7 @@
   </tile>
   <tile id="2">
    <properties>
-    <property name="entity" value="FenceTop"/>
+    <property name="entity" value="SnowmanGold"/>
    </properties>
   </tile>
   <tile id="3">
@@ -34,7 +34,7 @@
   </tile>
   <tile id="34">
    <properties>
-    <property name="entity" value="FenceBottom"/>
+    <property name="entity" value="SnowmanScarf"/>
    </properties>
   </tile>
   <tile id="35">
@@ -95,10 +95,10 @@
  </layer>
  <layer name="objects" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt01sGwDAQBdAh3Ui1G+v+N5GvMELoT2PoOYw8zBCuRAAAANm1qEgrexwveu7PX8Ew8njS3byXxz7+Ry3yqEUeteQ8zkWPPPZqqeZzWw0BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD8TAcsAAM/
+   eJzt07EJACEQRUEDGzmwMftv4iJBBMFE+cFMtMgGCw9LAQAAyFQPdtr1KxhGjz69rbMe7/gfWfTIokeWuce32dEDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAND9PAgI1
   </data>
  </layer>
- <layer name="passageways" width="100" height="100" visible="0">
+ <layer name="passageways" width="100" height="100">
   <data encoding="base64" compression="zlib">
    eJztwTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbnEAAAQ==
   </data>

@@ -34,6 +34,7 @@ public class LD34Game implements KGame {
         addClassesTo(result, Grass.class, Land.class, Snowman.class, TreeLarge.class, TreeMedium.class, TreeSmall.class, Sapling.class);
         addClassesTo(result, Fire.class);
         addClassesTo(result, Water.class, Dirt.class);
+        addClassesTo(result, SnowmanGold.class, SnowmanScarf.class);
         return result;
 
     }

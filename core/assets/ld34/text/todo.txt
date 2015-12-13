@@ -1,5 +1,4 @@
 todo
-- juice map / level design
 - upgrade snowman to santa etc.
 - win state?
 - help
@@ -28,3 +27,4 @@ done
 - fire spreading
 - can put out fire
 - burnt trees get no money
+- juice map / level design

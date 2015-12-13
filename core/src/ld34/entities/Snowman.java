@@ -21,12 +21,15 @@ public class Snowman extends LD34EntityBase {
     int nextDX = 0;
     int nextDY = 0;
     boolean hasTarget = false;
-    private int money = 0;
+    private int money = 10;
+    boolean hasWon = false;
 
     boolean isTweening = false;
     int tweenToX = 0;
     int tweenToY = 0;
     private boolean hasDoneStupidQuote = false;
+
+    private Stage stage = Stage.normal;
 
     public Action getTargetAction() {
         return targetAction;
@@ -44,6 +47,23 @@ public class Snowman extends LD34EntityBase {
 
     public void setMoney(int money) {
         this.money = money;
+    }
+
+    public enum Stage {
+
+        normal(0),
+        scarf(500),
+        gold(1000);
+
+        int minMoney;
+
+        Stage(int minMoney) {
+            this.minMoney = minMoney;
+        }
+
+        int getMinMoney() {
+            return minMoney;
+        }
     }
 
     public enum Action {
@@ -197,8 +217,13 @@ public class Snowman extends LD34EntityBase {
                 }
                 if (targetAction == Action.PLANT) {
 
-                    if (gridIsEmpty(targetGridX, targetGridY)) {
+                    boolean hasGrass = false;
+                    // only allow planting where there is Grass
+                    if (findFirstEntityOnGrid(Grass.class,targetGridX, targetGridY) != null) {
+                        hasGrass = true;
+                    }
 
+                    if (gridIsEmpty(targetGridX, targetGridY) && hasGrass) {
 
                         if (money >= 1) {
 
@@ -262,9 +287,54 @@ public class Snowman extends LD34EntityBase {
 
         }
 
+        updateStageAndWinState();
+
         super.update();
 
         lookAtMe();
+
+    }
+
+    private void updateStageAndWinState() {
+
+
+        Stage shouldBe = stage;
+
+        for (Stage s: Stage.values()) {
+            if (s.getMinMoney() <= getMoney()) {
+                shouldBe = s;
+            }
+        }
+
+        if (shouldBe != stage) {
+            boolean downgrade = false;
+            if (shouldBe == Stage.normal) downgrade = true;
+            if (shouldBe == Stage.scarf && stage == Stage.gold) downgrade = true;
+            if (!downgrade) {
+                K.getUI().writeText("Woo hoo! I got an upgrade!!");
+                LD34Sounds.buy_land.play();
+                K.pauseGame();
+            } else {
+                K.getUI().writeText("Sad face, I got a downgrade :-(");
+                LD34Sounds.gone_wrong.play();
+            }
+            stage = shouldBe;
+            if (stage == Stage.normal) setTextureRegion(K.getUI().getTextureCache().get(Snowman.class));
+            if (stage == Stage.gold) setTextureRegion(K.getUI().getTextureCache().get(SnowmanGold.class));
+            if (stage == Stage.scarf) setTextureRegion(K.getUI().getTextureCache().get(SnowmanScarf.class));
+        }
+
+        // check win state
+        if (!hasWon) {
+            if (getMoney() >= 2000) {
+                hasWon = true;
+                LD34Sounds.buy_land.play();
+                K.getUI().writeText("Woo hoo! I can retire!");
+                K.getUI().writeText("You earned enough money for snowman to retire. Thanks for playing!");
+                K.pauseGame();
+            }
+        }
+
 
     }
 
