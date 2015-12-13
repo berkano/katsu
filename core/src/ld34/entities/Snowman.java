@@ -26,6 +26,7 @@ public class Snowman extends LD34EntityBase {
     boolean isTweening = false;
     int tweenToX = 0;
     int tweenToY = 0;
+    private boolean hasDoneStupidQuote = false;
 
     public Action getTargetAction() {
         return targetAction;
@@ -163,12 +164,34 @@ public class Snowman extends LD34EntityBase {
 //                        K.getUI().writeText("Choppy chop!");
                         LD34Sounds.chop.play();
 
+                        if (toChop.burnt) {
+                            K.getUI().writeText("Poor tree and poor me. It got burnt so I can't sell it.");
+                            if (!hasDoneStupidQuote) {
+                                if (K.random.nextInt(5) == 0) {
+                                    K.getUI().writeText("");
+                                    K.getUI().writeText("Burned is the older form. Burnt came about during a period in the 16th through 18th centuries");
+                                    K.getUI().writeText("in which there was a trend toward replacing -ed endings with -t in words where -ed was no");
+                                    K.getUI().writeText("longer pronounced as a separate syllable.");
+                                    K.getUI().writeText("");
+                                    hasDoneStupidQuote = true;
+                                }
+                            }
 
-                        int earned = toChop.getMarketValue();
-                        money += earned;
-                        K.getUI().writeText("Yay, I earned £" + earned + "!");
+                        } else {
+
+                            int earned = toChop.getMarketValue();
+                            money += earned;
+                            K.getUI().writeText("Yay, I earned £" + earned + "!");
+                        }
 
                         toChop.destroy();
+
+                        // put out le fires
+                        Fire toPutOut = (Fire)findFirstEntityOnGrid(Fire.class, targetGridX, targetGridY);
+                        if (toPutOut != null) {
+                            toPutOut.destroy();
+                        }
+
                         performedAction = true;
                     }
                 }

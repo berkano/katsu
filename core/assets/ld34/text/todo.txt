@@ -1,5 +1,4 @@
 todo
-- fire spreading
 - can put out fire
 - burnt trees get no money
 - bug when planting / moves back and forth annoyingly
@@ -25,3 +24,4 @@ done
 - pause before carrying out action
 - darken help text vs. significant event text
 - music
+- fire spreading
