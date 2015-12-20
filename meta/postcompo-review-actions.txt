@@ -1,7 +1,11 @@
-- check changes to core framework
-- check re-usable code in compo entry
+[each time]
+- [ ] check changes to core framework
+- [ ] check re-usable code in compo entry
 
 [ld34]
 - [x] check changes to core framework
 - [x] remove defaultTextureRegion stuff
-- [ ] check re-usable code in compo entry
+- [x] check re-usable code in compo entry
+- [ ] Snowman : push pathfinding logic into fw
+- [ ] change KGame.getClassLookup to expect list of classes
+- [ ] World : why the "waitingForKeyUp" stuff? missing in fw?
