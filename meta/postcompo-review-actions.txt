@@ -8,4 +8,4 @@
 - [x] check re-usable code in compo entry
 - [x] Snowman : push pathfinding logic into fw
 - [x] change KGame.getClassLookup to expect list of classes
-- [ ] World : why the "waitingForKeyUp" stuff? missing in fw?
+- [x] World : why the "waitingForKeyUp" stuff? missing in fw?

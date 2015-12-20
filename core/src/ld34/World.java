@@ -18,7 +18,6 @@ import java.util.List;
 public class World extends KRoom {
 
     private boolean hasStartedMusicAtLeastOnce = false;
-    private boolean waitingForTouchUp = false;
     private HashMap<String, Long> onlyEveryTracker = new HashMap<String, Long>();
 
     public World() {
@@ -33,17 +32,13 @@ public class World extends KRoom {
     int lastClickedY = 0;
     boolean plantingMode = false;
 
-    boolean waitingForKeyUp = false;
-
-    int money = 0;
-
     Snowman player;
 
     @Override
     public void start() {
         super.start();
 
-        LD34UI ui = (LD34UI)K.getUI();
+        LD34UI ui = (LD34UI) K.getUI();
 
         String mapName = "ld34";
         wipeData();
@@ -56,16 +51,13 @@ public class World extends KRoom {
 
         K.getUI().setHelpText(KResource.loadText("help.txt"));
 
-        player = (Snowman)firstInstanceOfClass(Snowman.class);
+        player = (Snowman) firstInstanceOfClass(Snowman.class);
 
         if (LD34Settings.get().startWithPausedHelp) {
             K.getUI().setShowingHelp(true);
         }
 
         K.getUI().clearText();
-
-//        K.getUI().setTopText("1 = WALK, 2 = CHOP, 3 = PLANT, 4 = BUY");
-
     }
 
     @Override
@@ -75,7 +67,6 @@ public class World extends KRoom {
         if (K.isKeyDown(Input.Keys.R)) {
             if (lastRestart < K.currentTime() - 2000) {
                 lastRestart = K.currentTime();
-//                LD34Sounds.restart.play();
                 start();
             }
         }
@@ -83,6 +74,29 @@ public class World extends KRoom {
     }
 
 
+    @Override
+    public boolean keyDown(int keycode) {
+
+        if (keycode == Input.Keys.M) {
+            LD34Sounds.toggleMusic();
+            return true;
+        }
+
+        if (keycode == Input.Keys.P) {
+
+            plantingMode = !plantingMode;
+            if (plantingMode) {
+                K.getUI().writeText("OK I'll plant trees where you click!");
+            } else {
+                K.getUI().writeText("OK I won't plant trees unless you ask me again!");
+            }
+
+            return true;
+
+        }
+
+        return false;
+    }
 
     @Override
     public void update() {
@@ -90,62 +104,6 @@ public class World extends KRoom {
         super.update();
 
         K.getUI().setTopText("Money: £" + player.getMoney());
-
-//        if (K.isKeyDown(Input.Keys.W)) {
-//            player.setHasTarget(true);
-//            player.setTargetGridX(lastClickedX);
-//            player.setTargetGridY(lastClickedY);
-//            player.setTargetAction(Snowman.Action.WALK);
-//        }
-
-//        if (K.isKeyDown(Input.Keys.C)) {
-//            player.setHasTarget(true);
-//            player.setTargetGridX(lastClickedX);
-//            player.setTargetGridY(lastClickedY);
-//            player.setTargetAction(Snowman.Action.CHOP);
-//        }
-
-        if (K.isKeyDown(Input.Keys.Z)) {
-            if (!waitingForKeyUp) {
-                if (K.getSettings().isDevMode()) {
-                    player.setMoney(player.getMoney() + 100);
-                    waitingForKeyUp = true;
-                }
-            }
-        }
-
-        if (!K.isKeyDown(Input.Keys.P) && !K.isKeyDown(Input.Keys.M) && !K.isKeyDown(Input.Keys.Z)) {
-            waitingForKeyUp = false;
-        }
-
-        if (K.isKeyDown(Input.Keys.M)) {
-            if (!waitingForKeyUp) {
-                LD34Sounds.toggleMusic();
-                waitingForKeyUp = true;
-            }
-        }
-
-        if (K.isKeyDown(Input.Keys.P) && !waitingForKeyUp) {
-            waitingForKeyUp = true;
-            plantingMode = !plantingMode;
-            if (plantingMode) {
-                K.getUI().writeText("OK I'll plant trees where you click!");
-            } else {
-                K.getUI().writeText("OK I won't plant trees unless you ask me again!");
-            }
-//            player.setHasTarget(true);
-//            player.setTargetGridX(lastClickedX);
-//            player.setTargetGridY(lastClickedY);
-//            player.setTargetAction(Snowman.Action.PLANT);
-        }
-
-//        if (K.isKeyDown(Input.Keys.B)) {
-//            player.setHasTarget(true);
-//            player.setTargetGridX(lastClickedX);
-//            player.setTargetGridY(lastClickedY);
-//            player.setTargetAction(Snowman.Action.BUY_LAND);
-//        }
-
 
         if (!doneFirstUpdate) {
             if (LD34Settings.get().startPaused) {
@@ -175,7 +133,7 @@ public class World extends KRoom {
         // approx once every 30 secs
         if (K.random.nextInt(LD34Settings.fireChance) != 0) return;
 
-        Tree victim = (Tree)pickAny(Tree.class);
+        Tree victim = (Tree) pickAny(Tree.class);
 
         if (victim == null) return;
 
@@ -188,7 +146,7 @@ public class World extends KRoom {
 
         List<KEntity> picks = new ArrayList<KEntity>();
 
-        for (KEntity e: getEntities() ) {
+        for (KEntity e : getEntities()) {
             if (clazz.isInstance(e)) {
                 picks.add(e);
             }
@@ -224,15 +182,7 @@ public class World extends KRoom {
     }
 
     @Override
-    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        waitingForTouchUp = false;
-        return true;
-    }
-
-    @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        if (waitingForTouchUp) return false;
-        waitingForTouchUp = true;
         Vector3 worldPos = K.getUI().getMainCamera().unproject(new Vector3(screenX, screenY, 0));
         KLog.trace("World detected touchDown at " + screenX + "," + screenY);
         KLog.trace("World pos is " + worldPos.toString());
