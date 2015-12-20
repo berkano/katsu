@@ -1,5 +1,6 @@
 package ld34;
 
+import katsu.K;
 import katsu.KGame;
 import katsu.KRoom;
 import katsu.KUI;
@@ -7,6 +8,7 @@ import ld34.entities.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by shaun on 16/11/2014.
@@ -28,15 +30,12 @@ public class LD34Game implements KGame {
     }
 
     @Override
-    public HashMap<String, Class> getClassLookup() {
+    public List<Class> getClassLookup() {
 
-        HashMap<String, Class> result = new HashMap<String, Class>();
-        addClassesTo(result, Grass.class, Land.class, Snowman.class, TreeLarge.class, TreeMedium.class, TreeSmall.class, Sapling.class);
-        addClassesTo(result, Fire.class);
-        addClassesTo(result, Water.class, Dirt.class);
-        addClassesTo(result, SnowmanGold.class, SnowmanScarf.class);
-        return result;
-
+        return K.buildClassList(
+                Grass.class, Land.class, Snowman.class, TreeLarge.class, TreeMedium.class, TreeSmall.class, Sapling.class,
+                Fire.class, Water.class, Dirt.class, SnowmanGold.class, SnowmanScarf.class
+        );
     }
 
     private void addClassesTo(HashMap<String, Class> classHashMap, Class... classes) {

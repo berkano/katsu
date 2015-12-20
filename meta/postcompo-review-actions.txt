@@ -7,5 +7,5 @@
 - [x] remove defaultTextureRegion stuff
 - [x] check re-usable code in compo entry
 - [x] Snowman : push pathfinding logic into fw
-- [ ] change KGame.getClassLookup to expect list of classes
+- [x] change KGame.getClassLookup to expect list of classes
 - [ ] World : why the "waitingForKeyUp" stuff? missing in fw?

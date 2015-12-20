@@ -7,7 +7,6 @@ import ext.pathfinding.grid.GridPathfinding;
 import katsu.*;
 import ld33.LD33Settings;
 import ld33.LD33Sounds;
-import ld33.Stats;
 import net.sf.jsi.Rectangle;
 
 import java.util.List;

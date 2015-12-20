@@ -22,11 +22,11 @@ public class KTmxData {
 
     private String tiledMapFile;
     private TiledMap map;
-    private HashMap<String, Class> classLookup;
+    private List<Class> classLookup;
     private int tileWidth = 16; // TODO determine from TMX
     private int tileHeight = 16;
 
-    public KTmxData(String tmxFile, HashMap<String, Class> classLookup) {
+    public KTmxData(String tmxFile, List<Class> classLookup) {
         this.classLookup = classLookup;
         this.tiledMapFile = tmxFile;
     }
@@ -71,7 +71,13 @@ public class KTmxData {
 
                     if (entityId != null && !entityId.equals("")) {
 
-                        Class c = classLookup.get(entityId);
+                        Class c = null;
+
+                        for (Class clazz : classLookup) {
+                            if (clazz.getSimpleName().equals(entityId)) {
+                                c = clazz;
+                            }
+                        }
 
                         if (c != null) {
                             try {

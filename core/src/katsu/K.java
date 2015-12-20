@@ -2,8 +2,11 @@ package katsu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
+import ld34.entities.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -167,5 +170,14 @@ public class K {
 
     public static void setLastRogueUpdate(long lastRogueUpdate) {
         K.lastRogueUpdate = lastRogueUpdate;
+    }
+
+    public static List<Class> buildClassList(Class... classes ) {
+        ArrayList<Class> classList = new ArrayList<Class>();
+        for (Class clazz : classes) {
+            classList.add(clazz);
+        }
+        return classList;
+
     }
 }
