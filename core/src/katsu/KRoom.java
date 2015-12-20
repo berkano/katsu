@@ -22,6 +22,8 @@ public class KRoom implements InputProcessor {
     private int fogY = 0;
     private int fogRadius = 0;
     private boolean renderFog = false;
+    private int gridWidth = 0;
+    private int gridHeight = 0;
 
     // Spatial indexing of entities
     SpatialIndex si;
@@ -78,6 +80,19 @@ public class KRoom implements InputProcessor {
 
     }
 
+    public void addEntitiesToRoomFromMap(String tmxName) {
+
+        KTmxData data = new KTmxData(tmxName, K.getImplementation().getClassLookup());
+        data.loadFromMap();
+
+        setEntities(data.getEntities());
+
+        for (KEntity e : getEntities()) {
+            e.setRoom(this);
+        }
+    }
+
+
     public boolean isRenderFog() {
         return renderFog;
     }
@@ -108,6 +123,22 @@ public class KRoom implements InputProcessor {
 
     public void setFogRadius(int fogRadius) {
         this.fogRadius = fogRadius;
+    }
+
+    public int getGridWidth() {
+        return gridWidth;
+    }
+
+    public void setGridWidth(int gridWidth) {
+        this.gridWidth = gridWidth;
+    }
+
+    public int getGridHeight() {
+        return gridHeight;
+    }
+
+    public void setGridHeight(int gridHeight) {
+        this.gridHeight = gridHeight;
     }
 
     class SaveToListProcedure implements TIntProcedure {

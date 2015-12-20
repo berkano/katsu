@@ -46,7 +46,7 @@ public class World extends KRoom {
 
         String mapName = "ld33";
         wipeData();
-        KTmxHelper.addEntitiesToRoomFromMap(mapName, this);
+        addEntitiesToRoomFromMap(mapName);
         player = (Monster) firstInstanceOfClass(Monster.class);
 
         K.getUI().getMainCamera().viewportHeight = K.getWindowHeight() / 4;
