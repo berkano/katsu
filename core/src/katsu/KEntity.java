@@ -5,6 +5,10 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import ext.pathfinding.grid.GridLocation;
+import ext.pathfinding.grid.GridMap;
+import ext.pathfinding.grid.GridPath;
+import ext.pathfinding.grid.GridPathfinding;
 
 import java.util.List;
 
@@ -670,6 +674,66 @@ public class KEntity implements InputProcessor {
             }
         }
         return null;
+    }
+
+    public KDirection doPathFinding(int targetGridX, int targetGridY) {
+
+        GridMap pathMap = createPathMap(targetGridX, targetGridY);
+
+        GridPathfinding gridPathfinding = new GridPathfinding();
+
+
+        int startX = getGridX();
+        int startY = getGridY();
+        int endX = targetGridX;
+        int endY = targetGridY;
+
+        int suggestedDx = 0;
+        int suggestedDy = 0;
+
+        KLog.pathfinder(this, "get path from " + startX + "," + startY + " to " + endX + "," + endY);
+
+        GridLocation start = new GridLocation(startX, startY, false);
+        GridLocation end = new GridLocation(endX, endY, true);
+        GridPath gridPath = gridPathfinding.getPath(start, end, pathMap);
+
+        if (gridPath != null) {
+            if (gridPath.getList().size() > 1) {
+                GridLocation nextMove = gridPath.getList().get(gridPath.getList().size() - 2); // last entry?
+                if (nextMove != null) {
+                    suggestedDx = nextMove.getX() - getGridX();
+                    suggestedDy = nextMove.getY() - getGridY();
+                    KLog.pathfinder(this, "pathfinder suggests delta of " + suggestedDx + "," + suggestedDy);
+                }
+            }
+
+        }
+
+        KDirection suggested = KDirection.fromDelta(suggestedDx, suggestedDy);
+        return suggested;
+
+    }
+
+    private GridMap createPathMap(int targetGridX, int targetGridY) {
+
+        GridMap pathMap = new GridMap(getRoom().getGridWidth(), getRoom().getGridHeight());
+
+        for (KEntity e : getRoom().getEntities()) {
+            if (e == this) continue;
+            if (!(e.isSolid())) continue;
+
+            int cellX = e.getGridX();
+            int cellY = e.getGridY();
+
+            if (cellX == targetGridX && cellY == targetGridY) continue; // allow attempted path finds up to the target
+
+            if (cellX >= 0 && cellY >= 0 && cellX <= 100 && cellY <= 100) {
+                pathMap.set(cellX, cellY, GridMap.WALL);
+            }
+        }
+
+        return pathMap;
+
     }
 
 }
