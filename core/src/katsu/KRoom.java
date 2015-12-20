@@ -80,7 +80,7 @@ public class KRoom implements InputProcessor {
 
     }
 
-    public void addEntitiesToRoomFromMap(String tmxName) {
+    public void loadRoomFromTMX(String tmxName) {
 
         KTmxData data = new KTmxData(tmxName, K.getImplementation().getClassLookup());
         data.loadFromMap();
@@ -90,6 +90,9 @@ public class KRoom implements InputProcessor {
         for (KEntity e : getEntities()) {
             e.setRoom(this);
         }
+
+        setGridHeight(data.getMap().getProperties().get("height", Integer.class));
+        setGridWidth(data.getMap().getProperties().get("width", Integer.class));
     }
 
 

@@ -408,7 +408,7 @@ public class Snowman extends LD34EntityBase {
 
     private GridMap createPathMap() {
 
-        GridMap pathMap = new GridMap(100, 100);
+        GridMap pathMap = new GridMap(getRoom().getGridWidth(), getRoom().getGridHeight());
 
         for (KEntity e : getRoom().getEntities()) {
             if (e == this) continue;

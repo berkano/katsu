@@ -33,7 +33,7 @@ public class KTmxData {
 
     public KTmxData loadFromMap() {
 
-        map = loadMap(tiledMapFile);
+        setMap(loadMap(tiledMapFile));
         entities = new ArrayList<KEntity>();
         entityTextureRegions = K.getUI().getTextureCache(); // new HashMap<Class, TextureRegion>();
 
@@ -41,15 +41,15 @@ public class KTmxData {
 
 
         // In order of instantiation
-        layerList.add((TiledMapTileLayer) map.getLayers().get("no-populate"));
-        layerList.add((TiledMapTileLayer) map.getLayers().get("invisible"));
-        layerList.add((TiledMapTileLayer) map.getLayers().get("background"));
-        layerList.add((TiledMapTileLayer) map.getLayers().get("background-ontop"));
-        layerList.add((TiledMapTileLayer) map.getLayers().get("terrain"));
-        layerList.add((TiledMapTileLayer) map.getLayers().get("objects"));
-        layerList.add((TiledMapTileLayer) map.getLayers().get("passageways"));
+        layerList.add((TiledMapTileLayer) getMap().getLayers().get("no-populate"));
+        layerList.add((TiledMapTileLayer) getMap().getLayers().get("invisible"));
+        layerList.add((TiledMapTileLayer) getMap().getLayers().get("background"));
+        layerList.add((TiledMapTileLayer) getMap().getLayers().get("background-ontop"));
+        layerList.add((TiledMapTileLayer) getMap().getLayers().get("terrain"));
+        layerList.add((TiledMapTileLayer) getMap().getLayers().get("objects"));
+        layerList.add((TiledMapTileLayer) getMap().getLayers().get("passageways"));
 
-        MapProperties prop = map.getProperties();
+        MapProperties prop = getMap().getProperties();
         int mapWidth = prop.get("width", Integer.class);
         int mapHeight = prop.get("height", Integer.class);
 
@@ -123,5 +123,14 @@ public class KTmxData {
 
     public ArrayList<KEntity> getEntities() {
         return entities;
+    }
+
+
+    public TiledMap getMap() {
+        return map;
+    }
+
+    public void setMap(TiledMap map) {
+        this.map = map;
     }
 }

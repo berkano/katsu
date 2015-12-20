@@ -6,8 +6,6 @@ import katsu.*;
 import ld33.entities.MobBase;
 import ld33.entities.Monster;
 
-import java.util.ArrayList;
-
 /**
  * Created by shaun on 12/04/2015.
  */
@@ -46,7 +44,7 @@ public class World extends KRoom {
 
         String mapName = "ld33";
         wipeData();
-        addEntitiesToRoomFromMap(mapName);
+        loadRoomFromTMX(mapName);
         player = (Monster) firstInstanceOfClass(Monster.class);
 
         K.getUI().getMainCamera().viewportHeight = K.getWindowHeight() / 4;
