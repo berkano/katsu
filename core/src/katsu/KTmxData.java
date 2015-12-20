@@ -88,7 +88,6 @@ public class KTmxData {
                                     e.setX(x * tileWidth);
                                     e.setY(y * tileHeight);
                                     e.setTextureRegion(entityTextureRegions.get(c));
-                                    e.setDefaultTextureRegion(textureRegion);
                                     entities.add(e);
                                     if (e instanceof Snowman) {
                                         KLog.trace("Added Snowman to map from xy=" + x + "," + y);

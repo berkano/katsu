@@ -1,0 +1,7 @@
+- check changes to core framework
+- check re-usable code in compo entry
+
+[ld34]
+- [x] check changes to core framework
+- [x] remove defaultTextureRegion stuff
+- [ ] check re-usable code in compo entry
