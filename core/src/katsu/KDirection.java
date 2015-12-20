@@ -6,7 +6,8 @@ package katsu;
 public enum KDirection {
 
     UP, DOWN, LEFT, RIGHT,
-    UP_LEFT, UP_RIGHT, DOWN_LEFT, DOWN_RIGHT;
+    UP_LEFT, UP_RIGHT, DOWN_LEFT, DOWN_RIGHT,
+    NONE;
 
     public int dx() {
         if (this.equals(KDirection.RIGHT)) return 1;
@@ -71,6 +72,8 @@ public enum KDirection {
 
         if (dx == 1 && dy == -1) return KDirection.DOWN_RIGHT;
         if (dx == -1 && dy == -1) return KDirection.DOWN_LEFT;
+
+        if (dx == 0 && dy == 0) return KDirection.NONE;
 
         throw new RuntimeException("couldn't handle delta: " + dx + "," + dy);
     }

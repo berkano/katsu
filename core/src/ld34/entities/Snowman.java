@@ -125,7 +125,11 @@ public class Snowman extends LD34EntityBase {
             return;
         }
 
-        doPathFinding();
+        KDirection suggestedDirection = doPathFinding(targetGridX, targetGridY);
+        if (suggestedDirection != null) {
+            nextDX = suggestedDirection.dx();
+            nextDY = suggestedDirection.dy();
+        }
 
         if (hasTarget) {
 
@@ -364,7 +368,7 @@ public class Snowman extends LD34EntityBase {
 
     }
 
-    private void doPathFinding() {
+    private KDirection doPathFinding(int targetGridX, int targetGridY) {
 
         GridMap pathMap = createPathMap();
 
@@ -376,6 +380,9 @@ public class Snowman extends LD34EntityBase {
         int endX = targetGridX;
         int endY = targetGridY;
 
+        int suggestedDx = 0;
+        int suggestedDy = 0;
+
         KLog.pathfinder(this, "get path from " + startX + "," + startY + " to " + endX + "," + endY);
 
         GridLocation start = new GridLocation(startX, startY, false);
@@ -386,13 +393,16 @@ public class Snowman extends LD34EntityBase {
             if (gridPath.getList().size() > 1) {
                 GridLocation nextMove = gridPath.getList().get(gridPath.getList().size() - 2); // last entry?
                 if (nextMove != null) {
-                    nextDX = nextMove.getX() - getGridX();
-                    nextDY = nextMove.getY() - getGridY();
-                    KLog.pathfinder(this, "pathfinder suggests delta of " + nextDX + "," + nextDY);
+                    suggestedDx = nextMove.getX() - getGridX();
+                    suggestedDy = nextMove.getY() - getGridY();
+                    KLog.pathfinder(this, "pathfinder suggests delta of " + suggestedDx + "," + suggestedDy);
                 }
             }
 
         }
+
+        KDirection suggested = KDirection.fromDelta(suggestedDx, suggestedDy);
+        return suggested;
 
     }
 
