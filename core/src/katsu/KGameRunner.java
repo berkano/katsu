@@ -60,7 +60,7 @@ public class KGameRunner implements ApplicationListener, InputProcessor {
 
         rooms = K.runner.getRooms();
         if (rooms == null || rooms.size() <= 0) {
-            K.exitWithError("No rooms defined!");
+            K.runner.exitWithError("No rooms defined!");
         }
 
         float w = Gdx.graphics.getWidth();
@@ -140,7 +140,7 @@ public class KGameRunner implements ApplicationListener, InputProcessor {
     public boolean keyDown(int keycode) {
 
         if (keycode == Input.Keys.ESCAPE) {
-            K.exit();
+            K.runner.exit();
         }
 
         if (keycode == K.getSettings().getPauseKey()) {
@@ -231,4 +231,21 @@ public class KGameRunner implements ApplicationListener, InputProcessor {
     public boolean gamePaused() {
         return this.paused;
     }
+
+    public static void exitWithError(String message) {
+        // TODO: show alert box in production mode
+        K.logger.fatal(message);
+        exit();
+        throw new RuntimeException("game runner closed due to error: "+message);
+    }
+
+    public static void exitDueToException(String message, Exception ex) {
+        exitWithError(message + "\nCaused by: " + ex.toString());
+    }
+
+    public static void exit() {
+        K.logger.debug("game runner exiting by request.");
+        Gdx.app.exit();
+    }
+
 }

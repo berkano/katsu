@@ -102,7 +102,7 @@ public class KTmxData {
 
                             } catch (Exception ex) {
                                 ex.printStackTrace();
-                                K.exitDueToException("Failed to process tiled map: " + tiledMapFile, ex);
+                                K.runner.exitDueToException("Failed to process tiled map: " + tiledMapFile, ex);
                             }
                         }
 
@@ -122,7 +122,7 @@ public class KTmxData {
             String resourceName = K.resources.relativeResource("maps/" + name + ".tmx");
             return new TmxMapLoader().load(resourceName, parameters);
         } catch (Exception ex) {
-            K.exitDueToException("Failed to load tiled map: " + name, ex);
+            K.runner.exitDueToException("Failed to load tiled map: " + name, ex);
             return null;
         }
     }

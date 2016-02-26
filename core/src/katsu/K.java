@@ -29,22 +29,6 @@ public class K {
     private static int windowHeight;
     private static long lastRogueUpdate = System.currentTimeMillis();
 
-    public static void exitWithError(String message) {
-        // TODO: show alert box in production mode
-        logger.fatal(message);
-        exit();
-        throw new RuntimeException("game runner closed due to error: "+message);
-    }
-
-    public static void exitDueToException(String message, Exception ex) {
-        exitWithError(message + "\nCaused by: " + ex.toString());
-    }
-
-    public static void exit() {
-        K.logger.debug("game runner exiting by request.");
-        Gdx.app.exit();
-    }
-
     public static InputMultiplexer getInputMultiplexer() {
         return inputMultiplexer;
     }
