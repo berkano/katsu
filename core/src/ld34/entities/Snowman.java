@@ -117,7 +117,7 @@ public class Snowman extends LD34EntityBase {
     @Override
     public void render() {
 
-        //KLog.trace("Snowman instance " + toString() + " rendering");
+        //KLogger.trace("Snowman instance " + toString() + " rendering");
         super.render();
     }
 

@@ -6,7 +6,6 @@ import ext.pathfinding.core.Pathfinding;
 import ext.pathfinding.grid.astar.GridAstar;
 import ext.pathfinding.grid.astar.GridHeuristic;
 import ext.pathfinding.grid.astar.GridHeuristicManathan;
-import katsu.KLog;
 
 public class GridPathfinding implements Pathfinding{
 

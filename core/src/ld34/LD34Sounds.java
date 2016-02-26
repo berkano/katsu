@@ -1,9 +1,8 @@
 package ld34;
 
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import katsu.K;
-import katsu.KLog;
+import katsu.KLogger;
 import katsu.KResource;
 
 /**
@@ -22,20 +21,20 @@ public class LD34Sounds {
     public static Sound music = KResource.loadSound("snowman-music.ogg");
 
     public static void stopAllMusic() {
-        KLog.trace("stop music");
+        K.logger.trace("stop music");
         music.stop();
         musicPlaying = false;
     }
 
     public static void playMusic() {
-        KLog.trace("play music");
+        K.logger.trace("play music");
         stopAllMusic();
         music.loop();
         musicPlaying = true;
     }
 
     public static void toggleMusic() {
-        KLog.trace("toggle music");
+        K.logger.trace("toggle music");
         if (!musicPlaying) {
             playMusic();
         } else {

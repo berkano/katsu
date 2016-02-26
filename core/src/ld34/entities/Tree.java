@@ -1,7 +1,7 @@
 package ld34.entities;
 
 import katsu.K;
-import katsu.KLog;
+import katsu.KLogger;
 
 /**
  * Created by shaun on 12/12/2015.
@@ -83,7 +83,7 @@ public class Tree extends LD34EntityBase {
 
     public void setStage(Stage stage) {
 
-        KLog.trace("Tree " + toString() + " set to stage " + stage);
+        K.logger.trace("Tree " + toString() + " set to stage " + stage);
 
         this.stage = stage;
         if (stage == Stage.sapling) {

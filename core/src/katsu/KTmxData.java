@@ -96,7 +96,7 @@ public class KTmxData {
                                     e.setTextureRegion(entityTextureRegions.get(c));
                                     entities.add(e);
                                     if (e instanceof Snowman) {
-                                        KLog.trace("Added Snowman to map from xy=" + x + "," + y);
+                                        K.logger.trace("Added Snowman to map from xy=" + x + "," + y);
                                     }
                                 }
 
@@ -111,7 +111,7 @@ public class KTmxData {
             }
         }
 
-        KLog.trace(entities.size() + " entities loaded from map: " + tiledMapFile);
+        K.logger.trace(entities.size() + " entities loaded from map: " + tiledMapFile);
         return this;
     }
 

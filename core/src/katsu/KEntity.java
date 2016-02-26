@@ -139,13 +139,13 @@ public class KEntity implements InputProcessor {
     private boolean moveEntityIfPossible(KEntity entity, int newX, int newY) {
 
         if (K.gamePaused()) {
-            KLog.pathfinder(this, "game paused");
+            K.logger.pathfinder(this, "game paused");
             return false;
         }
 
         long millisMovedAgo = K.currentTime() - entity.getLastMove();
         if (millisMovedAgo < entity.getMaxMoveInterval()) {
-            KLog.pathfinder(this, "last move was too recent");
+            K.logger.pathfinder(this, "last move was too recent");
             return false;
         }
 
@@ -161,7 +161,7 @@ public class KEntity implements InputProcessor {
                 if (other.isSolid() && other.canCollideWith(entity.getClass()) && entity.canCollideWith(other.getClass())) {
                     if (other != entity) {
                         couldMove = false;
-                        KLog.pathfinder(this, "Would collide with entity " + other.getClass().getSimpleName());
+                        K.logger.pathfinder(this, "Would collide with entity " + other.getClass().getSimpleName());
                         entity.onCollide(other);
                         other.onCollide(entity);
                     }
@@ -170,7 +170,7 @@ public class KEntity implements InputProcessor {
         }
 
         if (couldMove) {
-            KLog.pathfinder(this, "passed movement rules! going from " + getX() + "," + getY() + " to " + newX + "," + newY);
+            K.logger.pathfinder(this, "passed movement rules! going from " + getX() + "," + getY() + " to " + newX + "," + newY);
             entity.setX(newX);
             entity.setY(newY);
             entity.setLastMove(K.currentTime());
@@ -395,7 +395,7 @@ public class KEntity implements InputProcessor {
 
         if (!lastMovedMoreThan(getMaxMoveInterval())) return false;
 
-        KLog.pathfinder(this, "trying to move in direction " + direction);
+        K.logger.pathfinder(this, "trying to move in direction " + direction);
 
         boolean result = false;
 
@@ -460,7 +460,7 @@ public class KEntity implements InputProcessor {
                 if (e.getGridY() == gridY) {
 
                     if (e.isSolid()) {
-                        KLog.trace("grid is not empty due to " + e.getClass().getSimpleName());
+                        K.logger.trace("grid is not empty due to " + e.getClass().getSimpleName());
 
                         return false;
                     }
@@ -499,7 +499,7 @@ public class KEntity implements InputProcessor {
         int suggestedDx = 0;
         int suggestedDy = 0;
 
-        KLog.pathfinder(this, "get path from " + startX + "," + startY + " to " + endX + "," + endY);
+        K.logger.pathfinder(this, "get path from " + startX + "," + startY + " to " + endX + "," + endY);
 
         GridLocation start = new GridLocation(startX, startY, false);
         GridLocation end = new GridLocation(endX, endY, true);
@@ -511,7 +511,7 @@ public class KEntity implements InputProcessor {
                 if (nextMove != null) {
                     suggestedDx = nextMove.getX() - getGridX();
                     suggestedDy = nextMove.getY() - getGridY();
-                    KLog.pathfinder(this, "pathfinder suggests delta of " + suggestedDx + "," + suggestedDy);
+                    K.logger.pathfinder(this, "pathfinder suggests delta of " + suggestedDx + "," + suggestedDy);
                 }
             }
 

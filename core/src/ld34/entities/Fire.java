@@ -2,7 +2,7 @@ package ld34.entities;
 
 import katsu.K;
 import katsu.KDirection;
-import katsu.KLog;
+import katsu.KLogger;
 import ld34.LD34Sounds;
 
 /**
@@ -47,7 +47,7 @@ public class Fire extends LD34EntityBase {
 
             // possible for fire to not have its room set yet and crash le world... blah
             if (getRoom() == null) {
-                KLog.warn("Fire had a null room when trying to spread");
+                K.logger.warn("Fire had a null room when trying to spread");
                 return;
             }
 

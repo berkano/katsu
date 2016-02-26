@@ -184,8 +184,8 @@ public class World extends KRoom {
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         Vector3 worldPos = K.getUI().getMainCamera().unproject(new Vector3(screenX, screenY, 0));
-        KLog.trace("World detected touchDown at " + screenX + "," + screenY);
-        KLog.trace("World pos is " + worldPos.toString());
+        K.logger.trace("World detected touchDown at " + screenX + "," + screenY);
+        K.logger.trace("World pos is " + worldPos.toString());
         ArrayList<KEntity> entities = findEntitiesAtPoint(Math.round(worldPos.x), Math.round(worldPos.y));
 
         boolean foundTree = false;
@@ -197,7 +197,7 @@ public class World extends KRoom {
             lastClickedX = e.getGridX();
             lastClickedY = e.getGridY();
 
-            KLog.trace("There is a " + e.getClass().getSimpleName() + " at this point");
+            K.logger.trace("There is a " + e.getClass().getSimpleName() + " at this point");
             if (e instanceof Tree) {
                 foundTree = true;
             }

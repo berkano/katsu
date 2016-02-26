@@ -2,7 +2,6 @@ package katsu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
-import ld34.entities.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,10 +24,11 @@ public class K {
     private static int windowWidth;
     private static int windowHeight;
     private static long lastRogueUpdate = System.currentTimeMillis();
+    public static KLogger logger = new KLogger();
 
     public static void exitWithError(String message) {
         // TODO: show alert box in production mode
-        KLog.fatal(message);
+        logger.fatal(message);
         exit();
         throw new RuntimeException("game runner closed due to error: "+message);
     }
@@ -38,7 +38,7 @@ public class K {
     }
 
     public static void exit() {
-        KLog.debug("game runner exiting by request.");
+        K.logger.debug("game runner exiting by request.");
         Gdx.app.exit();
     }
 
