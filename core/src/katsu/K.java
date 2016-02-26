@@ -17,9 +17,9 @@ public class K {
     public static Random random = new Random();
     public static KLogger logger = new KLogger();
     public static KResource resources = new KResource();
+    public static KGameRunner runner = new KGameRunner();
 
     // Everything else
-    private static KGameRunner runner;
     private static KGame implementation;
     private static InputMultiplexer inputMultiplexer = new InputMultiplexer();
     private static KSettings settings;
@@ -44,14 +44,6 @@ public class K {
     public static void exit() {
         K.logger.debug("game runner exiting by request.");
         Gdx.app.exit();
-    }
-
-    public static void setRunner(KGameRunner runner) {
-        K.runner = runner;
-    }
-
-    public static KGameRunner getRunner() {
-        return runner;
     }
 
     public static KGame getImplementation() {
@@ -117,11 +109,11 @@ public class K {
         K.ui = UI;
     }
 
-    public static void pauseGame() {
+    public void pauseGame() {
         runner.pauseGame();
     }
 
-    public static void unPauseGame() {
+    public void unPauseGame() {
         K.getUI().setShowingHelp(false);
         runner.unPauseGame();
     }

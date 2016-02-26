@@ -107,7 +107,7 @@ public class World extends KRoom {
 
         if (!doneFirstUpdate) {
             if (LD34Settings.get().startPaused) {
-                K.pauseGame();
+                K.runner.pauseGame();
             }
         }
 

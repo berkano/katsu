@@ -20,10 +20,6 @@ public class KGameRunner implements ApplicationListener, InputProcessor {
 
     private Boolean paused = false;
 
-    public KGameRunner() {
-        K.setRunner(this);
-    }
-
     @Override
     public void create() {
 
@@ -138,7 +134,7 @@ public class KGameRunner implements ApplicationListener, InputProcessor {
             K.getUI().clearText();
             if (K.getUI().isShowingHelp()) {
                 K.getUI().setShowingHelp(false);
-                K.unPauseGame();
+                K.runner.unPauseGame();
             } else {
                 K.getUI().setShowingHelp(true);
                 pauseGame();

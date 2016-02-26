@@ -107,11 +107,11 @@ public class Combat {
                     K.getUI().writeText("@YELLOW " + attackerName + " rises to level " + newLevel + "!");
                     attacker.getStats().levelUp();
                     if (isPlayerAttack) {
-                        K.pauseGame();
+                        K.runner.pauseGame();
                         if (newLevel == 10) {
                             K.getUI().writeText("@ORANGE **YOU WIN!!** LEVEL 10 ACHIEVED. Hope you had fun :-) ~berkano");
                             K.getUI().writeText("@CYAN You can continue playing as you wish by pressing P.");
-                            K.pauseGame();
+                            K.runner.pauseGame();
                         }
                     }
                 }
@@ -130,7 +130,7 @@ public class Combat {
             mob.setNextX(nearestBed.getX());
             mob.setNextY(nearestBed.getY());
             if (mob instanceof Monster) {
-                K.pauseGame();
+                K.runner.pauseGame();
                 Monster monster = (Monster) mob;
                 monster.setLooksHuman(true);
             }

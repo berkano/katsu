@@ -323,7 +323,7 @@ public class Snowman extends LD34EntityBase {
             if (!downgrade) {
                 K.getUI().writeText("Woo hoo! I got an upgrade!!");
                 LD34Sounds.buy_land.play();
-                K.pauseGame();
+                K.runner.pauseGame();
             } else {
                 K.getUI().writeText("Sad face, I got a downgrade :-(");
                 LD34Sounds.gone_wrong.play();
@@ -341,7 +341,7 @@ public class Snowman extends LD34EntityBase {
                 LD34Sounds.buy_land.play();
                 K.getUI().writeText("Woo hoo! I can retire!");
                 K.getUI().writeText("You earned enough money for snowman to retire. Thanks for playing!");
-                K.pauseGame();
+                K.runner.pauseGame();
             }
         }
 

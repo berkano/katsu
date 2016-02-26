@@ -59,7 +59,7 @@ public class World extends KRoom {
         K.getUI().clearText();
 
         if (LD33Settings.get().startPaused) {
-            K.pauseGame();
+            K.runner.pauseGame();
         }
 
     }
@@ -85,7 +85,7 @@ public class World extends KRoom {
 
         if (player.getHealth() <= 0 || player.isDestroyed()) {
             K.getUI().writeText("PERMADEATH paid you a friendly visit. game over. press R to restart");
-            K.pauseGame();
+            K.runner.pauseGame();
         }
 
         K.getUI().setTopText(player.getStats().toString());
