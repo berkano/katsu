@@ -18,7 +18,6 @@ import java.util.Iterator;
 public class KUI {
 
     BitmapFont font;
-    public static final String FONT_CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789][_!$%#@|\\/?-+=()*&.;,{}\"´`'<>";
 
     public int lineCount = 0;
     public int cx = 24;
