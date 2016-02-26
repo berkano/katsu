@@ -12,7 +12,7 @@ public class Blood extends KEntity {
 
     public Blood() {
         this.setSolid(false);
-        this.setzLayer(1000);
+        this.setZLayer(1000);
         this.setSpriteRotation(K.random.nextInt(360));
     }
 
@@ -20,7 +20,7 @@ public class Blood extends KEntity {
     public void update() {
         super.update();
         long age = System.currentTimeMillis() - createdTime;
-        if (age > 3000) setzLayer(1);
+        if (age > 3000) setZLayer(1);
         if (age > 10000) {
             destroy();
         }

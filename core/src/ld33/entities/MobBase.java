@@ -20,7 +20,7 @@ public class MobBase extends KEntity {
     public MobBase() {
         super();
         this.setFlipSpriteOnMove(true);
-        this.setzLayer(10);
+        this.setZLayer(10);
     }
 
     public boolean isEnemy(KEntity other) {

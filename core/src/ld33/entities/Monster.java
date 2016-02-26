@@ -25,7 +25,7 @@ public class Monster extends MobBase {
         this.setRotateSpriteOnMove(false);
         this.setFlipSpriteOnMove(true);
         this.setMaxMoveInterval(75);
-        this.setzLayer(100);
+        this.setZLayer(100);
         getStats().jumpToLevel(1);
 
     }

@@ -33,6 +33,8 @@ project(":desktop") {
         compile "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
         compile "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
+        compile 'org.projectlombok:lombok:+'
+
     }
 }
 
@@ -43,6 +45,7 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
         compile "net.sf.jsi:jsi:1.1.0-SNAPSHOT"
+        compile 'org.projectlombok:lombok:+'
     }
 }
 

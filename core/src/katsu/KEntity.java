@@ -9,6 +9,8 @@ import ext.pathfinding.grid.GridLocation;
 import ext.pathfinding.grid.GridMap;
 import ext.pathfinding.grid.GridPath;
 import ext.pathfinding.grid.GridPathfinding;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
@@ -20,78 +22,58 @@ public class KEntity implements InputProcessor {
     // Spatial
     private int _x;
     private int _y;
-    private int dx = 0;
-    private int dy = 0;
-    private double rotation = 0;
-    private int parentDistance;
-    private double radius;
+    @Getter @Setter private int dx = 0;
+    @Getter @Setter private int dy = 0;
+    @Getter @Setter private double rotation = 0;
+    @Getter @Setter private int parentDistance;
+    @Getter @Setter private double radius;
 
     // Movement
-    private int velocity = 0;
-    private double speedOfRotationAroundParent = 0;
-    private KDirection facing;
+    @Getter @Setter private int velocity = 0;
+    @Getter @Setter private double speedOfRotationAroundParent = 0;
+    @Getter @Setter private KDirection facing;
 
     // Appearance
     private TextureRegion textureRegion;
-    private Sprite sprite;
-    private int spriteRotation = 0;
-    private float spriteScale = 1.0f;
-    private boolean flipSpriteOnMove = false;
-    private boolean spriteFlip = false;
-    private boolean rotateSpriteOnMove = true;
-    private int zLayer = 0;
+    @Getter @Setter private Sprite sprite;
+    @Getter @Setter private int spriteRotation = 0;
+    @Getter @Setter private float spriteScale = 1.0f;
+    @Getter @Setter private boolean flipSpriteOnMove = false;
+    @Getter @Setter private boolean spriteFlip = false;
+    @Getter @Setter private boolean rotateSpriteOnMove = true;
+    @Getter @Setter private int zLayer = 0;
 
     // Physical
-    private boolean solid;
+    @Getter @Setter private boolean solid;
 
     // Events / lifecycle
-    private long lastMove = K.currentTime();
-    private boolean destroyed = false;
-    private boolean needsSpatialUpdate = false;
-    private long minMoveWait = 0;
-    private boolean updateAsRogueLike = false;
-    private long lastUpdate = K.currentTime();
-    private boolean doneFirstUpdate = false;
+    @Getter @Setter private long lastMove = K.currentTime();
+    @Getter @Setter private boolean destroyed = false;
+    @Getter @Setter private boolean needsSpatialUpdate = false;
+    @Getter @Setter private long minMoveWait = 0;
+    @Getter @Setter private boolean updateAsRogueLike = false;
+    @Getter @Setter private long lastUpdate = K.currentTime();
+    @Getter @Setter private boolean doneFirstUpdate = false;
 
     // UI
-    private boolean selected = false;
+    @Getter @Setter private boolean selected = false;
 
     // AI
-    private KEntity targetEntity;
-    private KDirection pathFinderNextDirection;
+    @Getter @Setter private KEntity targetEntity;
+    @Getter @Setter private KDirection pathFinderNextDirection;
 
     // To organise
-    private KRoom room;
-    private KEntity parent;
+    @Getter @Setter private KRoom room;
+    @Getter @Setter private KEntity parent;
 
-    private int maxMoveInterval = 0;
+    @Getter @Setter private int maxMoveInterval = 0;
 
     // Stats
-    private int health = 100;
-    private int maxHealth = 100;
+    @Getter @Setter private int health = 100;
+    @Getter @Setter private int maxHealth = 100;
 
     public boolean isDestroyed() {
         return destroyed;
-    }
-
-    public void setDestroyed(boolean destroyed) {
-        this.destroyed = destroyed;
-    }
-
-    public int getSpriteRotation() {
-        return this.spriteRotation;
-    }
-
-    public void setSpriteRotation(int spriteRotation) {
-        this.spriteRotation = spriteRotation;
-    }
-
-    public void setTarget(KEntity targetEntity) {
-        this.targetEntity = targetEntity;
-    }
-
-    public KEntity getTarget() {
-        return this.targetEntity;
     }
 
     public boolean overlaps(KEntity other) {
@@ -119,7 +101,7 @@ public class KEntity implements InputProcessor {
     }
 
     public void rotate(double dr) {
-        this.setRotation(this.getRotation() + dr);
+        setRotation(getRotation() + dr);
     }
 
     public void accelerate(int dv) {
@@ -250,11 +232,6 @@ public class KEntity implements InputProcessor {
         return this;
     }
     
-    public TextureRegion getTextureRegion() {
-        return textureRegion;
-    }
-
-    
     public boolean keyDown(int keycode) {
         return false;
     }
@@ -295,14 +272,6 @@ public class KEntity implements InputProcessor {
     }
 
     
-    public void setSolid(boolean solid) {
-        this.solid = solid;
-    }
-
-    public boolean isSolid() {
-        return solid;
-    }
-    
     public void onCollide(KEntity other) {
 
     }
@@ -311,7 +280,6 @@ public class KEntity implements InputProcessor {
         return K.getSettings().getGridSize();
     }
 
-    
     public void onMoved() {
 
     }
@@ -402,38 +370,6 @@ public class KEntity implements InputProcessor {
         return K.currentTime() > getLastMove() + timeLimit;
     }
 
-    public Sprite getSprite() {
-        return sprite;
-    }
-
-    public void setSprite(Sprite sprite) {
-        this.sprite = sprite;
-    }
-
-    public int getDx() {
-        return dx;
-    }
-
-    public void setDx(int dx) {
-        this.dx = dx;
-    }
-
-    public int getDy() {
-        return dy;
-    }
-
-    public void setDy(int dy) {
-        this.dy = dy;
-    }
-
-    public double getRotation() {
-        return rotation;
-    }
-
-    public void setRotation(double rotation) {
-        this.rotation = rotation;
-    }
-
     public KEntity setParentBody(KEntity parent, int distance, double speedOfRotationAroundParent) {
         this.parent = parent;
         this.parentDistance = distance;
@@ -441,87 +377,9 @@ public class KEntity implements InputProcessor {
         return this;
     }
 
-    public void setRadius(double radius) {
-        this.radius = radius;
-    }
-
-    public double getRadius() {
-        return radius;
-    }
-
-    public int getVelocity() {
-        return this.velocity;
-    }
-
-    public void setVelocity(int velocity) {
-        this.velocity = velocity;
-    }
-
     public boolean doesContain(Vector3 point) {
         Rectangle rect = new Rectangle(getX(), getY(), getWidth(), getHeight());
         return rect.contains(point.x, point.y);
-    }
-
-    public void setSelected(boolean selected) {
-        this.selected = selected;
-    }
-
-    public boolean isSelected() {
-        return selected;
-    }
-
-
-    public float getSpriteScale() {
-        return spriteScale;
-    }
-
-    public void setSpriteScale(float spriteScale) {
-        this.spriteScale = spriteScale;
-    }
-
-    public int getMaxMoveInterval() {
-        return maxMoveInterval;
-    }
-
-    public void setMaxMoveInterval(int maxMoveInterval) {
-        this.maxMoveInterval = maxMoveInterval;
-    }
-
-    
-    public int getHealth() {
-        return health;
-    }
-
-    
-    public void setHealth(int health) {
-        this.health = health;
-    }
-
-    
-    public int getMaxHealth() {
-        return maxHealth;
-    }
-
-    
-    public void setMaxHealth(int maxHealth) {
-        this.maxHealth = maxHealth;
-    }
-
-    public KDirection getPathFinderNextDirection() {
-        return pathFinderNextDirection;
-    }
-
-    public void setPathFinderNextDirection(KDirection pathFinderNextDirection) {
-        this.pathFinderNextDirection = pathFinderNextDirection;
-    }
-
-    
-    public int getzLayer() {
-        return zLayer;
-    }
-
-    public void setzLayer(int zLayer) {
-        this.zLayer = zLayer;
     }
 
     public void lookAtMe() {
@@ -560,66 +418,6 @@ public class KEntity implements InputProcessor {
         }
 
         return result;
-    }
-
-    public void setFacing(KDirection facing) {
-        this.facing = facing;
-    }
-
-    public KDirection getFacing() {
-        return facing;
-    }
-
-    public void setRotateSpriteOnMove(boolean rotateSpriteOnMove) {
-        this.rotateSpriteOnMove = rotateSpriteOnMove;
-    }
-
-    public boolean isRotateSpriteOnMove() {
-        return rotateSpriteOnMove;
-    }
-
-    public long getMinMoveWait() {
-        return minMoveWait;
-    }
-
-    public void setMinMoveWait(long minMoveWait) {
-        this.minMoveWait = minMoveWait;
-    }
-
-    
-    public void setUpdateAsRogueLike(boolean updateAsRogueLike) {
-        this.updateAsRogueLike = updateAsRogueLike;
-    }
-
-    
-    public boolean isUpdateAsRogueLike() {
-        return updateAsRogueLike;
-    }
-
-    
-    public long getLastUpdate() {
-        return lastUpdate;
-    }
-
-    
-    public void setLastUpdate(long lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
-    public void setFlipSpriteOnMove(boolean flipSpriteOnMove) {
-        this.flipSpriteOnMove = flipSpriteOnMove;
-    }
-
-    public boolean isFlipSpriteOnMove() {
-        return flipSpriteOnMove;
-    }
-
-    public void setSpriteFlip(boolean spriteFlip) {
-        this.spriteFlip = spriteFlip;
-    }
-
-    public boolean isSpriteFlip() {
-        return spriteFlip;
     }
 
     public KEntity nearestEntityOf(Class clazz) {
@@ -692,7 +490,6 @@ public class KEntity implements InputProcessor {
         GridMap pathMap = createPathMap(targetGridX, targetGridY);
 
         GridPathfinding gridPathfinding = new GridPathfinding();
-
 
         int startX = getGridX();
         int startY = getGridY();

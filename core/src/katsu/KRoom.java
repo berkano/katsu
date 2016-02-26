@@ -236,9 +236,9 @@ public class KRoom implements InputProcessor {
         // render lowest zLayer first
         Collections.sort(entities, new Comparator<KEntity>() {
             public int compare(KEntity o1, KEntity o2) {
-                if (o1.getzLayer() == o2.getzLayer())
+                if (o1.getZLayer() == o2.getZLayer())
                     return 0;
-                return o1.getzLayer() < o2.getzLayer() ? -1 : 1;
+                return o1.getZLayer() < o2.getZLayer() ? -1 : 1;
             }
         });
 

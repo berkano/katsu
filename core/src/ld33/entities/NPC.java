@@ -33,7 +33,7 @@ public class NPC extends MobBase {
         super();
         this.setSolid(true);
         this.setRotateSpriteOnMove(false);
-        this.setzLayer(10);
+        this.setZLayer(10);
         this.setUpdateAsRogueLike(true);
         nameMyself();
     }

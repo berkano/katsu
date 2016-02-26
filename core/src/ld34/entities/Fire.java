@@ -14,7 +14,7 @@ public class Fire extends LD34EntityBase {
     long lastTriedToSpreadFire = K.currentTime();
 
     public Fire() {
-        setzLayer(5);
+        setZLayer(5);
     }
 
     @Override

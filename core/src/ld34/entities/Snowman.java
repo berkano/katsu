@@ -105,7 +105,7 @@ public class Snowman extends LD34EntityBase {
         setRotateSpriteOnMove(false);
         setFlipSpriteOnMove(true);
         setMaxMoveInterval(100);
-        setzLayer(100);
+        setZLayer(100);
 
     }
 
