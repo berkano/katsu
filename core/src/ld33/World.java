@@ -69,8 +69,8 @@ public class World extends KRoom {
         super.render();
 
         if (K.isKeyDown(Input.Keys.R)) {
-            if (lastRestart < K.util.currentTime() - 2000) {
-                lastRestart = K.util.currentTime();
+            if (lastRestart < K.utils.currentTime() - 2000) {
+                lastRestart = K.utils.currentTime();
                 LD33Sounds.restart.play();
                 start();
             }

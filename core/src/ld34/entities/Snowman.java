@@ -8,7 +8,7 @@ import ld34.LD34Sounds;
  */
 public class Snowman extends LD34EntityBase {
 
-    long didLastPathFind = K.util.currentTime();
+    long didLastPathFind = K.utils.currentTime();
     boolean hasDoneFirstPathFind = false;
     int targetGridX = 0;
     int targetGridY = 0;
@@ -161,7 +161,7 @@ public class Snowman extends LD34EntityBase {
                         LD34Sounds.walk.play();
                     }
                 }
-                didLastPathFind = K.util.currentTime();
+                didLastPathFind = K.utils.currentTime();
                 hasDoneFirstPathFind = true;
                 nextDX = 0;
                 nextDY = 0;

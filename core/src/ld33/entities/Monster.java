@@ -33,8 +33,8 @@ public class Monster extends MobBase {
     @Override
     public void update() {
         super.update();
-        if (lastEnemyPathFind <= K.util.currentTime() - LD33Settings.get().enemyPathFindInterval) {
-            lastEnemyPathFind = K.util.currentTime();
+        if (lastEnemyPathFind <= K.utils.currentTime() - LD33Settings.get().enemyPathFindInterval) {
+            lastEnemyPathFind = K.utils.currentTime();
             doEnemyPathFinding();
         }
     }

@@ -47,12 +47,12 @@ public class KEntity implements InputProcessor {
     @Getter @Setter private boolean solid;
 
     // Events / lifecycle
-    @Getter @Setter private long lastMove = K.util.currentTime();
+    @Getter @Setter private long lastMove = K.utils.currentTime();
     @Getter @Setter private boolean destroyed = false;
     @Getter @Setter private boolean needsSpatialUpdate = false;
     @Getter @Setter private long minMoveWait = 0;
     @Getter @Setter private boolean updateAsRogueLike = false;
-    @Getter @Setter private long lastUpdate = K.util.currentTime();
+    @Getter @Setter private long lastUpdate = K.utils.currentTime();
     @Getter @Setter private boolean doneFirstUpdate = false;
 
     // UI
@@ -143,7 +143,7 @@ public class KEntity implements InputProcessor {
             return false;
         }
 
-        long millisMovedAgo = K.util.currentTime() - entity.getLastMove();
+        long millisMovedAgo = K.utils.currentTime() - entity.getLastMove();
         if (millisMovedAgo < entity.getMaxMoveInterval()) {
             K.logger.pathfinder(this, "last move was too recent");
             return false;
@@ -173,7 +173,7 @@ public class KEntity implements InputProcessor {
             K.logger.pathfinder(this, "passed movement rules! going from " + getX() + "," + getY() + " to " + newX + "," + newY);
             entity.setX(newX);
             entity.setY(newY);
-            entity.setLastMove(K.util.currentTime());
+            entity.setLastMove(K.utils.currentTime());
             entity.onMoved();
         }
 
@@ -367,7 +367,7 @@ public class KEntity implements InputProcessor {
     }
 
     public boolean lastMovedMoreThan(int timeLimit) {
-        return K.util.currentTime() > getLastMove() + timeLimit;
+        return K.utils.currentTime() > getLastMove() + timeLimit;
     }
 
     public KEntity setParentBody(KEntity parent, int distance, double speedOfRotationAroundParent) {

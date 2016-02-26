@@ -91,7 +91,7 @@ public class NPC extends MobBase {
         super.update();
 
         if (getPathFinderNextDirection() != null) {
-            didLastPathFind = K.util.currentTime();
+            didLastPathFind = K.utils.currentTime();
             moveRequested(getPathFinderNextDirection());
             hasDoneFirstPathFind = true;
             setPathFinderNextDirection(null);

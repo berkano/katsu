@@ -20,7 +20,7 @@ public class K {
     public static KLogger logger = new KLogger();
     public static KResource resource = new KResource();
     public static InputMultiplexer input = new InputMultiplexer();
-    public static KUtils util = new KUtils();
+    public static KUtils utils = new KUtils();
 
     // Usually provided by implementation
     @Getter @Setter public static KGameRunner runner = new KGameRunner();

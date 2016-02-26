@@ -9,7 +9,7 @@ public class Tree extends LD34EntityBase {
 
 
     int age = 0; // seconds
-    long lastSecond = K.util.currentTime();
+    long lastSecond = K.utils.currentTime();
     boolean burnt = false;
 
     public int getMarketValue() {
@@ -57,8 +57,8 @@ public class Tree extends LD34EntityBase {
     @Override
     public void update() {
         super.update();
-        if (K.util.currentTime() > lastSecond + 1000) {
-            lastSecond = K.util.currentTime();
+        if (K.utils.currentTime() > lastSecond + 1000) {
+            lastSecond = K.utils.currentTime();
             handleSecond();
         }
     }
