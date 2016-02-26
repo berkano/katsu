@@ -82,7 +82,7 @@ public class KRoom implements InputProcessor {
 
     public void loadRoomFromTMX(String tmxName) {
 
-        KTmxData data = new KTmxData(tmxName, K.getImplementation().getClassLookup());
+        KTmxData data = new KTmxData(tmxName, K.runner.getClassLookup());
         data.loadFromMap();
 
         setEntities(data.getEntities());

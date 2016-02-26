@@ -8,8 +8,10 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by shaun on 16/11/2014.
@@ -20,12 +22,32 @@ public class KGameRunner implements ApplicationListener, InputProcessor {
 
     private Boolean paused = false;
 
+    public ArrayList<KRoom> getRooms() {
+        throw new NotImplementedException();
+    }
+
+    public String getResourceRoot() {
+        throw new NotImplementedException();
+    }
+
+    public List<Class> getClassLookup() {
+        throw new NotImplementedException();
+    }
+
+    public void toggleMusic() {
+        throw new NotImplementedException();
+    }
+
+    public KUI createUI() {
+        throw new NotImplementedException();
+    }
+
     @Override
     public void create() {
 
         Gdx.graphics.setTitle(K.getSettings().getGameName() + " :: " + K.getSettings().getGameAuthor() + " :: " + K.getSettings().getGameDescription());
 
-        K.setUI(K.getImplementation().createUI());
+        K.setUI(K.runner.createUI());
 
         K.getUI().setActiveSpriteBatch(new SpriteBatch());
         K.getUI().setActiveShapeRenderer(new ShapeRenderer());
@@ -36,7 +58,7 @@ public class KGameRunner implements ApplicationListener, InputProcessor {
         Gdx.input.setInputProcessor(K.getInputMultiplexer());
         K.getInputMultiplexer().addProcessor(this);
 
-        rooms = K.getImplementation().getRooms();
+        rooms = K.runner.getRooms();
         if (rooms == null || rooms.size() <= 0) {
             K.exitWithError("No rooms defined!");
         }
@@ -142,7 +164,7 @@ public class KGameRunner implements ApplicationListener, InputProcessor {
         }
 
         if (keycode == K.getSettings().getToggleMusicKey()) {
-            K.getImplementation().toggleMusic();
+            K.runner.toggleMusic();
         }
 
         if ((keycode == Input.Keys.F || keycode == Input.Keys.F11)) {

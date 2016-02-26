@@ -1,9 +1,6 @@
 package ld33;
 
-import katsu.K;
-import katsu.KGame;
-import katsu.KRoom;
-import katsu.KUI;
+import katsu.*;
 import ld33.entities.*;
 
 import java.util.ArrayList;
@@ -13,7 +10,7 @@ import java.util.List;
 /**
  * Created by shaun on 16/11/2014.
  */
-public class LD33Game implements KGame {
+public class LD33Game extends KGameRunner {
 
     @Override
     public ArrayList<KRoom> getRooms() {

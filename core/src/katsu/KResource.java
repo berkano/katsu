@@ -18,7 +18,7 @@ public class KResource {
     private HashMap<String, Texture> textureCache = new HashMap<String, Texture>();
 
     public String relativeResource(String resourcePath) {
-        String resourceRoot = K.getImplementation().getResourceRoot();
+        String resourceRoot = K.runner.getResourceRoot();
         return resourceRoot + "/" + resourcePath;
     }
 

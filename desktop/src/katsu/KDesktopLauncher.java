@@ -6,7 +6,7 @@ import org.lwjgl.opengl.Display;
 
 public class KDesktopLauncher {
 
-    public static void launch(KGame implementation, KSettings settings) {
+    public static void launch(KGameRunner runner, KSettings settings) {
 
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 
@@ -27,7 +27,7 @@ public class KDesktopLauncher {
         config.x = LwjglApplicationConfiguration.getDesktopDisplayMode().width/2 - config.width / 2;
         config.y = LwjglApplicationConfiguration.getDesktopDisplayMode().height/2 - config.height / 2;
 
-        K.setImplementation(implementation);
+        K.setRunner(runner);
         K.setSettings(settings);
         K.setWindowWidth(config.width);
         K.setWindowHeight(config.height);

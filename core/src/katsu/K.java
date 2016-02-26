@@ -20,7 +20,6 @@ public class K {
     public static KGameRunner runner = new KGameRunner();
 
     // Everything else
-    private static KGame implementation;
     private static InputMultiplexer inputMultiplexer = new InputMultiplexer();
     private static KSettings settings;
     private static HashMap<Integer, Boolean> keysDown = new HashMap<Integer, Boolean>();
@@ -44,14 +43,6 @@ public class K {
     public static void exit() {
         K.logger.debug("game runner exiting by request.");
         Gdx.app.exit();
-    }
-
-    public static KGame getImplementation() {
-        return implementation;
-    }
-
-    public static void setImplementation(KGame implementation) {
-        K.implementation = implementation;
     }
 
     public static InputMultiplexer getInputMultiplexer() {
@@ -107,6 +98,10 @@ public class K {
 
     public static void setUI(KUI UI) {
         K.ui = UI;
+    }
+
+    public static void setRunner(KGameRunner runner) {
+        K.runner = runner;
     }
 
     public void pauseGame() {
