@@ -187,7 +187,7 @@ public class KRoom implements InputProcessor {
     
     public void start() {
         setActive(true);
-        K.getInputMultiplexer().addProcessor(this);
+        K.inputs.addProcessor(this);
         entities = new ArrayList<KEntity>();
         newEntities = new ArrayList<KEntity>();
     }

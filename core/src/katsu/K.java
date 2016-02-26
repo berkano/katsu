@@ -18,9 +18,9 @@ public class K {
     public static KLogger logger = new KLogger();
     public static KResource resources = new KResource();
     public static KGameRunner runner = new KGameRunner();
+    public static InputMultiplexer inputs = new InputMultiplexer();
 
     // Everything else
-    private static InputMultiplexer inputMultiplexer = new InputMultiplexer();
     private static KSettings settings;
     private static HashMap<Integer, Boolean> keysDown = new HashMap<Integer, Boolean>();
     private static KUI ui;
@@ -28,14 +28,6 @@ public class K {
     private static int windowWidth;
     private static int windowHeight;
     private static long lastRogueUpdate = System.currentTimeMillis();
-
-    public static InputMultiplexer getInputMultiplexer() {
-        return inputMultiplexer;
-    }
-
-    public static void setInputMultiplexer(InputMultiplexer inputMultiplexer) {
-        K.inputMultiplexer = inputMultiplexer;
-    }
 
     public static int getGridSize() {
         return settings.getGridSize();

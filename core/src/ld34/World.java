@@ -47,7 +47,7 @@ public class World extends KRoom {
         K.getUI().getMainCamera().viewportHeight = K.getWindowHeight() / 4;
         K.getUI().getMainCamera().viewportWidth = K.getWindowWidth() / 4;
 
-        K.getInputMultiplexer().addProcessor(this);
+        K.inputs.addProcessor(this);
 
         K.getUI().setHelpText(K.resources.loadText("help.txt"));
 

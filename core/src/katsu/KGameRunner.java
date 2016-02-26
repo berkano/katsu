@@ -55,8 +55,8 @@ public class KGameRunner implements ApplicationListener, InputProcessor {
         K.getUI().setUiSpriteBatch(new SpriteBatch());
         K.getUI().setUiShapeRenderer(new ShapeRenderer());
 
-        Gdx.input.setInputProcessor(K.getInputMultiplexer());
-        K.getInputMultiplexer().addProcessor(this);
+        Gdx.input.setInputProcessor(K.inputs);
+        K.inputs.addProcessor(this);
 
         rooms = K.runner.getRooms();
         if (rooms == null || rooms.size() <= 0) {
