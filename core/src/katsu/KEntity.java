@@ -181,10 +181,10 @@ public class KEntity implements InputProcessor {
 
     }
 
-    public void juiceMySprite(float juicyness) {
+    public void juiceMySprite(float juiceiness) {
 
         this.setSpriteRotation(K.random.nextInt(4) * 90 + K.random.nextInt(15) - 7);
-        this.setSpriteScale(K.random.nextFloat() * juicyness + 1.0f + juicyness);
+        this.setSpriteScale(K.random.nextFloat() * juiceiness + 1.0f + juiceiness);
 
 
     }
