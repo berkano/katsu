@@ -129,8 +129,8 @@ public class KEntity implements InputProcessor {
 
     public boolean moveGrid(int dx, int dy) {
 
-        int newX = getX() + dx * K.getGridSize();
-        int newY = getY() + dy * K.getGridSize();
+        int newX = getX() + dx * K.settings.getGridSize();
+        int newY = getY() + dy * K.settings.getGridSize();
 
         return moveEntityIfPossible(this, newX, newY);
 
@@ -445,16 +445,16 @@ public class KEntity implements InputProcessor {
     }
 
     public void setGridX(int gridX) {
-        setX(gridX * K.getGridSize());
+        setX(gridX * K.settings.getGridSize());
     }
 
     public void setGridY(int gridY) {
-        setY(gridY * K.getGridSize());
+        setY(gridY * K.settings.getGridSize());
     }
 
     public boolean gridIsEmpty(int gridX, int gridY) {
 
-        List<KEntity> entities = getRoom().findEntitiesAtPoint(gridX * K.getGridSize(), gridY * K.getGridSize());
+        List<KEntity> entities = getRoom().findEntitiesAtPoint(gridX * K.settings.getGridSize(), gridY * K.settings.getGridSize());
         for (KEntity e : entities) {
             if (e.getGridX() == gridX) {
                 if (e.getGridY() == gridY) {
@@ -474,7 +474,7 @@ public class KEntity implements InputProcessor {
         if (clazz == null) {
             throw new RuntimeException("Null class provided to findFirstEntityOnGrid");
         }
-        List<KEntity> entities = getRoom().findEntitiesAtPoint(gridX * K.getGridSize(), gridY * K.getGridSize());
+        List<KEntity> entities = getRoom().findEntitiesAtPoint(gridX * K.settings.getGridSize(), gridY * K.settings.getGridSize());
         for (KEntity e : entities) {
             if (e.getGridX() == gridX) {
                 if (e.getGridY() == gridY) {

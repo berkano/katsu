@@ -2,6 +2,8 @@ package katsu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,9 +19,11 @@ public class K {
     public static Random random = new Random();
     public static KLogger logger = new KLogger();
     public static KResource resources = new KResource();
-    public static KGameRunner runner = new KGameRunner();
     public static InputMultiplexer inputs = new InputMultiplexer();
-    public static KSettings settings = new KSettings();
+
+    // Usually provided by implementation
+    @Getter @Setter public static KGameRunner runner = new KGameRunner();
+    @Getter @Setter public static KSettings settings = new KSettings();
 
     // Everything else
     private static HashMap<Integer, Boolean> keysDown = new HashMap<Integer, Boolean>();
@@ -28,10 +32,6 @@ public class K {
     private static int windowWidth;
     private static int windowHeight;
     private static long lastRogueUpdate = System.currentTimeMillis();
-
-    public static int getGridSize() {
-        return settings.getGridSize();
-    }
 
     public static long currentTime() {
         return System.currentTimeMillis();
@@ -56,24 +56,8 @@ public class K {
         return ui;
     }
 
-    public static KUI getUi() {
-        return ui;
-    }
-
-    public static void setUi(KUI ui) {
-        K.ui = ui;
-    }
-
     public static void setUI(KUI UI) {
         K.ui = UI;
-    }
-
-    public static void setRunner(KGameRunner runner) {
-        K.runner = runner;
-    }
-
-    public static void setSettings(KSettings settings) {
-        K.settings = settings;
     }
 
     public void pauseGame() {

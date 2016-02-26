@@ -161,8 +161,8 @@ public class Snowman extends LD34EntityBase {
                         isTweening = true;
                         setX(oldX);
                         setY(oldY);
-                        tweenToX=(oldX + nextDX * K.getGridSize());
-                        tweenToY=(oldY + nextDY * K.getGridSize());
+                        tweenToX=(oldX + nextDX * K.settings.getGridSize());
+                        tweenToY=(oldY + nextDY * K.settings.getGridSize());
 
                         LD34Sounds.walk.play();
                     }
