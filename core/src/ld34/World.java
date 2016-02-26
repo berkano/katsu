@@ -65,8 +65,8 @@ public class World extends KRoom {
         super.render();
 
         if (K.isKeyDown(Input.Keys.R)) {
-            if (lastRestart < K.currentTime() - 2000) {
-                lastRestart = K.currentTime();
+            if (lastRestart < K.utils.currentTime() - 2000) {
+                lastRestart = K.utils.currentTime();
                 start();
             }
         }
@@ -168,12 +168,12 @@ public class World extends KRoom {
         Long lastOccurred = onlyEveryTracker.get(key);
 
         if (lastOccurred == null) {
-            onlyEveryTracker.put(key, K.currentTime());
+            onlyEveryTracker.put(key, K.utils.currentTime());
             return false;
         }
 
-        if (lastOccurred < K.currentTime() - interval) {
-            onlyEveryTracker.put(key, K.currentTime());
+        if (lastOccurred < K.utils.currentTime() - interval) {
+            onlyEveryTracker.put(key, K.utils.currentTime());
             return true;
         }
 

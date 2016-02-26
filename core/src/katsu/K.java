@@ -20,6 +20,7 @@ public class K {
     public static KLogger logger = new KLogger();
     public static KResource resources = new KResource();
     public static InputMultiplexer inputs = new InputMultiplexer();
+    public static KUtils utils = new KUtils();
 
     // Usually provided by implementation
     @Getter @Setter public static KGameRunner runner = new KGameRunner();
@@ -32,14 +33,6 @@ public class K {
     private static int windowWidth;
     private static int windowHeight;
     private static long lastRogueUpdate = System.currentTimeMillis();
-
-    public static long currentTime() {
-        return System.currentTimeMillis();
-    }
-
-    public static boolean keyPressed(int keycode) {
-        return false;
-    }
 
     public static void setKeyDown(int keycode, boolean isDown) {
         keysDown.remove(keycode);
@@ -60,15 +53,6 @@ public class K {
         K.ui = UI;
     }
 
-    public void pauseGame() {
-        runner.pauseGame();
-    }
-
-    public void unPauseGame() {
-        K.getUI().setShowingHelp(false);
-        runner.unPauseGame();
-    }
-
     public static boolean gamePaused() {
         return runner.gamePaused();
     }
@@ -79,20 +63,6 @@ public class K {
         } else {
             Gdx.graphics.setDisplayMode(K.settings.getHres(), K.settings.getVres(), true);
         }
-    }
-
-    public static void breakpoint() {
-
-    }
-
-    public static void explain(String text) {
-
-        Long lastExplainedThis = explanations.get(text);
-        if (lastExplainedThis == null || lastExplainedThis < currentTime() - 2000) {
-            getUI().writeText(text);
-            explanations.put(text, currentTime());
-        }
-
     }
 
     public static int getWindowWidth() {
