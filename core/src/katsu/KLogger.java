@@ -10,7 +10,7 @@ public class KLogger {
     }
 
     public void console(String message) {
-        if (K.getSettings().isLogging()) {
+        if (K.settings.isLogging()) {
             System.out.println(message);
         }
     }
@@ -25,7 +25,7 @@ public class KLogger {
 
     public void pathfinder(KEntity kEntity, String s) {
 
-        if (K.getSettings().isLogPathfinding()) {
+        if (K.settings.isLogPathfinding()) {
 
             if (kEntity == null) {
                 trace("pathfinder: " + s);

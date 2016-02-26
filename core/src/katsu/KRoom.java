@@ -203,7 +203,7 @@ public class KRoom implements InputProcessor {
     
     public void render() {
 
-        if (K.getSettings().isLogFPS()) {
+        if (K.settings.isLogFPS()) {
             fpsLogger.log();
         }
 

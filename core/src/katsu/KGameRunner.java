@@ -45,7 +45,7 @@ public class KGameRunner implements ApplicationListener, InputProcessor {
     @Override
     public void create() {
 
-        Gdx.graphics.setTitle(K.getSettings().getGameName() + " :: " + K.getSettings().getGameAuthor() + " :: " + K.getSettings().getGameDescription());
+        Gdx.graphics.setTitle(K.settings.getGameName() + " :: " + K.settings.getGameAuthor() + " :: " + K.settings.getGameDescription());
 
         K.setUI(K.runner.createUI());
 
@@ -143,7 +143,7 @@ public class KGameRunner implements ApplicationListener, InputProcessor {
             K.runner.exit();
         }
 
-        if (keycode == K.getSettings().getPauseKey()) {
+        if (keycode == K.settings.getPauseKey()) {
             if (gamePaused()) {
                 unPauseGame();
             } else {
@@ -163,7 +163,7 @@ public class KGameRunner implements ApplicationListener, InputProcessor {
             }
         }
 
-        if (keycode == K.getSettings().getToggleMusicKey()) {
+        if (keycode == K.settings.getToggleMusicKey()) {
             K.runner.toggleMusic();
         }
 
@@ -217,7 +217,7 @@ public class KGameRunner implements ApplicationListener, InputProcessor {
     }
 
     public void pauseGame() {
-        String key = Input.Keys.toString(K.getSettings().getPauseKey());
+        String key = Input.Keys.toString(K.settings.getPauseKey());
         K.getUI().writeText("@CYAN Game is paused. Press "+key+" to continue.");
         this.paused = true;
     }

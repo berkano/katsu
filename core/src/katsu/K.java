@@ -19,9 +19,9 @@ public class K {
     public static KResource resources = new KResource();
     public static KGameRunner runner = new KGameRunner();
     public static InputMultiplexer inputs = new InputMultiplexer();
+    public static KSettings settings = new KSettings();
 
     // Everything else
-    private static KSettings settings;
     private static HashMap<Integer, Boolean> keysDown = new HashMap<Integer, Boolean>();
     private static KUI ui;
     private static HashMap<String, Long> explanations = new HashMap<String, Long>();
@@ -31,14 +31,6 @@ public class K {
 
     public static int getGridSize() {
         return settings.getGridSize();
-    }
-
-    public static void setSettings(KSettings settings) {
-        K.settings = settings;
-    }
-
-    public static KSettings getSettings() {
-        return settings;
     }
 
     public static long currentTime() {
@@ -80,6 +72,10 @@ public class K {
         K.runner = runner;
     }
 
+    public static void setSettings(KSettings settings) {
+        K.settings = settings;
+    }
+
     public void pauseGame() {
         runner.pauseGame();
     }
@@ -95,9 +91,9 @@ public class K {
 
     public static void toggleFullScreenMode() {
         if (Gdx.graphics.isFullscreen()) {
-            Gdx.graphics.setDisplayMode(getSettings().getHres(), getSettings().getVres(), false);
+            Gdx.graphics.setDisplayMode(K.settings.getHres(), K.settings.getVres(), false);
         } else {
-            Gdx.graphics.setDisplayMode(getSettings().getHres(), getSettings().getVres(), true);
+            Gdx.graphics.setDisplayMode(K.settings.getHres(), K.settings.getVres(), true);
         }
     }
 

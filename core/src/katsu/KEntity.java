@@ -277,7 +277,7 @@ public class KEntity implements InputProcessor {
     }
 
     public int getWidth() {
-        return K.getSettings().getGridSize();
+        return K.settings.getGridSize();
     }
 
     public void onMoved() {
@@ -286,7 +286,7 @@ public class KEntity implements InputProcessor {
 
     
     public int getHeight() {
-        return K.getSettings().getGridSize();
+        return K.settings.getGridSize();
     }
 
     
