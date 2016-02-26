@@ -129,14 +129,14 @@ public class KUI {
         if (text.size() > 0) {
             Color shade = new Color(0, 0, 0, 0.33f);
 
-            K.getUI().getUiShapeRenderer().setColor(shade);
+            K.ui.getUiShapeRenderer().setColor(shade);
 
             float x = fontHeight/2; // Keep a left border
             float y = fontHeight + fontHeight / 4; // Keep a bottom border (text.size() - 1)* fontHeight; // Relative from bottom of screen and based on number of lines to display
             float width = K.settings.getHres() - fontHeight; // Keep a right border
             float height = 1 + text.size() * fontHeight; // Based on number of lines to display
 
-            K.getUI().getUiShapeRenderer().rect(x, y, width, height);
+            K.ui.getUiShapeRenderer().rect(x, y, width, height);
         }
     }
 
@@ -145,15 +145,15 @@ public class KUI {
         Gdx.gl.glEnable(GL20.GL_BLEND);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 
-        K.getUI().getUiShapeRenderer().begin(ShapeRenderer.ShapeType.Filled);
+        K.ui.getUiShapeRenderer().begin(ShapeRenderer.ShapeType.Filled);
         renderShapes();
-        K.getUI().getUiShapeRenderer().end();
+        K.ui.getUiShapeRenderer().end();
 
         Gdx.gl.glDisable(GL20.GL_BLEND);
 
-        K.getUI().getUiSpriteBatch().begin();
+        K.ui.getUiSpriteBatch().begin();
         renderBitmaps();
-        K.getUI().getUiSpriteBatch().end();
+        K.ui.getUiSpriteBatch().end();
 
     }
 
@@ -167,14 +167,14 @@ public class KUI {
             
             Color shade = new Color(0, 0, 0, 0.75f);
 
-            K.getUI().getUiShapeRenderer().setColor(shade);
+            K.ui.getUiShapeRenderer().setColor(shade);
 
             float x = fontHeight; // Keep a left border
             float y = fontHeight; // Keep a bottom border (text.size() - 1)* fontHeight; // Relative from bottom of screen and based on number of lines to display
             float width = K.settings.getHres() - fontHeight * 2; // Keep a right border
             float height = K.settings.getVres()/2 + 224 - fontHeight * 2; // Based on number of lines to display
 
-            K.getUI().getUiShapeRenderer().rect(x, y, width, height);
+            K.ui.getUiShapeRenderer().rect(x, y, width, height);
 
         }
     }
@@ -217,7 +217,7 @@ public class KUI {
 
     private void renderTopText() {
 
-        SpriteBatch batch = K.getUI().getUiSpriteBatch();
+        SpriteBatch batch = K.ui.getUiSpriteBatch();
 
         int yOffset = K.getWindowHeight();
 
@@ -271,7 +271,7 @@ public class KUI {
         String wrappedStr = wrap(s, 100);
         String[] lines = wrappedStr.split("\n");
 
-        SpriteBatch batch = K.getUI().getUiSpriteBatch();
+        SpriteBatch batch = K.ui.getUiSpriteBatch();
 
         for (int i = 0; i < lines.length; i++) {
             int stringX = leftMargin;

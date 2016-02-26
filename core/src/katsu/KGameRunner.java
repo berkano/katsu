@@ -47,13 +47,13 @@ public class KGameRunner implements ApplicationListener, InputProcessor {
 
         Gdx.graphics.setTitle(K.settings.getGameName() + " :: " + K.settings.getGameAuthor() + " :: " + K.settings.getGameDescription());
 
-        K.setUI(K.runner.createUI());
+        K.setUi(K.runner.createUI());
 
-        K.getUI().setActiveSpriteBatch(new SpriteBatch());
-        K.getUI().setActiveShapeRenderer(new ShapeRenderer());
+        K.ui.setActiveSpriteBatch(new SpriteBatch());
+        K.ui.setActiveShapeRenderer(new ShapeRenderer());
 
-        K.getUI().setUiSpriteBatch(new SpriteBatch());
-        K.getUI().setUiShapeRenderer(new ShapeRenderer());
+        K.ui.setUiSpriteBatch(new SpriteBatch());
+        K.ui.setUiShapeRenderer(new ShapeRenderer());
 
         Gdx.input.setInputProcessor(K.input);
         K.input.addProcessor(this);
@@ -67,13 +67,13 @@ public class KGameRunner implements ApplicationListener, InputProcessor {
         float h = Gdx.graphics.getHeight();
         float viewportSize = 1024;
 
-        K.getUI().setMainCamera(new OrthographicCamera(viewportSize, viewportSize * (h / w)));
-        K.getUI().getMainCamera().position.set(512, 768 / 2, 0);
-        K.getUI().getMainCamera().update();
+        K.ui.setMainCamera(new OrthographicCamera(viewportSize, viewportSize * (h / w)));
+        K.ui.getMainCamera().position.set(512, 768 / 2, 0);
+        K.ui.getMainCamera().update();
 
-        K.getUI().setUiCamera(new OrthographicCamera(viewportSize, viewportSize * (h / w)));
-        K.getUI().getUiCamera().position.set(512, 768 / 2, 0);
-        K.getUI().getUiCamera().update();
+        K.ui.setUiCamera(new OrthographicCamera(viewportSize, viewportSize * (h / w)));
+        K.ui.getUiCamera().position.set(512, 768 / 2, 0);
+        K.ui.getUiCamera().update();
 
         rooms.get(0).start();
 
@@ -87,23 +87,23 @@ public class KGameRunner implements ApplicationListener, InputProcessor {
     @Override
     public void render() {
 
-        K.getUI().getMainCamera().update();
-        K.getUI().getActiveSpriteBatch().setProjectionMatrix(K.getUI().getMainCamera().combined);
-        K.getUI().getActiveShapeRenderer().setProjectionMatrix(K.getUI().getMainCamera().combined);
+        K.ui.getMainCamera().update();
+        K.ui.getActiveSpriteBatch().setProjectionMatrix(K.ui.getMainCamera().combined);
+        K.ui.getActiveShapeRenderer().setProjectionMatrix(K.ui.getMainCamera().combined);
 
         // Clear screen
         Gdx.gl.glClearColor(0f, 0f, 0f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        K.getUI().getActiveSpriteBatch().begin();
+        K.ui.getActiveSpriteBatch().begin();
         for (KRoom room : rooms) {
             if (room.isActive()) {
                 room.render();
             }
         }
-        K.getUI().getActiveSpriteBatch().end();
+        K.ui.getActiveSpriteBatch().end();
 
-        K.getUI().render();
+        K.ui.render();
 
         update();
 
@@ -153,12 +153,12 @@ public class KGameRunner implements ApplicationListener, InputProcessor {
         }
 
         if (keycode == Input.Keys.H) {
-            K.getUI().clearText();
-            if (K.getUI().isShowingHelp()) {
-                K.getUI().setShowingHelp(false);
+            K.ui.clearText();
+            if (K.ui.isShowingHelp()) {
+                K.ui.setShowingHelp(false);
                 K.runner.unPauseGame();
             } else {
-                K.getUI().setShowingHelp(true);
+                K.ui.setShowingHelp(true);
                 pauseGame();
             }
         }
@@ -218,13 +218,13 @@ public class KGameRunner implements ApplicationListener, InputProcessor {
 
     public void pauseGame() {
         String key = Input.Keys.toString(K.settings.getPauseKey());
-        K.getUI().writeText("@CYAN Game is paused. Press "+key+" to continue.");
+        K.ui.writeText("@CYAN Game is paused. Press "+key+" to continue.");
         this.paused = true;
     }
 
     public void unPauseGame() {
-        K.getUI().clearText();
-        K.getUI().setShowingHelp(false);
+        K.ui.clearText();
+        K.ui.setShowingHelp(false);
         this.paused = false;
     }
 

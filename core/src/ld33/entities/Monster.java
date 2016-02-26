@@ -42,9 +42,9 @@ public class Monster extends MobBase {
     @Override
     public void render() {
         if (looksHuman) {
-            setTextureRegion(K.getUI().getTextureCache().get(Human.class));
+            setTextureRegion(K.ui.getTextureCache().get(Human.class));
         } else {
-            setTextureRegion(K.getUI().getTextureCache().get(Monster.class));
+            setTextureRegion(K.ui.getTextureCache().get(Monster.class));
         }
         lookAtMe();
         super.render();
@@ -165,7 +165,7 @@ public class Monster extends MobBase {
             setLooksHuman(!isLooksHuman());
             LD33Sounds.transform.play();
         } else {
-            K.getUI().writeText("You can't transform now, there is someone nearby!");
+            K.ui.writeText("You can't transform now, there is someone nearby!");
         }
 
     }

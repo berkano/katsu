@@ -22,13 +22,13 @@ public class K {
     public static InputMultiplexer input = new InputMultiplexer();
     public static KUtils utils = new KUtils();
 
-    // Should be provided by implementation
+    // Usually provided by implementation
     @Getter @Setter public static KGameRunner runner = new KGameRunner();
     @Getter @Setter public static KSettings settings = new KSettings();
+    @Getter @Setter public static KUI ui = new KUI();
 
     // Everything else
     private static HashMap<Integer, Boolean> keysDown = new HashMap<Integer, Boolean>();
-    private static KUI ui;
     private static HashMap<String, Long> explanations = new HashMap<String, Long>();
     private static int windowWidth;
     private static int windowHeight;
@@ -43,14 +43,6 @@ public class K {
 
     public static boolean isKeyDown(int keycode) {
         return keysDown.get(keycode) != null;
-    }
-
-    public static KUI getUI() {
-        return ui;
-    }
-
-    public static void setUI(KUI UI) {
-        K.ui = UI;
     }
 
     public static boolean gamePaused() {

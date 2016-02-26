@@ -38,26 +38,24 @@ public class World extends KRoom {
     public void start() {
         super.start();
 
-        LD34UI ui = (LD34UI) K.getUI();
-
         String mapName = "ld34";
         wipeData();
         loadRoomFromTMX(mapName);
 
-        K.getUI().getMainCamera().viewportHeight = K.getWindowHeight() / 4;
-        K.getUI().getMainCamera().viewportWidth = K.getWindowWidth() / 4;
+        K.ui.getMainCamera().viewportHeight = K.getWindowHeight() / 4;
+        K.ui.getMainCamera().viewportWidth = K.getWindowWidth() / 4;
 
         K.input.addProcessor(this);
 
-        K.getUI().setHelpText(K.resource.loadText("help.txt"));
+        K.ui.setHelpText(K.resource.loadText("help.txt"));
 
         player = (Snowman) firstInstanceOfClass(Snowman.class);
 
         if (LD34Settings.get().startWithPausedHelp) {
-            K.getUI().setShowingHelp(true);
+            K.ui.setShowingHelp(true);
         }
 
-        K.getUI().clearText();
+        K.ui.clearText();
     }
 
     @Override
@@ -86,9 +84,9 @@ public class World extends KRoom {
 
             plantingMode = !plantingMode;
             if (plantingMode) {
-                K.getUI().writeText("OK I'll plant trees where you click!");
+                K.ui.writeText("OK I'll plant trees where you click!");
             } else {
-                K.getUI().writeText("OK I won't plant trees unless you ask me again!");
+                K.ui.writeText("OK I won't plant trees unless you ask me again!");
             }
 
             return true;
@@ -103,7 +101,7 @@ public class World extends KRoom {
 
         super.update();
 
-        K.getUI().setTopText("Money: £" + player.getMoney());
+        K.ui.setTopText("Money: £" + player.getMoney());
 
         if (!doneFirstUpdate) {
             if (LD34Settings.get().startPaused) {
@@ -183,7 +181,7 @@ public class World extends KRoom {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        Vector3 worldPos = K.getUI().getMainCamera().unproject(new Vector3(screenX, screenY, 0));
+        Vector3 worldPos = K.ui.getMainCamera().unproject(new Vector3(screenX, screenY, 0));
         K.logger.trace("World detected touchDown at " + screenX + "," + screenY);
         K.logger.trace("World pos is " + worldPos.toString());
         ArrayList<KEntity> entities = findEntitiesAtPoint(Math.round(worldPos.x), Math.round(worldPos.y));
@@ -210,15 +208,15 @@ public class World extends KRoom {
         }
 
         boolean responded = false;
-        K.getUI().writeText("");
+        K.ui.writeText("");
 
         if (foundMe && !responded) {
-            K.getUI().writeText("Hello!");
+            K.ui.writeText("Hello!");
             responded = true;
         }
         if (foundTree && !responded) {
 
-            K.getUI().writeText("OK I'll go chop that!");
+            K.ui.writeText("OK I'll go chop that!");
 
             player.setHasTarget(true);
             player.setTargetGridX(lastClickedX);
@@ -228,7 +226,7 @@ public class World extends KRoom {
             responded = true;
         }
         if (foundLand && !responded) {
-            K.getUI().writeText("OK I'll go and buy that new land!");
+            K.ui.writeText("OK I'll go and buy that new land!");
 
             player.setHasTarget(true);
             player.setTargetGridX(lastClickedX);
@@ -241,13 +239,13 @@ public class World extends KRoom {
         if (!responded) {
 
             if (plantingMode) {
-                K.getUI().writeText("OK time to plant some trees! Press P if you want me to stop!");
+                K.ui.writeText("OK time to plant some trees! Press P if you want me to stop!");
                 player.setHasTarget(true);
                 player.setTargetGridX(lastClickedX);
                 player.setTargetGridY(lastClickedY);
                 player.setTargetAction(Snowman.Action.PLANT);
             } else {
-                K.getUI().writeText("Off I go! If you want me to plant trees, press P!");
+                K.ui.writeText("Off I go! If you want me to plant trees, press P!");
                 player.setHasTarget(true);
                 player.setTargetGridX(lastClickedX);
                 player.setTargetGridY(lastClickedY);

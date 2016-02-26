@@ -27,7 +27,7 @@ public class Tree extends LD34EntityBase {
             fire.setX(getX());
             fire.setY(getY());
             getRoom().addNewEntity(fire);
-//            K.getUI().writeText("I AM A TREE AND I AM ON FIRE!!!");
+//            K.ui.writeText("I AM A TREE AND I AM ON FIRE!!!");
         }
     }
 
@@ -86,16 +86,16 @@ public class Tree extends LD34EntityBase {
 
         this.stage = stage;
         if (stage == Stage.sapling) {
-            setTextureRegion(K.getUI().getTextureCache().get(Sapling.class));
+            setTextureRegion(K.ui.getTextureCache().get(Sapling.class));
         }
         if (stage == Stage.small) {
-            setTextureRegion(K.getUI().getTextureCache().get(TreeSmall.class));
+            setTextureRegion(K.ui.getTextureCache().get(TreeSmall.class));
         }
         if (stage == Stage.medium) {
-            setTextureRegion(K.getUI().getTextureCache().get(TreeMedium.class));
+            setTextureRegion(K.ui.getTextureCache().get(TreeMedium.class));
         }
         if (stage == Stage.large) {
-            setTextureRegion(K.getUI().getTextureCache().get(TreeLarge.class));
+            setTextureRegion(K.ui.getTextureCache().get(TreeLarge.class));
         }
 
         age = stage.beginsAt;

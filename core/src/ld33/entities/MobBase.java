@@ -54,7 +54,7 @@ public class MobBase extends KEntity {
                 Monster me = (Monster) this;
                 NPC npc = (NPC) other;
                 if (me.isLooksHuman() && nextX == null) {
-                    K.getUI().writeText(npc.getDisplayName() + ". " + npc.getStats().toString());
+                    K.ui.writeText(npc.getDisplayName() + ". " + npc.getStats().toString());
                     if (other instanceof Sheep) {
                         LD33Sounds.sheep.play();
                     }
@@ -80,7 +80,7 @@ public class MobBase extends KEntity {
             if (isEnemy(other)) {
                 String thisStr = this.getClass().getSimpleName();
                 String thatStr = other.getClass().getSimpleName();
-//                K.getUI().writeText(thisStr + " attacks " + thatStr + "!");
+//                K.ui.writeText(thisStr + " attacks " + thatStr + "!");
                 Combat.run(this, (MobBase)other);
             }
         }

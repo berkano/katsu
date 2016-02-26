@@ -110,7 +110,7 @@ public class KEntity implements InputProcessor {
 
     public void render() {
         if (textureRegion == null) {
-            textureRegion = K.getUI().getTextureCache().get(this.getClass());
+            textureRegion = K.ui.getTextureCache().get(this.getClass());
         }
 
         float xScale = spriteScale;
@@ -118,7 +118,7 @@ public class KEntity implements InputProcessor {
         if (isSpriteFlip()) {
             xScale = -xScale;
         }
-        K.getUI().getActiveSpriteBatch().draw(
+        K.ui.getActiveSpriteBatch().draw(
                 textureRegion,
                 getX(), getY(), getWidth() / 2, getHeight() / 2,
                 getWidth(), getHeight(),
@@ -383,8 +383,8 @@ public class KEntity implements InputProcessor {
     }
 
     public void lookAtMe() {
-        K.getUI().getMainCamera().position.x = getX();
-        K.getUI().getMainCamera().position.y = getY();
+        K.ui.getMainCamera().position.x = getX();
+        K.ui.getMainCamera().position.y = getY();
     }
 
     public boolean moveRequested(int dx, int dy) {
@@ -549,7 +549,7 @@ public class KEntity implements InputProcessor {
     }
 
     public void setTextureFrom(Class clazz) {
-        setTextureRegion(K.getUI().getTextureCache().get(clazz));
+        setTextureRegion(K.ui.getTextureCache().get(clazz));
     }
 
 

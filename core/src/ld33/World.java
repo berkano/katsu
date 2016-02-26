@@ -34,7 +34,7 @@ public class World extends KRoom {
     public void start() {
         super.start();
 
-        LD33UI ui = (LD33UI)K.getUI();
+        LD33UI ui = (LD33UI)K.ui;
 
         ui.getMessageReplacements().put("Monster attacks", "You attack");
         ui.getMessageReplacements().put("attacks Monster", "attacks you");
@@ -47,16 +47,16 @@ public class World extends KRoom {
         loadRoomFromTMX(mapName);
         player = (Monster) firstInstanceOfClass(Monster.class);
 
-        K.getUI().getMainCamera().viewportHeight = K.getWindowHeight() / 4;
-        K.getUI().getMainCamera().viewportWidth = K.getWindowWidth() / 4;
+        K.ui.getMainCamera().viewportHeight = K.getWindowHeight() / 4;
+        K.ui.getMainCamera().viewportWidth = K.getWindowWidth() / 4;
 
-        K.getUI().setHelpText(K.resource.loadText("help.txt"));
+        K.ui.setHelpText(K.resource.loadText("help.txt"));
 
         if (LD33Settings.get().startWithPausedHelp) {
-            K.getUI().setShowingHelp(true);
+            K.ui.setShowingHelp(true);
         }
 
-        K.getUI().clearText();
+        K.ui.clearText();
 
         if (LD33Settings.get().startPaused) {
             K.runner.pauseGame();
@@ -84,16 +84,16 @@ public class World extends KRoom {
         super.update();
 
         if (player.getHealth() <= 0 || player.isDestroyed()) {
-            K.getUI().writeText("PERMADEATH paid you a friendly visit. game over. press R to restart");
+            K.ui.writeText("PERMADEATH paid you a friendly visit. game over. press R to restart");
             K.runner.pauseGame();
         }
 
-        K.getUI().setTopText(player.getStats().toString());
+        K.ui.setTopText(player.getStats().toString());
         if (lastMobAttackedByPlayer != null) {
             String enemyName = getLastMobAttackedByPlayer().getClass().getSimpleName();
-            K.getUI().setSecondaryText(enemyName + ": " + getLastMobAttackedByPlayer().getStats().toString());
+            K.ui.setSecondaryText(enemyName + ": " + getLastMobAttackedByPlayer().getStats().toString());
         } else {
-            K.getUI().setSecondaryText("");
+            K.ui.setSecondaryText("");
         }
 
         if (!K.gamePaused()) {
