@@ -13,19 +13,22 @@ import java.util.Random;
  */
 public class K {
 
+    // Instances deliberately exposed as static for convenience
+    public static Random random = new Random();
+    public static KLogger logger = new KLogger();
+    public static KResource resources = new KResource();
+
+    // Everything else
     private static KGameRunner runner;
     private static KGame implementation;
     private static InputMultiplexer inputMultiplexer = new InputMultiplexer();
     private static KSettings settings;
     private static HashMap<Integer, Boolean> keysDown = new HashMap<Integer, Boolean>();
-    public static  Random random = new Random();
     private static KUI ui;
     private static HashMap<String, Long> explanations = new HashMap<String, Long>();
     private static int windowWidth;
     private static int windowHeight;
     private static long lastRogueUpdate = System.currentTimeMillis();
-    public static KLogger logger = new KLogger();
-    public static KResource resources = new KResource();
 
     public static void exitWithError(String message) {
         // TODO: show alert box in production mode
