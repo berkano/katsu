@@ -15,14 +15,14 @@ import java.util.Random;
  */
 public class K {
 
-    // Instances deliberately exposed as static for convenience
+    // Exposed as static for convenience
     public static Random random = new Random();
     public static KLogger logger = new KLogger();
     public static KResource resource = new KResource();
     public static InputMultiplexer input = new InputMultiplexer();
     public static KUtils utils = new KUtils();
 
-    // Usually provided by implementation
+    // Should be provided by implementation
     @Getter @Setter public static KGameRunner runner = new KGameRunner();
     @Getter @Setter public static KSettings settings = new KSettings();
 
