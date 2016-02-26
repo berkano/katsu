@@ -110,6 +110,11 @@ public class Snowman extends LD34EntityBase {
     }
 
     @Override
+    public void firstUpdate() {
+        setTextureFrom(Tree.class);
+    }
+
+    @Override
     public void render() {
 
         //KLog.trace("Snowman instance " + toString() + " rendering");
@@ -119,6 +124,8 @@ public class Snowman extends LD34EntityBase {
 
     @Override
     public void update() {
+
+        super.update();
 
         if (isTweening) {
             tweenMe();
@@ -301,7 +308,6 @@ public class Snowman extends LD34EntityBase {
 
     private void updateStageAndWinState() {
 
-
         Stage shouldBe = stage;
 
         for (Stage s: Stage.values()) {
@@ -323,9 +329,9 @@ public class Snowman extends LD34EntityBase {
                 LD34Sounds.gone_wrong.play();
             }
             stage = shouldBe;
-            if (stage == Stage.normal) setTextureRegion(K.getUI().getTextureCache().get(Snowman.class));
-            if (stage == Stage.gold) setTextureRegion(K.getUI().getTextureCache().get(SnowmanGold.class));
-            if (stage == Stage.scarf) setTextureRegion(K.getUI().getTextureCache().get(SnowmanScarf.class));
+            if (stage == Stage.normal) setTextureFrom(Snowman.class);
+            if (stage == Stage.gold) setTextureFrom(SnowmanGold.class);
+            if (stage == Stage.scarf) setTextureFrom(SnowmanScarf.class);
         }
 
         // check win state

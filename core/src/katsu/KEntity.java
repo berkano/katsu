@@ -50,6 +50,7 @@ public class KEntity implements InputProcessor {
     private long lastUpdate = K.currentTime();
     private boolean flipSpriteOnMove = false;
     private boolean spriteFlip = false;
+    private boolean doneFirstUpdate = false;
 
     public boolean isDestroyed() {
         return destroyed;
@@ -341,6 +342,11 @@ public class KEntity implements InputProcessor {
 
     
     public void update() {
+
+        if (!doneFirstUpdate) {
+            firstUpdate();
+            doneFirstUpdate = true;
+        }
 
         lastUpdate = System.currentTimeMillis();
 
@@ -735,5 +741,14 @@ public class KEntity implements InputProcessor {
         return pathMap;
 
     }
+
+    public void firstUpdate() {
+
+    }
+
+    public void setTextureFrom(Class clazz) {
+        setTextureRegion(K.getUI().getTextureCache().get(clazz));
+    }
+
 
 }
