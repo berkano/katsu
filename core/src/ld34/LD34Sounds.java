@@ -11,14 +11,14 @@ import katsu.KResource;
 public class LD34Sounds {
 
     public static boolean musicPlaying = false;
-    public static Sound chop = KResource.loadSound("chop.wav");
-    public static Sound walk = KResource.loadSound("walk.wav");
-    public static Sound buy_land = KResource.loadSound("buy_land.wav");
-    public static Sound plant = KResource.loadSound("plant.wav");
-    public static Sound gone_wrong = KResource.loadSound("gone_wrong.wav");
-    public static Sound lightning = KResource.loadSound("lightning.wav");
-    public static Sound fire = KResource.loadSound("fire.wav");
-    public static Sound music = KResource.loadSound("snowman-music.ogg");
+    public static Sound chop = K.resources.loadSound("chop.wav");
+    public static Sound walk = K.resources.loadSound("walk.wav");
+    public static Sound buy_land = K.resources.loadSound("buy_land.wav");
+    public static Sound plant = K.resources.loadSound("plant.wav");
+    public static Sound gone_wrong = K.resources.loadSound("gone_wrong.wav");
+    public static Sound lightning = K.resources.loadSound("lightning.wav");
+    public static Sound fire = K.resources.loadSound("fire.wav");
+    public static Sound music = K.resources.loadSound("snowman-music.ogg");
 
     public static void stopAllMusic() {
         K.logger.trace("stop music");

@@ -25,6 +25,7 @@ public class K {
     private static int windowHeight;
     private static long lastRogueUpdate = System.currentTimeMillis();
     public static KLogger logger = new KLogger();
+    public static KResource resources = new KResource();
 
     public static void exitWithError(String message) {
         // TODO: show alert box in production mode

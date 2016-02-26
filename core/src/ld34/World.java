@@ -49,7 +49,7 @@ public class World extends KRoom {
 
         K.getInputMultiplexer().addProcessor(this);
 
-        K.getUI().setHelpText(KResource.loadText("help.txt"));
+        K.getUI().setHelpText(K.resources.loadText("help.txt"));
 
         player = (Snowman) firstInstanceOfClass(Snowman.class);
 

@@ -15,18 +15,18 @@ import java.util.HashMap;
  */
 public class KResource {
 
-    private static HashMap<String, Texture> textureCache = new HashMap<String, Texture>();
+    private HashMap<String, Texture> textureCache = new HashMap<String, Texture>();
 
-    public static String relativeResource(String resourcePath) {
+    public String relativeResource(String resourcePath) {
         String resourceRoot = K.getImplementation().getResourceRoot();
         return resourceRoot + "/" + resourcePath;
     }
 
-    public static Sound loadSound(String soundName) {
+    public Sound loadSound(String soundName) {
         return Gdx.audio.newSound(getResource(relativeResource("sounds/"+soundName)));
     }
 
-    public static Texture loadTexture(String textureName) {
+    public Texture loadTexture(String textureName) {
         if (textureCache.get(textureName) != null) {
             return textureCache.get(textureName);
         }
@@ -37,7 +37,7 @@ public class KResource {
         }
     }
 
-    private static FileHandle getResource(String fname) {
+    private FileHandle getResource(String fname) {
         FileHandle result = Gdx.files.getFileHandle(fname, Files.FileType.Internal);
         if (result == null) {
             throw new RuntimeException("Could not load resource " + fname);
@@ -45,13 +45,13 @@ public class KResource {
         return result;
     }
 
-    public static BitmapFont loadBitmapFont(String fntFile, String pngFile) {
+    public BitmapFont loadBitmapFont(String fntFile, String pngFile) {
 
         return new BitmapFont(Gdx.files.internal(relativeResource(fntFile)), Gdx.files.internal(relativeResource(pngFile)), true);
 
     }
 
-    public static String loadText(String textName) {
+    public String loadText(String textName) {
 
         FileHandle textHandle = getResource(relativeResource("text/" + textName));
         return textHandle.readString("UTF-8");

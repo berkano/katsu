@@ -120,7 +120,7 @@ public class KUI {
     }
 
     public void loadFont() {
-        font = KResource.loadBitmapFont("fonts/font.fnt", "fonts/font.png");
+        font = K.resources.loadBitmapFont("fonts/font.fnt", "fonts/font.png");
         font.setColor(1f, 1f, 1f, 1f);
         font.setScale(1, -1);
     }
