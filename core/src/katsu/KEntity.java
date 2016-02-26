@@ -17,40 +17,58 @@ import java.util.List;
  */
 public class KEntity implements InputProcessor {
 
+    // Spatial
     private int _x;
     private int _y;
     private int dx = 0;
     private int dy = 0;
     private double rotation = 0;
+    private int parentDistance;
+    private double radius;
+
+    // Movement
     private int velocity = 0;
+    private double speedOfRotationAroundParent = 0;
+    private KDirection facing;
+
+    // Appearance
     private TextureRegion textureRegion;
     private Sprite sprite;
-    private boolean solid;
-    private KRoom room;
-    private long lastMove = K.currentTime();
-    private KEntity parent;
-    private int parentDistance;
-    private double speedOfRotationAroundParent = 0;
-    private double radius;
-    private boolean selected = false;
-    private KEntity targetEntity;
-    private boolean destroyed = false;
     private int spriteRotation = 0;
     private float spriteScale = 1.0f;
-    private int maxMoveInterval = 0;
-    private int health = 100;
-    private int maxHealth = 100;
-    private KDirection pathFinderNextDirection;
-    private int zLayer = 0;
-    private boolean needsSpatialUpdate = false;
-    private KDirection facing;
+    private boolean flipSpriteOnMove = false;
+    private boolean spriteFlip = false;
     private boolean rotateSpriteOnMove = true;
+    private int zLayer = 0;
+
+    // Physical
+    private boolean solid;
+
+    // Events / lifecycle
+    private long lastMove = K.currentTime();
+    private boolean destroyed = false;
+    private boolean needsSpatialUpdate = false;
     private long minMoveWait = 0;
     private boolean updateAsRogueLike = false;
     private long lastUpdate = K.currentTime();
-    private boolean flipSpriteOnMove = false;
-    private boolean spriteFlip = false;
     private boolean doneFirstUpdate = false;
+
+    // UI
+    private boolean selected = false;
+
+    // AI
+    private KEntity targetEntity;
+    private KDirection pathFinderNextDirection;
+
+    // To organise
+    private KRoom room;
+    private KEntity parent;
+
+    private int maxMoveInterval = 0;
+
+    // Stats
+    private int health = 100;
+    private int maxHealth = 100;
 
     public boolean isDestroyed() {
         return destroyed;
@@ -68,17 +86,14 @@ public class KEntity implements InputProcessor {
         this.spriteRotation = spriteRotation;
     }
 
-    
     public void setTarget(KEntity targetEntity) {
         this.targetEntity = targetEntity;
     }
 
-    
     public KEntity getTarget() {
         return this.targetEntity;
     }
 
-    
     public boolean overlaps(KEntity other) {
         if (other.getX() <= getX() - other.getWidth()) return false;
         if (other.getY() <= getY() - other.getHeight()) return false;
@@ -87,17 +102,14 @@ public class KEntity implements InputProcessor {
         return true;
     }
 
-    
     public int getGridY() {
         return getY() / getHeight();
     }
 
-    
     public int getGridX() {
         return getX() / getWidth();
     }
 
-    
     public boolean wouldOverlap(KEntity other, int nx, int ny) {
         if (nx <= getX() - other.getWidth()) return false;
         if (ny <= getY() - other.getHeight()) return false;
@@ -114,7 +126,6 @@ public class KEntity implements InputProcessor {
         this.velocity += dv;
     }
 
-    
     public void render() {
         if (textureRegion == null) {
             textureRegion = K.getUI().getTextureCache().get(this.getClass());
@@ -134,7 +145,6 @@ public class KEntity implements InputProcessor {
 
     }
 
-    
     public boolean moveGrid(int dx, int dy) {
 
         int newX = getX() + dx * K.getGridSize();
@@ -196,7 +206,6 @@ public class KEntity implements InputProcessor {
 
 
     }
-
     
     public KEntity setX(int x) {
         if (x != _x) {
@@ -216,7 +225,6 @@ public class KEntity implements InputProcessor {
         }
     }
 
-    
     public int getX() {
         return _x;
     }
@@ -241,7 +249,6 @@ public class KEntity implements InputProcessor {
         this.textureRegion = textureRegion;
         return this;
     }
-
     
     public TextureRegion getTextureRegion() {
         return textureRegion;
@@ -295,13 +302,11 @@ public class KEntity implements InputProcessor {
     public boolean isSolid() {
         return solid;
     }
-
     
     public void onCollide(KEntity other) {
 
     }
 
-    
     public int getWidth() {
         return K.getSettings().getGridSize();
     }
