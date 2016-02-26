@@ -2,7 +2,6 @@ package ld34.entities;
 
 import katsu.K;
 import katsu.KDirection;
-import katsu.KLogger;
 import ld34.LD34Sounds;
 
 /**
@@ -11,7 +10,7 @@ import ld34.LD34Sounds;
 public class Fire extends LD34EntityBase {
 
     boolean playedSound = false;
-    long lastTriedToSpreadFire = K.utils.currentTime();
+    long lastTriedToSpreadFire = K.util.currentTime();
 
     public Fire() {
         setZLayer(5);
@@ -41,9 +40,9 @@ public class Fire extends LD34EntityBase {
 
     private void spreadFire() {
 
-        if (lastTriedToSpreadFire < K.utils.currentTime() - 7500) {
+        if (lastTriedToSpreadFire < K.util.currentTime() - 7500) {
 
-            lastTriedToSpreadFire = K.utils.currentTime();
+            lastTriedToSpreadFire = K.util.currentTime();
 
             // possible for fire to not have its room set yet and crash le world... blah
             if (getRoom() == null) {

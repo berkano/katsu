@@ -47,9 +47,9 @@ public class World extends KRoom {
         K.getUI().getMainCamera().viewportHeight = K.getWindowHeight() / 4;
         K.getUI().getMainCamera().viewportWidth = K.getWindowWidth() / 4;
 
-        K.inputs.addProcessor(this);
+        K.input.addProcessor(this);
 
-        K.getUI().setHelpText(K.resources.loadText("help.txt"));
+        K.getUI().setHelpText(K.resource.loadText("help.txt"));
 
         player = (Snowman) firstInstanceOfClass(Snowman.class);
 
@@ -65,8 +65,8 @@ public class World extends KRoom {
         super.render();
 
         if (K.isKeyDown(Input.Keys.R)) {
-            if (lastRestart < K.utils.currentTime() - 2000) {
-                lastRestart = K.utils.currentTime();
+            if (lastRestart < K.util.currentTime() - 2000) {
+                lastRestart = K.util.currentTime();
                 start();
             }
         }
@@ -168,12 +168,12 @@ public class World extends KRoom {
         Long lastOccurred = onlyEveryTracker.get(key);
 
         if (lastOccurred == null) {
-            onlyEveryTracker.put(key, K.utils.currentTime());
+            onlyEveryTracker.put(key, K.util.currentTime());
             return false;
         }
 
-        if (lastOccurred < K.utils.currentTime() - interval) {
-            onlyEveryTracker.put(key, K.utils.currentTime());
+        if (lastOccurred < K.util.currentTime() - interval) {
+            onlyEveryTracker.put(key, K.util.currentTime());
             return true;
         }
 

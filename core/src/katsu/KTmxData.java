@@ -119,7 +119,7 @@ public class KTmxData {
         try {
             TmxMapLoader.Parameters parameters = new TmxMapLoader.Parameters();
 
-            String resourceName = K.resources.relativeResource("maps/" + name + ".tmx");
+            String resourceName = K.resource.relativeResource("maps/" + name + ".tmx");
             return new TmxMapLoader().load(resourceName, parameters);
         } catch (Exception ex) {
             K.runner.exitDueToException("Failed to load tiled map: " + name, ex);

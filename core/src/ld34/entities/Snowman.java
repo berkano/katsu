@@ -1,20 +1,14 @@
 package ld34.entities;
 
-import ext.pathfinding.grid.GridLocation;
-import ext.pathfinding.grid.GridMap;
-import ext.pathfinding.grid.GridPath;
-import ext.pathfinding.grid.GridPathfinding;
 import katsu.*;
 import ld34.LD34Sounds;
-
-import java.util.List;
 
 /**
  * Created by shaun on 12/12/2015.
  */
 public class Snowman extends LD34EntityBase {
 
-    long didLastPathFind = K.utils.currentTime();
+    long didLastPathFind = K.util.currentTime();
     boolean hasDoneFirstPathFind = false;
     int targetGridX = 0;
     int targetGridY = 0;
@@ -167,7 +161,7 @@ public class Snowman extends LD34EntityBase {
                         LD34Sounds.walk.play();
                     }
                 }
-                didLastPathFind = K.utils.currentTime();
+                didLastPathFind = K.util.currentTime();
                 hasDoneFirstPathFind = true;
                 nextDX = 0;
                 nextDY = 0;

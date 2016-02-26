@@ -18,9 +18,9 @@ public class K {
     // Instances deliberately exposed as static for convenience
     public static Random random = new Random();
     public static KLogger logger = new KLogger();
-    public static KResource resources = new KResource();
-    public static InputMultiplexer inputs = new InputMultiplexer();
-    public static KUtils utils = new KUtils();
+    public static KResource resource = new KResource();
+    public static InputMultiplexer input = new InputMultiplexer();
+    public static KUtils util = new KUtils();
 
     // Usually provided by implementation
     @Getter @Setter public static KGameRunner runner = new KGameRunner();

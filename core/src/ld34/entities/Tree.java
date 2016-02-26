@@ -1,7 +1,6 @@
 package ld34.entities;
 
 import katsu.K;
-import katsu.KLogger;
 
 /**
  * Created by shaun on 12/12/2015.
@@ -10,7 +9,7 @@ public class Tree extends LD34EntityBase {
 
 
     int age = 0; // seconds
-    long lastSecond = K.utils.currentTime();
+    long lastSecond = K.util.currentTime();
     boolean burnt = false;
 
     public int getMarketValue() {
@@ -58,8 +57,8 @@ public class Tree extends LD34EntityBase {
     @Override
     public void update() {
         super.update();
-        if (K.utils.currentTime() > lastSecond + 1000) {
-            lastSecond = K.utils.currentTime();
+        if (K.util.currentTime() > lastSecond + 1000) {
+            lastSecond = K.util.currentTime();
             handleSecond();
         }
     }

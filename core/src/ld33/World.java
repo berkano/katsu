@@ -50,7 +50,7 @@ public class World extends KRoom {
         K.getUI().getMainCamera().viewportHeight = K.getWindowHeight() / 4;
         K.getUI().getMainCamera().viewportWidth = K.getWindowWidth() / 4;
 
-        K.getUI().setHelpText(K.resources.loadText("help.txt"));
+        K.getUI().setHelpText(K.resource.loadText("help.txt"));
 
         if (LD33Settings.get().startWithPausedHelp) {
             K.getUI().setShowingHelp(true);
@@ -69,8 +69,8 @@ public class World extends KRoom {
         super.render();
 
         if (K.isKeyDown(Input.Keys.R)) {
-            if (lastRestart < K.utils.currentTime() - 2000) {
-                lastRestart = K.utils.currentTime();
+            if (lastRestart < K.util.currentTime() - 2000) {
+                lastRestart = K.util.currentTime();
                 LD33Sounds.restart.play();
                 start();
             }
