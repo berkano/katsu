@@ -10,7 +10,6 @@ import java.util.Random;
  */
 public class K {
 
-    // Provided as static for convenience
     public static Random random = new Random();
     public static KLogger logger = new KLogger();
     public static KResource resource = new KResource();
