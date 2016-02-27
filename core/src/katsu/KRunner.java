@@ -230,18 +230,18 @@ public class KRunner implements ApplicationListener, InputProcessor {
         return this.paused;
     }
 
-    public static void exitWithError(String message) {
+    public void exitWithError(String message) {
         // TODO: show alert box in production mode
         K.logger.fatal(message);
         exit();
         throw new RuntimeException("game runner closed due to error: "+message);
     }
 
-    public static void exitDueToException(String message, Exception ex) {
+    public void exitDueToException(String message, Exception ex) {
         exitWithError(message + "\nCaused by: " + ex.toString());
     }
 
-    public static void exit() {
+    public void exit() {
         K.logger.debug("game runner exiting by request.");
         Gdx.app.exit();
     }

@@ -338,7 +338,7 @@ public class KUI {
         return secondaryText;
     }
 
-    public static void toggleFullScreenMode() {
+    public void toggleFullScreenMode() {
         if (Gdx.graphics.isFullscreen()) {
             Gdx.graphics.setDisplayMode(K.settings.getHres(), K.settings.getVres(), false);
         } else {
