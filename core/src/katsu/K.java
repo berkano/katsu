@@ -19,8 +19,8 @@ public class K {
     public static Random random = new Random();
     public static KLogger logger = new KLogger();
     public static KResource resource = new KResource();
-    public static InputMultiplexer input = new InputMultiplexer();
     public static KUtils utils = new KUtils();
+    public static KInput input = new KInput();
 
     // Normally provided by implementation
     public static KGameRunner runner = new KGameRunner();
