@@ -10,6 +10,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,6 +41,9 @@ public class KUI {
     private SpriteBatch activeSpriteBatch;
     private ShapeRenderer activeShapeRenderer;
     private SpriteBatch uiSpriteBatch;
+
+    @Getter @Setter private int windowWidth;
+    @Getter @Setter private int windowHeight;
 
     public SpriteBatch getActiveSpriteBatch() {
         return activeSpriteBatch;
@@ -219,7 +224,7 @@ public class KUI {
 
         SpriteBatch batch = K.ui.getUiSpriteBatch();
 
-        int yOffset = K.getWindowHeight();
+        int yOffset = getWindowHeight();
 
         font.setColor(Color.BLACK);
         font.draw(batch, getTopText(), 4, yOffset - 4);

@@ -5,7 +5,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
 public class KLauncher {
 
-    public static void launch(KRunner runner, KSettings settings) {
+    public static void launch(KRunner runner, KSettings settings, KUI ui) {
 
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 
@@ -28,9 +28,11 @@ public class KLauncher {
 
         K.runner = runner;
         K.settings = settings;
-        K.setWindowWidth(config.width);
-        K.setWindowHeight(config.height);
+        K.ui = ui;
 
-        new LwjglApplication(new KRunner(), config);
+        K.ui.setWindowWidth(config.width);
+        K.ui.setWindowHeight(config.height);
+
+        new LwjglApplication(runner, config);
     }
 }

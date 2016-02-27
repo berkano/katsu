@@ -22,8 +22,4 @@ public class K {
     public static KSettings settings;
     public static KUI ui;
 
-    // Everything else
-    @Getter @Setter private static int windowWidth;
-    @Getter @Setter private static int windowHeight;
-
 }

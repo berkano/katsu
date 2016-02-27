@@ -40,18 +40,12 @@ public class KRunner implements ApplicationListener, InputProcessor {
         throw new NotImplementedException();
     }
 
-    public KUI createUI() {
-        throw new NotImplementedException();
-    }
-
     @Getter @Setter private long lastRogueUpdate = System.currentTimeMillis();
 
     @Override
     public void create() {
 
         Gdx.graphics.setTitle(K.settings.getGameName() + " :: " + K.settings.getGameAuthor() + " :: " + K.settings.getGameDescription());
-
-        K.ui = K.runner.createUI();
 
         K.ui.setActiveSpriteBatch(new SpriteBatch());
         K.ui.setActiveShapeRenderer(new ShapeRenderer());

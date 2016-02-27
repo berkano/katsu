@@ -48,9 +48,4 @@ public class LD34Game extends KRunner {
         LD34Sounds.toggleMusic();
     }
 
-    @Override
-    public KUI createUI() {
-        return new LD34UI();
-    }
-
 }
