@@ -124,7 +124,7 @@ public class World extends KRoom {
         }
 
         if (somethingHappened) {
-            K.setLastRogueUpdate(System.currentTimeMillis());
+            K.runner.setLastRogueUpdate(System.currentTimeMillis());
             player.doEnemyPathFinding();
         }
 

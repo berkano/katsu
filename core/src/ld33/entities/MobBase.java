@@ -89,8 +89,8 @@ public class MobBase extends KEntity {
     @Override
     public void update() {
         super.update();
-        if (lastHealthIncrement != K.getLastRogueUpdate()) {
-            lastHealthIncrement = K.getLastRogueUpdate();
+        if (lastHealthIncrement != K.runner.getLastRogueUpdate()) {
+            lastHealthIncrement = K.runner.getLastRogueUpdate();
             // not too quick please!
             if (K.random.nextInt(10) == 1) {
                 getStats().addHealth(1 + 2 * getStats().getLevel());

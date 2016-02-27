@@ -289,7 +289,7 @@ public class KRoom implements InputProcessor {
             boolean canUpdate = true;
             if (isFogged(e)) canUpdate = false;
             if (e.isUpdateAsRogueLike()) {
-                if (e.getLastUpdate() >= K.getLastRogueUpdate()) {
+                if (e.getLastUpdate() >= K.runner.getLastRogueUpdate()) {
                     canUpdate = false;
                 }
             }

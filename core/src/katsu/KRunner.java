@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import lombok.Getter;
+import lombok.Setter;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
@@ -41,6 +43,8 @@ public class KRunner implements ApplicationListener, InputProcessor {
     public KUI createUI() {
         throw new NotImplementedException();
     }
+
+    @Getter @Setter private long lastRogueUpdate = System.currentTimeMillis();
 
     @Override
     public void create() {

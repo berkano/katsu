@@ -25,6 +25,5 @@ public class K {
     // Everything else
     @Getter @Setter private static int windowWidth;
     @Getter @Setter private static int windowHeight;
-    @Getter @Setter private static long lastRogueUpdate = System.currentTimeMillis();
 
 }
