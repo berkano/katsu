@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Created by shaun on 16/11/2014.
  */
-public class KGameRunner implements ApplicationListener, InputProcessor {
+public class KRunner implements ApplicationListener, InputProcessor {
 
     private ArrayList<KRoom> rooms;
 

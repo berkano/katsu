@@ -2,11 +2,10 @@ package katsu;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import org.lwjgl.opengl.Display;
 
-public class KDesktopLauncher {
+public class KLauncher {
 
-    public static void launch(KGameRunner runner, KSettings settings) {
+    public static void launch(KRunner runner, KSettings settings) {
 
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 
@@ -32,6 +31,6 @@ public class KDesktopLauncher {
         K.setWindowWidth(config.width);
         K.setWindowHeight(config.height);
 
-        new LwjglApplication(new KGameRunner(), config);
+        new LwjglApplication(new KRunner(), config);
     }
 }

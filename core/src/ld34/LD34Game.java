@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by shaun on 16/11/2014.
  */
-public class LD34Game extends KGameRunner {
+public class LD34Game extends KRunner {
 
     @Override
     public ArrayList<KRoom> getRooms() {

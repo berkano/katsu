@@ -1,13 +1,8 @@
 package katsu;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputMultiplexer;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -23,7 +18,7 @@ public class K {
     public static KInput input = new KInput();
 
     // Provided by implementation
-    public static KGameRunner runner;
+    public static KRunner runner;
     public static KSettings settings;
     public static KUI ui;
 
