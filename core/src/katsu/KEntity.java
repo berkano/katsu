@@ -402,7 +402,7 @@ public class KEntity implements InputProcessor {
         setFacing(direction);
 
         if (isRotateSpriteOnMove()) {
-            setSpriteRotation(direction.rotation());
+            setSpriteRotation(direction.getRotation());
         }
         if (isFlipSpriteOnMove()) {
             if (direction.equals(KDirection.LEFT)) {
@@ -413,7 +413,7 @@ public class KEntity implements InputProcessor {
             }
         }
 
-        if (moveGrid(direction.dx(), direction.dy())) {
+        if (moveGrid(direction.getDx(), direction.getDy())) {
             result = true;
         }
 

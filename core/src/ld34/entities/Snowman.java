@@ -128,8 +128,8 @@ public class Snowman extends LD34EntityBase {
 
         KDirection suggestedDirection = doPathFinding(targetGridX, targetGridY);
         if (suggestedDirection != null) {
-            nextDX = suggestedDirection.dx();
-            nextDY = suggestedDirection.dy();
+            nextDX = suggestedDirection.getDx();
+            nextDY = suggestedDirection.getDy();
         }
 
         if (hasTarget) {
