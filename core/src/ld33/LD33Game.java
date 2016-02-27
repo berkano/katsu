@@ -29,7 +29,7 @@ public class LD33Game extends KGameRunner {
     @Override
     public List<Class> getClassLookup() {
 
-        return K.buildClassList(
+        return K.utils.buildClassList(
                 Monster.class, Wall.class, Floor.class, Warrior.class, Dwarf.class,
                 Violet.class, Door.class, Carpet.class, Wall2.class, Water.class, Grass.class,
                 Sheep.class, Cat.class, StairsUp.class, StairsDown.class, Bed.class, Blood.class,

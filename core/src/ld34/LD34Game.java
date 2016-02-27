@@ -29,7 +29,7 @@ public class LD34Game extends KGameRunner {
     @Override
     public List<Class> getClassLookup() {
 
-        return K.buildClassList(
+        return K.utils.buildClassList(
                 Grass.class, Land.class, Snowman.class, TreeLarge.class, TreeMedium.class, TreeSmall.class, Sapling.class,
                 Fire.class, Water.class, Dirt.class, SnowmanGold.class, SnowmanScarf.class
         );
