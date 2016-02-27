@@ -29,7 +29,6 @@ public class K {
 
     // Everything else
     private static HashMap<Integer, Boolean> keysDown = new HashMap<Integer, Boolean>();
-    private static HashMap<String, Long> explanations = new HashMap<String, Long>();
     private static int windowWidth;
     private static int windowHeight;
     private static long lastRogueUpdate = System.currentTimeMillis();
