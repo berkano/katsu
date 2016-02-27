@@ -47,7 +47,7 @@ public class KGameRunner implements ApplicationListener, InputProcessor {
 
         Gdx.graphics.setTitle(K.settings.getGameName() + " :: " + K.settings.getGameAuthor() + " :: " + K.settings.getGameDescription());
 
-        K.setUi(K.runner.createUI());
+        K.ui = K.runner.createUI();
 
         K.ui.setActiveSpriteBatch(new SpriteBatch());
         K.ui.setActiveShapeRenderer(new ShapeRenderer());

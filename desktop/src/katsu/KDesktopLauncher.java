@@ -27,14 +27,10 @@ public class KDesktopLauncher {
         config.x = LwjglApplicationConfiguration.getDesktopDisplayMode().width/2 - config.width / 2;
         config.y = LwjglApplicationConfiguration.getDesktopDisplayMode().height/2 - config.height / 2;
 
-        K.setRunner(runner);
-        K.setSettings(settings);
+        K.runner = runner;
+        K.settings = settings;
         K.setWindowWidth(config.width);
         K.setWindowHeight(config.height);
-
-
-
-
 
         new LwjglApplication(new KGameRunner(), config);
     }

@@ -23,15 +23,15 @@ public class K {
     public static KUtils utils = new KUtils();
 
     // Normally provided by implementation
-    @Getter @Setter public static KGameRunner runner = new KGameRunner();
-    @Getter @Setter public static KSettings settings = new KSettings();
-    @Getter @Setter public static KUI ui = new KUI();
+    public static KGameRunner runner = new KGameRunner();
+    public static KSettings settings = new KSettings();
+    public static KUI ui = new KUI();
 
     // Everything else
     private static HashMap<Integer, Boolean> keysDown = new HashMap<Integer, Boolean>();
-    private static int windowWidth;
-    private static int windowHeight;
-    private static long lastRogueUpdate = System.currentTimeMillis();
+    @Getter @Setter private static int windowWidth;
+    @Getter @Setter private static int windowHeight;
+    @Getter @Setter private static long lastRogueUpdate = System.currentTimeMillis();
 
     public static void setKeyDown(int keycode, boolean isDown) {
         keysDown.remove(keycode);
@@ -50,30 +50,6 @@ public class K {
         } else {
             Gdx.graphics.setDisplayMode(K.settings.getHres(), K.settings.getVres(), true);
         }
-    }
-
-    public static int getWindowWidth() {
-        return windowWidth;
-    }
-
-    public static void setWindowWidth(int windowWidth) {
-        K.windowWidth = windowWidth;
-    }
-
-    public static int getWindowHeight() {
-        return windowHeight;
-    }
-
-    public static void setWindowHeight(int windowHeight) {
-        K.windowHeight = windowHeight;
-    }
-
-    public static long getLastRogueUpdate() {
-        return lastRogueUpdate;
-    }
-
-    public static void setLastRogueUpdate(long lastRogueUpdate) {
-        K.lastRogueUpdate = lastRogueUpdate;
     }
 
 }
