@@ -97,7 +97,7 @@ public class MobBase extends KEntity {
             }
         }
 
-        if (!K.gamePaused()) {
+        if (!K.runner.gamePaused()) {
             if (nextX != null) {
                 if (nextY != null) {
                     setX(nextX);

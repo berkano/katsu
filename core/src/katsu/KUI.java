@@ -183,7 +183,7 @@ public class KUI {
 
         renderHelpText();
 
-        boolean gameIsPaused = K.gamePaused();
+        boolean gameIsPaused = K.runner.gamePaused();
 
         if (font == null) {
             loadFont();

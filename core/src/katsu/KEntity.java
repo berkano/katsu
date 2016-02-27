@@ -138,7 +138,7 @@ public class KEntity implements InputProcessor {
 
     private boolean moveEntityIfPossible(KEntity entity, int newX, int newY) {
 
-        if (K.gamePaused()) {
+        if (K.runner.gamePaused()) {
             K.logger.pathfinder(this, "game paused");
             return false;
         }

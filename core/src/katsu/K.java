@@ -45,10 +45,6 @@ public class K {
         return keysDown.get(keycode) != null;
     }
 
-    public static boolean gamePaused() {
-        return runner.gamePaused();
-    }
-
     public static void toggleFullScreenMode() {
         if (Gdx.graphics.isFullscreen()) {
             Gdx.graphics.setDisplayMode(K.settings.getHres(), K.settings.getVres(), false);

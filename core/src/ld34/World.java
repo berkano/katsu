@@ -111,7 +111,7 @@ public class World extends KRoom {
 
         doneFirstUpdate = true;
 
-        if (!K.gamePaused()) {
+        if (!K.runner.gamePaused()) {
             if (LD34Settings.get().startWithMusic) {
                 if (!hasStartedMusicAtLeastOnce) {
                     LD34Sounds.playMusic();

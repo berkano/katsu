@@ -96,7 +96,7 @@ public class World extends KRoom {
             K.ui.setSecondaryText("");
         }
 
-        if (!K.gamePaused()) {
+        if (!K.runner.gamePaused()) {
             if (LD33Settings.get().startWithMusic) {
                 if (!hasStartedMusicAtLeastOnce) {
                     LD33Sounds.playMusic();
