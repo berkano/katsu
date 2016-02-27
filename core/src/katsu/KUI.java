@@ -332,4 +332,13 @@ public class KUI {
     public String getSecondaryText() {
         return secondaryText;
     }
+
+    public static void toggleFullScreenMode() {
+        if (Gdx.graphics.isFullscreen()) {
+            Gdx.graphics.setDisplayMode(K.settings.getHres(), K.settings.getVres(), false);
+        } else {
+            Gdx.graphics.setDisplayMode(K.settings.getHres(), K.settings.getVres(), true);
+        }
+    }
+
 }

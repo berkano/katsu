@@ -68,7 +68,7 @@ public class World extends KRoom {
     public void render() {
         super.render();
 
-        if (K.isKeyDown(Input.Keys.R)) {
+        if (K.input.isKeyDown(Input.Keys.R)) {
             if (lastRestart < K.utils.currentTime() - 2000) {
                 lastRestart = K.utils.currentTime();
                 LD33Sounds.restart.play();
@@ -109,10 +109,10 @@ public class World extends KRoom {
         boolean somethingHappened = false;
         KDirection directionToMove = null;
 
-            if (K.isKeyDown(Input.Keys.W)) directionToMove = KDirection.UP;
-            if (K.isKeyDown(Input.Keys.A)) directionToMove = KDirection.LEFT;
-            if (K.isKeyDown(Input.Keys.S)) directionToMove = KDirection.DOWN;
-            if (K.isKeyDown(Input.Keys.D)) directionToMove = KDirection.RIGHT;
+            if (K.input.isKeyDown(Input.Keys.W)) directionToMove = KDirection.UP;
+            if (K.input.isKeyDown(Input.Keys.A)) directionToMove = KDirection.LEFT;
+            if (K.input.isKeyDown(Input.Keys.S)) directionToMove = KDirection.DOWN;
+            if (K.input.isKeyDown(Input.Keys.D)) directionToMove = KDirection.RIGHT;
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
             player.tryFlipMonsterState();

@@ -1,8 +1,11 @@
 package katsu;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.HashMap;
 
 /**
  * Created by shaun on 27/02/2016.
@@ -10,5 +13,20 @@ import lombok.Setter;
 public class KInput {
 
     @Getter @Setter private InputMultiplexer multiplexer = new InputMultiplexer();
+
+    private HashMap<Integer, Boolean> keysDown = new HashMap<Integer, Boolean>();
+
+    public void setKeyDown(int keycode, boolean isDown) {
+
+        keysDown.remove(keycode);
+
+        if (isDown) {
+            keysDown.put(keycode, true);
+        }
+    }
+
+    public boolean isKeyDown(int keycode) {
+        return keysDown.get(keycode) != null;
+    }
 
 }

@@ -168,12 +168,12 @@ public class KGameRunner implements ApplicationListener, InputProcessor {
         }
 
         if ((keycode == Input.Keys.F || keycode == Input.Keys.F11)) {
-            K.toggleFullScreenMode();
+            K.ui.toggleFullScreenMode();
         }
 
 
 
-        K.setKeyDown(keycode, true);
+        K.input.setKeyDown(keycode, true);
 
         return false;
     }
@@ -181,7 +181,7 @@ public class KGameRunner implements ApplicationListener, InputProcessor {
     @Override
     public boolean keyUp(int keycode) {
 
-        K.setKeyDown(keycode, false);
+        K.input.setKeyDown(keycode, false);
 
         return false;
     }

@@ -62,7 +62,7 @@ public class World extends KRoom {
     public void render() {
         super.render();
 
-        if (K.isKeyDown(Input.Keys.R)) {
+        if (K.input.isKeyDown(Input.Keys.R)) {
             if (lastRestart < K.utils.currentTime() - 2000) {
                 lastRestart = K.utils.currentTime();
                 start();
