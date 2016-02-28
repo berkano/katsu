@@ -72,10 +72,6 @@ public class KEntity implements InputProcessor {
     @Getter @Setter private int health = 100;
     @Getter @Setter private int maxHealth = 100;
 
-    public boolean isDestroyed() {
-        return destroyed;
-    }
-
     public boolean overlaps(KEntity other) {
         if (other.getX() <= getX() - other.getWidth()) return false;
         if (other.getY() <= getY() - other.getHeight()) return false;
@@ -109,6 +105,7 @@ public class KEntity implements InputProcessor {
     }
 
     public void render() {
+
         if (textureRegion == null) {
             textureRegion = K.ui.getTextureCache().get(this.getClass());
         }
@@ -186,32 +183,34 @@ public class KEntity implements InputProcessor {
         this.setSpriteRotation(K.random.nextInt(4) * 90 + K.random.nextInt(15) - 7);
         this.setSpriteScale(K.random.nextFloat() * juiceiness + 1.0f + juiceiness);
 
-
     }
     
     public KEntity setX(int x) {
+
         if (x != _x) {
             setLastMove(System.currentTimeMillis());
         }
         this._x = x;
         this.updateSpatialMap();
         return this;
+
     }
 
     private void updateSpatialMap() {
+
         if (getRoom() != null) {
             getRoom().updateSpatialMap(this);
             needsSpatialUpdate = false;
         } else {
             needsSpatialUpdate = true;
         }
+
     }
 
     public int getX() {
         return _x;
     }
 
-    
     public KEntity setY(int y) {
         if (y != _y) {
             setLastMove(System.currentTimeMillis());
@@ -220,13 +219,11 @@ public class KEntity implements InputProcessor {
         this.updateSpatialMap();
         return this;
     }
-
     
     public int getY() {
         return _y;
     }
 
-    
     public KEntity setTextureRegion(TextureRegion textureRegion) {
         this.textureRegion = textureRegion;
         return this;

@@ -1,10 +1,7 @@
 package katsu;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Colors;
-import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -346,4 +343,27 @@ public class KUI {
         }
     }
 
+    public void initalise() {
+
+        Gdx.graphics.setTitle(K.settings.getGameName() + " :: " + K.settings.getGameAuthor() + " :: " + K.settings.getGameDescription());
+
+        setActiveSpriteBatch(new SpriteBatch());
+        setActiveShapeRenderer(new ShapeRenderer());
+
+        setUiSpriteBatch(new SpriteBatch());
+        setUiShapeRenderer(new ShapeRenderer());
+
+        float w = Gdx.graphics.getWidth();
+        float h = Gdx.graphics.getHeight();
+        float viewportSize = 1024;
+
+        setMainCamera(new OrthographicCamera(viewportSize, viewportSize * (h / w)));
+        getMainCamera().position.set(512, 768 / 2, 0);
+        getMainCamera().update();
+
+        setUiCamera(new OrthographicCamera(viewportSize, viewportSize * (h / w)));
+        getUiCamera().position.set(512, 768 / 2, 0);
+        getUiCamera().update();
+
+    }
 }

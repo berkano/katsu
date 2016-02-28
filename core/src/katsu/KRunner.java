@@ -45,33 +45,14 @@ public class KRunner implements ApplicationListener, InputProcessor {
     @Override
     public void create() {
 
-        Gdx.graphics.setTitle(K.settings.getGameName() + " :: " + K.settings.getGameAuthor() + " :: " + K.settings.getGameDescription());
-
-        K.ui.setActiveSpriteBatch(new SpriteBatch());
-        K.ui.setActiveShapeRenderer(new ShapeRenderer());
-
-        K.ui.setUiSpriteBatch(new SpriteBatch());
-        K.ui.setUiShapeRenderer(new ShapeRenderer());
-
-        Gdx.input.setInputProcessor(K.input.getMultiplexer());
-        K.input.getMultiplexer().addProcessor(this);
+        K.ui.initalise();
+        K.input.initalise(this);
 
         rooms = K.runner.getRooms();
+
         if (rooms == null || rooms.size() <= 0) {
-            K.runner.exitWithError("No rooms defined!");
+            exitWithError("No rooms defined!");
         }
-
-        float w = Gdx.graphics.getWidth();
-        float h = Gdx.graphics.getHeight();
-        float viewportSize = 1024;
-
-        K.ui.setMainCamera(new OrthographicCamera(viewportSize, viewportSize * (h / w)));
-        K.ui.getMainCamera().position.set(512, 768 / 2, 0);
-        K.ui.getMainCamera().update();
-
-        K.ui.setUiCamera(new OrthographicCamera(viewportSize, viewportSize * (h / w)));
-        K.ui.getUiCamera().position.set(512, 768 / 2, 0);
-        K.ui.getUiCamera().update();
 
         rooms.get(0).start();
 

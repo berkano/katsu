@@ -29,4 +29,10 @@ public class KInput {
         return keysDown.get(keycode) != null;
     }
 
+    public void initalise(KRunner runner) {
+
+        Gdx.input.setInputProcessor(K.input.getMultiplexer());
+        getMultiplexer().addProcessor(runner);
+
+    }
 }
