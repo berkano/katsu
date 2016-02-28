@@ -18,27 +18,19 @@ import java.util.List;
 /**
  * Created by shaun on 16/11/2014.
  */
-public class KRunner implements ApplicationListener, InputProcessor {
+public abstract class KRunner implements ApplicationListener, InputProcessor {
 
     private ArrayList<KRoom> rooms;
 
     private Boolean paused = false;
 
-    public ArrayList<KRoom> getRooms() {
-        throw new NotImplementedException();
-    }
+    public abstract ArrayList<KRoom> getRooms();
 
-    public String getResourceRoot() {
-        throw new NotImplementedException();
-    }
+    public abstract String getResourceRoot();
 
-    public List<Class> getClassLookup() {
-        throw new NotImplementedException();
-    }
+    public abstract List<Class> getClassLookup();
 
-    public void toggleMusic() {
-        throw new NotImplementedException();
-    }
+    public abstract void toggleMusic();
 
     @Getter @Setter private long lastRogueUpdate = System.currentTimeMillis();
 
@@ -59,20 +51,9 @@ public class KRunner implements ApplicationListener, InputProcessor {
     }
 
     @Override
-    public void resize(int width, int height) {
-
-    }
-
-    @Override
     public void render() {
 
         K.ui.render(rooms);
-
-        update();
-
-    }
-
-    private void update() {
 
         if (paused) return;
 
@@ -81,21 +62,6 @@ public class KRunner implements ApplicationListener, InputProcessor {
                 room.update();
             }
         }
-
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void dispose() {
 
     }
 
@@ -133,8 +99,6 @@ public class KRunner implements ApplicationListener, InputProcessor {
         if ((keycode == Input.Keys.F || keycode == Input.Keys.F11)) {
             K.ui.toggleFullScreenMode();
         }
-
-
 
         K.input.setKeyDown(keycode, true);
 

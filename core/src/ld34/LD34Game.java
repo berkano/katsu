@@ -13,6 +13,26 @@ import java.util.List;
 public class LD34Game extends KRunner {
 
     @Override
+    public void resize(int width, int height) {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void dispose() {
+
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
     public ArrayList<KRoom> getRooms() {
 
         ArrayList<KRoom> rooms = new ArrayList<KRoom>();
