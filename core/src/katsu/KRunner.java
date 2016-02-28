@@ -66,23 +66,7 @@ public class KRunner implements ApplicationListener, InputProcessor {
     @Override
     public void render() {
 
-        K.ui.getMainCamera().update();
-        K.ui.getActiveSpriteBatch().setProjectionMatrix(K.ui.getMainCamera().combined);
-        K.ui.getActiveShapeRenderer().setProjectionMatrix(K.ui.getMainCamera().combined);
-
-        // Clear screen
-        Gdx.gl.glClearColor(0f, 0f, 0f, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        K.ui.getActiveSpriteBatch().begin();
-        for (KRoom room : rooms) {
-            if (room.isActive()) {
-                room.render();
-            }
-        }
-        K.ui.getActiveSpriteBatch().end();
-
-        K.ui.render();
+        K.ui.render(rooms);
 
         update();
 

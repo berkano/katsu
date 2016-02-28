@@ -142,20 +142,38 @@ public class KUI {
         }
     }
 
-    public void render() {
+    public void render(ArrayList<KRoom> rooms) {
+
+        getMainCamera().update();
+        getActiveSpriteBatch().setProjectionMatrix(getMainCamera().combined);
+        getActiveShapeRenderer().setProjectionMatrix(getMainCamera().combined);
+
+        // Clear screen
+        Gdx.gl.glClearColor(0f, 0f, 0f, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        getActiveSpriteBatch().begin();
+
+        for (KRoom room : rooms) {
+            if (room.isActive()) {
+                room.render();
+            }
+        }
+
+        getActiveSpriteBatch().end();
 
         Gdx.gl.glEnable(GL20.GL_BLEND);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 
-        K.ui.getUiShapeRenderer().begin(ShapeRenderer.ShapeType.Filled);
+        getUiShapeRenderer().begin(ShapeRenderer.ShapeType.Filled);
         renderShapes();
-        K.ui.getUiShapeRenderer().end();
+        getUiShapeRenderer().end();
 
         Gdx.gl.glDisable(GL20.GL_BLEND);
 
-        K.ui.getUiSpriteBatch().begin();
+        getUiSpriteBatch().begin();
         renderBitmaps();
-        K.ui.getUiSpriteBatch().end();
+        getUiSpriteBatch().end();
 
     }
 
