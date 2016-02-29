@@ -1,6 +1,5 @@
 package katsu;
 
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
@@ -17,7 +16,7 @@ import java.util.List;
 /**
  * Created by shaun on 15/11/2014.
  */
-public class KEntity implements InputProcessor {
+public class KEntity extends KEntityBase {
 
     // Spatial
     private int _x;
@@ -72,36 +71,12 @@ public class KEntity implements InputProcessor {
     @Getter @Setter private int health = 100;
     @Getter @Setter private int maxHealth = 100;
 
-    public boolean overlaps(KEntity other) {
-        if (other.getX() <= getX() - other.getWidth()) return false;
-        if (other.getY() <= getY() - other.getHeight()) return false;
-        if (other.getX() >= getX() + getWidth()) return false;
-        if (other.getY() >= getY() + getHeight()) return false;
-        return true;
-    }
-
     public int getGridY() {
         return getY() / getHeight();
     }
 
     public int getGridX() {
         return getX() / getWidth();
-    }
-
-    public boolean wouldOverlap(KEntity other, int nx, int ny) {
-        if (nx <= getX() - other.getWidth()) return false;
-        if (ny <= getY() - other.getHeight()) return false;
-        if (nx >= getX() + getWidth()) return false;
-        if (ny >= getY() + getHeight()) return false;
-        return true;
-    }
-
-    public void rotate(double dr) {
-        setRotation(getRotation() + dr);
-    }
-
-    public void accelerate(int dv) {
-        this.velocity += dv;
     }
 
     public void render() {
@@ -129,52 +104,7 @@ public class KEntity implements InputProcessor {
         int newX = getX() + dx * K.settings.getGridSize();
         int newY = getY() + dy * K.settings.getGridSize();
 
-        return moveEntityIfPossible(this, newX, newY);
-
-    }
-
-    private boolean moveEntityIfPossible(KEntity entity, int newX, int newY) {
-
-        if (K.runner.gamePaused()) {
-            K.logger.pathfinder(this, "game paused");
-            return false;
-        }
-
-        long millisMovedAgo = K.utils.currentTime() - entity.getLastMove();
-        if (millisMovedAgo < entity.getMaxMoveInterval()) {
-            K.logger.pathfinder(this, "last move was too recent");
-            return false;
-        }
-
-        boolean couldMove = true;
-
-        if (entity.isSolid()) {
-
-            net.sf.jsi.Rectangle newRect = new net.sf.jsi.Rectangle(newX, newY, newX + entity.getWidth() - 1, newY - entity.getHeight() + 1);
-            List<KEntity> overlappingEntities = entity.getRoom().spatialSearchByIntersection(newRect);
-
-            // Get all possible collision targets
-            for (KEntity other : overlappingEntities) {
-                if (other.isSolid() && other.canCollideWith(entity.getClass()) && entity.canCollideWith(other.getClass())) {
-                    if (other != entity) {
-                        couldMove = false;
-                        K.logger.pathfinder(this, "Would collide with entity " + other.getClass().getSimpleName());
-                        entity.onCollide(other);
-                        other.onCollide(entity);
-                    }
-                }
-            }
-        }
-
-        if (couldMove) {
-            K.logger.pathfinder(this, "passed movement rules! going from " + getX() + "," + getY() + " to " + newX + "," + newY);
-            entity.setX(newX);
-            entity.setY(newY);
-            entity.setLastMove(K.utils.currentTime());
-            entity.onMoved();
-        }
-
-        return couldMove;
+        return K.rules.moveEntityIfPossible(this, newX, newY);
 
     }
 
@@ -190,6 +120,7 @@ public class KEntity implements InputProcessor {
         if (x != _x) {
             setLastMove(System.currentTimeMillis());
         }
+
         this._x = x;
         this.updateSpatialMap();
         return this;
@@ -228,60 +159,11 @@ public class KEntity implements InputProcessor {
         this.textureRegion = textureRegion;
         return this;
     }
-    
-    public boolean keyDown(int keycode) {
-        return false;
-    }
-
-    
-    public boolean keyUp(int keycode) {
-        return false;
-    }
-
-    
-    public boolean keyTyped(char character) {
-        return false;
-    }
-
-    
-    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        return false;
-    }
-
-    
-    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        return false;
-    }
-
-    
-    public boolean touchDragged(int screenX, int screenY, int pointer) {
-        return false;
-    }
-
-    
-    public boolean mouseMoved(int screenX, int screenY) {
-        return false;
-    }
-
-    
-    public boolean scrolled(int amount) {
-        return false;
-    }
-
-    
-    public void onCollide(KEntity other) {
-
-    }
 
     public int getWidth() {
         return K.settings.getGridSize();
     }
 
-    public void onMoved() {
-
-    }
-
-    
     public int getHeight() {
         return K.settings.getGridSize();
     }
@@ -292,25 +174,6 @@ public class KEntity implements InputProcessor {
         return this;
     }
 
-    
-    public void createInPlace(Class clazz) {
-        try {
-            KEntity newEntity = (KEntity) clazz.newInstance();
-            newEntity.setX(getX());
-            newEntity.setY(getY());
-            getRoom().getEntities().add(newEntity);
-        } catch (Exception ex) {
-
-        }
-
-    }
-
-    
-    public void addNewEntity(KEntity entity) {
-        getRoom().addNewEntity(entity);
-    }
-
-    
     public void update() {
 
         if (!doneFirstUpdate) {
@@ -365,18 +228,6 @@ public class KEntity implements InputProcessor {
 
     public boolean lastMovedMoreThan(int timeLimit) {
         return K.utils.currentTime() > getLastMove() + timeLimit;
-    }
-
-    public KEntity setParentBody(KEntity parent, int distance, double speedOfRotationAroundParent) {
-        this.parent = parent;
-        this.parentDistance = distance;
-        this.speedOfRotationAroundParent = speedOfRotationAroundParent;
-        return this;
-    }
-
-    public boolean doesContain(Vector3 point) {
-        Rectangle rect = new Rectangle(getX(), getY(), getWidth(), getHeight());
-        return rect.contains(point.x, point.y);
     }
 
     public void lookAtMe() {
@@ -538,10 +389,6 @@ public class KEntity implements InputProcessor {
         }
 
         return pathMap;
-
-    }
-
-    public void firstUpdate() {
 
     }
 
