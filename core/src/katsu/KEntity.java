@@ -28,8 +28,6 @@ public class KEntity extends KEntityBase {
     @Getter @Setter private double radius;
 
     // Movement
-    @Getter @Setter private int velocity = 0;
-    @Getter @Setter private double speedOfRotationAroundParent = 0;
     @Getter @Setter private KDirection facing;
 
     // Appearance
@@ -233,10 +231,6 @@ public class KEntity extends KEntityBase {
             double ry = (double) parentDistance * Math.cos(getRotation() * 0.0174);
             setX(parent.getX() + (int) Math.round(rx));
             setY(parent.getY() + (int) Math.round(ry));
-        }
-
-        if (this.speedOfRotationAroundParent != 0) {
-            rotation += this.speedOfRotationAroundParent;
         }
 
         if (getHealth() <= 0) {
