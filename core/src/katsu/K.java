@@ -12,7 +12,6 @@ public class K {
     public static KResource resource = new KResource();
     public static KUtils utils = new KUtils();
     public static KInput input = new KInput();
-    public static KRules rules = new KRules();
 
     // Provided by implementation
     public static KRunner runner;
