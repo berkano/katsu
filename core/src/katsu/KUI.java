@@ -17,11 +17,11 @@ import java.util.Iterator;
 public class KUI {
 
     BitmapFont font;
-
     public int lineCount = 0;
     public int leftMargin = 768;
     public int topMargin = 0;
     public int fontHeight = 18;
+    public int fontWidth = 18;
     public int lineDisplay = 10;
     public ArrayList<KTextLine> text = new ArrayList<KTextLine>();
 
@@ -40,8 +40,7 @@ public class KUI {
     @Getter @Setter private HashMap<Class, TextureRegion> textureCache = new HashMap<Class, TextureRegion>();
 
     public TextureRegion tileStitch(int x, int y, TiledMapTileLayer tileLayer) {
-        TextureRegion result = tileLayer.getCell(x, y).getTile().getTextureRegion();
-        return result;
+        return tileLayer.getCell(x, y).getTile().getTextureRegion();
     }
 
     public void writeText(String s) {
@@ -78,38 +77,28 @@ public class KUI {
     }
 
     public void render(ArrayList<KRoom> rooms) {
-
         getMainCamera().update();
         getActiveSpriteBatch().setProjectionMatrix(getMainCamera().combined);
         getActiveShapeRenderer().setProjectionMatrix(getMainCamera().combined);
-
         // Clear screen
         Gdx.gl.glClearColor(0f, 0f, 0f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
         getActiveSpriteBatch().begin();
-
         for (KRoom room : rooms) {
             if (room.isActive()) {
                 room.render();
             }
         }
-
         getActiveSpriteBatch().end();
-
         Gdx.gl.glEnable(GL20.GL_BLEND);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-
         getUiShapeRenderer().begin(ShapeRenderer.ShapeType.Filled);
         renderShapes();
         getUiShapeRenderer().end();
-
         Gdx.gl.glDisable(GL20.GL_BLEND);
-
         getUiSpriteBatch().begin();
         renderBitmaps();
         getUiSpriteBatch().end();
-
     }
 
     private void renderShapes() {
@@ -119,31 +108,20 @@ public class KUI {
 
     private void renderHelpShadowBox() {
         if (isShowingHelp()) {
-            
             Color shade = new Color(0, 0, 0, 0.75f);
-
             K.ui.getUiShapeRenderer().setColor(shade);
-
-            float x = fontHeight; // Keep a left border
-            float y = fontHeight; // Keep a bottom border (text.size() - 1)* fontHeight; // Relative from bottom of screen and based on number of lines to display
             float width = K.settings.getHres() - fontHeight * 2; // Keep a right border
             float height = K.settings.getVres()/2 + 224 - fontHeight * 2; // Based on number of lines to display
-
-            K.ui.getUiShapeRenderer().rect(x, y, width, height);
-
+            K.ui.getUiShapeRenderer().rect(fontWidth, fontHeight, width, height);
         }
     }
 
     private void renderBitmaps() {
-
         renderHelpText();
-
         boolean gameIsPaused = K.runner.gamePaused();
-
         if (font == null) {
             loadFont();
         }
-
         // Remove old lines
         Iterator itr = text.iterator();
         while (itr.hasNext()) {
@@ -154,47 +132,33 @@ public class KUI {
                 }
             }
         }
-
         lineCount = lineDisplay - text.size();
-        leftMargin = fontHeight;
+        leftMargin = fontWidth;
         topMargin = 384 - fontHeight * lineDisplay - 4 - 16;
-
-
         for (KTextLine tl : text) {
-
             Color c = Color.WHITE;
             writeln(tl.text, c);
         }
-
         renderTopText();
-
     }
 
     private void renderTopText() {
-
         SpriteBatch batch = K.ui.getUiSpriteBatch();
-
         int yOffset = getWindowHeight();
-
         font.setColor(Color.BLACK);
         font.draw(batch, getTopText(), 4, yOffset - 4);
         font.setColor(Color.WHITE);
         font.draw(batch, getTopText(), 6, yOffset - 6);
-
         font.setColor(Color.BLACK);
         font.draw(batch, getSecondaryText(), 4, yOffset - 4 - 16);
         font.setColor(Color.PINK);
         font.draw(batch, getSecondaryText(), 6, yOffset - 6 - 16);
-
     }
 
     private void renderHelpText() {
-
         if (!isShowingHelp()) return;
-
         topMargin = K.settings.getVres() - fontHeight - 8;
         leftMargin = fontHeight * 2;
-
         for (String s : helpText.split("\n")) {
             writeln(s, Color.WHITE);
         }
@@ -209,34 +173,25 @@ public class KUI {
         return in.substring(0, place).trim() + "\n" + wrap(in.substring(place), len);
     }
 
-
     public void writeln(String s, Color c) {
-
         if (font == null) loadFont();
-
         if (s.startsWith("@")) {
             String[] bits = s.split(" ");
             String colour = bits[0];
             colour = colour.replaceAll("\\@", "");
-
             c = Colors.get(colour);
             s = s.replaceFirst("@"+colour+" ", "");
         }
-
         String wrappedStr = wrap(s, 100);
         String[] lines = wrappedStr.split("\n");
-
         SpriteBatch batch = K.ui.getUiSpriteBatch();
-
         for (int i = 0; i < lines.length; i++) {
             int stringX = leftMargin;
             int stringY = topMargin - fontHeight * (lineCount - 1);
-
             font.setColor(Color.BLACK);
             font.draw(batch, lines[i], stringX + 2, stringY + 2);
             font.setColor(c);
             font.draw(batch, lines[i], stringX, stringY);
-
             lineCount++;
         }
     }
@@ -249,27 +204,20 @@ public class KUI {
         }
     }
 
-    public void initalise() {
-
+    public void initialise() {
         Gdx.graphics.setTitle(K.settings.getGameName() + " :: " + K.settings.getGameAuthor() + " :: " + K.settings.getGameDescription());
-
         setActiveSpriteBatch(new SpriteBatch());
         setActiveShapeRenderer(new ShapeRenderer());
-
         setUiSpriteBatch(new SpriteBatch());
         setUiShapeRenderer(new ShapeRenderer());
-
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
         float viewportSize = 1024;
-
         setMainCamera(new OrthographicCamera(viewportSize, viewportSize * (h / w)));
         getMainCamera().position.set(512, 768 / 2, 0);
         getMainCamera().update();
-
         setUiCamera(new OrthographicCamera(viewportSize, viewportSize * (h / w)));
         getUiCamera().position.set(512, 768 / 2, 0);
         getUiCamera().update();
-
     }
 }

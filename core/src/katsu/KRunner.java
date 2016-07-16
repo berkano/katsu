@@ -27,7 +27,7 @@ public abstract class KRunner implements ApplicationListener, InputProcessor {
 
     @Override
     public void create() {
-        K.ui.initalise();
+        K.ui.initialise();
         K.input.initalise(this);
         rooms = K.runner.getRooms();
         if (rooms == null || rooms.size() <= 0) {
