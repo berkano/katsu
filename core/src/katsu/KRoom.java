@@ -4,6 +4,8 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.math.Rectangle;
 import gnu.trove.procedure.TIntProcedure;
+import lombok.Getter;
+import lombok.Setter;
 import net.sf.jsi.SpatialIndex;
 import net.sf.jsi.rtree.RTree;
 
@@ -14,23 +16,23 @@ import java.util.*;
  */
 public class KRoom implements InputProcessor {
 
-    protected ArrayList<KEntity> entities;
-    protected ArrayList<KEntity> newEntities;
-    private boolean active;
+    @Getter @Setter private boolean active;
+    @Getter @Setter private int fogX = 0;
+    @Getter @Setter private int fogY = 0;
+    @Getter @Setter private int fogRadius = 0;
+    @Getter @Setter private boolean renderFog = false;
+    @Getter @Setter private int gridWidth = 0;
+    @Getter @Setter private int gridHeight = 0;
+    @Getter @Setter private ArrayList<KEntity> entities;
+    @Getter @Setter private ArrayList<KEntity> newEntities;
     private FPSLogger fpsLogger = new FPSLogger();
-    private int fogX = 0;
-    private int fogY = 0;
-    private int fogRadius = 0;
-    private boolean renderFog = false;
-    private int gridWidth = 0;
-    private int gridHeight = 0;
 
     // Spatial indexing of entities
-    SpatialIndex si;
-    int lastID;
-    HashMap<Integer, KEntity> idToEntity;
-    HashMap<Integer, net.sf.jsi.Rectangle> idToRectangle;
-    HashMap<KEntity, Integer> entityToID;
+    private SpatialIndex si;
+    private int lastID;
+    private HashMap<Integer, KEntity> idToEntity;
+    private HashMap<Integer, net.sf.jsi.Rectangle> idToRectangle;
+    private HashMap<KEntity, Integer> entityToID;
 
     public void wipeData() {
         entities = new ArrayList<KEntity>();
@@ -95,55 +97,6 @@ public class KRoom implements InputProcessor {
         setGridWidth(data.getMap().getProperties().get("width", Integer.class));
     }
 
-
-    public boolean isRenderFog() {
-        return renderFog;
-    }
-
-    public void setRenderFog(boolean renderFog) {
-        this.renderFog = renderFog;
-    }
-
-    public int getFogX() {
-        return fogX;
-    }
-
-    public void setFogX(int fogX) {
-        this.fogX = fogX;
-    }
-
-    public int getFogY() {
-        return fogY;
-    }
-
-    public void setFogY(int fogY) {
-        this.fogY = fogY;
-    }
-
-    public int getFogRadius() {
-        return fogRadius;
-    }
-
-    public void setFogRadius(int fogRadius) {
-        this.fogRadius = fogRadius;
-    }
-
-    public int getGridWidth() {
-        return gridWidth;
-    }
-
-    public void setGridWidth(int gridWidth) {
-        this.gridWidth = gridWidth;
-    }
-
-    public int getGridHeight() {
-        return gridHeight;
-    }
-
-    public void setGridHeight(int gridHeight) {
-        this.gridHeight = gridHeight;
-    }
-
     class SaveToListProcedure implements TIntProcedure {
         private List<Integer> ids = new ArrayList<Integer>();
 
@@ -156,8 +109,6 @@ public class KRoom implements InputProcessor {
             return ids;
         }
     };
-
-
 
     public void createInstancesAtAll(Class find, Class toAdd) {
         for (KEntity e : entities) {
@@ -184,7 +135,6 @@ public class KRoom implements InputProcessor {
         return null;
     }
 
-    
     public void start() {
         setActive(true);
         K.input.getMultiplexer().addProcessor(this);
@@ -192,15 +142,6 @@ public class KRoom implements InputProcessor {
         newEntities = new ArrayList<KEntity>();
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    
     public void render() {
 
         if (K.settings.isLogFPS()) {
@@ -264,26 +205,11 @@ public class KRoom implements InputProcessor {
     }
 
     
-    public InputProcessor getInputProcessor() {
-        return this;
-    }
-
-    
-    public void setEntities(ArrayList<KEntity> entities) {
-        this.entities = entities;
-    }
-
-    
-    public ArrayList<KEntity> getEntities() {
-        return entities;
-    }
-
     public KRoom() {
         super();
         wipeData();
     }
 
-    
     public void update() {
         for (KEntity e : entities) {
             boolean canUpdate = true;
@@ -301,25 +227,15 @@ public class KRoom implements InputProcessor {
         }
     }
 
-    
     public void addNewEntity(KEntity entity) {
         entity.setRoom(this);
         newEntities.add(entity);
     }
 
-    
-    public List getNewEntities() {
-        return newEntities;
-    }
-
-    
     public ArrayList<KEntity> findEntitiesAtPoint(int x, int y) {
-
         return findEntitiesAtPoint(entities, x, y);
-
     }
 
-    
     public ArrayList<KEntity> findEntitiesAtPoint(List<KEntity> entities, int x, int y) {
 
         ArrayList<KEntity> result = new ArrayList<KEntity>();
@@ -343,42 +259,28 @@ public class KRoom implements InputProcessor {
 
     }
 
-    
+    // future use
     public boolean keyDown(int keycode) {
         return false;
     }
-
-    
     public boolean keyUp(int keycode) {
         return false;
     }
-
-    
     public boolean keyTyped(char character) {
         return false;
     }
-
-    
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         return false;
     }
-
-    
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         return false;
     }
-
-    
     public boolean touchDragged(int screenX, int screenY, int pointer) {
         return false;
     }
-
-    
     public boolean mouseMoved(int screenX, int screenY) {
         return false;
     }
-
-    
     public boolean scrolled(int amount) {
         return false;
     }
