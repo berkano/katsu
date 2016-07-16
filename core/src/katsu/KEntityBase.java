@@ -8,44 +8,32 @@ import com.badlogic.gdx.InputProcessor;
 public class KEntityBase implements InputProcessor {
 
     // Override these to respond to events fired by framework
-    public void onCollide(KEntity other) {
-    }
-
-    public void onMoved() {
-    }
-
-    public void firstUpdate() {
-    }
+    public void onCollide(KEntity other) {}
+    public void onMoved() {}
+    public void firstUpdate() {}
 
     // Default InputProcessor impl.
     public boolean keyDown(int keycode) {
         return false;
     }
-
     public boolean keyUp(int keycode) {
         return false;
     }
-
     public boolean keyTyped(char character) {
         return false;
     }
-
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         return false;
     }
-
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         return false;
     }
-
     public boolean touchDragged(int screenX, int screenY, int pointer) {
         return false;
     }
-
     public boolean mouseMoved(int screenX, int screenY) {
         return false;
     }
-
     public boolean scrolled(int amount) {
         return false;
     }
