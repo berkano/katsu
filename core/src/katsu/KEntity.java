@@ -207,12 +207,6 @@ public class KEntity extends KEntityBase {
         return K.settings.getGridSize();
     }
 
-    
-    public KEntity setLastMove(long time) {
-        this.lastMove = time;
-        return this;
-    }
-
     public void update() {
 
         if (!doneFirstUpdate) {
@@ -243,22 +237,8 @@ public class KEntity extends KEntityBase {
         return true;
     }
 
-    public KRoom getRoom() {
-        return room;
-    }
-
-    public KEntity setRoom(KRoom room) {
-        this.room = room;
-        return this;
-    }
-
-    
     public void destroy() {
         setDestroyed(true);
-    }
-
-    public long getLastMove() {
-        return lastMove;
     }
 
     public boolean lastMovedMoreThan(int timeLimit) {
