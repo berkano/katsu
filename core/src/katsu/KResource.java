@@ -46,19 +46,12 @@ public class KResource {
     }
 
     public BitmapFont loadBitmapFont(String fntFile, String pngFile) {
-
         return new BitmapFont(Gdx.files.internal(relativeResource(fntFile)), Gdx.files.internal(relativeResource(pngFile)), true);
-
     }
 
     public String loadText(String textName) {
-
         FileHandle textHandle = getResource(relativeResource("text/" + textName));
         return textHandle.readString("UTF-8");
-
     }
-
-
-
 
 }
