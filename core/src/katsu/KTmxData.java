@@ -39,7 +39,6 @@ public class KTmxData {
 
         List<TiledMapTileLayer> layerList = new ArrayList<TiledMapTileLayer>();
 
-
         // In order of instantiation
         layerList.add((TiledMapTileLayer) getMap().getLayers().get("no-populate"));
         layerList.add((TiledMapTileLayer) getMap().getLayers().get("invisible"));
@@ -130,7 +129,6 @@ public class KTmxData {
     public ArrayList<KEntity> getEntities() {
         return entities;
     }
-
 
     public TiledMap getMap() {
         return map;
