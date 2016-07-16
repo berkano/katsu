@@ -45,7 +45,6 @@ public class KRoom implements InputProcessor {
         lastID = 0;
     }
 
-    
     public void updateSpatialMap(KEntity entity) {
         // Remove any existing entries in the index
         Integer id = entityToID.get(entity);
@@ -71,7 +70,6 @@ public class KRoom implements InputProcessor {
 
     
     public List<KEntity> spatialSearchByIntersection(net.sf.jsi.Rectangle rect) {
-
         ArrayList<KEntity> results = new ArrayList<KEntity>();
         SaveToListProcedure myProc = new SaveToListProcedure();
         si.intersects(rect, myProc);
@@ -79,7 +77,6 @@ public class KRoom implements InputProcessor {
             results.add(idToEntity.get(id));
         }
         return results;
-
     }
 
     public void loadRoomFromTMX(String tmxName) {
@@ -121,7 +118,6 @@ public class KRoom implements InputProcessor {
                 } catch (Exception ex) {
 
                 }
-
             }
         }
     }
@@ -204,7 +200,6 @@ public class KRoom implements InputProcessor {
         }
     }
 
-    
     public KRoom() {
         super();
         wipeData();
