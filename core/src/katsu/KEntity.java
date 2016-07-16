@@ -61,7 +61,6 @@ public class KEntity extends KEntityBase {
 
     // To organise
     @Getter @Setter private KRoom room;
-    @Getter @Setter private KEntity parent;
 
     @Getter @Setter private int maxMoveInterval = 0;
 
@@ -218,13 +217,6 @@ public class KEntity extends KEntityBase {
 
         if (needsSpatialUpdate) {
             updateSpatialMap();
-        }
-
-        if (this.parent != null) {
-            double rx = -1 * (double) parentDistance * Math.sin(getRotation() * 0.0174);
-            double ry = (double) parentDistance * Math.cos(getRotation() * 0.0174);
-            setX(parent.getX() + (int) Math.round(rx));
-            setY(parent.getY() + (int) Math.round(ry));
         }
 
         if (getHealth() <= 0) {
