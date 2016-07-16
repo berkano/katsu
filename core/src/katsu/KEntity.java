@@ -336,16 +336,14 @@ public class KEntity extends KEntityBase {
         return null;
     }
 
-    public KDirection doPathFinding(int targetGridX, int targetGridY) {
+    public KDirection doPathFinding(int endX, int endY) {
 
-        GridMap pathMap = createPathMap(targetGridX, targetGridY);
+        GridMap pathMap = createPathMap(endX, endY);
 
         GridPathfinding gridPathfinding = new GridPathfinding();
 
         int startX = getGridX();
         int startY = getGridY();
-        int endX = targetGridX;
-        int endY = targetGridY;
 
         int suggestedDx = 0;
         int suggestedDy = 0;
@@ -368,9 +366,7 @@ public class KEntity extends KEntityBase {
 
         }
 
-        KDirection suggested = KDirection.fromDelta(suggestedDx, suggestedDy);
-        return suggested;
-
+        return KDirection.fromDelta(suggestedDx, suggestedDy);
     }
 
     private GridMap createPathMap(int targetGridX, int targetGridY) {
