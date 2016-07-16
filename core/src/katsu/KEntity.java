@@ -23,9 +23,6 @@ public class KEntity extends KEntityBase {
     private int _y;
     @Getter @Setter private int dx = 0;
     @Getter @Setter private int dy = 0;
-    @Getter @Setter private double rotation = 0;
-    @Getter @Setter private int parentDistance;
-    @Getter @Setter private double radius;
 
     // Movement
     @Getter @Setter private KDirection facing;
@@ -224,7 +221,6 @@ public class KEntity extends KEntityBase {
         }
     }
 
-    
     public boolean canCollideWith(Class clazz) {
         return true;
     }
