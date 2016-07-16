@@ -19,97 +19,32 @@ public class KUI {
     BitmapFont font;
 
     public int lineCount = 0;
-    public int cx = 24;
-    public int cy = 24;
     public int leftMargin = 768;
     public int topMargin = 0;
     public int fontHeight = 18;
     public int lineDisplay = 10;
-    public boolean showHealth = true;
-    public int healthBarSize = 2;
-
     public ArrayList<KTextLine> text = new ArrayList<KTextLine>();
-    private boolean showingHelp = false;
-    private String helpText = "No help text provided";
 
-    private String topText = "";
-    private String secondaryText = "";
-
-    private SpriteBatch activeSpriteBatch;
-    private ShapeRenderer activeShapeRenderer;
-    private SpriteBatch uiSpriteBatch;
-
+    @Getter @Setter private boolean showingHelp = false;
+    @Getter @Setter private String helpText = "No help text provided";
+    @Getter @Setter private String topText = "";
+    @Getter @Setter private String secondaryText = "";
+    @Getter @Setter private SpriteBatch activeSpriteBatch;
+    @Getter @Setter private ShapeRenderer activeShapeRenderer;
+    @Getter @Setter private SpriteBatch uiSpriteBatch;
     @Getter @Setter private int windowWidth;
     @Getter @Setter private int windowHeight;
-
-    public SpriteBatch getActiveSpriteBatch() {
-        return activeSpriteBatch;
-    }
-
-    public void setActiveSpriteBatch(SpriteBatch activeSpriteBatch) {
-        this.activeSpriteBatch = activeSpriteBatch;
-    }
-
-    public ShapeRenderer getActiveShapeRenderer() {
-        return activeShapeRenderer;
-    }
-
-    public void setActiveShapeRenderer(ShapeRenderer activeShapeRenderer) {
-        this.activeShapeRenderer = activeShapeRenderer;
-    }
-
-    public SpriteBatch getUiSpriteBatch() {
-        return uiSpriteBatch;
-    }
-
-    public void setUiSpriteBatch(SpriteBatch uiSpriteBatch) {
-        this.uiSpriteBatch = uiSpriteBatch;
-    }
-
-    public ShapeRenderer getUiShapeRenderer() {
-        return uiShapeRenderer;
-    }
-
-    public void setUiShapeRenderer(ShapeRenderer uiShapeRenderer) {
-        this.uiShapeRenderer = uiShapeRenderer;
-    }
-
-    public Camera getUiCamera() {
-        return uiCamera;
-    }
-
-    public void setUiCamera(Camera uiCamera) {
-        this.uiCamera = uiCamera;
-    }
-
-    public Camera getMainCamera() {
-        return mainCamera;
-    }
-
-    public void setMainCamera(Camera mainCamera) {
-        this.mainCamera = mainCamera;
-    }
-
-    private ShapeRenderer uiShapeRenderer;
-    private Camera uiCamera;
-    private Camera mainCamera;
-
-
-    private HashMap<Class, TextureRegion> textureCache = new HashMap<Class, TextureRegion>();
+    @Getter @Setter private ShapeRenderer uiShapeRenderer;
+    @Getter @Setter private Camera uiCamera;
+    @Getter @Setter private Camera mainCamera;
+    @Getter @Setter private HashMap<Class, TextureRegion> textureCache = new HashMap<Class, TextureRegion>();
 
     public TextureRegion tileStitch(int x, int y, TiledMapTileLayer tileLayer) {
-
         TextureRegion result = tileLayer.getCell(x, y).getTile().getTextureRegion();
         return result;
-
-    }
-
-    public HashMap<Class, TextureRegion> getTextureCache() {
-        return textureCache;
     }
 
     public void writeText(String s) {
-
         if (text.size() >= lineDisplay) {
             text.remove(0);
         }
@@ -304,53 +239,6 @@ public class KUI {
 
             lineCount++;
         }
-    }
-
-    public void drawString(String s, Color c, int x, int y, SpriteBatch batch) {
-
-        if (font == null) {
-            loadFont();
-        }
-
-        font.setColor(c);
-        font.draw(batch, s, x, y);
-    }
-
-    public void modalDialog(String s) {
-        writeText("@BLUE " + s);
-
-    }
-
-    public boolean isShowingHelp() {
-        return showingHelp;
-    }
-
-    public void setShowingHelp(boolean showingHelp) {
-        this.showingHelp = showingHelp;
-    }
-
-    public String getHelpText() {
-        return helpText;
-    }
-
-    public void setHelpText(String helpText) {
-        this.helpText = helpText;
-    }
-
-    public String getTopText() {
-        return topText;
-    }
-
-    public void setTopText(String topText) {
-        this.topText = topText;
-    }
-
-    public void setSecondaryText(String secondaryText) {
-        this.secondaryText = secondaryText;
-    }
-
-    public String getSecondaryText() {
-        return secondaryText;
     }
 
     public void toggleFullScreenMode() {
