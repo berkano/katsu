@@ -19,8 +19,8 @@ import java.util.List;
 public class KEntity extends KEntityBase {
 
     // Spatial
-    private int _x;
-    private int _y;
+    private int x;
+    private int y;
     @Getter @Setter private int dx = 0;
     @Getter @Setter private int dy = 0;
 
@@ -106,11 +106,11 @@ public class KEntity extends KEntityBase {
 
     public KEntity setX(int x) {
 
-        if (x != _x) {
+        if (x != this.x) {
             setLastMove(System.currentTimeMillis());
         }
 
-        this._x = x;
+        this.x = x;
         this.updateSpatialMap();
         return this;
 
@@ -128,20 +128,20 @@ public class KEntity extends KEntityBase {
     }
 
     public int getX() {
-        return _x;
+        return x;
     }
 
     public KEntity setY(int y) {
-        if (y != _y) {
+        if (y != this.y) {
             setLastMove(System.currentTimeMillis());
         }
-        this._y = y;
+        this.y = y;
         this.updateSpatialMap();
         return this;
     }
     
     public int getY() {
-        return _y;
+        return y;
     }
 
     public int getWidth() {
