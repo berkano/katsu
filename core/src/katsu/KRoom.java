@@ -94,6 +94,30 @@ public class KRoom implements InputProcessor {
         setGridWidth(data.getMap().getProperties().get("width", Integer.class));
     }
 
+    public KEntity nearestEntityOf(Class clazz, KEntity toEntity) {
+
+        KEntity result = null;
+
+        long nearestDistance = 99999999;
+
+        List<KEntity> entities = getEntities();
+        for (KEntity e : entities) {
+            if (clazz.isInstance(e)) {
+
+                int dx = Math.abs(toEntity.getX() - e.getX());
+                int dy = Math.abs(toEntity.getY() - e.getY());
+                long dist = Math.round(Math.sqrt(dx * dx + dy * dy));
+                if (dist < nearestDistance) {
+                    nearestDistance = dist;
+                    result = e;
+                }
+            }
+        }
+
+        return result;
+
+    }
+
     class SaveToListProcedure implements TIntProcedure {
         private List<Integer> ids = new ArrayList<Integer>();
 

@@ -1,13 +1,5 @@
 package katsu;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector3;
-import ext.pathfinding.grid.GridLocation;
-import ext.pathfinding.grid.GridMap;
-import ext.pathfinding.grid.GridPath;
-import ext.pathfinding.grid.GridPathfinding;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,8 +11,8 @@ import java.util.List;
 public class KEntity extends KEntityBase {
 
     // Spatial
-    private int x;
-    private int y;
+    @Getter private int x;
+    @Getter private int y;
     @Getter @Setter private int dx = 0;
     @Getter @Setter private int dy = 0;
 
@@ -63,7 +55,7 @@ public class KEntity extends KEntityBase {
         appearance.render();
     }
 
-    public boolean moveEntityIfPossible(KEntity entity, int newX, int newY) {
+    public boolean tryMove(KEntity entity, int newX, int newY) {
 
         if (K.runner.gamePaused()) {
             return false;
@@ -74,7 +66,7 @@ public class KEntity extends KEntityBase {
             return false;
         }
 
-        boolean couldMove = true;
+        boolean collisionDetected = false;
 
         if (entity.isSolid()) {
 
@@ -85,7 +77,7 @@ public class KEntity extends KEntityBase {
             for (KEntity other : overlappingEntities) {
                 if (other.isSolid() && other.canCollideWith(entity.getClass()) && entity.canCollideWith(other.getClass())) {
                     if (other != entity) {
-                        couldMove = false;
+                        collisionDetected = true;
                         entity.onCollide(other);
                         other.onCollide(entity);
                     }
@@ -93,15 +85,15 @@ public class KEntity extends KEntityBase {
             }
         }
 
-        if (couldMove) {
+        if (collisionDetected) {
+            return false;
+        } else {
             entity.setX(newX);
             entity.setY(newY);
             entity.setLastMove(K.utils.currentTime());
             entity.onMoved();
+            return true;
         }
-
-        return couldMove;
-
     }
 
     public KEntity setX(int x) {
@@ -127,10 +119,6 @@ public class KEntity extends KEntityBase {
 
     }
 
-    public int getX() {
-        return x;
-    }
-
     public KEntity setY(int y) {
         if (y != this.y) {
             setLastMove(System.currentTimeMillis());
@@ -140,10 +128,6 @@ public class KEntity extends KEntityBase {
         return this;
     }
     
-    public int getY() {
-        return y;
-    }
-
     public int getWidth() {
         return K.settings.getGridSize();
     }
@@ -170,6 +154,7 @@ public class KEntity extends KEntityBase {
         }
     }
 
+    // Intended to be overridden for special collision behaviour.
     public boolean canCollideWith(Class clazz) {
         return true;
     }
@@ -202,7 +187,7 @@ public class KEntity extends KEntityBase {
         setFacing(direction);
         getAppearance().setSpriteForDirection(direction);
 
-        if (getGrid().move(direction.getDx(), direction.getDy())) {
+        if (getGrid().tryMove(direction.getDx(), direction.getDy())) {
             result = true;
         }
 
@@ -210,27 +195,7 @@ public class KEntity extends KEntityBase {
     }
 
     public KEntity nearestEntityOf(Class clazz) {
-
-        KEntity result = null;
-
-        long nearestDistance = 99999999;
-
-        List<KEntity> entities = getRoom().getEntities();
-        for (KEntity e : entities) {
-            if (clazz.isInstance(e)) {
-
-                int dx = Math.abs(getX() - e.getX());
-                int dy = Math.abs(getY() - e.getY());
-                long dist = Math.round(Math.sqrt(dx * dx + dy * dy));
-                if (dist < nearestDistance) {
-                    nearestDistance = dist;
-                    result = e;
-                }
-            }
-        }
-
-        return result;
-
+        return getRoom().nearestEntityOf(clazz, this);
     }
 
 }

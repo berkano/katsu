@@ -24,12 +24,12 @@ public class KGrid {
         return entity.getY() / K.settings.getGridSize();
     }
 
-    public boolean move(int dx, int dy) {
+    public boolean tryMove(int dx, int dy) {
 
         int newX = getX() + dx * K.settings.getGridSize();
         int newY = getY() + dy * K.settings.getGridSize();
 
-        return entity.moveEntityIfPossible(entity, newX, newY);
+        return entity.tryMove(entity, newX, newY);
 
     }
 
