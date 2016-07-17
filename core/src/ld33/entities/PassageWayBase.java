@@ -14,7 +14,7 @@ public class PassageWayBase extends KEntity {
 
     public PassageWayBase() {
         super();
-        this.setZLayer(5);
+        this.getAppearance().setZLayer(5);
     }
 
     @Override

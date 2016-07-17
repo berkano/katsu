@@ -7,8 +7,8 @@ public class Water extends LD34EntityBase {
 
     public Water() {
         super();
-        juiceMySprite(0.1f);
-        setZLayer(-100);
+        getAppearance().juiceMySprite(0.1f);
+        getAppearance().setZLayer(-100);
     }
 
 }

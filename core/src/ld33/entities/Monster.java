@@ -22,10 +22,10 @@ public class Monster extends MobBase {
     public Monster() {
         super();
         this.setSolid(true);
-        this.setRotateSpriteOnMove(false);
-        this.setFlipSpriteOnMove(true);
+        this.getAppearance().setRotateSpriteOnMove(false);
+        this.getAppearance().setFlipSpriteOnMove(true);
         this.setMaxMoveInterval(75);
-        this.setZLayer(100);
+        this.getAppearance().setZLayer(100);
         getStats().jumpToLevel(1);
 
     }
@@ -42,9 +42,9 @@ public class Monster extends MobBase {
     @Override
     public void render() {
         if (looksHuman) {
-            setTextureRegion(K.ui.getTextureCache().get(Human.class));
+            getAppearance().setTextureRegion(K.ui.getTextureCache().get(Human.class));
         } else {
-            setTextureRegion(K.ui.getTextureCache().get(Monster.class));
+            getAppearance().setTextureRegion(K.ui.getTextureCache().get(Monster.class));
         }
         lookAtMe();
         super.render();

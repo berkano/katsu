@@ -96,16 +96,16 @@ public class Snowman extends LD34EntityBase {
 
         super();
         setSolid(true);
-        setRotateSpriteOnMove(false);
-        setFlipSpriteOnMove(true);
+        getAppearance().setRotateSpriteOnMove(false);
+        getAppearance().setFlipSpriteOnMove(true);
         setMaxMoveInterval(100);
-        setZLayer(100);
+        getAppearance().setZLayer(100);
 
     }
 
     @Override
     public void firstUpdate() {
-        setTextureFrom(Tree.class);
+        getAppearance().setTextureFrom(Tree.class);
     }
 
     @Override
@@ -323,9 +323,9 @@ public class Snowman extends LD34EntityBase {
                 LD34Sounds.gone_wrong.play();
             }
             stage = shouldBe;
-            if (stage == Stage.normal) setTextureFrom(Snowman.class);
-            if (stage == Stage.gold) setTextureFrom(SnowmanGold.class);
-            if (stage == Stage.scarf) setTextureFrom(SnowmanScarf.class);
+            if (stage == Stage.normal) getAppearance().setTextureFrom(Snowman.class);
+            if (stage == Stage.gold) getAppearance().setTextureFrom(SnowmanGold.class);
+            if (stage == Stage.scarf) getAppearance().setTextureFrom(SnowmanScarf.class);
         }
 
         // check win state

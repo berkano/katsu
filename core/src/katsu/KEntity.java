@@ -28,14 +28,7 @@ public class KEntity extends KEntityBase {
     @Getter @Setter private KDirection facing;
 
     // Appearance
-    private TextureRegion textureRegion;
-    @Getter @Setter private Sprite sprite;
-    @Getter @Setter private int spriteRotation = 0;
-    @Getter @Setter private float spriteScale = 1.0f;
-    @Getter @Setter private boolean flipSpriteOnMove = false;
-    @Getter @Setter private boolean spriteFlip = false;
-    @Getter @Setter private boolean rotateSpriteOnMove = true;
-    @Getter @Setter private int zLayer = 0;
+    @Getter @Setter private KAppearance appearance = new KAppearance(this);
 
     // Physical
     @Getter @Setter private boolean solid;
@@ -74,23 +67,7 @@ public class KEntity extends KEntityBase {
     }
 
     public void render() {
-
-        if (textureRegion == null) {
-            textureRegion = K.ui.getTextureCache().get(this.getClass());
-        }
-
-        float xScale = spriteScale;
-        float yScale = spriteScale;
-        if (isSpriteFlip()) {
-            xScale = -xScale;
-        }
-        K.ui.getActiveSpriteBatch().draw(
-                textureRegion,
-                getX(), getY(), getWidth() / 2, getHeight() / 2,
-                getWidth(), getHeight(),
-                xScale, yScale, (float) spriteRotation
-        );
-
+        appearance.render();
     }
 
     public boolean moveGrid(int dx, int dy) {
@@ -143,13 +120,6 @@ public class KEntity extends KEntityBase {
 
     }
 
-    public void juiceMySprite(float juiceiness) {
-
-        this.setSpriteRotation(K.random.nextInt(4) * 90 + K.random.nextInt(15) - 7);
-        this.setSpriteScale(K.random.nextFloat() * juiceiness + 1.0f + juiceiness);
-
-    }
-    
     public KEntity setX(int x) {
 
         if (x != _x) {
@@ -188,11 +158,6 @@ public class KEntity extends KEntityBase {
     
     public int getY() {
         return _y;
-    }
-
-    public KEntity setTextureRegion(TextureRegion textureRegion) {
-        this.textureRegion = textureRegion;
-        return this;
     }
 
     public int getWidth() {
@@ -251,18 +216,7 @@ public class KEntity extends KEntityBase {
         boolean result = false;
 
         setFacing(direction);
-
-        if (isRotateSpriteOnMove()) {
-            setSpriteRotation(direction.getRotation());
-        }
-        if (isFlipSpriteOnMove()) {
-            if (direction.equals(KDirection.LEFT)) {
-                setSpriteFlip(true);
-            }
-            if (direction.equals(KDirection.RIGHT)) {
-                setSpriteFlip(false);
-            }
-        }
+        appearance.setSpriteForDirection(direction);
 
         if (moveGrid(direction.getDx(), direction.getDy())) {
             result = true;
@@ -390,10 +344,5 @@ public class KEntity extends KEntityBase {
         return pathMap;
 
     }
-
-    public void setTextureFrom(Class clazz) {
-        setTextureRegion(K.ui.getTextureCache().get(clazz));
-    }
-
 
 }

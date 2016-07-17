@@ -8,7 +8,7 @@ public class Land extends LD34EntityBase {
     public Land() {
         super();
         setSolid(true);
-        juiceMySprite(0.1f);
+        getAppearance().juiceMySprite(0.1f);
     }
 
 }

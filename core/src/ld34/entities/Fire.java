@@ -13,7 +13,7 @@ public class Fire extends LD34EntityBase {
     long lastTriedToSpreadFire = K.utils.currentTime();
 
     public Fire() {
-        setZLayer(5);
+        getAppearance().setZLayer(5);
     }
 
     @Override
@@ -27,9 +27,9 @@ public class Fire extends LD34EntityBase {
 
         if (K.random.nextInt(5) == 0) {
             if (K.random.nextBoolean()) {
-                setSpriteFlip(true);
+                getAppearance().setSpriteFlip(true);
             } else {
-                setSpriteFlip(false);
+                getAppearance().setSpriteFlip(false);
             }
         }
 

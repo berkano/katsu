@@ -86,16 +86,16 @@ public class Tree extends LD34EntityBase {
 
         this.stage = stage;
         if (stage == Stage.sapling) {
-            setTextureRegion(K.ui.getTextureCache().get(Sapling.class));
+            getAppearance().setTextureRegion(K.ui.getTextureCache().get(Sapling.class));
         }
         if (stage == Stage.small) {
-            setTextureRegion(K.ui.getTextureCache().get(TreeSmall.class));
+            getAppearance().setTextureRegion(K.ui.getTextureCache().get(TreeSmall.class));
         }
         if (stage == Stage.medium) {
-            setTextureRegion(K.ui.getTextureCache().get(TreeMedium.class));
+            getAppearance().setTextureRegion(K.ui.getTextureCache().get(TreeMedium.class));
         }
         if (stage == Stage.large) {
-            setTextureRegion(K.ui.getTextureCache().get(TreeLarge.class));
+            getAppearance().setTextureRegion(K.ui.getTextureCache().get(TreeLarge.class));
         }
 
         age = stage.beginsAt;

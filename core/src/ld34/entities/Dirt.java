@@ -7,8 +7,8 @@ public class Dirt extends LD34EntityBase {
 
     public Dirt() {
         super();
-        juiceMySprite(0.1f);
-        setZLayer(-100);
+        getAppearance().juiceMySprite(0.1f);
+        getAppearance().setZLayer(-100);
     }
 
 }

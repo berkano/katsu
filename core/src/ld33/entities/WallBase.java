@@ -11,8 +11,8 @@ public class WallBase extends KEntity {
     public WallBase() {
         super();
         this.setSolid(true);
-        this.setSpriteRotation(K.random.nextInt(4) * 90 + K.random.nextInt(6) - 3);
-        this.setSpriteScale(K.random.nextFloat() * 0.1f + 1.0f);
+        this.getAppearance().setSpriteRotation(K.random.nextInt(4) * 90 + K.random.nextInt(6) - 3);
+        this.getAppearance().setSpriteScale(K.random.nextFloat() * 0.1f + 1.0f);
 
     }
 }
