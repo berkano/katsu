@@ -26,6 +26,7 @@ public class KEntity extends KEntityBase {
 
     // Movement
     @Getter @Setter private KDirection facing;
+    @Getter @Setter private KGrid grid = new KGrid(this);
 
     // Appearance
     @Getter @Setter private KAppearance appearance = new KAppearance(this);
@@ -58,25 +59,8 @@ public class KEntity extends KEntityBase {
     @Getter @Setter private int health = 100;
     @Getter @Setter private int maxHealth = 100;
 
-    public int getGridY() {
-        return getY() / getHeight();
-    }
-
-    public int getGridX() {
-        return getX() / getWidth();
-    }
-
     public void render() {
         appearance.render();
-    }
-
-    public boolean moveGrid(int dx, int dy) {
-
-        int newX = getX() + dx * K.settings.getGridSize();
-        int newY = getY() + dy * K.settings.getGridSize();
-
-        return moveEntityIfPossible(this, newX, newY);
-
     }
 
     public boolean moveEntityIfPossible(KEntity entity, int newX, int newY) {
@@ -216,9 +200,9 @@ public class KEntity extends KEntityBase {
         boolean result = false;
 
         setFacing(direction);
-        appearance.setSpriteForDirection(direction);
+        getAppearance().setSpriteForDirection(direction);
 
-        if (moveGrid(direction.getDx(), direction.getDy())) {
+        if (getGrid().move(direction.getDx(), direction.getDy())) {
             result = true;
         }
 
@@ -246,102 +230,6 @@ public class KEntity extends KEntityBase {
         }
 
         return result;
-
-    }
-
-    public void setGridX(int gridX) {
-        setX(gridX * K.settings.getGridSize());
-    }
-
-    public void setGridY(int gridY) {
-        setY(gridY * K.settings.getGridSize());
-    }
-
-    public boolean gridIsEmpty(int gridX, int gridY) {
-
-        List<KEntity> entities = getRoom().findEntitiesAtPoint(gridX * K.settings.getGridSize(), gridY * K.settings.getGridSize());
-        for (KEntity e : entities) {
-            if (e.getGridX() == gridX) {
-                if (e.getGridY() == gridY) {
-
-                    if (e.isSolid()) {
-                        K.logger.trace("grid is not empty due to " + e.getClass().getSimpleName());
-
-                        return false;
-                    }
-                }
-            }
-        }
-        return true;
-    }
-
-    public KEntity findFirstEntityOnGrid(Class clazz, int gridX, int gridY) {
-        if (clazz == null) {
-            throw new RuntimeException("Null class provided to findFirstEntityOnGrid");
-        }
-        List<KEntity> entities = getRoom().findEntitiesAtPoint(gridX * K.settings.getGridSize(), gridY * K.settings.getGridSize());
-        for (KEntity e : entities) {
-            if (e.getGridX() == gridX) {
-                if (e.getGridY() == gridY) {
-                    if (clazz.isInstance(e)) return e;
-                }
-            }
-        }
-        return null;
-    }
-
-    public KDirection doPathFinding(int endX, int endY) {
-
-        GridMap pathMap = createPathMap(endX, endY);
-
-        GridPathfinding gridPathfinding = new GridPathfinding();
-
-        int startX = getGridX();
-        int startY = getGridY();
-
-        int suggestedDx = 0;
-        int suggestedDy = 0;
-
-        K.logger.pathfinder(this, "get path from " + startX + "," + startY + " to " + endX + "," + endY);
-
-        GridLocation start = new GridLocation(startX, startY, false);
-        GridLocation end = new GridLocation(endX, endY, true);
-        GridPath gridPath = gridPathfinding.getPath(start, end, pathMap);
-
-        if (gridPath != null) {
-            if (gridPath.getList().size() > 1) {
-                GridLocation nextMove = gridPath.getList().get(gridPath.getList().size() - 2); // last entry?
-                if (nextMove != null) {
-                    suggestedDx = nextMove.getX() - getGridX();
-                    suggestedDy = nextMove.getY() - getGridY();
-                    K.logger.pathfinder(this, "pathfinder suggests delta of " + suggestedDx + "," + suggestedDy);
-                }
-            }
-
-        }
-
-        return KDirection.fromDelta(suggestedDx, suggestedDy);
-    }
-
-    private GridMap createPathMap(int targetGridX, int targetGridY) {
-
-        GridMap pathMap = new GridMap(getRoom().getGridWidth(), getRoom().getGridHeight());
-
-        for (KEntity e : getRoom().getEntities()) {
-            if (e == this) continue;
-            if (!(e.isSolid())) continue;
-
-            int cellX = e.getGridX();
-            int cellY = e.getGridY();
-
-            if (cellX == targetGridX && cellY == targetGridY) continue; // allow attempted path finds up to the target
-
-            if (cellX >= 0 && cellY >= 0 && cellX <= 100 && cellY <= 100) {
-                pathMap.set(cellX, cellY, GridMap.WALL);
-            }
-        }
-
-        return pathMap;
 
     }
 

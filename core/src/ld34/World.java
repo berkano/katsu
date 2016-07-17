@@ -192,8 +192,8 @@ public class World extends KRoom {
 
         for (KEntity e : entities) {
 
-            lastClickedX = e.getGridX();
-            lastClickedY = e.getGridY();
+            lastClickedX = e.getGrid().getX();
+            lastClickedY = e.getGrid().getY();
 
             K.logger.trace("There is a " + e.getClass().getSimpleName() + " at this point");
             if (e instanceof Tree) {

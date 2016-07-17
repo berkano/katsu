@@ -86,8 +86,8 @@ public class Monster extends MobBase {
             if (wantsPathFind) {
 
                 MobBase mob = (MobBase) e;
-                int dx = getGridX() - e.getGridX();
-                int dy = getGridY() - e.getGridY();
+                int dx = getGrid().getX() - e.getGrid().getX();
+                int dy = getGrid().getY() - e.getGrid().getY();
 
                 if (Math.abs(dx) <= pfDistance && Math.abs(dy) <= pfDistance) {
 
@@ -98,21 +98,21 @@ public class Monster extends MobBase {
 
                     if (isLooksHuman()) break;
 
-                    GridLocation end = new GridLocation(e.getGridX(), e.getGridY(), true);
-                    GridLocation start = new GridLocation(this.getGridX(), this.getGridY(), false);
+                    GridLocation end = new GridLocation(e.getGrid().getX(), e.getGrid().getY(), true);
+                    GridLocation start = new GridLocation(this.getGrid().getX(), this.getGrid().getY(), false);
                     GridPath gridPath = gridPathfinding.getPath(start, end, pathMap);
 
                     if (gridPath != null) {
                         GridLocation nextMove = gridPath.getNextMove(); // pop the current location
                         if (nextMove != null) nextMove = gridPath.getNextMove(); // next place
                         if (nextMove != null) {
-                            if (nextMove.getX() < e.getGridX())
+                            if (nextMove.getX() < e.getGrid().getX())
                                 mob.setPathFinderNextDirection(KDirection.LEFT);
-                            if (nextMove.getX() > e.getGridX())
+                            if (nextMove.getX() > e.getGrid().getX())
                                 mob.setPathFinderNextDirection(KDirection.RIGHT);
-                            if (nextMove.getY() < e.getGridY())
+                            if (nextMove.getY() < e.getGrid().getY())
                                 mob.setPathFinderNextDirection(KDirection.DOWN);
-                            if (nextMove.getY() > e.getGridY()) mob.setPathFinderNextDirection(KDirection.UP);
+                            if (nextMove.getY() > e.getGrid().getY()) mob.setPathFinderNextDirection(KDirection.UP);
                         }
                     }
                 }
@@ -130,8 +130,8 @@ public class Monster extends MobBase {
             if (e instanceof MobBase) continue;
             if (!(e.isSolid())) continue;
 
-                int cellX = e.getGridX();
-                int cellY = e.getGridY();
+                int cellX = e.getGrid().getX();
+                int cellY = e.getGrid().getY();
 
                 if (cellX >= 0 && cellY >= 0 && cellX <= 100 && cellY <= 100) {
                     pathMap.set(cellX, cellY, GridMap.WALL);

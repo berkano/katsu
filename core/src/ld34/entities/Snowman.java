@@ -126,7 +126,7 @@ public class Snowman extends LD34EntityBase {
             return;
         }
 
-        KDirection suggestedDirection = doPathFinding(targetGridX, targetGridY);
+        KDirection suggestedDirection = getGrid().doPathFinding(targetGridX, targetGridY);
         if (suggestedDirection != null) {
             nextDX = suggestedDirection.getDx();
             nextDY = suggestedDirection.getDy();
@@ -138,7 +138,7 @@ public class Snowman extends LD34EntityBase {
             if (nextDX != 0 || nextDY != 0) {
                 boolean almostThere = false;
                 // if our action should be performed adjacent to the target, don't go all the way there.
-                if (getGridX() + nextDX == targetGridX && getGridY() + nextDY == targetGridY) {
+                if (getGrid().getX() + nextDX == targetGridX && getGrid().getY() + nextDY == targetGridY) {
                     almostThere = true;
                 }
                 boolean goneFarEnough = false;
@@ -168,8 +168,8 @@ public class Snowman extends LD34EntityBase {
             }
 
             // If we have an action and a target then check if we're adjacent and do it
-            int dx = targetGridX - getGridX();
-            int dy = targetGridY - getGridY();
+            int dx = targetGridX - getGrid().getX();
+            int dy = targetGridY - getGrid().getY();
             boolean adjacent = false;
 
             if ((Math.abs(dx) <= 1) && (Math.abs(dy) <= 1)) {
@@ -184,7 +184,7 @@ public class Snowman extends LD34EntityBase {
 
             if (adjacent) {
                 if (targetAction == Action.CHOP) {
-                    Tree toChop = (Tree) findFirstEntityOnGrid(Tree.class, targetGridX, targetGridY);
+                    Tree toChop = (Tree) getGrid().findFirstEntity(Tree.class, targetGridX, targetGridY);
                     if (toChop != null) {
 //                        K.ui.writeText("Choppy chop!");
                         LD34Sounds.chop.play();
@@ -212,7 +212,7 @@ public class Snowman extends LD34EntityBase {
                         toChop.destroy();
 
                         // put out le fires
-                        Fire toPutOut = (Fire)findFirstEntityOnGrid(Fire.class, targetGridX, targetGridY);
+                        Fire toPutOut = (Fire)getGrid().findFirstEntity(Fire.class, targetGridX, targetGridY);
                         if (toPutOut != null) {
                             toPutOut.destroy();
                         }
@@ -224,25 +224,25 @@ public class Snowman extends LD34EntityBase {
 
                     boolean hasGrass = false;
                     // only allow planting where there is Grass
-                    if (findFirstEntityOnGrid(Grass.class,targetGridX, targetGridY) != null) {
+                    if (getGrid().findFirstEntity(Grass.class,targetGridX, targetGridY) != null) {
                         hasGrass = true;
                     }
 
-                    if (gridIsEmpty(targetGridX, targetGridY) && hasGrass) {
+                    if (getGrid().isEmpty(targetGridX, targetGridY) && hasGrass) {
 
                         if (money >= 1) {
 
                             Tree sapling = new Tree();
-                            sapling.setGridX(targetGridX);
-                            sapling.setGridY(targetGridY);
+                            sapling.getGrid().setX(targetGridX);
+                            sapling.getGrid().setY(targetGridY);
                             sapling.setStage(Tree.Stage.sapling);
                             getRoom().addNewEntity(sapling);
 //                            K.ui.writeText("Planty plant!");
                             LD34Sounds.plant.play();
 
                             // don't let snowman be on top of tree
-                            targetGridX = getGridX();
-                            targetGridY = getGridY();
+                            targetGridX = getGrid().getX();
+                            targetGridY = getGrid().getY();
                             money = money - 1;
                         } else {
                             K.ui.writeText("I don't have enough money :-( I need £1. I'd better go chop some trees!");
@@ -258,7 +258,7 @@ public class Snowman extends LD34EntityBase {
 
                 }
                 if (targetAction == Action.BUY_LAND) {
-                    Land land = (Land) findFirstEntityOnGrid(Land.class, targetGridX, targetGridY);
+                    Land land = (Land) getGrid().findFirstEntity(Land.class, targetGridX, targetGridY);
                     if (land == null) {
                         K.ui.writeText("There's no land to buy here :-(");
                         LD34Sounds.gone_wrong.play();

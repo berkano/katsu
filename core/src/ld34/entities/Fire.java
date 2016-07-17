@@ -52,8 +52,8 @@ public class Fire extends LD34EntityBase {
 
             for (KDirection direction : KDirection.values()) {
 
-                Tree burnyFriend = (Tree)findFirstEntityOnGrid(Tree.class,
-                        getGridX() + direction.getDx(), getGridY() + direction.getDy());
+                Tree burnyFriend = (Tree)getGrid().findFirstEntity(Tree.class,
+                        getGrid().getX() + direction.getDx(), getGrid().getY() + direction.getDy());
 
                 if (burnyFriend != null) {
                     burnyFriend.setOnFire();
