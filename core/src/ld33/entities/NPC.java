@@ -92,13 +92,13 @@ public class NPC extends MobBase {
 
         if (getPathFinderNextDirection() != null) {
             didLastPathFind = K.utils.currentTime();
-            moveRequested(getPathFinderNextDirection());
+            tryMove(getPathFinderNextDirection());
             hasDoneFirstPathFind = true;
             setPathFinderNextDirection(null);
         } else {
             // Don't start moving randomly until we have at least been in range of the player
             if (hasDoneFirstPathFind) {
-                moveRequested(KDirection.random());
+                tryMove(KDirection.random());
             }
         }
 

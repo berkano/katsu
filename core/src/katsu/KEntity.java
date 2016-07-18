@@ -172,11 +172,11 @@ public class KEntity extends KEntityBase {
         K.ui.getMainCamera().position.y = getY();
     }
 
-    public boolean moveRequested(int dx, int dy) {
-        return moveRequested(KDirection.fromDelta(dx, dy));
+    public boolean tryMove(int dx, int dy) {
+        return tryMove(KDirection.fromDelta(dx, dy));
     }
 
-    public boolean moveRequested(KDirection direction) {
+    public boolean tryMove(KDirection direction) {
 
         if (!lastMovedMoreThan(getMaxMoveInterval())) return false;
 

@@ -120,7 +120,7 @@ public class World extends KRoom {
 
         if (directionToMove != null) {
             somethingHappened = true;
-            player.moveRequested(directionToMove);
+            player.tryMove(directionToMove);
         }
 
         if (somethingHappened) {

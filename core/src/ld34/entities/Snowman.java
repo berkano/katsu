@@ -151,7 +151,7 @@ public class Snowman extends LD34EntityBase {
                 if (!goneFarEnough) {
                     int oldX = getX();
                     int oldY = getY();
-                    if (moveRequested(nextDX, nextDY)) {
+                    if (tryMove(nextDX, nextDY)) {
                         isTweening = true;
                         setX(oldX);
                         setY(oldY);

@@ -51,8 +51,8 @@ public class Monster extends MobBase {
     }
 
     @Override
-    public boolean moveRequested(KDirection direction) {
-        boolean result = super.moveRequested(direction);
+    public boolean tryMove(KDirection direction) {
+        boolean result = super.tryMove(direction);
         lookAtMe();
         return result;
     }
