@@ -63,7 +63,9 @@ public class KTmxData {
         if (tiledMapTile == null) return;
         int tileId = tiledMapTile.getId();
         if (tileId == 0) return;
+
         String entityId = (String) tiledMapTile.getProperties().get("entity");
+
         if (entityId != null && !entityId.equals("")) {
             Class c = null;
             for (Class clazz : classLookup) {
@@ -73,23 +75,29 @@ public class KTmxData {
             }
             if (c != null) {
                 try {
-                    TextureRegion textureRegion = K.ui.tileStitch(x, y, layer);
-                    if (entityTextureRegions.get(c) == null) {
-                        entityTextureRegions.put(c, textureRegion);
-                    }
-                    if (!layer.getName().contains("no-populate")) { // no-populate just used for loading textures.
-                        KEntity e = (KEntity) c.newInstance();
-                        e.setX(x * tileWidth);
-                        e.setY(y * tileHeight);
-                        e.getAppearance().setTextureRegion(entityTextureRegions.get(c));
-                        entities.add(e);
-                    }
+                    createEntityFromClass(x, y, layer, c);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                     K.runner.exitDueToException("Failed to process tiled map: " + tiledMapFile, ex);
                 }
             }
         }
+    }
+
+    private void createEntityFromClass(int x, int y, TiledMapTileLayer layer, Class c) throws Exception {
+
+        if (entityTextureRegions.get(c) == null) {
+            TextureRegion textureRegion = K.ui.tileStitch(x, y, layer);
+            entityTextureRegions.put(c, textureRegion);
+        }
+        if (!layer.getName().contains("no-populate")) { // no-populate just used for loading textures.
+            KEntity e = (KEntity) c.newInstance();
+            e.setX(x * tileWidth);
+            e.setY(y * tileHeight);
+            e.getAppearance().setTextureRegion(entityTextureRegions.get(c));
+            entities.add(e);
+        }
+
     }
 
     private List<TiledMapTileLayer> getLayersFromMap(TiledMap map) {
