@@ -36,8 +36,7 @@ public class KTmxData {
         entities = new ArrayList<KEntity>();
         entityTextureRegions = K.ui.getTextureCache(); // new HashMap<Class, TextureRegion>();
 
-        List<TiledMapTileLayer> layerList = new ArrayList<TiledMapTileLayer>();
-        addLayersFrom(getMap(), layerList);
+        List<TiledMapTileLayer> layerList = getLayersFromMap(getMap());
 
         MapProperties prop = getMap().getProperties();
         int mapWidth = prop.get("width", Integer.class);
@@ -93,7 +92,10 @@ public class KTmxData {
         }
     }
 
-    private void addLayersFrom(TiledMap map, List<TiledMapTileLayer> layerList) {
+    private List<TiledMapTileLayer> getLayersFromMap(TiledMap map) {
+
+        List<TiledMapTileLayer> layerList = new ArrayList<TiledMapTileLayer>();
+
         // In order of instantiation
         layerList.add((TiledMapTileLayer) map.getLayers().get("no-populate"));
         layerList.add((TiledMapTileLayer) map.getLayers().get("invisible"));
@@ -102,6 +104,8 @@ public class KTmxData {
         layerList.add((TiledMapTileLayer) map.getLayers().get("terrain"));
         layerList.add((TiledMapTileLayer) map.getLayers().get("objects"));
         layerList.add((TiledMapTileLayer) map.getLayers().get("passageways"));
+
+        return layerList;
     }
 
     private TiledMap loadMap(String name) {
