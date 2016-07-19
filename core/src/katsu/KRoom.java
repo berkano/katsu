@@ -25,7 +25,6 @@ public class KRoom implements InputProcessor {
     @Getter @Setter private int gridHeight = 0;
     @Getter @Setter private ArrayList<KEntity> entities;
     @Getter @Setter private ArrayList<KEntity> newEntities;
-    private FPSLogger fpsLogger = new FPSLogger();
 
     // Spatial indexing of entities
     private SpatialIndex si;
@@ -163,10 +162,48 @@ public class KRoom implements InputProcessor {
     }
 
     public void render() {
+        K.logFPS();
+        handleDestroyedEntities();
+        handleNewEntities();
+        sortEntitiesByZIndex();
+        renderEachEntity();
+    }
 
-        if (K.settings.isLogFPS()) {
-            fpsLogger.log();
+    private void renderEachEntity() {
+
+        for (KEntity e : entities) {
+            if (!isFogged(e)) {
+                e.render();
+            }
         }
+
+    }
+
+    private void sortEntitiesByZIndex() {
+
+        // render lowest zLayer first
+        Collections.sort(entities, new Comparator<KEntity>() {
+            public int compare(KEntity o1, KEntity o2) {
+                if (o1.getAppearance().getZLayer() == o2.getAppearance().getZLayer())
+                    return 0;
+                return o1.getAppearance().getZLayer() < o2.getAppearance().getZLayer() ? -1 : 1;
+            }
+        });
+
+
+    }
+
+    private void handleNewEntities() {
+
+        for (KEntity e : newEntities) {
+            entities.add(e);
+        }
+
+        newEntities.clear();
+
+    }
+
+    private void handleDestroyedEntities() {
 
         List<KEntity> destroyList = new ArrayList<KEntity>();
         for (KEntity e : entities) {
@@ -188,26 +225,6 @@ public class KRoom implements InputProcessor {
             newEntities.remove(e);
         }
 
-        for (KEntity e : newEntities) {
-            entities.add(e);
-        }
-
-        newEntities.clear();
-
-        // render lowest zLayer first
-        Collections.sort(entities, new Comparator<KEntity>() {
-            public int compare(KEntity o1, KEntity o2) {
-                if (o1.getAppearance().getZLayer() == o2.getAppearance().getZLayer())
-                    return 0;
-                return o1.getAppearance().getZLayer() < o2.getAppearance().getZLayer() ? -1 : 1;
-            }
-        });
-
-        for (KEntity e : entities) {
-            if (!isFogged(e)) {
-                e.render();
-            }
-        }
     }
 
     private boolean isFogged(KEntity e) {

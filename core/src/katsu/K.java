@@ -1,5 +1,7 @@
 package katsu;
 
+import com.badlogic.gdx.graphics.FPSLogger;
+
 import java.util.Random;
 
 /**
@@ -18,4 +20,11 @@ public class K {
     public static KSettings settings;
     public static KUI ui;
 
+    private static FPSLogger fpsLogger = new FPSLogger();
+
+    public static void logFPS() {
+        if (K.settings.isLogFPS()) {
+            fpsLogger.log();
+        }
+    }
 }
