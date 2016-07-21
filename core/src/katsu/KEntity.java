@@ -2,6 +2,7 @@ package katsu;
 
 import lombok.Getter;
 import lombok.Setter;
+import net.sf.jsi.Rectangle;
 
 import java.util.List;
 
@@ -70,7 +71,7 @@ public class KEntity extends KEntityBase {
 
         if (entity.isSolid()) {
 
-            net.sf.jsi.Rectangle newRect = new net.sf.jsi.Rectangle(newX, newY, newX + entity.getWidth() - 1, newY - entity.getHeight() + 1);
+            Rectangle newRect = new Rectangle(newX, newY, newX + entity.getWidth() - 1, newY - entity.getHeight() + 1);
             List<KEntity> overlappingEntities = entity.getRoom().spatialSearchByIntersection(newRect);
 
             // Get all possible collision targets
