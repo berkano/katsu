@@ -232,10 +232,7 @@ public class KRoom implements InputProcessor {
             int dx = e.getX() - getFogX();
             int dy = e.getY() - getFogY();
             long d = Math.round(Math.sqrt(dx * dx + dy * dy));
-            if (d > getFogRadius()) {
-                return true;
-            }
-            return false;
+            return d > getFogRadius();
         } else {
             return false;
         }
