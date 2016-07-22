@@ -298,16 +298,10 @@ public class KRoom implements InputProcessor {
     public KEntity findFirstEntity(Class clazz, int gridX, int gridY) {
         List<KEntity> entities = findEntitiesAtPoint(gridX * K.settings.getGridSize(), gridY * K.settings.getGridSize());
         for (KEntity e : entities) {
-            if (e.getGrid().getX() == gridX) {
-                if (e.getGrid().getY() == gridY) {
-                    if (clazz.isInstance(e)) return e;
-                }
-            }
+            if (e.getGrid().getX() == gridX && e.getGrid().getY() == gridY && clazz.isInstance(e)) return e;
         }
         return null;
     }
-
-
 
     // future use
     public boolean keyDown(int keycode) {
