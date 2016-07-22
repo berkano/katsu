@@ -279,10 +279,10 @@ public class KRoom implements InputProcessor {
         for (KEntity e : entities) {
 
             // Quick optimization
-            if (e.getX() > x) continue;
-            if (e.getY() > y) continue;
-            if (e.getX() < x - e.getWidth()) continue;
-            if (e.getY() < y - e.getHeight()) continue;
+            if (
+                e.getX() > x || e.getY() > y ||
+                e.getX() < x - e.getWidth() || e.getY() < y - e.getHeight()
+            ) continue;
 
             Rectangle r = new Rectangle(e.getX(), e.getY(), e.getWidth(), e.getHeight());
 
