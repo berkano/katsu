@@ -184,7 +184,7 @@ public class Snowman extends LD34EntityBase {
 
             if (adjacent) {
                 if (targetAction == Action.CHOP) {
-                    Tree toChop = (Tree) getGrid().findFirstEntity(Tree.class, targetGridX, targetGridY);
+                    Tree toChop = (Tree) getRoom().findFirstEntity(Tree.class, targetGridX, targetGridY);
                     if (toChop != null) {
 //                        K.ui.writeText("Choppy chop!");
                         LD34Sounds.chop.play();
@@ -212,7 +212,7 @@ public class Snowman extends LD34EntityBase {
                         toChop.destroy();
 
                         // put out le fires
-                        Fire toPutOut = (Fire)getGrid().findFirstEntity(Fire.class, targetGridX, targetGridY);
+                        Fire toPutOut = (Fire)getRoom().findFirstEntity(Fire.class, targetGridX, targetGridY);
                         if (toPutOut != null) {
                             toPutOut.destroy();
                         }
@@ -224,7 +224,7 @@ public class Snowman extends LD34EntityBase {
 
                     boolean hasGrass = false;
                     // only allow planting where there is Grass
-                    if (getGrid().findFirstEntity(Grass.class,targetGridX, targetGridY) != null) {
+                    if (getRoom().findFirstEntity(Grass.class,targetGridX, targetGridY) != null) {
                         hasGrass = true;
                     }
 
@@ -258,7 +258,7 @@ public class Snowman extends LD34EntityBase {
 
                 }
                 if (targetAction == Action.BUY_LAND) {
-                    Land land = (Land) getGrid().findFirstEntity(Land.class, targetGridX, targetGridY);
+                    Land land = (Land) getRoom().findFirstEntity(Land.class, targetGridX, targetGridY);
                     if (land == null) {
                         K.ui.writeText("There's no land to buy here :-(");
                         LD34Sounds.gone_wrong.play();

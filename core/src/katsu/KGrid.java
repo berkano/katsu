@@ -51,21 +51,6 @@ public class KGrid {
         return true;
     }
 
-    public KEntity findFirstEntity(Class clazz, int gridX, int gridY) {
-        if (clazz == null) {
-            throw new RuntimeException("Null class provided to findFirstEntityOnGrid");
-        }
-        List<KEntity> entities = entity.getRoom().findEntitiesAtPoint(gridX * K.settings.getGridSize(), gridY * K.settings.getGridSize());
-        for (KEntity e : entities) {
-            if (e.getGrid().getX() == gridX) {
-                if (e.getGrid().getY() == gridY) {
-                    if (clazz.isInstance(e)) return e;
-                }
-            }
-        }
-        return null;
-    }
-
     public KDirection doPathFinding(int endX, int endY) {
 
         GridMap pathMap = createPathMap(endX, endY);
