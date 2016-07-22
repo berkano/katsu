@@ -34,18 +34,11 @@ public class KGrid {
     }
 
     public boolean isEmpty(int gridX, int gridY) {
-
         List<KEntity> entities = entity.getRoom().findEntitiesAtPoint(gridX * K.settings.getGridSize(), gridY * K.settings.getGridSize());
         for (KEntity e : entities) {
-            if (e.getGrid().getX() == gridX) {
-                if (e.getGrid().getY() == gridY) {
-
-                    if (e.isSolid()) {
-                        K.logger.trace("grid is not empty due to " + e.getClass().getSimpleName());
-
-                        return false;
-                    }
-                }
+            if (e.getGrid().getX() == gridX && e.getGrid().getY() == gridY && e.isSolid()) {
+                K.logger.trace("grid is not empty due to " + e.getClass().getSimpleName());
+                return false;
             }
         }
         return true;

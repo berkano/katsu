@@ -2,6 +2,8 @@ package katsu;
 
 import lombok.Getter;
 
+import java.util.HashMap;
+
 /**
  * Created by shaun on 18/04/2015.
  */
@@ -17,6 +19,15 @@ public enum KDirection {
     LEFT(-1,0,90),
     UP_LEFT(-1,1,45);
 
+    static HashMap<Integer, KDirection> fourDirections = new HashMap<Integer, KDirection>();
+
+    static {
+        fourDirections.put(0, UP);
+        fourDirections.put(1, DOWN);
+        fourDirections.put(2, LEFT);
+        fourDirections.put(3, RIGHT);
+    }
+
     @Getter private int dx;
     @Getter private int dy;
     @Getter private int rotation;
@@ -28,12 +39,7 @@ public enum KDirection {
     }
 
     public static KDirection random() {
-        int choice = K.random.nextInt(4);
-        if (choice == 0) return KDirection.UP;
-        if (choice == 1) return KDirection.DOWN;
-        if (choice == 2) return KDirection.LEFT;
-        if (choice == 3) return KDirection.RIGHT;
-        return null;
+        return fourDirections.get(K.random.nextInt(4));
     }
 
     public static KDirection fromDelta(int req_dx, int req_dy) {
