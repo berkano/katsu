@@ -74,30 +74,29 @@ public class KTmxData {
                 }
             }
             if (c != null) {
-                try {
-                    createEntityFromClass(x, y, layer, c);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                    K.runner.exitDueToException("Failed to process tiled map: " + tiledMapFile, ex);
-                }
+                createEntityFromClass(x, y, layer, c);
             }
         }
     }
 
-    private void createEntityFromClass(int x, int y, TiledMapTileLayer layer, Class c) throws Exception {
+    private void createEntityFromClass(int x, int y, TiledMapTileLayer layer, Class c) {
 
         if (entityTextureRegions.get(c) == null) {
             TextureRegion textureRegion = K.ui.tileStitch(x, y, layer);
             entityTextureRegions.put(c, textureRegion);
         }
         if (!layer.getName().contains("no-populate")) { // no-populate just used for loading textures.
-            KEntity e = (KEntity) c.newInstance();
-            e.setX(x * tileWidth);
-            e.setY(y * tileHeight);
-            e.getAppearance().setTextureRegion(entityTextureRegions.get(c));
-            entities.add(e);
-        }
+            try {
+                KEntity e = (KEntity) c.newInstance();
 
+                e.setX(x * tileWidth);
+                e.setY(y * tileHeight);
+                e.getAppearance().setTextureRegion(entityTextureRegions.get(c));
+                entities.add(e);
+            } catch (Exception ex) {
+                throw new KatsuException(ex);
+            }
+        }
     }
 
     private List<TiledMapTileLayer> getLayersFromMap(TiledMap map) {
