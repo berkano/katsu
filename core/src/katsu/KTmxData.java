@@ -94,7 +94,7 @@ public class KTmxData {
                 e.getAppearance().setTextureRegion(entityTextureRegions.get(c));
                 entities.add(e);
             } catch (Exception ex) {
-                throw new KatsuException(ex);
+                throw new KException(ex);
             }
         }
     }
