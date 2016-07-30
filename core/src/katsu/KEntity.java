@@ -1,6 +1,6 @@
 package katsu;
 
-import com.badlogic.gdx.InputProcessor;
+import gdx.DefaultInputProcessorImpl;
 import lombok.Getter;
 import lombok.Setter;
 import net.sf.jsi.Rectangle;
@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by shaun on 15/11/2014.
  */
-public class KEntity implements InputProcessor {
+public class KEntity extends DefaultInputProcessorImpl {
 
     // Spatial
     @Getter private int x;
@@ -204,32 +204,5 @@ public class KEntity implements InputProcessor {
     public void onCollide(KEntity other) {}
     public void onMoved() {}
     public void firstUpdate() {}
-
-    // Default InputProcessor impl.
-    public boolean keyDown(int keycode) {
-        return false;
-    }
-    public boolean keyUp(int keycode) {
-        return false;
-    }
-    public boolean keyTyped(char character) {
-        return false;
-    }
-    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        return false;
-    }
-    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        return false;
-    }
-    public boolean touchDragged(int screenX, int screenY, int pointer) {
-        return false;
-    }
-    public boolean mouseMoved(int screenX, int screenY) {
-        return false;
-    }
-    public boolean scrolled(int amount) {
-        return false;
-    }
-
 
 }
