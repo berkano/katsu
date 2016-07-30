@@ -82,21 +82,21 @@ public class KGrid {
         GridMap pathMap = new GridMap(entity.getRoom().getGridWidth(), entity.getRoom().getGridHeight());
 
         for (KEntity e : entity.getRoom().getEntities()) {
+            if (e == entity) continue;
+            if (!(e.isSolid())) continue;
 
             int cellX = e.getGrid().getX();
             int cellY = e.getGrid().getY();
 
-            boolean isSameEntity = (e == entity);
-            boolean isNotSolid = (!(e.isSolid()));
-            boolean alreadyThere = (cellX == targetGridX && cellY == targetGridY);
-            boolean outsideBounds = (cellX >= 0 && cellY >= 0 && cellX <= 100 && cellY <= 100);
+            if (cellX == targetGridX && cellY == targetGridY) continue; // allow attempted path finds up to the target
 
-            if (!(isSameEntity || isNotSolid || alreadyThere || outsideBounds)) {
+            if (cellX >= 0 && cellY >= 0 && cellX <= 100 && cellY <= 100) {
                 pathMap.set(cellX, cellY, GridMap.WALL);
             }
         }
 
         return pathMap;
+
     }
 
     public void setX(int gridX) {
