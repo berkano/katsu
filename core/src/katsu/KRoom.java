@@ -28,6 +28,11 @@ public class KRoom extends DefaultInputProcessorImpl {
     @Getter @Setter private ArrayList<KEntity> newEntities;
     @Getter @Setter private KSpatialMap spatialMap = new KSpatialMap();
 
+    public KRoom() {
+        super();
+        wipeData();
+    }
+
     public void wipeData() {
         entities = new ArrayList<KEntity>();
         newEntities = new ArrayList<KEntity>();
@@ -159,11 +164,6 @@ public class KRoom extends DefaultInputProcessorImpl {
         }
     }
 
-    public KRoom() {
-        super();
-        wipeData();
-    }
-
     public void update() {
         for (KEntity e : entities) {
             boolean canUpdate = true;
@@ -173,9 +173,7 @@ public class KRoom extends DefaultInputProcessorImpl {
                     canUpdate = false;
                 }
             }
-
             if (canUpdate) {
-
                 e.update();
             }
         }
