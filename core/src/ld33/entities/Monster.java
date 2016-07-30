@@ -153,7 +153,7 @@ public class Monster extends MobBase {
         float maxY = getY() + getHeight() * 2.5f;
 
         Rectangle rectangle = new Rectangle(minX, minY, maxX, maxY);
-        List<KEntity> entities = getRoom().spatialSearchByIntersection(rectangle);
+        List<KEntity> entities = getRoom().getSpatialMap().searchByIntersection(rectangle);
         boolean canFlip = true;
         for (KEntity e : entities) {
             if (e instanceof NPC) {

@@ -73,7 +73,7 @@ public class KEntity implements InputProcessor {
         if (entity.isSolid()) {
 
             Rectangle newRect = new Rectangle(newX, newY, newX + entity.getWidth() - 1, newY - entity.getHeight() + 1);
-            List<KEntity> overlappingEntities = entity.getRoom().spatialSearchByIntersection(newRect);
+            List<KEntity> overlappingEntities = entity.getRoom().getSpatialMap().searchByIntersection(newRect);
 
             // Get all possible collision targets
             for (KEntity other : overlappingEntities) {
@@ -113,7 +113,7 @@ public class KEntity implements InputProcessor {
     private void updateSpatialMap() {
 
         if (getRoom() != null) {
-            getRoom().updateSpatialMap(this);
+            getRoom().getSpatialMap().update(this);
             needsSpatialUpdate = false;
         } else {
             needsSpatialUpdate = true;
