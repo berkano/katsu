@@ -67,7 +67,6 @@ public class KRoom implements InputProcessor {
 
     }
 
-    
     public List<KEntity> spatialSearchByIntersection(net.sf.jsi.Rectangle rect) {
         ArrayList<KEntity> results = new ArrayList<KEntity>();
         SaveToListProcedure myProc = new SaveToListProcedure();
@@ -129,21 +128,6 @@ public class KRoom implements InputProcessor {
             return ids;
         }
     };
-
-    public void createInstancesAtAll(Class find, Class toAdd) {
-        for (KEntity e : entities) {
-            if (find.isInstance(e)) {
-                try {
-                    KEntity newEntity = (KEntity)toAdd.newInstance();
-                    newEntity.setX(e.getX());
-                    newEntity.setY(e.getY());
-                    newEntities.add(newEntity);
-                } catch (Exception ex) {
-
-                }
-            }
-        }
-    }
 
     public KEntity firstInstanceOfClass(Class clazz) {
         for (KEntity e : entities) {
