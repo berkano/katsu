@@ -50,12 +50,6 @@ public class KUI {
         text.clear();
     }
 
-    public void loadFont() {
-        font = K.resource.loadBitmapFont("fonts/font.fnt", "fonts/font.png");
-        font.setColor(1f, 1f, 1f, 1f);
-        font.setScale(1, -1);
-    }
-
     public void renderShadowBox() {
         // shadow box behind text pane
         if (text.size() > 0) {
@@ -115,9 +109,6 @@ public class KUI {
     private void renderBitmaps() {
         renderHelpText();
         boolean gameIsPaused = K.runner.gamePaused();
-        if (font == null) {
-            loadFont();
-        }
         // Remove old lines
         Iterator itr = text.iterator();
         while (itr.hasNext()) {
@@ -170,7 +161,6 @@ public class KUI {
     }
 
     public void writeln(String s, Color c) {
-        if (font == null) loadFont();
         if (s.startsWith("@")) {
             String[] bits = s.split(" ");
             String colour = bits[0];
@@ -193,11 +183,22 @@ public class KUI {
     }
 
     public void initialise() {
+
+        // Font
+        font = K.resource.loadBitmapFont("fonts/font.fnt", "fonts/font.png");
+        font.setColor(1f, 1f, 1f, 1f);
+        font.setScale(1, -1);
+
+        // Game window
         Gdx.graphics.setTitle(K.settings.getGameName() + " :: " + K.settings.getGameAuthor() + " :: " + K.settings.getGameDescription());
+
+        // Batch + renderer setup
         setActiveSpriteBatch(new SpriteBatch());
         setActiveShapeRenderer(new ShapeRenderer());
         setUiSpriteBatch(new SpriteBatch());
         setUiShapeRenderer(new ShapeRenderer());
+
+        // Camera setup
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
         float viewportSize = 1024;
