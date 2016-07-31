@@ -10,10 +10,6 @@ public class KTiledMapLoader {
 
     @Getter @Setter private String filename;
 
-    public void setFilename(String filename) {
-        this.filename = filename;
-    }
-
     public void loadToRoom(KRoom room) {
 
         KTiledMapData data = new KTiledMapData(filename, K.runner.getClassLookup());

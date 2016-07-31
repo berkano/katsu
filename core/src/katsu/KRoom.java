@@ -1,21 +1,15 @@
 package katsu;
 
-import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.math.Rectangle;
-import gdx.DefaultInputProcessorImpl;
-import gnu.trove.procedure.TIntProcedure;
 import lombok.Getter;
 import lombok.Setter;
-import net.sf.jsi.SpatialIndex;
-import net.sf.jsi.rtree.RTree;
 
 import java.util.*;
 
 /**
  * Created by shaun on 16/11/2014.
  */
-public class KRoom extends DefaultInputProcessorImpl {
+public class KRoom extends KInputProcessor {
 
     @Getter @Setter private boolean active;
     @Getter @Setter private int fogX = 0;

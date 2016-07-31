@@ -3,7 +3,6 @@ package katsu;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputProcessor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,7 +12,7 @@ import java.util.List;
 /**
  * Created by shaun on 16/11/2014.
  */
-public abstract class KRunner implements ApplicationListener, InputProcessor {
+public abstract class KRunner extends KInputProcessor implements ApplicationListener {
 
     public abstract ArrayList<KRoom> getRooms();
     public abstract String getResourceRoot();
@@ -117,23 +116,4 @@ public abstract class KRunner implements ApplicationListener, InputProcessor {
         Gdx.app.exit();
     }
 
-    // future use
-    @Override public boolean keyTyped(char character) {
-        return false;
-    }
-    @Override public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        return false;
-    }
-    @Override public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        return false;
-    }
-    @Override public boolean touchDragged(int screenX, int screenY, int pointer) {
-        return false;
-    }
-    @Override public boolean mouseMoved(int screenX, int screenY) {
-        return false;
-    }
-    @Override public boolean scrolled(int amount) {
-        return false;
-    }
 }

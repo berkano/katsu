@@ -1,6 +1,5 @@
 package katsu;
 
-import gdx.DefaultInputProcessorImpl;
 import lombok.Getter;
 import lombok.Setter;
 import net.sf.jsi.Rectangle;
@@ -10,7 +9,7 @@ import java.util.List;
 /**
  * Created by shaun on 15/11/2014.
  */
-public class KEntity extends DefaultInputProcessorImpl {
+public class KEntity extends KInputProcessor {
 
     // Spatial
     @Getter private int x;

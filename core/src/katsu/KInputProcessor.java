@@ -1,11 +1,11 @@
-package gdx;
+package katsu;
 
 import com.badlogic.gdx.InputProcessor;
 
 /**
  * Created by shaun on 30/07/2016.
  */
-public class DefaultInputProcessorImpl implements InputProcessor {
+public class KInputProcessor implements InputProcessor {
 
     // Default InputProcessor impl.
     public boolean keyDown(int keycode) {
