@@ -6,6 +6,8 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,11 +18,11 @@ import java.util.List;
  */
 public class KTiledMapProcessor {
 
-    private ArrayList<KEntity> entities;
-    private HashMap<Class, TextureRegion> entityTextureRegions;
+    @Getter @Setter private ArrayList<KEntity> entities;
+    @Getter @Setter private TiledMap map;
 
+    private HashMap<Class, TextureRegion> entityTextureRegions;
     private String filename;
-    private TiledMap map;
     private List<Class> classLookup;
 
     public KTiledMapProcessor(String filename, List<Class> classLookup) {
@@ -124,15 +126,4 @@ public class KTiledMapProcessor {
         }
     }
 
-    public ArrayList<KEntity> getEntities() {
-        return entities;
-    }
-
-    public TiledMap getMap() {
-        return map;
-    }
-
-    public void setMap(TiledMap map) {
-        this.map = map;
-    }
 }

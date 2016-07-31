@@ -12,17 +12,17 @@ public class KTiledMapLoader {
 
     public void loadToRoom(KRoom room) {
 
-        KTiledMapProcessor data = new KTiledMapProcessor(filename, K.runner.getClassLookup());
-        data.loadFromMap();
+        KTiledMapProcessor processor = new KTiledMapProcessor(filename, K.runner.getClassLookup());
+        processor.loadFromMap();
 
-        room.setEntities(data.getEntities());
+        room.setEntities(processor.getEntities());
 
         for (KEntity e : room.getEntities()) {
             e.setRoom(room);
         }
 
-        room.setGridHeight(data.getMap().getProperties().get("height", Integer.class));
-        room.setGridWidth(data.getMap().getProperties().get("width", Integer.class));
+        room.setGridHeight(processor.getMap().getProperties().get("height", Integer.class));
+        room.setGridWidth(processor.getMap().getProperties().get("width", Integer.class));
 
     }
 }
