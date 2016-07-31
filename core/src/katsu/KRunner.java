@@ -74,7 +74,7 @@ public abstract class KRunner implements ApplicationListener, InputProcessor {
             K.runner.toggleMusic();
         }
         if ((keycode == Input.Keys.F || keycode == Input.Keys.F11)) {
-            K.ui.toggleFullScreenMode();
+            K.settings.toggleFullScreen();
         }
         K.input.setKeyDown(keycode, true);
         return false;

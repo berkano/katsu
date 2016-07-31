@@ -1,5 +1,6 @@
 package katsu;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,5 +29,15 @@ public class KSettings {
     private boolean getDevModeFromSystemProps() {
         return Boolean.parseBoolean(System.getProperty("devMode", "false"));
     }
+
+    public void toggleFullScreen() {
+        if (Gdx.graphics.isFullscreen()) {
+            Gdx.graphics.setDisplayMode(getHres(), getVres(), false);
+        } else {
+            Gdx.graphics.setDisplayMode(getHres(), getVres(), true);
+        }
+    }
+
+
 
 }

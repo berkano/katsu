@@ -192,14 +192,6 @@ public class KUI {
         }
     }
 
-    public void toggleFullScreenMode() {
-        if (Gdx.graphics.isFullscreen()) {
-            Gdx.graphics.setDisplayMode(K.settings.getHres(), K.settings.getVres(), false);
-        } else {
-            Gdx.graphics.setDisplayMode(K.settings.getHres(), K.settings.getVres(), true);
-        }
-    }
-
     public void initialise() {
         Gdx.graphics.setTitle(K.settings.getGameName() + " :: " + K.settings.getGameAuthor() + " :: " + K.settings.getGameDescription());
         setActiveSpriteBatch(new SpriteBatch());
