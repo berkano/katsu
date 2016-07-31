@@ -23,15 +23,15 @@ public class KLauncher {
         config.vSyncEnabled = settings.isVsync();
 
         // Centre it!
-        config.x = LwjglApplicationConfiguration.getDesktopDisplayMode().width/2 - config.width / 2;
-        config.y = LwjglApplicationConfiguration.getDesktopDisplayMode().height/2 - config.height / 2;
+        config.x = LwjglApplicationConfiguration.getDesktopDisplayMode().width / 2 - config.width / 2;
+        config.y = LwjglApplicationConfiguration.getDesktopDisplayMode().height / 2 - config.height / 2;
 
         K.runner = runner;
         K.settings = settings;
         K.ui = ui;
 
-        K.ui.setWindowWidth(config.width);
-        K.ui.setWindowHeight(config.height);
+        K.settings.setWindowWidth(config.width);
+        K.settings.setWindowHeight(config.height);
 
         new LwjglApplication(runner, config);
     }

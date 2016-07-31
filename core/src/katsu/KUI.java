@@ -16,9 +16,6 @@ import java.util.Iterator;
 
 public class KUI {
 
-    @Getter @Setter private int windowWidth;
-    @Getter @Setter private int windowHeight;
-
     // Text display
     @Getter @Setter private ArrayList<KTextLine> text = new ArrayList<KTextLine>();
     @Getter @Setter private String helpText = "No help text provided";
@@ -133,7 +130,7 @@ public class KUI {
 
     private void renderTopText() {
         SpriteBatch batch = K.ui.getUiSpriteBatch();
-        int yOffset = getWindowHeight();
+        int yOffset = K.settings.getWindowHeight();
         font.setColor(Color.BLACK);
         font.draw(batch, getTopText(), 4, yOffset - 4);
         font.setColor(Color.WHITE);

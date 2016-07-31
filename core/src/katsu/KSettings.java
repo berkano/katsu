@@ -25,6 +25,8 @@ public class KSettings {
     @Getter @Setter private String gameName = "Game Name";
     @Getter @Setter private String gameAuthor = "Author";
     @Getter @Setter private String gameDescription = "Description";
+    @Getter @Setter private int windowWidth;
+    @Getter @Setter private int windowHeight;
 
     private boolean getDevModeFromSystemProps() {
         return Boolean.parseBoolean(System.getProperty("devMode", "false"));

@@ -42,8 +42,8 @@ public class World extends KRoom {
         wipeData();
         loadFromTiledMap(mapName);
 
-        K.ui.getMainCamera().viewportHeight = K.ui.getWindowHeight() / 4;
-        K.ui.getMainCamera().viewportWidth = K.ui.getWindowWidth() / 4;
+        K.ui.getMainCamera().viewportHeight = K.settings.getWindowHeight() / 4;
+        K.ui.getMainCamera().viewportWidth = K.settings.getWindowWidth() / 4;
 
         K.input.getMultiplexer().addProcessor(this);
 
