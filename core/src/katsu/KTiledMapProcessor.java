@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by shaun on 16/11/2014.
  */
-public class KTiledMapData {
+public class KTiledMapProcessor {
 
     private ArrayList<KEntity> entities;
     private HashMap<Class, TextureRegion> entityTextureRegions;
@@ -23,12 +23,12 @@ public class KTiledMapData {
     private TiledMap map;
     private List<Class> classLookup;
 
-    public KTiledMapData(String filename, List<Class> classLookup) {
+    public KTiledMapProcessor(String filename, List<Class> classLookup) {
         this.classLookup = classLookup;
         this.filename = filename;
     }
 
-    public KTiledMapData loadFromMap() {
+    public KTiledMapProcessor loadFromMap() {
 
         setMap(loadMap(filename));
         entities = new ArrayList<KEntity>();

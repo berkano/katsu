@@ -12,7 +12,7 @@ public class KTiledMapLoader {
 
     public void loadToRoom(KRoom room) {
 
-        KTiledMapData data = new KTiledMapData(filename, K.runner.getClassLookup());
+        KTiledMapProcessor data = new KTiledMapProcessor(filename, K.runner.getClassLookup());
         data.loadFromMap();
 
         room.setEntities(data.getEntities());
