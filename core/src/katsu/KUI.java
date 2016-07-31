@@ -21,18 +21,18 @@ public class KUI {
     @Getter @Setter private HashMap<Class, TextureRegion> textureCache = new HashMap<Class, TextureRegion>();
 
     // Text display
-    public int leftMargin = 768;
-    public int topMargin = 0;
-    private BitmapFont font;
-    public int fontHeight = 18;
-    public int fontWidth = 18;
-    public int lineDisplay = 10;
-    public ArrayList<KTextLine> text = new ArrayList<KTextLine>();
-    public int lineCount = 0;
+    @Getter @Setter private ArrayList<KTextLine> text = new ArrayList<KTextLine>();
     @Getter @Setter private String helpText = "No help text provided";
     @Getter @Setter private String topText = "";
     @Getter @Setter private String secondaryText = "";
     @Getter @Setter private boolean showingHelp = false;
+    @Getter @Setter private int leftMargin = 768;
+    @Getter @Setter private int topMargin = 0;
+    @Getter @Setter private BitmapFont font;
+    @Getter @Setter private int fontHeight = 18;
+    @Getter @Setter private int fontWidth = 18;
+    @Getter @Setter private int lineDisplay = 10;
+    @Getter @Setter private int lineCount = 0;
 
     // Rendering
     @Getter @Setter private SpriteBatch activeSpriteBatch;
