@@ -46,7 +46,7 @@ public class KTiledMapProcessor {
             if (currentLayer == null) continue;
             for (int x = 0; x < mapWidth; x++) {
                 for (int y = 0; y < mapHeight; y++) {
-                    populateEntityFromTileOfLayer(x, y, currentLayer);
+                    populateEntity(x, y, currentLayer);
                 }
             }
         }
@@ -55,7 +55,7 @@ public class KTiledMapProcessor {
         return this;
     }
 
-    private void populateEntityFromTileOfLayer(int x, int y, TiledMapTileLayer layer) {
+    private void populateEntity(int x, int y, TiledMapTileLayer layer) {
 
         TiledMapTileLayer.Cell cell = layer.getCell(x, y);
         if (cell == null) return;
