@@ -39,10 +39,6 @@ public class KUI {
     @Getter @Setter private Camera mainCamera;
     @Getter @Setter private HashMap<Class, TextureRegion> textureCache = new HashMap<Class, TextureRegion>();
 
-    public TextureRegion tileStitch(int x, int y, TiledMapTileLayer tileLayer) {
-        return tileLayer.getCell(x, y).getTile().getTextureRegion();
-    }
-
     public void writeText(String s) {
         if (text.size() >= lineDisplay) {
             text.remove(0);

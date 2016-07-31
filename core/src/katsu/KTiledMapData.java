@@ -80,9 +80,8 @@ public class KTiledMapData {
     }
 
     private void createEntityFromClass(int x, int y, TiledMapTileLayer layer, Class c) {
-
         if (entityTextureRegions.get(c) == null) {
-            TextureRegion textureRegion = K.ui.tileStitch(x, y, layer);
+            TextureRegion textureRegion = layer.getCell(x, y).getTile().getTextureRegion();
             entityTextureRegions.put(c, textureRegion);
         }
         if (!layer.getName().contains("no-populate")) { // no-populate just used for loading textures.
