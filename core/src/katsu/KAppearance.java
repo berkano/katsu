@@ -66,4 +66,7 @@ public class KAppearance {
         setTextureRegion(K.ui.getTextureCache().get(clazz));
     }
 
+    public void applyTextureFor(Class clazz) {
+        setTextureRegion(K.ui.getTextureCache().get(clazz));
+    }
 }

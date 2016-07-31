@@ -42,9 +42,9 @@ public class Monster extends MobBase {
     @Override
     public void render() {
         if (looksHuman) {
-            getAppearance().setTextureRegion(K.ui.getTextureCache().get(Human.class));
+            getAppearance().applyTextureFor(Human.class);
         } else {
-            getAppearance().setTextureRegion(K.ui.getTextureCache().get(Monster.class));
+            getAppearance().applyTextureFor(Monster.class);
         }
         lookAtMe();
         super.render();
