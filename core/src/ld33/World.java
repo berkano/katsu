@@ -44,7 +44,7 @@ public class World extends KRoom {
 
         String mapName = "ld33";
         wipeData();
-        loadRoomFromTMX(mapName);
+        loadFromTiledMap(mapName);
         player = (Monster) firstInstanceOfClass(Monster.class);
 
         K.ui.getMainCamera().viewportHeight = K.ui.getWindowHeight() / 4;

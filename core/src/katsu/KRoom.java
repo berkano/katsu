@@ -39,19 +39,12 @@ public class KRoom extends DefaultInputProcessorImpl {
         spatialMap.wipeData();
     }
 
-    public void loadRoomFromTMX(String tmxName) {
+    public void loadFromTiledMap(String filename) {
 
-        KTmxData data = new KTmxData(tmxName, K.runner.getClassLookup());
-        data.loadFromMap();
+        KTiledMapLoader loader = new KTiledMapLoader();
+        loader.setFilename(filename);
+        loader.loadToRoom(this);
 
-        setEntities(data.getEntities());
-
-        for (KEntity e : getEntities()) {
-            e.setRoom(this);
-        }
-
-        setGridHeight(data.getMap().getProperties().get("height", Integer.class));
-        setGridWidth(data.getMap().getProperties().get("width", Integer.class));
     }
 
     public KEntity nearestEntityOf(Class clazz, KEntity toEntity) {

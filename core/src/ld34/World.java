@@ -40,7 +40,7 @@ public class World extends KRoom {
 
         String mapName = "ld34";
         wipeData();
-        loadRoomFromTMX(mapName);
+        loadFromTiledMap(mapName);
 
         K.ui.getMainCamera().viewportHeight = K.ui.getWindowHeight() / 4;
         K.ui.getMainCamera().viewportWidth = K.ui.getWindowWidth() / 4;

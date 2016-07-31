@@ -14,25 +14,25 @@ import java.util.List;
 /**
  * Created by shaun on 16/11/2014.
  */
-public class KTmxData {
+public class KTiledMapData {
 
     private ArrayList<KEntity> entities;
     private HashMap<Class, TextureRegion> entityTextureRegions;
 
-    private String tiledMapFile;
+    private String filename;
     private TiledMap map;
     private List<Class> classLookup;
     private int tileWidth = 16; // TODO determine from TMX
     private int tileHeight = 16;
 
-    public KTmxData(String tmxFile, List<Class> classLookup) {
+    public KTiledMapData(String filename, List<Class> classLookup) {
         this.classLookup = classLookup;
-        this.tiledMapFile = tmxFile;
+        this.filename = filename;
     }
 
-    public KTmxData loadFromMap() {
+    public KTiledMapData loadFromMap() {
 
-        setMap(loadMap(tiledMapFile));
+        setMap(loadMap(filename));
         entities = new ArrayList<KEntity>();
         entityTextureRegions = K.ui.getTextureCache(); // new HashMap<Class, TextureRegion>();
 
@@ -51,7 +51,7 @@ public class KTmxData {
             }
         }
 
-        K.logger.trace(entities.size() + " entities loaded from map: " + tiledMapFile);
+        K.logger.trace(entities.size() + " entities loaded from map: " + filename);
         return this;
     }
 
