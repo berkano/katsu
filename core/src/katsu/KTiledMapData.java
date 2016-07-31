@@ -22,8 +22,6 @@ public class KTiledMapData {
     private String filename;
     private TiledMap map;
     private List<Class> classLookup;
-    private int tileWidth = 16; // TODO determine from TMX
-    private int tileHeight = 16;
 
     public KTiledMapData(String filename, List<Class> classLookup) {
         this.classLookup = classLookup;
@@ -88,8 +86,8 @@ public class KTiledMapData {
             try {
                 KEntity e = (KEntity) c.newInstance();
 
-                e.setX(x * tileWidth);
-                e.setY(y * tileHeight);
+                e.setX(x * K.settings.getGridSize());
+                e.setY(y * K.settings.getGridSize());
                 e.getAppearance().setTextureRegion(entityTextureRegions.get(c));
                 entities.add(e);
             } catch (Exception ex) {
