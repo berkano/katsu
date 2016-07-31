@@ -151,15 +151,6 @@ public class KUI {
         }
     }
 
-    public String wrap(String in, int len) {
-        in = in.trim();
-        if (in.length() < len) return in;
-        if (in.substring(0, len).contains("\n"))
-            return in.substring(0, in.indexOf("\n")).trim() + "\n\n" + wrap(in.substring(in.indexOf("\n") + 1), len);
-        int place = Math.max(Math.max(in.lastIndexOf(" ", len), in.lastIndexOf("\t", len)), in.lastIndexOf("-", len));
-        return in.substring(0, place).trim() + "\n" + wrap(in.substring(place), len);
-    }
-
     public void writeln(String s, Color c) {
         if (s.startsWith("@")) {
             String[] bits = s.split(" ");
@@ -168,7 +159,7 @@ public class KUI {
             c = Colors.get(colour);
             s = s.replaceFirst("@"+colour+" ", "");
         }
-        String wrappedStr = wrap(s, 100);
+        String wrappedStr = K.utils.wrap(s, 100);
         String[] lines = wrappedStr.split("\n");
         SpriteBatch batch = K.ui.getUiSpriteBatch();
         for (int i = 0; i < lines.length; i++) {
