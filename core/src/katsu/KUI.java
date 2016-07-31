@@ -16,28 +16,33 @@ import java.util.Iterator;
 
 public class KUI {
 
-    private BitmapFont font;
-    public int lineCount = 0;
+    @Getter @Setter private int windowWidth;
+    @Getter @Setter private int windowHeight;
+    @Getter @Setter private HashMap<Class, TextureRegion> textureCache = new HashMap<Class, TextureRegion>();
+
+    // Text display
     public int leftMargin = 768;
     public int topMargin = 0;
+    private BitmapFont font;
     public int fontHeight = 18;
     public int fontWidth = 18;
     public int lineDisplay = 10;
     public ArrayList<KTextLine> text = new ArrayList<KTextLine>();
-
-    @Getter @Setter private boolean showingHelp = false;
+    public int lineCount = 0;
     @Getter @Setter private String helpText = "No help text provided";
     @Getter @Setter private String topText = "";
     @Getter @Setter private String secondaryText = "";
+    @Getter @Setter private boolean showingHelp = false;
+
+    // Rendering
     @Getter @Setter private SpriteBatch activeSpriteBatch;
     @Getter @Setter private ShapeRenderer activeShapeRenderer;
     @Getter @Setter private SpriteBatch uiSpriteBatch;
-    @Getter @Setter private int windowWidth;
-    @Getter @Setter private int windowHeight;
     @Getter @Setter private ShapeRenderer uiShapeRenderer;
+
+    // Camera
     @Getter @Setter private Camera uiCamera;
     @Getter @Setter private Camera mainCamera;
-    @Getter @Setter private HashMap<Class, TextureRegion> textureCache = new HashMap<Class, TextureRegion>();
 
     public void writeText(String s) {
         if (text.size() >= lineDisplay) {
