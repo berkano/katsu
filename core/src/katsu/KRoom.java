@@ -106,7 +106,6 @@ public class KRoom extends DefaultInputProcessorImpl {
     }
 
     private void sortEntitiesByZIndex() {
-
         // render lowest zLayer first
         Collections.sort(entities, new Comparator<KEntity>() {
             public int compare(KEntity o1, KEntity o2) {
@@ -115,35 +114,27 @@ public class KRoom extends DefaultInputProcessorImpl {
                 return o1.getAppearance().getZLayer() < o2.getAppearance().getZLayer() ? -1 : 1;
             }
         });
-
-
     }
 
     private void handleNewEntities() {
-
         for (KEntity e : newEntities) {
             entities.add(e);
         }
-
         newEntities.clear();
-
     }
 
     private void handleDestroyedEntities() {
-
         List<KEntity> destroyList = new ArrayList<KEntity>();
         for (KEntity e : entities) {
             if (e.isDestroyed()) {
                 destroyList.add(e);
             }
         }
-
         for (KEntity e : destroyList) {
             spatialMap.handleEntityDelete(e);
             entities.remove(e);
             newEntities.remove(e);
         }
-
     }
 
     private boolean isFogged(KEntity e) {
