@@ -1,7 +1,11 @@
 package katsu;
 
 import com.badlogic.gdx.graphics.FPSLogger;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.util.HashMap;
 import java.util.Random;
 
 /**
@@ -14,6 +18,7 @@ public class K {
     public static KResource resource = new KResource();
     public static KUtils utils = new KUtils();
     public static KInput input = new KInput();
+    public static HashMap<Class, TextureRegion> textureCache = new HashMap<Class, TextureRegion>();
 
     // Provided by implementation
     public static KRunner runner;

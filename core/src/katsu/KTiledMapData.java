@@ -32,7 +32,7 @@ public class KTiledMapData {
 
         setMap(loadMap(filename));
         entities = new ArrayList<KEntity>();
-        entityTextureRegions = K.ui.getTextureCache(); // new HashMap<Class, TextureRegion>();
+        entityTextureRegions = K.textureCache; // new HashMap<Class, TextureRegion>();
 
         List<TiledMapTileLayer> layerList = getLayersFromMap(getMap());
 

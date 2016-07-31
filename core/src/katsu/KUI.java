@@ -18,7 +18,6 @@ public class KUI {
 
     @Getter @Setter private int windowWidth;
     @Getter @Setter private int windowHeight;
-    @Getter @Setter private HashMap<Class, TextureRegion> textureCache = new HashMap<Class, TextureRegion>();
 
     // Text display
     @Getter @Setter private ArrayList<KTextLine> text = new ArrayList<KTextLine>();

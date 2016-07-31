@@ -26,7 +26,7 @@ public class KAppearance {
 
     public void render() {
         if (textureRegion == null) {
-            textureRegion = K.ui.getTextureCache().get(entity.getClass());
+            textureRegion = K.textureCache.get(entity.getClass());
         }
         float xScale = spriteScale;
         float yScale = spriteScale;
@@ -63,10 +63,10 @@ public class KAppearance {
     }
 
     public void setTextureFrom(Class clazz) {
-        setTextureRegion(K.ui.getTextureCache().get(clazz));
+        setTextureRegion(K.textureCache.get(clazz));
     }
 
     public void applyTextureFor(Class clazz) {
-        setTextureRegion(K.ui.getTextureCache().get(clazz));
+        setTextureRegion(K.textureCache.get(clazz));
     }
 }
