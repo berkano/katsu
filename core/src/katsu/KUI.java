@@ -16,7 +16,7 @@ import java.util.Iterator;
 
 public class KUI {
 
-    BitmapFont font;
+    private BitmapFont font;
     public int lineCount = 0;
     public int leftMargin = 768;
     public int topMargin = 0;
@@ -173,7 +173,7 @@ public class KUI {
         }
     }
 
-    public void initialise() {
+    public void init() {
 
         // Font
         font = K.resource.loadBitmapFont("fonts/font.fnt", "fonts/font.png");
