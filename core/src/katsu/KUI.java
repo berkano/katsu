@@ -4,14 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 
 public class KUI {
@@ -123,7 +120,7 @@ public class KUI {
         topMargin = 384 - fontHeight * lineDisplay - 4 - 16;
         for (KTextLine tl : text) {
             Color c = Color.WHITE;
-            writeln(tl.text, c);
+            formatAndRenderLine(tl.text, c);
         }
         renderTopText();
     }
@@ -146,11 +143,13 @@ public class KUI {
         topMargin = K.settings.getVres() - fontHeight - 8;
         leftMargin = fontHeight * 2;
         for (String s : helpText.split("\n")) {
-            writeln(s, Color.WHITE);
+            formatAndRenderLine(s, Color.WHITE);
         }
     }
 
-    public void writeln(String s, Color c) {
+    // handles wrapping and colour codes
+    public void formatAndRenderLine(String s, Color c) {
+
         if (s.startsWith("@")) {
             String[] bits = s.split(" ");
             String colour = bits[0];
@@ -158,18 +157,24 @@ public class KUI {
             c = Colors.get(colour);
             s = s.replaceFirst("@"+colour+" ", "");
         }
+
         String wrappedStr = K.utils.wrap(s, 100);
         String[] lines = wrappedStr.split("\n");
-        SpriteBatch batch = K.ui.getUiSpriteBatch();
-        for (int i = 0; i < lines.length; i++) {
-            int stringX = leftMargin;
-            int stringY = topMargin - fontHeight * (lineCount - 1);
-            font.setColor(Color.BLACK);
-            font.draw(batch, lines[i], stringX + 2, stringY + 2);
-            font.setColor(c);
-            font.draw(batch, lines[i], stringX, stringY);
-            lineCount++;
+
+        for (String line : lines) {
+            renderLine(line, c);
         }
+    }
+
+    private void renderLine(String line, Color c) {
+        SpriteBatch batch = K.ui.getUiSpriteBatch();
+        int stringX = leftMargin;
+        int stringY = topMargin - fontHeight * (lineCount - 1);
+        font.setColor(Color.BLACK);
+        font.draw(batch, line, stringX + 2, stringY + 2);
+        font.setColor(c);
+        font.draw(batch, line, stringX, stringY);
+        lineCount++;
     }
 
     public void init() {
