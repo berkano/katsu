@@ -64,7 +64,7 @@ public class KUI {
         }
     }
 
-    public void startRender() {
+    public void preGlobalRender() {
         getMainCamera().update();
         getActiveSpriteBatch().setProjectionMatrix(getMainCamera().combined);
         getActiveShapeRenderer().setProjectionMatrix(getMainCamera().combined);
@@ -74,22 +74,18 @@ public class KUI {
         getActiveSpriteBatch().begin();
     }
 
-    public void endRender() {
+    public void postGlobalRender() {
         getActiveSpriteBatch().end();
         Gdx.gl.glEnable(GL20.GL_BLEND);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         getUiShapeRenderer().begin(ShapeRenderer.ShapeType.Filled);
-        renderShapes();
+        renderHelpShadowBox();
+        renderShadowBox();
         getUiShapeRenderer().end();
         Gdx.gl.glDisable(GL20.GL_BLEND);
         getUiSpriteBatch().begin();
-        renderBitmaps();
+        renderText();
         getUiSpriteBatch().end();
-    }
-
-    private void renderShapes() {
-        renderHelpShadowBox();
-        renderShadowBox();
     }
 
     private void renderHelpShadowBox() {
@@ -102,7 +98,7 @@ public class KUI {
         }
     }
 
-    private void renderBitmaps() {
+    private void renderText() {
         renderHelpText();
         boolean gameIsPaused = K.runner.gamePaused();
         // Remove old lines
