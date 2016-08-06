@@ -26,8 +26,9 @@ public abstract class KRunner extends KInputProcessor implements ApplicationList
 
     @Override
     public void create() {
+        K.graphics.init();
         K.ui.init();
-        K.input.initalise(this);
+        K.input.init(this);
         rooms = K.runner.getRooms();
         if (rooms == null || rooms.size() <= 0) {
             exitWithError("No rooms defined!");

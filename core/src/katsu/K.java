@@ -20,6 +20,7 @@ public class K {
     public static KInput input = new KInput();
     public static KText text = new KText();
     public static KTextureCache textureCache = new KTextureCache();
+    public static KGraphics graphics = new KGraphics();
 
     // Provided by implementation
     public static KRunner runner;

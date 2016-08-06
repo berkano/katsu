@@ -25,12 +25,6 @@ public class KUI {
     private int lineDisplay = 10;
     private int lineCount = 0;
 
-    // Rendering
-    @Getter @Setter private SpriteBatch activeSpriteBatch;
-    @Getter @Setter private ShapeRenderer activeShapeRenderer;
-    @Getter @Setter private SpriteBatch uiSpriteBatch;
-    @Getter @Setter private ShapeRenderer uiShapeRenderer;
-
     // Camera
     @Getter @Setter private Camera uiCamera;
     @Getter @Setter private Camera mainCamera;
@@ -51,48 +45,48 @@ public class KUI {
         if (text.size() > 0) {
             Color shade = new Color(0, 0, 0, 0.33f);
 
-            K.ui.getUiShapeRenderer().setColor(shade);
+            K.graphics.uiShapeRenderer.setColor(shade);
 
             float x = fontHeight/2; // Keep a left border
             float y = fontHeight + fontHeight / 4; // Keep a bottom border (text.size() - 1)* fontHeight; // Relative from bottom of screen and based on number of lines to display
             float width = K.settings.getHres() - fontHeight; // Keep a right border
             float height = 1 + text.size() * fontHeight; // Based on number of lines to display
 
-            K.ui.getUiShapeRenderer().rect(x, y, width, height);
+            K.graphics.uiShapeRenderer.rect(x, y, width, height);
         }
     }
 
     public void preGlobalRender() {
         getMainCamera().update();
-        getActiveSpriteBatch().setProjectionMatrix(getMainCamera().combined);
-        getActiveShapeRenderer().setProjectionMatrix(getMainCamera().combined);
+        K.graphics.activeSpriteBatch.setProjectionMatrix(getMainCamera().combined);
+        K.graphics.activeShapeRenderer.setProjectionMatrix(getMainCamera().combined);
         // Clear screen
         Gdx.gl.glClearColor(0f, 0f, 0f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        getActiveSpriteBatch().begin();
+        K.graphics.activeSpriteBatch.begin();
     }
 
     public void postGlobalRender() {
-        getActiveSpriteBatch().end();
+        K.graphics.activeSpriteBatch.end();
         Gdx.gl.glEnable(GL20.GL_BLEND);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-        getUiShapeRenderer().begin(ShapeRenderer.ShapeType.Filled);
+        K.graphics.uiShapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         renderHelpShadowBox();
         renderShadowBox();
-        getUiShapeRenderer().end();
+        K.graphics.uiShapeRenderer.end();
         Gdx.gl.glDisable(GL20.GL_BLEND);
-        getUiSpriteBatch().begin();
+        K.graphics.uiSpriteBatch.begin();
         renderText();
-        getUiSpriteBatch().end();
+        K.graphics.uiSpriteBatch.end();
     }
 
     private void renderHelpShadowBox() {
         if (K.text.helpShowing()) {
             Color shade = new Color(0, 0, 0, 0.75f);
-            K.ui.getUiShapeRenderer().setColor(shade);
+            K.graphics.uiShapeRenderer.setColor(shade);
             float width = K.settings.getHres() - fontHeight * 2; // Keep a right border
             float height = K.settings.getVres()/2 + 224 - fontHeight * 2; // Based on number of lines to display
-            K.ui.getUiShapeRenderer().rect(fontWidth, fontHeight, width, height);
+            K.graphics.uiShapeRenderer.rect(fontWidth, fontHeight, width, height);
         }
     }
 
@@ -116,7 +110,7 @@ public class KUI {
             Color c = Color.WHITE;
             formatAndRenderLine(tl.text, c);
         }
-        K.text.render(uiSpriteBatch, font);
+        K.text.render(font);
     }
 
     private void renderHelpText() {
@@ -148,13 +142,12 @@ public class KUI {
     }
 
     private void renderLine(String line, Color c) {
-        SpriteBatch batch = K.ui.getUiSpriteBatch();
         int stringX = leftMargin;
         int stringY = topMargin - fontHeight * (lineCount - 1);
         font.setColor(Color.BLACK);
-        font.draw(batch, line, stringX + 2, stringY + 2);
+        font.draw(K.graphics.uiSpriteBatch, line, stringX + 2, stringY + 2);
         font.setColor(c);
-        font.draw(batch, line, stringX, stringY);
+        font.draw(K.graphics.uiSpriteBatch, line, stringX, stringY);
         lineCount++;
     }
 
@@ -169,12 +162,6 @@ public class KUI {
 
         // Game window
         Gdx.graphics.setTitle(K.settings.getGameName() + " :: " + K.settings.getGameAuthor() + " :: " + K.settings.getGameDescription());
-
-        // Batch + renderer setup
-        setActiveSpriteBatch(new SpriteBatch());
-        setActiveShapeRenderer(new ShapeRenderer());
-        setUiSpriteBatch(new SpriteBatch());
-        setUiShapeRenderer(new ShapeRenderer());
 
         // Camera setup
         float w = Gdx.graphics.getWidth();

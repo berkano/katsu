@@ -15,16 +15,16 @@ public class KText {
     @Getter @Setter private String secondary = "";
     private boolean showingHelp = false;
 
-    public void render(SpriteBatch batch, BitmapFont font) {
+    public void render(BitmapFont font) {
         int yOffset = K.settings.getWindowHeight();
         font.setColor(Color.BLACK);
-        font.draw(batch, K.text.getTop(), 4, yOffset - 4);
+        font.draw(K.graphics.uiSpriteBatch, K.text.getTop(), 4, yOffset - 4);
         font.setColor(Color.WHITE);
-        font.draw(batch, top, 6, yOffset - 6);
+        font.draw(K.graphics.uiSpriteBatch, top, 6, yOffset - 6);
         font.setColor(Color.BLACK);
-        font.draw(batch, secondary, 4, yOffset - 4 - 16);
+        font.draw(K.graphics.uiSpriteBatch, secondary, 4, yOffset - 4 - 16);
         font.setColor(Color.PINK);
-        font.draw(batch, secondary, 6, yOffset - 6 - 16);
+        font.draw(K.graphics.uiSpriteBatch, secondary, 6, yOffset - 6 - 16);
     }
 
     public boolean helpShowing() {
