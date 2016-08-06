@@ -116,10 +116,6 @@ public class KUI {
             Color c = Color.WHITE;
             formatAndRenderLine(tl.text, c);
         }
-        renderTopText();
-    }
-
-    private void renderTopText() {
         K.text.render(uiSpriteBatch, font);
     }
 
