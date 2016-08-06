@@ -86,12 +86,12 @@ public class World extends KRoom {
             K.runner.pauseGame();
         }
 
-        K.ui.setTopText(player.getStats().toString());
+        K.text.setTop(player.getStats().toString());
         if (lastMobAttackedByPlayer != null) {
             String enemyName = getLastMobAttackedByPlayer().getClass().getSimpleName();
-            K.ui.setSecondaryText(enemyName + ": " + getLastMobAttackedByPlayer().getStats().toString());
+            K.text.setSecondary(enemyName + ": " + getLastMobAttackedByPlayer().getStats().toString());
         } else {
-            K.ui.setSecondaryText("");
+            K.text.setSecondary("");
         }
 
         if (!K.runner.gamePaused()) {

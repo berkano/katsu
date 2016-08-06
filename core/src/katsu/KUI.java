@@ -17,8 +17,6 @@ public class KUI {
     private ArrayList<KTextLine> text = new ArrayList<KTextLine>();
     private String helpText;
 
-    @Getter @Setter private String topText = "";
-    @Getter @Setter private String secondaryText = "";
     @Getter @Setter private boolean showingHelp = false;
     @Getter @Setter private int leftMargin = 768;
     @Getter @Setter private int topMargin = 0;
@@ -123,16 +121,10 @@ public class KUI {
     }
 
     private void renderTopText() {
-        SpriteBatch batch = K.ui.getUiSpriteBatch();
-        int yOffset = K.settings.getWindowHeight();
-        font.setColor(Color.BLACK);
-        font.draw(batch, getTopText(), 4, yOffset - 4);
-        font.setColor(Color.WHITE);
-        font.draw(batch, getTopText(), 6, yOffset - 6);
-        font.setColor(Color.BLACK);
-        font.draw(batch, getSecondaryText(), 4, yOffset - 4 - 16);
-        font.setColor(Color.PINK);
-        font.draw(batch, getSecondaryText(), 6, yOffset - 6 - 16);
+        if (font == null) {
+            font = getFont();
+        }
+        K.text.render(uiSpriteBatch, font);
     }
 
     private void renderHelpText() {

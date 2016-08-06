@@ -16,17 +16,6 @@ public class LD33UI extends KUI {
         return messageReplacements;
     }
 
-
-    @Override
-    public void setTopText(String topText) {
-        super.setTopText(doReplacements(topText));
-    }
-
-    @Override
-    public void setSecondaryText(String secondaryText) {
-        super.setSecondaryText(doReplacements(secondaryText));
-    }
-
     @Override
     public void writeText(String s) {
 

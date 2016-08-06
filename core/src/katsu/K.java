@@ -18,6 +18,7 @@ public class K {
     public static KResource resource = new KResource();
     public static KUtils utils = new KUtils();
     public static KInput input = new KInput();
+    public static KText text = new KText();
     public static HashMap<Class, TextureRegion> textureCache = new HashMap<Class, TextureRegion>();
 
     // Provided by implementation

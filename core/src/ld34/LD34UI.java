@@ -16,16 +16,6 @@ public class LD34UI extends KUI {
     }
 
     @Override
-    public void setTopText(String topText) {
-        super.setTopText(doReplacements(topText));
-    }
-
-    @Override
-    public void setSecondaryText(String secondaryText) {
-        super.setSecondaryText(doReplacements(secondaryText));
-    }
-
-    @Override
     public void writeText(String s) {
 
         if (s.equals(lastTextWritten) && !s.contains("Paused")) return;

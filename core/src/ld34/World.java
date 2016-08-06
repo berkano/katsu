@@ -99,7 +99,7 @@ public class World extends KRoom {
 
         super.update();
 
-        K.ui.setTopText("Money: £" + player.getMoney());
+        K.text.setTop("Money: £" + player.getMoney());
 
         if (!doneFirstUpdate) {
             if (LD34Settings.get().startPaused) {
