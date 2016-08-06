@@ -33,7 +33,7 @@ public class KAppearance {
         if (isSpriteFlip()) {
             xScale = -xScale;
         }
-        K.graphics.activeSpriteBatch.draw(
+        K.graphics.spriteBatch.draw(
                 textureRegion,
                 entity.getX(), entity.getY(), entity.getWidth() / 2, entity.getHeight() / 2,
                 entity.getWidth(), entity.getHeight(),

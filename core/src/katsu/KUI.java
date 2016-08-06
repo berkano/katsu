@@ -3,7 +3,6 @@ package katsu;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import lombok.Getter;
 import lombok.Setter;
@@ -58,16 +57,16 @@ public class KUI {
 
     public void preGlobalRender() {
         getMainCamera().update();
-        K.graphics.activeSpriteBatch.setProjectionMatrix(getMainCamera().combined);
-        K.graphics.activeShapeRenderer.setProjectionMatrix(getMainCamera().combined);
+        K.graphics.spriteBatch.setProjectionMatrix(getMainCamera().combined);
+        K.graphics.shapeRenderer.setProjectionMatrix(getMainCamera().combined);
         // Clear screen
         Gdx.gl.glClearColor(0f, 0f, 0f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        K.graphics.activeSpriteBatch.begin();
+        K.graphics.spriteBatch.begin();
     }
 
     public void postGlobalRender() {
-        K.graphics.activeSpriteBatch.end();
+        K.graphics.spriteBatch.end();
         Gdx.gl.glEnable(GL20.GL_BLEND);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         K.graphics.uiShapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
