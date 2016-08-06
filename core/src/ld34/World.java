@@ -47,8 +47,6 @@ public class World extends KRoom {
 
         K.input.getMultiplexer().addProcessor(this);
 
-        K.ui.setHelpText(K.resource.loadText("help.txt"));
-
         player = (Snowman) firstInstanceOfClass(Snowman.class);
 
         if (LD34Settings.get().startWithPausedHelp) {

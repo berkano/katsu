@@ -50,8 +50,6 @@ public class World extends KRoom {
         K.ui.getMainCamera().viewportHeight = K.settings.getWindowHeight() / 4;
         K.ui.getMainCamera().viewportWidth = K.settings.getWindowWidth() / 4;
 
-        K.ui.setHelpText(K.resource.loadText("help.txt"));
-
         if (LD33Settings.get().startWithPausedHelp) {
             K.ui.setShowingHelp(true);
         }

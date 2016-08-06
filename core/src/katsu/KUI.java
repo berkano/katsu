@@ -14,8 +14,9 @@ import java.util.Iterator;
 public class KUI {
 
     // Text display
-    @Getter @Setter private ArrayList<KTextLine> text = new ArrayList<KTextLine>();
-    @Getter @Setter private String helpText = "No help text provided";
+    private ArrayList<KTextLine> text = new ArrayList<KTextLine>();
+    private String helpText;
+
     @Getter @Setter private String topText = "";
     @Getter @Setter private String secondaryText = "";
     @Getter @Setter private boolean showingHelp = false;
@@ -174,6 +175,8 @@ public class KUI {
     }
 
     public void init() {
+
+        helpText = K.resource.loadText("help.txt");
 
         // Font
         font = K.resource.loadBitmapFont("fonts/font.fnt", "fonts/font.png");
