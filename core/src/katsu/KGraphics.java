@@ -48,13 +48,13 @@ public class KGraphics {
     }
 
     public void preGlobalRender() {
-        K.graphics.mainCamera.update();
-        K.graphics.spriteBatch.setProjectionMatrix(mainCamera.combined);
-        K.graphics.shapeRenderer.setProjectionMatrix(mainCamera.combined);
+        mainCamera.update();
+        spriteBatch.setProjectionMatrix(mainCamera.combined);
+        shapeRenderer.setProjectionMatrix(mainCamera.combined);
         // Clear screen
         Gdx.gl.glClearColor(0f, 0f, 0f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        K.graphics.spriteBatch.begin();
+        spriteBatch.begin();
     }
 
 
