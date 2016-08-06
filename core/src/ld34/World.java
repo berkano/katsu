@@ -50,7 +50,7 @@ public class World extends KRoom {
         player = (Snowman) firstInstanceOfClass(Snowman.class);
 
         if (LD34Settings.get().startWithPausedHelp) {
-            K.ui.setShowingHelp(true);
+            K.text.showHelp();
         }
 
         K.ui.clearText();

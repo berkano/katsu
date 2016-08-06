@@ -66,7 +66,7 @@ public abstract class KRunner extends KInputProcessor implements ApplicationList
         }
         if (keycode == K.settings.getPauseKey()) {
             if (gamePaused()) {
-                unPauseGame();
+                unpause();
             } else {
                 pauseGame();
             }
@@ -74,11 +74,11 @@ public abstract class KRunner extends KInputProcessor implements ApplicationList
         }
         if (keycode == Input.Keys.H) {
             K.ui.clearText();
-            if (K.ui.isShowingHelp()) {
-                K.ui.setShowingHelp(false);
-                K.runner.unPauseGame();
+            if (K.text.helpShowing()) {
+                K.text.hideHelp();
+                unpause();
             } else {
-                K.ui.setShowingHelp(true);
+                K.text.showHelp();
                 pauseGame();
             }
         }
@@ -104,9 +104,9 @@ public abstract class KRunner extends KInputProcessor implements ApplicationList
         this.paused = true;
     }
 
-    public void unPauseGame() {
+    public void unpause() {
         K.ui.clearText();
-        K.ui.setShowingHelp(false);
+        K.text.hideHelp();
         this.paused = false;
     }
 

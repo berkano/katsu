@@ -17,14 +17,13 @@ public class KUI {
     private ArrayList<KTextLine> text = new ArrayList<KTextLine>();
     private String helpText;
 
-    @Getter @Setter private boolean showingHelp = false;
-    @Getter @Setter private int leftMargin = 768;
-    @Getter @Setter private int topMargin = 0;
-    @Getter @Setter private BitmapFont font;
-    @Getter @Setter private int fontHeight = 18;
-    @Getter @Setter private int fontWidth = 18;
-    @Getter @Setter private int lineDisplay = 10;
-    @Getter @Setter private int lineCount = 0;
+    private int leftMargin = 768;
+    private int topMargin = 0;
+    private BitmapFont font;
+    private int fontHeight = 18;
+    private int fontWidth = 18;
+    private int lineDisplay = 10;
+    private int lineCount = 0;
 
     // Rendering
     @Getter @Setter private SpriteBatch activeSpriteBatch;
@@ -88,7 +87,7 @@ public class KUI {
     }
 
     private void renderHelpShadowBox() {
-        if (isShowingHelp()) {
+        if (K.text.helpShowing()) {
             Color shade = new Color(0, 0, 0, 0.75f);
             K.ui.getUiShapeRenderer().setColor(shade);
             float width = K.settings.getHres() - fontHeight * 2; // Keep a right border
@@ -121,14 +120,11 @@ public class KUI {
     }
 
     private void renderTopText() {
-        if (font == null) {
-            font = getFont();
-        }
         K.text.render(uiSpriteBatch, font);
     }
 
     private void renderHelpText() {
-        if (!isShowingHelp()) return;
+        if (!K.text.helpShowing()) return;
         topMargin = K.settings.getVres() - fontHeight - 8;
         leftMargin = fontHeight * 2;
         for (String s : helpText.split("\n")) {

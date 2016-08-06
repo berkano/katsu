@@ -13,6 +13,7 @@ public class KText {
 
     @Getter @Setter private String top = "";
     @Getter @Setter private String secondary = "";
+    private boolean showingHelp = false;
 
     public void render(SpriteBatch batch, BitmapFont font) {
         int yOffset = K.settings.getWindowHeight();
@@ -24,5 +25,17 @@ public class KText {
         font.draw(batch, secondary, 4, yOffset - 4 - 16);
         font.setColor(Color.PINK);
         font.draw(batch, secondary, 6, yOffset - 6 - 16);
+    }
+
+    public boolean helpShowing() {
+        return showingHelp;
+    }
+
+    public void hideHelp() {
+        showingHelp = false;
+    }
+
+    public void showHelp() {
+        showingHelp = true;
     }
 }
