@@ -82,7 +82,7 @@ public class KRoom extends KInputProcessor {
     }
 
     public void render() {
-        K.logFPS();
+        K.logger.fps();
         handleDestroyedEntities();
         handleNewEntities();
         sortEntitiesByZIndex();

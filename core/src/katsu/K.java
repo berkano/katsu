@@ -19,18 +19,11 @@ public class K {
     public static KUtils utils = new KUtils();
     public static KInput input = new KInput();
     public static KText text = new KText();
-    public static HashMap<Class, TextureRegion> textureCache = new HashMap<Class, TextureRegion>();
+    public static KTextureCache textureCache = new KTextureCache();
 
     // Provided by implementation
     public static KRunner runner;
     public static KSettings settings;
     public static KUI ui;
 
-    private static FPSLogger fpsLogger = new FPSLogger();
-
-    public static void logFPS() {
-        if (K.settings.isLogFPS()) {
-            fpsLogger.log();
-        }
-    }
 }

@@ -1,9 +1,13 @@
 package katsu;
 
+import com.badlogic.gdx.graphics.FPSLogger;
+
 /**
  * Created by shaun on 16/11/2014.
  */
 public class KLogger {
+
+    private FPSLogger fpsLogger = new FPSLogger();
 
     public void debug(String message) {
         console("DEBUG: "+message);
@@ -38,4 +42,11 @@ public class KLogger {
     public void warn(String message) {
         console("WARN: " + message);
     }
+
+    public void fps() {
+        if (K.settings.isLogFPS()) {
+            fpsLogger.log();
+        }
+    }
+
 }

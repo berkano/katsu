@@ -21,7 +21,6 @@ public class KTiledMapProcessor {
     @Getter @Setter private ArrayList<KEntity> entities;
     @Getter @Setter private TiledMap map;
 
-    private HashMap<Class, TextureRegion> entityTextureRegions;
     private String filename;
     private List<Class> classLookup;
 
@@ -34,7 +33,6 @@ public class KTiledMapProcessor {
 
         setMap(loadMap(filename));
         entities = new ArrayList<KEntity>();
-        entityTextureRegions = K.textureCache; // new HashMap<Class, TextureRegion>();
 
         List<TiledMapTileLayer> layerList = getLayersFromMap(getMap());
 
@@ -80,9 +78,9 @@ public class KTiledMapProcessor {
     }
 
     private void createEntityFromClass(int x, int y, TiledMapTileLayer layer, Class c) {
-        if (entityTextureRegions.get(c) == null) {
+        if (K.textureCache.get(c) == null) {
             TextureRegion textureRegion = layer.getCell(x, y).getTile().getTextureRegion();
-            entityTextureRegions.put(c, textureRegion);
+            K.textureCache.put(c, textureRegion);
         }
         if (!layer.getName().contains("no-populate")) { // no-populate just used for loading textures.
             try {
@@ -90,7 +88,7 @@ public class KTiledMapProcessor {
 
                 e.setX(x * K.settings.getGridSize());
                 e.setY(y * K.settings.getGridSize());
-                e.getAppearance().setTextureRegion(entityTextureRegions.get(c));
+                e.getAppearance().setTextureRegion(K.textureCache.get(c));
                 entities.add(e);
             } catch (Exception ex) {
                 throw new KException(ex);
