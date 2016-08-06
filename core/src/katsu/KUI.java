@@ -24,10 +24,6 @@ public class KUI {
     private int lineDisplay = 10;
     private int lineCount = 0;
 
-    // Camera
-    @Getter @Setter private Camera uiCamera;
-    @Getter @Setter private Camera mainCamera;
-
     public void writeText(String s) {
         if (text.size() >= lineDisplay) {
             text.remove(0);
@@ -53,16 +49,6 @@ public class KUI {
 
             K.graphics.uiShapeRenderer.rect(x, y, width, height);
         }
-    }
-
-    public void preGlobalRender() {
-        getMainCamera().update();
-        K.graphics.spriteBatch.setProjectionMatrix(getMainCamera().combined);
-        K.graphics.shapeRenderer.setProjectionMatrix(getMainCamera().combined);
-        // Clear screen
-        Gdx.gl.glClearColor(0f, 0f, 0f, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        K.graphics.spriteBatch.begin();
     }
 
     public void postGlobalRender() {
@@ -162,15 +148,5 @@ public class KUI {
         // Game window
         Gdx.graphics.setTitle(K.settings.getGameName() + " :: " + K.settings.getGameAuthor() + " :: " + K.settings.getGameDescription());
 
-        // Camera setup
-        float w = Gdx.graphics.getWidth();
-        float h = Gdx.graphics.getHeight();
-        float viewportSize = 1024;
-        setMainCamera(new OrthographicCamera(viewportSize, viewportSize * (h / w)));
-        getMainCamera().position.set(512, 768 / 2, 0);
-        getMainCamera().update();
-        setUiCamera(new OrthographicCamera(viewportSize, viewportSize * (h / w)));
-        getUiCamera().position.set(512, 768 / 2, 0);
-        getUiCamera().update();
     }
 }

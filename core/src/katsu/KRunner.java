@@ -38,7 +38,7 @@ public abstract class KRunner extends KInputProcessor implements ApplicationList
 
     @Override
     public void render() {
-        K.ui.preGlobalRender();
+        K.graphics.preGlobalRender();
         for (KRoom room : rooms) {
             if (room.isActive()) {
                 room.render();
