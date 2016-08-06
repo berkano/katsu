@@ -42,8 +42,8 @@ public class World extends KRoom {
         wipeData();
         loadFromTiledMap(mapName);
 
-        K.graphics.mainCamera.viewportHeight = K.settings.getWindowHeight() / 4;
-        K.graphics.mainCamera.viewportWidth = K.settings.getWindowWidth() / 4;
+        K.graphics.camera.viewportHeight = K.settings.getWindowHeight() / 4;
+        K.graphics.camera.viewportWidth = K.settings.getWindowWidth() / 4;
 
         K.input.getMultiplexer().addProcessor(this);
 
@@ -179,7 +179,7 @@ public class World extends KRoom {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        Vector3 worldPos = K.graphics.mainCamera.unproject(new Vector3(screenX, screenY, 0));
+        Vector3 worldPos = K.graphics.camera.unproject(new Vector3(screenX, screenY, 0));
         K.logger.trace("World detected touchDown at " + screenX + "," + screenY);
         K.logger.trace("World pos is " + worldPos.toString());
         ArrayList<KEntity> entities = findEntitiesAtPoint(Math.round(worldPos.x), Math.round(worldPos.y));

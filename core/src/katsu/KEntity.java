@@ -169,8 +169,8 @@ public class KEntity extends KInputProcessor {
     }
 
     public void lookAtMe() {
-        K.graphics.mainCamera.position.x = getX();
-        K.graphics.mainCamera.position.y = getY();
+        K.graphics.camera.position.x = getX();
+        K.graphics.camera.position.y = getY();
     }
 
     public boolean tryMove(int dx, int dy) {
