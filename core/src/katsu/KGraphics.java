@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
@@ -17,6 +18,7 @@ public class KGraphics {
     public SpriteBatch uiSpriteBatch;
     public ShapeRenderer uiShapeRenderer;
     public Camera camera;
+    public BitmapFont font;
 
     public void init() {
 
@@ -26,6 +28,15 @@ public class KGraphics {
         uiShapeRenderer = new ShapeRenderer();
 
         setupCamera();
+        setupFont();
+
+    }
+
+    private void setupFont() {
+
+        font = K.resource.loadBitmapFont("fonts/font.fnt", "fonts/font.png");
+        font.setColor(1f, 1f, 1f, 1f);
+        font.setScale(1, -1);
 
     }
 

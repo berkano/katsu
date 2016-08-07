@@ -18,7 +18,6 @@ public class KUI {
 
     private int leftMargin = 768;
     private int topMargin = 0;
-    private BitmapFont font;
     private int fontHeight = 18;
     private int fontWidth = 18;
     private int lineDisplay = 10;
@@ -95,7 +94,7 @@ public class KUI {
             Color c = Color.WHITE;
             formatAndRenderLine(tl.text, c);
         }
-        K.text.render(font);
+        K.text.render();
     }
 
     private void renderHelpText() {
@@ -129,21 +128,16 @@ public class KUI {
     private void renderLine(String line, Color c) {
         int stringX = leftMargin;
         int stringY = topMargin - fontHeight * (lineCount - 1);
-        font.setColor(Color.BLACK);
-        font.draw(K.graphics.uiSpriteBatch, line, stringX + 2, stringY + 2);
-        font.setColor(c);
-        font.draw(K.graphics.uiSpriteBatch, line, stringX, stringY);
+        K.graphics.font.setColor(Color.BLACK);
+        K.graphics.font.draw(K.graphics.uiSpriteBatch, line, stringX + 2, stringY + 2);
+        K.graphics.font.setColor(c);
+        K.graphics.font.draw(K.graphics.uiSpriteBatch, line, stringX, stringY);
         lineCount++;
     }
 
     public void init() {
 
         helpText = K.resource.loadText("help.txt");
-
-        // Font
-        font = K.resource.loadBitmapFont("fonts/font.fnt", "fonts/font.png");
-        font.setColor(1f, 1f, 1f, 1f);
-        font.setScale(1, -1);
 
         // Game window
         Gdx.graphics.setTitle(K.settings.getGameName() + " :: " + K.settings.getGameAuthor() + " :: " + K.settings.getGameDescription());

@@ -15,7 +15,8 @@ public class KText {
     @Getter @Setter private String secondary = "";
     private boolean showingHelp = false;
 
-    public void render(BitmapFont font) {
+    public void render() {
+        BitmapFont font = K.graphics.font;
         int yOffset = K.settings.getWindowHeight();
         font.setColor(Color.BLACK);
         font.draw(K.graphics.uiSpriteBatch, K.text.getTop(), 4, yOffset - 4);
