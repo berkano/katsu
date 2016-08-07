@@ -3,6 +3,8 @@ package katsu;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -38,13 +40,34 @@ public abstract class KRunner extends KInputProcessor implements ApplicationList
 
     @Override
     public void render() {
-        K.graphics.preGlobalRender();
+
+        K.graphics.camera.update();
+        K.graphics.spriteBatch.setProjectionMatrix(K.graphics.camera.combined);
+        K.graphics.shapeRenderer.setProjectionMatrix(K.graphics.camera.combined);
+        // Clear screen
+        Gdx.gl.glClearColor(0f, 0f, 0f, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        K.graphics.spriteBatch.begin();
+
         for (KRoom room : rooms) {
             if (room.isActive()) {
                 room.render();
             }
         }
-        K.ui.postGlobalRender();
+
+        K.graphics.spriteBatch.end();
+        Gdx.gl.glEnable(GL20.GL_BLEND);
+        Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+        K.graphics.uiShapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+
+        K.ui.renderShadowBoxes();
+
+        K.graphics.uiShapeRenderer.end();
+        Gdx.gl.glDisable(GL20.GL_BLEND);
+        K.graphics.uiSpriteBatch.begin();
+        K.ui.renderText();
+        K.graphics.uiSpriteBatch.end();
+
         update();
     }
 

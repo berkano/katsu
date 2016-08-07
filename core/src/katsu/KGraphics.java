@@ -55,15 +55,4 @@ public class KGraphics {
 
     }
 
-    public void preGlobalRender() {
-        camera.update();
-        spriteBatch.setProjectionMatrix(camera.combined);
-        shapeRenderer.setProjectionMatrix(camera.combined);
-        // Clear screen
-        Gdx.gl.glClearColor(0f, 0f, 0f, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        spriteBatch.begin();
-    }
-
-
 }

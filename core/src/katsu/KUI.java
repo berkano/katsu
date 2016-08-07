@@ -50,18 +50,9 @@ public class KUI {
         }
     }
 
-    public void postGlobalRender() {
-        K.graphics.spriteBatch.end();
-        Gdx.gl.glEnable(GL20.GL_BLEND);
-        Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-        K.graphics.uiShapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+    public void renderShadowBoxes() {
         renderHelpShadowBox();
         renderShadowBox();
-        K.graphics.uiShapeRenderer.end();
-        Gdx.gl.glDisable(GL20.GL_BLEND);
-        K.graphics.uiSpriteBatch.begin();
-        renderText();
-        K.graphics.uiSpriteBatch.end();
     }
 
     private void renderHelpShadowBox() {
@@ -74,7 +65,7 @@ public class KUI {
         }
     }
 
-    private void renderText() {
+    public void renderText() {
         renderHelpText();
         boolean gameIsPaused = K.runner.gamePaused();
         // Remove old lines
