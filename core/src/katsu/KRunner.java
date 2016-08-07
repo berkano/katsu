@@ -28,6 +28,10 @@ public abstract class KRunner extends KInputProcessor implements ApplicationList
 
     @Override
     public void create() {
+
+        // Game window
+        Gdx.graphics.setTitle(K.settings.getGameName() + " :: " + K.settings.getGameAuthor() + " :: " + K.settings.getGameDescription());
+
         K.graphics.init();
         K.ui.init();
         K.input.init(this);

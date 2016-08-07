@@ -127,11 +127,6 @@ public class KUI {
     }
 
     public void init() {
-
         helpText = K.resource.loadText("help.txt");
-
-        // Game window
-        Gdx.graphics.setTitle(K.settings.getGameName() + " :: " + K.settings.getGameAuthor() + " :: " + K.settings.getGameDescription());
-
     }
 }
