@@ -21,6 +21,7 @@ public abstract class KRunner extends KInputProcessor implements ApplicationList
     public abstract List<Class> getClassLookup();
     public abstract void toggleMusic();
 
+    private KKeyDownHandler keyDownHandler = new KKeyDownHandler();
     private ArrayList<KRoom> rooms;
     private Boolean paused = false;
 
@@ -89,35 +90,7 @@ public abstract class KRunner extends KInputProcessor implements ApplicationList
 
     @Override
     public boolean keyDown(int keycode) {
-        if (keycode == Input.Keys.ESCAPE) {
-            K.runner.exit();
-        }
-        if (keycode == K.settings.getPauseKey()) {
-            if (gamePaused()) {
-                unpause();
-            } else {
-                pauseGame();
-            }
-            return true;
-        }
-        if (keycode == Input.Keys.H) {
-            K.ui.clearText();
-            if (K.text.helpShowing()) {
-                K.text.hideHelp();
-                unpause();
-            } else {
-                K.text.showHelp();
-                pauseGame();
-            }
-        }
-        if (keycode == K.settings.getToggleMusicKey()) {
-            K.runner.toggleMusic();
-        }
-        if ((keycode == Input.Keys.F || keycode == Input.Keys.F11)) {
-            K.settings.toggleFullScreen();
-        }
-        K.input.setKeyDown(keycode, true);
-        return false;
+        return keyDownHandler.handle(keycode);
     }
 
     @Override
