@@ -16,7 +16,7 @@ public class LD37wuSounds {
     public static Sound gone_wrong = K.resource.loadSound("gone_wrong.wav");
     public static Sound lightning = K.resource.loadSound("lightning.wav");
     public static Sound fire = K.resource.loadSound("fire.wav");
-    public static Sound music = K.resource.loadSound("snowman-music.ogg");
+    public static Sound music = K.resource.loadSound("ld37wu-music.ogg");
 
     public static void stopAllMusic() {
         K.logger.trace("stop music");
