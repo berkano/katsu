@@ -1,0 +1,30 @@
+todo
+- help
+- publish
+
+postcompo
+- bug when planting / moves back and forth annoyingly
+
+done
+- pathfinding
+- chop tree
+- plant sapling
+- tree growth
+- pay for saplings
+- earn money from chopping
+- buy land
+- buggy planting - can sometimes plant on top of snowman
+- P for planting mode
+- one click: walk, plant, chop, buy land depending on target and planting mode
+- sfx: chop, walk, buy, plant, acknowledge, couldn't do
+- smooth snowman move
+- pause before carrying out action
+- darken help text vs. significant event text
+- music
+- fire spreading
+- can put out fire
+- burnt trees get no money
+- juice map / level design
+- upgrade snowman to santa etc.
+- win state?
+- tuning / playthru
