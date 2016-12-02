@@ -3,6 +3,10 @@ package ld37wu;
 import katsu.K;
 import katsu.KRoom;
 import katsu.KRunner;
+import ld37wu.entities.Baby;
+import ld37wu.entities.Present;
+import ld37wu.entities.Santa;
+import ld37wu.entities.Tree;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -51,8 +55,10 @@ public class LD37wuGame extends KRunner {
     public List<Class> getClassLookup() {
 
         return K.utils.buildClassList(
-//                Grass.class, Land.class, Snowman.class, TreeLarge.class, TreeMedium.class, TreeSmall.class, Sapling.class,
-//                Fire.class, Water.class, Dirt.class, SnowmanGold.class, SnowmanScarf.class
+                Baby.class,
+                Present.class,
+                Santa.class,
+                Tree.class
         );
     }
 

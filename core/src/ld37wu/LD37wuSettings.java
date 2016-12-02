@@ -41,7 +41,7 @@ public class LD37wuSettings extends KSettings {
 
     @Override
     public String getGameName() {
-        return "growing";
+        return "christmas";
     }
 
     @Override
@@ -51,7 +51,7 @@ public class LD37wuSettings extends KSettings {
 
     @Override
     public String getGameDescription() {
-        return "ld34";
+        return "ld37 warmup";
     }
 
     @Override
