@@ -38,4 +38,4 @@ berkano (http://ludumdare.com/compo/author/berkano/)
 
 - The ext.pathfinding package is adapted from http://www.gudradain.byethost12.com/Pathfinding.html, all that has changed is the package name (licensing terms are unclear).
 - The Minecraftia font was obtained from http://www.dafont.com/minecraftia.font. Copyright Andrew Tyler. Visit that page for requirements around commercial usage.
-- All other code and assets are hereby released into the public domain.
+- All other code and assets are hereby released into the public domain. 
