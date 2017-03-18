@@ -2,8 +2,6 @@ package mini73;
 
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
-import katsu.Katsu;
-import katsu.Util;
 
 /**
  * Created with IntelliJ IDEA.

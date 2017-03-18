@@ -9,7 +9,7 @@ import katsu.KEntity;
  * Time: 09:47
  * To change this template use File | Settings | File Templates.
  */
-public class Terrain extends KEntity {
+public class Terrain extends Mini73EntityBase {
 
     public boolean hasPickedTile = false;
 

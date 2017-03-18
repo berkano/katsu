@@ -1,7 +1,6 @@
 package mini73;
 
-import katsu.Game;
-import katsu.UI;
+import katsu.KUI;
 import mini73.entities.mobs.*;
 import mini73.entities.resources.*;
 import mini73.entities.structures.Door;
@@ -49,10 +48,7 @@ public class LevelManager {
         return "";
     }
 
-    public static void showLevelInstructions(UI ui, Game game) {
-    }
-
-    public static void showHelp(int helpPage, UI ui) {
+    public static void showHelp(int helpPage, KUI ui) {
 
         String[] lines = Documentation.getHelpPage(helpPage).split("\n");
         ui.writeText(String.format("*** HELP: Page (%s of %s). Press H for next page. ***", helpPage, helpPages));

@@ -1,7 +1,7 @@
 package mini73.entities.base;
 
 import com.badlogic.gdx.Application;
-import katsu.Entity;
+import katsu.KEntity;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,7 +10,7 @@ import katsu.Entity;
  * Time: 12:28
  * To change this template use File | Settings | File Templates.
  */
-public class FixedItem extends Entity {
+public class FixedItem extends Mini73EntityBase {
 
     @Override
     public void update(Application gc) {
@@ -18,7 +18,7 @@ public class FixedItem extends Entity {
     }
 
     @Override
-    public boolean collide(Entity other) {
+    public boolean collide(KEntity other) {
         return false;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

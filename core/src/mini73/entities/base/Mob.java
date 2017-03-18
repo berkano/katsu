@@ -19,7 +19,7 @@ import java.util.ArrayList;
 /**
  * @author shaun
  */
-public class Mob extends KEntity {
+public class Mob extends Mini73EntityBase {
 
     public long lastAttacked = 0;
     public long lastDamaged = 0;
@@ -28,6 +28,7 @@ public class Mob extends KEntity {
     public Integer intermediateTargX = null;
     public Integer intermediateTargY = null;
     public long lastIntermedArrival = 0;
+    public boolean isCollisionTarget = false;
 
     public Mob() {
         this.setSolid(true);
@@ -49,7 +50,7 @@ public class Mob extends KEntity {
 
     @Override
     // TODO bug with entity appearing twice in destroy list??
-    public void beforeDeath(Room room) {
+    public void beforeDeath(KRoom room) {
         super.beforeDeath(room);
         ui.writeText(this.toString() + " died.");
     }

@@ -1,6 +1,6 @@
 package mini73;
 
-import katsu.Katsu;
+import katsu.K;
 
 import java.util.ArrayList;
 
@@ -15,7 +15,7 @@ public class PlaceNames {
     public static ArrayList<String> shipTitles = new ArrayList<String>();
 
     public static String randomStringFromList(ArrayList<String> list) {
-        return list.get(Katsu.random.nextInt(list.size()));
+        return list.get(K.random.nextInt(list.size()));
     }
 
     static {

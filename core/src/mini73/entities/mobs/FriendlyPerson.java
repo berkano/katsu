@@ -1,7 +1,5 @@
 package mini73.entities.mobs;
 
-import katsu.Katsu;
-import katsu.Util;
 import mini73.GameState;
 import mini73.entities.base.FriendlyMob;
 import mini73.entities.resources.*;

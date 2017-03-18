@@ -2,10 +2,9 @@ package mini73.entities.structures;
 
 import com.badlogic.gdx.Application;
 import katsu.KEntity;
-import katsu.Settings;
-import katsu.entities.FixedItem;
 import mini73.Teleport;
 import mini73.TeleportMap;
+import mini73.entities.base.FixedItem;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,8 +19,8 @@ public class LandingPad extends FixedItem {
     boolean firstUpdate = true;
 
     public LandingPad() {
-        this.solid = false;
-        this.isCollisionTarget = false;
+        this.setSolid(false);
+        this.setCollisionTarget(false);
     }
 
     @Override

@@ -1,8 +1,7 @@
 package mini73.entities.base;
 
 import com.badlogic.gdx.Application;
-import katsu.Katsu;
-import katsu.Room;
+import katsu.KRoom;
 import mini73.Objective;
 import mini73.entities.mobs.PlayerPerson;
 import mini73.entities.mobs.Ship;
@@ -18,13 +17,13 @@ import mini73.rooms.MainRoom;
 public class FriendlyMob extends Mob {
 
     public FriendlyMob() {
-        this.solid = true;
+        this.setSolid(true);
         this.isCollisionTarget = true;
         this.orientSpriteByMovement = false;
     }
 
     @Override
-    public void beforeDeath(Room room) {
+    public void beforeDeath(KRoom room) {
         super.beforeDeath(room);    //To change body of overridden methods use File | Settings | File Templates.
 
 
