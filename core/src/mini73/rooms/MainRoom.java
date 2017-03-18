@@ -26,11 +26,10 @@ import java.util.ArrayList;
  * Time: 20:24
  * To change this template use File | Settings | File Templates.
  */
-public class MainRoom extends Room {
+public class MainRoom extends KRoom {
 
     public GameState gameState = new GameState(this);
 
-    public View mainView = new View(this);
     public boolean gameOver = false;
 
     public boolean objectiveReached = false;

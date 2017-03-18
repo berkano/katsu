@@ -1,8 +1,7 @@
 package mini73;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import katsu.Katsu;
-import katsu.Settings;
+import katsu.K;
 import mini73.rooms.MainRoom;
 
 import java.awt.geom.Point2D;
@@ -17,17 +16,17 @@ public class Radar {
     static {
 
         shapeRenderer = new ShapeRenderer();
-        shapeRenderer.setProjectionMatrix(Katsu.game.camera.combined);
+        shapeRenderer.setProjectionMatrix(K.graphics.camera.combined);
 
     }
 
     public static void render() {
 
 
-        MainRoom r = (MainRoom) Katsu.game.currentRoom;
+        MainRoom r = (MainRoom) K.game.currentRoom;
 
-        int shipX = (r.ship.x / 16) % Settings.hres;
-        int shipY = (r.ship.y / 16) % Settings.vres;
+        int shipX = (r.ship.getX() / 16) % K.settings.getHres();
+        int shipY = (r.ship.getY() / 16) % K.settings.getVres();
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 

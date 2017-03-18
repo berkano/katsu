@@ -12,13 +12,4 @@ import katsu.KEntity;
  */
 public class FixedItem extends Mini73EntityBase {
 
-    @Override
-    public void update(Application gc) {
-        super.update(gc);    //To change body of overridden methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public boolean collide(KEntity other) {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
-    }
 }

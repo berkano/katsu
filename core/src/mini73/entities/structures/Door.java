@@ -2,7 +2,7 @@ package mini73.entities.structures;
 
 import com.badlogic.gdx.Application;
 import katsu.KEntity;
-import katsu.entities.FixedItem;
+import mini73.entities.base.FixedItem;
 
 import java.util.ArrayList;
 

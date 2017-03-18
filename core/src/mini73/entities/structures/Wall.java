@@ -1,7 +1,7 @@
 package mini73.entities.structures;
 
 import katsu.KEntity;
-import katsu.entities.FixedItem;
+import mini73.entities.base.FixedItem;
 
 /**
  * Created with IntelliJ IDEA.
@@ -18,8 +18,8 @@ public class Wall extends FixedItem {
     }
 
     public Wall() {
-        this.solid=true;
-        this.isCollisionTarget=true;
+        this.setSolid(true);
+        this.setCollisionTarget(true);
     }
 
     @Override

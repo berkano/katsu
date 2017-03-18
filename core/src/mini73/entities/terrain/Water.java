@@ -2,7 +2,7 @@ package mini73.entities.terrain;
 
 import com.badlogic.gdx.Application;
 import katsu.KEntity;
-import katsu.entities.FixedItem;
+import mini73.entities.base.FixedItem;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,8 +21,8 @@ public class Water extends FixedItem {
     }
 
     public Water() {
-        this.solid = false;
-        this.isCollisionTarget = false;
+        this.setSolid(false);
+        this.setCollisionTarget(false);
     }
 
 

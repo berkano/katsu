@@ -1,7 +1,7 @@
 package mini73.entities.terrain;
 
 import com.badlogic.gdx.Application;
-import katsu.entities.Terrain;
+import mini73.entities.base.Terrain;
 
 /**
  * Created with IntelliJ IDEA.

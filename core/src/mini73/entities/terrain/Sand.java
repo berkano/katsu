@@ -1,7 +1,7 @@
 package mini73.entities.terrain;
 
 import com.badlogic.gdx.Application;
-import katsu.entities.Terrain;
+import mini73.entities.base.Terrain;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,15 +11,5 @@ import katsu.entities.Terrain;
  * To change this template use File | Settings | File Templates.
  */
 public class Sand extends Terrain {
-
-    @Override
-    public void update(Application gc) {
-        super.update(gc);    //To change body of overridden methods use File | Settings | File Templates.
-
-
-    }
-
-
-
 
 }

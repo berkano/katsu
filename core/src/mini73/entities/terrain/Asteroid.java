@@ -15,22 +15,9 @@ public class Asteroid extends FixedItem {
 
     public boolean hasPickedTile = false;
 
-    @Override
-    public boolean collide(KEntity other) {
-        return true;
-    }
-
     public Asteroid() {
-        this.solid = true;
-        this.isCollisionTarget = true;
+        this.setSolid(true);
+        this.setCollisionTarget(true);
     }
-
-
-    @Override
-    public void update(Application gc) {
-        super.update(gc);    //To change body of overridden methods use File | Settings | File Templates.
-
-    }
-
 
 }

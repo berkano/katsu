@@ -2,8 +2,7 @@ package mini73.rooms;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import katsu.Katsu;
-import katsu.Settings;
+import katsu.K;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
@@ -19,11 +18,11 @@ public class StarField {
     static {
 
         shapeRenderer = new ShapeRenderer();
-        shapeRenderer.setProjectionMatrix(Katsu.game.camera.combined);
+        shapeRenderer.setProjectionMatrix(K.graphics.camera.combined);
 
         for (int i = 0; i< 1000; i++) {
             Point2D.Float newStar = new Point2D.Float();
-            newStar.setLocation(Katsu.random.nextInt(Settings.hres), Katsu.random.nextInt(Settings.vres));
+            newStar.setLocation(K.random.nextInt(K.settings.getHres()), K.random.nextInt(K.settings.getVres()));
             stars.add(newStar);
         }
     }
