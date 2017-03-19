@@ -17,35 +17,25 @@ public class Door extends FixedItem {
 
     boolean firstUpdate = true;
 
-    @Override
-    public int getResourceCost(Class c) {
-        return 0;
-    }
-
     public Door() {
-        this.solid=false;
-        this.isCollisionTarget=true;
-
+        this.setSolid(false);
+        this.setCollisionTarget(true);
     }
 
     @Override
-    public void update(Application gc) {
-        super.update(gc);
+    public void update() {
+        super.update();
 
         if (firstUpdate) {
             // Make anything underneath non solid
-            ArrayList<KEntity> entities = room.findEntitiesAtPoint(x + 2, y + 2);
+            ArrayList<KEntity> entities = getRoom().findEntitiesAtPoint(getX() + 2, getY() + 2);
             for (KEntity e : entities) {
                 if (e instanceof FixedItem) {
-                    e.solid = false;
+                    e.setSolid(false);
                 }
             }
             firstUpdate = false;
         }
     }
 
-    @Override
-    public boolean collide(KEntity other) {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
-    }
 }

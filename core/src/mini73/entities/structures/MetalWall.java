@@ -12,18 +12,9 @@ import mini73.entities.base.FixedItem;
  */
 public class MetalWall extends FixedItem {
 
-    @Override
-    public int getResourceCost(Class c) {
-        return 0;
-    }
-
     public MetalWall() {
-        this.solid=true;
-        this.isCollisionTarget=true;
+        this.setSolid(true);
+        this.setCollisionTarget(true);
     }
 
-    @Override
-    public boolean collide(KEntity other) {
-        return true;  //To change body of implemented methods use File | Settings | File Templates.
-    }
 }

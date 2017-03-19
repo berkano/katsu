@@ -30,7 +30,7 @@ public class StarField {
     public static void render() {
         int depth = 0;
 
-        MainRoom r = (MainRoom) Katsu.game.currentRoom;
+        MainRoom r = (MainRoom) K.runner.roomForClass(MainRoom.class);
         int shipX = (r.ship.x / 16) % Settings.hres;
         int shipY = (r.ship.y / 16) % Settings.vres;
 

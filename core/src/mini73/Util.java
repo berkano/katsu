@@ -6,18 +6,12 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import katsu.K;
 import katsu.KEntity;
 import katsu.KRoom;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 /**
  * Created with IntelliJ IDEA.
@@ -61,7 +55,6 @@ public class Util {
     public static TiledMap loadMap(String name) {
         try {
             TmxMapLoader.Parameters parameters = new TmxMapLoader.Parameters();
-            parameters.yUp = false;
             TiledMap tiledMap = new TmxMapLoader().load("maps/" + name, parameters);
             return tiledMap;
         } catch (Exception ex) {
@@ -107,7 +100,7 @@ public class Util {
     }
 
     private static void createEntitiesFromMap(KRoom room, TiledMap map) {
-        throw new NotSupportedYetException();
+        throw new UnportedCodeException();
     }
 
     private static Object newInstance(Class c) {
@@ -126,9 +119,9 @@ public class Util {
     public static void toggleFullScreenMode() {
         if (Gdx.graphics.isFullscreen()) {
             //Gdx.graphics.setDisplayMode(Game.instance.initialDisplayMode.width, Game.instance.initialDisplayMode.height, false);
-            Gdx.graphics.setDisplayMode(Settings.hres, Settings.vres, false);
+            Gdx.graphics.setDisplayMode(K.settings.getHres(), K.settings.getVres(), false);
         } else {
-            Gdx.graphics.setDisplayMode(Settings.hres, Settings.vres, true);
+            Gdx.graphics.setDisplayMode(K.settings.getHres(), K.settings.getVres(), true);
         }
     }
 
@@ -182,7 +175,7 @@ public class Util {
     }
 
     public static void playOneOf(Music... musics) {
-        int sel = Game.instance.r.nextInt(musics.length);
+        int sel = K.random.nextInt(musics.length);
         Music selM = musics[sel];
         selM.play();
         selM.setLooping(false);
@@ -197,7 +190,7 @@ public class Util {
 
     public static Integer randomInRange(int i, int i1) {
 
-        return i + getRandom().nextInt(i1);
+        return i + K.random.nextInt(i1);
 
     }
 }

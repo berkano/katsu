@@ -1,21 +1,13 @@
 package mini73.entities.base;
 
-import com.badlogic.gdx.Application;
-import ext.pathfinding.grid.GridLocation;
-import ext.pathfinding.grid.GridMap;
-import ext.pathfinding.grid.GridPath;
-import ext.pathfinding.grid.GridPathfinding;
 import katsu.*;
-import mini73.NotSupportedYetException;
+import mini73.UnportedCodeException;
 import mini73.Objective;
 import mini73.PlaceNames;
 import mini73.entities.mobs.EnemyPerson;
 import mini73.entities.mobs.EnemyShip;
 import mini73.entities.mobs.FriendlyPerson;
 import mini73.entities.mobs.FriendlyShip;
-import mini73.rooms.MainRoom;
-
-import java.util.ArrayList;
 
 /**
  * @author shaun
@@ -85,7 +77,7 @@ public class Mob extends Mini73EntityBase {
         }
 
         if (currentObjective == Objective.MOVE) {
-            throw new NotSupportedYetException();
+            throw new UnportedCodeException();
         }
 
     }

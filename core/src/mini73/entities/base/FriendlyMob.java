@@ -1,13 +1,10 @@
 package mini73.entities.base;
 
-import com.badlogic.gdx.Application;
 import katsu.K;
 import katsu.KRoom;
-import mini73.NotSupportedYetException;
-import mini73.Objective;
+import mini73.UnportedCodeException;
 import mini73.entities.mobs.PlayerPerson;
 import mini73.entities.mobs.Ship;
-import mini73.rooms.MainRoom;
 
 /**
  * Created with IntelliJ IDEA.
@@ -46,6 +43,6 @@ public class FriendlyMob extends Mob {
     }
 
     private void randomMove() {
-        throw new NotSupportedYetException();
+        throw new UnportedCodeException();
     }
 }

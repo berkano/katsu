@@ -14,11 +14,7 @@ public class Terrain extends Mini73EntityBase {
     public boolean hasPickedTile = false;
 
     public Terrain() {
-        this.solid = false;
+        this.setSolid(false);
     }
 
-    @Override
-    public boolean collide(KEntity other) {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
-    }
 }

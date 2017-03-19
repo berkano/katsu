@@ -12,10 +12,4 @@ public class FriendlyShip extends FriendlyMob {
 
     }
 
-    @Override
-    public void afterMoved() {
-        super.afterMoved();
-
-
-    }
 }

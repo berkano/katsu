@@ -19,15 +19,5 @@ public class Fire extends Terrain {
         //this.color = Color.DARK_GRAY;
     }
 
-    @Override
-    public void update(Application gc) {
-
-        super.update(gc);    //To change body of overridden methods use File | Settings | File Templates.
-
-    }
-
-
-
-
 
 }

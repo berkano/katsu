@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import lombok.Getter;
 import lombok.Setter;
+import mini73.UnportedCodeException;
 
 import java.util.HashMap;
 
@@ -34,5 +35,9 @@ public class KInput {
         Gdx.input.setInputProcessor(K.input.getMultiplexer());
         getMultiplexer().addProcessor(runner);
 
+    }
+
+    public boolean isKeyTyped(int k) {
+        throw new UnportedCodeException();
     }
 }

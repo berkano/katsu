@@ -2,6 +2,8 @@ package katsu;
 
 import lombok.Getter;
 import lombok.Setter;
+import mini73.UnportedCodeException;
+import mini73.entities.structures.LandingPad;
 import net.sf.jsi.Rectangle;
 
 import java.util.List;
@@ -204,4 +206,11 @@ public class KEntity extends KInputProcessor {
     public void onMoved() {}
     public void firstUpdate() {}
 
+    public void addHealth(int delta) {
+        this.setHealth(getHealth() + delta);
+    }
+
+    public Object getInstanceUnderneath(Class clazz) {
+        throw new UnportedCodeException();
+    }
 }

@@ -1,5 +1,6 @@
 package mini73;
 
+import katsu.K;
 import katsu.KEntity;
 import mini73.entities.structures.LandingPad;
 import mini73.entities.terrain.*;
@@ -50,44 +51,44 @@ public class TeleportMap {
             if (e instanceof LandingPad) {
 
                 boolean identified = false;
-                Teleport newTP = new Teleport(e.x / 16, e.y / 16, "bug-unassigned");
+                Teleport newTP = new Teleport(e.getX() / 16, e.getY() / 16, "bug-unassigned");
                 teleportArrayList.add(newTP);
 
                 // Surface
-                if (e.getInstanceUnderneath(Sun.class) != null) {
+                if (getInstanceUnderneath(e, Sun.class) != null) {
                     identified = true;
                     newTP.surface = true;
                     surfaceTPs.add(newTP);
                 }
 
                 // Planets
-                if (e.getInstanceUnderneath(Grass.class) != null) {
+                if (getInstanceUnderneath(e, Grass.class) != null) {
                     identified = true;
                     newTP.dock = true;
                     planetTPs.add(newTP);
                 }
-                if (e.getInstanceUnderneath(Dirt.class) != null) {
+                if (getInstanceUnderneath(e, Dirt.class) != null) {
                     identified = true;
                     newTP.dock = true;
                     planetTPs.add(newTP);
                 }
 
                 // Station
-                if (e.getInstanceUnderneath(Water.class) != null) {
+                if (getInstanceUnderneath(e, Water.class) != null) {
                     identified = true;
                     newTP.dock = true;
                     planetTPs.add(newTP);
                 }
 
                 // Helm
-                if (e.getInstanceUnderneath(Floor.class) != null) {
+                if (getInstanceUnderneath(e, Floor.class) != null) {
                     identified = true;
                     newTP.discovered = true;
                     newTP.name = "Ship Helm";
                 }
 
                 if (!identified) {
-                    throw new RuntimeException(String.format("Unknown teleport type at %s, %s", e.x / 16, e.y / 16));
+                    throw new RuntimeException(String.format("Unknown teleport type at %s, %s", e.getX() / 16, e.getY() / 16));
                 }
 
 
@@ -97,8 +98,8 @@ public class TeleportMap {
 
         // Starting planet
         {
-            Teleport randomPlanetTP = planetTPs.get(Katsu.random.nextInt(planetTPs.size()));
-            Teleport randomSurfaceTP = surfaceTPs.get(Katsu.random.nextInt(surfaceTPs.size()));
+            Teleport randomPlanetTP = planetTPs.get(K.random.nextInt(planetTPs.size()));
+            Teleport randomSurfaceTP = surfaceTPs.get(K.random.nextInt(surfaceTPs.size()));
             planetTPs.remove(randomPlanetTP);
             surfaceTPs.remove(randomSurfaceTP);
             randomPlanetTP.name = "Xorx";
@@ -111,8 +112,8 @@ public class TeleportMap {
 
         // Home planet
         {
-            Teleport randomPlanetTP = planetTPs.get(Katsu.random.nextInt(planetTPs.size()));
-            Teleport randomSurfaceTP = surfaceTPs.get(Katsu.random.nextInt(surfaceTPs.size()));
+            Teleport randomPlanetTP = planetTPs.get(K.random.nextInt(planetTPs.size()));
+            Teleport randomSurfaceTP = surfaceTPs.get(K.random.nextInt(surfaceTPs.size()));
             planetTPs.remove(randomPlanetTP);
             surfaceTPs.remove(randomSurfaceTP);
             randomPlanetTP.name = "Earth";
@@ -124,16 +125,20 @@ public class TeleportMap {
         // Randomly link up all the rest
         Util.log(String.format("Found %s remaining planet TPs and %s remaining surface TPs", planetTPs.size(), surfaceTPs.size()));
         for (Teleport t : planetTPs) {
-            Teleport randomSurfaceTP = surfaceTPs.get(Katsu.random.nextInt(surfaceTPs.size()));
+            Teleport randomSurfaceTP = surfaceTPs.get(K.random.nextInt(surfaceTPs.size()));
             surfaceTPs.remove(randomSurfaceTP);
             t.link(randomSurfaceTP);
             randomSurfaceTP.link(t);
-            String name = PlaceNames.placeNames.get(Katsu.random.nextInt(PlaceNames.placeNames.size()));
+            String name = PlaceNames.placeNames.get(K.random.nextInt(PlaceNames.placeNames.size()));
             PlaceNames.placeNames.remove(name);
             t.name = name;
             randomSurfaceTP.name = name;
         }
 
 
+    }
+
+    private static Object getInstanceUnderneath(KEntity e, Class clazz) {
+        throw new UnportedCodeException();
     }
 }

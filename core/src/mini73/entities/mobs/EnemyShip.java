@@ -15,19 +15,12 @@ public class EnemyShip extends FriendlyMob {
 
     }
 
-    @Override
     public boolean collide(KEntity other) {
         if (other instanceof Ship) {
-            other.health -= 10;
+            other.addHealth(-10);
             Sounds.hurt.play();
         }
         return true;
     }
 
-
-    @Override
-    public void afterMoved() {
-        super.afterMoved();
-
-    }
 }

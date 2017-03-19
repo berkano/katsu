@@ -2,7 +2,7 @@ package mini73.entities.base;
 
 import katsu.KEntity;
 import katsu.KRoom;
-import mini73.NotSupportedYetException;
+import mini73.UnportedCodeException;
 
 /**
  * Created by shaun on 18/03/2017.
@@ -17,6 +17,6 @@ public class Mini73EntityBase extends KEntity {
     }
 
     public void beforeDeath(KRoom room) {
-        throw new NotSupportedYetException();
+        throw new UnportedCodeException();
     }
 }

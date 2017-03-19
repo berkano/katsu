@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import lombok.Getter;
 import lombok.Setter;
+import mini73.UnportedCodeException;
+import mini73.rooms.MainRoom;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -130,4 +132,7 @@ public abstract class KRunner extends KInputProcessor implements ApplicationList
         Gdx.app.exit();
     }
 
+    public void roomForClass(Class clazz) {
+        throw new UnportedCodeException();
+    }
 }

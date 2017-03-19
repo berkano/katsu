@@ -31,18 +31,13 @@ public class LandingPad extends FixedItem {
 
         if (firstUpdate) {
             for (Teleport t : TeleportMap.teleportArrayList) {
-                if (t.x == getX() / K.settings.tileWidth && t.y == y / Settings.tileHeight) {
+                if (t.x == getX() / K.settings.getGridSize() && t.y == getY() / K.settings.getGridSize()) {
                     teleport = t;
                 }
             }
             firstUpdate = false;
         }
 
-    }
-
-    @Override
-    public boolean collide(KEntity other) {
-        return this.solid;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override

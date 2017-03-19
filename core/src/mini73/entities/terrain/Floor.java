@@ -12,11 +12,4 @@ import mini73.entities.base.Terrain;
  */
 public class Floor extends Terrain {
 
-    public Floor() {
-    }
-
-    @Override
-    public void update(Application gc) {
-        super.update(gc);    //To change body of overridden methods use File | Settings | File Templates.
-    }
 }

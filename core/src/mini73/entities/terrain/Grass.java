@@ -20,14 +20,8 @@ public class Grass extends Terrain {
     }
 
     @Override
-    public void update(Application gc) {
-
-        super.update(gc);    //To change body of overridden methods use File | Settings | File Templates.
-
+    public void update() {
+        super.update();    //To change body of overridden methods use File | Settings | File Templates.
     }
-
-
-
-
 
 }

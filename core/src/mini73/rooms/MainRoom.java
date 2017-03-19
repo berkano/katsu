@@ -52,51 +52,50 @@ public class MainRoom extends KRoom {
 
     public void setZoom(int newZoom) {
         zoom = newZoom;
-        mainView.portWidth = 1024 / zoom;
-        mainView.portHeight = 768 / zoom;
+//        mainView.portWidth = 1024 / zoom;
+//        mainView.portHeight = 768 / zoom;
     }
 
     public MainRoom(String tmx) {
 
-        mainView.screenWidth = 1024;
-        mainView.screenHeight = 768;
+//        mainView.screenWidth = 1024;
+//        mainView.screenHeight = 768;
         setZoom(2);
-        mainView.portX = 0;
-        mainView.portY = 0;
+//        mainView.portX = 0;
+//        mainView.portY = 0;
 
         Util.loadFromTMX(this, tmx);
 
-        TeleportMap.populateFrom(entities);
+        //TeleportMap.populateFrom(entities);
 
-        player = findFirst(PlayerPerson.class);
-        ship = findFirst(Ship.class);
+        player = findFirstEntity(PlayerPerson.class);
+        ship = findFirstEntity(Ship.class);
 
         if (ship != null) {
-            mainView.following = ship;
+//            mainView.following = ship;
         }
 
-        views.add(mainView);
-        speedFactor = 1;
-
-        // TODO-LD28
-        //Util.stopAll(null);
-
-        if (Katsu.game.musicEnabled) {
-            // TODO-LD28
-            // Util.playOneOf(null);
-        }
+//        views.add(mainView);
+//        speedFactor = 1;
 
     }
 
+    private KEntity findFirstEntity(Class clazz) {
+        for (KEntity e : getEntities()) {
+            if (clazz.isInstance(e)) return e;
+        }
+        return null;
+    }
+
     @Override
-    public void update(Application gc) {
+    public void update() {
 
         bringEntitiesToFront(PlayerPerson.class);
         bringEntitiesToFront(Ship.class);
 
-        super.update(gc);
+        super.update();
 
-        if (game.paused) return;
+        if (K.runner.gamePaused()) return;
 
         Sounds.playAmbientMusicRandomly();
 
@@ -107,10 +106,10 @@ public class MainRoom extends KRoom {
         if (firstUpdate) {
             firstUpdate = false;
 
-            player.x = TeleportMap.findByName("Ship Helm").x * Settings.tileWidth;
-            player.y = TeleportMap.findByName("Ship Helm").y * Settings.tileHeight;
-            ship.x = TeleportMap.findByName("Xorx").x * Settings.tileWidth;
-            ship.y = TeleportMap.findByName("Xorx").y * Settings.tileHeight;
+            player.setX(TeleportMap.findByName("Ship Helm").x * K.settings.getGridSize());
+            player.setY(TeleportMap.findByName("Ship Helm").y * K.settings.getGridSize());
+            ship.setX(TeleportMap.findByName("Xorx").x * K.settings.getGridSize());
+            ship.setY(TeleportMap.findByName("Xorx").y * K.settings.getGridSize());
 
 //            if (Settings.devMode) {
 //                player.x = 611 * Settings.tileWidth;
@@ -143,22 +142,22 @@ public class MainRoom extends KRoom {
             }
         }
 
-        if (Katsu.game.isKeyTyped(Keys.NUM_1)) tryTrade(1);
-        if (Katsu.game.isKeyTyped(Keys.NUM_2)) tryTrade(2);
-        if (Katsu.game.isKeyTyped(Keys.NUM_3)) tryTrade(3);
-        if (Katsu.game.isKeyTyped(Keys.NUM_4)) tryTrade(4);
-        if (Katsu.game.isKeyTyped(Keys.NUM_5)) tryTrade(5);
-        if (Katsu.game.isKeyTyped(Keys.NUM_6)) tryTrade(6);
-        if (Katsu.game.isKeyTyped(Keys.NUM_7)) tryTrade(7);
-        if (Katsu.game.isKeyTyped(Keys.NUM_8)) tryTrade(8);
-        if (Katsu.game.isKeyTyped(Keys.NUM_9)) tryTrade(9);
+        if (K.input.isKeyTyped(Keys.NUM_1)) tryTrade(1);
+        if (K.input.isKeyTyped(Keys.NUM_2)) tryTrade(2);
+        if (K.input.isKeyTyped(Keys.NUM_3)) tryTrade(3);
+        if (K.input.isKeyTyped(Keys.NUM_4)) tryTrade(4);
+        if (K.input.isKeyTyped(Keys.NUM_5)) tryTrade(5);
+        if (K.input.isKeyTyped(Keys.NUM_6)) tryTrade(6);
+        if (K.input.isKeyTyped(Keys.NUM_7)) tryTrade(7);
+        if (K.input.isKeyTyped(Keys.NUM_8)) tryTrade(8);
+        if (K.input.isKeyTyped(Keys.NUM_9)) tryTrade(9);
 
-        if (Katsu.game.isKeyTyped(Keys.T)) {
+        if (K.input.isKeyTyped(Keys.T)) {
             if (playerLandingPad != null) {
                 if (playerLandingPad.teleport.link != null) {
                     planetClicked();
-                    player.x = playerLandingPad.teleport.link.x * Settings.tileWidth;
-                    player.y = playerLandingPad.teleport.link.y * Settings.tileWidth;
+                    player.setX(playerLandingPad.teleport.link.x * K.settings.getGridSize());
+                    player.setY(playerLandingPad.teleport.link.y * K.settings.getGridSize());
                     Sounds.transport.play();
                     playerLandingPad.teleport.link.discovered = true;
                     playerLandingPad.teleport.discovered = true;
@@ -265,16 +264,20 @@ public class MainRoom extends KRoom {
             }
         }
 
-        if (Katsu.game.isKeyTyped(Keys.Z)) {
+        if (K.input.isKeyTyped(Keys.Z)) {
             doZoom();
         }
+    }
+
+    private void bringEntitiesToFront(Class clazz) {
+        throw new UnportedCodeException();
     }
 
     private void tryTrade(int i) {
         if (selectedEntity instanceof FriendlyPerson) {
             ((FriendlyPerson) selectedEntity).tryTrade(i);
         } else {
-            ui.writeText("Click on a friendly person before trading!");
+            K.ui.writeText("Click on a friendly person before trading!");
         }
 
     }

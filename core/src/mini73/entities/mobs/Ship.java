@@ -14,16 +14,16 @@ public class Ship extends FriendlyMob {
         this.orientSpriteByMovement = true;
     }
 
-    @Override
-    public void afterMoved() {
-        super.afterMoved();
-
-        long lastMovedMillis = System.currentTimeMillis() - lastMoved;
-        if (lastMovedMillis > 5000) {
-            Sounds.engine.play();
-        }
-        ((MainRoom)room).gameState.fuel -= 1;
-
-
-    }
+//    @Override
+//    public void afterMoved() {
+//        super.afterMoved();
+//
+//        long lastMovedMillis = System.currentTimeMillis() - lastMoved;
+//        if (lastMovedMillis > 5000) {
+//            Sounds.engine.play();
+//        }
+//        ((MainRoom)room).gameState.fuel -= 1;
+//
+//
+//    }
 }
