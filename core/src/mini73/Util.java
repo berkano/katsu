@@ -43,15 +43,6 @@ public class Util {
         return result;
     }
 
-    public static Music loadMusic(String name) {
-        try {
-            Music s = Gdx.audio.newMusic(getResource("music/" + name));
-            return s;
-        } catch (Exception ex) {
-            return Gdx.audio.newMusic(getResource("sounds/generic-missing-sound.wav"));
-        }
-    }
-
     public static TiledMap loadMap(String name) {
         try {
             TmxMapLoader.Parameters parameters = new TmxMapLoader.Parameters();
@@ -61,17 +52,6 @@ public class Util {
             throw new RuntimeException(ex);
         }
     }
-
-    public static Sound loadSound(String name) {
-        try {
-            Sound s = Gdx.audio.newSound(getResource("sounds/" + name));
-            return s;
-        } catch (Exception ex) {
-            return Gdx.audio.newSound(getResource("sounds/generic-missing-sound.wav"));
-        }
-
-    }
-
 
     public static void tileEntityIntoRoom(KRoom r, Class c, int x, int y, int width, int height) {
 
@@ -89,14 +69,6 @@ public class Util {
         }
 
 
-    }
-
-    public static void loadFromTMX(KRoom room, String mapName) {
-        long startMillis = System.currentTimeMillis();
-        TiledMap map = loadMap(mapName + ".tmx");
-        createEntitiesFromMap(room, map);
-        long stopMillis = System.currentTimeMillis();
-        log("Map loaded and processed in " + String.valueOf(stopMillis - startMillis) + " ms");
     }
 
     private static void createEntitiesFromMap(KRoom room, TiledMap map) {

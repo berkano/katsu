@@ -28,7 +28,13 @@ public class GameState {
             shipHealth = room.ship.getHealth();
         }
 
-        return String.format("Coords: %s, %s | Credits: %s | Inventory: %s | Fuel: %s | Health: %s, %s", room.ship.getX()/16, room.ship.getY()/16, credits, inventoryAsString(), fuel, playerHealth, shipHealth);
+        int xCoord = -1;
+        int yCoord = -1;
+        if (room.ship != null) {
+            xCoord = room.ship.getX()/16;
+            yCoord = room.ship.getY()/16;
+        }
+        return String.format("Coords: %s, %s | Credits: %s | Inventory: %s | Fuel: %s | Health: %s, %s", xCoord, yCoord, credits, inventoryAsString(), fuel, playerHealth, shipHealth);
     }
 
     public String inventoryAsString() {

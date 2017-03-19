@@ -2,10 +2,12 @@ package katsu;
 
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import mini73.UnfinishedBusinessException;
 
 import java.nio.charset.Charset;
 import java.util.HashMap;
@@ -54,4 +56,8 @@ public class KResource {
         return textHandle.readString("UTF-8");
     }
 
+    public Music loadMusic(String name) {
+        UnfinishedBusinessException.raise();
+        return null;
+    }
 }

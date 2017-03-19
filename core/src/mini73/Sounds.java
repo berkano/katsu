@@ -13,21 +13,21 @@ import katsu.K;
  */
 public class Sounds {
 
-    public static Sound select = Util.loadSound("bleep.wav");
-    public static Sound transport = Util.loadSound("transport.wav");
-    public static Music mus1 = Util.loadMusic("mus1.ogg");
-    public static Music mus2 = Util.loadMusic("mus2.ogg");
-    public static Music mus3 = Util.loadMusic("mus3.ogg");
-    public static Music win = Util.loadMusic("win.ogg");
-    public static Sound engine = Util.loadSound("engine.wav");
-    public static Sound hurt = Util.loadSound("hurt.wav");
-    public static Sound robotspeak = Util.loadSound("robot-speak.wav");
-    public static Sound shipspeak = Util.loadSound("ship-speak.wav");
-    public static Sound sheep = Util.loadSound("sheep.wav");
-    public static Sound friendlyspeak = Util.loadSound("friendly-person-speak.wav");
-    public static Sound friendlyshipspeak = Util.loadSound("friendly-ship-speak.wav");
-    public static Sound enemyshipspeak = Util.loadSound("enemy-ship-speak.wav");
-    public static Sound enemypersonspeak = Util.loadSound("enemy-person-speak.wav");
+    public static Sound select = K.resource.loadSound("bleep.wav");
+    public static Sound transport = K.resource.loadSound("transport.wav");
+    public static Music mus1 = K.resource.loadMusic("mus1.ogg");
+    public static Music mus2 = K.resource.loadMusic("mus2.ogg");
+    public static Music mus3 = K.resource.loadMusic("mus3.ogg");
+    public static Music win = K.resource.loadMusic("win.ogg");
+    public static Sound engine = K.resource.loadSound("engine.wav");
+    public static Sound hurt = K.resource.loadSound("hurt.wav");
+    public static Sound robotspeak = K.resource.loadSound("robot-speak.wav");
+    public static Sound shipspeak = K.resource.loadSound("ship-speak.wav");
+    public static Sound sheep = K.resource.loadSound("sheep.wav");
+    public static Sound friendlyspeak = K.resource.loadSound("friendly-person-speak.wav");
+    public static Sound friendlyshipspeak = K.resource.loadSound("friendly-ship-speak.wav");
+    public static Sound enemyshipspeak = K.resource.loadSound("enemy-ship-speak.wav");
+    public static Sound enemypersonspeak = K.resource.loadSound("enemy-person-speak.wav");
 
     public static void stopAllMusic() {
         Util.stopAll(mus1, mus2, mus3, win);
