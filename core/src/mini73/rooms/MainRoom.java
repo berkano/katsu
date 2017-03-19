@@ -265,23 +265,6 @@ public class MainRoom extends KRoom {
             }
         }
 
-
-//        if (Katsu.game.isKeyTyped(Keys.M)) {
-//            tryAssignObjective(Objective.MOVE);
-//        }
-
-//        if (Katsu.game.isKeyTyped(Keys.S)) {
-//            if (selectedEntity != null) {
-//                if (selectedEntity instanceof FriendlyMob) {
-//                    selectedEntity.health = -1;
-//                }
-//            }
-//        }
-
-//        if (Katsu.game.isKeyTyped(Keys.N)) {
-//            tryAssignObjective(Objective.NOTHING);
-//        }
-
         if (Katsu.game.isKeyTyped(Keys.Z)) {
             doZoom();
         }

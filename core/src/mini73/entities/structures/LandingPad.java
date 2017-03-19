@@ -1,7 +1,9 @@
 package mini73.entities.structures;
 
 import com.badlogic.gdx.Application;
+import katsu.K;
 import katsu.KEntity;
+import katsu.KSettings;
 import mini73.Teleport;
 import mini73.TeleportMap;
 import mini73.entities.base.FixedItem;
@@ -24,12 +26,12 @@ public class LandingPad extends FixedItem {
     }
 
     @Override
-    public void update(Application gc) {
-        super.update(gc);
+    public void update() {
+        super.update();
 
         if (firstUpdate) {
             for (Teleport t : TeleportMap.teleportArrayList) {
-                if (t.x == x / Settings.tileWidth && t.y == y / Settings.tileHeight) {
+                if (t.x == getX() / K.settings.tileWidth && t.y == y / Settings.tileHeight) {
                     teleport = t;
                 }
             }

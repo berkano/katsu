@@ -1,7 +1,9 @@
 package mini73.entities.base;
 
 import com.badlogic.gdx.Application;
+import katsu.K;
 import katsu.KRoom;
+import mini73.NotSupportedYetException;
 import mini73.Objective;
 import mini73.entities.mobs.PlayerPerson;
 import mini73.entities.mobs.Ship;
@@ -30,10 +32,10 @@ public class FriendlyMob extends Mob {
     }
 
     @Override
-    public void update(Application gc) {
-        super.update(gc);    //To change body of overridden methods use File | Settings | File Templates.
+    public void update() {
+        super.update();    //To change body of overridden methods use File | Settings | File Templates.
 
-        if (Katsu.random.nextInt(20) == 0) {
+        if (K.random.nextInt(20) == 0) {
             if (!(this instanceof Ship)) {
                 if (!(this instanceof PlayerPerson)) {
                     randomMove();
@@ -41,14 +43,9 @@ public class FriendlyMob extends Mob {
             }
         }
 
-        if (Katsu.random.nextInt(100) == 0) {
-            MainRoom mr = (MainRoom) Katsu.game.currentRoom;
-        }
+    }
 
-        if (currentObjective == Objective.NOTHING) {
-
-
-        }
-
+    private void randomMove() {
+        throw new NotSupportedYetException();
     }
 }
