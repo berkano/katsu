@@ -25,10 +25,10 @@ public class GameState {
             playerHealth = room.player.getHealth();
         }
         if (room.ship != null) {
-            shipHealth = room.ship.health;
+            shipHealth = room.ship.getHealth();
         }
 
-        return String.format("Coords: %s, %s | Credits: %s | Inventory: %s | Fuel: %s | Health: %s, %s", room.ship.x/16, room.ship.y/16, credits, inventoryAsString(), fuel, playerHealth, shipHealth);
+        return String.format("Coords: %s, %s | Credits: %s | Inventory: %s | Fuel: %s | Health: %s, %s", room.ship.getX()/16, room.ship.getY()/16, credits, inventoryAsString(), fuel, playerHealth, shipHealth);
     }
 
     public String inventoryAsString() {

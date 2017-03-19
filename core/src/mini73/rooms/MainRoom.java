@@ -164,61 +164,61 @@ public class MainRoom extends KRoom {
                     if (shipLandingPad != null) {
                         shipLandingPad.teleport.discovered = true;
                     }
-                    ui.writeText("Teleported to " + playerLandingPad.teleport.link.getDiscoveredName() + ".");
+                    K.ui.writeText("Teleported to " + playerLandingPad.teleport.link.getDiscoveredName() + ".");
                     if (playerLandingPad.teleport.link.getDiscoveredName().equals("London Surface")) {
                         Sounds.transport.stop();
                         Sounds.stopAllMusic();
                         Sounds.win.play();
-                        ui.writeText("WIN!! You found your way back to Earth :-) Hope you enjoyed playing. ~berkano / LD28");
+                        K.ui.writeText("WIN!! You found your way back to Earth :-) Hope you enjoyed playing. ~berkano / LD28");
                     }
 
                 } else {
-                    ui.writeText("Cannot teleport until ship is docked.");
+                    K.ui.writeText("Cannot teleport until ship is docked.");
                 }
             } else {
-                ui.writeText("You are not standing on a teleport.");
+                K.ui.writeText("You are not standing on a teleport.");
             }
         }
 
 
         // TODO-LD28
         if (!shownWelcomeForLevel) {
-            if (Katsu.game.currentLevel == "0000") {
-                ui.writeText("welcome to ~singleton~, berkano's LD28 entry.");
-                ui.writeText("major tim is lost in space. one prisoner, one");
-                ui.writeText("sheep, one inventory slot, one goal:");
-                ui.writeText("help him find his way back to earth");
-                ui.writeText("press h for help.");
-            }
+//            if (Katsu.game.currentLevel == "0000") {
+            K.ui.writeText("welcome to ~singleton~, berkano's LD28 entry.");
+            K.ui.writeText("major tim is lost in space. one prisoner, one");
+            K.ui.writeText("sheep, one inventory slot, one goal:");
+            K.ui.writeText("help him find his way back to earth");
+            K.ui.writeText("press h for help.");
+//            }
             shownWelcomeForLevel = true;
         }
 
         if (!objectiveReached && !objectiveFailed) checkLevelCompleteCriteria();
 
         if (Gdx.input.isKeyPressed(Keys.F3)) {
-            ui.writeText("entities=" + String.valueOf(entities.size()));
+            K.ui.writeText("entities=" + String.valueOf(getEntities().size()));
         }
 
-        if (Katsu.game.isKeyTyped(Keys.I)) {
+        if (K.input.isKeyTyped(Keys.I)) {
             String result = runInventoryRules();
-            ui.writeText(result);
+            K.ui.writeText(result);
         }
 
 
-        if (Katsu.game.isKeyTyped(Keys.SPACE)) {
+        if (K.input.isKeyTyped(Keys.SPACE)) {
             if (selectedEntity != null) {
                 if (selectedEntity instanceof Resource) {
-                    selectedEntity.wantsDestroy = true;
+                    selectedEntity.destroy();
                     if (selectedEntity instanceof Fuel) {
                         gameState.fuel += 1000;
                     }
                     if (selectedEntity instanceof Potato) {
-                        player.health += 25;
-                        if (player.health > 100) player.health = 100;
+                        player.addHealth(25);
+                        player.capHealth(100);
                     }
                     if (selectedEntity instanceof Iron) {
-                        ship.health += 25;
-                        if (ship.health > 100) ship.health = 100;
+                        ship.addHealth(25);
+                        ship.capHealth(100);
                     }
                 }
             }
@@ -236,31 +236,22 @@ public class MainRoom extends KRoom {
         checkInputAndMovePlayer(Keys.D, 1, 0);
 
 
-        if (Katsu.game.isKeyTyped(Keys.X)) {
-            if (Settings.devMode) {
+        if (K.input.isKeyTyped(Keys.X)) {
+            if (K.settings.isDevMode()) {
                 Teleport winTP = TeleportMap.findByName("Earth");
-                ship.x = winTP.x * 16;
-                ship.y = winTP.y * 16;
+                ship.setX(winTP.x * 16);
+                ship.setY(winTP.y * 16);
                 //if (Settings.devMode) {
                 //objectiveReached = true;
                 //}
             }
         }
 
-        if (Katsu.game.isKeyTyped(Keys.U)) {
+        if (K.input.isKeyTyped(Keys.U)) {
             if (planetView) {
                 universeClicked();
             } else {
                 planetClicked();
-            }
-        }
-
-        if (Katsu.game.isKeyTyped(Keys.SPACE)) {
-            if (objectiveReached) {
-                String nextLevel = LevelManager.nextLevel(Katsu.game.currentLevel);
-                if (nextLevel != "") {
-                    Katsu.game.startLevel(nextLevel);
-                }
             }
         }
 

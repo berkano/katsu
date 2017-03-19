@@ -31,8 +31,8 @@ public class StarField {
         int depth = 0;
 
         MainRoom r = (MainRoom) K.runner.roomForClass(MainRoom.class);
-        int shipX = (r.ship.x / 16) % Settings.hres;
-        int shipY = (r.ship.y / 16) % Settings.vres;
+        int shipX = (r.ship.getX() / 16) % K.settings.getHres();
+        int shipY = (r.ship.getX() / 16) % K.settings.getVres();
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Point);
         int c = 0;
@@ -58,10 +58,10 @@ public class StarField {
             float actualX = (float)star.getX() - shipX * moveScale;
             float actualY = (float)star.getY() - shipY * moveScale;
 
-            if (actualX < 0) actualX += Settings.hres;
-            if (actualY < 0) actualY += Settings.vres;
-            if (actualX > Settings.hres) actualX -= Settings.hres;
-            if (actualY > Settings.vres) actualY -= Settings.vres;
+            if (actualX < 0) actualX += K.settings.getHres();
+            if (actualY < 0) actualY += K.settings.getVres();
+            if (actualX > K.settings.getHres()) actualX -= K.settings.getHres();
+            if (actualY > K.settings.getVres()) actualY -= K.settings.getVres();
 
             shapeRenderer.point(actualX, actualY, 0f);
         }

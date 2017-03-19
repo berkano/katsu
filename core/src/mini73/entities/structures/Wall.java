@@ -12,7 +12,6 @@ import mini73.entities.base.FixedItem;
  */
 public class Wall extends FixedItem {
 
-    @Override
     public int getResourceCost(Class c) {
         return 0;
     }
@@ -22,8 +21,4 @@ public class Wall extends FixedItem {
         this.setCollisionTarget(true);
     }
 
-    @Override
-    public boolean collide(KEntity other) {
-        return this.solid;  //To change body of implemented methods use File | Settings | File Templates.
-    }
 }

@@ -132,7 +132,7 @@ public abstract class KRunner extends KInputProcessor implements ApplicationList
         Gdx.app.exit();
     }
 
-    public void roomForClass(Class clazz) {
+    public KRoom roomForClass(Class clazz) {
         throw new UnportedCodeException();
     }
 }

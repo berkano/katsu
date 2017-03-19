@@ -213,4 +213,8 @@ public class KEntity extends KInputProcessor {
     public Object getInstanceUnderneath(Class clazz) {
         throw new UnportedCodeException();
     }
+
+    public void capHealth(int maxHealth) {
+        if (health > maxHealth) health = maxHealth;
+    }
 }
