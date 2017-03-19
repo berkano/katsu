@@ -211,7 +211,8 @@ public class KEntity extends KInputProcessor {
     }
 
     public Object getInstanceUnderneath(Class clazz) {
-        throw new UnfinishedBusinessException();
+        UnfinishedBusinessException.raise();
+        return null;
     }
 
     public void capHealth(int maxHealth) {
@@ -219,7 +220,8 @@ public class KEntity extends KInputProcessor {
     }
 
     public boolean isOnTopOf(Class clazz) {
-        throw new UnfinishedBusinessException();
+        UnfinishedBusinessException.raise();
+        return false;
     }
 
     public void setPosition(KEntity other) {
@@ -228,11 +230,11 @@ public class KEntity extends KInputProcessor {
     }
 
     public void moveRelative(int dx, int dy) {
-        throw new UnfinishedBusinessException();
+        UnfinishedBusinessException.raise();
     }
 
     public void setCurrentObjective(Objective obj) {
-        throw new UnfinishedBusinessException();
+        UnfinishedBusinessException.raise();
     }
 
     public void say(String s) {

@@ -132,6 +132,6 @@ public class KUI {
     }
 
     public void drawString(String info, Color black, int i, int i1) {
-        throw new UnfinishedBusinessException();
+        UnfinishedBusinessException.raise();
     }
 }

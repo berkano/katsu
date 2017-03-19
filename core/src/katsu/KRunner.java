@@ -132,6 +132,7 @@ public abstract class KRunner extends KInputProcessor implements ApplicationList
     }
 
     public KRoom roomForClass(Class clazz) {
-        throw new UnfinishedBusinessException();
+        UnfinishedBusinessException.raise();
+        return null;
     }
 }

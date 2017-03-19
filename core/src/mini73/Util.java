@@ -100,7 +100,7 @@ public class Util {
     }
 
     private static void createEntitiesFromMap(KRoom room, TiledMap map) {
-        throw new UnfinishedBusinessException();
+        UnfinishedBusinessException.raise();
     }
 
     private static Object newInstance(Class c) {

@@ -43,6 +43,6 @@ public class FriendlyMob extends Mob {
     }
 
     private void randomMove() {
-        throw new UnfinishedBusinessException();
+        UnfinishedBusinessException.raise();
     }
 }

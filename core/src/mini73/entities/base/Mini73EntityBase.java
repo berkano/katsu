@@ -17,6 +17,6 @@ public class Mini73EntityBase extends KEntity {
     }
 
     public void beforeDeath(KRoom room) {
-        throw new UnfinishedBusinessException();
+        UnfinishedBusinessException.raise();
     }
 }

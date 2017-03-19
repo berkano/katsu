@@ -38,6 +38,7 @@ public class KInput {
     }
 
     public boolean isKeyTyped(int k) {
-        throw new UnfinishedBusinessException();
+        UnfinishedBusinessException.raise();
+        return false;
     }
 }

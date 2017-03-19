@@ -13,10 +13,12 @@ public class View {
     public KEntity following;
 
     public Point2D.Double entityPositionToScreenPoint(KEntity entity) {
-        throw new UnfinishedBusinessException();
+        UnfinishedBusinessException.raise();
+        return null;
     }
 
     public Point2D.Double mapPositionToScreenPoint(Point2D.Float aFloat) {
-        throw new UnfinishedBusinessException();
+        UnfinishedBusinessException.raise();
+        return null;
     }
 }

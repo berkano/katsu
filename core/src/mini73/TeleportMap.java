@@ -139,6 +139,7 @@ public class TeleportMap {
     }
 
     private static Object getInstanceUnderneath(KEntity e, Class clazz) {
-        throw new UnfinishedBusinessException();
+        UnfinishedBusinessException.raise();
+        return null;
     }
 }

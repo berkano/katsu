@@ -77,7 +77,7 @@ public class Mob extends Mini73EntityBase {
         }
 
         if (currentObjective == Objective.MOVE) {
-            throw new UnfinishedBusinessException();
+            UnfinishedBusinessException.raise();
         }
 
     }

@@ -3,7 +3,7 @@ apply plugin: "java"
 sourceCompatibility = 1.6
 sourceSets.main.java.srcDirs = [ "src/" ]
 
-project.ext.mainClassName = "ld37wu.LD37wuRunner"
+project.ext.mainClassName = "mini73.Mini73Runner"
 project.ext.assetsDir = new File("../core/assets");
 
 task run(dependsOn: classes, type: JavaExec) {

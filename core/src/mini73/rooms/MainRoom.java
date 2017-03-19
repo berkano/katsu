@@ -57,13 +57,15 @@ public class MainRoom extends KRoom {
         mainView.portHeight = 768 / zoom;
     }
 
-    public MainRoom(String tmx) {
+    public MainRoom() {
 
 //        mainView.screenWidth = 1024;
 //        mainView.screenHeight = 768;
         setZoom(2);
 //        mainView.portX = 0;
 //        mainView.portY = 0;
+
+        String tmx = "001.tmx";
 
         Util.loadFromTMX(this, tmx);
 
@@ -262,7 +264,7 @@ public class MainRoom extends KRoom {
     }
 
     private void bringEntitiesToFront(Class clazz) {
-        throw new UnfinishedBusinessException();
+        UnfinishedBusinessException.raise();
     }
 
     private void tryTrade(int i) {
@@ -316,7 +318,8 @@ public class MainRoom extends KRoom {
     }
 
     private KEntity findNearest(int x, int y, Class clazz, int i, Object o) {
-        throw new UnfinishedBusinessException();
+        UnfinishedBusinessException.raise();
+        return null;
     }
 
     private void checkInputAndMovePlayer(int keyCode, int dx, int dy) {
