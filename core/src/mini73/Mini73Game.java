@@ -51,7 +51,7 @@ public class Mini73Game extends KRunner {
 
     @Override
     public String getResourceRoot() {
-        return "ld37wu";
+        return "mini73";
     }
 
     @Override

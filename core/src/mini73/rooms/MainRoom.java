@@ -65,7 +65,7 @@ public class MainRoom extends KRoom {
 //        mainView.portX = 0;
 //        mainView.portY = 0;
 
-        String tmx = "001.tmx";
+        String tmx = "001";
 
         Util.loadFromTMX(this, tmx);
 
