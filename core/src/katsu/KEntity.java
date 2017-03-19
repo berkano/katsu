@@ -234,4 +234,8 @@ public class KEntity extends KInputProcessor {
     public void setCurrentObjective(Objective obj) {
         throw new UnfinishedBusinessException();
     }
+
+    public void say(String s) {
+        K.ui.writeText(s);
+    }
 }

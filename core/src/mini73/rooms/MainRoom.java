@@ -481,9 +481,9 @@ public class MainRoom extends KRoom {
 
     }
 
-    @Override
+//    @Override
     public void onClick(int roomX, int roomY, boolean leftClicking, boolean rightClicking) {
-        super.onClick(roomX, roomY, leftClicking, rightClicking);
+//        super.onClick(roomX, roomY, leftClicking, rightClicking);
 
         ArrayList<KEntity> clickedEntities = findEntitiesAtPoint(roomX, roomY);
 
@@ -506,17 +506,17 @@ public class MainRoom extends KRoom {
                     }
 
                     if (inCommand) {
-                        selectedEntity.currentObjective = objectiveToAssign;
+                        selectedEntity.setCurrentObjective(objectiveToAssign);
                         selectedEntity.say("Command accepted");
-                        selectedEntity.targetEntity = e;
+                        selectedEntity.setTargetEntity(e);
                         objectiveToAssign = Objective.NOTHING;
                         inCommand = false;
                     } else {
                         if (selectedEntity != null) {
-                            selectedEntity.selected = false;
+                            selectedEntity.setSelected(false);
                         }
                         selectedEntity = e;
-                        selectedEntity.selected = true;
+                        selectedEntity.setSelected(true);
                         if (!playedSelectSound) {
                             boolean playedCustomSound = false;
                             if (selectedEntity instanceof Robot) {
@@ -562,7 +562,6 @@ public class MainRoom extends KRoom {
 
     }
 
-    @Override
     public void preRender() {
         StarField.render();
         if (!planetView) {
