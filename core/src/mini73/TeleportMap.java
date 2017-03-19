@@ -139,6 +139,6 @@ public class TeleportMap {
     }
 
     private static Object getInstanceUnderneath(KEntity e, Class clazz) {
-        throw new UnportedCodeException();
+        throw new UnfinishedBusinessException();
     }
 }

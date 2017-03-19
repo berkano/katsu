@@ -49,11 +49,12 @@ public class MainRoom extends KRoom {
     public Objective objectiveToAssign = Objective.NOTHING;
 
     public boolean shownWelcomeForLevel = false;
+    public View mainView = new View();
 
     public void setZoom(int newZoom) {
         zoom = newZoom;
-//        mainView.portWidth = 1024 / zoom;
-//        mainView.portHeight = 768 / zoom;
+        mainView.portWidth = 1024 / zoom;
+        mainView.portHeight = 768 / zoom;
     }
 
     public MainRoom(String tmx) {
@@ -261,7 +262,7 @@ public class MainRoom extends KRoom {
     }
 
     private void bringEntitiesToFront(Class clazz) {
-        throw new UnportedCodeException();
+        throw new UnfinishedBusinessException();
     }
 
     private void tryTrade(int i) {
@@ -278,8 +279,8 @@ public class MainRoom extends KRoom {
         if (selectedEntity != null) {
 
             // distance check
-            Object playerObj = findNearest(selectedEntity.x, selectedEntity.y, PlayerPerson.class, 80, null);
-            Object shipObj = findNearest(selectedEntity.x, selectedEntity.y, Ship.class, 80, null);
+            Object playerObj = findNearest(selectedEntity.getX(), selectedEntity.getY(), PlayerPerson.class, 80, null);
+            Object shipObj = findNearest(selectedEntity.getX(), selectedEntity.getY(), Ship.class, 80, null);
 
             if (playerObj == null && shipObj == null) {
                 return ("Player or ship must be within 5 blocks!");
@@ -287,7 +288,7 @@ public class MainRoom extends KRoom {
 
             if (selectedEntity instanceof Resource) {
                 if (gameState.inventory == null) {
-                    selectedEntity.wantsDestroy = true;
+                    selectedEntity.destroy();
                     gameState.inventory = selectedEntity.getClass();
                     return ("Picked up " + selectedEntity.toString());
                 } else {
@@ -298,9 +299,8 @@ public class MainRoom extends KRoom {
                     try {
                         KEntity e = (KEntity) gameState.inventory.newInstance();
                         gameState.inventory = null;
-                        e.x = selectedEntity.x;
-                        e.y = selectedEntity.y;
-                        createList.add(e);
+                        e.setPosition(selectedEntity);
+                        addNewEntity(e);
                         return ("Dropped " + e.toString());
                     } catch (Exception ex) {
                         return ("Exception " + ex.toString());
@@ -315,41 +315,44 @@ public class MainRoom extends KRoom {
 
     }
 
+    private KEntity findNearest(int x, int y, Class clazz, int i, Object o) {
+        throw new UnfinishedBusinessException();
+    }
+
     private void checkInputAndMovePlayer(int keyCode, int dx, int dy) {
 
         int moveInterval = 100;
         if (!planetView) moveInterval = 25;
-        long lastMovedMillis = System.currentTimeMillis() - mainView.following.lastMoved;
+        long lastMovedMillis = System.currentTimeMillis() - mainView.following.getLastMove();
         if (lastMovedMillis < moveInterval) return;
-        if (!Katsu.game.isKeyDown(keyCode)) return;
+        if (!K.input.isKeyDown(keyCode)) return;
 
         if (mainView.following instanceof Ship) {
             if (player.isOnTopOf(LandingPad.class)) {
             } else {
-                ui.writeText("May not move ship until player is at helm.");
+                K.ui.writeText("May not move ship until player is at helm.");
                 return;
             }
             if (gameState.fuel == 0) {
-                ui.writeText("Out of fuel!");
+                K.ui.writeText("Out of fuel!");
                 return;
             }
-            player.x = 46 * Settings.tileWidth;
-            player.y = 36 * Settings.tileHeight;
+            player.setX(46 * K.settings.getGridSize());
+            player.setY(36 * K.settings.getGridSize());
 
         }
 
         mainView.following.moveRelative(dx, dy);
     }
 
-    @Override
     protected void rawScreenClick(int x, int y) {
-        ui.writeText(String.format("Clicked top bar at %s, %s", x, y));
+        K.ui.writeText(String.format("Clicked top bar at %s, %s", x, y));
 
         if (x >= 0 && x < 105) {
             newGameClicked();
         }
         if (x >= 105 && x < 170) {
-            helpClicked();
+//            helpClicked();
         }
         if (x >= 170 && x < 283) {
             universeClicked();
@@ -390,11 +393,11 @@ public class MainRoom extends KRoom {
     }
 
     private void leaveEnterClicked() {
-        ui.writeText("leave/enter...");
+        K.ui.writeText("leave/enter...");
     }
 
     private void landLaunchClicked() {
-        ui.writeText("land/launch...");
+        K.ui.writeText("land/launch...");
     }
 
     private void planetClicked() {
@@ -413,12 +416,8 @@ public class MainRoom extends KRoom {
         }
     }
 
-    private void helpClicked() {
-        game.doHelp();
-    }
-
     private void newGameClicked() {
-        ui.writeText("Generating universe");
+        K.ui.writeText("Generating universe");
     }
 
 
@@ -427,12 +426,12 @@ public class MainRoom extends KRoom {
         if (selectedEntity == null) return;
 
         if (!(selectedEntity instanceof FriendlyMob)) {
-            ui.writeText(selectedEntity.toString() + " ignored you.");
+            K.ui.writeText(selectedEntity.toString() + " ignored you.");
             return;
         }
 
         if (obj == Objective.NOTHING) {
-            selectedEntity.currentObjective = obj;
+            selectedEntity.setCurrentObjective(obj);
             return;
         }
 
@@ -445,10 +444,10 @@ public class MainRoom extends KRoom {
     }
 
     @Override
-    public void render(Graphics g, Application gc, SpriteBatch batch) {
+    public void render() {
 
 
-        super.render(g, gc, batch);
+        super.render();
 
         String info;
 
@@ -460,40 +459,25 @@ public class MainRoom extends KRoom {
         // TODO-LD28
         info = gameState.statusBar();
 
-        ui.drawString(info, Color.BLACK, 2, 2, batch);
-        ui.drawString(info, Color.WHITE, 0, 2, batch);
+        K.ui.drawString(info, Color.BLACK, 2, 2);
+        K.ui.drawString(info, Color.WHITE, 0, 2);
 
-        if (Settings.showFPS) {
+        if (K.settings.isLogFPS()) {
             String fps = String.valueOf(Gdx.graphics.getFramesPerSecond());
-            info = "FPS: " + fps + " PF:" + Game.pathFinds;
-            ui.drawString(info, Color.BLACK, 2, 32 + 18, batch);
-            ui.drawString(info, Color.CYAN, 0, 32 + 16, batch);
+            info = "FPS: " + fps;
+            K.ui.drawString(info, Color.BLACK, 2, 32 + 18);
+            K.ui.drawString(info, Color.CYAN, 0, 32 + 16);
         }
 
-        if (objectiveReached) {
-            info = "LEVEL CLEARED! Press SPACE for next level";
-            ui.drawString(info, Color.BLACK, 2, 18, batch);
-            ui.drawString(info, Color.GREEN, 0, 16, batch);
-        }
-        if (objectiveFailed) {
-            info = "LEVEL FAILED :-( Press R to restart";
-            ui.drawString(info, Color.BLACK, 2, 18, batch);
-            ui.drawString(info, Color.RED, 0, 16, batch);
-        }
-        if (Katsu.game.paused) {
+        if (K.runner.gamePaused()) {
 
             info = "GAME PAUSED - PRESS P TO RESUME";
-            ui.drawString(info, Color.BLACK, 102, 118, batch);
-            ui.drawString(info, Color.CYAN, 100, 116, batch);
+            K.ui.drawString(info, Color.BLACK, 102, 118);
+            K.ui.drawString(info, Color.CYAN, 100, 116);
 
         }
 
-        ui.drawString(game.pinCode, Color.DARK_GRAY, 1024 - 48, 0, batch);
-
-        if (selectedEntity != null) {
-
-        }
-
+//        K.ui.drawString(game.pinCode, Color.DARK_GRAY, 1024 - 48, 0, batch);
 
     }
 
@@ -565,7 +549,7 @@ public class MainRoom extends KRoom {
                             }
 
                             if (!playedCustomSound) {
-                                sounds.select.play();
+                                Sounds.select.play();
                             }
                         }
                     }

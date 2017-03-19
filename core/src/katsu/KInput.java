@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import lombok.Getter;
 import lombok.Setter;
-import mini73.UnportedCodeException;
+import mini73.UnfinishedBusinessException;
 
 import java.util.HashMap;
 
@@ -38,6 +38,6 @@ public class KInput {
     }
 
     public boolean isKeyTyped(int k) {
-        throw new UnportedCodeException();
+        throw new UnfinishedBusinessException();
     }
 }

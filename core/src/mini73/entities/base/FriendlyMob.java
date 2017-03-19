@@ -2,7 +2,7 @@ package mini73.entities.base;
 
 import katsu.K;
 import katsu.KRoom;
-import mini73.UnportedCodeException;
+import mini73.UnfinishedBusinessException;
 import mini73.entities.mobs.PlayerPerson;
 import mini73.entities.mobs.Ship;
 
@@ -43,6 +43,6 @@ public class FriendlyMob extends Mob {
     }
 
     private void randomMove() {
-        throw new UnportedCodeException();
+        throw new UnfinishedBusinessException();
     }
 }

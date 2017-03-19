@@ -9,10 +9,9 @@ import mini73.entities.base.FriendlyMob;
  */
 public class EnemyPerson extends FriendlyMob {
 
-    @Override
     public boolean collide(KEntity other) {
         if (other instanceof PlayerPerson) {
-            other.health -= 10;
+            other.addHealth(-10);
             Sounds.hurt.play();
         }
         return true;

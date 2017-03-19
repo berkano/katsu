@@ -23,7 +23,7 @@ public class Radar {
     public static void render() {
 
 
-        MainRoom r = (MainRoom) K.game.currentRoom;
+        MainRoom r = (MainRoom) K.runner.roomForClass(MainRoom.class);
 
         int shipX = (r.ship.getX() / 16) % K.settings.getHres();
         int shipY = (r.ship.getY() / 16) % K.settings.getVres();
@@ -40,11 +40,11 @@ public class Radar {
             Point2D.Double shipScreenPoint = r.mainView.entityPositionToScreenPoint(r.ship);
             Point2D.Double teleportScreenPoint = r.mainView.mapPositionToScreenPoint(new Point2D.Float(t.x*16, t.y*16));
 
-            double dx = teleportScreenPoint.getX() - Settings.hres / 2; //shipScreenPoint.getX();
-            double dy = teleportScreenPoint.getY() - Settings.vres / 2; //shipScreenPoint.getY();
+            double dx = teleportScreenPoint.getX() - K.settings.getHres() / 2; //shipScreenPoint.getX();
+            double dy = teleportScreenPoint.getY() - K.settings.getVres() / 2; //shipScreenPoint.getY();
 
-            double blobX = Settings.hres/2 + dx / 10; //shipScreenPoint.getX() + dx / 10;
-            double blobY = Settings.vres/2 + dy / 10; //shipScreenPoint.getY() + dy / 10;
+            double blobX = K.settings.getHres()/2 + dx / 10; //shipScreenPoint.getX() + dx / 10;
+            double blobY = K.settings.getVres()/2 + dy / 10; //shipScreenPoint.getY() + dy / 10;
 
 
             if (t.discovered) {

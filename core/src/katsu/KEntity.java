@@ -2,8 +2,8 @@ package katsu;
 
 import lombok.Getter;
 import lombok.Setter;
-import mini73.UnportedCodeException;
-import mini73.entities.structures.LandingPad;
+import mini73.Objective;
+import mini73.UnfinishedBusinessException;
 import net.sf.jsi.Rectangle;
 
 import java.util.List;
@@ -211,10 +211,27 @@ public class KEntity extends KInputProcessor {
     }
 
     public Object getInstanceUnderneath(Class clazz) {
-        throw new UnportedCodeException();
+        throw new UnfinishedBusinessException();
     }
 
     public void capHealth(int maxHealth) {
         if (health > maxHealth) health = maxHealth;
+    }
+
+    public boolean isOnTopOf(Class clazz) {
+        throw new UnfinishedBusinessException();
+    }
+
+    public void setPosition(KEntity other) {
+        setX(other.getX());
+        setY(other.getY());
+    }
+
+    public void moveRelative(int dx, int dy) {
+        throw new UnfinishedBusinessException();
+    }
+
+    public void setCurrentObjective(Objective obj) {
+        throw new UnfinishedBusinessException();
     }
 }

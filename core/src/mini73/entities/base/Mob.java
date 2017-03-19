@@ -1,7 +1,7 @@
 package mini73.entities.base;
 
 import katsu.*;
-import mini73.UnportedCodeException;
+import mini73.UnfinishedBusinessException;
 import mini73.Objective;
 import mini73.PlaceNames;
 import mini73.entities.mobs.EnemyPerson;
@@ -77,7 +77,7 @@ public class Mob extends Mini73EntityBase {
         }
 
         if (currentObjective == Objective.MOVE) {
-            throw new UnportedCodeException();
+            throw new UnfinishedBusinessException();
         }
 
     }

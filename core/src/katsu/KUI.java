@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import lombok.Getter;
 import lombok.Setter;
+import mini73.UnfinishedBusinessException;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -128,5 +129,9 @@ public class KUI {
 
     public void init() {
         helpText = K.resource.loadText("help.txt");
+    }
+
+    public void drawString(String info, Color black, int i, int i1) {
+        throw new UnfinishedBusinessException();
     }
 }
