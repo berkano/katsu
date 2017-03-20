@@ -2,6 +2,7 @@ package mini73.entities.terrain;
 
 import com.badlogic.gdx.Application;
 import katsu.KEntity;
+import katsu.TiledMapEntity;
 import mini73.entities.base.FixedItem;
 
 /**
@@ -11,6 +12,7 @@ import mini73.entities.base.FixedItem;
  * Time: 09:50
  * To change this template use File | Settings | File Templates.
  */
+@TiledMapEntity
 public class Sun extends FixedItem {
 
     public boolean hasPickedTile = false;

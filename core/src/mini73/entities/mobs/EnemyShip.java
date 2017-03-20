@@ -1,12 +1,14 @@
 package mini73.entities.mobs;
 
 import katsu.KEntity;
+import katsu.TiledMapEntity;
 import mini73.Sounds;
 import mini73.entities.base.FriendlyMob;
 
 /**
  * @author shaun
  */
+@TiledMapEntity
 public class EnemyShip extends FriendlyMob {
 
     public EnemyShip() {

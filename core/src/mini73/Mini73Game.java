@@ -56,13 +56,7 @@ public class Mini73Game extends KRunner {
 
     @Override
     public List<Class> getClassLookup() {
-
-        return K.utils.buildClassList(
-                Baby.class,
-                Present.class,
-                Santa.class,
-                Tree.class
-        );
+        return K.utils.scanTiledEntityClasses("mini73");
     }
 
     private void addClassesTo(HashMap<String, Class> classHashMap, Class... classes) {

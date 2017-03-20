@@ -1,6 +1,7 @@
 package mini73.entities.structures;
 
 import katsu.KEntity;
+import katsu.TiledMapEntity;
 import mini73.entities.base.FixedItem;
 
 /**
@@ -10,6 +11,7 @@ import mini73.entities.base.FixedItem;
  * Time: 17:40
  * To change this template use File | Settings | File Templates.
  */
+@TiledMapEntity
 public class Wall extends FixedItem {
 
     public int getResourceCost(Class c) {

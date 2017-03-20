@@ -1,7 +1,11 @@
 package katsu;
 
+import org.reflections.Reflections;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by shaun on 26/02/2016.
@@ -13,6 +17,7 @@ public class KUtils {
     }
 
     public List<Class> buildClassList(Class... classes ) {
+
         ArrayList<Class> classList = new ArrayList<Class>();
         for (Class clazz : classes) {
             classList.add(clazz);
@@ -30,5 +35,9 @@ public class KUtils {
         return in.substring(0, place).trim() + "\n" + wrap(in.substring(place), len);
     }
 
-
+    public List<Class> scanTiledEntityClasses(String pkg) {
+        Reflections reflections = new Reflections(pkg);
+        Set<Class<?>> annotated = reflections.getTypesAnnotatedWith(TiledMapEntity.class);
+        return new ArrayList<Class>(annotated);
+    }
 }
