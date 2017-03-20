@@ -51,6 +51,10 @@ public class MainRoom extends KRoom {
     public boolean shownWelcomeForLevel = false;
     public View mainView = new View();
 
+    public TeleportMap teleportMap = TeleportMap.instance();
+
+    Radar radar = new Radar();
+
     public void setZoom(int newZoom) {
         zoom = newZoom;
         mainView.portWidth = 1024 / zoom;
@@ -66,7 +70,7 @@ public class MainRoom extends KRoom {
 //        mainView.portY = 0;
 
         loadFromTiledMap("001");
-        //TeleportMap.populateFrom(entities);
+        teleportMap.populateFrom(getEntities());
 
         player = findFirstEntity(PlayerPerson.class);
         ship = findFirstEntity(Ship.class);
@@ -106,10 +110,10 @@ public class MainRoom extends KRoom {
         if (firstUpdate) {
             firstUpdate = false;
 
-            player.setX(TeleportMap.findByName("Ship Helm").x * K.settings.getGridSize());
-            player.setY(TeleportMap.findByName("Ship Helm").y * K.settings.getGridSize());
-            ship.setX(TeleportMap.findByName("Xorx").x * K.settings.getGridSize());
-            ship.setY(TeleportMap.findByName("Xorx").y * K.settings.getGridSize());
+            player.setX(teleportMap.findByName("Ship Helm").x * K.settings.getGridSize());
+            player.setY(teleportMap.findByName("Ship Helm").y * K.settings.getGridSize());
+            ship.setX(teleportMap.findByName("Xorx").x * K.settings.getGridSize());
+            ship.setY(teleportMap.findByName("Xorx").y * K.settings.getGridSize());
 
 //            if (Settings.devMode) {
 //                player.x = 611 * Settings.tileWidth;
@@ -238,7 +242,7 @@ public class MainRoom extends KRoom {
 
         if (K.input.isKeyTyped(Keys.X)) {
             if (K.settings.isDevMode()) {
-                Teleport winTP = TeleportMap.findByName("Earth");
+                Teleport winTP = teleportMap.findByName("Earth");
                 ship.setX(winTP.x * 16);
                 ship.setY(winTP.y * 16);
                 //if (Settings.devMode) {
@@ -565,7 +569,7 @@ public class MainRoom extends KRoom {
     public void preRender() {
         StarField.render();
         if (!planetView) {
-            Radar.render();
+            radar.render();
         }
 
     }

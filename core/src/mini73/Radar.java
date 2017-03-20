@@ -13,6 +13,8 @@ public class Radar {
 
     public static ShapeRenderer shapeRenderer;
 
+    TeleportMap teleportMap = TeleportMap.instance();
+
     static {
 
         shapeRenderer = new ShapeRenderer();
@@ -20,7 +22,7 @@ public class Radar {
 
     }
 
-    public static void render() {
+    public void render() {
 
 
         MainRoom r = (MainRoom) K.runner.roomForClass(MainRoom.class);
@@ -35,7 +37,7 @@ public class Radar {
 
 
 
-        for (Teleport t : TeleportMap.teleportArrayList) {
+        for (Teleport t : teleportMap.teleportArrayList) {
 
             Point2D.Double shipScreenPoint = r.mainView.entityPositionToScreenPoint(r.ship);
             Point2D.Double teleportScreenPoint = r.mainView.mapPositionToScreenPoint(new Point2D.Float(t.x*16, t.y*16));

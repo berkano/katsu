@@ -19,6 +19,7 @@ public class LandingPad extends FixedItem {
 
     public Teleport teleport = null;
     boolean firstUpdate = true;
+    private TeleportMap teleportMap = TeleportMap.instance();
 
     public LandingPad() {
         this.setSolid(false);
@@ -30,7 +31,7 @@ public class LandingPad extends FixedItem {
         super.update();
 
         if (firstUpdate) {
-            for (Teleport t : TeleportMap.teleportArrayList) {
+            for (Teleport t : teleportMap.teleportArrayList) {
                 if (t.x == getX() / K.settings.getGridSize() && t.y == getY() / K.settings.getGridSize()) {
                     teleport = t;
                 }

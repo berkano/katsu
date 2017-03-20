@@ -13,18 +13,10 @@ import java.util.List;
  */
 public class TeleportMap {
 
-    public static ArrayList<Teleport> teleportArrayList = new ArrayList<Teleport>();
+    private static TeleportMap _instance = new TeleportMap();
+    public ArrayList<Teleport> teleportArrayList = new ArrayList<Teleport>();
 
-//    static {
-//        build();
-//    }
-
-//    public static void build() {
-//        teleportArrayList.add(new Teleport(46, 36, "Helm"));
-//        newPair("Planet1", 44, 19, "Landing1", 31, 23);
-//    }
-
-    public static void newPair(String name1, int x1, int y1, String name2, int x2, int y2) {
+    public void newPair(String name1, int x1, int y1, String name2, int x2, int y2) {
         Teleport t1 = new Teleport(x1, y1, name1);
         Teleport t2 = new Teleport(x2, y2, name2);
         t1.link(t2);
@@ -33,7 +25,7 @@ public class TeleportMap {
         teleportArrayList.add(t2);
     }
 
-    public static Teleport findByName(String name) {
+    public Teleport findByName(String name) {
         for (Teleport t : teleportArrayList) {
             if (t.name.equals(name)) {
                 return t;
@@ -42,7 +34,7 @@ public class TeleportMap {
         return null;
     }
 
-    public static void populateFrom(List<KEntity> entities) {
+    public void populateFrom(List<KEntity> entities) {
 
         ArrayList<Teleport> surfaceTPs = new ArrayList<Teleport>();
         ArrayList<Teleport> planetTPs = new ArrayList<Teleport>();
@@ -138,8 +130,12 @@ public class TeleportMap {
 
     }
 
-    private static Object getInstanceUnderneath(KEntity e, Class clazz) {
+    private Object getInstanceUnderneath(KEntity e, Class clazz) {
         UnfinishedBusinessException.raise();
         return null;
+    }
+
+    public static TeleportMap instance() {
+        return _instance;
     }
 }
