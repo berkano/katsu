@@ -11,6 +11,10 @@ public class View {
     public int portWidth;
     public int portHeight;
     public KEntity following;
+    public int screenWidth;
+    public int screenHeight;
+    public int portX;
+    public int portY;
 
     public Point2D.Double entityPositionToScreenPoint(KEntity entity) {
         UnfinishedBusinessException.raise();

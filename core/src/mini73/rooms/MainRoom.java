@@ -28,6 +28,8 @@ import java.util.ArrayList;
  */
 public class MainRoom extends KRoom {
 
+    private final int speedFactor;
+    private ArrayList<View> views = new ArrayList<View>();
     public GameState gameState = new GameState(this);
 
     public boolean gameOver = false;
@@ -63,11 +65,11 @@ public class MainRoom extends KRoom {
 
     public MainRoom() {
 
-//        mainView.screenWidth = 1024;
-//        mainView.screenHeight = 768;
+        mainView.screenWidth = 1024;
+        mainView.screenHeight = 768;
         setZoom(2);
-//        mainView.portX = 0;
-//        mainView.portY = 0;
+        mainView.portX = 0;
+        mainView.portY = 0;
 
         loadFromTiledMap("001");
         teleportMap.populateFrom(getEntities());
@@ -76,11 +78,11 @@ public class MainRoom extends KRoom {
         ship = findFirstEntity(Ship.class);
 
         if (ship != null) {
-//            mainView.following = ship;
+            mainView.following = ship;
         }
 
-//        views.add(mainView);
-//        speedFactor = 1;
+        views.add(mainView);
+        speedFactor = 1;
 
     }
 
@@ -114,11 +116,6 @@ public class MainRoom extends KRoom {
             player.setY(teleportMap.findByName("Ship Helm").y * K.settings.getGridSize());
             ship.setX(teleportMap.findByName("Xorx").x * K.settings.getGridSize());
             ship.setY(teleportMap.findByName("Xorx").y * K.settings.getGridSize());
-
-//            if (Settings.devMode) {
-//                player.x = 611 * Settings.tileWidth;
-//                player.y = 88 * Settings.tileHeight;
-//            }
 
         }
 
@@ -228,12 +225,6 @@ public class MainRoom extends KRoom {
             }
         }
 
-//        if (Katsu.game.isKeyTyped(Keys.C)) {
-//            if (selectedEntity != null) {
-//                mainView.following = selectedEntity;
-//            }
-//        }
-
         checkInputAndMovePlayer(Keys.W, 0, -1);
         checkInputAndMovePlayer(Keys.A, -1, 0);
         checkInputAndMovePlayer(Keys.S, 0, 1);
@@ -245,9 +236,9 @@ public class MainRoom extends KRoom {
                 Teleport winTP = teleportMap.findByName("Earth");
                 ship.setX(winTP.x * 16);
                 ship.setY(winTP.y * 16);
-                //if (Settings.devMode) {
-                //objectiveReached = true;
-                //}
+                if (K.settings.isDevMode()) {
+                objectiveReached = true;
+                }
             }
         }
 
