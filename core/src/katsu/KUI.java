@@ -131,7 +131,11 @@ public class KUI {
         helpText = K.resource.loadText("help.txt");
     }
 
-    public void drawString(String info, Color black, int i, int i1) {
-        UnfinishedBusinessException.raise();
+    public void deprecatedDrawStringAtPosition(String s, Color c, int x, int y) {
+        K.graphics.uiSpriteBatch.begin();
+        K.graphics.font.setColor(c);
+        K.graphics.font.draw(K.graphics.uiSpriteBatch, s, x, y);
+        K.graphics.uiSpriteBatch.end();
     }
+
 }

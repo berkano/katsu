@@ -57,7 +57,7 @@ public class KResource {
     }
 
     public Music loadMusic(String name) {
-        UnfinishedBusinessException.raise();
-        return null;
+        Music m = Gdx.audio.newMusic(getResource(relativeResource("music/" + name)));
+        return m;
     }
 }

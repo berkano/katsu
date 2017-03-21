@@ -1,11 +1,8 @@
 package mini73.rooms;
 
-import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import katsu.*;
 import mini73.*;
 import mini73.entities.base.FriendlyMob;
@@ -255,8 +252,21 @@ public class MainRoom extends KRoom {
         }
     }
 
-    private void bringEntitiesToFront(Class clazz) {
-        UnfinishedBusinessException.raise();
+
+    public void bringEntitiesToFront(Class filterClass) {
+
+        ArrayList<KEntity> onTopEntities = new ArrayList<KEntity>();
+
+        // Sort components to always be on top
+        for (KEntity e : getEntities()) {
+            if (filterClass.isInstance(e)) onTopEntities.add(e);
+        }
+
+        for (KEntity e : onTopEntities) {
+            getEntities().remove(e);
+            getEntities().add(e);
+        }
+
     }
 
     private void tryTrade(int i) {
@@ -448,31 +458,31 @@ public class MainRoom extends KRoom {
 
         // Render navigation bar
         //info = "New game | Help | Universe | Planet | Land/Launch | Leave/Enter | Zoom |";
-        //ui.drawString(info, Color.BLACK, 2, 2, batch);
-        //ui.drawString(info, Color.ORANGE, 0, 2, batch);
+        //ui.deprecatedDrawStringAtPosition(info, Color.BLACK, 2, 2, batch);
+        //ui.deprecatedDrawStringAtPosition(info, Color.ORANGE, 0, 2, batch);
 
         // TODO-LD28
         info = gameState.statusBar();
 
-        K.ui.drawString(info, Color.BLACK, 2, 2);
-        K.ui.drawString(info, Color.WHITE, 0, 2);
+        K.ui.deprecatedDrawStringAtPosition(info, Color.BLACK, 2, 2);
+        K.ui.deprecatedDrawStringAtPosition(info, Color.WHITE, 0, 2);
 
         if (K.settings.isLogFPS()) {
             String fps = String.valueOf(Gdx.graphics.getFramesPerSecond());
             info = "FPS: " + fps;
-            K.ui.drawString(info, Color.BLACK, 2, 32 + 18);
-            K.ui.drawString(info, Color.CYAN, 0, 32 + 16);
+            K.ui.deprecatedDrawStringAtPosition(info, Color.BLACK, 2, 32 + 18);
+            K.ui.deprecatedDrawStringAtPosition(info, Color.CYAN, 0, 32 + 16);
         }
 
         if (K.runner.gamePaused()) {
 
             info = "GAME PAUSED - PRESS P TO RESUME";
-            K.ui.drawString(info, Color.BLACK, 102, 118);
-            K.ui.drawString(info, Color.CYAN, 100, 116);
+            K.ui.deprecatedDrawStringAtPosition(info, Color.BLACK, 102, 118);
+            K.ui.deprecatedDrawStringAtPosition(info, Color.CYAN, 100, 116);
 
         }
 
-//        K.ui.drawString(game.pinCode, Color.DARK_GRAY, 1024 - 48, 0, batch);
+//        K.ui.deprecatedDrawStringAtPosition(game.pinCode, Color.DARK_GRAY, 1024 - 48, 0, batch);
 
     }
 

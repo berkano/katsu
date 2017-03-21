@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="1024" height="512" tilewidth="16" tileheight="16">
- <tileset firstgid="1" name="ld27" tilewidth="16" tileheight="16">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="1024" height="512" tilewidth="16" tileheight="16" nextobjectid="1">
+ <tileset firstgid="1" name="ld27" tilewidth="16" tileheight="16" tilecount="4096" columns="64">
   <image source="tileset.png" width="1024" height="1024"/>
   <tile id="0">
    <properties>
@@ -9,7 +9,7 @@
   </tile>
   <tile id="1">
    <properties>
-    <property name="entity" value="RedMan"/>
+    <property name="entity" value="FriendlyPerson"/>
    </properties>
   </tile>
   <tile id="2">
@@ -19,7 +19,7 @@
   </tile>
   <tile id="3">
    <properties>
-    <property name="entity" value="GreenMan"/>
+    <property name="entity" value="PlayerPerson"/>
    </properties>
   </tile>
   <tile id="4">
@@ -59,7 +59,7 @@
   </tile>
   <tile id="68">
    <properties>
-    <property name="entity" value="PinkMan"/>
+    <property name="entity" value="EnemyPerson"/>
    </properties>
   </tile>
   <tile id="69">
