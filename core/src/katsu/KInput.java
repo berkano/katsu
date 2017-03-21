@@ -1,6 +1,7 @@
 package katsu;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,18 +17,60 @@ public class KInput {
     @Getter @Setter private InputMultiplexer multiplexer = new InputMultiplexer();
 
     private HashMap<Integer, Boolean> keysDown = new HashMap<Integer, Boolean>();
+    private HashMap<Integer, Boolean> keysTyped = new HashMap<Integer, Boolean>();
 
-    public void setKeyDown(int keycode, boolean isDown) {
+    public boolean keyDown(int keycode) {
+        keysDown.put(keycode, true);
+        keysTyped.put(keycode, true);
+        return handleKeyDown(keycode);
+    }
 
-        keysDown.remove(keycode);
+    private boolean handleKeyDown(int keycode) {
 
-        if (isDown) {
-            keysDown.put(keycode, true);
+        if (keycode == Input.Keys.ESCAPE) {
+            K.runner.exit();
         }
+
+        if (keycode == K.settings.getPauseKey()) {
+            if (K.runner.gamePaused()) {
+                K.runner.unpause();
+            } else {
+                K.runner.pauseGame();
+            }
+            return true;
+        }
+
+        if (keycode == Input.Keys.H) {
+            K.ui.clearText();
+            if (K.text.helpShowing()) {
+                K.text.hideHelp();
+                K.runner.unpause();
+            } else {
+                K.text.showHelp();
+                K.runner.pauseGame();
+            }
+        }
+
+        if (keycode == K.settings.getToggleMusicKey()) {
+            K.runner.toggleMusic();
+        }
+
+        if ((keycode == Input.Keys.F || keycode == Input.Keys.F11)) {
+            K.settings.toggleFullScreen();
+        }
+
+        return false;
+
+    }
+
+    public boolean keyUp(int keycode) {
+        keysDown.put(keycode, false);
+        return false;
     }
 
     public boolean isKeyDown(int keycode) {
-        return keysDown.get(keycode) != null;
+        if (keysDown.get(keycode) == null) return false;
+        return keysDown.get(keycode);
     }
 
     public void init(KRunner runner) {
@@ -37,8 +80,10 @@ public class KInput {
 
     }
 
-    public boolean isKeyTyped(int k) {
-        UnfinishedBusinessException.raise();
-        return false;
+    public boolean wasKeyTyped(int keycode) {
+        if (keysTyped.get(keycode) == null) return false;
+        keysTyped.remove(keycode);
+        return true;
     }
+
 }

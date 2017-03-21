@@ -140,17 +140,17 @@ public class MainRoom extends KRoom {
             }
         }
 
-        if (K.input.isKeyTyped(Keys.NUM_1)) tryTrade(1);
-        if (K.input.isKeyTyped(Keys.NUM_2)) tryTrade(2);
-        if (K.input.isKeyTyped(Keys.NUM_3)) tryTrade(3);
-        if (K.input.isKeyTyped(Keys.NUM_4)) tryTrade(4);
-        if (K.input.isKeyTyped(Keys.NUM_5)) tryTrade(5);
-        if (K.input.isKeyTyped(Keys.NUM_6)) tryTrade(6);
-        if (K.input.isKeyTyped(Keys.NUM_7)) tryTrade(7);
-        if (K.input.isKeyTyped(Keys.NUM_8)) tryTrade(8);
-        if (K.input.isKeyTyped(Keys.NUM_9)) tryTrade(9);
+        if (K.input.wasKeyTyped(Keys.NUM_1)) tryTrade(1);
+        if (K.input.wasKeyTyped(Keys.NUM_2)) tryTrade(2);
+        if (K.input.wasKeyTyped(Keys.NUM_3)) tryTrade(3);
+        if (K.input.wasKeyTyped(Keys.NUM_4)) tryTrade(4);
+        if (K.input.wasKeyTyped(Keys.NUM_5)) tryTrade(5);
+        if (K.input.wasKeyTyped(Keys.NUM_6)) tryTrade(6);
+        if (K.input.wasKeyTyped(Keys.NUM_7)) tryTrade(7);
+        if (K.input.wasKeyTyped(Keys.NUM_8)) tryTrade(8);
+        if (K.input.wasKeyTyped(Keys.NUM_9)) tryTrade(9);
 
-        if (K.input.isKeyTyped(Keys.T)) {
+        if (K.input.wasKeyTyped(Keys.T)) {
             if (playerLandingPad != null) {
                 if (playerLandingPad.teleport.link != null) {
                     planetClicked();
@@ -197,13 +197,13 @@ public class MainRoom extends KRoom {
             K.ui.writeText("entities=" + String.valueOf(getEntities().size()));
         }
 
-        if (K.input.isKeyTyped(Keys.I)) {
+        if (K.input.wasKeyTyped(Keys.I)) {
             String result = runInventoryRules();
             K.ui.writeText(result);
         }
 
 
-        if (K.input.isKeyTyped(Keys.SPACE)) {
+        if (K.input.wasKeyTyped(Keys.SPACE)) {
             if (selectedEntity != null) {
                 if (selectedEntity instanceof Resource) {
                     selectedEntity.destroy();
@@ -228,7 +228,7 @@ public class MainRoom extends KRoom {
         checkInputAndMovePlayer(Keys.D, 1, 0);
 
 
-        if (K.input.isKeyTyped(Keys.X)) {
+        if (K.input.wasKeyTyped(Keys.X)) {
             if (K.settings.isDevMode()) {
                 Teleport winTP = teleportMap.findByName("Earth");
                 ship.setX(winTP.x * 16);
@@ -239,7 +239,7 @@ public class MainRoom extends KRoom {
             }
         }
 
-        if (K.input.isKeyTyped(Keys.U)) {
+        if (K.input.wasKeyTyped(Keys.U)) {
             if (planetView) {
                 universeClicked();
             } else {
@@ -247,7 +247,7 @@ public class MainRoom extends KRoom {
             }
         }
 
-        if (K.input.isKeyTyped(Keys.Z)) {
+        if (K.input.wasKeyTyped(Keys.Z)) {
             doZoom();
         }
     }
