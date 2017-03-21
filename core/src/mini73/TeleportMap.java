@@ -131,8 +131,7 @@ public class TeleportMap {
     }
 
     private Object getInstanceUnderneath(KEntity e, Class clazz) {
-        UnfinishedBusinessException.raise();
-        return null;
+        return e.getInstanceUnderneath(clazz);
     }
 
     public static TeleportMap instance() {

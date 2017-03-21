@@ -6,6 +6,7 @@ import mini73.Objective;
 import mini73.UnfinishedBusinessException;
 import net.sf.jsi.Rectangle;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -210,8 +211,11 @@ public class KEntity extends KInputProcessor {
         this.setHealth(getHealth() + delta);
     }
 
-    public Object getInstanceUnderneath(Class clazz) {
-        UnfinishedBusinessException.raise();
+    public KEntity getInstanceUnderneath(Class clazz) {
+        ArrayList<KEntity> elist = room.findEntitiesAtPoint(x + 2, y + 2);
+        for (KEntity e : elist) {
+            if (clazz.isInstance(e)) return e;
+        }
         return null;
     }
 

@@ -5,7 +5,7 @@ package mini73;
  */
 public class UnfinishedBusinessException extends RuntimeException {
 
-    private static boolean shouldThrow = false;
+    private static boolean shouldThrow = true;
 
     public static void raise() {
         if (shouldThrow) {
