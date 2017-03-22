@@ -234,7 +234,7 @@ public class KEntity extends KInputProcessor {
     }
 
     public void moveRelative(int dx, int dy) {
-        UnfinishedBusinessException.raise();
+        tryMove(dx, dy);
     }
 
     public void setCurrentObjective(Objective obj) {

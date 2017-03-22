@@ -43,6 +43,26 @@ public class FriendlyMob extends Mob {
     }
 
     private void randomMove() {
-        UnfinishedBusinessException.raise();
+
+        if (System.currentTimeMillis() - getLastMove() < 100) return;
+
+        int dir = K.random.nextInt(4);
+        switch (dir) {
+            case 0:
+                moveRelative(0, 1);
+                break;
+            case 1:
+                moveRelative(0, -1);
+                break;
+            case 2:
+                moveRelative(1, 0);
+                break;
+            case 3:
+                moveRelative(-1, 0);
+                break;
+        }
+
+
     }
+
 }
