@@ -25,7 +25,7 @@ import java.util.ArrayList;
  */
 public class MainRoom extends KRoom {
 
-    private final int speedFactor;
+    private int speedFactor = 1;
     private ArrayList<View> views = new ArrayList<View>();
     public GameState gameState = new GameState(this);
 
@@ -60,7 +60,10 @@ public class MainRoom extends KRoom {
         mainView.portHeight = 768 / zoom;
     }
 
-    public MainRoom() {
+    @Override
+    public void start() {
+
+        super.start();
 
         mainView.screenWidth = 1024;
         mainView.screenHeight = 768;
