@@ -224,8 +224,7 @@ public class KEntity extends KInputProcessor {
     }
 
     public boolean isOnTopOf(Class clazz) {
-        UnfinishedBusinessException.raise();
-        return false;
+        return getInstanceUnderneath(clazz) != null;
     }
 
     public void setPosition(KEntity other) {
