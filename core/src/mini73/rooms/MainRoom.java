@@ -468,8 +468,8 @@ public class MainRoom extends KRoom {
         info = gameState.statusBar();
 
 
-        K.ui.uiStrings.put("infoBlack", new KUIString(info, Color.BLACK, 2, 2));
-        K.ui.uiStrings.put("infoWhite", new KUIString(info, Color.WHITE, 0, 2));
+        K.ui.uiStrings.put("infoBlack", new KUIString(info, Color.BLACK, 2, 100));
+        K.ui.uiStrings.put("infoWhite", new KUIString(info, Color.WHITE, 0, 102));
 //        K.ui.deprecatedDrawStringAtPosition(info, Color.BLACK, 2, 2);
 //        K.ui.deprecatedDrawStringAtPosition(info, Color.WHITE, 0, 2);
 
