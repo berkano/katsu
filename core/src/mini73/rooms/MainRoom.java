@@ -467,21 +467,24 @@ public class MainRoom extends KRoom {
         // TODO-LD28
         info = gameState.statusBar();
 
-        K.ui.deprecatedDrawStringAtPosition(info, Color.BLACK, 2, 2);
-        K.ui.deprecatedDrawStringAtPosition(info, Color.WHITE, 0, 2);
+
+        K.ui.uiStrings.put("infoBlack", new KUIString(info, Color.BLACK, 2, 2));
+        K.ui.uiStrings.put("infoWhite", new KUIString(info, Color.WHITE, 0, 2));
+//        K.ui.deprecatedDrawStringAtPosition(info, Color.BLACK, 2, 2);
+//        K.ui.deprecatedDrawStringAtPosition(info, Color.WHITE, 0, 2);
 
         if (K.settings.isLogFPS()) {
             String fps = String.valueOf(Gdx.graphics.getFramesPerSecond());
             info = "FPS: " + fps;
-            K.ui.deprecatedDrawStringAtPosition(info, Color.BLACK, 2, 32 + 18);
-            K.ui.deprecatedDrawStringAtPosition(info, Color.CYAN, 0, 32 + 16);
+//            K.ui.deprecatedDrawStringAtPosition(info, Color.BLACK, 2, 32 + 18);
+//            K.ui.deprecatedDrawStringAtPosition(info, Color.CYAN, 0, 32 + 16);
         }
 
         if (K.runner.gamePaused()) {
 
-            info = "GAME PAUSED - PRESS P TO RESUME";
-            K.ui.deprecatedDrawStringAtPosition(info, Color.BLACK, 102, 118);
-            K.ui.deprecatedDrawStringAtPosition(info, Color.CYAN, 100, 116);
+//            info = "GAME PAUSED - PRESS P TO RESUME";
+//            K.ui.deprecatedDrawStringAtPosition(info, Color.BLACK, 102, 118);
+//            K.ui.deprecatedDrawStringAtPosition(info, Color.CYAN, 100, 116);
 
         }
 
