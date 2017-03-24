@@ -461,34 +461,31 @@ public class MainRoom extends KRoom {
 
         // Render navigation bar
         //info = "New game | Help | Universe | Planet | Land/Launch | Leave/Enter | Zoom |";
-        //ui.deprecatedDrawStringAtPosition(info, Color.BLACK, 2, 2, batch);
-        //ui.deprecatedDrawStringAtPosition(info, Color.ORANGE, 0, 2, batch);
+        //ui.drawStringAbsolute(info, Color.BLACK, 2, 2, batch);
+        //ui.drawStringAbsolute(info, Color.ORANGE, 0, 2, batch);
 
         // TODO-LD28
         info = gameState.statusBar();
 
-
-        K.ui.uiStrings.put("infoBlack", new KUIString(info, Color.BLACK, 2, 100));
-        K.ui.uiStrings.put("infoWhite", new KUIString(info, Color.WHITE, 0, 102));
-//        K.ui.deprecatedDrawStringAtPosition(info, Color.BLACK, 2, 2);
-//        K.ui.deprecatedDrawStringAtPosition(info, Color.WHITE, 0, 2);
+        K.ui.drawStringAbsolute(info, Color.BLACK, 2, 768);
+        K.ui.drawStringAbsolute(info, Color.WHITE, 0, 768);
 
         if (K.settings.isLogFPS()) {
             String fps = String.valueOf(Gdx.graphics.getFramesPerSecond());
             info = "FPS: " + fps;
-//            K.ui.deprecatedDrawStringAtPosition(info, Color.BLACK, 2, 32 + 18);
-//            K.ui.deprecatedDrawStringAtPosition(info, Color.CYAN, 0, 32 + 16);
+            K.ui.drawStringAbsolute(info, Color.BLACK, 2, 768 - (32 + 18));
+            K.ui.drawStringAbsolute(info, Color.CYAN, 0, 768 - (32 + 16));
         }
 
         if (K.runner.gamePaused()) {
 
-//            info = "GAME PAUSED - PRESS P TO RESUME";
-//            K.ui.deprecatedDrawStringAtPosition(info, Color.BLACK, 102, 118);
-//            K.ui.deprecatedDrawStringAtPosition(info, Color.CYAN, 100, 116);
+            info = "GAME PAUSED - PRESS P TO RESUME";
+            K.ui.drawStringAbsolute(info, Color.BLACK, 102, 768 - 118);
+            K.ui.drawStringAbsolute(info, Color.CYAN, 100, 768 - 116);
 
         }
 
-//        K.ui.deprecatedDrawStringAtPosition(game.pinCode, Color.DARK_GRAY, 1024 - 48, 0, batch);
+//        K.ui.drawStringAbsolute(game.pinCode, Color.DARK_GRAY, 1024 - 48, 0, batch);
 
     }
 

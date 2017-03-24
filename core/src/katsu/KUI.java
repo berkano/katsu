@@ -9,7 +9,6 @@ import lombok.Setter;
 import mini73.UnfinishedBusinessException;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 
 public class KUI {
@@ -24,8 +23,6 @@ public class KUI {
     private int fontWidth = 18;
     private int lineDisplay = 10;
     private int lineCount = 0;
-
-    public HashMap<String, KUIString> uiStrings = new HashMap<String, KUIString>();
 
     public void writeText(String s) {
         if (text.size() >= lineDisplay) {
@@ -70,7 +67,6 @@ public class KUI {
     }
 
     public void renderText() {
-        renderUIStrings();
         renderHelpText();
         boolean gameIsPaused = K.runner.gamePaused();
         // Remove old lines
@@ -91,16 +87,6 @@ public class KUI {
             formatAndRenderLine(tl.text, c);
         }
         K.text.render();
-    }
-
-    private void renderUIStrings() {
-
-        for (KUIString s : uiStrings.values()) {
-            K.graphics.font.setColor(s.c);
-            K.graphics.font.draw(K.graphics.uiSpriteBatch, s.s, s.x, s.y);
-        }
-
-
     }
 
     private void renderHelpText() {
@@ -143,6 +129,24 @@ public class KUI {
 
     public void init() {
         helpText = K.resource.loadText("help.txt");
+    }
+
+    public void drawStringAbsolute(String s, Color c, int x, int y) {
+
+        boolean wasAlreadyInBatch;
+        wasAlreadyInBatch = K.graphics.uiSpriteBatch.isDrawing();
+
+        if (!wasAlreadyInBatch) {
+            K.graphics.uiSpriteBatch.begin();
+        }
+
+        K.graphics.font.setColor(c);
+        K.graphics.font.draw(K.graphics.uiSpriteBatch, s, x, y);
+
+        if (!wasAlreadyInBatch) {
+            K.graphics.uiSpriteBatch.end();
+        }
+
     }
 
 }
