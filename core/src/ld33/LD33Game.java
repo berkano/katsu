@@ -63,4 +63,9 @@ public class LD33Game extends KRunner {
         LD33Sounds.toggleMusic();
     }
 
+    @Override
+    public KSettings buildSettings() {
+        throw new RuntimeException("not implemented");
+    }
+
 }

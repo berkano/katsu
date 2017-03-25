@@ -3,6 +3,7 @@ package ld37wu;
 import katsu.K;
 import katsu.KRoom;
 import katsu.KRunner;
+import katsu.KSettings;
 import ld37wu.entities.Baby;
 import ld37wu.entities.Present;
 import ld37wu.entities.Santa;
@@ -73,6 +74,11 @@ public class LD37wuGame extends KRunner {
     @Override
     public void toggleMusic() {
         LD37wuSounds.toggleMusic();
+    }
+
+    @Override
+    public KSettings buildSettings() {
+        throw new RuntimeException("not implemented");
     }
 
 }

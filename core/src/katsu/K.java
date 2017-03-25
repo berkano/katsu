@@ -1,12 +1,5 @@
 package katsu;
 
-import com.badlogic.gdx.graphics.FPSLogger;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import lombok.Getter;
-import lombok.Setter;
-import mini73.LevelManager;
-
-import java.util.HashMap;
 import java.util.Random;
 
 /**
@@ -26,5 +19,5 @@ public class K {
     public static KRunner runner;
     public static KSettings settings;
 
-    public static KObsoleteHandler obsolete;
+    public static KObsolete obsolete;
 }

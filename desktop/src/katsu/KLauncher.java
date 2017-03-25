@@ -2,8 +2,21 @@ package katsu;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import mini73.Mini73Game;
 
 public class KLauncher {
+
+    public static void main(String[] args) throws Exception {
+        launch(Mini73Game.class);
+    }
+
+    public static void launch(Class<? extends KRunner> runnerClass) throws Exception {
+        KRunner runner = runnerClass.newInstance();
+        KSettings settings = runner.buildSettings();
+
+        launch(runner, settings);
+
+    }
 
     public static void launch(KRunner runner, KSettings settings) {
 
@@ -28,7 +41,7 @@ public class KLauncher {
 
         K.runner = runner;
         K.settings = settings;
-//        K.obsolete.ui = (KObsoleteHandler)(Object)ui;
+//        K.obsolete.ui = (KObsolete)(Object)ui;
 
         K.settings.setWindowWidth(config.width);
         K.settings.setWindowHeight(config.height);

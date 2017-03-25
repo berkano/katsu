@@ -34,7 +34,7 @@ public abstract class KRunner extends KInputProcessor implements ApplicationList
         Gdx.graphics.setTitle(K.settings.getGameName() + " :: " + K.settings.getGameAuthor() + " :: " + K.settings.getGameDescription());
 
         K.graphics.init();
-        K.obsolete.ui.init();
+//        K.obsolete.ui.init();
         K.input.init(this);
         rooms = K.runner.getRooms();
         if (rooms == null || rooms.size() <= 0) {
@@ -65,12 +65,12 @@ public abstract class KRunner extends KInputProcessor implements ApplicationList
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         K.graphics.uiShapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 
-        K.obsolete.ui.renderShadowBoxes();
+//        K.obsolete.ui.renderShadowBoxes();
 
         K.graphics.uiShapeRenderer.end();
         Gdx.gl.glDisable(GL20.GL_BLEND);
         K.graphics.uiSpriteBatch.begin();
-        K.obsolete.ui.renderText();
+//        K.obsolete.ui.renderText();
         K.graphics.uiSpriteBatch.end();
 
         update();
@@ -133,4 +133,6 @@ public abstract class KRunner extends KInputProcessor implements ApplicationList
         UnfinishedBusinessException.raise();
         return null;
     }
+
+    public abstract KSettings buildSettings();
 }

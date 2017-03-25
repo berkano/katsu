@@ -3,6 +3,7 @@ package mini73;
 import katsu.K;
 import katsu.KRoom;
 import katsu.KRunner;
+import katsu.KSettings;
 import ld37wu.LD37wuSounds;
 import ld37wu.LD37wuWorld;
 import ld37wu.entities.Baby;
@@ -70,6 +71,11 @@ public class Mini73Game extends KRunner {
     @Override
     public void toggleMusic() {
         LD37wuSounds.toggleMusic();
+    }
+
+    @Override
+    public KSettings buildSettings() {
+        return new Mini73Settings();
     }
 
 }
