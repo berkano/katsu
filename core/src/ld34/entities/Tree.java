@@ -27,7 +27,7 @@ public class Tree extends LD34EntityBase {
             fire.setX(getX());
             fire.setY(getY());
             getRoom().addNewEntity(fire);
-//            K.ui.writeText("I AM A TREE AND I AM ON FIRE!!!");
+//            K.obsolete.ui.writeText("I AM A TREE AND I AM ON FIRE!!!");
         }
     }
 

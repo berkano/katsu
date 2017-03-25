@@ -34,7 +34,7 @@ public abstract class KRunner extends KInputProcessor implements ApplicationList
         Gdx.graphics.setTitle(K.settings.getGameName() + " :: " + K.settings.getGameAuthor() + " :: " + K.settings.getGameDescription());
 
         K.graphics.init();
-        K.ui.init();
+        K.obsolete.ui.init();
         K.input.init(this);
         rooms = K.runner.getRooms();
         if (rooms == null || rooms.size() <= 0) {
@@ -65,12 +65,12 @@ public abstract class KRunner extends KInputProcessor implements ApplicationList
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         K.graphics.uiShapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 
-        K.ui.renderShadowBoxes();
+        K.obsolete.ui.renderShadowBoxes();
 
         K.graphics.uiShapeRenderer.end();
         Gdx.gl.glDisable(GL20.GL_BLEND);
         K.graphics.uiSpriteBatch.begin();
-        K.ui.renderText();
+        K.obsolete.ui.renderText();
         K.graphics.uiSpriteBatch.end();
 
         update();
@@ -100,13 +100,13 @@ public abstract class KRunner extends KInputProcessor implements ApplicationList
 
     public void pauseGame() {
         String key = Input.Keys.toString(K.settings.getPauseKey());
-        K.ui.writeText("@CYAN Game is paused. Press "+key+" to continue.");
+        K.obsolete.ui.writeText("@CYAN Game is paused. Press "+key+" to continue.");
         this.paused = true;
     }
 
     public void unpause() {
-        K.ui.clearText();
-        K.text.hideHelp();
+        K.obsolete.ui.clearText();
+        K.obsolete.text.hideHelp();
         this.paused = false;
     }
 

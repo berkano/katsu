@@ -46,7 +46,7 @@ public class Mob extends Mini73EntityBase {
     // TODO bug with entity appearing twice in destroy list??
     public void beforeDeath(KRoom room) {
         super.beforeDeath(room);
-        K.ui.writeText(this.toString() + " died.");
+        K.obsolete.ui.writeText(this.toString() + " died.");
     }
 
     @Override

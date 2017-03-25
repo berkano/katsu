@@ -165,19 +165,19 @@ public class MainRoom extends KRoom {
                     if (shipLandingPad != null) {
                         shipLandingPad.teleport.discovered = true;
                     }
-                    K.ui.writeText("Teleported to " + playerLandingPad.teleport.link.getDiscoveredName() + ".");
+                    K.obsolete.ui.writeText("Teleported to " + playerLandingPad.teleport.link.getDiscoveredName() + ".");
                     if (playerLandingPad.teleport.link.getDiscoveredName().equals("London Surface")) {
                         Sounds.transport.stop();
                         Sounds.stopAllMusic();
                         Sounds.win.play();
-                        K.ui.writeText("WIN!! You found your way back to Earth :-) Hope you enjoyed playing. ~berkano / LD28");
+                        K.obsolete.ui.writeText("WIN!! You found your way back to Earth :-) Hope you enjoyed playing. ~berkano / LD28");
                     }
 
                 } else {
-                    K.ui.writeText("Cannot teleport until ship is docked.");
+                    K.obsolete.ui.writeText("Cannot teleport until ship is docked.");
                 }
             } else {
-                K.ui.writeText("You are not standing on a teleport.");
+                K.obsolete.ui.writeText("You are not standing on a teleport.");
             }
         }
 
@@ -185,11 +185,11 @@ public class MainRoom extends KRoom {
         // TODO-LD28
         if (!shownWelcomeForLevel) {
 //            if (Katsu.game.currentLevel == "0000") {
-            K.ui.writeText("welcome to ~singleton~, berkano's LD28 entry.");
-            K.ui.writeText("major tim is lost in space. one prisoner, one");
-            K.ui.writeText("sheep, one inventory slot, one goal:");
-            K.ui.writeText("help him find his way back to earth");
-            K.ui.writeText("press h for help.");
+            K.obsolete.ui.writeText("welcome to ~singleton~, berkano's LD28 entry.");
+            K.obsolete.ui.writeText("major tim is lost in space. one prisoner, one");
+            K.obsolete.ui.writeText("sheep, one inventory slot, one goal:");
+            K.obsolete.ui.writeText("help him find his way back to earth");
+            K.obsolete.ui.writeText("press h for help.");
 //            }
             shownWelcomeForLevel = true;
         }
@@ -197,12 +197,12 @@ public class MainRoom extends KRoom {
         if (!objectiveReached && !objectiveFailed) checkLevelCompleteCriteria();
 
         if (Gdx.input.isKeyPressed(Keys.F3)) {
-            K.ui.writeText("entities=" + String.valueOf(getEntities().size()));
+            K.obsolete.ui.writeText("entities=" + String.valueOf(getEntities().size()));
         }
 
         if (K.input.wasKeyTyped(Keys.I)) {
             String result = runInventoryRules();
-            K.ui.writeText(result);
+            K.obsolete.ui.writeText(result);
         }
 
 
@@ -276,7 +276,7 @@ public class MainRoom extends KRoom {
         if (selectedEntity instanceof FriendlyPerson) {
             ((FriendlyPerson) selectedEntity).tryTrade(i);
         } else {
-            K.ui.writeText("Click on a friendly person before trading!");
+            K.obsolete.ui.writeText("Click on a friendly person before trading!");
         }
 
     }
@@ -338,11 +338,11 @@ public class MainRoom extends KRoom {
         if (mainView.following instanceof Ship) {
             if (player.isOnTopOf(LandingPad.class)) {
             } else {
-                K.ui.writeText("May not move ship until player is at helm.");
+                K.obsolete.ui.writeText("May not move ship until player is at helm.");
                 return;
             }
             if (gameState.fuel == 0) {
-                K.ui.writeText("Out of fuel!");
+                K.obsolete.ui.writeText("Out of fuel!");
                 return;
             }
             player.setX(46 * K.settings.getGridSize());
@@ -354,7 +354,7 @@ public class MainRoom extends KRoom {
     }
 
     protected void rawScreenClick(int x, int y) {
-        K.ui.writeText(String.format("Clicked top bar at %s, %s", x, y));
+        K.obsolete.ui.writeText(String.format("Clicked top bar at %s, %s", x, y));
 
         if (x >= 0 && x < 105) {
             newGameClicked();
@@ -401,11 +401,11 @@ public class MainRoom extends KRoom {
     }
 
     private void leaveEnterClicked() {
-        K.ui.writeText("leave/enter...");
+        K.obsolete.ui.writeText("leave/enter...");
     }
 
     private void landLaunchClicked() {
-        K.ui.writeText("land/launch...");
+        K.obsolete.ui.writeText("land/launch...");
     }
 
     private void planetClicked() {
@@ -425,7 +425,7 @@ public class MainRoom extends KRoom {
     }
 
     private void newGameClicked() {
-        K.ui.writeText("Generating universe");
+        K.obsolete.ui.writeText("Generating universe");
     }
 
 
@@ -434,7 +434,7 @@ public class MainRoom extends KRoom {
         if (selectedEntity == null) return;
 
         if (!(selectedEntity instanceof FriendlyMob)) {
-            K.ui.writeText(selectedEntity.toString() + " ignored you.");
+            K.obsolete.ui.writeText(selectedEntity.toString() + " ignored you.");
             return;
         }
 
@@ -467,25 +467,25 @@ public class MainRoom extends KRoom {
         // TODO-LD28
         info = gameState.statusBar();
 
-        K.ui.drawStringAbsolute(info, Color.BLACK, 2, 768);
-        K.ui.drawStringAbsolute(info, Color.WHITE, 0, 768);
+        K.obsolete.ui.drawStringAbsolute(info, Color.BLACK, 2, 768);
+        K.obsolete.ui.drawStringAbsolute(info, Color.WHITE, 0, 768);
 
         if (K.settings.isLogFPS()) {
             String fps = String.valueOf(Gdx.graphics.getFramesPerSecond());
             info = "FPS: " + fps;
-            K.ui.drawStringAbsolute(info, Color.BLACK, 2, 768 - (32 + 18));
-            K.ui.drawStringAbsolute(info, Color.CYAN, 0, 768 - (32 + 16));
+            K.obsolete.ui.drawStringAbsolute(info, Color.BLACK, 2, 768 - (32 + 18));
+            K.obsolete.ui.drawStringAbsolute(info, Color.CYAN, 0, 768 - (32 + 16));
         }
 
         if (K.runner.gamePaused()) {
 
             info = "GAME PAUSED - PRESS P TO RESUME";
-            K.ui.drawStringAbsolute(info, Color.BLACK, 102, 768 - 118);
-            K.ui.drawStringAbsolute(info, Color.CYAN, 100, 768 - 116);
+            K.obsolete.ui.drawStringAbsolute(info, Color.BLACK, 102, 768 - 118);
+            K.obsolete.ui.drawStringAbsolute(info, Color.CYAN, 100, 768 - 116);
 
         }
 
-//        K.ui.drawStringAbsolute(game.pinCode, Color.DARK_GRAY, 1024 - 48, 0, batch);
+//        K.obsolete.ui.drawStringAbsolute(game.pinCode, Color.DARK_GRAY, 1024 - 48, 0, batch);
 
     }
 

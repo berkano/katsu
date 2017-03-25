@@ -50,10 +50,10 @@ public class World extends KRoom {
         player = (Snowman) firstInstanceOfClass(Snowman.class);
 
         if (LD34Settings.get().startWithPausedHelp) {
-            K.text.showHelp();
+            K.obsolete.text.showHelp();
         }
 
-        K.ui.clearText();
+        K.obsolete.ui.clearText();
     }
 
     @Override
@@ -82,9 +82,9 @@ public class World extends KRoom {
 
             plantingMode = !plantingMode;
             if (plantingMode) {
-                K.ui.writeText("OK I'll plant trees where you click!");
+                K.obsolete.ui.writeText("OK I'll plant trees where you click!");
             } else {
-                K.ui.writeText("OK I won't plant trees unless you ask me again!");
+                K.obsolete.ui.writeText("OK I won't plant trees unless you ask me again!");
             }
 
             return true;
@@ -99,7 +99,7 @@ public class World extends KRoom {
 
         super.update();
 
-        K.text.setTop("Money: £" + player.getMoney());
+        K.obsolete.text.setTop("Money: £" + player.getMoney());
 
         if (!doneFirstUpdate) {
             if (LD34Settings.get().startPaused) {
@@ -206,15 +206,15 @@ public class World extends KRoom {
         }
 
         boolean responded = false;
-        K.ui.writeText("");
+        K.obsolete.ui.writeText("");
 
         if (foundMe && !responded) {
-            K.ui.writeText("Hello!");
+            K.obsolete.ui.writeText("Hello!");
             responded = true;
         }
         if (foundTree && !responded) {
 
-            K.ui.writeText("OK I'll go chop that!");
+            K.obsolete.ui.writeText("OK I'll go chop that!");
 
             player.setHasTarget(true);
             player.setTargetGridX(lastClickedX);
@@ -224,7 +224,7 @@ public class World extends KRoom {
             responded = true;
         }
         if (foundLand && !responded) {
-            K.ui.writeText("OK I'll go and buy that new land!");
+            K.obsolete.ui.writeText("OK I'll go and buy that new land!");
 
             player.setHasTarget(true);
             player.setTargetGridX(lastClickedX);
@@ -237,13 +237,13 @@ public class World extends KRoom {
         if (!responded) {
 
             if (plantingMode) {
-                K.ui.writeText("OK time to plant some trees! Press P if you want me to stop!");
+                K.obsolete.ui.writeText("OK time to plant some trees! Press P if you want me to stop!");
                 player.setHasTarget(true);
                 player.setTargetGridX(lastClickedX);
                 player.setTargetGridY(lastClickedY);
                 player.setTargetAction(Snowman.Action.PLANT);
             } else {
-                K.ui.writeText("Off I go! If you want me to plant trees, press P!");
+                K.obsolete.ui.writeText("Off I go! If you want me to plant trees, press P!");
                 player.setHasTarget(true);
                 player.setTargetGridX(lastClickedX);
                 player.setTargetGridY(lastClickedY);

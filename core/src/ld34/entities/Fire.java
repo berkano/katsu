@@ -21,7 +21,7 @@ public class Fire extends LD34EntityBase {
 
         if (!playedSound) {
             LD34Sounds.fire.play();
-            K.ui.writeText("Oh noes! I think my trees are on fire!");
+            K.obsolete.ui.writeText("Oh noes! I think my trees are on fire!");
             playedSound = true;
         }
 

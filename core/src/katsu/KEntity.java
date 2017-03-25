@@ -241,6 +241,6 @@ public class KEntity extends KInputProcessor {
     }
 
     public void say(String s) {
-        K.ui.writeText(s);
+        K.obsolete.ui.writeText(s);
     }
 }

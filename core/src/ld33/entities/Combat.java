@@ -69,7 +69,7 @@ public class Combat {
             } else {
                 colourCode = "@PINK ";
             }
-            K.ui.writeText(colourCode + attackerName + " attacks " + enemyName + " with damage " + effectiveAttack + "!");
+            K.obsolete.ui.writeText(colourCode + attackerName + " attacks " + enemyName + " with damage " + effectiveAttack + "!");
 
             Blood blood = new Blood();
             blood.setX(enemy.getX());
@@ -82,16 +82,16 @@ public class Combat {
                 if (livesLeft < 0) livesLeft = 0;
                 LD33Sounds.death.play();
                 if (enemy instanceof Monster) {
-                    K.ui.writeText("@RED You have been killed and will respawn in the nearest bed! (" + livesLeft + " lives left).");
+                    K.obsolete.ui.writeText("@RED You have been killed and will respawn in the nearest bed! (" + livesLeft + " lives left).");
                 } else {
-                    K.ui.writeText("@RED " + enemyName + " dies! (" + livesLeft + " lives left)");
+                    K.obsolete.ui.writeText("@RED " + enemyName + " dies! (" + livesLeft + " lives left)");
                 }
                 if (isPlayerAttack) {
                     world.setLastMobAttackedByPlayer(null);
                 }
                 // TODO respawn them - for now just reset health
                 if (enemy.getStats().getLives() == 0) {
-                    K.ui.writeText("@RED *** PERMADEATH!! ***");
+                    K.obsolete.ui.writeText("@RED *** PERMADEATH!! ***");
                     enemy.destroy();
                 } else {
                     enemy.getStats().setLives(enemy.getStats().getLives() - 1);
@@ -104,13 +104,13 @@ public class Combat {
                 attacker.getStats().addXp(xp);
                 int newLevel = attacker.getStats().levelUpAvailable();
                 if (newLevel > 0) {
-                    K.ui.writeText("@YELLOW " + attackerName + " rises to level " + newLevel + "!");
+                    K.obsolete.ui.writeText("@YELLOW " + attackerName + " rises to level " + newLevel + "!");
                     attacker.getStats().levelUp();
                     if (isPlayerAttack) {
                         K.runner.pauseGame();
                         if (newLevel == 10) {
-                            K.ui.writeText("@ORANGE **YOU WIN!!** LEVEL 10 ACHIEVED. Hope you had fun :-) ~berkano");
-                            K.ui.writeText("@CYAN You can continue playing as you wish by pressing P.");
+                            K.obsolete.ui.writeText("@ORANGE **YOU WIN!!** LEVEL 10 ACHIEVED. Hope you had fun :-) ~berkano");
+                            K.obsolete.ui.writeText("@CYAN You can continue playing as you wish by pressing P.");
                             K.runner.pauseGame();
                         }
                     }
@@ -118,7 +118,7 @@ public class Combat {
             }
         } else {
             colourCode = "@LIGHT_GRAY ";
-            K.ui.writeText(colourCode + attackerName + " swings for " + enemyName + " but misses!");
+            K.obsolete.ui.writeText(colourCode + attackerName + " swings for " + enemyName + " but misses!");
         }
     }
 
@@ -135,7 +135,7 @@ public class Combat {
                 monster.setLooksHuman(true);
             }
         } else {
-            K.ui.writeText("Error - could not find nearest bed for " + mob.getClass().getSimpleName());
+            K.obsolete.ui.writeText("Error - could not find nearest bed for " + mob.getClass().getSimpleName());
         }
 
 

@@ -186,18 +186,18 @@ public class Snowman extends LD34EntityBase {
                 if (targetAction == Action.CHOP) {
                     Tree toChop = (Tree) getRoom().findFirstEntity(Tree.class, targetGridX, targetGridY);
                     if (toChop != null) {
-//                        K.ui.writeText("Choppy chop!");
+//                        K.obsolete.ui.writeText("Choppy chop!");
                         LD34Sounds.chop.play();
 
                         if (toChop.burnt) {
-                            K.ui.writeText("Poor tree and poor me. It got burnt so I can't sell it.");
+                            K.obsolete.ui.writeText("Poor tree and poor me. It got burnt so I can't sell it.");
                             if (!hasDoneStupidQuote) {
                                 if (K.random.nextInt(5) == 0) {
-                                    K.ui.writeText("");
-                                    K.ui.writeText("Burned is the older form. Burnt came about during a period in the 16th through 18th centuries");
-                                    K.ui.writeText("in which there was a trend toward replacing -ed endings with -t in words where -ed was no");
-                                    K.ui.writeText("longer pronounced as a separate syllable.");
-                                    K.ui.writeText("");
+                                    K.obsolete.ui.writeText("");
+                                    K.obsolete.ui.writeText("Burned is the older form. Burnt came about during a period in the 16th through 18th centuries");
+                                    K.obsolete.ui.writeText("in which there was a trend toward replacing -ed endings with -t in words where -ed was no");
+                                    K.obsolete.ui.writeText("longer pronounced as a separate syllable.");
+                                    K.obsolete.ui.writeText("");
                                     hasDoneStupidQuote = true;
                                 }
                             }
@@ -206,7 +206,7 @@ public class Snowman extends LD34EntityBase {
 
                             int earned = toChop.getMarketValue();
                             money += earned;
-                            K.ui.writeText("Yay, I earned £" + earned + "!");
+                            K.obsolete.ui.writeText("Yay, I earned £" + earned + "!");
                         }
 
                         toChop.destroy();
@@ -237,7 +237,7 @@ public class Snowman extends LD34EntityBase {
                             sapling.getGrid().setY(targetGridY);
                             sapling.setStage(Tree.Stage.sapling);
                             getRoom().addNewEntity(sapling);
-//                            K.ui.writeText("Planty plant!");
+//                            K.obsolete.ui.writeText("Planty plant!");
                             LD34Sounds.plant.play();
 
                             // don't let snowman be on top of tree
@@ -245,12 +245,12 @@ public class Snowman extends LD34EntityBase {
                             targetGridY = getGrid().getY();
                             money = money - 1;
                         } else {
-                            K.ui.writeText("I don't have enough money :-( I need £1. I'd better go chop some trees!");
+                            K.obsolete.ui.writeText("I don't have enough money :-( I need £1. I'd better go chop some trees!");
                             LD34Sounds.gone_wrong.play();
                         }
 
                     } else {
-                        K.ui.writeText("I can't plant here :-(");
+                        K.obsolete.ui.writeText("I can't plant here :-(");
                         LD34Sounds.gone_wrong.play();
                     }
 
@@ -260,11 +260,11 @@ public class Snowman extends LD34EntityBase {
                 if (targetAction == Action.BUY_LAND) {
                     Land land = (Land) getRoom().findFirstEntity(Land.class, targetGridX, targetGridY);
                     if (land == null) {
-                        K.ui.writeText("There's no land to buy here :-(");
+                        K.obsolete.ui.writeText("There's no land to buy here :-(");
                         LD34Sounds.gone_wrong.play();
                     } else {
                         if (money < 100) {
-                            K.ui.writeText("I don't have enough money :-( I need £100. I'd better go chop some trees!");
+                            K.obsolete.ui.writeText("I don't have enough money :-( I need £100. I'd better go chop some trees!");
                             LD34Sounds.gone_wrong.play();
                         } else {
                             Grass grass = new Grass();
@@ -273,7 +273,7 @@ public class Snowman extends LD34EntityBase {
                             getRoom().addNewEntity(grass);
                             land.destroy();
                             money -= 100;
-                            K.ui.writeText("New land! Woo!");
+                            K.obsolete.ui.writeText("New land! Woo!");
                             LD34Sounds.buy_land.play();
 
                         }
@@ -315,11 +315,11 @@ public class Snowman extends LD34EntityBase {
             if (shouldBe == Stage.normal) downgrade = true;
             if (shouldBe == Stage.scarf && stage == Stage.gold) downgrade = true;
             if (!downgrade) {
-                K.ui.writeText("Woo hoo! I got an upgrade!!");
+                K.obsolete.ui.writeText("Woo hoo! I got an upgrade!!");
                 LD34Sounds.buy_land.play();
                 K.runner.pauseGame();
             } else {
-                K.ui.writeText("Sad face, I got a downgrade :-(");
+                K.obsolete.ui.writeText("Sad face, I got a downgrade :-(");
                 LD34Sounds.gone_wrong.play();
             }
             stage = shouldBe;
@@ -333,8 +333,8 @@ public class Snowman extends LD34EntityBase {
             if (getMoney() >= 2000) {
                 hasWon = true;
                 LD34Sounds.buy_land.play();
-                K.ui.writeText("Woo hoo! I can retire!");
-                K.ui.writeText("You earned enough money for snowman to retire. Thanks for playing!");
+                K.obsolete.ui.writeText("Woo hoo! I can retire!");
+                K.obsolete.ui.writeText("You earned enough money for snowman to retire. Thanks for playing!");
                 K.runner.pauseGame();
             }
         }

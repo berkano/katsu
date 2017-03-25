@@ -44,10 +44,10 @@ public class LD37wuWorld extends KRoom {
         K.input.getMultiplexer().addProcessor(this);
 
         if (LD37wuSettings.get().startWithPausedHelp) {
-            K.text.showHelp();
+            K.obsolete.text.showHelp();
         }
 
-        K.ui.clearText();
+        K.obsolete.ui.clearText();
     }
 
     @Override

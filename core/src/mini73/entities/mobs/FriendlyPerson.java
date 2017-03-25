@@ -50,14 +50,14 @@ public class FriendlyPerson extends FriendlyMob {
         GameState gameState = thisRoom.gameState;
         if (gameState.inventory != null) {
             gameState.credits += buyPriceFor(gameState.inventory);
-            K.ui.writeText("Sold!");
+            K.obsolete.ui.writeText("Sold!");
             gameState.inventory = null;
         } else {
             int neededCredits = sellPriceFor(tradeClassByIndex(tradeNum));
             if (gameState.credits < neededCredits) {
-                K.ui.writeText("Not enough credits!");
+                K.obsolete.ui.writeText("Not enough credits!");
             } else {
-                K.ui.writeText("Bought!");
+                K.obsolete.ui.writeText("Bought!");
                 gameState.credits -= neededCredits;
                 gameState.inventory = tradeClassByIndex(tradeNum);
             }

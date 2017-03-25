@@ -165,7 +165,7 @@ public class Monster extends MobBase {
             setLooksHuman(!isLooksHuman());
             LD33Sounds.transform.play();
         } else {
-            K.ui.writeText("You can't transform now, there is someone nearby!");
+            K.obsolete.ui.writeText("You can't transform now, there is someone nearby!");
         }
 
     }

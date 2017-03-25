@@ -41,12 +41,12 @@ public class KInput {
         }
 
         if (keycode == Input.Keys.H) {
-            K.ui.clearText();
-            if (K.text.helpShowing()) {
-                K.text.hideHelp();
+            K.obsolete.ui.clearText();
+            if (K.obsolete.text.helpShowing()) {
+                K.obsolete.text.hideHelp();
                 K.runner.unpause();
             } else {
-                K.text.showHelp();
+                K.obsolete.text.showHelp();
                 K.runner.pauseGame();
             }
         }

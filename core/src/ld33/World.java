@@ -34,13 +34,13 @@ public class World extends KRoom {
     public void start() {
         super.start();
 
-        LD33UI ui = (LD33UI)K.ui;
-
-        ui.getMessageReplacements().put("Monster attacks", "You attack");
-        ui.getMessageReplacements().put("attacks Monster", "attacks you");
-        ui.getMessageReplacements().put("Monster swings", "You swing");
-        ui.getMessageReplacements().put("swings for Monster", "swings for you");
-        ui.getMessageReplacements().put("Monster rises ", "You rise ");
+//        LD33UI ui = (LD33UI)(Object)K.obsolete.ui;
+//
+//        ui.getMessageReplacements().put("Monster attacks", "You attack");
+//        ui.getMessageReplacements().put("attacks Monster", "attacks you");
+//        ui.getMessageReplacements().put("Monster swings", "You swing");
+//        ui.getMessageReplacements().put("swings for Monster", "swings for you");
+//        ui.getMessageReplacements().put("Monster rises ", "You rise ");
 
         String mapName = "ld33";
         wipeData();
@@ -51,10 +51,10 @@ public class World extends KRoom {
         K.graphics.camera.viewportWidth = K.settings.getWindowWidth() / 4;
 
         if (LD33Settings.get().startWithPausedHelp) {
-            K.text.showHelp();
+            K.obsolete.text.showHelp();
         }
 
-        K.ui.clearText();
+        K.obsolete.ui.clearText();
 
         if (LD33Settings.get().startPaused) {
             K.runner.pauseGame();
@@ -82,16 +82,16 @@ public class World extends KRoom {
         super.update();
 
         if (player.getHealth() <= 0 || player.isDestroyed()) {
-            K.ui.writeText("PERMADEATH paid you a friendly visit. game over. press R to restart");
+            K.obsolete.ui.writeText("PERMADEATH paid you a friendly visit. game over. press R to restart");
             K.runner.pauseGame();
         }
 
-        K.text.setTop(player.getStats().toString());
+        K.obsolete.text.setTop(player.getStats().toString());
         if (lastMobAttackedByPlayer != null) {
             String enemyName = getLastMobAttackedByPlayer().getClass().getSimpleName();
-            K.text.setSecondary(enemyName + ": " + getLastMobAttackedByPlayer().getStats().toString());
+            K.obsolete.text.setSecondary(enemyName + ": " + getLastMobAttackedByPlayer().getStats().toString());
         } else {
-            K.text.setSecondary("");
+            K.obsolete.text.setSecondary("");
         }
 
         if (!K.runner.gamePaused()) {
