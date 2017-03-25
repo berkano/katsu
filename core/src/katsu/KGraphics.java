@@ -17,7 +17,7 @@ public class KGraphics {
     public ShapeRenderer shapeRenderer;
     public SpriteBatch uiSpriteBatch;
     public ShapeRenderer uiShapeRenderer;
-    public Camera camera;
+    public OrthographicCamera camera;
     public BitmapFont font;
 
     public void init() {
@@ -29,30 +29,18 @@ public class KGraphics {
 
         setupCamera();
         setupFont();
-
     }
 
     private void setupFont() {
-
         font = K.resource.loadBitmapFont("fonts/font.fnt", "fonts/font.png");
         font.setColor(1f, 1f, 1f, 1f);
         font.setScale(1, -1);
-
     }
 
     private void setupCamera() {
-
-        // Camera setup
-        float w = Gdx.graphics.getWidth();
-        float h = Gdx.graphics.getHeight();
-        float viewportSize = 1024;
-        camera = new OrthographicCamera(viewportSize, viewportSize * (h / w));
-        camera.position.set(512, 768 / 2, 0);
+        camera = new OrthographicCamera();
+        camera.setToOrtho(false);
         camera.update();
-        camera = new OrthographicCamera(viewportSize, viewportSize * (h / w));
-        camera.position.set(512, 768 / 2, 0);
-        camera.update();
-
     }
 
 }
