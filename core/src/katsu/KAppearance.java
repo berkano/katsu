@@ -41,9 +41,9 @@ public class KAppearance {
         );
     }
 
-    public void juiceMySprite(float juiceiness) {
+    public void juiceMySprite(float juceiness) {
         this.setSpriteRotation(K.random.nextInt(4) * 90 + K.random.nextInt(15) - 7);
-        this.setSpriteScale(K.random.nextFloat() * juiceiness + 1.0f + juiceiness);
+        this.setSpriteScale(K.random.nextFloat() * juceiness + 1.0f + juceiness);
     }
 
     public void setSpriteForDirection(KDirection direction) {
