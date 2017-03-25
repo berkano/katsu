@@ -71,7 +71,7 @@ public class MainRoom extends KRoom {
         mainView.portX = 0;
         mainView.portY = 0;
 
-        loadFromTiledMap("001");
+        loadFromTiledMap("debug-map");
         teleportMap.populateFrom(getEntities());
 
         player = findFirstEntity(PlayerPerson.class);
