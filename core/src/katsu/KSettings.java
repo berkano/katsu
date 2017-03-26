@@ -34,9 +34,9 @@ public class KSettings {
 
     public void toggleFullScreen() {
         if (Gdx.graphics.isFullscreen()) {
-            Gdx.graphics.setDisplayMode(getHres(), getVres(), false);
+            Gdx.graphics.setWindowedMode(getHres(), getVres());
         } else {
-            Gdx.graphics.setDisplayMode(getHres(), getVres(), true);
+            Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
         }
     }
 

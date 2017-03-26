@@ -34,7 +34,10 @@ public class KGraphics {
     private void setupFont() {
         font = K.resource.loadBitmapFont("fonts/font.fnt", "fonts/font.png");
         font.setColor(1f, 1f, 1f, 1f);
-        font.setScale(1, -1);
+        //font.setScale(1, -1);
+        font.getData().markupEnabled = true;
+        font.getData().breakChars = new char[] {'-'};
+//        font.getData()
     }
 
     private void setupCamera() {

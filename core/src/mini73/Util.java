@@ -88,16 +88,6 @@ public class Util {
         music.setLooping(true);
     }
 
-    public static void toggleFullScreenMode() {
-        if (Gdx.graphics.isFullscreen()) {
-            //Gdx.graphics.setDisplayMode(Game.instance.initialDisplayMode.width, Game.instance.initialDisplayMode.height, false);
-            Gdx.graphics.setDisplayMode(K.settings.getHres(), K.settings.getVres(), false);
-        } else {
-            Gdx.graphics.setDisplayMode(K.settings.getHres(), K.settings.getVres(), true);
-        }
-    }
-
-
     public static TextureRegion tileStitch(int x, int y, TiledMapTileLayer tileLayer, int tilesWide, int tilesHigh, TiledMap map) {
 
         //TODO: support stitching
