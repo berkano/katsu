@@ -9,6 +9,17 @@ import mini73.entities.base.FriendlyMob;
 @TiledMapEntity
 public class PlayerPerson extends FriendlyMob {
 
+    @Override
+    public void update() {
+        super.update();
+        lookAtMe();
+    }
+
+    @Override
+    public void render() {
+        super.render();
+    }
+
     public PlayerPerson() {
         this.orientSpriteByMovement = false;
     }
