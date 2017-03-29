@@ -12,6 +12,8 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import katsu.K;
 import katsu.KEntity;
 import katsu.KRoom;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,8 +24,10 @@ import katsu.KRoom;
  */
 public class Util {
 
+    static Logger logger = LoggerFactory.getLogger(Util.class);
+
     public static void log(String s) {
-        System.out.println(s);
+        logger.info(s);
     }
 
     public static String wrap(String in, int len) {

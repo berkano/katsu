@@ -33,6 +33,7 @@ project(":desktop") {
         compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
         compile "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
         compile 'org.projectlombok:lombok:+'
+        compile 'org.slf4j:slf4j-simple:1.6.3'
     }
 }
 
