@@ -25,7 +25,7 @@ public class KObsolete {
         raiseExceptionIfStrict();
     }
 
-    public void drawStringAbsolute(String info, Color black, int i, int i1) {
+    public void drawStringAbsolute(String s, Color c, int x, int y) {
         raiseExceptionIfStrict();
     }
 

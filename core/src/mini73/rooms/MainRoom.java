@@ -459,6 +459,8 @@ public class MainRoom extends KRoom {
 
         String info;
 
+
+
         // Render navigation bar
         //info = "New game | Help | Universe | Planet | Land/Launch | Leave/Enter | Zoom |";
         //ui.drawStringAbsolute(info, Color.BLACK, 2, 2, batch);

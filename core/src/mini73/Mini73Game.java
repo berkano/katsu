@@ -1,5 +1,12 @@
 package mini73;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Align;
 import katsu.K;
 import katsu.KRoom;
 import katsu.KRunner;
@@ -21,6 +28,57 @@ import java.util.List;
  */
 public class Mini73Game extends KRunner {
 
+    Stage stage;
+    Label label;
+    Label.LabelStyle textStyle;
+    BitmapFont font;
+
+    boolean firstUpdateDone = false;
+
+    @Override
+    public void create() {
+        super.create();
+    }
+
+    @Override
+    public void render() {
+
+        if (!firstUpdateDone) {
+            doFirstUpdate();
+        }
+
+        super.render();
+
+        //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        stage.act(Gdx.graphics.getDeltaTime());
+        stage.draw();
+    }
+
+    private void doFirstUpdate() {
+
+        stage = new Stage();
+        //Gdx.input.setInputProcessor(stage);
+
+        font = K.graphics.font;
+        textStyle = new Label.LabelStyle();
+        textStyle.font = font;
+
+        label = new Label("hello world\nyo... [GREEN]green!", textStyle);
+
+        label.setBounds(0, 768,1024,-768);
+        label.setFontScale(1f,-1f);
+        label.setAlignment(Align.topLeft);
+
+        stage.addActor(label);
+
+    }
+
+    private void renderGameText() {
+
+
+
+    }
+
     @Override
     public void resize(int width, int height) {
 
@@ -33,7 +91,7 @@ public class Mini73Game extends KRunner {
 
     @Override
     public void dispose() {
-
+        stage.dispose();
     }
 
     @Override
