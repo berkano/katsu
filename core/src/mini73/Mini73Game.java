@@ -1,22 +1,10 @@
 package mini73;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.utils.Align;
 import katsu.K;
 import katsu.KRoom;
 import katsu.KRunner;
 import katsu.KSettings;
 import ld37wu.LD37wuSounds;
-import ld37wu.LD37wuWorld;
-import ld37wu.entities.Baby;
-import ld37wu.entities.Present;
-import ld37wu.entities.Santa;
-import ld37wu.entities.Tree;
 import mini73.rooms.MainRoom;
 
 import java.util.ArrayList;
@@ -28,12 +16,8 @@ import java.util.List;
  */
 public class Mini73Game extends KRunner {
 
-    Stage stage;
-    Label label;
-    Label.LabelStyle textStyle;
-    BitmapFont font;
-
-    boolean firstUpdateDone = false;
+    Console console = new Console();
+    boolean printedLine = false;
 
     @Override
     public void create() {
@@ -43,33 +27,19 @@ public class Mini73Game extends KRunner {
     @Override
     public void render() {
 
-        if (!firstUpdateDone) {
-            doFirstUpdate();
-        }
-
         super.render();
 
-        //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        stage.act(Gdx.graphics.getDeltaTime());
-        stage.draw();
-    }
+        if (!printedLine) {
+            console.writeLine("~singleton~ by [ORANGE]berkano[WHITE]");
+            console.writeLine("this is a test");
+            console.writeLine("this is a test");
+            console.writeLine("this is a test");
+            console.writeLine("this is a test");
+            console.writeLine("this is a test");
+            printedLine = true;
+        }
 
-    private void doFirstUpdate() {
-
-        stage = new Stage();
-        //Gdx.input.setInputProcessor(stage);
-
-        font = K.graphics.font;
-        textStyle = new Label.LabelStyle();
-        textStyle.font = font;
-
-        label = new Label("hello world\nyo... [GREEN]green!", textStyle);
-
-        label.setBounds(0, 768,1024,-768);
-        label.setFontScale(1f,-1f);
-        label.setAlignment(Align.topLeft);
-
-        stage.addActor(label);
+        console.render();
 
     }
 
@@ -91,7 +61,7 @@ public class Mini73Game extends KRunner {
 
     @Override
     public void dispose() {
-        stage.dispose();
+        console.dispose();
     }
 
     @Override
