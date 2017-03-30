@@ -1,5 +1,6 @@
 package mini73;
 
+import com.badlogic.gdx.utils.Align;
 import katsu.K;
 import katsu.KRoom;
 import katsu.KRunner;
@@ -17,11 +18,14 @@ import java.util.List;
 public class Mini73Game extends KRunner {
 
     Console console = new Console();
+    Console helpText = new Console();
     boolean printedLine = false;
 
     @Override
     public void create() {
         super.create();
+        helpText.writeLine("singleton - mini ld 73");
+        helpText.setAlignment(Align.center);
     }
 
     @Override
@@ -30,16 +34,17 @@ public class Mini73Game extends KRunner {
         super.render();
 
         if (!printedLine) {
-            console.writeLine("~singleton~ by [ORANGE]berkano[WHITE]");
-            console.writeLine("this is a test");
-            console.writeLine("this is a test");
-            console.writeLine("this is a test");
-            console.writeLine("this is a test");
-            console.writeLine("this is a test");
+            console.writeLine("~singleton~ by [ORANGE]berkano[WHITE]", 1000);
+            console.writeLine("the first line!", 2000);
+            console.writeLine("the second line!", 3000);
+            console.writeLine("some more text!", 4000);
+            console.writeLine("wibble", 5000);
+            console.writeLine("bobble [RED]bobble[WHITE]", 6000);
             printedLine = true;
         }
 
         console.render();
+        helpText.render();
 
     }
 

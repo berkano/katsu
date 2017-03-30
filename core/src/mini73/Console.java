@@ -17,20 +17,21 @@ public class Console {
     Label.LabelStyle textStyle;
     BitmapFont font;
     TextBuffer textBuffer = new TextBuffer();
+    private boolean visible = true;
 
     boolean firstUpdateDone = false;
 
-    public void setDecayMillis(long newMillis) {
-        textBuffer.setDecayMillis(newMillis);
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 
-    public void writeLine(String line) {
+    public void writeLine(String line, long decayMillis) {
 
         if (!firstUpdateDone) {
             firstUpdate();
         }
 
-        textBuffer.writeLine(line);
+        textBuffer.writeLine(line, decayMillis);
         label.setText(textBuffer.toString());
     }
 
@@ -45,12 +46,21 @@ public class Console {
             label.setText(textBuffer.toString());
         }
 
-        //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(Gdx.graphics.getDeltaTime());
-        stage.draw();
+
+        if (visible) {
+            stage.draw();
+        }
 
     }
 
+    public void setBounds(float x, float y, float width, float height) {
+        label.setBounds(x, y, width, height);
+    }
+
+    public void setAlignment(int alignment) {
+        label.setAlignment(alignment);
+    }
 
     private void firstUpdate() {
 
@@ -63,9 +73,9 @@ public class Console {
 
         label = new Label("", textStyle);
 
-        label.setBounds(0, 768,1024,-768);
+        setBounds(0, 768 - 16,1024,-768);
+        setAlignment(Align.bottomLeft);
         label.setFontScale(1f,-1f);
-        label.setAlignment(Align.topLeft);
 
         stage.addActor(label);
 
@@ -76,5 +86,13 @@ public class Console {
 
     public void dispose() {
         stage.dispose();
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void writeLine(String s) {
+        writeLine(s, 1000000000);
     }
 }

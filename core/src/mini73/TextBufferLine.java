@@ -5,11 +5,13 @@ package mini73;
  */
 public class TextBufferLine {
 
+    private final long decayMillis;
     private String string;
     private long created = System.currentTimeMillis();
 
-    public TextBufferLine(String string) {
+    public TextBufferLine(String string, long decayMillis) {
         this.string = string;
+        this.decayMillis = decayMillis;
     }
 
     @Override
@@ -17,7 +19,7 @@ public class TextBufferLine {
         return string;
     }
 
-    public boolean hasExpired(long decayMillis) {
-        return this.created < System.currentTimeMillis() - decayMillis;
+    public boolean hasExpired() {
+        return this.created < System.currentTimeMillis() - this.decayMillis;
     }
 }

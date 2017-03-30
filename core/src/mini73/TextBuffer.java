@@ -1,6 +1,7 @@
 package mini73;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by shaun on 29/03/2017.
@@ -11,8 +12,8 @@ public class TextBuffer {
     private long decayMillis = 1000;
     public boolean updated = false;
 
-    public void writeLine(String line) {
-        lines.add(new TextBufferLine(line));
+    public void writeLine(String line, long decayMillis) {
+        lines.add(new TextBufferLine(line, decayMillis));
         updated = true;
         refresh();
     }
@@ -20,7 +21,7 @@ public class TextBuffer {
     public void refresh() {
         ArrayList<TextBufferLine> toRemove = new ArrayList<TextBufferLine>();
         for (TextBufferLine tbl : lines) {
-            if (tbl.hasExpired(decayMillis)) {
+            if (tbl.hasExpired()) {
                 toRemove.add(tbl);
             }
         }
