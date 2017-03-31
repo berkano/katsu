@@ -11,6 +11,9 @@ import mini73.rooms.MainRoom;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.Executors;
+import java.util.concurrent.FutureTask;
 
 /**
  * Created by shaun on 16/11/2014.
@@ -28,18 +31,33 @@ public class Mini73Game extends KRunner {
         helpText.setAlignment(Align.center);
     }
 
+    private void task(Callable<Boolean> c) {
+        Executors.newSingleThreadExecutor().submit(
+                new FutureTask<>(c));
+    }
+
+    private void writeLater(final String text, final long millis) {
+        task(new Callable<Boolean>() {
+            public Boolean call() throws Exception {
+                Thread.sleep(millis);
+                console.writeLine(text, 10000);
+                return true;
+            }});
+    }
+
     @Override
     public void render() {
 
         super.render();
 
         if (!printedLine) {
-            console.writeLine("~singleton~ by [ORANGE]berkano[WHITE]", 1000);
-            console.writeLine("the first line!", 2000);
-            console.writeLine("the second line!", 3000);
-            console.writeLine("some more text!", 4000);
-            console.writeLine("wibble", 5000);
-            console.writeLine("bobble [RED]bobble[WHITE]", 6000);
+
+            writeLater("~singleton~ by [ORANGE]berkano[WHITE]", 1000);
+            writeLater("the first line!", 2000);
+            writeLater("the second line!", 3000);
+            writeLater("some more text!", 4000);
+            writeLater("wibble", 5000);
+            writeLater("bobble [RED]bobble[WHITE]", 6000);
             printedLine = true;
         }
 
