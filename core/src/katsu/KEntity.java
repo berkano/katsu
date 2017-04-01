@@ -172,8 +172,10 @@ public class KEntity extends KInputProcessor {
     }
 
     public void lookAtMe() {
-        K.graphics.camera.position.x = getX();
-        K.graphics.camera.position.y = getY();
+        K.graphics.camera.position.x = getX() + getHeight() / 2 + K.random.nextFloat() / 10;
+        K.graphics.camera.position.y = getY() + getHeight() / 2 + K.random.nextFloat() / 10;
+        K.graphics.camera.rotate(0.01f);
+        K.graphics.camera.zoom = 0.1f + K.random.nextFloat() / 1000;
     }
 
     public boolean tryMove(int dx, int dy) {

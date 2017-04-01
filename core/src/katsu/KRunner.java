@@ -24,6 +24,7 @@ public abstract class KRunner extends KInputProcessor implements ApplicationList
 
     private ArrayList<KRoom> rooms;
     private Boolean paused = false;
+    boolean doneFirstUpdate = false;
 
     @Getter @Setter private long lastRogueUpdate = System.currentTimeMillis();
 
@@ -76,7 +77,12 @@ public abstract class KRunner extends KInputProcessor implements ApplicationList
         update();
     }
 
-    private void update() {
+    public void update() {
+
+        if (!doneFirstUpdate) {
+            beforeFirstUpdate();
+            doneFirstUpdate = true;
+        }
 
         if (paused) return;
 
@@ -85,6 +91,10 @@ public abstract class KRunner extends KInputProcessor implements ApplicationList
                 room.update();
             }
         }
+
+    }
+
+    public void beforeFirstUpdate() {
 
     }
 

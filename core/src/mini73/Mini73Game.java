@@ -1,12 +1,14 @@
 package mini73;
 
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.utils.Align;
 import katsu.K;
 import katsu.KRoom;
 import katsu.KRunner;
 import katsu.KSettings;
 import ld37wu.LD37wuSounds;
+import mini73.entities.mobs.PlayerPerson;
 import mini73.rooms.MainRoom;
 
 import java.util.ArrayList;
@@ -24,11 +26,18 @@ public class Mini73Game extends KRunner {
     Console console = new Console();
     Console helpText = new Console().setToggleKey(Input.Keys.H);
     boolean printedLine = false;
+    Music music;
+
+    @Override
+    public void beforeFirstUpdate() {
+        music = K.resource.loadMusic("observer_v5.mp3");
+        music.play();
+    }
 
     @Override
     public void create() {
         super.create();
-        helpText.writeLine("singleton - mini ld 73");
+        helpText.writeLine("\n\n\n\n\n\n\n\nsingleton");
         helpText.setAlignment(Align.center);
     }
 
@@ -53,12 +62,12 @@ public class Mini73Game extends KRunner {
 
         if (!printedLine) {
 
-            writeLater("~singleton~ by [ORANGE]berkano[WHITE]", 1000);
-            writeLater("the first line!", 2000);
-            writeLater("the second line!", 3000);
-            writeLater("some more text!", 4000);
-            writeLater("wibble", 5000);
-            writeLater("bobble [RED]bobble[WHITE]", 6000);
+//            writeLater("~singleton~ by [ORANGE]berkano[WHITE]", 1000);
+//            writeLater("the first line!", 2000);
+//            writeLater("the second line!", 3000);
+//            writeLater("some more text!", 4000);
+//            writeLater("wibble", 5000);
+//            writeLater("bobble [RED]bobble[WHITE]", 6000);
             printedLine = true;
         }
 
