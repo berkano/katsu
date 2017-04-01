@@ -1,5 +1,6 @@
 package mini73;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.utils.Align;
 import katsu.K;
 import katsu.KRoom;
@@ -21,7 +22,7 @@ import java.util.concurrent.FutureTask;
 public class Mini73Game extends KRunner {
 
     Console console = new Console();
-    Console helpText = new Console();
+    Console helpText = new Console().setToggleKey(Input.Keys.H);
     boolean printedLine = false;
 
     @Override

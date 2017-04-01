@@ -6,11 +6,12 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
 import katsu.K;
+import katsu.KInputProcessor;
 
 /**
  * Created by shaun on 29/03/2017.
  */
-public class Console {
+public class Console extends KInputProcessor {
 
     Stage stage;
     Label label;
@@ -20,6 +21,23 @@ public class Console {
     private boolean visible = true;
 
     boolean firstUpdateDone = false;
+
+    private int toggleKey = -1;
+
+    public int getToggleKey() { return this.toggleKey; };
+
+
+    @Override
+    public boolean keyDown(int keycode) {
+        if (keycode == getToggleKey()) {
+            setVisible(!isVisible());
+        }
+        return false; // Allow other components to respond to the key
+    }
+
+    public Console() {
+        K.input.getMultiplexer().addProcessor(this);
+    }
 
     public void setVisible(boolean visible) {
         this.visible = visible;
@@ -94,5 +112,10 @@ public class Console {
 
     public void writeLine(String s) {
         writeLine(s, 1000000000);
+    }
+
+    public Console setToggleKey(int toggleKey) {
+        this.toggleKey = toggleKey;
+        return this;
     }
 }
