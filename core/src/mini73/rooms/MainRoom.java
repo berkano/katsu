@@ -96,9 +96,6 @@ public class MainRoom extends KRoom {
     @Override
     public void update() {
 
-        player.setX(1000);
-        player.setY(1000);
-
         bringEntitiesToFront(PlayerPerson.class);
         bringEntitiesToFront(Ship.class);
 

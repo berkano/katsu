@@ -55,6 +55,12 @@ public class KEntity extends KInputProcessor {
     @Getter @Setter private int health = 100;
     @Getter @Setter private int maxHealth = 100;
 
+    @Getter @Setter private long createTimeMillis = System.currentTimeMillis();
+
+    public long ageMillis() {
+        return System.currentTimeMillis() - createTimeMillis;
+    }
+
     public void render() {
         appearance.render();
     }
@@ -172,10 +178,10 @@ public class KEntity extends KInputProcessor {
     }
 
     public void lookAtMe() {
-        K.graphics.camera.position.x = getX() + getHeight() / 2 + K.random.nextFloat() / 10;
-        K.graphics.camera.position.y = getY() + getHeight() / 2 + K.random.nextFloat() / 10;
-        K.graphics.camera.rotate(0.01f);
-        K.graphics.camera.zoom = 0.1f + K.random.nextFloat() / 1000;
+
+        K.graphics.camera.position.x = getX() + getHeight() / 2;
+        K.graphics.camera.position.y = getY() + getHeight() / 2;
+
     }
 
     public boolean tryMove(int dx, int dy) {
