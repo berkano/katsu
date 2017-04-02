@@ -3,10 +3,7 @@ package mini73;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.utils.Align;
-import katsu.K;
-import katsu.KRoom;
-import katsu.KRunner;
-import katsu.KSettings;
+import katsu.*;
 import ld37wu.LD37wuSounds;
 import mini73.entities.mobs.PlayerPerson;
 import mini73.rooms.MainRoom;
@@ -26,13 +23,41 @@ public class Mini73Game extends KRunner {
     Console console = new Console();
     Console helpText = new Console().setToggleKey(Input.Keys.H);
     boolean printedLine = false;
-    Music music;
+    KMusic mus_observer = new KMusic();
+
+    @Override
+    public boolean keyDown(int keycode) {
+        if (mus_observer.getMusic().isPlaying()) {
+            console.writeLine("Music paused.");
+            mus_observer.getMusic().pause();
+        } else {
+            mus_observer.getMusic().play();
+        }
+
+        return super.keyDown(keycode);
+    }
 
     @Override
     public void beforeFirstUpdate() {
-        music = K.resource.loadMusic("observer_v5.mp3");
-        music.play();
+        mus_observer.load("observer_v5.mp3");
+        mus_observer.setAuthor("berkano");
+        mus_observer.setTitle("observer");
+        playLater(mus_observer, 5000);
     }
+
+    public void playLater(final KMusic music, final long delayMillis) {
+
+        task(new Callable<Boolean>() {
+            public Boolean call() throws Exception {
+                Thread.sleep(delayMillis);
+                music.getMusic().play();
+                music.getMusic().setLooping(true);
+                music.nowPlaying(console);
+                return true;
+            }});
+    }
+
+
 
     @Override
     public void create() {
