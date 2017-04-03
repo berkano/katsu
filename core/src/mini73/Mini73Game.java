@@ -42,7 +42,9 @@ public class Mini73Game extends KRunner {
         mus_observer.load("observer_v5.mp3");
         mus_observer.setAuthor("berkano");
         mus_observer.setTitle("observer");
-        playLater(mus_observer, 5000);
+        if (K.settings.isProduction()) {
+            playLater(mus_observer, 5000);
+        }
     }
 
     public void playLater(final KMusic music, final long delayMillis) {

@@ -41,5 +41,7 @@ public class KSettings {
     }
 
 
-
+    public boolean isProduction() {
+        return !isDevMode();
+    }
 }
