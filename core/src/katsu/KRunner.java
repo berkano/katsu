@@ -129,7 +129,7 @@ public abstract class KRunner extends KInputProcessor implements ApplicationList
     }
 
     public void exitWithError(String message) {
-        K.logger.fatal(message);
+        logger.error(message);
         exit();
         throw new RuntimeException("game runner closed due to error: "+message);
     }

@@ -1,11 +1,8 @@
 package mini73;
 
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.utils.Align;
 import katsu.*;
-import ld37wu.LD37wuSounds;
-import mini73.entities.mobs.PlayerPerson;
 import mini73.rooms.MainRoom;
 
 import java.util.ArrayList;
@@ -169,7 +166,7 @@ public class Mini73Game extends KRunner {
 
     @Override
     public void toggleMusic() {
-        LD37wuSounds.toggleMusic();
+//        LD37wuSounds.toggleMusic();
     }
 
     @Override

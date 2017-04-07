@@ -8,6 +8,8 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import lombok.Getter;
 import lombok.Setter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,6 +25,8 @@ public class KTiledMapProcessor {
 
     private String filename;
     private List<Class> classLookup;
+
+    Logger logger = LoggerFactory.getLogger(KTiledMapProcessor.class);
 
     public KTiledMapProcessor(String filename, List<Class> classLookup) {
         this.classLookup = classLookup;
@@ -49,7 +53,7 @@ public class KTiledMapProcessor {
             }
         }
 
-        K.logger.trace(entities.size() + " entities loaded from map: " + filename);
+        logger.info(entities.size() + " entities loaded from map: " + filename);
         return this;
     }
 
