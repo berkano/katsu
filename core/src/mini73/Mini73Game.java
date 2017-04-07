@@ -25,6 +25,8 @@ public class Mini73Game extends KRunner {
     boolean printedLine = false;
     KMusic mus_observer = new KMusic();
 
+    static Mini73Game _instance;
+
     @Override
     public boolean keyDown(int keycode) {
         if (mus_observer.getMusic().isPlaying()) {
@@ -66,6 +68,15 @@ public class Mini73Game extends KRunner {
         super.create();
         helpText.writeLine("\n\n\n\n\n\n\n\nsingleton");
         helpText.setAlignment(Align.center);
+
+
+        console.writeLine("welcome to ~singleton~, berkano's LD28 entry.");
+        console.writeLine("major tim is lost in space. one prisoner, one");
+        console.writeLine("sheep, one inventory slot, one goal:");
+        console.writeLine("help him find his way back to earth");
+        console.writeLine("press h for help.");
+
+
     }
 
     private void task(Callable<Boolean> c) {

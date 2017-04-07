@@ -4,6 +4,8 @@ import ext.pathfinding.grid.GridLocation;
 import ext.pathfinding.grid.GridMap;
 import ext.pathfinding.grid.GridPath;
 import ext.pathfinding.grid.GridPathfinding;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -12,6 +14,9 @@ import java.util.List;
  */
 public class KGrid {
     private KEntity entity;
+
+    Logger logger = LoggerFactory.getLogger(KGrid.class);
+
     public KGrid(KEntity entity) {
         this.entity = entity;
     }
@@ -37,7 +42,7 @@ public class KGrid {
         List<KEntity> entities = entity.getRoom().findEntitiesAtPoint(gridX * K.settings.getGridSize(), gridY * K.settings.getGridSize());
         for (KEntity e : entities) {
             if (e.getGrid().getX() == gridX && e.getGrid().getY() == gridY && e.isSolid()) {
-                K.logger.trace("grid is not empty due to " + e.getClass().getSimpleName());
+                logger.trace("grid is not empty due to " + e.getClass().getSimpleName());
                 return false;
             }
         }
@@ -56,7 +61,7 @@ public class KGrid {
         int suggestedDx = 0;
         int suggestedDy = 0;
 
-        K.logger.pathfinder(entity, "get path from " + startX + "," + startY + " to " + endX + "," + endY);
+        logger.debug("pathfinder: " + entity.toString()+ ": get path from " + startX + "," + startY + " to " + endX + "," + endY);
 
         GridLocation start = new GridLocation(startX, startY, false);
         GridLocation end = new GridLocation(endX, endY, true);
@@ -68,7 +73,7 @@ public class KGrid {
                 if (nextMove != null) {
                     suggestedDx = nextMove.getX() - getX();
                     suggestedDy = nextMove.getY() - getY();
-                    K.logger.pathfinder(entity, "pathfinder suggests delta of " + suggestedDx + "," + suggestedDy);
+                    logger.debug("pathfinder: " + entity.toString()+ "pathfinder suggests delta of " + suggestedDx + "," + suggestedDy);
                 }
             }
 

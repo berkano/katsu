@@ -2,6 +2,8 @@ package ld37wu;
 
 import com.badlogic.gdx.audio.Sound;
 import katsu.K;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by shaun on 18/04/2015.
@@ -18,21 +20,23 @@ public class LD37wuSounds {
     public static Sound fire = K.resource.loadSound("fire.wav");
     public static Sound music = K.resource.loadSound("ld37wu-music.ogg");
 
+    static Logger logger = LoggerFactory.getLogger(LD37wuSounds.class);
+
     public static void stopAllMusic() {
-        K.logger.trace("stop music");
+        logger.info("stop music");
         music.stop();
         musicPlaying = false;
     }
 
     public static void playMusic() {
-        K.logger.trace("play music");
+        logger.info("play music");
         stopAllMusic();
         music.loop();
         musicPlaying = true;
     }
 
     public static void toggleMusic() {
-        K.logger.trace("toggle music");
+        logger.info("toggle music");
         if (!musicPlaying) {
             playMusic();
         } else {

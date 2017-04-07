@@ -6,6 +6,8 @@ import katsu.*;
 import ld34.entities.Land;
 import ld34.entities.Snowman;
 import ld34.entities.Tree;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,6 +21,8 @@ public class World extends KRoom {
 
     private boolean hasStartedMusicAtLeastOnce = false;
     private HashMap<String, Long> onlyEveryTracker = new HashMap<String, Long>();
+
+    Logger logger = LoggerFactory.getLogger(KRoom.class);
 
     public World() {
         super();
@@ -180,8 +184,8 @@ public class World extends KRoom {
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         Vector3 worldPos = K.graphics.camera.unproject(new Vector3(screenX, screenY, 0));
-        K.logger.trace("World detected touchDown at " + screenX + "," + screenY);
-        K.logger.trace("World pos is " + worldPos.toString());
+        logger.info("World detected touchDown at " + screenX + "," + screenY);
+        logger.info("World pos is " + worldPos.toString());
         ArrayList<KEntity> entities = findEntitiesAtPoint(Math.round(worldPos.x), Math.round(worldPos.y));
 
         boolean foundTree = false;
@@ -193,7 +197,7 @@ public class World extends KRoom {
             lastClickedX = e.getGrid().getX();
             lastClickedY = e.getGrid().getY();
 
-            K.logger.trace("There is a " + e.getClass().getSimpleName() + " at this point");
+            logger.info("There is a " + e.getClass().getSimpleName() + " at this point");
             if (e instanceof Tree) {
                 foundTree = true;
             }

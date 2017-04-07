@@ -82,7 +82,7 @@ public class Tree extends LD34EntityBase {
 
     public void setStage(Stage stage) {
 
-        K.logger.trace("Tree " + toString() + " set to stage " + stage);
+        logger.info("Tree " + toString() + " set to stage " + stage);
 
         this.stage = stage;
         if (stage == Stage.sapling) {

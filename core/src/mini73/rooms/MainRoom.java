@@ -52,6 +52,8 @@ public class MainRoom extends KRoom {
 
     public TeleportMap teleportMap = TeleportMap.instance();
 
+    Console statusBar = new Console();
+
     Radar radar = new Radar();
 
     public void setZoom(int newZoom) {
@@ -83,6 +85,8 @@ public class MainRoom extends KRoom {
 
         views.add(mainView);
         speedFactor = 1;
+
+        statusBar.setBounds(0, 200, 1024, 16);
 
     }
 
@@ -182,17 +186,6 @@ public class MainRoom extends KRoom {
         }
 
 
-        // TODO-LD28
-        if (!shownWelcomeForLevel) {
-//            if (Katsu.game.currentLevel == "0000") {
-            K.obsolete.ui.writeText("welcome to ~singleton~, berkano's LD28 entry.");
-            K.obsolete.ui.writeText("major tim is lost in space. one prisoner, one");
-            K.obsolete.ui.writeText("sheep, one inventory slot, one goal:");
-            K.obsolete.ui.writeText("help him find his way back to earth");
-            K.obsolete.ui.writeText("press h for help.");
-//            }
-            shownWelcomeForLevel = true;
-        }
 
         if (!objectiveReached && !objectiveFailed) checkLevelCompleteCriteria();
 
@@ -467,24 +460,23 @@ public class MainRoom extends KRoom {
         //ui.drawStringAbsolute(info, Color.ORANGE, 0, 2, batch);
 
         // TODO-LD28
-        info = gameState.statusBar();
+        info = gameState.statusBarText();
 
-        K.obsolete.ui.drawStringAbsolute(info, Color.BLACK, 2, 768);
-        K.obsolete.ui.drawStringAbsolute(info, Color.WHITE, 0, 768);
+        statusBar.clear();
+        statusBar.writeLine(info);
+
+//        K.obsolete.ui.drawStringAbsolute(info, Color.BLACK, 2, 768);
+//        K.obsolete.ui.drawStringAbsolute(info, Color.WHITE, 0, 768);
 
         if (K.settings.isLogFPS()) {
             String fps = String.valueOf(Gdx.graphics.getFramesPerSecond());
             info = "FPS: " + fps;
-            K.obsolete.ui.drawStringAbsolute(info, Color.BLACK, 2, 768 - (32 + 18));
-            K.obsolete.ui.drawStringAbsolute(info, Color.CYAN, 0, 768 - (32 + 16));
+            statusBar.writeLine(info);
         }
 
         if (K.runner.gamePaused()) {
-
             info = "GAME PAUSED - PRESS P TO RESUME";
-            K.obsolete.ui.drawStringAbsolute(info, Color.BLACK, 102, 768 - 118);
-            K.obsolete.ui.drawStringAbsolute(info, Color.CYAN, 100, 768 - 116);
-
+            statusBar.writeLine(info);
         }
 
 //        K.obsolete.ui.drawStringAbsolute(game.pinCode, Color.DARK_GRAY, 1024 - 48, 0, batch);

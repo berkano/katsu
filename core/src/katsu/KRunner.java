@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import lombok.Getter;
 import lombok.Setter;
 import mini73.UnfinishedBusinessException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +27,8 @@ public abstract class KRunner extends KInputProcessor implements ApplicationList
     private ArrayList<KRoom> rooms;
     private Boolean paused = false;
     boolean doneFirstUpdate = false;
+
+    Logger logger = LoggerFactory.getLogger(KRunner.class);
 
     @Getter @Setter private long lastRogueUpdate = System.currentTimeMillis();
 
@@ -135,7 +139,7 @@ public abstract class KRunner extends KInputProcessor implements ApplicationList
     }
 
     public void exit() {
-        K.logger.debug("game runner exiting by request.");
+        logger.debug("game runner exiting by request.");
         Gdx.app.exit();
     }
 

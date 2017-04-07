@@ -7,11 +7,6 @@ import com.badlogic.gdx.graphics.FPSLogger;
  */
 public class KLogger {
 
-    private FPSLogger fpsLogger = new FPSLogger();
-
-    public void debug(String message) {
-        console("DEBUG: "+message);
-    }
 
     public void console(String message) {
         if (K.settings.isLogging()) {
@@ -43,10 +38,5 @@ public class KLogger {
         console("WARN: " + message);
     }
 
-    public void fps() {
-        if (K.settings.isLogFPS()) {
-            fpsLogger.log();
-        }
-    }
 
 }

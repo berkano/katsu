@@ -2,11 +2,14 @@ package katsu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by shaun on 06/08/2016.
@@ -19,6 +22,8 @@ public class KGraphics {
     public ShapeRenderer uiShapeRenderer;
     public OrthographicCamera camera;
     public BitmapFont font;
+    private FPSLogger fpsLogger = new FPSLogger();
+    private Logger logger = LoggerFactory.getLogger(KGraphics.class);
 
     public void init() {
 
@@ -46,4 +51,10 @@ public class KGraphics {
         camera.update();
     }
 
+    public void logFPS() {
+        if (K.settings.isLogFPS()) {
+            int fps = Gdx.graphics.getFramesPerSecond();
+            logger.debug("FPS: " + fps);
+        }
+    }
 }

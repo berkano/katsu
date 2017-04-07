@@ -26,6 +26,9 @@ public class Console extends KInputProcessor {
 
     public int getToggleKey() { return this.toggleKey; };
 
+    public void clear() {
+        textBuffer.clear();
+    }
 
     @Override
     public boolean keyDown(int keycode) {
@@ -73,6 +76,9 @@ public class Console extends KInputProcessor {
     }
 
     public void setBounds(float x, float y, float width, float height) {
+        if (!firstUpdateDone) {
+            firstUpdate();
+        }
         label.setBounds(x, y, width, height);
     }
 
@@ -81,6 +87,8 @@ public class Console extends KInputProcessor {
     }
 
     private void firstUpdate() {
+
+        firstUpdateDone = true;
 
         stage = new Stage();
         //Gdx.input.setInputProcessor(stage);
@@ -96,8 +104,6 @@ public class Console extends KInputProcessor {
         label.setFontScale(1f,-1f);
 
         stage.addActor(label);
-
-        firstUpdateDone = true;
 
     }
 

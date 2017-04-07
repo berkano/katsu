@@ -11,7 +11,7 @@ public class KObsolete {
     public static KObsolete text = KObsolete.getInstance();
 
     private static KObsolete _instance;
-    private boolean strict = false;
+    private boolean strict = true;
 
     private static KObsolete getInstance() {
         if (_instance == null) {

@@ -8,7 +8,6 @@ import java.util.Random;
 public class K {
 
     public static Random random = new Random();
-    public static KLogger logger = new KLogger();
     public static KResource resource = new KResource();
     public static KUtils utils = new KUtils();
     public static KInput input = new KInput();

@@ -46,4 +46,9 @@ public class TextBuffer {
     public void setDecayMillis(long decayMillis) {
         this.decayMillis = decayMillis;
     }
+
+    public void clear() {
+        lines = new ArrayList<>();
+        updated = true;
+    }
 }

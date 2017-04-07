@@ -18,7 +18,7 @@ public class GameState {
         this.room = room;
     }
 
-    public String statusBar() {
+    public String statusBarText() {
         int playerHealth = 0;
         int shipHealth = 0;
         if (room.player != null) {

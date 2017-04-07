@@ -5,6 +5,8 @@ import lombok.Setter;
 import mini73.Objective;
 import mini73.UnfinishedBusinessException;
 import net.sf.jsi.Rectangle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +58,8 @@ public class KEntity extends KInputProcessor {
     @Getter @Setter private int maxHealth = 100;
 
     @Getter @Setter private long createTimeMillis = System.currentTimeMillis();
+
+    Logger logger = LoggerFactory.getLogger(KEntity.class);
 
     public long ageMillis() {
         return System.currentTimeMillis() - createTimeMillis;
@@ -192,7 +196,7 @@ public class KEntity extends KInputProcessor {
 
         if (!lastMovedMoreThan(getMaxMoveInterval())) return false;
 
-        K.logger.pathfinder(this, "trying to move in direction " + direction);
+        logger.debug("pathfinder: trying to move in direction " + direction);
 
         boolean result = false;
 
