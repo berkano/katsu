@@ -1,7 +1,7 @@
 package mini73.entities.terrain;
 
 
-import katsu.TiledMapEntity;
+import katsu.KTiledMapEntity;
 import mini73.entities.base.Terrain;
 
 /**
@@ -11,7 +11,7 @@ import mini73.entities.base.Terrain;
  * Time: 09:50
  * To change this template use File | Settings | File Templates.
  */
-@TiledMapEntity
+@KTiledMapEntity
 public class Dirt extends Terrain {
 
 }

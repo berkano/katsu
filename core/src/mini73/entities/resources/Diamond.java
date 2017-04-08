@@ -1,11 +1,11 @@
 package mini73.entities.resources;
 
-import katsu.TiledMapEntity;
+import katsu.KTiledMapEntity;
 import mini73.entities.base.Resource;
 
 /**
  * Created by shaun on 15/12/13.
  */
-@TiledMapEntity
+@KTiledMapEntity
 public class Diamond extends Resource {
 }

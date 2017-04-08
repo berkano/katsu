@@ -1,14 +1,12 @@
 package mini73.entities.mobs;
 
-import katsu.TiledMapEntity;
-import mini73.Sounds;
+import katsu.KTiledMapEntity;
 import mini73.entities.base.FriendlyMob;
-import mini73.rooms.MainRoom;
 
 /**
  * @author shaun
  */
-@TiledMapEntity
+@KTiledMapEntity
 public class Ship extends FriendlyMob {
 
     public Ship() {

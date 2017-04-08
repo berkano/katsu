@@ -1,7 +1,7 @@
 package mini73.entities.mobs;
 
 import katsu.K;
-import katsu.TiledMapEntity;
+import katsu.KTiledMapEntity;
 import mini73.GameState;
 import mini73.Mini73Game;
 import mini73.Util;
@@ -14,7 +14,7 @@ import java.util.HashMap;
 /**
  * @author shaun
  */
-@TiledMapEntity
+@KTiledMapEntity
 public class FriendlyPerson extends FriendlyMob {
 
     public HashMap<Class, Integer> trades = new HashMap<Class, Integer>();

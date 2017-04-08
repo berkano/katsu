@@ -69,7 +69,7 @@ public class KResource {
 
     public List<Class> scanTiledEntityClasses(String pkg) {
         Reflections reflections = new Reflections(pkg);
-        Set<Class<?>> annotated = reflections.getTypesAnnotatedWith(TiledMapEntity.class);
+        Set<Class<?>> annotated = reflections.getTypesAnnotatedWith(KTiledMapEntity.class);
         return new ArrayList<Class>(annotated);
     }
 
