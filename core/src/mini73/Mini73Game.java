@@ -1,9 +1,15 @@
 package mini73;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Align;
+import ext.ozmod.ChipPlayer;
+import ext.ozmod.OZMod;
 import katsu.*;
 import mini73.rooms.MainRoom;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,7 +28,13 @@ public class Mini73Game extends KRunner {
     boolean printedLine = false;
     KMusic mus_observer = new KMusic();
 
+    OZMod ozm;
+    ChipPlayer player;
+    int frequency;
+
     static Mini73Game _instance;
+
+    Logger logger = LoggerFactory.getLogger(Mini73Game.class);
 
     @Override
     public boolean keyDown(int keycode) {
@@ -39,6 +51,21 @@ public class Mini73Game extends KRunner {
         return super.keyDown(keycode);
     }
 
+    public void playMod(String file, float volume) {
+
+        FileHandle module = K.resource.loadFile(file);
+        logger.info("OzMod", "Play: " + module.path());
+        player = ozm.getPlayer(module);
+        // frequency = 44100;
+        // frequency = 48000;
+        frequency = 96000;
+        player.setFrequency(frequency);
+        player.setVolume(volume);
+        player.setDaemon(true);
+        player.setLoopable(false);
+        player.play();
+    }
+
     @Override
     public void start() {
         super.start();
@@ -48,6 +75,11 @@ public class Mini73Game extends KRunner {
         if (K.settings.isProduction()) {
             playLater(mus_observer, 5000);
         }
+
+        ozm = new OZMod();
+        ozm.initOutput();
+        playMod("music/singleton-mod-test.xm", 1);
+
     }
 
     public void playLater(final KMusic music, final long delayMillis) {

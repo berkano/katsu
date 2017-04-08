@@ -39,6 +39,8 @@ public class KLauncher {
         config.x = LwjglApplicationConfiguration.getDesktopDisplayMode().width / 2 - config.width / 2;
         config.y = LwjglApplicationConfiguration.getDesktopDisplayMode().height / 2 - config.height / 2;
 
+        config.audioDeviceBufferSize = 16384; // mod playback
+
         K.runner = runner;
         K.settings = settings;
 //        K.obsolete.ui = (KObsolete)(Object)ui;

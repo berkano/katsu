@@ -60,4 +60,8 @@ public class KResource {
         Music m = Gdx.audio.newMusic(getResource(relativeResource("music/" + name)));
         return m;
     }
+
+    public FileHandle loadFile(String file) {
+        return getResource(relativeResource(file));
+    }
 }
