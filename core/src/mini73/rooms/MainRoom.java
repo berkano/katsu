@@ -13,6 +13,8 @@ import mini73.entities.resources.Iron;
 import mini73.entities.resources.Potato;
 import mini73.entities.resources.Robot;
 import mini73.entities.structures.LandingPad;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 
@@ -37,6 +39,8 @@ public class MainRoom extends KRoom {
     public KEntity player;
     public KEntity ship;
 
+    public KEntity following;
+
     public boolean firstUpdate = true;
 
     public boolean planetView = false;
@@ -47,12 +51,11 @@ public class MainRoom extends KRoom {
     public boolean inCommand = false;
     public Objective objectiveToAssign = Objective.NOTHING;
 
-    public boolean shownWelcomeForLevel = false;
-    public View mainView = new View();
-
     public TeleportMap teleportMap = TeleportMap.instance();
 
     public Mini73Game game;
+
+    Logger logger = LoggerFactory.getLogger(MainRoom.class);
 
     Console statusBar = new Console();
 
@@ -60,8 +63,6 @@ public class MainRoom extends KRoom {
 
     public void setZoom(int newZoom) {
         zoom = newZoom;
-        mainView.portWidth = 1024 / zoom;
-        mainView.portHeight = 768 / zoom;
     }
 
     @Override
@@ -71,11 +72,7 @@ public class MainRoom extends KRoom {
 
          game = Mini73Game.instance();
 
-        mainView.screenWidth = 1024;
-        mainView.screenHeight = 768;
         setZoom(2);
-        mainView.portX = 0;
-        mainView.portY = 0;
 
         loadFromTiledMap("debug-map");
         teleportMap.populateFrom(getEntities());
@@ -84,10 +81,9 @@ public class MainRoom extends KRoom {
         ship = findFirstEntity(Ship.class);
 
         if (ship != null) {
-            mainView.following = ship;
+            following = ship;
         }
 
-        views.add(mainView);
         speedFactor = 1;
 
         statusBar.setBounds(0, 200, 1024, 16);
@@ -106,6 +102,12 @@ public class MainRoom extends KRoom {
 
         bringEntitiesToFront(PlayerPerson.class);
         bringEntitiesToFront(Ship.class);
+
+        if (following instanceof Ship) {
+            ship.lookAtMe();
+        } else {
+            player.lookAtMe();
+        }
 
         super.update();
 
@@ -326,15 +328,20 @@ public class MainRoom extends KRoom {
 
     private void checkInputAndMovePlayer(int keyCode, int dx, int dy) {
 
+
         int moveInterval = 100;
         if (!planetView) moveInterval = 25;
-        long lastMovedMillis = System.currentTimeMillis() - mainView.following.getLastMove();
+        long lastMovedMillis = System.currentTimeMillis() - following.getLastMove();
         if (lastMovedMillis < moveInterval) return;
         if (!K.input.isKeyDown(keyCode)) return;
 
-        if (mainView.following instanceof Ship) {
+        logger.info("Checking movement for keyCode="+keyCode);
+
+        if (following instanceof Ship) {
             if (player.isOnTopOf(LandingPad.class)) {
+//                logger.info("Player is on top of a LandingPad");
             } else {
+//                logger.info("Player is NOT on top of a LandingPad");
                 game.console.writeLine("May not move ship until player is at helm.");
                 return;
             }
@@ -342,12 +349,12 @@ public class MainRoom extends KRoom {
                 K.obsolete.ui.writeText("Out of fuel!");
                 return;
             }
-            player.setX(46 * K.settings.getGridSize());
-            player.setY(36 * K.settings.getGridSize());
+            //player.setX(46 * K.settings.getGridSize());
+            //player.setY(36 * K.settings.getGridSize());
 
         }
 
-        mainView.following.moveRelative(dx, dy);
+        following.moveRelative(dx, dy);
     }
 
     protected void rawScreenClick(int x, int y) {
@@ -409,7 +416,7 @@ public class MainRoom extends KRoom {
         if (!planetView) {
             //ui.writeText("Planet View");
             planetView = true;
-            mainView.following = player;
+            following = player;
         }
     }
 
@@ -417,7 +424,7 @@ public class MainRoom extends KRoom {
         //ui.writeText("Universe Map");
         if (planetView) {
             planetView = false;
-            mainView.following = ship;
+            following = ship;
         }
     }
 
@@ -498,7 +505,7 @@ public class MainRoom extends KRoom {
 
             if (rightClicking) {
                 if (e != null) {
-                    mainView.following = e;
+                    following = e;
                 }
             }
 

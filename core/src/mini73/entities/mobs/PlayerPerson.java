@@ -13,7 +13,6 @@ public class PlayerPerson extends FriendlyMob {
     @Override
     public void update() {
         super.update();
-        lookAtMe();
     }
 
     @Override
