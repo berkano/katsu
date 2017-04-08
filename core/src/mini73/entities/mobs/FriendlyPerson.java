@@ -3,6 +3,7 @@ package mini73.entities.mobs;
 import katsu.K;
 import katsu.TiledMapEntity;
 import mini73.GameState;
+import mini73.Mini73Game;
 import mini73.Util;
 import mini73.entities.base.FriendlyMob;
 import mini73.entities.resources.*;
@@ -18,6 +19,7 @@ public class FriendlyPerson extends FriendlyMob {
 
     public HashMap<Class, Integer> trades = new HashMap<Class, Integer>();
     public int profitMargin = 5 + K.random.nextInt(10);
+    Mini73Game game = Mini73Game.instance();
 
     public FriendlyPerson() {
         super();
@@ -50,14 +52,14 @@ public class FriendlyPerson extends FriendlyMob {
         GameState gameState = thisRoom.gameState;
         if (gameState.inventory != null) {
             gameState.credits += buyPriceFor(gameState.inventory);
-            K.obsolete.ui.writeText("Sold!");
+            game.console.writeLine("Sold!");
             gameState.inventory = null;
         } else {
             int neededCredits = sellPriceFor(tradeClassByIndex(tradeNum));
             if (gameState.credits < neededCredits) {
-                K.obsolete.ui.writeText("Not enough credits!");
+                game.console.writeLine("Not enough credits!");
             } else {
-                K.obsolete.ui.writeText("Bought!");
+                game.console.writeLine("Bought!");
                 gameState.credits -= neededCredits;
                 gameState.inventory = tradeClassByIndex(tradeNum);
             }

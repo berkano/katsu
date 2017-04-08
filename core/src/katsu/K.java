@@ -18,5 +18,4 @@ public class K {
     public static KGame game;
     public static KSettings settings;
 
-    public static KObsolete obsolete;
 }

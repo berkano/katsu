@@ -1,6 +1,7 @@
 package mini73.entities.base;
 
 import katsu.*;
+import mini73.Mini73Game;
 import mini73.UnfinishedBusinessException;
 import mini73.Objective;
 import mini73.PlaceNames;
@@ -24,6 +25,8 @@ public class Mob extends Mini73EntityBase {
     public boolean isCollisionTarget = false;
     private Objective currentObjective;
 
+    Mini73Game game = Mini73Game.instance();
+
     public Mob() {
         this.setSolid(true);
         this.isCollisionTarget = true;
@@ -46,7 +49,7 @@ public class Mob extends Mini73EntityBase {
     // TODO bug with entity appearing twice in destroy list??
     public void beforeDeath(KRoom room) {
         super.beforeDeath(room);
-        K.obsolete.ui.writeText(this.toString() + " died.");
+        game.console.writeLine(this.toString() + " died.");
     }
 
     @Override

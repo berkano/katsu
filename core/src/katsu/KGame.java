@@ -117,14 +117,10 @@ public abstract class KGame extends KInputProcessor implements ApplicationListen
     }
 
     public void pauseGame() {
-        String key = Input.Keys.toString(K.settings.getPauseKey());
-        K.obsolete.ui.writeText("@CYAN Game is paused. Press "+key+" to continue.");
         this.paused = true;
     }
 
     public void unpause() {
-        K.obsolete.ui.clearText();
-        K.obsolete.text.hideHelp();
         this.paused = false;
     }
 

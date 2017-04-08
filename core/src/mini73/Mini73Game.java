@@ -211,6 +211,9 @@ public class Mini73Game extends KGame {
     }
 
     public static Mini73Game instance() {
+        if (_instance == null) {
+            throw new RuntimeException("Game instance accessed before creation");
+        }
         return _instance;
     }
 }

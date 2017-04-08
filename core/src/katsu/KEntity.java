@@ -252,7 +252,4 @@ public class KEntity extends KInputProcessor {
         UnfinishedBusinessException.raise();
     }
 
-    public void say(String s) {
-        K.obsolete.ui.writeText(s);
-    }
 }

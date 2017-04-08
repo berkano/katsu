@@ -39,17 +39,6 @@ public class KInput {
             return true;
         }
 
-        if (keycode == Input.Keys.H) {
-            K.obsolete.ui.clearText();
-            if (K.obsolete.text.helpShowing()) {
-                K.obsolete.text.hideHelp();
-                K.game.unpause();
-            } else {
-                K.obsolete.text.showHelp();
-                K.game.pauseGame();
-            }
-        }
-
         if (keycode == K.settings.getToggleMusicKey()) {
             K.game.toggleMusic();
         }

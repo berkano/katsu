@@ -174,19 +174,19 @@ public class MainRoom extends KRoom {
                     if (shipLandingPad != null) {
                         shipLandingPad.teleport.discovered = true;
                     }
-                    K.obsolete.ui.writeText("Teleported to " + playerLandingPad.teleport.link.getDiscoveredName() + ".");
+                    game.console.writeLine("Teleported to " + playerLandingPad.teleport.link.getDiscoveredName() + ".");
                     if (playerLandingPad.teleport.link.getDiscoveredName().equals("London Surface")) {
                         Sounds.transport.stop();
                         Sounds.stopAllMusic();
                         Sounds.win.play();
-                        K.obsolete.ui.writeText("WIN!! You found your way back to Earth :-) Hope you enjoyed playing. ~berkano / LD28");
+                        game.console.writeLine("WIN!! You found your way back to Earth :-) Hope you enjoyed playing. ~berkano / LD28");
                     }
 
                 } else {
-                    K.obsolete.ui.writeText("Cannot teleport until ship is docked.");
+                    game.console.writeLine("Cannot teleport until ship is docked.");
                 }
             } else {
-                K.obsolete.ui.writeText("You are not standing on a teleport.");
+                game.console.writeLine("You are not standing on a teleport.");
             }
         }
 
@@ -195,12 +195,12 @@ public class MainRoom extends KRoom {
         if (!objectiveReached && !objectiveFailed) checkLevelCompleteCriteria();
 
         if (Gdx.input.isKeyPressed(Keys.F3)) {
-            K.obsolete.ui.writeText("entities=" + String.valueOf(getEntities().size()));
+            game.console.writeLine("entities=" + String.valueOf(getEntities().size()));
         }
 
         if (K.input.wasKeyTyped(Keys.I)) {
             String result = runInventoryRules();
-            K.obsolete.ui.writeText(result);
+            game.console.writeLine(result);
         }
 
 
@@ -274,7 +274,7 @@ public class MainRoom extends KRoom {
         if (selectedEntity instanceof FriendlyPerson) {
             ((FriendlyPerson) selectedEntity).tryTrade(i);
         } else {
-            K.obsolete.ui.writeText("Click on a friendly person before trading!");
+            game.console.writeLine("Click on a friendly person before trading!");
         }
 
     }
@@ -345,7 +345,7 @@ public class MainRoom extends KRoom {
                 return;
             }
             if (gameState.fuel == 0) {
-                K.obsolete.ui.writeText("Out of fuel!");
+                game.console.writeLine("Out of fuel!");
                 return;
             }
             //player.setX(46 * K.settings.getGridSize());
@@ -357,7 +357,7 @@ public class MainRoom extends KRoom {
     }
 
     protected void rawScreenClick(int x, int y) {
-        K.obsolete.ui.writeText(String.format("Clicked top bar at %s, %s", x, y));
+        game.console.writeLine(String.format("Clicked top bar at %s, %s", x, y));
 
         if (x >= 0 && x < 105) {
             newGameClicked();
@@ -404,11 +404,11 @@ public class MainRoom extends KRoom {
     }
 
     private void leaveEnterClicked() {
-        K.obsolete.ui.writeText("leave/enter...");
+        game.console.writeLine("leave/enter...");
     }
 
     private void landLaunchClicked() {
-        K.obsolete.ui.writeText("land/launch...");
+        game.console.writeLine("land/launch...");
     }
 
     private void planetClicked() {
@@ -428,7 +428,7 @@ public class MainRoom extends KRoom {
     }
 
     private void newGameClicked() {
-        K.obsolete.ui.writeText("Generating universe");
+        game.console.writeLine("Generating universe");
     }
 
 
@@ -437,7 +437,7 @@ public class MainRoom extends KRoom {
         if (selectedEntity == null) return;
 
         if (!(selectedEntity instanceof FriendlyMob)) {
-            K.obsolete.ui.writeText(selectedEntity.toString() + " ignored you.");
+            game.console.writeLine(selectedEntity.toString() + " ignored you.");
             return;
         }
 
@@ -519,7 +519,6 @@ public class MainRoom extends KRoom {
 
                     if (inCommand) {
                         selectedEntity.setCurrentObjective(objectiveToAssign);
-                        selectedEntity.say("Command accepted");
                         selectedEntity.setTargetEntity(e);
                         objectiveToAssign = Objective.NOTHING;
                         inCommand = false;
