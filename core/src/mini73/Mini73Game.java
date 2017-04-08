@@ -17,7 +17,7 @@ import java.util.concurrent.FutureTask;
  */
 public class Mini73Game extends KRunner {
 
-    Console console = new Console();
+    public Console console = new Console();
     Console helpText = new Console().setToggleKey(Input.Keys.H);
     boolean printedLine = false;
     KMusic mus_observer = new KMusic();
@@ -26,18 +26,22 @@ public class Mini73Game extends KRunner {
 
     @Override
     public boolean keyDown(int keycode) {
-        if (mus_observer.getMusic().isPlaying()) {
-            console.writeLine("Music paused.");
-            mus_observer.getMusic().pause();
-        } else {
-            mus_observer.getMusic().play();
+
+        if (keycode == Input.Keys.M) {
+            if (mus_observer.getMusic().isPlaying()) {
+                console.writeLine("Music paused.");
+                mus_observer.getMusic().pause();
+            } else {
+                mus_observer.getMusic().play();
+            }
         }
 
         return super.keyDown(keycode);
     }
 
     @Override
-    public void beforeFirstUpdate() {
+    public void start() {
+        super.start();
         mus_observer.load("observer_v5.mp3");
         mus_observer.setAuthor("berkano");
         mus_observer.setTitle("observer");
@@ -73,6 +77,7 @@ public class Mini73Game extends KRunner {
         console.writeLine("help him find his way back to earth");
         console.writeLine("press h for help.");
 
+        _instance = this;
 
     }
 
@@ -174,4 +179,7 @@ public class Mini73Game extends KRunner {
         return new Mini73Settings();
     }
 
+    public static Mini73Game instance() {
+        return _instance;
+    }
 }

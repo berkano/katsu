@@ -52,6 +52,8 @@ public class MainRoom extends KRoom {
 
     public TeleportMap teleportMap = TeleportMap.instance();
 
+    public Mini73Game game;
+
     Console statusBar = new Console();
 
     Radar radar = new Radar();
@@ -66,6 +68,8 @@ public class MainRoom extends KRoom {
     public void start() {
 
         super.start();
+
+         game = Mini73Game.instance();
 
         mainView.screenWidth = 1024;
         mainView.screenHeight = 768;
@@ -331,7 +335,7 @@ public class MainRoom extends KRoom {
         if (mainView.following instanceof Ship) {
             if (player.isOnTopOf(LandingPad.class)) {
             } else {
-                K.obsolete.ui.writeText("May not move ship until player is at helm.");
+                game.console.writeLine("May not move ship until player is at helm.");
                 return;
             }
             if (gameState.fuel == 0) {

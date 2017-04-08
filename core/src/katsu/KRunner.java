@@ -45,11 +45,16 @@ public abstract class KRunner extends KInputProcessor implements ApplicationList
         if (rooms == null || rooms.size() <= 0) {
             exitWithError("No rooms defined!");
         }
+    }
+
+    public void start() {
         rooms.get(0).start();
     }
 
     @Override
     public void render() {
+
+        update();
 
         K.graphics.camera.update();
         K.graphics.spriteBatch.setProjectionMatrix(K.graphics.camera.combined);
@@ -78,7 +83,6 @@ public abstract class KRunner extends KInputProcessor implements ApplicationList
 //        K.obsolete.ui.renderText();
         K.graphics.uiSpriteBatch.end();
 
-        update();
     }
 
     public void update() {
@@ -99,7 +103,7 @@ public abstract class KRunner extends KInputProcessor implements ApplicationList
     }
 
     public void beforeFirstUpdate() {
-
+        start();
     }
 
     @Override
