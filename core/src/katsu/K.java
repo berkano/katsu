@@ -9,7 +9,6 @@ public class K {
 
     public static Random random = new Random();
     public static KResource resource = new KResource();
-    public static KUtils utils = new KUtils();
     public static KInput input = new KInput();
     public static KTextureCache textureCache = new KTextureCache();
     public static KGraphics graphics = new KGraphics();

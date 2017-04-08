@@ -7,8 +7,12 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import org.reflections.Reflections;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by shaun on 16/11/2014.
@@ -62,4 +66,11 @@ public class KResource {
     public FileHandle loadFile(String file) {
         return getResource(relativeResource(file));
     }
+
+    public List<Class> scanTiledEntityClasses(String pkg) {
+        Reflections reflections = new Reflections(pkg);
+        Set<Class<?>> annotated = reflections.getTypesAnnotatedWith(TiledMapEntity.class);
+        return new ArrayList<Class>(annotated);
+    }
+
 }

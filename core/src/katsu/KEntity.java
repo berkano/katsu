@@ -33,12 +33,12 @@ public class KEntity extends KInputProcessor {
     @Getter @Setter private boolean solid;
 
     // Events / lifecycle
-    @Getter @Setter private long lastMove = K.utils.currentTime();
+    @Getter @Setter private long lastMove = System.currentTimeMillis();
     @Getter @Setter private boolean destroyed = false;
     @Getter @Setter private boolean needsSpatialUpdate = false;
     @Getter @Setter private long minMoveWait = 0;
     @Getter @Setter private boolean updateAsRogueLike = false;
-    @Getter @Setter private long lastUpdate = K.utils.currentTime();
+    @Getter @Setter private long lastUpdate = System.currentTimeMillis();
     @Getter @Setter private boolean doneFirstUpdate = false;
 
     // UI
@@ -75,7 +75,7 @@ public class KEntity extends KInputProcessor {
             return false;
         }
 
-        long millisMovedAgo = K.utils.currentTime() - entity.getLastMove();
+        long millisMovedAgo = System.currentTimeMillis() - entity.getLastMove();
         if (millisMovedAgo < entity.getMaxMoveInterval()) {
             return false;
         }
@@ -104,7 +104,7 @@ public class KEntity extends KInputProcessor {
         } else {
             entity.setX(newX);
             entity.setY(newY);
-            entity.setLastMove(K.utils.currentTime());
+            entity.setLastMove(System.currentTimeMillis());
             entity.onMoved();
             return true;
         }
@@ -178,7 +178,7 @@ public class KEntity extends KInputProcessor {
     }
 
     public boolean lastMovedMoreThan(int timeLimit) {
-        return K.utils.currentTime() > getLastMove() + timeLimit;
+        return System.currentTimeMillis() > getLastMove() + timeLimit;
     }
 
     public void lookAtMe() {
