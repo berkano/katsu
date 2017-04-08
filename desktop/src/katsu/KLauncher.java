@@ -10,15 +10,15 @@ public class KLauncher {
         launch(Mini73Game.class);
     }
 
-    public static void launch(Class<? extends KRunner> runnerClass) throws Exception {
-        KRunner runner = runnerClass.newInstance();
+    public static void launch(Class<? extends KGame> runnerClass) throws Exception {
+        KGame runner = runnerClass.newInstance();
         KSettings settings = runner.buildSettings();
 
         launch(runner, settings);
 
     }
 
-    public static void launch(KRunner runner, KSettings settings) {
+    public static void launch(KGame runner, KSettings settings) {
 
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 
@@ -41,7 +41,7 @@ public class KLauncher {
 
         config.audioDeviceBufferSize = 16384; // mod playback
 
-        K.runner = runner;
+        K.game = runner;
         K.settings = settings;
 //        K.obsolete.ui = (KObsolete)(Object)ui;
 

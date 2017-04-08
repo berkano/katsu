@@ -12,7 +12,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -123,7 +122,7 @@ public class KTiledMapProcessor {
             String resourceName = K.resource.relativeResource("maps/" + name + ".tmx");
             return new TmxMapLoader().load(resourceName, parameters);
         } catch (Exception ex) {
-            K.runner.exitDueToException("Failed to load tiled map: " + name, ex);
+            K.game.exitDueToException("Failed to load tiled map: " + name, ex);
             return null;
         }
     }

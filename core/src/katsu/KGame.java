@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Created by shaun on 16/11/2014.
  */
-public abstract class KRunner extends KInputProcessor implements ApplicationListener {
+public abstract class KGame extends KInputProcessor implements ApplicationListener {
 
     public abstract ArrayList<KRoom> getRooms();
     public abstract String getResourceRoot();
@@ -28,7 +28,7 @@ public abstract class KRunner extends KInputProcessor implements ApplicationList
     private Boolean paused = false;
     boolean doneFirstUpdate = false;
 
-    Logger logger = LoggerFactory.getLogger(KRunner.class);
+    Logger logger = LoggerFactory.getLogger(KGame.class);
 
     @Getter @Setter private long lastRogueUpdate = System.currentTimeMillis();
 
@@ -41,7 +41,7 @@ public abstract class KRunner extends KInputProcessor implements ApplicationList
         K.graphics.init();
 //        K.obsolete.ui.init();
         K.input.init(this);
-        rooms = K.runner.getRooms();
+        rooms = K.game.getRooms();
         if (rooms == null || rooms.size() <= 0) {
             exitWithError("No rooms defined!");
         }
@@ -135,7 +135,7 @@ public abstract class KRunner extends KInputProcessor implements ApplicationList
     public void exitWithError(String message) {
         logger.error(message);
         exit();
-        throw new RuntimeException("game runner closed due to error: "+message);
+        throw new RuntimeException("game game closed due to error: "+message);
     }
 
     public void exitDueToException(String message, Exception ex) {
@@ -143,7 +143,7 @@ public abstract class KRunner extends KInputProcessor implements ApplicationList
     }
 
     public void exit() {
-        logger.debug("game runner exiting by request.");
+        logger.debug("game game exiting by request.");
         Gdx.app.exit();
     }
 

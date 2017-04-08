@@ -7,9 +7,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import mini73.UnfinishedBusinessException;
 
-import java.nio.charset.Charset;
 import java.util.HashMap;
 
 /**
@@ -20,7 +18,7 @@ public class KResource {
     private HashMap<String, Texture> textureCache = new HashMap<String, Texture>();
 
     public String relativeResource(String resourcePath) {
-        String resourceRoot = K.runner.getResourceRoot();
+        String resourceRoot = K.game.getResourceRoot();
         return resourceRoot + "/" + resourcePath;
     }
 

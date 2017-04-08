@@ -2,7 +2,6 @@ package mini73.rooms;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.graphics.Color;
 import katsu.*;
 import mini73.*;
 import mini73.entities.base.FriendlyMob;
@@ -111,7 +110,7 @@ public class MainRoom extends KRoom {
 
         super.update();
 
-        if (K.runner.gamePaused()) return;
+        if (K.game.gamePaused()) return;
 
         Sounds.playAmbientMusicRandomly();
 
@@ -485,7 +484,7 @@ public class MainRoom extends KRoom {
             statusBar.writeLine(info);
         }
 
-        if (K.runner.gamePaused()) {
+        if (K.game.gamePaused()) {
             info = "GAME PAUSED - PRESS P TO RESUME";
             statusBar.writeLine(info);
         }

@@ -1,6 +1,5 @@
 package mini73;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Align;
@@ -21,7 +20,7 @@ import java.util.concurrent.FutureTask;
 /**
  * Created by shaun on 16/11/2014.
  */
-public class Mini73Game extends KRunner {
+public class Mini73Game extends KGame {
 
     public Console console = new Console();
     Console helpText = new Console().setToggleKey(Input.Keys.H);

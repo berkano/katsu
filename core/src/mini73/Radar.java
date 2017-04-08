@@ -4,8 +4,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import katsu.K;
 import mini73.rooms.MainRoom;
 
-import java.awt.geom.Point2D;
-
 /**
  * Created by shaun on 15/12/13.
  */
@@ -25,7 +23,7 @@ public class Radar {
     public void render() {
 
 
-        MainRoom r = (MainRoom) K.runner.roomForClass(MainRoom.class);
+        MainRoom r = (MainRoom) K.game.roomForClass(MainRoom.class);
 
         int shipX = (r.ship.getX() / 16) % K.settings.getHres();
         int shipY = (r.ship.getY() / 16) % K.settings.getVres();

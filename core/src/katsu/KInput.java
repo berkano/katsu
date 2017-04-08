@@ -5,7 +5,6 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import lombok.Getter;
 import lombok.Setter;
-import mini73.UnfinishedBusinessException;
 
 import java.util.HashMap;
 
@@ -28,14 +27,14 @@ public class KInput {
     private boolean handleKeyDown(int keycode) {
 
         if (keycode == Input.Keys.ESCAPE) {
-            K.runner.exit();
+            K.game.exit();
         }
 
         if (keycode == K.settings.getPauseKey()) {
-            if (K.runner.gamePaused()) {
-                K.runner.unpause();
+            if (K.game.gamePaused()) {
+                K.game.unpause();
             } else {
-                K.runner.pauseGame();
+                K.game.pauseGame();
             }
             return true;
         }
@@ -44,15 +43,15 @@ public class KInput {
             K.obsolete.ui.clearText();
             if (K.obsolete.text.helpShowing()) {
                 K.obsolete.text.hideHelp();
-                K.runner.unpause();
+                K.game.unpause();
             } else {
                 K.obsolete.text.showHelp();
-                K.runner.pauseGame();
+                K.game.pauseGame();
             }
         }
 
         if (keycode == K.settings.getToggleMusicKey()) {
-            K.runner.toggleMusic();
+            K.game.toggleMusic();
         }
 
         if ((keycode == Input.Keys.F || keycode == Input.Keys.F11)) {
@@ -73,7 +72,7 @@ public class KInput {
         return keysDown.get(keycode);
     }
 
-    public void init(KRunner runner) {
+    public void init(KGame runner) {
 
         Gdx.input.setInputProcessor(K.input.getMultiplexer());
         getMultiplexer().addProcessor(runner);

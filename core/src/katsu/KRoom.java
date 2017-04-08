@@ -147,7 +147,7 @@ public class KRoom extends KInputProcessor {
             boolean canUpdate = true;
             if (isFogged(e)) canUpdate = false;
             if (e.isUpdateAsRogueLike()) {
-                if (e.getLastUpdate() >= K.runner.getLastRogueUpdate()) {
+                if (e.getLastUpdate() >= K.game.getLastRogueUpdate()) {
                     canUpdate = false;
                 }
             }

@@ -71,7 +71,7 @@ public class KEntity extends KInputProcessor {
 
     public boolean tryMove(KEntity entity, int newX, int newY) {
 
-        if (K.runner.gamePaused()) {
+        if (K.game.gamePaused()) {
             return false;
         }
 

@@ -15,7 +15,7 @@ public class K {
     public static KGraphics graphics = new KGraphics();
 
     // Provided by implementation
-    public static KRunner runner;
+    public static KGame game;
     public static KSettings settings;
 
     public static KObsolete obsolete;
