@@ -92,7 +92,7 @@ public class Console extends KInputProcessor {
     private void resizeToLabelContents() {
         label.setHeight(-font.getLineHeight() * (1 + textBuffer.getSize()));
         label.setX(font.getLineHeight());
-        label.setWidth(1024 - font.getLineHeight());
+        label.setWidth(Gdx.graphics.getWidth() - font.getLineHeight());
         label.setY(0 + (1+textBuffer.getSize()) * font.getLineHeight());
     }
 
@@ -128,7 +128,7 @@ public class Console extends KInputProcessor {
             label.getStyle().background = new Image(new Texture(labelColor)).getDrawable();
         }
 
-        setBounds(0, 768 - 16,1024,-768);
+        setBounds(0, 0,1024,768);
         setAlignment(Align.bottomLeft);
         label.setFontScale(1f,-1f);
 

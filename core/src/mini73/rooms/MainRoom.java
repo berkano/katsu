@@ -85,7 +85,7 @@ public class MainRoom extends KRoom {
 
         speedFactor = 1;
 
-        statusBar.setBounds(0, 200, 1024, 16);
+        statusBar.setBounds(0, Gdx.graphics.getHeight() - K.graphics.font.getLineHeight(), Gdx.graphics.getWidth(), K.graphics.font.getLineHeight());
 
     }
 
