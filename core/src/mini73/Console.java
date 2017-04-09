@@ -1,12 +1,18 @@
 package mini73;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
 import katsu.K;
 import katsu.KInputProcessor;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Created by shaun on 29/03/2017.
@@ -23,6 +29,10 @@ public class Console extends KInputProcessor {
     boolean firstUpdateDone = false;
 
     private int toggleKey = -1;
+
+    @Getter @Setter
+    private boolean autoResize = true;
+    private boolean shaded = true;
 
     public int getToggleKey() { return this.toggleKey; };
 
@@ -67,12 +77,23 @@ public class Console extends KInputProcessor {
             label.setText(textBuffer.toString());
         }
 
+        if (autoResize) {
+            resizeToLabelContents();
+        }
+
         stage.act(Gdx.graphics.getDeltaTime());
 
         if (visible) {
             stage.draw();
         }
 
+    }
+
+    private void resizeToLabelContents() {
+        label.setHeight(-font.getLineHeight() * (1 + textBuffer.getSize()));
+        label.setX(font.getLineHeight());
+        label.setWidth(1024 - font.getLineHeight());
+        label.setY(0 + (1+textBuffer.getSize()) * font.getLineHeight());
     }
 
     public void setBounds(float x, float y, float width, float height) {
@@ -99,6 +120,14 @@ public class Console extends KInputProcessor {
 
         label = new Label("", textStyle);
 
+        if (shaded) {
+            Pixmap labelColor = new Pixmap(128, 128, Pixmap.Format.RGBA8888);
+            labelColor.setColor(new Color(0f, 0f, 0f, 0.5f));
+            labelColor.fill();
+
+            label.getStyle().background = new Image(new Texture(labelColor)).getDrawable();
+        }
+
         setBounds(0, 768 - 16,1024,-768);
         setAlignment(Align.bottomLeft);
         label.setFontScale(1f,-1f);
@@ -123,5 +152,13 @@ public class Console extends KInputProcessor {
     public Console setToggleKey(int toggleKey) {
         this.toggleKey = toggleKey;
         return this;
+    }
+
+    public void setShaded(boolean shaded) {
+        this.shaded = shaded;
+    }
+
+    public boolean isShaded() {
+        return shaded;
     }
 }

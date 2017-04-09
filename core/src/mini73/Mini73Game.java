@@ -75,9 +75,9 @@ public class Mini73Game extends KGame {
             playLater(mus_observer, 5000);
         }
 
-        ozm = new OZMod();
-        ozm.initOutput();
-        playMod("music/singleton-mod-test.xm", 1);
+//        ozm = new OZMod();
+//        ozm.initOutput();
+//        playMod("music/singleton-mod-test.xm", 1);
 
     }
 
@@ -98,7 +98,9 @@ public class Mini73Game extends KGame {
     @Override
     public void create() {
         super.create();
-        helpText.writeLine("\n\n\n\n\n\n\n\nsingleton");
+        helpText.setAutoResize(false);
+        helpText.setShaded(false);
+        helpText.writeLine("singleton");
         helpText.setAlignment(Align.center);
 
 

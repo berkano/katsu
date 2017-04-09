@@ -51,4 +51,8 @@ public class TextBuffer {
         lines = new ArrayList<>();
         updated = true;
     }
+
+    public float getSize() {
+        return lines.size();
+    }
 }
