@@ -1,5 +1,6 @@
 package mini73;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Align;
@@ -24,6 +25,7 @@ public class Mini73Game extends KGame {
 
     public Console console = new Console();
     Console helpText = new Console().setToggleKey(Input.Keys.H);
+    public Console statusBar = new Console();
     boolean printedLine = false;
     KMusic mus_observer = new KMusic();
 
@@ -110,6 +112,11 @@ public class Mini73Game extends KGame {
         console.writeLine("help him find his way back to earth");
         console.writeLine("press h for help.");
 
+        //statusBar.writeLine("[CYAN]Status bar goes here...");
+        statusBar.setAutoResize(false);
+        statusBar.setBounds(0, Gdx.graphics.getHeight(), Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        statusBar.setAlignment(Align.topLeft);
+
         _instance = this;
 
     }
@@ -146,6 +153,7 @@ public class Mini73Game extends KGame {
 
         console.render();
         helpText.render();
+        statusBar.render();
 
     }
 

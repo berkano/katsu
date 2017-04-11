@@ -56,20 +56,23 @@ public class MainRoom extends KRoom {
 
     Logger logger = LoggerFactory.getLogger(MainRoom.class);
 
-    Console statusBar = new Console();
-
     Radar radar = new Radar();
 
     public void setZoom(int newZoom) {
         zoom = newZoom;
     }
 
+    Console statusBar;
+
     @Override
     public void start() {
 
         super.start();
 
+
          game = Mini73Game.instance();
+
+         statusBar = game.statusBar;
 
         setZoom(2);
 
