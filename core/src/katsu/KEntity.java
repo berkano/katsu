@@ -69,31 +69,31 @@ public class KEntity extends KInputProcessor {
         appearance.render();
     }
 
-    public boolean tryMove(KEntity entity, int newX, int newY) {
+    public boolean tryMoveAbsolutePoint(int newX, int newY) {
 
         if (K.game.gamePaused()) {
             return false;
         }
 
-        long millisMovedAgo = System.currentTimeMillis() - entity.getLastMove();
-        if (millisMovedAgo < entity.getMaxMoveInterval()) {
+        long millisMovedAgo = System.currentTimeMillis() - getLastMove();
+        if (millisMovedAgo < getMaxMoveInterval()) {
             return false;
         }
 
         boolean collisionDetected = false;
 
-        if (entity.isSolid()) {
+        if (isSolid()) {
 
-            Rectangle newRect = new Rectangle(newX, newY, newX + entity.getWidth() - 1, newY - entity.getHeight() + 1);
-            List<KEntity> overlappingEntities = entity.getRoom().getSpatialMap().searchByIntersection(newRect);
+            Rectangle newRect = new Rectangle(newX, newY, newX + getWidth() - 1, newY - getHeight() + 1);
+            List<KEntity> overlappingEntities = getRoom().getSpatialMap().searchByIntersection(newRect);
 
             // Get all possible collision targets
             for (KEntity other : overlappingEntities) {
-                if (other.isSolid() && other.canCollideWith(entity.getClass()) && entity.canCollideWith(other.getClass())) {
-                    if (other != entity) {
+                if (other.isSolid() && other.canCollideWith(getClass()) && canCollideWith(other.getClass())) {
+                    if (other != this) {
                         collisionDetected = true;
-                        entity.onCollide(other);
-                        other.onCollide(entity);
+                        onCollide(other);
+                        other.onCollide(this);
                     }
                 }
             }
@@ -102,10 +102,10 @@ public class KEntity extends KInputProcessor {
         if (collisionDetected) {
             return false;
         } else {
-            entity.setX(newX);
-            entity.setY(newY);
-            entity.setLastMove(System.currentTimeMillis());
-            entity.onMoved();
+            setX(newX);
+            setY(newY);
+            setLastMove(System.currentTimeMillis());
+            onMoved();
             return true;
         }
     }
@@ -188,11 +188,11 @@ public class KEntity extends KInputProcessor {
 
     }
 
-    public boolean tryMove(int dx, int dy) {
-        return tryMove(KDirection.fromDelta(dx, dy));
+    public boolean tryMoveGridRelative(int dx, int dy) {
+        return tryMoveGridDirection(KDirection.fromDelta(dx, dy));
     }
 
-    public boolean tryMove(KDirection direction) {
+    public boolean tryMoveGridDirection(KDirection direction) {
 
         if (!lastMovedMoreThan(getMaxMoveInterval())) return false;
 
@@ -203,7 +203,7 @@ public class KEntity extends KInputProcessor {
         setFacing(direction);
         getAppearance().setSpriteForDirection(direction);
 
-        if (getGrid().tryMove(direction.getDx(), direction.getDy())) {
+        if (getGrid().tryMoveRelativeCell(direction.getDx(), direction.getDy())) {
             result = true;
         }
 
@@ -242,10 +242,6 @@ public class KEntity extends KInputProcessor {
     public void setPosition(KEntity other) {
         setX(other.getX());
         setY(other.getY());
-    }
-
-    public void moveRelative(int dx, int dy) {
-        tryMove(dx, dy);
     }
 
     public void setCurrentObjective(Objective obj) {

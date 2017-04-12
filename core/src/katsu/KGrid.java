@@ -29,12 +29,12 @@ public class KGrid {
         return entity.getY() / K.settings.getGridSize();
     }
 
-    public boolean tryMove(int dx, int dy) {
+    public boolean tryMoveRelativeCell(int dx, int dy) {
 
-        int newX = getX() + dx * K.settings.getGridSize();
-        int newY = getY() + dy * K.settings.getGridSize();
+        int newX = (getX() + dx) * K.settings.getGridSize();
+        int newY = (getY() + dy) * K.settings.getGridSize();
 
-        return entity.tryMove(entity, newX, newY);
+        return entity.tryMoveAbsolutePoint(newX, newY);
 
     }
 

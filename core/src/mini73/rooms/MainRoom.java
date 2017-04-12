@@ -356,7 +356,7 @@ public class MainRoom extends KRoom {
 
         }
 
-        following.moveRelative(dx, dy);
+        following.tryMoveGridRelative(dx, dy);
     }
 
     protected void rawScreenClick(int x, int y) {

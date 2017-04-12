@@ -2,7 +2,6 @@ package mini73.entities.base;
 
 import katsu.K;
 import katsu.KRoom;
-import mini73.UnfinishedBusinessException;
 import mini73.entities.mobs.PlayerPerson;
 import mini73.entities.mobs.Ship;
 
@@ -49,16 +48,16 @@ public class FriendlyMob extends Mob {
         int dir = K.random.nextInt(4);
         switch (dir) {
             case 0:
-                moveRelative(0, 1);
+                tryMoveGridRelative(0, 1);
                 break;
             case 1:
-                moveRelative(0, -1);
+                tryMoveGridRelative(0, -1);
                 break;
             case 2:
-                moveRelative(1, 0);
+                tryMoveGridRelative(1, 0);
                 break;
             case 3:
-                moveRelative(-1, 0);
+                tryMoveGridRelative(-1, 0);
                 break;
         }
 
