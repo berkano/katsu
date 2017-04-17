@@ -24,7 +24,7 @@ import java.util.concurrent.FutureTask;
 public class Mini73Game extends KGame {
 
     public Console console = new Console();
-    Console helpText = new Console().setToggleKey(Input.Keys.H);
+    Console helpText = new Console();
     public Console statusBar = new Console();
     boolean printedLine = false;
     KMusic mus_observer = new KMusic();
@@ -100,17 +100,13 @@ public class Mini73Game extends KGame {
     @Override
     public void create() {
         super.create();
+
         helpText.setAutoResize(false);
-        helpText.setShaded(false);
-        helpText.writeLine("singleton");
+        helpText.setShaded(true);
+        helpText.writeLine(K.resource.loadText("help.txt"));
         helpText.setAlignment(Align.center);
+        helpText.setToggleKey(Input.Keys.H);
 
-
-        console.writeLine("welcome to ~singleton~, berkano's LD28 entry.");
-        console.writeLine("major tim is lost in space. one prisoner, one");
-        console.writeLine("sheep, one inventory slot, one goal:");
-        console.writeLine("help him find his way back to earth");
-        console.writeLine("press h for help.");
 
         //statusBar.writeLine("[CYAN]Status bar goes here...");
         statusBar.setAutoResize(false);

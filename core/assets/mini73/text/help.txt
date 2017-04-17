@@ -1,1 +1,23 @@
-MiniLD 73!
+singleton
+
+welcome to [CYAN]singleton[WHITE], berkano's LD28 entry.
+major tim is lost in space. one prisoner, one
+sheep, one inventory slot, one goal:
+help him find his way back to earth.
+
+press H to display this help screen at any time.
+
+[CYAN]WASD[WHITE]: move person or ship around
+[CYAN]U[WHITE]: switch between Ship and Person view
+[CYAN]ESC[WHITE]: quit game
+[CYAN]F / F11[WHITE]: toggle full screen
+[CYAN]M[WHITE]: toggle music
+[CYAN]1..9[WHITE]: buy from selected trade
+[CYAN]1..9[WHITE]: sell inventory to person (doesn't matter which number)
+[CYAN]P[WHITE]: pause game
+[CYAN]T[WHITE]: teleport
+[CYAN]I[WHITE]: pickup item into inventory or drop from inventory
+[CYAN]SPACE[WHITE]: use selected item
+[CYAN]Z[WHITE]: toggle zoom level
+
+press H to hide this help screen
