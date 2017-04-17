@@ -9,14 +9,13 @@ import java.util.HashMap;
  */
 public enum KDirection {
 
-    // dx, dy, rotation
-    UP(0,1,0),
-    UP_RIGHT(1,1,315),
-    RIGHT(1,0,270),
+    UP(0,1,90),
+    UP_RIGHT(1,1,45),
+    RIGHT(1,0,0),
     DOWN_RIGHT(1,-1,225),
-    DOWN(0,-1,180),
+    DOWN(0,-1,270),
     DOWN_LEFT(-1,-1,135),
-    LEFT(-1,0,90),
+    LEFT(-1,0,180),
     UP_LEFT(-1,1,45);
 
     static HashMap<Integer, KDirection> fourDirections = new HashMap<Integer, KDirection>();

@@ -226,9 +226,9 @@ public class MainRoom extends KRoom {
             }
         }
 
-        checkInputAndMovePlayer(Keys.W, 0, -1);
+        checkInputAndMovePlayer(Keys.W, 0, 1);
         checkInputAndMovePlayer(Keys.A, -1, 0);
-        checkInputAndMovePlayer(Keys.S, 0, 1);
+        checkInputAndMovePlayer(Keys.S, 0, -1);
         checkInputAndMovePlayer(Keys.D, 1, 0);
 
 
