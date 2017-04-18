@@ -50,7 +50,7 @@ public class KResource {
     }
 
     public BitmapFont loadBitmapFont(String fntFile, String pngFile) {
-        return new BitmapFont(Gdx.files.internal(relativeResource(fntFile)), Gdx.files.internal(relativeResource(pngFile)), true);
+        return new BitmapFont(Gdx.files.internal(relativeResource(fntFile)), Gdx.files.internal(relativeResource(pngFile)), false);
     }
 
     public String loadText(String textName) {

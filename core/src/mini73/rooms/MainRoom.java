@@ -483,7 +483,7 @@ public class MainRoom extends KRoom {
 
         if (K.settings.isLogFPS()) {
             String fps = String.valueOf(Gdx.graphics.getFramesPerSecond());
-            info = "FPS: " + fps;
+            info = "[GRAY]FPS: " + fps;
             statusBar.writeLine(info);
         }
 

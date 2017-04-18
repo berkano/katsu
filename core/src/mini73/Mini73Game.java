@@ -110,8 +110,9 @@ public class Mini73Game extends KGame {
 
         //statusBar.writeLine("[CYAN]Status bar goes here...");
         statusBar.setAutoResize(false);
-        statusBar.setBounds(0, Gdx.graphics.getHeight(), Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        statusBar.setBounds(0, Gdx.graphics.getHeight(), Gdx.graphics.getWidth(), 2 * K.graphics.font.getLineHeight());
         statusBar.setAlignment(Align.topLeft);
+        logger.info("GDX.height: " + Gdx.graphics.getHeight());
 
         _instance = this;
 
@@ -149,7 +150,17 @@ public class Mini73Game extends KGame {
 
         console.render();
         helpText.render();
+
+
+
         statusBar.render();
+
+//        logger.info("X: " + statusBar.label.getX());
+//        logger.info("Y: " + statusBar.label.getY());
+//        logger.info("W: " + statusBar.label.getWidth());
+//        logger.info("H: " + statusBar.label.getHeight());
+//
+//        exit();
 
     }
 

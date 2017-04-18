@@ -128,9 +128,9 @@ public class Console extends KInputProcessor {
             label.getStyle().background = new Image(new Texture(labelColor)).getDrawable();
         }
 
-        setBounds(0, 0,1024,768);
+        setBounds(0, 0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         setAlignment(Align.bottomLeft);
-        label.setFontScale(1f,-1f);
+        label.setFontScale(1f,1f);
 
         stage.addActor(label);
 
