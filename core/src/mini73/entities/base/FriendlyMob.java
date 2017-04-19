@@ -17,7 +17,7 @@ public class FriendlyMob extends Mob {
     public FriendlyMob() {
         this.setSolid(true);
         this.isCollisionTarget = true;
-        this.orientSpriteByMovement = false;
+        this.getAppearance().setRotateSpriteOnMove(false);
     }
 
     @Override

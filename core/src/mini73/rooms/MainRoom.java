@@ -337,7 +337,7 @@ public class MainRoom extends KRoom {
         if (lastMovedMillis < moveInterval) return;
         if (!K.input.isKeyDown(keyCode)) return;
 
-        logger.info("Checking movement for keyCode="+keyCode + " for delta: " + dx + "," + dy);
+//        logger.info("Checking movement for keyCode="+keyCode + " for delta: " + dx + "," + dy);
 
         if (following instanceof Ship) {
             if (player.isOnTopOf(LandingPad.class)) {

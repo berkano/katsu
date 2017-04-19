@@ -11,7 +11,7 @@ public class Ship extends FriendlyMob {
 
     public Ship() {
         super();
-        this.orientSpriteByMovement = true;
+        this.getAppearance().setRotateSpriteOnMove(true);
     }
 
 //    @Override
