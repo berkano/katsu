@@ -21,7 +21,6 @@ public abstract class KGame extends KInputProcessor implements ApplicationListen
 
     public abstract ArrayList<KRoom> getRooms();
     public abstract String getResourceRoot();
-    public abstract List<Class> getClassLookup();
     public abstract void toggleMusic();
 
     private ArrayList<KRoom> rooms;
@@ -31,6 +30,10 @@ public abstract class KGame extends KInputProcessor implements ApplicationListen
     Logger logger = LoggerFactory.getLogger(KGame.class);
 
     @Getter @Setter private long lastRogueUpdate = System.currentTimeMillis();
+
+    public List<Class> getClassLookup() {
+        return K.resource.scanTiledEntityClasses(getResourceRoot());
+    }
 
     @Override
     public void create() {

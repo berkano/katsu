@@ -30,11 +30,6 @@ public class LD38Game extends KGame {
     }
 
     @Override
-    public List<Class> getClassLookup() {
-        return null;
-    }
-
-    @Override
     public void toggleMusic() {
 
     }

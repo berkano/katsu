@@ -204,11 +204,6 @@ public class Mini73Game extends KGame {
         return "mini73";
     }
 
-    @Override
-    public List<Class> getClassLookup() {
-        return K.resource.scanTiledEntityClasses("mini73");
-    }
-
     private void addClassesTo(HashMap<String, Class> classHashMap, Class... classes) {
 
         for (Class c: classes) {
