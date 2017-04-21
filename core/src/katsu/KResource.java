@@ -23,6 +23,9 @@ public class KResource {
 
     public String relativeResource(String resourcePath) {
         String resourceRoot = K.game.getResourceRoot();
+        if (resourceRoot == null) {
+            throw new RuntimeException("Game did not provide a resource root");
+        }
         return resourceRoot + "/" + resourcePath;
     }
 

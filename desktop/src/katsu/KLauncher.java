@@ -2,17 +2,22 @@ package katsu;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import ld38.LD38Game;
 import mini73.Mini73Game;
 
 public class KLauncher {
 
     public static void main(String[] args) throws Exception {
-        launch(Mini73Game.class);
+        launch(LD38Game.class);
     }
 
     public static void launch(Class<? extends KGame> runnerClass) throws Exception {
         KGame runner = runnerClass.newInstance();
         KSettings settings = runner.buildSettings();
+
+        if (settings == null) {
+            throw new RuntimeException("An implementation of KSettings must be provided by the Game");
+        }
 
         launch(runner, settings);
 
