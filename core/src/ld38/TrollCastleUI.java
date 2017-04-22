@@ -17,6 +17,7 @@ public class TrollCastleUI {
     public void start() {
         setupTopBar();
         setupBottomBar();
+        bottomBar.writeLine("[GREEN]A beautiful day in Trog.");
         setupHelp();
         toggleHelp();
     }
