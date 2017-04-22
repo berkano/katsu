@@ -22,6 +22,11 @@
     <property name="entity" value="Mushroom"/>
    </properties>
   </tile>
+  <tile id="33">
+   <properties>
+    <property name="entity" value="Seeds"/>
+   </properties>
+  </tile>
  </tileset>
  <layer name="terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
@@ -30,7 +35,7 @@
  </layer>
  <layer name="objects" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGLyAkUrmKFLJHFIBuvup5R9SwGDxOy4xUuRhgJCfsMkPRNgPBQAAX3bOlgAEAAA=
+   H4sIAAAAAAAAC2NgGLyAkUrmKFLJHFIBuvup4R8lEtWj+12JDDPIcQM2vxLyP7HhQyg+sclTKy0NNwAAaGB9AgAEAAA=
   </data>
  </layer>
 </map>

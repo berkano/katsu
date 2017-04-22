@@ -13,4 +13,10 @@ public class Water extends TrollCastleEntityBase {
         super();
         getAppearance().juiceMySprite(0.2f);
     }
+
+    @Override
+    public void onClick() {
+        describe("The water is wet today.");
+    }
+
 }

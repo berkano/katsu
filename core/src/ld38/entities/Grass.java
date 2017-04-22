@@ -12,4 +12,10 @@ public class Grass extends TrollCastleEntityBase {
     public Grass(){
         getAppearance().juiceMySprite(0.2f);
     }
+
+    @Override
+    public void onClick() {
+        describe("Some lovely green grass.");
+    }
+
 }
