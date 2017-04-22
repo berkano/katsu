@@ -33,7 +33,8 @@ public class TrollCastleUI {
     private void setupBottomBar() {
         bottomBar.setShaded(true);
         bottomBar.setAutoResize(false);
-        bottomBar.setBounds(0, 0, Gdx.graphics.getWidth(), K.graphics.font.getLineHeight());
+        bottomBar.setLineLimit(4);
+        bottomBar.setBounds(0, 0, Gdx.graphics.getWidth(), 4 * K.graphics.font.getLineHeight());
         bottomBar.setAlignment(Align.topLeft);
     }
 

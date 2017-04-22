@@ -11,6 +11,7 @@ public class TextBuffer {
     private ArrayList<TextBufferLine> lines = new ArrayList<TextBufferLine>();
     private long decayMillis = 1000;
     public boolean updated = false;
+    private int lineLimit = -1;
 
     public void writeLine(String line, long decayMillis) {
         lines.add(new TextBufferLine(line, decayMillis));
@@ -19,7 +20,10 @@ public class TextBuffer {
     }
 
     public void refresh() {
+
         ArrayList<TextBufferLine> toRemove = new ArrayList<TextBufferLine>();
+
+        // Remove anything that has expired
         for (TextBufferLine tbl : lines) {
             if (tbl.hasExpired()) {
                 toRemove.add(tbl);
@@ -30,6 +34,18 @@ public class TextBuffer {
             lines.remove(tbl);
             updated = true;
         }
+
+        // Enforce line limit
+        if (lineLimit >= 0) {
+            int nRemove = lines.size() - lineLimit;
+            if (nRemove > 0) {
+                for (int i = 0; i < nRemove; i++) {
+                    lines.remove(0);
+                    updated = true;
+                }
+            }
+        }
+
     }
 
     @Override
@@ -54,5 +70,9 @@ public class TextBuffer {
 
     public float getSize() {
         return lines.size();
+    }
+
+    public void setLineLimit(int lineLimit) {
+        this.lineLimit = lineLimit;
     }
 }

@@ -161,4 +161,8 @@ public class Console extends KInputProcessor {
     public boolean isShaded() {
         return shaded;
     }
+
+    public void setLineLimit(int limit) {
+        textBuffer.setLineLimit(limit);
+    }
 }

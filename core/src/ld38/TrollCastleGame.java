@@ -12,11 +12,11 @@ public class TrollCastleGame extends KGame {
 
     private static TrollCastleGame _instance;
 
-    TrollCastleUI ui;
+    public TrollCastleUI ui;
 
-    ArrayList<KRoom> rooms;
+    public ArrayList<KRoom> rooms;
 
-    Music troll1;
+    public Music troll1;
 
     public TrollCastleGame() {
         super();

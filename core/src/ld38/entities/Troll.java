@@ -27,6 +27,10 @@ public class Troll extends TrollCastleEntityBase {
     @Override
     public void onClick() {
         super.onClick();
-        logger.info("I was clicked!");
+        say("ugg");
+    }
+
+    private void say(String utterance) {
+        game.ui.bottomBar.writeLine("[ORANGE]"+ name + "[WHITE] says [GREEN]'" + utterance+"'[WHITE].");
     }
 }
