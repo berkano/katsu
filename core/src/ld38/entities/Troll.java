@@ -36,7 +36,7 @@ public class Troll extends TrollCastleEntityBase {
 
         super.update();
 
-        if (!lastMovedMoreThan(250)) return;
+        if (!lastMovedMoreThan(750)) return;
 
         if (getTargetEntity() != null) {
 
@@ -57,7 +57,13 @@ public class Troll extends TrollCastleEntityBase {
     }
 
     public void say(String utterance) {
+        utterance = utterance.replace("Mushroom","moosh");
+        utterance = utterance.replace("Mine","digg");
+        utterance = utterance.replace("Seed","pod");
+        utterance = utterance.replace("Water","tssh");
+        utterance = utterance.replace("Grass","grob");
+        utterance = utterance.replace("Fish","blub");
         game.talk1.play();
-        game.ui.bottomBar.writeLine("[ORANGE]"+ name + "[WHITE] says [GREEN]'" + utterance+"'[WHITE].");
+        game.ui.bottomBar.writeLine("[ORANGE]"+ name + ": [GREEN]" + utterance+"[WHITE]");
     }
 }

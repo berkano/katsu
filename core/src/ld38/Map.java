@@ -88,6 +88,24 @@ public class Map extends KRoom {
                 currentCommand = TrollCommand.go;
             }
         }
+        if (character == ' ') {
+            if (lastClickedTroll == null) {
+                game.ui.bottomBar.writeLine("[RED]Click on a troll first.");
+            } else {
+                List<KEntity> under = findEntitiesAtPoint(lastClickedTroll.getX(), lastClickedTroll.getY());
+                KEntity highest = null;
+                for (KEntity u : under) {
+                    if (u != lastClickedTroll) {
+                        highest = u;
+                    }
+                }
+
+                if (highest != null) {
+                    lastClickedTroll.say("yerg " + highest.toString() + "pug.");
+                }
+
+            }
+        }
         return false;
     }
 
