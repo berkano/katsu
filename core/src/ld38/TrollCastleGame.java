@@ -11,16 +11,22 @@ import java.util.ArrayList;
  */
 public class TrollCastleGame extends KGame {
 
+    UI ui;
+
     ArrayList<KRoom> rooms;
 
     @Override
     public void render() {
         super.render();
+        ui.render();
     }
 
     @Override
     public void start() {
         super.start();
+        ui = new UI();
+        ui.start();
+        ui.topBar.writeLine("Troll Castle");
     }
 
     @Override

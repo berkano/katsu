@@ -11,16 +11,12 @@ import mini73.Console; // TODO-POST: move to katsu
  */
 public class Map extends KRoom {
 
-    UI ui = new UI();
-
     @Override
     public void start() {
 
         super.start();
         loadFromTiledMap("test-map");
         setupCamera();
-        ui.start();
-        ui.topBar.writeLine("Troll Castle");
     }
 
     private void setupCamera() {
@@ -35,9 +31,4 @@ public class Map extends KRoom {
 
     }
 
-    @Override
-    public void render() {
-//        super.render();
-        ui.render();
-    }
 }
