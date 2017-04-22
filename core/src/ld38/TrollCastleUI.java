@@ -47,7 +47,7 @@ public class TrollCastleUI {
         help.setShaded(true);
         help.setAutoResize(false);
         help.setVisible(false);
-        help.setBounds(64, 128 + 32, Gdx.graphics.getWidth() - 128, 13 * K.graphics.font.getLineHeight());
+        help.setBounds(64, 128 + 32, Gdx.graphics.getWidth() - 128, 14 * K.graphics.font.getLineHeight());
         help.setAlignment(Align.center);
 
         help.writeLine("[RED]~[ORANGE]~[YELLOW]~ [WHITE]Welcome to [CYAN]Troll Castle[WHITE]! [YELLOW]~[ORANGE]~[RED]~");
@@ -57,7 +57,8 @@ public class TrollCastleUI {
         help.writeLine("[GREEN]Click[WHITE] where you want it to go.");
         help.writeLine("When a troll is standing on top of");
         help.writeLine("something, press [GREEN]Space[WHITE] to carry out the");
-        help.writeLine("related action (Mine, Eat, etc).");
+        help.writeLine("related action (Mine, Eat, etc). You can drag the map");
+        help.writeLine("with the mouse.");
         help.writeLine("");
         help.writeLine("Press [GREEN]H[WHITE] to hide or show this help screen.");
 

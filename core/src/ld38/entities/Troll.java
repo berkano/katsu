@@ -69,7 +69,10 @@ public class Troll extends TrollCastleEntityBase {
             KDirection suggestion = getGrid().doPathFinding(target.getGrid().getX(), target.getGrid().getY());
 
             if (suggestion != null) {
-                tryMoveGridDirection(suggestion);
+                boolean result = tryMoveGridDirection(suggestion);
+                if (result == true) {
+                    game.walk.play();
+                }
             }
         }
 
@@ -88,7 +91,13 @@ public class Troll extends TrollCastleEntityBase {
         utterance = utterance.replace("Water","tssh");
         utterance = utterance.replace("Grass","grob");
         utterance = utterance.replace("Fish","blub");
-        game.talk1.play();
+        int talkSound = K.random.nextInt(4);
+
+        if (talkSound == 0) game.talk1.play();
+        if (talkSound == 1) game.talk2.play();
+        if (talkSound == 2) game.talk3.play();
+        if (talkSound == 3) game.talk4.play();
+
         String xpStr = "";
         if (xp > 0) {
             xpStr = "[GRAY]~[YELLOW]" + xp;

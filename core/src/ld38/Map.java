@@ -117,6 +117,7 @@ public class Map extends KRoom {
                     lastClickedTroll.setPsychedelic(true);
                     game.hasEatenMushroom = true;
                     highest.destroy();
+                    game.psych.play();
                 }
 
                 if (highest instanceof Mine) {
@@ -145,12 +146,13 @@ public class Map extends KRoom {
 
         for (KEntity e : clickedEntities) {
             logger.info("calling onClick for an instance of " + e.getClass().getSimpleName());
-            e.onClick();
+//            e.onClick();
             highestEntity = e;
             if (e instanceof Troll) {
                 lastClickedTroll = (Troll)e;
             }
         }
+
 
         if (highestEntity != null) {
             if (currentCommand == TrollCommand.go) {
@@ -158,6 +160,8 @@ public class Map extends KRoom {
                 trollBefore.setTargetEntity(highestEntity);
                 trollBefore.say("ogg " + highestEntity.toString()+" mog.");
                 currentCommand = TrollCommand.none;
+            } else {
+                highestEntity.onClick();
             }
         }
 
