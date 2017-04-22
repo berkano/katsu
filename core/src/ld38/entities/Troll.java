@@ -1,5 +1,7 @@
 package ld38.entities;
 
+import com.badlogic.gdx.math.Vector3;
+import katsu.K;
 import katsu.KEntity;
 import katsu.KTiledMapEntity;
 import ld38.TrollNamer;
@@ -18,12 +20,13 @@ public class Troll extends TrollCastleEntityBase {
 
     public Troll() {
         super();
-
         name = namer.nextName();
         logger.info("A new Troll called " + name + " appeared!");
-
-
-
     }
 
+    @Override
+    public void onClick() {
+        super.onClick();
+        logger.info("I was clicked!");
+    }
 }

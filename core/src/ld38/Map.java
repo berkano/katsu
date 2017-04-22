@@ -1,15 +1,21 @@
 package ld38;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Align;
 import katsu.K;
+import katsu.KEntity;
 import katsu.KRoom;
 import mini73.Console; // TODO-POST: move to katsu
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by shaun on 21/04/2017.
  */
 public class Map extends KRoom {
+
+    Logger logger = LoggerFactory.getLogger(Map.class);
 
     @Override
     public void start() {
@@ -20,15 +26,29 @@ public class Map extends KRoom {
     }
 
     private void setupCamera() {
-
         int centreX = 32 * 4;
         int centreY = 32 * 4;
-
         K.graphics.camera.zoom = 0.25f;
-
         K.graphics.camera.position.x = centreX;
         K.graphics.camera.position.y = centreY;
-
     }
+
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+
+        logger.info("Detected touch down");
+
+        Vector3 clickLocation = new Vector3(screenX, screenY, 0);
+        Vector3 worldLocation = K.graphics.camera.unproject(clickLocation);
+
+        for (KEntity e : findEntitiesAtPoint(Math.round(worldLocation.x), Math.round(worldLocation.y))) {
+            logger.info("calling onClick for an instance of " + e.getClass().getSimpleName());
+            e.onClick();
+        }
+
+        return false;
+    }
+
+
 
 }

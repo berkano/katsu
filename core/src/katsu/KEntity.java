@@ -248,4 +248,7 @@ public class KEntity extends KInputProcessor {
         UnfinishedBusinessException.raise();
     }
 
+    public void onClick() {
+
+    }
 }
