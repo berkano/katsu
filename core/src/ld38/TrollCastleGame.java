@@ -26,6 +26,7 @@ public class TrollCastleGame extends KGame {
     public Sound walk;
     public Sound select1;
     public Sound psych;
+    public Sound mine;
 
     public List<String> waffle;
     public int xp = 0;
@@ -72,6 +73,7 @@ public class TrollCastleGame extends KGame {
             talk2 = K.resource.loadSound("troll-talk-2.ogg");
             talk3 = K.resource.loadSound("troll-talk-3.ogg");
             talk4 = K.resource.loadSound("troll-talk-4.ogg");
+            mine = K.resource.loadSound("mine.ogg");
             psych = K.resource.loadSound("psych.ogg");
             walk = K.resource.loadSound("walk.ogg");
             music1 = K.resource.loadMusic("troll1.mp3");
