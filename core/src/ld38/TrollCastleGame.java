@@ -1,8 +1,7 @@
 package ld38;
 
-import katsu.KGame;
-import katsu.KRoom;
-import katsu.KSettings;
+import com.badlogic.gdx.audio.Music;
+import katsu.*;
 
 import java.util.ArrayList;
 
@@ -14,6 +13,8 @@ public class TrollCastleGame extends KGame {
     TrollCastleUI ui;
 
     ArrayList<KRoom> rooms;
+
+    Music troll1;
 
     @Override
     public void render() {
@@ -27,7 +28,18 @@ public class TrollCastleGame extends KGame {
         ui = new TrollCastleUI();
         ui.start();
         ui.topBar.writeLine("7 trolls :: 0 XP :: 0 Gold");
-        ui.bottomBar.writeLine("Welcome to Troll Castle! Press any key to play");
+        ui.bottomBar.writeLine("Welcome to Troll Castle! [CYAN]No gameplay yet ;-)");
+
+        loadAndStartMusic();
+
+    }
+
+    private void loadAndStartMusic() {
+
+        troll1 = K.resource.loadMusic("troll1.mp3");
+        troll1.setLooping(true);
+        troll1.play();
+
     }
 
     @Override
