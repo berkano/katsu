@@ -15,6 +15,9 @@ import org.slf4j.LoggerFactory;
  */
 public class Map extends KRoom {
 
+    int lastDragX = 0;
+    int lastDragY = 0;
+
     Logger logger = LoggerFactory.getLogger(Map.class);
 
     @Override
@@ -36,6 +39,9 @@ public class Map extends KRoom {
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 
+        lastDragX = screenX;
+        lastDragY = screenY;
+
         logger.info("Detected touch down");
 
         Vector3 clickLocation = new Vector3(screenX, screenY, 0);
@@ -49,6 +55,20 @@ public class Map extends KRoom {
         return false;
     }
 
+    @Override
+    public boolean touchDragged(int screenX, int screenY, int pointer) {
 
+        int dx = screenX - lastDragX;
+        int dy = screenY - lastDragY;
 
+        logger.info("detected drag at " + screenX + "," + screenY + " with delta " + dx + "," + dy);
+
+        K.graphics.camera.position.x -= dx * K.graphics.camera.zoom;
+        K.graphics.camera.position.y += dy * K.graphics.camera.zoom;
+
+        lastDragX = screenX;
+        lastDragY = screenY;
+
+        return false;
+    }
 }
