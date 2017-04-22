@@ -94,6 +94,7 @@ public class KTiledMapProcessor {
                 e.getAppearance().setTextureRegion(K.textureCache.get(c));
                 entities.add(e);
             } catch (Exception ex) {
+                ex.printStackTrace();
                 throw new KException(ex);
             }
         }

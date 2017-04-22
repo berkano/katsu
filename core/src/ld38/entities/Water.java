@@ -8,4 +8,9 @@ import katsu.KTiledMapEntity;
  */
 @KTiledMapEntity
 public class Water extends TrollCastleEntityBase {
+
+    public Water(){
+        super();
+        getAppearance().juiceMySprite(0.2f);
+    }
 }

@@ -1,5 +1,6 @@
 package katsu;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import lombok.Getter;
@@ -30,6 +31,7 @@ public class KAppearance {
         }
         float xScale = spriteScale;
         float yScale = spriteScale;
+
         if (isSpriteFlip()) {
             xScale = -xScale;
         }
@@ -41,9 +43,9 @@ public class KAppearance {
         );
     }
 
-    public void juiceMySprite(float juceiness) {
+    public void juiceMySprite(float juiciness) {
         this.setSpriteRotation(K.random.nextInt(4) * 90 + K.random.nextInt(15) - 7);
-        this.setSpriteScale(K.random.nextFloat() * juceiness + 1.0f + juceiness);
+        this.setSpriteScale(K.random.nextFloat() * juiciness + 1.0f + juiciness);
     }
 
     public void setSpriteForDirection(KDirection direction) {

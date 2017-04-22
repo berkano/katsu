@@ -8,4 +8,8 @@ import katsu.KTiledMapEntity;
  */
 @KTiledMapEntity
 public class Grass extends TrollCastleEntityBase {
+
+    public Grass(){
+        getAppearance().juiceMySprite(0.2f);
+    }
 }
