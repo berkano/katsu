@@ -17,6 +17,11 @@
     <property name="entity" value="Grass"/>
    </properties>
   </tile>
+  <tile id="3">
+   <properties>
+    <property name="entity" value="Fish"/>
+   </properties>
+  </tile>
   <tile id="32">
    <properties>
     <property name="entity" value="Mushroom"/>
@@ -27,6 +32,11 @@
     <property name="entity" value="Seeds"/>
    </properties>
   </tile>
+  <tile id="34">
+   <properties>
+    <property name="entity" value="Mine"/>
+   </properties>
+  </tile>
  </tileset>
  <layer name="terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
@@ -35,7 +45,7 @@
  </layer>
  <layer name="objects" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGLyAkUrmKFLJHFIBuvup4R8lEtWj+12JDDPIcQM2vxLyP7HhQyg+sclTKy0NNwAAaGB9AgAEAAA=
+   H4sIAAAAAAAAC2NgoAyw0FAPIxlmg4AyGl+RTHPwAWL8gO5+cv2DDJRIVI/udyUyzCDHDdj8isv/LATk0QGh+MQmT0nYo6cnXICcvECuOdSyCwAWfQApAAQAAA==
   </data>
  </layer>
 </map>
