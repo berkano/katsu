@@ -2,6 +2,7 @@ package ld38.entities;
 
 import com.badlogic.gdx.math.Vector3;
 import katsu.K;
+import katsu.KDirection;
 import katsu.KEntity;
 import katsu.KTiledMapEntity;
 import ld38.TrollNamer;
@@ -22,6 +23,25 @@ public class Troll extends TrollCastleEntityBase {
         super();
         name = namer.nextName();
         logger.info("A new Troll called " + name + " appeared!");
+    }
+
+    @Override
+    public void update() {
+
+        super.update();
+
+        if (!lastMovedMoreThan(250)) return;
+
+        if (getTargetEntity() != null) {
+
+            KEntity target = getTargetEntity();
+            KDirection suggestion = getGrid().doPathFinding(target.getGrid().getX(), target.getGrid().getY());
+
+            if (suggestion != null) {
+                tryMoveGridDirection(suggestion);
+            }
+        }
+
     }
 
     @Override

@@ -18,17 +18,17 @@ import java.util.List;
  */
 public class Map extends KRoom {
 
-    int lastDragX = 0;
-    int lastDragY = 0;
-    boolean hasDragged = false;
+    private int lastDragX = 0;
+    private int lastDragY = 0;
+    private boolean hasDragged = false;
 
-    Logger logger = LoggerFactory.getLogger(Map.class);
+    private Logger logger = LoggerFactory.getLogger(Map.class);
 
-    TrollCastleGame game;
+    private TrollCastleGame game;
 
-    Troll lastClickedTroll = null;
+    private Troll lastClickedTroll = null;
 
-    TrollCommand currentCommand = TrollCommand.none;
+    private TrollCommand currentCommand = TrollCommand.none;
 
     @Override
     public void start() {
@@ -65,6 +65,7 @@ public class Map extends KRoom {
                 game.ui.bottomBar.writeLine("[RED]Click on a troll first.");
             } else {
                 lastClickedTroll.say("ogg mog?");
+                currentCommand = TrollCommand.go;
             }
         }
         return false;
@@ -86,6 +87,7 @@ public class Map extends KRoom {
                 lastClickedTroll = (Troll)e;
             }
             if (currentCommand == TrollCommand.go) {
+                logger.info("Processing GO command");
                 lastClickedTroll.setTargetEntity(e);
                 lastClickedTroll.say("ogg " + e.getClass().getSimpleName()+" mog.");
                 currentCommand = TrollCommand.none;
