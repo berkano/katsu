@@ -7,5 +7,5 @@ import katsu.KTiledMapEntity;
  * Created by shaun on 21/04/2017.
  */
 @KTiledMapEntity
-public class Water extends KEntity {
+public class Water extends TrollCastleEntityBase {
 }

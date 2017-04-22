@@ -10,11 +10,19 @@ import java.util.ArrayList;
  */
 public class TrollCastleGame extends KGame {
 
+    private static TrollCastleGame _instance;
+
     TrollCastleUI ui;
 
     ArrayList<KRoom> rooms;
 
     Music troll1;
+
+    public TrollCastleGame() {
+        super();
+        _instance = this;
+    }
+
 
     @Override
     public void render() {
@@ -36,9 +44,12 @@ public class TrollCastleGame extends KGame {
 
     private void loadAndStartMusic() {
 
-        troll1 = K.resource.loadMusic("troll1.mp3");
-        troll1.setLooping(true);
-        troll1.play();
+            troll1 = K.resource.loadMusic("troll1.mp3");
+            troll1.setLooping(true);
+
+            if (DevHelper.playMusicOnStart) {
+                troll1.play();
+            }
 
     }
 
@@ -85,5 +96,12 @@ public class TrollCastleGame extends KGame {
     @Override
     public void dispose() {
 
+    }
+
+    public static TrollCastleGame instance() {
+        if (_instance == null) {
+            throw new RuntimeException("Game instance accessed before creation");
+        }
+        return _instance;
     }
 }
