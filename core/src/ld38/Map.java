@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.Align;
 import katsu.K;
 import katsu.KEntity;
 import katsu.KRoom;
+import ld38.entities.Mushroom;
 import ld38.entities.Troll;
 import mini73.Console; // TODO-POST: move to katsu
 import org.slf4j.Logger;
@@ -102,6 +103,11 @@ public class Map extends KRoom {
 
                 if (highest != null) {
                     lastClickedTroll.say("yerg " + highest.toString() + "pug.");
+                }
+
+                if (highest instanceof Mushroom) {
+                    lastClickedTroll.setPsychedelic(true);
+                    highest.destroy();
                 }
 
             }

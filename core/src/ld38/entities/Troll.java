@@ -53,7 +53,8 @@ public class Troll extends TrollCastleEntityBase {
             }
         }
 
-        if (!lastMovedMoreThan(750)) return;
+        int moveInterval = psychedelic ? 250 : 750;
+        if (!lastMovedMoreThan(moveInterval)) return;
 
         if (getTargetEntity() != null) {
 
@@ -82,5 +83,9 @@ public class Troll extends TrollCastleEntityBase {
         utterance = utterance.replace("Fish","blub");
         game.talk1.play();
         game.ui.bottomBar.writeLine("[ORANGE]"+ name + ": [GREEN]" + utterance+"[WHITE]");
+    }
+
+    public void setPsychedelic(boolean psychedelic) {
+        this.psychedelic = psychedelic;
     }
 }
