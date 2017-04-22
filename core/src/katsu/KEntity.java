@@ -41,7 +41,7 @@ public class KEntity extends KInputProcessor {
     @Getter @Setter private long lastUpdate = System.currentTimeMillis();
     @Getter @Setter private boolean doneFirstUpdate = false;
 
-    // UI
+    // TrollCastleUI
     @Getter @Setter private boolean selected = false;
 
     // AI

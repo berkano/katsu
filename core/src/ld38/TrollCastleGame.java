@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class TrollCastleGame extends KGame {
 
-    UI ui;
+    TrollCastleUI ui;
 
     ArrayList<KRoom> rooms;
 
@@ -24,9 +24,10 @@ public class TrollCastleGame extends KGame {
     @Override
     public void start() {
         super.start();
-        ui = new UI();
+        ui = new TrollCastleUI();
         ui.start();
-        ui.topBar.writeLine("Troll Castle");
+        ui.topBar.writeLine("7 trolls :: 0 XP :: 0 Gold");
+        ui.bottomBar.writeLine("Welcome to Troll Castle! Press any key to play");
     }
 
     @Override
