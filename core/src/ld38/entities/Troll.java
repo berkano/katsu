@@ -1,12 +1,10 @@
 package ld38.entities;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.math.Vector3;
 import katsu.K;
 import katsu.KDirection;
 import katsu.KEntity;
 import katsu.KTiledMapEntity;
-import ld38.TrollNamer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,6 +29,15 @@ public class Troll extends TrollCastleEntityBase {
         name = namer.nextName();
         logger.info("A new Troll called " + name + " appeared!");
         setSolid(true);
+        getAppearance().setSpriteScale(K.random.nextFloat() * 1.5f + 0.5f);
+        juiceRotation();
+        getAppearance().setRotateSpriteOnMove(false);
+
+
+    }
+
+    private void juiceRotation() {
+        getAppearance().setSpriteRotation(K.random.nextInt(15) - 7);
     }
 
     @Override
@@ -80,6 +87,7 @@ public class Troll extends TrollCastleEntityBase {
                 boolean result = tryMoveGridDirection(suggestion);
                 if (result == true) {
                     game.walk.play();
+                    juiceRotation();
                 }
             }
         }
