@@ -24,6 +24,7 @@ public class Troll extends TrollCastleEntityBase {
 
     boolean psychedelic = false;
     long lastPsychMillls = System.currentTimeMillis();
+    long startPyschMillis = 0;
 
     public Troll() {
         super();
@@ -41,6 +42,13 @@ public class Troll extends TrollCastleEntityBase {
     public void update() {
 
         super.update();
+
+        if (psychedelic) {
+            if (startPyschMillis < System.currentTimeMillis() - 10000) {
+                setPsychedelic(false);
+                getAppearance().setSpriteColour(Color.WHITE);
+            }
+        }
 
         if (psychedelic) {
             if (lastPsychMillls < System.currentTimeMillis() - 50) {
@@ -107,6 +115,9 @@ public class Troll extends TrollCastleEntityBase {
 
     public void setPsychedelic(boolean psychedelic) {
         this.psychedelic = psychedelic;
+        if (psychedelic == true) {
+            startPyschMillis = System.currentTimeMillis();
+        }
     }
 
     public void mine() {
