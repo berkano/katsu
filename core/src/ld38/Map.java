@@ -6,9 +6,12 @@ import com.badlogic.gdx.utils.Align;
 import katsu.K;
 import katsu.KEntity;
 import katsu.KRoom;
+import ld38.entities.Troll;
 import mini73.Console; // TODO-POST: move to katsu
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 /**
  * Created by shaun on 21/04/2017.
@@ -21,12 +24,19 @@ public class Map extends KRoom {
 
     Logger logger = LoggerFactory.getLogger(Map.class);
 
+    TrollCastleGame game;
+
+    Troll lastClickedTroll = null;
+
+    TrollCommand currentCommand = TrollCommand.none;
+
     @Override
     public void start() {
 
         super.start();
         loadFromTiledMap("test-map");
         setupCamera();
+        game = TrollCastleGame.instance();
     }
 
     private void setupCamera() {
@@ -49,21 +59,50 @@ public class Map extends KRoom {
     }
 
     @Override
+    public boolean keyTyped(char character) {
+        if (character == 'g') {
+            if (lastClickedTroll == null) {
+                game.ui.bottomBar.writeLine("[RED]Click on a troll first.");
+            } else {
+                lastClickedTroll.say("ogg mog?");
+            }
+        }
+        return false;
+    }
+
+    @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 
         logger.info("Detected touch up");
 
         if (hasDragged) return false;
 
+        List<KEntity> clickedEntities = entitiesAtScreenPoint(screenX, screenY);
+
+        for (KEntity e : clickedEntities) {
+            logger.info("calling onClick for an instance of " + e.getClass().getSimpleName());
+            e.onClick();
+            if (e instanceof Troll) {
+                lastClickedTroll = (Troll)e;
+            }
+            if (currentCommand == TrollCommand.go) {
+                lastClickedTroll.setTargetEntity(e);
+                lastClickedTroll.say("ogg " + e.getClass().getSimpleName()+" mog.");
+                currentCommand = TrollCommand.none;
+            }
+        }
+
+
+        return false;
+
+    }
+
+    private List<KEntity> entitiesAtScreenPoint(int screenX, int screenY) {
+
         Vector3 clickLocation = new Vector3(screenX, screenY, 0);
         Vector3 worldLocation = K.graphics.camera.unproject(clickLocation);
 
-        for (KEntity e : findEntitiesAtPoint(Math.round(worldLocation.x), Math.round(worldLocation.y))) {
-            logger.info("calling onClick for an instance of " + e.getClass().getSimpleName());
-            e.onClick();
-        }
-
-        return false;
+        return findEntitiesAtPoint(Math.round(worldLocation.x), Math.round(worldLocation.y));
 
     }
 
