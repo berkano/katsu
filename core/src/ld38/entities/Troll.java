@@ -23,6 +23,12 @@ public class Troll extends TrollCastleEntityBase {
         super();
         name = namer.nextName();
         logger.info("A new Troll called " + name + " appeared!");
+        setSolid(true);
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 
     @Override

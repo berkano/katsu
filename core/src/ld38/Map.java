@@ -11,6 +11,7 @@ import mini73.Console; // TODO-POST: move to katsu
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,6 +30,25 @@ public class Map extends KRoom {
     private Troll lastClickedTroll = null;
 
     private TrollCommand currentCommand = TrollCommand.none;
+
+    @Override
+    public void update() {
+        super.update();
+
+        // Ensure trolls always on top
+        List<KEntity> onTops = new ArrayList<>();
+        for (KEntity e: getEntities()) {
+            if (e instanceof Troll) {
+                onTops.add(e);
+            }
+        }
+
+        for (KEntity e: onTops) {
+            getEntities().remove(e);
+            getEntities().add(e);
+        }
+
+    }
 
     @Override
     public void start() {
@@ -78,18 +98,27 @@ public class Map extends KRoom {
 
         if (hasDragged) return false;
 
+
+        KEntity highestEntity = null;
+
         List<KEntity> clickedEntities = entitiesAtScreenPoint(screenX, screenY);
+
+        Troll trollBefore = lastClickedTroll;
 
         for (KEntity e : clickedEntities) {
             logger.info("calling onClick for an instance of " + e.getClass().getSimpleName());
             e.onClick();
+            highestEntity = e;
             if (e instanceof Troll) {
                 lastClickedTroll = (Troll)e;
             }
+        }
+
+        if (highestEntity != null) {
             if (currentCommand == TrollCommand.go) {
                 logger.info("Processing GO command");
-                lastClickedTroll.setTargetEntity(e);
-                lastClickedTroll.say("ogg " + e.getClass().getSimpleName()+" mog.");
+                trollBefore.setTargetEntity(highestEntity);
+                trollBefore.say("ogg " + highestEntity.toString()+" mog.");
                 currentCommand = TrollCommand.none;
             }
         }

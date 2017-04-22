@@ -18,6 +18,11 @@ public class TrollCastleEntityBase extends KEntity {
         namer = TrollNamer.instance();
     }
 
+    @Override
+    public String toString() {
+        return getClass().getSimpleName();
+    }
+
     public void describe(String desc) {
         game.ui.bottomBar.writeLine("[GRAY]" + desc);
         game.select1.play();
