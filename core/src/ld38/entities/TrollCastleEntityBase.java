@@ -20,6 +20,7 @@ public class TrollCastleEntityBase extends KEntity {
 
     public void describe(String desc) {
         game.ui.bottomBar.writeLine("[GRAY]" + desc);
+        game.select1.play();
     }
 
 

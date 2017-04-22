@@ -1,6 +1,7 @@
 package ld38;
 
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import katsu.*;
 
 import java.util.ArrayList;
@@ -16,7 +17,10 @@ public class TrollCastleGame extends KGame {
 
     public ArrayList<KRoom> rooms;
 
-    public Music troll1;
+    public Music music1;
+    public Sound talk1;
+    public Sound select1;
+
 
     public TrollCastleGame() {
         super();
@@ -39,17 +43,20 @@ public class TrollCastleGame extends KGame {
         ui.bottomBar.writeLine("Welcome to Troll Castle! [CYAN]WORK IN PROGRESS");
         ui.bottomBar.writeLine("[GRAY]You can click on things and drag the map. That's it");
 
-        loadAndStartMusic();
+        setupSounds();
 
     }
 
-    private void loadAndStartMusic() {
+    private void setupSounds() {
 
-            troll1 = K.resource.loadMusic("troll1.mp3");
-            troll1.setLooping(true);
+            talk1 = K.resource.loadSound("troll-talk-1.ogg");
+            music1 = K.resource.loadMusic("troll1.mp3");
+            select1 = K.resource.loadSound("beep-select.ogg");
+            music1.setLooping(true);
+            music1.setVolume(0.25f);
 
             if (DevHelper.playMusicOnStart) {
-                troll1.play();
+                music1.play();
             }
 
     }

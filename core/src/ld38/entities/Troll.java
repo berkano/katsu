@@ -28,6 +28,7 @@ public class Troll extends TrollCastleEntityBase {
     public void onClick() {
         super.onClick();
         say("ugg");
+        game.talk1.play();
     }
 
     private void say(String utterance) {

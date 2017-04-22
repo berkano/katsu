@@ -17,6 +17,7 @@ public class Map extends KRoom {
 
     int lastDragX = 0;
     int lastDragY = 0;
+    boolean hasDragged = false;
 
     Logger logger = LoggerFactory.getLogger(Map.class);
 
@@ -39,10 +40,20 @@ public class Map extends KRoom {
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 
+        hasDragged = false;
+
         lastDragX = screenX;
         lastDragY = screenY;
 
-        logger.info("Detected touch down");
+        return false;
+    }
+
+    @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+
+        logger.info("Detected touch up");
+
+        if (hasDragged) return false;
 
         Vector3 clickLocation = new Vector3(screenX, screenY, 0);
         Vector3 worldLocation = K.graphics.camera.unproject(clickLocation);
@@ -53,10 +64,13 @@ public class Map extends KRoom {
         }
 
         return false;
+
     }
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
+
+        hasDragged = true;
 
         int dx = screenX - lastDragX;
         int dy = screenY - lastDragY;
