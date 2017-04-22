@@ -11,9 +11,14 @@ public class Map extends KRoom {
     public void start() {
         super.start();
         loadFromTiledMap("test-map");
-        // tiles are 32px
-        // map is 16 x 16 tiles
-        // camera is in centre of display
-        K.graphics.camera.lookAt(32 * 8, 32 * 8, 0);
+
+        int centreX = 32 * 4;
+        int centreY = 32 * 4;
+
+        K.graphics.camera.zoom = 0.25f;
+
+        K.graphics.camera.position.x = centreX;
+        K.graphics.camera.position.y = centreY;
+
     }
 }
