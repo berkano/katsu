@@ -20,6 +20,7 @@ public class KAppearance {
     @Getter @Setter private boolean spriteFlip = false;
     @Getter @Setter private boolean rotateSpriteOnMove = true;
     @Getter @Setter private int zLayer = 0;
+    private Color spriteColour = Color.WHITE;
 
     public KAppearance(KEntity entity) {
         this.entity = entity;
@@ -35,6 +36,7 @@ public class KAppearance {
         if (isSpriteFlip()) {
             xScale = -xScale;
         }
+        K.graphics.spriteBatch.setColor(spriteColour);
         K.graphics.spriteBatch.draw(
                 textureRegion,
                 entity.getX(), entity.getY(), entity.getWidth() / 2, entity.getHeight() / 2,
@@ -70,5 +72,9 @@ public class KAppearance {
 
     public void applyTextureFor(Class clazz) {
         setTextureRegion(K.textureCache.get(clazz));
+    }
+
+    public void setSpriteColour(Color colour) {
+        this.spriteColour = colour;
     }
 }

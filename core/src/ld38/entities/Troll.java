@@ -1,5 +1,6 @@
 package ld38.entities;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector3;
 import katsu.K;
 import katsu.KDirection;
@@ -19,6 +20,9 @@ public class Troll extends TrollCastleEntityBase {
 
     Logger logger = LoggerFactory.getLogger(Troll.class);
 
+    boolean psychedelic = false;
+    long lastPsychMillls = System.currentTimeMillis();
+
     public Troll() {
         super();
         name = namer.nextName();
@@ -35,6 +39,19 @@ public class Troll extends TrollCastleEntityBase {
     public void update() {
 
         super.update();
+
+        if (psychedelic) {
+            if (lastPsychMillls < System.currentTimeMillis() - 50) {
+                lastPsychMillls = System.currentTimeMillis();
+                int nextC = K.random.nextInt(6);
+                if (nextC == 0) getAppearance().setSpriteColour(Color.PURPLE);
+                if (nextC == 1) getAppearance().setSpriteColour(Color.LIME);
+                if (nextC == 2) getAppearance().setSpriteColour(Color.CYAN);
+                if (nextC == 3) getAppearance().setSpriteColour(Color.GOLD);
+                if (nextC == 4) getAppearance().setSpriteColour(Color.PINK);
+                if (nextC == 5) getAppearance().setSpriteColour(Color.RED);
+            }
+        }
 
         if (!lastMovedMoreThan(750)) return;
 
