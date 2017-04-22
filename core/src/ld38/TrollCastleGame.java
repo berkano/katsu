@@ -23,6 +23,12 @@ public class TrollCastleGame extends KGame {
     public Sound select1;
 
     public List<String> waffle;
+    public int xp = 0;
+    public int trolls = 0;
+    public int gold = 0;
+    public int complete = 0;
+    public boolean hasEatenMushroom = false;
+    public boolean hasMined = false;
 
 
     public TrollCastleGame() {
@@ -42,9 +48,8 @@ public class TrollCastleGame extends KGame {
         super.start();
         ui = new TrollCastleUI();
         ui.start();
-        ui.topBar.writeLine("7 trolls :: 0 XP :: 0 Gold");
         ui.bottomBar.writeLine("Welcome to Troll Castle! [CYAN]WORK IN PROGRESS");
-        ui.bottomBar.writeLine("[GRAY]You can click on things and drag the map. That's it");
+//        ui.bottomBar.writeLine("[GRAY]You can click on things and drag the map. That's it");
 
         loadWaffle();
         setupSounds();
@@ -116,6 +121,29 @@ public class TrollCastleGame extends KGame {
     @Override
     public void dispose() {
 
+    }
+
+    @Override
+    public void update() {
+        super.update();
+        ui.topBar.clear();
+        calculateCompleted();
+        String welldone = "";
+        if (complete >= 100) {
+            welldone = " [GREEN]*** WELL DONE!!! ***";
+        }
+        ui.topBar.writeLine(trolls +" [GRAY]trolls :: [GREEN]" + xp + "[GRAY] XP :: [YELLOW]" + gold + "[GRAY] Gold :: [CYAN]" + complete + "[GRAY]% complete" + welldone);
+    }
+
+    private void calculateCompleted() {
+        int oldCompleted = complete;
+        complete = 0;
+        if (hasEatenMushroom) complete += 50;
+        if (hasMined) complete += 50;
+        if (complete > oldCompleted) {
+            int diff = complete - oldCompleted;
+            ui.bottomBar.writeLine("[GREEN]+[CYAN]"+diff+"[WHITE]% completed!");
+        }
     }
 
     public static TrollCastleGame instance() {

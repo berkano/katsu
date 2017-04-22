@@ -1,14 +1,12 @@
 package ld38;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.utils.Align;
 import katsu.K;
 import katsu.KEntity;
 import katsu.KRoom;
+import ld38.entities.Mine;
 import ld38.entities.Mushroom;
 import ld38.entities.Troll;
-import mini73.Console; // TODO-POST: move to katsu
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,11 +34,16 @@ public class Map extends KRoom {
     public void update() {
         super.update();
 
-        // Ensure trolls always on top
+        // Ensure trolls always on top and get their total XP
+        game.xp = 0;
+        game.trolls = 0;
         List<KEntity> onTops = new ArrayList<>();
         for (KEntity e: getEntities()) {
             if (e instanceof Troll) {
-                onTops.add(e);
+                Troll t = (Troll) e;
+                onTops.add(t);
+                game.xp += t.xp;
+                game.trolls++;
             }
         }
 
@@ -107,7 +110,13 @@ public class Map extends KRoom {
 
                 if (highest instanceof Mushroom) {
                     lastClickedTroll.setPsychedelic(true);
+                    game.hasEatenMushroom = true;
                     highest.destroy();
+                }
+
+                if (highest instanceof Mine) {
+                    lastClickedTroll.mine();
+                    game.hasMined = true;
                 }
 
             }
