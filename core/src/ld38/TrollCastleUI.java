@@ -18,6 +18,7 @@ public class TrollCastleUI {
         setupTopBar();
         setupBottomBar();
         setupHelp();
+        toggleHelp();
     }
 
     public void render() {
@@ -44,12 +45,13 @@ public class TrollCastleUI {
     private void setupHelp() {
         help.setShaded(true);
         help.setAutoResize(false);
+        help.setVisible(false);
         help.setBounds(64, 128 + 32, Gdx.graphics.getWidth() - 128, 13 * K.graphics.font.getLineHeight());
         help.setAlignment(Align.center);
 
-        help.writeLine("*** Welcome to Troll Castle! ***");
+        help.writeLine("[RED]~[ORANGE]~[YELLOW]~ [WHITE]Welcome to [CYAN]Troll Castle[WHITE]! [YELLOW]~[ORANGE]~[RED]~");
         help.writeLine("");
-        help.writeLine("[GREEN]HELP[WHITE]: Click a troll to get its attention.");
+        help.writeLine("[CYAN]INSTRUCTIONS[WHITE]. Click a troll to get its attention.");
         help.writeLine("Pressing [GREEN]G[WHITE] tells it to [GREEN]G[WHITE]o somewhere.");
         help.writeLine("[GREEN]Click[WHITE] where you want it to go.");
         help.writeLine("When a troll is standing on top of");
@@ -63,4 +65,18 @@ public class TrollCastleUI {
     }
 
 
+    public void toggleHelp() {
+
+        if (help.isVisible()) {
+            help.setVisible(false);
+            bottomBar.setVisible(true);
+            topBar.setVisible(true);
+        } else {
+            help.setVisible(true);
+            topBar.setVisible(false);
+            bottomBar.setVisible(false);
+        }
+
+
+    }
 }

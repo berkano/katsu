@@ -84,6 +84,11 @@ public class Map extends KRoom {
 
     @Override
     public boolean keyTyped(char character) {
+
+        if (character == 'h') {
+            game.ui.toggleHelp();
+        }
+
         if (character == 'g') {
             if (lastClickedTroll == null) {
                 game.ui.bottomBar.writeLine("[RED]Click on a troll first.");
