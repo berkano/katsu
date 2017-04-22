@@ -50,6 +50,10 @@ public class Troll extends TrollCastleEntityBase {
                 if (nextC == 3) getAppearance().setSpriteColour(Color.GOLD);
                 if (nextC == 4) getAppearance().setSpriteColour(Color.PINK);
                 if (nextC == 5) getAppearance().setSpriteColour(Color.RED);
+                if (K.random.nextInt(100) == 3){
+                    int w = K.random.nextInt(game.waffle.size());
+                    say(game.waffle.get(w));
+                }
             }
         }
 

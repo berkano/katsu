@@ -5,6 +5,7 @@ import com.badlogic.gdx.audio.Sound;
 import katsu.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by shaun on 21/04/2017.
@@ -20,6 +21,8 @@ public class TrollCastleGame extends KGame {
     public Music music1;
     public Sound talk1;
     public Sound select1;
+
+    public List<String> waffle;
 
 
     public TrollCastleGame() {
@@ -43,8 +46,17 @@ public class TrollCastleGame extends KGame {
         ui.bottomBar.writeLine("Welcome to Troll Castle! [CYAN]WORK IN PROGRESS");
         ui.bottomBar.writeLine("[GRAY]You can click on things and drag the map. That's it");
 
+        loadWaffle();
         setupSounds();
 
+    }
+
+    private void loadWaffle() {
+        waffle = new ArrayList<>();
+        String[] waffles = K.resource.loadText("random-troll-waffle.txt").split("\\r?\\n");
+        for (String w : waffles) {
+            waffle.add(w);
+        }
     }
 
     private void setupSounds() {
