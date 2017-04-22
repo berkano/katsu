@@ -14,6 +14,16 @@ public class TrollCastleGame extends KGame {
     ArrayList<KRoom> rooms;
 
     @Override
+    public void render() {
+        super.render();
+    }
+
+    @Override
+    public void start() {
+        super.start();
+    }
+
+    @Override
     public ArrayList<KRoom> getRooms() {
 
         if (rooms == null) {

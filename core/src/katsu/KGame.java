@@ -63,8 +63,8 @@ public abstract class KGame extends KInputProcessor implements ApplicationListen
         K.graphics.spriteBatch.setProjectionMatrix(K.graphics.camera.combined);
         K.graphics.shapeRenderer.setProjectionMatrix(K.graphics.camera.combined);
         // Clear screen
-        Gdx.gl.glClearColor(0f, 0f, 0f, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        //Gdx.gl.glClearColor(0f, 0f, 0f, 1);
+        //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         K.graphics.spriteBatch.begin();
 
         for (KRoom room : rooms) {
@@ -80,7 +80,7 @@ public abstract class KGame extends KInputProcessor implements ApplicationListen
 
 //        K.obsolete.ui.renderShadowBoxes();
 
-        K.graphics.uiShapeRenderer.end();
+        K.graphics.uiShapeRenderer.end(); // TODO-POST: Don't need shape stuff any more?
         Gdx.gl.glDisable(GL20.GL_BLEND);
         K.graphics.uiSpriteBatch.begin();
 //        K.obsolete.ui.renderText();
