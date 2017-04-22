@@ -36,7 +36,8 @@ public class TrollCastleGame extends KGame {
         ui = new TrollCastleUI();
         ui.start();
         ui.topBar.writeLine("7 trolls :: 0 XP :: 0 Gold");
-        ui.bottomBar.writeLine("Welcome to Troll Castle! [CYAN]No gameplay yet ;-)");
+        ui.bottomBar.writeLine("Welcome to Troll Castle! [CYAN]WORK IN PROGRESS");
+        ui.bottomBar.writeLine("[GRAY]You can click on things and drag the map. That's it");
 
         loadAndStartMusic();
 
