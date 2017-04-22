@@ -2,13 +2,12 @@ package katsu;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import ld38.LD38Game;
-import mini73.Mini73Game;
+import ld38.TrollCastleGame;
 
 public class KLauncher {
 
     public static void main(String[] args) throws Exception {
-        launch(LD38Game.class);
+        launch(TrollCastleGame.class);
     }
 
     public static void launch(Class<? extends KGame> runnerClass) throws Exception {

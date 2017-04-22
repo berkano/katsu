@@ -291,7 +291,7 @@ public class MainRoom extends KRoom {
             Object shipObj = findNearest(selectedEntity.getX(), selectedEntity.getY(), Ship.class, 80, null);
 
             if (playerObj == null && shipObj == null) {
-                return ("Player or ship must be within 5 blocks!");
+                return ("Troll or ship must be within 5 blocks!");
             }
 
             if (selectedEntity instanceof Resource) {
@@ -341,9 +341,9 @@ public class MainRoom extends KRoom {
 
         if (following instanceof Ship) {
             if (player.isOnTopOf(LandingPad.class)) {
-//                logger.info("Player is on top of a LandingPad");
+//                logger.info("Troll is on top of a LandingPad");
             } else {
-//                logger.info("Player is NOT on top of a LandingPad");
+//                logger.info("Troll is NOT on top of a LandingPad");
                 game.console.writeLine("May not move ship until player is at helm.");
                 return;
             }

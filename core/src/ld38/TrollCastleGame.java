@@ -5,12 +5,11 @@ import katsu.KRoom;
 import katsu.KSettings;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by shaun on 21/04/2017.
  */
-public class LD38Game extends KGame {
+public class TrollCastleGame extends KGame {
 
     ArrayList<KRoom> rooms;
 
@@ -19,7 +18,7 @@ public class LD38Game extends KGame {
 
         if (rooms == null) {
             rooms = new ArrayList<>();
-            rooms.add(new LD38BaseRoom());
+            rooms.add(new Map());
         }
         return rooms;
     }
@@ -36,7 +35,7 @@ public class LD38Game extends KGame {
 
     @Override
     public KSettings buildSettings() {
-        return new LD38Settings();
+        return new TrollCastleSettings();
     }
 
     @Override
