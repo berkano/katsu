@@ -48,9 +48,6 @@ public class TrollCastleGame extends KGame {
         super.start();
         ui = new TrollCastleUI();
         ui.start();
-        ui.bottomBar.writeLine("Welcome to Troll Castle! [CYAN]WORK IN PROGRESS");
-//        ui.bottomBar.writeLine("[GRAY]You can click on things and drag the map. That's it");
-
         loadWaffle();
         setupSounds();
 
