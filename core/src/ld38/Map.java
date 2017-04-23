@@ -154,6 +154,7 @@ public class Map extends KRoom {
             wall.setX(selectedTroll.getX());
             wall.setY(selectedTroll.getY());
             addNewEntity(wall);
+            selectedTroll.say("Wall bilded!");
             game.build.play();
             return;
         }
@@ -196,6 +197,7 @@ public class Map extends KRoom {
             tower.setY(selectedTroll.getY());
             addNewEntity(tower);
             game.build.play();
+            selectedTroll.say("Tower bilded!");
             return;
         }
 
@@ -211,6 +213,7 @@ public class Map extends KRoom {
             tower.setY(selectedTroll.getY());
             addNewEntity(tower);
             game.build.play();
+            selectedTroll.say("GoldTower bilded!");
             return;
         }
 
@@ -272,7 +275,6 @@ public class Map extends KRoom {
         KEntity clickedEntity = null;
 
         List<KEntity> entitiesUnderClick = entitiesAtScreenPoint(screenX, screenY);
-
 
         Troll clickedTroll;
 
