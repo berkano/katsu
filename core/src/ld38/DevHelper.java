@@ -12,4 +12,5 @@ public class DevHelper {
     public static boolean cheatResources = !K.settings.isProduction();
     public static boolean skipWallRule = false; // !K.settings.isProduction();
     public static boolean allTrollsPsychedOnStart = !K.settings.isProduction();
+    public static boolean xKillsTroll = !K.settings.isProduction();
 }

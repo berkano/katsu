@@ -203,6 +203,10 @@ public class TrollCastleGame extends KGame {
 
     private String completionStatus() {
 
+        if (trolls == 0) {
+            return ("[RED]Game Over - All Trolls Died :-(");
+        }
+
         String result = "[GRAY]Castle: [MAGENTA]";
         if (wallsBuilt < 16) {
             result += wallsBuilt+"[GRAY]/16 walls built";

@@ -120,6 +120,11 @@ public class Map extends KRoom {
         if (character == ' ') {
             handleSpaceCommand();
         }
+        if (character == 'x') {
+            if (selectedTroll != null) {
+                selectedTroll.destroy();
+            }
+        }
         return false;
     }
 
