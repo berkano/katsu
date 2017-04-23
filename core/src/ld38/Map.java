@@ -24,18 +24,16 @@ public class Map extends KRoom {
 
     private TrollCastleGame game;
 
-    private Troll lastClickedTroll = null;
-
-    private TrollCommand currentCommand = TrollCommand.none;
+    private Troll selectedTroll = null;
 
     @Override
     public void update() {
         super.update();
 
         // Handle trolls dying
-        if (lastClickedTroll != null) {
-            if (lastClickedTroll.isDestroyed()) {
-                lastClickedTroll = null;
+        if (selectedTroll != null) {
+            if (selectedTroll.isDestroyed()) {
+                selectedTroll = null;
             }
         }
 
@@ -101,27 +99,21 @@ public class Map extends KRoom {
         if (character == 'h') {
             game.ui.toggleHelp();
         }
-        if (character == 'g') {
-            handleGoCommand();
-        }
         if (character == ' ') {
             handleSpaceCommand();
-        }
-        if (character == 'b') {
-            handleBuildCommand();
         }
         return false;
     }
 
     private void handleBuildCommand() {
         // do we have a selected troll?
-        if (lastClickedTroll == null) {
+        if (selectedTroll == null) {
             game.ui.bottomBar.writeLine("[RED]Click on a troll first.");
             return;
         }
 
         // work out what we're on top of, first.
-        List<KEntity> under = findEntitiesAtPoint(lastClickedTroll.getX() + 2, lastClickedTroll.getY() + 2);
+        List<KEntity> under = findEntitiesAtPoint(selectedTroll.getX() + 2, selectedTroll.getY() + 2);
 
 
         boolean foundSand = false;
@@ -138,19 +130,19 @@ public class Map extends KRoom {
 
         if (!foundSand) {
             // we are not in a suitable place for building
-            lastClickedTroll.say("ogg Sand digg mog.");
+            selectedTroll.say("ogg Sand digg mog.");
             return;
         }
 
         if (!foundWall) {
             if (game.stone < 10) {
-                lastClickedTroll.say("nog 10 Stone gott.");
+                selectedTroll.say("nog 10 Stone gott.");
                 return;
             }
             game.stone -= 10;
             Wall wall = new Wall();
-            wall.setX(lastClickedTroll.getX());
-            wall.setY(lastClickedTroll.getY());
+            wall.setX(selectedTroll.getX());
+            wall.setY(selectedTroll.getY());
             addNewEntity(wall);
             game.build.play();
             return;
@@ -158,13 +150,13 @@ public class Map extends KRoom {
 
         if (!foundTower) {
             if (game.stone < 20) {
-                lastClickedTroll.say("nog 20 Stone gott.");
+                selectedTroll.say("nog 20 Stone gott.");
                 return;
             }
             game.stone -= 20;
             Tower tower = new Tower();
-            tower.setX(lastClickedTroll.getX());
-            tower.setY(lastClickedTroll.getY());
+            tower.setX(selectedTroll.getX());
+            tower.setY(selectedTroll.getY());
             addNewEntity(tower);
             game.build.play();
             return;
@@ -172,65 +164,56 @@ public class Map extends KRoom {
 
         if (!foundGoldTower) {
             if (game.gold < 10) {
-                lastClickedTroll.say("nog 10 Gold gott.");
+                selectedTroll.say("nog 10 Gold gott.");
                 return;
             }
             game.gold -= 10;
 
             GoldTower tower = new GoldTower();
-            tower.setX(lastClickedTroll.getX());
-            tower.setY(lastClickedTroll.getY());
+            tower.setX(selectedTroll.getX());
+            tower.setY(selectedTroll.getY());
             addNewEntity(tower);
             game.build.play();
             return;
         }
 
-        lastClickedTroll.say("ogg GoldTower ag!");
+        selectedTroll.say("ogg GoldTower ag!");
 
     }
 
     private void handleSpaceCommand() {
 
-        if (lastClickedTroll == null) {
+        if (selectedTroll == null) {
 
             game.ui.bottomBar.writeLine("[RED]Click on a troll first.");
 
         } else {
 
-            List<KEntity> under = findEntitiesAtPoint(lastClickedTroll.getX(), lastClickedTroll.getY());
+            List<KEntity> under = findEntitiesAtPoint(selectedTroll.getX(), selectedTroll.getY());
             KEntity highest = null;
             for (KEntity u : under) {
-                if (u != lastClickedTroll) {
+                if (u != selectedTroll) {
                     highest = u;
                 }
             }
 
             if (highest != null) {
-                lastClickedTroll.say("yerg " + highest.toString() + "pug.");
+                selectedTroll.say("yerg " + highest.toString() + "pug.");
             }
 
             if (highest instanceof Mushroom) {
-                lastClickedTroll.setPsychedelic(true);
+                selectedTroll.setPsychedelic(true);
                 game.hasEatenMushroom = true;
                 highest.destroy();
                 game.psych.play();
             }
 
             if (highest instanceof Mine) {
-                lastClickedTroll.mine();
+                selectedTroll.mine();
             }
 
         }
 
-    }
-
-    private void handleGoCommand() {
-        if (lastClickedTroll == null) {
-            game.ui.bottomBar.writeLine("[RED]Click on a troll first.");
-        } else {
-            lastClickedTroll.say("ogg mog?");
-            currentCommand = TrollCommand.go;
-        }
     }
 
     @Override
@@ -240,37 +223,48 @@ public class Map extends KRoom {
 
         if (hasDragged) return false;
 
+        KEntity clickedEntity = null;
 
-        KEntity highestEntity = null;
+        List<KEntity> entitiesUnderClick = entitiesAtScreenPoint(screenX, screenY);
 
-        List<KEntity> clickedEntities = entitiesAtScreenPoint(screenX, screenY);
 
-        Troll trollBefore = lastClickedTroll;
+        Troll clickedTroll;
 
-        for (KEntity e : clickedEntities) {
+        // Iterate thru entities, topmost last
+        for (KEntity e : entitiesUnderClick) {
             logger.info("calling onClick for an instance of " + e.getClass().getSimpleName());
-//            e.onClick();
-            highestEntity = e;
-            if (e instanceof Troll) {
-                lastClickedTroll = (Troll)e;
-            }
+            clickedEntity = e;
         }
 
-
-        if (highestEntity != null) {
-            if (currentCommand == TrollCommand.go) {
-                logger.info("Processing GO command");
-                trollBefore.setTargetEntity(highestEntity);
-                trollBefore.say("ogg " + highestEntity.toString()+" mog.");
-                currentCommand = TrollCommand.none;
+        // Troll select / deselect
+        if (clickedEntity instanceof Troll) {
+            clickedTroll = (Troll)clickedEntity;
+            logger.info("Clicked Troll " + clickedTroll.toString());
+            if (clickedTroll != selectedTroll) {
+                logger.info("Selecting Troll " + clickedTroll.toString());
+                clickedTroll.onClick();
+                selectedTroll = clickedTroll;
             } else {
-                highestEntity.onClick();
+                // it's already selected, so deselect it
+                logger.info("Deselecting Troll " + clickedTroll.toString());
+                selectedTroll = null;
             }
         }
 
-
+        if (selectedTroll != null) {
+            if (clickedEntity != null) {
+                if (clickedEntity != selectedTroll) {
+                    selectedTroll.setTargetEntity(clickedEntity);
+                    selectedTroll.say("ogg " + clickedEntity.toString() + " mog.");
+                }
+            }
+        } else {
+            if (clickedEntity != null) {
+                logger.info("Calling onClick for entity " + clickedEntity.toString());
+                clickedEntity.onClick();
+            }
+        }
         return false;
-
     }
 
     private List<KEntity> entitiesAtScreenPoint(int screenX, int screenY) {
