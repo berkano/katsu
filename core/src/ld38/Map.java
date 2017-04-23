@@ -94,45 +94,117 @@ public class Map extends KRoom {
         if (character == 'h') {
             game.ui.toggleHelp();
         }
-
         if (character == 'g') {
-            if (lastClickedTroll == null) {
-                game.ui.bottomBar.writeLine("[RED]Click on a troll first.");
-            } else {
-                lastClickedTroll.say("ogg mog?");
-                currentCommand = TrollCommand.go;
-            }
+            handleGoCommand();
         }
         if (character == ' ') {
-            if (lastClickedTroll == null) {
-                game.ui.bottomBar.writeLine("[RED]Click on a troll first.");
-            } else {
-                List<KEntity> under = findEntitiesAtPoint(lastClickedTroll.getX(), lastClickedTroll.getY());
-                KEntity highest = null;
-                for (KEntity u : under) {
-                    if (u != lastClickedTroll) {
-                        highest = u;
-                    }
-                }
-
-                if (highest != null) {
-                    lastClickedTroll.say("yerg " + highest.toString() + "pug.");
-                }
-
-                if (highest instanceof Mushroom) {
-                    lastClickedTroll.setPsychedelic(true);
-                    game.hasEatenMushroom = true;
-                    highest.destroy();
-                    game.psych.play();
-                }
-
-                if (highest instanceof Mine) {
-                    lastClickedTroll.mine();
-                }
-
-            }
+            handleSpaceCommand();
+        }
+        if (character == 'b') {
+            handleBuildCommand();
         }
         return false;
+    }
+
+    private void handleBuildCommand() {
+        // do we have a selected troll?
+        if (lastClickedTroll == null) {
+            game.ui.bottomBar.writeLine("[RED]Click on a troll first.");
+            return;
+        }
+
+        // work out what we're on top of, first.
+        List<KEntity> under = findEntitiesAtPoint(lastClickedTroll.getX() + 2, lastClickedTroll.getY() + 2);
+
+
+        boolean foundSand = false;
+        boolean foundWall = false;
+        boolean foundTower = false;
+        boolean foundGoldTower = false;
+
+        for (KEntity e : under) {
+            if (e instanceof Sand) foundSand = true;
+            if (e instanceof Wall) foundWall = true;
+            if (e instanceof Tower) foundTower = true;
+            if (e instanceof GoldTower) foundGoldTower = true;
+        }
+
+        if (!foundSand) {
+            // we are not in a suitable place for building
+            lastClickedTroll.say("ogg Sand digg mog.");
+            return;
+        }
+
+        if (!foundWall) {
+            Wall wall = new Wall();
+            wall.setX(lastClickedTroll.getX());
+            wall.setY(lastClickedTroll.getY());
+            addNewEntity(wall);
+            return;
+        }
+
+        if (!foundTower) {
+            Tower tower = new Tower();
+            tower.setX(lastClickedTroll.getX());
+            tower.setY(lastClickedTroll.getY());
+            addNewEntity(tower);
+            return;
+        }
+
+        if (!foundGoldTower) {
+            GoldTower tower = new GoldTower();
+            tower.setX(lastClickedTroll.getX());
+            tower.setY(lastClickedTroll.getY());
+            addNewEntity(tower);
+            return;
+        }
+
+        lastClickedTroll.say("ogg GoldTower ag!");
+
+    }
+
+    private void handleSpaceCommand() {
+
+        if (lastClickedTroll == null) {
+
+            game.ui.bottomBar.writeLine("[RED]Click on a troll first.");
+
+        } else {
+
+            List<KEntity> under = findEntitiesAtPoint(lastClickedTroll.getX(), lastClickedTroll.getY());
+            KEntity highest = null;
+            for (KEntity u : under) {
+                if (u != lastClickedTroll) {
+                    highest = u;
+                }
+            }
+
+            if (highest != null) {
+                lastClickedTroll.say("yerg " + highest.toString() + "pug.");
+            }
+
+            if (highest instanceof Mushroom) {
+                lastClickedTroll.setPsychedelic(true);
+                game.hasEatenMushroom = true;
+                highest.destroy();
+                game.psych.play();
+            }
+
+            if (highest instanceof Mine) {
+                lastClickedTroll.mine();
+            }
+
+        }
+
+    }
+
+    private void handleGoCommand() {
+        if (lastClickedTroll == null) {
+            game.ui.bottomBar.writeLine("[RED]Click on a troll first.");
+        } else {
+            lastClickedTroll.say("ogg mog?");
+            currentCommand = TrollCommand.go;
+        }
     }
 
     @Override

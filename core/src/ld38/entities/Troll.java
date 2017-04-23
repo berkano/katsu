@@ -106,6 +106,11 @@ public class Troll extends TrollCastleEntityBase {
         utterance = utterance.replace("Water","tssh");
         utterance = utterance.replace("Grass","grob");
         utterance = utterance.replace("Fish","blub");
+        utterance = utterance.replace("Sand","grund");
+        utterance = utterance.replace("Wall","wol");
+        utterance = utterance.replace("Tower","toor");
+        utterance = utterance.replace("Stone","rok");
+        utterance = utterance.replace("Gold","guld");
         int talkSound = K.random.nextInt(4);
 
         if (talkSound == 0) game.talk1.play();
