@@ -28,6 +28,8 @@ public class Map extends KRoom {
 
     private Troll selectedTroll = null;
 
+    public boolean hadFish = false;
+
     @Override
     public void update() {
         super.update();
@@ -310,7 +312,7 @@ public class Map extends KRoom {
                 if (clickedEntity != selectedTroll) {
                     selectedTroll.setTargetEntity(clickedEntity);
                     if ((clickedEntity instanceof Fish || clickedEntity instanceof Water) && !selectedTroll.hasHadPsychedelics) {
-                            selectedTroll.say("[GREEN]Luvluv Fish! [RED]Hatt Water! [CYAN]Looky [RED]M[WHITE]o[RED]o[WHITE]s[RED]h[WHITE]!!");
+                            selectedTroll.say("[GREEN]Luvluv Fish! [RED]Eek, Water! [CYAN]Nomnom [RED]M[WHITE]o[RED]o[WHITE]s[RED]h[WHITE]!!");
                     } else {
                         selectedTroll.say("ogg " + clickedEntity.toString() + " mog.");
                     }
@@ -351,5 +353,21 @@ public class Map extends KRoom {
         lastDragY = screenY;
 
         return false;
+    }
+
+    public void makeWaterPassable() {
+        for (KEntity e : getEntities()) {
+            if (e instanceof Water) {
+                e.setSolid(false);
+            }
+        }
+    }
+
+    public void makeWaterSolid() {
+        for (KEntity e : getEntities()) {
+            if (e instanceof Water) {
+                e.setSolid(true);
+            }
+        }
     }
 }

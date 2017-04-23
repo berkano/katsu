@@ -5,6 +5,7 @@ import katsu.K;
 import katsu.KDirection;
 import katsu.KEntity;
 import katsu.KTiledMapEntity;
+import ld38.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,6 +25,7 @@ public class Troll extends TrollCastleEntityBase {
     long lastPsychMillls = System.currentTimeMillis();
     long startPyschMillis = 0;
     public boolean hasHadPsychedelics = false;
+    Map map;
 
     public Troll() {
         super();
@@ -33,8 +35,6 @@ public class Troll extends TrollCastleEntityBase {
         getAppearance().setSpriteScale(K.random.nextFloat() * 1.5f + 0.5f);
         juiceRotation();
         getAppearance().setRotateSpriteOnMove(false);
-
-
     }
 
     private void juiceRotation() {
@@ -50,6 +50,8 @@ public class Troll extends TrollCastleEntityBase {
     public void update() {
 
         super.update();
+
+        map = (Map)getRoom();
 
         if (psychedelic) {
             if (startPyschMillis < System.currentTimeMillis() - 10000) {
@@ -81,6 +83,9 @@ public class Troll extends TrollCastleEntityBase {
         if (getTargetEntity() != null) {
 
             KEntity target = getTargetEntity();
+            if (hasHadPsychedelics) {
+                map.makeWaterPassable();
+            }
             KDirection suggestion = getGrid().doPathFinding(target.getGrid().getX(), target.getGrid().getY());
 
             if (suggestion != null) {
@@ -90,6 +95,9 @@ public class Troll extends TrollCastleEntityBase {
                     juiceRotation();
                 }
             }
+
+            map.makeWaterSolid();
+
         }
 
     }

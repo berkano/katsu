@@ -75,7 +75,7 @@
  </layer>
  <layer name="objects" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgoAyw0FiPMhnm49LjSIZZuAA5/sYFcLkLXZyRSvZRyxx0gB7uxNqDKyzJcSeuuGdEo2kBqJUmiDGHWnYBAIr3o1gABAAA
+   H4sIAAAAAAAAC2NgoAyw0FiPMhnm49LjSIZZuAApflAkII/LXejijCTYiQ9Qyxx0gB7uxNqDKyzJcSeuuGdEo2kByMkL5JpDLbsAsz0NywAEAAA=
   </data>
  </layer>
  <layer name="no-populate" width="16" height="16">
