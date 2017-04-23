@@ -4,9 +4,7 @@ import com.badlogic.gdx.math.Vector3;
 import katsu.K;
 import katsu.KEntity;
 import katsu.KRoom;
-import ld38.entities.Mine;
-import ld38.entities.Mushroom;
-import ld38.entities.Troll;
+import ld38.entities.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,20 +32,30 @@ public class Map extends KRoom {
     public void update() {
         super.update();
 
-        // Ensure trolls always on top and get their total XP
         game.xp = 0;
         game.trolls = 0;
-        List<KEntity> onTops = new ArrayList<>();
+        List<KEntity> trolls = new ArrayList<>();
+        List<KEntity> towers = new ArrayList<>();
         for (KEntity e: getEntities()) {
             if (e instanceof Troll) {
                 Troll t = (Troll) e;
-                onTops.add(t);
+                trolls.add(t);
                 game.xp += t.xp;
                 game.trolls++;
             }
+            if (e instanceof BaseTower) {
+                towers.add(e);
+            }
         }
 
-        for (KEntity e: onTops) {
+        // z order - towers
+        for (KEntity e: towers) {
+            getEntities().remove(e);
+            getEntities().add(e);
+        }
+
+        // z order - trolls
+        for (KEntity e: trolls) {
             getEntities().remove(e);
             getEntities().add(e);
         }
