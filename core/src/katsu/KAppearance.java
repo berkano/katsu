@@ -38,6 +38,7 @@ public class KAppearance {
         if (isSpriteFlip()) {
             xScale = -xScale;
         }
+
         K.graphics.spriteBatch.setColor(spriteColour);
         K.graphics.spriteBatch.draw(
                 textureRegion,

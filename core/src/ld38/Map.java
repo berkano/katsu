@@ -1,6 +1,8 @@
 package ld38;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.Select;
 import katsu.K;
 import katsu.KEntity;
 import katsu.KRoom;
@@ -241,12 +243,18 @@ public class Map extends KRoom {
             clickedTroll = (Troll)clickedEntity;
             logger.info("Clicked Troll " + clickedTroll.toString());
             if (clickedTroll != selectedTroll) {
+                // deselect existing if we have it
+                if (selectedTroll != null) {
+                    selectedTroll.getAppearance().setTextureFrom(Troll.class);
+                }
                 logger.info("Selecting Troll " + clickedTroll.toString());
                 clickedTroll.onClick();
                 selectedTroll = clickedTroll;
+                selectedTroll.getAppearance().setTextureFrom(SelectedTroll.class);
             } else {
                 // it's already selected, so deselect it
                 logger.info("Deselecting Troll " + clickedTroll.toString());
+                clickedTroll.getAppearance().setTextureFrom(Troll.class);
                 selectedTroll = null;
             }
         }
