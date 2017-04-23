@@ -65,12 +65,12 @@
  </tileset>
  <layer name="terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NiYGBgGkSYGYpx8YnVz4yFT4xZ5OrHpgabXmz6scnh0kus/YQwMf6HYRUsmJA/BkI/pe7HZRa5+vG5aaDzGQwDAGqZXQMABAAA
+   H4sIAAAAAAAAC2NiYGBgGkSYGYpx8YnVz4yFT4xZ5OrHpYYY/bjksOkl1n5CmBj/w7AKFkzIHwOhn1L34zKLXP2kpIGBwgCg7bq1AAQAAA==
   </data>
  </layer>
  <layer name="objects" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgoAyw0EkPKUAZh7gjFe2gph+wuQubGCMV7cQFcIUdOYBY99I6PSADWoYhtfxBjDnUsgsAwk0pOwAEAAA=
+   H4sIAAAAAAAAC2NgoAyw0EkPKUAZh7gjFe2gph9wuQtdnJGKdtIDEOteaoYlrriHAVqGIbX8QYw51LILAG0BGqUABAAA
   </data>
  </layer>
 </map>

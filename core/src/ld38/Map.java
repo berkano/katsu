@@ -64,7 +64,7 @@ public class Map extends KRoom {
     public void start() {
 
         super.start();
-        loadFromTiledMap("test-map");
+        loadFromTiledMap("map");
         setupCamera();
         game = TrollCastleGame.instance();
     }
