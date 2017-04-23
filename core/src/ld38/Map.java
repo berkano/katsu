@@ -305,7 +305,20 @@ public class Map extends KRoom {
                 selectedTroll.say("Blubby blubby!");
                 selectedTroll.timesMined = 0;
                 game.fish.play();
-                //highest.destroy();
+                highest.destroy();
+                final int x = highest.getX();
+                final int y = highest.getY();
+                game.task(new Callable<Boolean>() {
+                    @Override
+                    public Boolean call() throws Exception {
+                        Thread.sleep(30000);
+                        Fish fish = new Fish();
+                        fish.setX(x);
+                        fish.setY(y);
+                        addNewEntity(fish);
+                        return true;
+                    }
+                });
             }
 
             if (highest instanceof Sand ||
