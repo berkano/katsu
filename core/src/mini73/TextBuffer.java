@@ -68,7 +68,7 @@ public class TextBuffer {
         updated = true;
     }
 
-    public float getSize() {
+    public int getSize() {
         return lines.size();
     }
 

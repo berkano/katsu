@@ -165,4 +165,8 @@ public class Console extends KInputProcessor {
     public void setLineLimit(int limit) {
         textBuffer.setLineLimit(limit);
     }
+
+    public int size() {
+        return textBuffer.getSize();
+    }
 }

@@ -1,0 +1,33 @@
+[RED]~[ORANGE]~[YELLOW]~ [WHITE]Welcome to [CYAN]Troll Castle[WHITE]! [YELLOW]~[ORANGE]~[RED]~[WHITE] [ORANGE]a ludum dare #38 compo entry by berkano
+
+[GREEN]~Movement and Selection~[WHITE]
+  * Click a Troll to select it.
+  * Tell a Troll to go somewhere by clicking a point on the map.
+  * Click a Troll a second time to de-select it (when no Troll is
+    selected you can inspect any object on the map by clicking it).
+
+[GREEN]~Actions~[WHITE]
+  * Pressing Space carries out an action such as Mine, Eat Mushroom,
+    Eat Fish, etc. depending on where the Troll is standing.
+  * Mining allows a Troll to gather Stone and Gold (see details
+    below), but also risks an encounter with a Monster!
+  * If a Troll gets tired of Mining it may demand some Fish.
+  * Trolls are afraid of Water, so in order for them to swim to a
+    fishing ground, they need to eat a Psychedelic Mushroom for
+    courage.
+  * Mushrooms can be planted on Mud patches. Once a mushroom is
+    fully grown it can be eaten by a Troll.
+
+[GREEN]~Mining, Resources & Building~[WHITE]
+  * Mining allows the Trolls to gather Stone and Gold.
+  * These are used to build the Troll Castle (which is the objective
+    of the game).
+  * The status bar at the top of the screen shows how much Stone and
+    Gold the Trolls have, as well as the progress towards building
+    the Troll Castle.
+  * Walls must be built first - completely covering the yellow Sand
+    square. After that, a Tower must be built on each corner.
+    Finally, each Tower can be upgraded to a Gold Tower by pressing
+    Space. This completes the Castle and the game.
+
+[GREEN]Press H to play [WHITE][ORANGE](press H at any time to display this help again) [GREEN]HAVE FUN!

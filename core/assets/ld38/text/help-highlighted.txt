@@ -1,0 +1,17 @@
+[RED]~[ORANGE]~[YELLOW]~ [WHITE]Welcome to [CYAN]Troll Castle[WHITE]! [YELLOW]~[ORANGE]~[RED]~
+
+[CYAN]INSTRUCTIONS[WHITE]. [GREEN]Click[WHITE] a troll to select it.
+[GREEN]Click[WHITE] where you want it to go. You can drag the map
+with the mouse. [GREEN]Click[WHITE] a troll again to deselect it.
+When no troll is selected, you can [GREEN]click things[WHITE] for information.
+When a troll is standing on top of something, press
+[GREEN]SPACE[WHITE] to carry out the
+related action (Mine, Fish, Build, etc).
+
+The object of the game is to build a [CYAN]Troll Castle[WHITE] to cover the
+yellow square. First build the walls, then a tower on all 4
+corners, then upgrade each one to a [YELLOW]Gold Tower[WHITE]. Build by moving
+a troll to the right location and pressing [GREEN]SPACE[WHITE]. The Trolls will
+give you a lot of help if you can translate their language
+
+Press [GREEN]H[WHITE] to hide or show this help screen. Have fun! abdef
