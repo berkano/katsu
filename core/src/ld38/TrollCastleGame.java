@@ -34,6 +34,7 @@ public class TrollCastleGame extends KGame {
     public List<String> waffle;
     public int trolls = 0;
     public int gold = 0;
+    public int stone = 0;
     public int complete = 0;
     public boolean hasEatenMushroom = false;
     public boolean hasMined = false;
@@ -146,7 +147,7 @@ public class TrollCastleGame extends KGame {
         if (complete >= 100) {
             welldone = " [GREEN]*** WELL DONE!!! ***";
         }
-        ui.topBar.writeLine(trolls +" [GRAY]trolls :: [YELLOW]" + gold + "[GRAY] Gold :: [CYAN]" + complete + "[GRAY]% complete" + welldone);
+        ui.topBar.writeLine("[GREEN]  " + trolls +" [GRAY]trolls    [YELLOW]" + gold + "[GRAY] Gold    [WHITE]" + stone + "[GRAY] Stone    [CYAN]" + complete + "[GRAY]% complete" + welldone);
     }
 
     private void calculateCompleted() {
