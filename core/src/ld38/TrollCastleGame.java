@@ -38,11 +38,15 @@ public class TrollCastleGame extends KGame {
     public int gold = 0;
     public int stone = 0;
     public int complete = 0;
+
     public int wallsBuilt = 0;
+    public int towersBuilt = 0;
     public int goldTowersBuilt = 0;
 
     public boolean hasEatenMushroom = false;
     public boolean hasMined = false;
+
+    boolean hasCompleted = false;
 
     public TrollCastleGame() {
         super();
@@ -156,23 +160,39 @@ public class TrollCastleGame extends KGame {
     public void update() {
         super.update();
         ui.topBar.clear();
-        calculateCompleted();
         String welldone = "";
         if (complete >= 100) {
             welldone = " [GREEN]*** WELL DONE!!! ***";
         }
-        ui.topBar.writeLine("[GREEN]  " + trolls +" [GRAY]trolls    [YELLOW]" + gold + "[GRAY] Gold    [WHITE]" + stone + "[GRAY] Stone    [CYAN]" + complete + "[GRAY]% complete" + welldone);
+        ui.topBar.writeLine("[GREEN]  " + trolls +" [GRAY]trolls    [YELLOW]" + gold + "[GRAY] Gold    [WHITE]" + stone + "[GRAY] Stone    "+completionStatus());
     }
 
-    private void calculateCompleted() {
-        int oldCompleted = complete;
-        complete = 0;
-        if (hasEatenMushroom) complete += 50;
-        if (hasMined) complete += 50;
-        if (complete > oldCompleted) {
-            int diff = complete - oldCompleted;
-            ui.bottomBar.writeLine("[GREEN]+[CYAN]"+diff+"[WHITE]% completed!");
+    private String completionStatus() {
+
+        String result = "[GRAY]Castle: [MAGENTA]";
+        if (wallsBuilt < 16) {
+            result += wallsBuilt+"[GRAY]/16 walls built";
+        } else {
+            if (towersBuilt < 4) {
+                result += towersBuilt+"[GRAY]/4 towers built";
+            } else {
+                if (goldTowersBuilt < 4) {
+                    result += goldTowersBuilt + "[GRAY]/4 gold towers built";
+                } else {
+                    result += "[CYAN]COMPLETE! [RED]*[ORANGE]*[YELLOW]* [GREEN]Well Done! [YELLOW]*[ORANGE]*[RED]*";
+
+                    if (!hasCompleted) {
+                        // we just completed it.
+                        ui.bottomBar.writeLine("[CYAN]Castle Complete! Well Done! Hope you enjoyed playing! [WHITE]~[ORANGE]berkano");
+                    }
+
+                    hasCompleted = true;
+                }
+            }
         }
+
+        return result;
+
     }
 
     public static TrollCastleGame instance() {

@@ -42,6 +42,7 @@ public class Map extends KRoom {
         game.trolls = 0;
         game.wallsBuilt = 0;
         game.goldTowersBuilt = 0;
+        game.towersBuilt = 0;
         List<KEntity> trolls = new ArrayList<>();
         List<KEntity> towers = new ArrayList<>();
         for (KEntity e: getEntities()) {
@@ -55,6 +56,9 @@ public class Map extends KRoom {
             }
             if (e instanceof Wall) {
                 game.wallsBuilt++;
+            }
+            if (e instanceof Tower) {
+                game.towersBuilt++;
             }
             if (e instanceof GoldTower) {
                 game.goldTowersBuilt++;
