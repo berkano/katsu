@@ -194,7 +194,7 @@ public class Map extends KRoom {
             List<KEntity> under = findEntitiesAtPoint(selectedTroll.getX(), selectedTroll.getY());
             KEntity highest = null;
             for (KEntity u : under) {
-                if (u != selectedTroll) {
+                if (!(u instanceof Troll)) {
                     highest = u;
                 }
             }
@@ -212,6 +212,13 @@ public class Map extends KRoom {
 
             if (highest instanceof Mine) {
                 selectedTroll.mine();
+            }
+
+            if (highest instanceof Sand ||
+                    highest instanceof Wall ||
+                    highest instanceof BaseTower
+                    ) {
+                handleBuildCommand();
             }
 
         }
