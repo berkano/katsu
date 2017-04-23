@@ -1,6 +1,7 @@
 package ld38.entities;
 
 import katsu.KTiledMapEntity;
+import ld38.DevHelper;
 
 /**
  * Created by shaun on 21/04/2017.
@@ -18,7 +19,11 @@ public class BabyMushroom extends TrollCastleEntityBase {
     @Override
     public void update() {
         super.update();
-        if (createdMillis < System.currentTimeMillis() - 60000) {
+        int growTime = 30000;
+        if (DevHelper.quickMushGrow) {
+            growTime = 3000;
+        }
+        if (createdMillis < System.currentTimeMillis() - growTime) {
             destroy();
             Mushroom mushroom = new Mushroom();
             mushroom.setX(getX());

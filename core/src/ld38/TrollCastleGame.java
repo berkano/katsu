@@ -125,31 +125,32 @@ public class TrollCastleGame extends KGame {
             music3.setLooping(true);
             music3.setVolume(0.25f);
 
-            currentMusic = music1;
+            currentMusic = music2;
 
             if (DevHelper.playMusicOnStart) {
-                task(new Callable<Boolean>() {
-                    @Override
-                    public Boolean call() throws Exception {
-                        int loops = 0;
-                        while (loops < 1000000) {
-                            currentMusic = music1;
-                            currentMusic.play();
-                            Thread.sleep(60000);
-                            currentMusic.pause();
-                            currentMusic = music2;
-                            currentMusic.play();
-                            Thread.sleep(60000);
-                            currentMusic.pause();
-                            currentMusic = music3;
-                            currentMusic.play();
-                            Thread.sleep(60000);
-                            currentMusic.pause();
-                            loops++;
-                        }
-                        return true;
-                    }
-                });
+                currentMusic.play();
+//                task(new Callable<Boolean>() {
+//                    @Override
+//                    public Boolean call() throws Exception {
+//                        int loops = 0;
+//                        while (loops < 1000000) {
+//                            currentMusic = music1;
+//                            currentMusic.play();
+//                            Thread.sleep(60000);
+//                            currentMusic.pause();
+//                            currentMusic = music2;
+//                            currentMusic.play();
+//                            Thread.sleep(60000);
+//                            currentMusic.pause();
+//                            currentMusic = music3;
+//                            currentMusic.play();
+//                            Thread.sleep(60000);
+//                            currentMusic.pause();
+//                            loops++;
+//                        }
+//                        return true;
+//                    }
+//                });
             }
 
     }

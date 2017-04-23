@@ -61,6 +61,9 @@ public class Troll extends TrollCastleEntityBase {
         if (psychedelic) {
             if (startPyschMillis < System.currentTimeMillis() - 30000) {
                 setPsychedelic(false);
+                game.currentMusic.pause();
+                game.currentMusic = game.music2;
+                game.currentMusic.play();
                 getAppearance().setSpriteColour(Color.WHITE);
                 // add a swimtube if not already got one
                 if (swimTube == null) {
@@ -132,21 +135,21 @@ public class Troll extends TrollCastleEntityBase {
     @Override
     public void onClick() {
         super.onClick();
-        say("ugg");
+        say("hi ho");
     }
 
     public void say(String utterance) {
-        utterance = utterance.replace("Mushroom","moosh");
-        utterance = utterance.replace("Mine","digg");
-        utterance = utterance.replace("Seed","pod");
-        utterance = utterance.replace("Water","splish");
-        utterance = utterance.replace("Grass","grob");
-        utterance = utterance.replace("Fish","blubby");
-        utterance = utterance.replace("Sand","grund");
-        utterance = utterance.replace("Wall","wol");
-        utterance = utterance.replace("Tower","toor");
-        utterance = utterance.replace("Stone","rok");
-        utterance = utterance.replace("Gold","guld");
+//        utterance = utterance.replace("Mushroom","moosh");
+//        utterance = utterance.replace("Mine","digg");
+//        utterance = utterance.replace("Seed","pod");
+//        utterance = utterance.replace("Water","splish");
+//        utterance = utterance.replace("Grass","grob");
+//        utterance = utterance.replace("Fish","blubby");
+//        utterance = utterance.replace("Sand","grund");
+//        utterance = utterance.replace("Wall","wol");
+//        utterance = utterance.replace("Tower","toor");
+//        utterance = utterance.replace("Stone","rok");
+//        utterance = utterance.replace("Gold","guld");
         int talkSound = K.random.nextInt(4);
 
         if (talkSound == 0) game.talk1.play();
@@ -162,6 +165,9 @@ public class Troll extends TrollCastleEntityBase {
         if (psychedelic == true) {
             startPyschMillis = System.currentTimeMillis();
             hasHadPsychedelics = true;
+            game.currentMusic.pause();
+            game.currentMusic = game.music3;
+            game.currentMusic.play();
         }
     }
 
@@ -171,7 +177,7 @@ public class Troll extends TrollCastleEntityBase {
 
 //        if (!hadFish) {
             if (timesMined > 3) {
-                say("[RED]Nog digg nar. Rumbletum. [GREEN]Fish gett. Fish nomnom.[CYAN]><>");
+                say("[RED]me too hungry. feed me fishies. [CYAN]><>");
                 return;
             }
 //        }
@@ -208,7 +214,7 @@ public class Troll extends TrollCastleEntityBase {
                     case 5:
                         game.mine.play();
                         Thread.sleep(2000);
-                        say("rok gott!");
+                        say("got stone!");
                         game.stone += 17 + K.random.nextInt(19);
                         game.rocks.play();
                         Thread.sleep(2000);
@@ -217,7 +223,7 @@ public class Troll extends TrollCastleEntityBase {
                     case 6:
                         game.mine.play();
                         Thread.sleep(2000);
-                        say("guld gott!");
+                        say("got gold!");
                         game.goldSound.play();
                         game.gold += 4 + K.random.nextInt(5);
                         Thread.sleep(2000);

@@ -171,13 +171,13 @@ public class Map extends KRoom {
 
         if (!foundSand) {
             // we are not in a suitable place for building
-            selectedTroll.say("ogg Sand digg mog.");
+            selectedTroll.say("we got to build on sand!");
             return;
         }
 
         if (!foundWall) {
             if (game.stone < 3) {
-                selectedTroll.say("nog 3 Stone gott.");
+                selectedTroll.say("need 3 stone.");
                 return;
             }
             game.stone -= 3;
@@ -185,7 +185,7 @@ public class Map extends KRoom {
             wall.setX(selectedTroll.getX());
             wall.setY(selectedTroll.getY());
             addNewEntity(wall);
-            selectedTroll.say("Wall bilded!");
+            selectedTroll.say("built wall.");
             game.build.play();
             return;
         }
@@ -194,7 +194,7 @@ public class Map extends KRoom {
 
             if (game.wallsBuilt < 16) {
                 if (!DevHelper.skipWallRule) {
-                    selectedTroll.say("[RED]moar Wall bild! moar Wall bild!");
+                    selectedTroll.say("[RED]build more walls!");
                     return;
                 }
             }
@@ -214,12 +214,12 @@ public class Map extends KRoom {
             if (x == 144 && y == 48) allowedTowerLocation = true;
 
             if (!allowedTowerLocation) {
-                selectedTroll.say("[RED]nog Tower haar! nog Tower haar!");
+                selectedTroll.say("[RED]no build tower here!");
                 return;
             }
 
             if (game.stone < 10) {
-                selectedTroll.say("[RED]nog 10 Stone gott.");
+                selectedTroll.say("[RED]need 10 stone!");
                 return;
             }
             game.stone -= 10;
@@ -228,19 +228,19 @@ public class Map extends KRoom {
             tower.setY(selectedTroll.getY());
             addNewEntity(tower);
             game.build.play();
-            selectedTroll.say("Tower bilded!");
+            selectedTroll.say("built tower!");
             return;
         }
 
         if (!foundGoldTower) {
 
             if (game.towersBuilt < 4) {
-                selectedTroll.say("[RED]moar Tower bild! moar Tower bild!");
+                selectedTroll.say("[RED]build more tower!");
                 return;
             }
 
             if (game.gold < 5) {
-                selectedTroll.say("[RED]nog 5 Gold gott.");
+                selectedTroll.say("[RED]need 5 gold");
                 return;
             }
             game.gold -= 5;
@@ -250,11 +250,11 @@ public class Map extends KRoom {
             tower.setY(selectedTroll.getY());
             addNewEntity(tower);
             game.build.play();
-            selectedTroll.say("GoldTower bilded!");
+            selectedTroll.say("built gold tower!");
             return;
         }
 
-        selectedTroll.say("[RED]ogg GoldTower ag!");
+        selectedTroll.say("[RED]is gold tower already!");
 
     }
 
@@ -276,7 +276,7 @@ public class Map extends KRoom {
 
             if (highest != null) {
                 if (highest.getX() != selectedTroll.getX() || highest.getY() != selectedTroll.getY()) {
-                    selectedTroll.say("yerg " + highest.toString() + "pug.");
+                    //selectedTroll.say("yerg " + highest.toString() + "pug.");
                 }
             }
 
@@ -296,13 +296,13 @@ public class Map extends KRoom {
                 babyMushroom.setX(selectedTroll.getX());
                 babyMushroom.setY(selectedTroll.getY());
                 addNewEntity(babyMushroom);
-                selectedTroll.say("Babby Mushroom plod!");
+                selectedTroll.say("mushroom planted!");
                 game.plant.play();
             }
 
             if (highest instanceof Fish) {
                 selectedTroll.hadFish = true;
-                selectedTroll.say("Blubby blubby!");
+                selectedTroll.say("yum yum fish!");
                 selectedTroll.timesMined = 0;
                 game.fish.play();
                 highest.destroy();
@@ -392,9 +392,9 @@ public class Map extends KRoom {
                 if (clickedEntity != selectedTroll) {
                     selectedTroll.setTargetEntity(clickedEntity);
                     if ((clickedEntity instanceof Fish || clickedEntity instanceof Water) && !selectedTroll.hasHadPsychedelics) {
-                            selectedTroll.say("[GREEN]Luvluv Fish! [RED]Arrgh, Water nogluv! [CYAN]Nomnom [RED]M[WHITE]o[RED]o[WHITE]s[RED]h[WHITE]!!");
+                            selectedTroll.say("[RED]Me want fish. Me scared of water. Mushroom stop me being scared.");
                     } else {
-                        selectedTroll.say("ogg " + clickedEntity.toString() + " mog.");
+                        selectedTroll.say("i go " + clickedEntity.toString());
                     }
                 }
             }
