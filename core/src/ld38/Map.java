@@ -32,6 +32,13 @@ public class Map extends KRoom {
     public void update() {
         super.update();
 
+        // Handle trolls dying
+        if (lastClickedTroll != null) {
+            if (lastClickedTroll.isDestroyed()) {
+                lastClickedTroll = null;
+            }
+        }
+
         game.trolls = 0;
         List<KEntity> trolls = new ArrayList<>();
         List<KEntity> towers = new ArrayList<>();
@@ -136,26 +143,45 @@ public class Map extends KRoom {
         }
 
         if (!foundWall) {
+            if (game.stone < 10) {
+                lastClickedTroll.say("nog 10 Stone gott.");
+                return;
+            }
+            game.stone -= 10;
             Wall wall = new Wall();
             wall.setX(lastClickedTroll.getX());
             wall.setY(lastClickedTroll.getY());
             addNewEntity(wall);
+            game.build.play();
             return;
         }
 
         if (!foundTower) {
+            if (game.stone < 20) {
+                lastClickedTroll.say("nog 20 Stone gott.");
+                return;
+            }
+            game.stone -= 20;
             Tower tower = new Tower();
             tower.setX(lastClickedTroll.getX());
             tower.setY(lastClickedTroll.getY());
             addNewEntity(tower);
+            game.build.play();
             return;
         }
 
         if (!foundGoldTower) {
+            if (game.gold < 10) {
+                lastClickedTroll.say("nog 10 Gold gott.");
+                return;
+            }
+            game.gold -= 10;
+
             GoldTower tower = new GoldTower();
             tower.setX(lastClickedTroll.getX());
             tower.setY(lastClickedTroll.getY());
             addNewEntity(tower);
+            game.build.play();
             return;
         }
 

@@ -143,14 +143,29 @@ public class Troll extends TrollCastleEntityBase {
                         game.ui.bottomBar.writeLine("[ORANGE]" +name + " [RED]encounters a Monster!");
                         game.mystery.play();
                         Thread.sleep(4000);
+                        if (K.random.nextInt(3) == 0) {
+                            game.ui.bottomBar.writeLine("[ORANGE]" +name + " [RED]dies. :-(");
+                            game.die.play();
+                            destroy();
+                        } else {
+                            game.ui.bottomBar.writeLine("[ORANGE]" +name + " [GREEN]survives!");
+
+                        }
                         break;
                     case 5:
+                        game.mine.play();
+                        Thread.sleep(2000);
+                        say("rok gott!");
+                        game.stone += 17 + K.random.nextInt(19);
+                        game.rocks.play();
+                        Thread.sleep(2000);
+                        break;
                     case 6:
                         game.mine.play();
                         Thread.sleep(2000);
-                        say("guld!");
+                        say("guld gott!");
                         game.goldSound.play();
-                        game.gold += 100;
+                        game.gold += 4 + K.random.nextInt(5);
                         Thread.sleep(2000);
                         break;
                     default:
