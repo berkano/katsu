@@ -24,6 +24,7 @@ public class BabyMushroom extends TrollCastleEntityBase {
             mushroom.setX(getX());
             mushroom.setY(getY());
             getRoom().addNewEntity(mushroom);
+            game.grow.play();
         }
     }
 }

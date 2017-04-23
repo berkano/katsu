@@ -279,6 +279,7 @@ public class Map extends KRoom {
                 babyMushroom.setY(selectedTroll.getY());
                 addNewEntity(babyMushroom);
                 selectedTroll.say("Babby Mushroom plod!");
+                game.plant.play();
             }
 
             if (highest instanceof Fish) {

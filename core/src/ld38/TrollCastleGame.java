@@ -38,6 +38,8 @@ public class TrollCastleGame extends KGame {
     public Sound rocks;
     public Sound fish;
     public Sound water;
+    public Sound plant;
+    public Sound grow;
 
     public List<String> waffle;
     public int trolls = 0;
@@ -112,6 +114,8 @@ public class TrollCastleGame extends KGame {
             build = K.resource.loadSound("build.ogg");
             fish = K.resource.loadSound("fish.ogg");
             water = K.resource.loadSound("water.ogg");
+            plant = K.resource.loadSound("plant.ogg");
+            grow = K.resource.loadSound("grow.ogg");
 
             music1.setLooping(true);
             music1.setVolume(0.5f);
