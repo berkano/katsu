@@ -10,6 +10,7 @@ import ld38.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
 import java.util.concurrent.Callable;
 
 /**
@@ -94,7 +95,16 @@ public class Troll extends TrollCastleEntityBase {
             if (suggestion != null) {
                 boolean result = tryMoveGridDirection(suggestion);
                 if (result == true) {
-                    game.walk.play();
+                    boolean onWater = false;
+                    List<KEntity> entityList = getRoom().findEntitiesAtPoint(getX() + 2, getY() + 2);
+                    for (KEntity e : entityList) {
+                        if (e instanceof Water) onWater = true;
+                    }
+                    if (!onWater) {
+                        game.walk.play();
+                    } else {
+                        game.water.play();
+                    }
                     juiceRotation();
                 }
             }

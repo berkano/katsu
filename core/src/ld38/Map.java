@@ -285,6 +285,7 @@ public class Map extends KRoom {
                 selectedTroll.hadFish = true;
                 selectedTroll.say("Blubby blubby!");
                 selectedTroll.timesMined = 0;
+                game.fish.play();
                 //highest.destroy();
             }
 
