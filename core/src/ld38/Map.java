@@ -40,6 +40,8 @@ public class Map extends KRoom {
         }
 
         game.trolls = 0;
+        game.wallsBuilt = 0;
+        game.goldTowersBuilt = 0;
         List<KEntity> trolls = new ArrayList<>();
         List<KEntity> towers = new ArrayList<>();
         for (KEntity e: getEntities()) {
@@ -50,6 +52,12 @@ public class Map extends KRoom {
             }
             if (e instanceof BaseTower) {
                 towers.add(e);
+            }
+            if (e instanceof Wall) {
+                game.wallsBuilt++;
+            }
+            if (e instanceof GoldTower) {
+                game.goldTowersBuilt++;
             }
         }
 
@@ -151,8 +159,14 @@ public class Map extends KRoom {
         }
 
         if (!foundTower) {
+
+            if (game.wallsBuilt < 16) {
+                selectedTroll.say("[RED]moar Wall bog! moar Wall bog!");
+                return;
+            }
+
             if (game.stone < 20) {
-                selectedTroll.say("nog 20 Stone gott.");
+                selectedTroll.say("[RED]nog 20 Stone gott.");
                 return;
             }
             game.stone -= 20;
@@ -166,7 +180,7 @@ public class Map extends KRoom {
 
         if (!foundGoldTower) {
             if (game.gold < 10) {
-                selectedTroll.say("nog 10 Gold gott.");
+                selectedTroll.say("[RED]nog 10 Gold gott.");
                 return;
             }
             game.gold -= 10;
@@ -179,7 +193,7 @@ public class Map extends KRoom {
             return;
         }
 
-        selectedTroll.say("ogg GoldTower ag!");
+        selectedTroll.say("[RED]ogg GoldTower ag!");
 
     }
 
