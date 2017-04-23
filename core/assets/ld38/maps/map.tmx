@@ -72,6 +72,11 @@
     <property name="entity" value="BabyMushroom"/>
    </properties>
   </tile>
+  <tile id="128">
+   <properties>
+    <property name="entity" value="SwimTube"/>
+   </properties>
+  </tile>
  </tileset>
  <layer name="terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
@@ -85,7 +90,7 @@
  </layer>
  <layer name="no-populate" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYBQMVZAIxElArAjETkDsDMQuJOgHAOJG6+wABAAA
+   H4sIAAAAAAAAC2NgGAWjYBQMVZAIxElArAjETkDsDMQuQNxIpH4AUdJTiQAEAAA=
   </data>
  </layer>
 </map>

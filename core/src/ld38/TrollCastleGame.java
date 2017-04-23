@@ -3,6 +3,7 @@ package ld38;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import katsu.*;
+import ld38.entities.Mushroom;
 
 import java.util.ArrayList;
 import java.util.List;

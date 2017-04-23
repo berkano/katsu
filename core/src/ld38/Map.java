@@ -47,12 +47,16 @@ public class Map extends KRoom {
         game.goldTowersBuilt = 0;
         game.towersBuilt = 0;
         List<KEntity> trolls = new ArrayList<>();
+        List<KEntity> tubes = new ArrayList<>();
         List<KEntity> towers = new ArrayList<>();
         for (KEntity e: getEntities()) {
             if (e instanceof Troll) {
                 Troll t = (Troll) e;
                 trolls.add(t);
                 game.trolls++;
+            }
+            if (e instanceof SwimTube) {
+                tubes.add(e);
             }
             if (e instanceof BaseTower) {
                 towers.add(e);
@@ -80,6 +84,12 @@ public class Map extends KRoom {
             getEntities().add(e);
         }
 
+        // z order - tubes
+        for (KEntity e: tubes) {
+            getEntities().remove(e);
+            getEntities().add(e);
+        }
+
     }
 
     @Override
@@ -89,6 +99,14 @@ public class Map extends KRoom {
         loadFromTiledMap("map");
         setupCamera();
         game = TrollCastleGame.instance();
+
+        if (DevHelper.randomMushroomOnStart) {
+            Mushroom mushroom = new Mushroom();
+            mushroom.setX(128);
+            mushroom.setY(128);
+            addNewEntity(mushroom);
+        }
+
 
     }
 

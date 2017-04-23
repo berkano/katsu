@@ -30,6 +30,7 @@ public class Troll extends TrollCastleEntityBase {
     Map map;
     public boolean hadFish = false;
     public int timesMined = 0;
+    private SwimTube swimTube = null;
 
     public Troll() {
         super();
@@ -61,7 +62,20 @@ public class Troll extends TrollCastleEntityBase {
             if (startPyschMillis < System.currentTimeMillis() - 30000) {
                 setPsychedelic(false);
                 getAppearance().setSpriteColour(Color.WHITE);
+                // add a swimtube if not already got one
+                if (swimTube == null) {
+                    swimTube = new SwimTube();
+                    swimTube.setX(getX());
+                    swimTube.setY(getY());
+                    getRoom().addNewEntity(swimTube);
+                }
             }
+        }
+
+        if (swimTube != null) {
+            swimTube.setX(getX());
+            swimTube.setY(getY());
+            swimTube.getAppearance().setVisible(getAppearance().isVisible());
         }
 
         if (psychedelic) {

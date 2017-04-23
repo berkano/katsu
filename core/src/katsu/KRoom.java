@@ -1,6 +1,7 @@
 package katsu;
 
 import com.badlogic.gdx.math.Rectangle;
+import ld38.entities.SwimTube;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -171,6 +172,8 @@ public class KRoom extends KInputProcessor {
         ArrayList<KEntity> result = new ArrayList<KEntity>();
 
         for (KEntity e : entities) {
+
+            if (e instanceof SwimTube) continue; // brutal hack!!! ld38
 
             // Quick optimization
             if (
