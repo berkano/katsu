@@ -210,6 +210,12 @@ public class Map extends KRoom {
         }
 
         if (!foundGoldTower) {
+
+            if (game.towersBuilt < 4) {
+                selectedTroll.say("[RED]moar Tower bild! moar Tower bild!");
+                return;
+            }
+
             if (game.gold < 10) {
                 selectedTroll.say("[RED]nog 10 Gold gott.");
                 return;
