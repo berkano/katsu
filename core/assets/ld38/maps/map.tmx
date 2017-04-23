@@ -67,6 +67,11 @@
     <property name="entity" value="SelectedTroll"/>
    </properties>
   </tile>
+  <tile id="97">
+   <properties>
+    <property name="entity" value="BabyMushroom"/>
+   </properties>
+  </tile>
  </tileset>
  <layer name="terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
@@ -75,12 +80,12 @@
  </layer>
  <layer name="objects" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgoAyw0FiPMhnm49LjSIZZuAApflAkII/LXejijCTYiQ9Qyxx0gB7uxNqDKyzJcSeuuGdEo2kByMkL5JpDLbsAsz0NywAEAAA=
+   H4sIAAAAAAAAC2NgoAyw0FiPMhnm49LjSIZZuAA5/sYFcLkLXZyRSvZRyxx0gB7uxNqDKyzJcSeuuGdEo2kBqJUmiDGHWnYBAIr3o1gABAAA
   </data>
  </layer>
  <layer name="no-populate" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjAD9wBmInJOxCon4nAvzBrt+FgTL/0xIkUqgfAGmus4QABAAA
+   H4sIAAAAAAAAC2NgGAWjAD9wBmInJOxCon4nAvzBrt+FgTL/0xIkAnESECuSqR8AGTB4iQAEAAA=
   </data>
  </layer>
 </map>

@@ -5,6 +5,7 @@ import katsu.K;
 import katsu.KDirection;
 import katsu.KEntity;
 import katsu.KTiledMapEntity;
+import ld38.DevHelper;
 import ld38.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,8 +25,10 @@ public class Troll extends TrollCastleEntityBase {
     boolean psychedelic = false;
     long lastPsychMillls = System.currentTimeMillis();
     long startPyschMillis = 0;
-    public boolean hasHadPsychedelics = false;
+    public boolean hasHadPsychedelics = DevHelper.allTrollsPsychedOnStart;
     Map map;
+    public boolean hadFish = false;
+    public int timesMined = 0;
 
     public Troll() {
         super();
@@ -140,12 +143,22 @@ public class Troll extends TrollCastleEntityBase {
 
     public void mine() {
 
+        timesMined++;
+
+//        if (!hadFish) {
+            if (timesMined > 3) {
+                say("[RED]Nog digg nar. Rumbletum. [GREEN]Fish gett. Fish nomnom.[CYAN]><>");
+                return;
+            }
+//        }
+
         getAppearance().setVisible(false);
 
         game.task(new Callable<Boolean>() {
             public Boolean call() throws Exception {
 
                 game.hasMined = true;
+
                 int mineResult = 1 + K.random.nextInt(6);
                 switch (mineResult) {
                     case 1:

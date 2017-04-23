@@ -28,8 +28,6 @@ public class Map extends KRoom {
 
     private Troll selectedTroll = null;
 
-    public boolean hadFish = false;
-
     @Override
     public void update() {
         super.update();
@@ -254,6 +252,21 @@ public class Map extends KRoom {
 
             if (highest instanceof Mine) {
                 selectedTroll.mine();
+            }
+
+            if (highest instanceof Mud) {
+                BabyMushroom babyMushroom = new BabyMushroom();
+                babyMushroom.setX(selectedTroll.getX());
+                babyMushroom.setY(selectedTroll.getY());
+                addNewEntity(babyMushroom);
+                selectedTroll.say("Babby Mushroom plod!");
+            }
+
+            if (highest instanceof Fish) {
+                selectedTroll.hadFish = true;
+                selectedTroll.say("Blubby blubby!");
+                selectedTroll.timesMined = 0;
+                //highest.destroy();
             }
 
             if (highest instanceof Sand ||
