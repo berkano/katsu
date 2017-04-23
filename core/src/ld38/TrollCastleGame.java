@@ -18,7 +18,10 @@ public class TrollCastleGame extends KGame {
 
     public ArrayList<KRoom> rooms;
 
+    public Music currentMusic;
     public Music music1;
+    public Music music2;
+    public Music music3;
     public Sound talk1;
     public Sound talk2;
     public Sound talk3;
@@ -95,18 +98,27 @@ public class TrollCastleGame extends KGame {
             mine = K.resource.loadSound("mine.ogg");
             psych = K.resource.loadSound("psych.ogg");
             walk = K.resource.loadSound("walk.ogg");
-            music1 = K.resource.loadMusic("troll1.mp3");
+            music1 = K.resource.loadMusic("music1.ogg");
+            music2 = K.resource.loadMusic("music2.ogg");
+            music3 = K.resource.loadMusic("music3.ogg");
             select1 = K.resource.loadSound("beep-select.ogg");
             goldSound = K.resource.loadSound("gold.ogg");
             die = K.resource.loadSound("die.ogg");
             mystery = K.resource.loadSound("mystery.ogg");
             rocks = K.resource.loadSound("rocks.ogg");
             build = K.resource.loadSound("build.ogg");
+
             music1.setLooping(true);
-            music1.setVolume(0.15f);
+            music1.setVolume(0.5f);
+            music2.setLooping(true);
+            music2.setVolume(0.85f);
+            music3.setLooping(true);
+            music3.setVolume(0.25f);
+
+            currentMusic = music1;
 
             if (DevHelper.playMusicOnStart) {
-                music1.play();
+                currentMusic.play();
             }
 
     }
