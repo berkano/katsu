@@ -23,6 +23,7 @@ public class Troll extends TrollCastleEntityBase {
     boolean psychedelic = false;
     long lastPsychMillls = System.currentTimeMillis();
     long startPyschMillis = 0;
+    public boolean hasHadPsychedelics = false;
 
     public Troll() {
         super();
@@ -103,9 +104,9 @@ public class Troll extends TrollCastleEntityBase {
         utterance = utterance.replace("Mushroom","moosh");
         utterance = utterance.replace("Mine","digg");
         utterance = utterance.replace("Seed","pod");
-        utterance = utterance.replace("Water","tssh");
+        utterance = utterance.replace("Water","splish");
         utterance = utterance.replace("Grass","grob");
-        utterance = utterance.replace("Fish","blub");
+        utterance = utterance.replace("Fish","blubby");
         utterance = utterance.replace("Sand","grund");
         utterance = utterance.replace("Wall","wol");
         utterance = utterance.replace("Tower","toor");
@@ -125,6 +126,7 @@ public class Troll extends TrollCastleEntityBase {
         this.psychedelic = psychedelic;
         if (psychedelic == true) {
             startPyschMillis = System.currentTimeMillis();
+            hasHadPsychedelics = true;
         }
     }
 

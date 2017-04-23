@@ -309,7 +309,11 @@ public class Map extends KRoom {
             if (clickedEntity != null) {
                 if (clickedEntity != selectedTroll) {
                     selectedTroll.setTargetEntity(clickedEntity);
-                    selectedTroll.say("ogg " + clickedEntity.toString() + " mog.");
+                    if ((clickedEntity instanceof Fish || clickedEntity instanceof Water) && !selectedTroll.hasHadPsychedelics) {
+                            selectedTroll.say("[GREEN]Luvluv Fish! [RED]Hatt Water! [CYAN]Looky [RED]M[WHITE]o[RED]o[WHITE]s[RED]h[WHITE]!!");
+                    } else {
+                        selectedTroll.say("ogg " + clickedEntity.toString() + " mog.");
+                    }
                 }
             }
         } else {
