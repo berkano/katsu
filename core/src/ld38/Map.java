@@ -221,11 +221,11 @@ public class Map extends KRoom {
                 return;
             }
 
-            if (game.gold < 10) {
-                selectedTroll.say("[RED]nog 10 Gold gott.");
+            if (game.gold < 5) {
+                selectedTroll.say("[RED]nog 5 Gold gott.");
                 return;
             }
-            game.gold -= 10;
+            game.gold -= 5;
 
             GoldTower tower = new GoldTower();
             tower.setX(selectedTroll.getX());
