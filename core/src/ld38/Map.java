@@ -266,7 +266,7 @@ public class Map extends KRoom {
 
         } else {
 
-            List<KEntity> under = findEntitiesAtPoint(selectedTroll.getX(), selectedTroll.getY());
+            List<KEntity> under = findEntitiesAtPoint(selectedTroll.getX() + 2, selectedTroll.getY() + 2);
             KEntity highest = null;
             for (KEntity u : under) {
                 if (!(u instanceof Troll)) {
