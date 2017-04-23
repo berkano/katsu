@@ -6,6 +6,7 @@ import katsu.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 /**
  * Created by shaun on 21/04/2017.
@@ -118,7 +119,28 @@ public class TrollCastleGame extends KGame {
             currentMusic = music1;
 
             if (DevHelper.playMusicOnStart) {
-                currentMusic.play();
+                task(new Callable<Boolean>() {
+                    @Override
+                    public Boolean call() throws Exception {
+                        int loops = 0;
+                        while (loops < 1000000) {
+                            currentMusic = music1;
+                            currentMusic.play();
+                            Thread.sleep(60000);
+                            currentMusic.pause();
+                            currentMusic = music2;
+                            currentMusic.play();
+                            Thread.sleep(60000);
+                            currentMusic.pause();
+                            currentMusic = music3;
+                            currentMusic.play();
+                            Thread.sleep(60000);
+                            currentMusic.pause();
+                            loops++;
+                        }
+                        return true;
+                    }
+                });
             }
 
     }
