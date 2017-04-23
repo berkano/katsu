@@ -32,7 +32,6 @@ public class Map extends KRoom {
     public void update() {
         super.update();
 
-        game.xp = 0;
         game.trolls = 0;
         List<KEntity> trolls = new ArrayList<>();
         List<KEntity> towers = new ArrayList<>();
@@ -40,7 +39,6 @@ public class Map extends KRoom {
             if (e instanceof Troll) {
                 Troll t = (Troll) e;
                 trolls.add(t);
-                game.xp += t.xp;
                 game.trolls++;
             }
             if (e instanceof BaseTower) {

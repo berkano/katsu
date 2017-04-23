@@ -32,7 +32,6 @@ public class TrollCastleGame extends KGame {
     public Sound mystery;
 
     public List<String> waffle;
-    public int xp = 0;
     public int trolls = 0;
     public int gold = 0;
     public int complete = 0;
@@ -147,7 +146,7 @@ public class TrollCastleGame extends KGame {
         if (complete >= 100) {
             welldone = " [GREEN]*** WELL DONE!!! ***";
         }
-        ui.topBar.writeLine(trolls +" [GRAY]trolls :: [GREEN]" + xp + "[GRAY] XP :: [YELLOW]" + gold + "[GRAY] Gold :: [CYAN]" + complete + "[GRAY]% complete" + welldone);
+        ui.topBar.writeLine(trolls +" [GRAY]trolls :: [YELLOW]" + gold + "[GRAY] Gold :: [CYAN]" + complete + "[GRAY]% complete" + welldone);
     }
 
     private void calculateCompleted() {

@@ -20,8 +20,6 @@ public class Troll extends TrollCastleEntityBase {
 
     Logger logger = LoggerFactory.getLogger(Troll.class);
 
-    public int xp = 0;
-
     boolean psychedelic = false;
     long lastPsychMillls = System.currentTimeMillis();
     long startPyschMillis = 0;
@@ -72,7 +70,6 @@ public class Troll extends TrollCastleEntityBase {
                 if (K.random.nextInt(100) == 3){
                     int w = K.random.nextInt(game.waffle.size());
                     say(game.waffle.get(w));
-                    xp += 5;
                 }
             }
         }
@@ -116,11 +113,7 @@ public class Troll extends TrollCastleEntityBase {
         if (talkSound == 2) game.talk3.play();
         if (talkSound == 3) game.talk4.play();
 
-        String xpStr = "";
-        if (xp > 0) {
-            xpStr = "[GRAY]~[YELLOW]" + xp;
-        }
-        game.ui.bottomBar.writeLine("[ORANGE]"+ toString() + xpStr + "[GRAY]: [GREEN]" + utterance+"[WHITE]");
+        game.ui.bottomBar.writeLine("[ORANGE]"+ toString() + "[GRAY]: [GREEN]" + utterance+"[WHITE]");
     }
 
     public void setPsychedelic(boolean psychedelic) {
@@ -137,7 +130,6 @@ public class Troll extends TrollCastleEntityBase {
         game.task(new Callable<Boolean>() {
             public Boolean call() throws Exception {
 
-                xp += 1 + K.random.nextInt(3);
                 game.hasMined = true;
                 int mineResult = 1 + K.random.nextInt(6);
                 switch (mineResult) {
