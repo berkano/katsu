@@ -65,7 +65,7 @@
  </tileset>
  <layer name="terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NiYGBgGkSYGYpx8YnVz4yFT4xZ5OrHpYYY/bjksOkl1n5CmBj/w7AKFkzIHwOhn1L34zKLXP2kpIGBwgCg7bq1AAQAAA==
+   H4sIAAAAAAAAC2NiYGBgGkSYGYpx8YnVz4yFT4xZ5OrHpYYY/bjksOkl1n5CmBj/w7AKFkzIH+j6sfGprR+f+4nVj80sYv1PSpgOdD6DYQCR9SOnAAQAAA==
   </data>
  </layer>
  <layer name="objects" width="16" height="16">

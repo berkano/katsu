@@ -59,8 +59,16 @@ public class TrollCastleGame extends KGame {
         super.start();
         ui = new TrollCastleUI();
         ui.start();
+        if (!DevHelper.showHelpOnStart) {
+            ui.toggleHelp();
+        }
         loadWaffle();
         setupSounds();
+
+        if (DevHelper.cheatResources) {
+            gold = 1000;
+            stone = 1000;
+        }
 
     }
 
