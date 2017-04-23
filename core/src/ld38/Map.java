@@ -161,7 +161,28 @@ public class Map extends KRoom {
         if (!foundTower) {
 
             if (game.wallsBuilt < 16) {
-                selectedTroll.say("[RED]moar Wall bog! moar Wall bog!");
+                if (!DevHelper.skipWallRule) {
+                    selectedTroll.say("[RED]moar Wall bog! moar Wall bog!");
+                    return;
+                }
+            }
+
+            int x = selectedTroll.getX();
+            int y = selectedTroll.getY();
+
+            logger.info("Attempting to build tower at precise position "+x+","+y);
+            // 144,112
+            // 208,112
+            // 208,48
+            // 144,48
+            boolean allowedTowerLocation = false;
+            if (x == 144 && y == 112) allowedTowerLocation = true;
+            if (x == 208 && y == 112) allowedTowerLocation = true;
+            if (x == 208 && y == 48) allowedTowerLocation = true;
+            if (x == 144 && y == 48) allowedTowerLocation = true;
+
+            if (!allowedTowerLocation) {
+                selectedTroll.say("[RED]nog Tower haar! nog Tower haar!");
                 return;
             }
 
@@ -214,7 +235,9 @@ public class Map extends KRoom {
             }
 
             if (highest != null) {
-                selectedTroll.say("yerg " + highest.toString() + "pug.");
+                if (highest.getX() != selectedTroll.getX() || highest.getY() != selectedTroll.getY()) {
+                    selectedTroll.say("yerg " + highest.toString() + "pug.");
+                }
             }
 
             if (highest instanceof Mushroom) {
