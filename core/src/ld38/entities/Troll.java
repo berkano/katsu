@@ -8,6 +8,8 @@ import katsu.KTiledMapEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.concurrent.Callable;
+
 /**
  * Created by shaun on 21/04/2017.
  */
@@ -129,6 +131,38 @@ public class Troll extends TrollCastleEntityBase {
     }
 
     public void mine() {
-        xp += K.random.nextInt(3);
+
+        getAppearance().setVisible(false);
+
+        game.task(new Callable<Boolean>() {
+            public Boolean call() throws Exception {
+
+                xp += 1 + K.random.nextInt(3);
+                game.hasMined = true;
+                int mineResult = 1 + K.random.nextInt(6);
+                switch (mineResult) {
+                    case 1:
+                    case 2:
+                        game.ui.bottomBar.writeLine("[ORANGE]" +name + " [RED]encounters a Monster!");
+                        game.mystery.play();
+                        Thread.sleep(4000);
+                        break;
+                    case 5:
+                    case 6:
+                        game.mine.play();
+                        Thread.sleep(2000);
+                        say("guld!");
+                        game.goldSound.play();
+                        game.gold += 100;
+                        Thread.sleep(2000);
+                        break;
+                    default:
+                        game.mine.play();
+                        Thread.sleep(4000);
+                }
+                getAppearance().setVisible(true);
+                return true;
+            }});
+
     }
 }

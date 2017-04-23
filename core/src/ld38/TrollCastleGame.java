@@ -27,6 +27,9 @@ public class TrollCastleGame extends KGame {
     public Sound select1;
     public Sound psych;
     public Sound mine;
+    public Sound goldSound;
+    public Sound die;
+    public Sound mystery;
 
     public List<String> waffle;
     public int xp = 0;
@@ -78,6 +81,9 @@ public class TrollCastleGame extends KGame {
             walk = K.resource.loadSound("walk.ogg");
             music1 = K.resource.loadMusic("troll1.mp3");
             select1 = K.resource.loadSound("beep-select.ogg");
+            goldSound = K.resource.loadSound("gold.ogg");
+            die = K.resource.loadSound("die.ogg");
+            mystery = K.resource.loadSound("mystery.ogg");
             music1.setLooping(true);
             music1.setVolume(0.25f);
 

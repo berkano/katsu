@@ -21,12 +21,14 @@ public class KAppearance {
     @Getter @Setter private boolean rotateSpriteOnMove = true;
     @Getter @Setter private int zLayer = 0;
     private Color spriteColour = Color.WHITE;
+    private boolean visible = true;
 
     public KAppearance(KEntity entity) {
         this.entity = entity;
     }
 
     public void render() {
+        if (!visible) return;
         if (textureRegion == null) {
             textureRegion = K.textureCache.get(entity.getClass());
         }
@@ -76,5 +78,13 @@ public class KAppearance {
 
     public void setSpriteColour(Color colour) {
         this.spriteColour = colour;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
+    }
+
+    public boolean isVisible() {
+        return visible;
     }
 }

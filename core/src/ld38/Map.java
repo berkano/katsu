@@ -122,8 +122,6 @@ public class Map extends KRoom {
 
                 if (highest instanceof Mine) {
                     lastClickedTroll.mine();
-                    game.hasMined = true;
-                    game.mine.play();
                 }
 
             }

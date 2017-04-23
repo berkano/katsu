@@ -118,11 +118,6 @@ public class Mini73Game extends KGame {
 
     }
 
-    private void task(Callable<Boolean> c) {
-        Executors.newSingleThreadExecutor().submit(
-                new FutureTask<>(c));
-    }
-
     private void writeLater(final String text, final long millis) {
         task(new Callable<Boolean>() {
             public Boolean call() throws Exception {

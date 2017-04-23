@@ -14,6 +14,9 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.Executors;
+import java.util.concurrent.FutureTask;
 
 /**
  * Created by shaun on 16/11/2014.
@@ -153,4 +156,10 @@ public abstract class KGame extends KInputProcessor implements ApplicationListen
     }
 
     public abstract KSettings buildSettings();
+
+    public void task(Callable<Boolean> c) {
+        Executors.newSingleThreadExecutor().submit(
+                new FutureTask<>(c));
+    }
+
 }
