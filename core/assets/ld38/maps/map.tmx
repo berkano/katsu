@@ -75,17 +75,17 @@
  </tileset>
  <layer name="terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NiYGBgGkSYGYpx8YnVz4yFT4xZ5OrHpYYY/bjksOkl1n5CmBj/w7AKFkzIH+j6sfGprR+f+4nVj80sYv1PSpgOdD6DYQCR9SOnAAQAAA==
+   H4sIAAAAAAAAC2NiYGBgGkSYGYpx8YnRi6wHXQyXWbjUkaufkLnk6iVkPyG9xIQnuloVLJgYfyDrx8antn5cZpCiH5tZxPqf2PAkRS+tMQD1UDZJAAQAAA==
   </data>
  </layer>
  <layer name="objects" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgoAyw0FiPMhnm49LjSIZZuAA5/sYFcLkLXZyRSvZRyxx0gB7uxNqDKyzJcSeuuGdEo2kBqJUmiDGHWnYBAIr3o1gABAAA
+   H4sIAAAAAAAAC2NgoD9gIcBHBspkmE+OHmKAIxIbm5sdsYgNF8CIg40MyA13fPHPiEQ7oomR6gZ8+qgB8PmDFPsJmUOsGmIAAKZz2LsABAAA
   </data>
  </layer>
  <layer name="no-populate" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjAD9wBmInJOxCon4nAvzBrt+FgTL/0xIkAnESECuSqR8AGTB4iQAEAAA=
+   H4sIAAAAAAAAC2NgGAWjYBQMVZAIxElArAjETkDsDMQuJOgHAOJG6+wABAAA
   </data>
  </layer>
 </map>

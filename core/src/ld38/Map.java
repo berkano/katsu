@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 /**
  * Created by shaun on 21/04/2017.
@@ -27,6 +28,8 @@ public class Map extends KRoom {
     private TrollCastleGame game;
 
     private Troll selectedTroll = null;
+
+    boolean hasSpawnedHint = false;
 
     @Override
     public void update() {
@@ -86,6 +89,7 @@ public class Map extends KRoom {
         loadFromTiledMap("map");
         setupCamera();
         game = TrollCastleGame.instance();
+
     }
 
     private void setupCamera() {
@@ -149,11 +153,11 @@ public class Map extends KRoom {
         }
 
         if (!foundWall) {
-            if (game.stone < 10) {
-                selectedTroll.say("nog 10 Stone gott.");
+            if (game.stone < 3) {
+                selectedTroll.say("nog 3 Stone gott.");
                 return;
             }
-            game.stone -= 10;
+            game.stone -= 3;
             Wall wall = new Wall();
             wall.setX(selectedTroll.getX());
             wall.setY(selectedTroll.getY());
@@ -167,7 +171,7 @@ public class Map extends KRoom {
 
             if (game.wallsBuilt < 16) {
                 if (!DevHelper.skipWallRule) {
-                    selectedTroll.say("[RED]moar Wall bog! moar Wall bog!");
+                    selectedTroll.say("[RED]moar Wall bild! moar Wall bild!");
                     return;
                 }
             }
@@ -191,11 +195,11 @@ public class Map extends KRoom {
                 return;
             }
 
-            if (game.stone < 20) {
-                selectedTroll.say("[RED]nog 20 Stone gott.");
+            if (game.stone < 10) {
+                selectedTroll.say("[RED]nog 10 Stone gott.");
                 return;
             }
-            game.stone -= 20;
+            game.stone -= 10;
             Tower tower = new Tower();
             tower.setX(selectedTroll.getX());
             tower.setY(selectedTroll.getY());
@@ -305,6 +309,21 @@ public class Map extends KRoom {
 
         // Troll select / deselect
         if (clickedEntity instanceof Troll) {
+
+            // After we start selecting stuff, set a reminder about clicking everything else in the map.
+            if (!hasSpawnedHint) {
+                hasSpawnedHint = true;
+                game.task(new Callable<Boolean>() {
+                    @Override
+                    public Boolean call() throws Exception {
+                        Thread.sleep(30000);
+                        game.ui.bottomBar.writeLine("[MAGENTA]Don't forget, you can click things to find out what they are!");
+                        game.ui.bottomBar.writeLine("(Deselect any Trolls first by clicking them).");
+                        return true;
+                    }
+                });
+            }
+
             clickedTroll = (Troll)clickedEntity;
             logger.info("Clicked Troll " + clickedTroll.toString());
             if (clickedTroll != selectedTroll) {
@@ -329,7 +348,7 @@ public class Map extends KRoom {
                 if (clickedEntity != selectedTroll) {
                     selectedTroll.setTargetEntity(clickedEntity);
                     if ((clickedEntity instanceof Fish || clickedEntity instanceof Water) && !selectedTroll.hasHadPsychedelics) {
-                            selectedTroll.say("[GREEN]Luvluv Fish! [RED]Eek, Water! [CYAN]Nomnom [RED]M[WHITE]o[RED]o[WHITE]s[RED]h[WHITE]!!");
+                            selectedTroll.say("[GREEN]Luvluv Fish! [RED]Arrgh, Water nogluv! [CYAN]Nomnom [RED]M[WHITE]o[RED]o[WHITE]s[RED]h[WHITE]!!");
                     } else {
                         selectedTroll.say("ogg " + clickedEntity.toString() + " mog.");
                     }

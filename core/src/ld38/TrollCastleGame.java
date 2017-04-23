@@ -103,7 +103,7 @@ public class TrollCastleGame extends KGame {
             rocks = K.resource.loadSound("rocks.ogg");
             build = K.resource.loadSound("build.ogg");
             music1.setLooping(true);
-            music1.setVolume(0.25f);
+            music1.setVolume(0.15f);
 
             if (DevHelper.playMusicOnStart) {
                 music1.play();

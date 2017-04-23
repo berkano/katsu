@@ -14,7 +14,7 @@ public class Sand extends TrollCastleEntityBase {
 
     @Override
     public void onClick() {
-        describe("This sand looks sandy.");
+        describe("This sand looks sandy. But you could probably build something on it.");
     }
 
 }

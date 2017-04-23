@@ -57,7 +57,7 @@ public class Troll extends TrollCastleEntityBase {
         map = (Map)getRoom();
 
         if (psychedelic) {
-            if (startPyschMillis < System.currentTimeMillis() - 10000) {
+            if (startPyschMillis < System.currentTimeMillis() - 30000) {
                 setPsychedelic(false);
                 getAppearance().setSpriteColour(Color.WHITE);
             }
@@ -161,6 +161,7 @@ public class Troll extends TrollCastleEntityBase {
 
                 int mineResult = 1 + K.random.nextInt(6);
                 switch (mineResult) {
+                    // Monster: 1, 2
                     case 1:
                     case 2:
                         game.ui.bottomBar.writeLine("[ORANGE]" +name + " [RED]encounters a Monster!");
@@ -175,6 +176,11 @@ public class Troll extends TrollCastleEntityBase {
 
                         }
                         break;
+                    // Nothing!
+                    case 3:
+                        break;
+                    // 4,5: Rocks
+                    case 4:
                     case 5:
                         game.mine.play();
                         Thread.sleep(2000);
@@ -183,6 +189,7 @@ public class Troll extends TrollCastleEntityBase {
                         game.rocks.play();
                         Thread.sleep(2000);
                         break;
+                    // 6: Gold!
                     case 6:
                         game.mine.play();
                         Thread.sleep(2000);
