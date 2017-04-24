@@ -5,6 +5,7 @@
   * Tell a Troll to go somewhere by clicking a point on the map.
   * Click a Troll a second time to de-select it (when no Troll is
     selected you can inspect any object on the map by clicking it).
+  * You can also drag the map with the mouse.
 
 [GREEN]~Actions~[WHITE]
   * Pressing Space carries out an action such as Mine, Eat Mushroom,

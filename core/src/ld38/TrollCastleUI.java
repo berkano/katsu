@@ -54,7 +54,7 @@ public class TrollCastleUI {
             help.writeLine(line);
         }
 
-        help.setBounds(128, 32, Gdx.graphics.getWidth() - 256, help.size() * K.graphics.font.getLineHeight());
+        help.setBounds(128, 16, Gdx.graphics.getWidth() - 256, help.size() * K.graphics.font.getLineHeight());
         help.setAlignment(Align.topLeft);
 
 
