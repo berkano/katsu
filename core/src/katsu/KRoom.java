@@ -1,6 +1,7 @@
 package katsu;
 
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector3;
 import ld38.entities.SwimTube;
 import lombok.Getter;
 import lombok.Setter;
@@ -197,5 +198,12 @@ public class KRoom extends KInputProcessor {
         }
         return null;
     }
+
+    public List<KEntity> entitiesAtScreenPoint(int screenX, int screenY) {
+        Vector3 clickLocation = new Vector3(screenX, screenY, 0);
+        Vector3 worldLocation = K.graphics.camera.unproject(clickLocation);
+        return findEntitiesAtPoint(Math.round(worldLocation.x), Math.round(worldLocation.y));
+    }
+
 
 }
