@@ -173,8 +173,6 @@ public class KRoom extends KInputProcessor {
 
         for (KEntity e : entities) {
 
-            if (e instanceof SwimTube) continue; // brutal hack!!! ld38
-
             // Quick optimization
             if (
                 e.getX() > x || e.getY() > y ||

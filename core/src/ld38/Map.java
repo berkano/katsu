@@ -146,6 +146,18 @@ public class Map extends KRoom {
         return false;
     }
 
+    @Override
+    public ArrayList<KEntity> findEntitiesAtPoint(int x, int y) {
+        ArrayList<KEntity> result = super.findEntitiesAtPoint(x, y);
+        ArrayList<KEntity> filtered = new ArrayList<>();
+        for (KEntity e : result) {
+            if (!(e instanceof SwimTube)) {
+                filtered.add(e);
+            }
+        }
+        return filtered;
+    }
+
     private void handleBuildCommand() {
         // do we have a selected troll?
         if (selectedTroll == null) {
