@@ -70,23 +70,9 @@ public class Map extends KRoom {
             }
         }
 
-        // z order - towers
-        for (KEntity e: towers) {
-            getEntities().remove(e);
-            getEntities().add(e);
-        }
-
-        // z order - trolls
-        for (KEntity e: trolls) {
-            getEntities().remove(e);
-            getEntities().add(e);
-        }
-
-        // z order - tubes
-        for (KEntity e: tubes) {
-            getEntities().remove(e);
-            getEntities().add(e);
-        }
+        bringEntitiesToTop(Tower.class);
+        bringEntitiesToTop(Troll.class);
+        bringEntitiesToTop(SwimTube.class);
 
     }
 

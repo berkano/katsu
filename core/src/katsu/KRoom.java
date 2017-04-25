@@ -205,5 +205,23 @@ public class KRoom extends KInputProcessor {
         return findEntitiesAtPoint(Math.round(worldLocation.x), Math.round(worldLocation.y));
     }
 
+    public void bringEntitiesToTop(Class clazz) {
+
+        List<KEntity> toPop = new ArrayList<>();
+
+        for (KEntity e: getEntities()) {
+            if (clazz.isInstance(e)) {
+                toPop.add(e);
+            }
+        }
+
+        for (KEntity e: toPop) {
+            getEntities().remove(e);
+            getEntities().add(e);
+        }
+
+    }
+
+
 
 }
