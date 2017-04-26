@@ -1,6 +1,5 @@
 package ld38;
 
-import com.badlogic.gdx.math.Vector3;
 import katsu.K;
 import katsu.KEntity;
 import katsu.KRoom;
@@ -10,7 +9,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
 
 /**
  * Created by shaun on 21/04/2017.
@@ -76,7 +74,7 @@ public class Map extends KRoom {
             game.ui.toggleHelp();
         }
         if (character == ' ') {
-            handleSpaceCommand();
+            trollManager.handleSpaceCommand();
         }
         return false;
     }
@@ -102,13 +100,11 @@ public class Map extends KRoom {
 
         logger.info("Detected touch up");
 
-        if (hasDragged) return false;
+        if (mouseHandler.isDragging()) return false;
 
         KEntity clickedEntity = null;
 
         List<KEntity> entitiesUnderClick = entitiesAtScreenPoint(screenX, screenY);
-
-        Troll clickedTroll;
 
         // Iterate thru entities, topmost last
         for (KEntity e : entitiesUnderClick) {
@@ -116,78 +112,12 @@ public class Map extends KRoom {
             clickedEntity = e;
         }
 
-        // Troll select / deselect
-        if (clickedEntity instanceof Troll) {
+        trollManager.entityClicked(clickedEntity);
 
-            // After we start selecting stuff, set a reminder about clicking everything else in the map.
-            if (!hasSpawnedHint) {
-                hasSpawnedHint = true;
-                game.task(new Callable<Boolean>() {
-                    @Override
-                    public Boolean call() throws Exception {
-                        Thread.sleep(30000);
-                        game.ui.bottomBar.writeLine("[MAGENTA]Don't forget, you can click things to find out what they are!");
-                        game.ui.bottomBar.writeLine("(Deselect any Trolls first by clicking them).");
-                        return true;
-                    }
-                });
-            }
-
-            clickedTroll = (Troll)clickedEntity;
-            logger.info("Clicked Troll " + clickedTroll.toString());
-            if (clickedTroll != selectedTroll) {
-                // deselect existing if we have it
-                if (selectedTroll != null) {
-                    selectedTroll.getAppearance().setTextureFrom(Troll.class);
-                }
-                logger.info("Selecting Troll " + clickedTroll.toString());
-                clickedTroll.onClick();
-                selectedTroll = clickedTroll;
-                selectedTroll.getAppearance().setTextureFrom(SelectedTroll.class);
-            } else {
-                // it's already selected, so deselect it
-                logger.info("Deselecting Troll " + clickedTroll.toString());
-                clickedTroll.getAppearance().setTextureFrom(Troll.class);
-                selectedTroll = null;
-            }
+        if (clickedEntity != null) {
+            logger.info("Calling onClick for entity " + clickedEntity.toString());
+            clickedEntity.onClick();
         }
-
-        if (selectedTroll != null) {
-            if (clickedEntity != null) {
-                if (clickedEntity != selectedTroll) {
-                    selectedTroll.setTargetEntity(clickedEntity);
-                    if ((clickedEntity instanceof Fish || clickedEntity instanceof Water) && !selectedTroll.hasHadPsychedelics) {
-                            selectedTroll.say("[RED]Me want fish. Me scared of water. Mushroom stop me being scared.");
-                    } else {
-                        selectedTroll.say("i go " + clickedEntity.toString());
-                    }
-                }
-            }
-        } else {
-            if (clickedEntity != null) {
-                logger.info("Calling onClick for entity " + clickedEntity.toString());
-                clickedEntity.onClick();
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public boolean touchDragged(int screenX, int screenY, int pointer) {
-
-        hasDragged = true;
-
-        int dx = screenX - lastDragX;
-        int dy = screenY - lastDragY;
-
-        logger.info("detected drag at " + screenX + "," + screenY + " with delta " + dx + "," + dy);
-
-        K.graphics.camera.position.x -= dx * K.graphics.camera.zoom;
-        K.graphics.camera.position.y += dy * K.graphics.camera.zoom;
-
-        lastDragX = screenX;
-        lastDragY = screenY;
-
         return false;
     }
 

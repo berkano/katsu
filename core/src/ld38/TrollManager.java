@@ -19,6 +19,7 @@ public class TrollManager extends KInputProcessor {
     private Map room;
 
     Logger logger = LoggerFactory.getLogger(TrollManager.class);
+    private boolean hasSpawnedHint = false;
 
 
     public TrollManager(TrollCastleGame game, Map room) {
@@ -104,7 +105,7 @@ public class TrollManager extends KInputProcessor {
             int x = selectedTroll.getX();
             int y = selectedTroll.getY();
 
-            logger.info("Attempting to build tower at precise position "+x+","+y);
+            logger.info("Attempting to build tower at precise position " + x + "," + y);
             // 144,112
             // 208,112
             // 208,48
@@ -161,7 +162,7 @@ public class TrollManager extends KInputProcessor {
     }
 
 
-    private void handleSpaceCommand() {
+    public void handleSpaceCommand() {
 
         if (selectedTroll == null) {
 
@@ -235,4 +236,55 @@ public class TrollManager extends KInputProcessor {
 
     }
 
+    public void entityClicked(KEntity clickedEntity) {
+
+        if (clickedEntity instanceof Troll) {
+
+            // After we start selecting stuff, set a reminder about clicking everything else in the map.
+            if (!hasSpawnedHint) {
+                hasSpawnedHint = true;
+                game.task(new Callable<Boolean>() {
+                    @Override
+                    public Boolean call() throws Exception {
+                        Thread.sleep(30000);
+                        game.ui.bottomBar.writeLine("[MAGENTA]Don't forget, you can click things to find out what they are!");
+                        game.ui.bottomBar.writeLine("(Deselect any Trolls first by clicking them).");
+                        return true;
+                    }
+                });
+            }
+
+            Troll clickedTroll = (Troll) clickedEntity;
+            logger.info("Clicked Troll " + clickedTroll.toString());
+            if (clickedTroll != selectedTroll) {
+                // deselect existing if we have it
+                if (selectedTroll != null) {
+                    selectedTroll.getAppearance().setTextureFrom(Troll.class);
+                }
+                logger.info("Selecting Troll " + clickedTroll.toString());
+                clickedTroll.onClick();
+                selectedTroll = clickedTroll;
+                selectedTroll.getAppearance().setTextureFrom(SelectedTroll.class);
+            } else {
+                // it's already selected, so deselect it
+                logger.info("Deselecting Troll " + clickedTroll.toString());
+                clickedTroll.getAppearance().setTextureFrom(Troll.class);
+                selectedTroll = null;
+            }
+
+        }
+
+        if (selectedTroll != null) {
+            if (clickedEntity != null) {
+                if (clickedEntity != selectedTroll) {
+                    selectedTroll.setTargetEntity(clickedEntity);
+                    if ((clickedEntity instanceof Fish || clickedEntity instanceof Water) && !selectedTroll.hasHadPsychedelics) {
+                        selectedTroll.say("[RED]Me want fish. Me scared of water. Mushroom stop me being scared.");
+                    } else {
+                        selectedTroll.say("i go " + clickedEntity.toString());
+                    }
+                }
+            }
+        }
+    }
 }
