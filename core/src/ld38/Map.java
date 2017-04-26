@@ -17,58 +17,20 @@ import java.util.concurrent.Callable;
  */
 public class Map extends KRoom {
 
-    private int lastDragX = 0;
-    private int lastDragY = 0;
-    private boolean hasDragged = false;
-
     private Logger logger = LoggerFactory.getLogger(Map.class);
-
     private TrollCastleGame game;
-
-    private Troll selectedTroll = null;
+    TrollManager trollManager;
+    GameState gameState;
+    MouseHandler mouseHandler = new MouseHandler();
 
     boolean hasSpawnedHint = false;
 
     @Override
     public void update() {
         super.update();
+        trollManager.update();
+        gameState.update();
 
-        // Handle trolls dying
-        if (selectedTroll != null) {
-            if (selectedTroll.isDestroyed()) {
-                selectedTroll = null;
-            }
-        }
-
-        game.trolls = 0;
-        game.wallsBuilt = 0;
-        game.goldTowersBuilt = 0;
-        game.towersBuilt = 0;
-        List<KEntity> trolls = new ArrayList<>();
-        List<KEntity> tubes = new ArrayList<>();
-        List<KEntity> towers = new ArrayList<>();
-        for (KEntity e: getEntities()) {
-            if (e instanceof Troll) {
-                Troll t = (Troll) e;
-                trolls.add(t);
-                game.trolls++;
-            }
-            if (e instanceof SwimTube) {
-                tubes.add(e);
-            }
-            if (e instanceof BaseTower) {
-                towers.add(e);
-            }
-            if (e instanceof Wall) {
-                game.wallsBuilt++;
-            }
-            if (e instanceof Tower) {
-                game.towersBuilt++;
-            }
-            if (e instanceof GoldTower) {
-                game.goldTowersBuilt++;
-            }
-        }
 
         bringEntitiesToTop(Tower.class);
         bringEntitiesToTop(Troll.class);
@@ -83,6 +45,11 @@ public class Map extends KRoom {
         loadFromTiledMap("map");
         setupCamera();
         game = TrollCastleGame.instance();
+        gameState = new GameState(game, this);
+        trollManager = new TrollManager(game, this);
+
+        K.input.getMultiplexer().addProcessor(mouseHandler);
+        K.input.getMultiplexer().addProcessor(trollManager);
 
         if (DevHelper.randomMushroomOnStart) {
             Mushroom mushroom = new Mushroom();
@@ -103,17 +70,6 @@ public class Map extends KRoom {
     }
 
     @Override
-    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-
-        hasDragged = false;
-
-        lastDragX = screenX;
-        lastDragY = screenY;
-
-        return false;
-    }
-
-    @Override
     public boolean keyTyped(char character) {
 
         if (character == 'h') {
@@ -121,11 +77,6 @@ public class Map extends KRoom {
         }
         if (character == ' ') {
             handleSpaceCommand();
-        }
-        if (character == 'x') {
-            if (selectedTroll != null) {
-                selectedTroll.destroy();
-            }
         }
         return false;
     }
@@ -142,191 +93,9 @@ public class Map extends KRoom {
         return filtered;
     }
 
-    private void handleBuildCommand() {
-        // do we have a selected troll?
-        if (selectedTroll == null) {
-            game.ui.bottomBar.writeLine("[RED]Click on a troll first.");
-            return;
-        }
-
-        // work out what we're on top of, first.
-        List<KEntity> under = findEntitiesAtPoint(selectedTroll.getX() + 2, selectedTroll.getY() + 2);
 
 
-        boolean foundSand = false;
-        boolean foundWall = false;
-        boolean foundTower = false;
-        boolean foundGoldTower = false;
 
-        for (KEntity e : under) {
-            if (e instanceof Sand) foundSand = true;
-            if (e instanceof Wall) foundWall = true;
-            if (e instanceof Tower) foundTower = true;
-            if (e instanceof GoldTower) foundGoldTower = true;
-        }
-
-        if (!foundSand) {
-            // we are not in a suitable place for building
-            selectedTroll.say("we got to build on sand!");
-            return;
-        }
-
-        if (!foundWall) {
-            if (game.stone < 3) {
-                selectedTroll.say("need 3 stone.");
-                return;
-            }
-            game.stone -= 3;
-            Wall wall = new Wall();
-            wall.setX(selectedTroll.getX());
-            wall.setY(selectedTroll.getY());
-            addNewEntity(wall);
-            selectedTroll.say("built wall.");
-            game.build.play();
-            return;
-        }
-
-        if (!foundTower) {
-
-            if (game.wallsBuilt < 16) {
-                if (!DevHelper.skipWallRule) {
-                    selectedTroll.say("[RED]build more walls!");
-                    return;
-                }
-            }
-
-            int x = selectedTroll.getX();
-            int y = selectedTroll.getY();
-
-            logger.info("Attempting to build tower at precise position "+x+","+y);
-            // 144,112
-            // 208,112
-            // 208,48
-            // 144,48
-            boolean allowedTowerLocation = false;
-            if (x == 144 && y == 112) allowedTowerLocation = true;
-            if (x == 208 && y == 112) allowedTowerLocation = true;
-            if (x == 208 && y == 48) allowedTowerLocation = true;
-            if (x == 144 && y == 48) allowedTowerLocation = true;
-
-            if (!allowedTowerLocation) {
-                selectedTroll.say("[RED]no build tower here!");
-                return;
-            }
-
-            if (game.stone < 10) {
-                selectedTroll.say("[RED]need 10 stone!");
-                return;
-            }
-            game.stone -= 10;
-            Tower tower = new Tower();
-            tower.setX(selectedTroll.getX());
-            tower.setY(selectedTroll.getY());
-            addNewEntity(tower);
-            game.build.play();
-            selectedTroll.say("built tower!");
-            return;
-        }
-
-        if (!foundGoldTower) {
-
-            if (game.towersBuilt < 4) {
-                selectedTroll.say("[RED]build more tower!");
-                return;
-            }
-
-            if (game.gold < 5) {
-                selectedTroll.say("[RED]need 5 gold");
-                return;
-            }
-            game.gold -= 5;
-
-            GoldTower tower = new GoldTower();
-            tower.setX(selectedTroll.getX());
-            tower.setY(selectedTroll.getY());
-            addNewEntity(tower);
-            game.build.play();
-            selectedTroll.say("built gold tower!");
-            return;
-        }
-
-        selectedTroll.say("[RED]is gold tower already!");
-
-    }
-
-    private void handleSpaceCommand() {
-
-        if (selectedTroll == null) {
-
-            game.ui.bottomBar.writeLine("[RED]Click on a troll first.");
-
-        } else {
-
-            List<KEntity> under = findEntitiesAtPoint(selectedTroll.getX() + 2, selectedTroll.getY() + 2);
-            KEntity highest = null;
-            for (KEntity u : under) {
-                if (!(u instanceof Troll)) {
-                    highest = u;
-                }
-            }
-
-            if (highest != null) {
-                if (highest.getX() != selectedTroll.getX() || highest.getY() != selectedTroll.getY()) {
-                    //selectedTroll.say("yerg " + highest.toString() + "pug.");
-                }
-            }
-
-            if (highest instanceof Mushroom) {
-                selectedTroll.setPsychedelic(true);
-                game.hasEatenMushroom = true;
-                highest.destroy();
-                game.psych.play();
-            }
-
-            if (highest instanceof Mine) {
-                selectedTroll.mine();
-            }
-
-            if (highest instanceof Mud) {
-                BabyMushroom babyMushroom = new BabyMushroom();
-                babyMushroom.setX(selectedTroll.getX());
-                babyMushroom.setY(selectedTroll.getY());
-                addNewEntity(babyMushroom);
-                selectedTroll.say("mushroom planted!");
-                game.plant.play();
-            }
-
-            if (highest instanceof Fish) {
-                selectedTroll.hadFish = true;
-                selectedTroll.say("yum yum fish!");
-                selectedTroll.timesMined = 0;
-                game.fish.play();
-                highest.destroy();
-                final int x = highest.getX();
-                final int y = highest.getY();
-                game.task(new Callable<Boolean>() {
-                    @Override
-                    public Boolean call() throws Exception {
-                        Thread.sleep(30000);
-                        Fish fish = new Fish();
-                        fish.setX(x);
-                        fish.setY(y);
-                        addNewEntity(fish);
-                        return true;
-                    }
-                });
-            }
-
-            if (highest instanceof Sand ||
-                    highest instanceof Wall ||
-                    highest instanceof BaseTower
-                    ) {
-                handleBuildCommand();
-            }
-
-        }
-
-    }
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
