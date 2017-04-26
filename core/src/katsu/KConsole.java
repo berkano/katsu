@@ -1,4 +1,4 @@
-package mini73;
+package katsu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -9,21 +9,19 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
-import katsu.K;
-import katsu.KInputProcessor;
 import lombok.Getter;
 import lombok.Setter;
 
 /**
  * Created by shaun on 29/03/2017.
  */
-public class Console extends KInputProcessor {
+public class KConsole extends KInputProcessor {
 
     Stage stage;
     Label label;
     Label.LabelStyle textStyle;
     BitmapFont font;
-    TextBuffer textBuffer = new TextBuffer();
+    KTextBuffer textBuffer = new KTextBuffer();
     private boolean visible = true;
 
     boolean firstUpdateDone = false;
@@ -48,7 +46,7 @@ public class Console extends KInputProcessor {
         return false; // Allow other components to respond to the key
     }
 
-    public Console() {
+    public KConsole() {
         K.input.getMultiplexer().addProcessor(this);
     }
 
@@ -149,7 +147,7 @@ public class Console extends KInputProcessor {
         writeLine(s, 1000000000);
     }
 
-    public Console setToggleKey(int toggleKey) {
+    public KConsole setToggleKey(int toggleKey) {
         this.toggleKey = toggleKey;
         return this;
     }

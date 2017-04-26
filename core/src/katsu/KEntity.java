@@ -2,8 +2,6 @@ package katsu;
 
 import lombok.Getter;
 import lombok.Setter;
-import mini73.Objective;
-import mini73.UnfinishedBusinessException;
 import net.sf.jsi.Rectangle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -242,10 +240,6 @@ public class KEntity extends KInputProcessor {
     public void setPosition(KEntity other) {
         setX(other.getX());
         setY(other.getY());
-    }
-
-    public void setCurrentObjective(Objective obj) {
-        UnfinishedBusinessException.raise();
     }
 
     public void onClick() {

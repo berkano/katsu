@@ -4,7 +4,6 @@ package katsu;
 import com.badlogic.gdx.audio.Music;
 import lombok.Getter;
 import lombok.Setter;
-import mini73.Console;
 
 /**
  * Created by shaun on 02/04/2017.
@@ -22,7 +21,7 @@ public class KMusic {
         music = K.resource.loadMusic(filename);
     }
 
-    public void nowPlaying(Console console) {
+    public void nowPlaying(KConsole console) {
         console.writeLine("[GRAY]now playing: [WHITE]" + getTitle() + " [GRAY]by [WHITE]" + getAuthor() + "[GRAY].", 10000);
     }
 }

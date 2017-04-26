@@ -1,15 +1,15 @@
-package mini73;
+package katsu;
 
 /**
  * Created by shaun on 29/03/2017.
  */
-public class TextBufferLine {
+public class KTextBufferLine {
 
     private final long decayMillis;
     private String string;
     private long created = System.currentTimeMillis();
 
-    public TextBufferLine(String string, long decayMillis) {
+    public KTextBufferLine(String string, long decayMillis) {
         this.string = string;
         this.decayMillis = decayMillis;
     }

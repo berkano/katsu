@@ -2,13 +2,10 @@ package katsu;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import lombok.Getter;
 import lombok.Setter;
-import mini73.UnfinishedBusinessException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -148,11 +145,6 @@ public abstract class KGame extends KInputProcessor implements ApplicationListen
     public void exit() {
         logger.debug("game game exiting by request.");
         Gdx.app.exit();
-    }
-
-    public KRoom roomForClass(Class clazz) {
-        UnfinishedBusinessException.raise();
-        return null;
     }
 
     public abstract KSettings buildSettings();

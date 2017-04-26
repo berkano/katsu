@@ -1,36 +1,35 @@
-package mini73;
+package katsu;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * Created by shaun on 29/03/2017.
  */
-public class TextBuffer {
+public class KTextBuffer {
 
-    private ArrayList<TextBufferLine> lines = new ArrayList<TextBufferLine>();
+    private ArrayList<KTextBufferLine> lines = new ArrayList<KTextBufferLine>();
     private long decayMillis = 1000;
     public boolean updated = false;
     private int lineLimit = -1;
 
     public void writeLine(String line, long decayMillis) {
-        lines.add(new TextBufferLine(line, decayMillis));
+        lines.add(new KTextBufferLine(line, decayMillis));
         updated = true;
         refresh();
     }
 
     public void refresh() {
 
-        ArrayList<TextBufferLine> toRemove = new ArrayList<TextBufferLine>();
+        ArrayList<KTextBufferLine> toRemove = new ArrayList<KTextBufferLine>();
 
         // Remove anything that has expired
-        for (TextBufferLine tbl : lines) {
+        for (KTextBufferLine tbl : lines) {
             if (tbl.hasExpired()) {
                 toRemove.add(tbl);
             }
         }
 
-        for (TextBufferLine tbl : toRemove) {
+        for (KTextBufferLine tbl : toRemove) {
             lines.remove(tbl);
             updated = true;
         }
@@ -52,7 +51,7 @@ public class TextBuffer {
     public String toString() {
         refresh();
         String result = "";
-        for (TextBufferLine tbl : lines) {
+        for (KTextBufferLine tbl : lines) {
             result += tbl.toString() + "\n";
         }
         updated = false;

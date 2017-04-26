@@ -3,16 +3,16 @@ package ld38;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Align;
 import katsu.K;
-import mini73.Console;
+import katsu.KConsole;
 
 /**
  * Created by shaun on 22/04/2017.
  */
 public class TrollCastleUI {
 
-    public Console topBar = new Console();
-    public Console bottomBar = new Console();
-    public Console help = new Console();
+    public KConsole topBar = new KConsole();
+    public KConsole bottomBar = new KConsole();
+    public KConsole help = new KConsole();
 
     public void start() {
         setupTopBar();
