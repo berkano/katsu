@@ -21,19 +21,16 @@ public class Map extends KRoom {
     GameState gameState;
     MouseHandler mouseHandler = new MouseHandler();
 
-    boolean hasSpawnedHint = false;
-
     @Override
     public void update() {
+
         super.update();
         trollManager.update();
         gameState.update();
 
-
         bringEntitiesToTop(Tower.class);
         bringEntitiesToTop(Troll.class);
         bringEntitiesToTop(SwimTube.class);
-
     }
 
     @Override
@@ -55,7 +52,6 @@ public class Map extends KRoom {
             mushroom.setY(128);
             addNewEntity(mushroom);
         }
-
 
     }
 
@@ -91,10 +87,6 @@ public class Map extends KRoom {
         return filtered;
     }
 
-
-
-
-
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 
@@ -112,9 +104,8 @@ public class Map extends KRoom {
             clickedEntity = e;
         }
 
-        trollManager.entityClicked(clickedEntity);
-
         if (clickedEntity != null) {
+            trollManager.entityClicked(clickedEntity);
             logger.info("Calling onClick for entity " + clickedEntity.toString());
             clickedEntity.onClick();
         }
