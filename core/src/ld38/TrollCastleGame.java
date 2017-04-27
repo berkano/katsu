@@ -53,7 +53,6 @@ public class TrollCastleGame extends KGame {
     public int goldTowersBuilt = 0;
 
     public boolean hasEatenMushroom = false;
-    public boolean hasMined = false;
 
     boolean hasCompleted = false;
 

@@ -107,7 +107,7 @@ public class TrollManager extends KInputProcessor {
             if (highest instanceof Fish) {
                 selectedTroll.hadFish = true;
                 selectedTroll.say("yum yum fish!");
-                selectedTroll.timesMined = 0;
+                selectedTroll.hunger = 0;
                 game.fish.play();
                 highest.destroy();
                 final int x = highest.getX();

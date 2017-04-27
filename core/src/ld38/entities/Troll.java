@@ -29,7 +29,7 @@ public class Troll extends TrollCastleEntityBase {
     public boolean hasHadPsychedelics = DevHelper.allTrollsPsychedOnStart;
     Map map;
     public boolean hadFish = false;
-    public int timesMined = 0;
+    public int hunger = 0;
     private SwimTube swimTube = null;
 
     public Troll() {
@@ -139,17 +139,7 @@ public class Troll extends TrollCastleEntityBase {
     }
 
     public void say(String utterance) {
-//        utterance = utterance.replace("Mushroom","moosh");
-//        utterance = utterance.replace("Mine","digg");
-//        utterance = utterance.replace("Seed","pod");
-//        utterance = utterance.replace("Water","splish");
-//        utterance = utterance.replace("Grass","grob");
-//        utterance = utterance.replace("Fish","blubby");
-//        utterance = utterance.replace("Sand","grund");
-//        utterance = utterance.replace("Wall","wol");
-//        utterance = utterance.replace("Tower","toor");
-//        utterance = utterance.replace("Stone","rok");
-//        utterance = utterance.replace("Gold","guld");
+
         int talkSound = K.random.nextInt(4);
 
         if (talkSound == 0) game.talk1.play();
@@ -173,60 +163,33 @@ public class Troll extends TrollCastleEntityBase {
 
     public void mine() {
 
-        timesMined++;
+        hunger++;
 
-//        if (!hadFish) {
-            if (timesMined > 3) {
-                say("[RED]me too hungry. feed me fishies. [CYAN]><>");
-                return;
-            }
-//        }
+        if (hunger > 3) {
+            say("[RED]me too hungry. feed me fishies. [CYAN]><>");
+            return;
+        }
 
         getAppearance().setVisible(false);
 
         game.task(new Callable<Boolean>() {
             public Boolean call() throws Exception {
 
-                game.hasMined = true;
-
                 int mineResult = 1 + K.random.nextInt(6);
                 switch (mineResult) {
-                    // Monster: 1, 2
                     case 1:
                     case 2:
-                        game.ui.bottomBar.writeLine("[ORANGE]" +name + " [RED]encounters a Monster!");
-                        game.mystery.play();
-                        Thread.sleep(4000);
-                        if (K.random.nextInt(3) == 0) {
-                            game.ui.bottomBar.writeLine("[ORANGE]" +name + " [RED]dies. :-(");
-                            game.die.play();
-                            destroy();
-                        } else {
-                            game.ui.bottomBar.writeLine("[ORANGE]" +name + " [GREEN]survives!");
-
-                        }
+                        encounterMonster();
                         break;
-                    // Nothing!
                     case 3:
                         break;
-                    // 4,5: Rocks
                     case 4:
                     case 5:
-                        game.mine.play();
-                        Thread.sleep(2000);
-                        say("got stone!");
-                        game.stone += 17 + K.random.nextInt(19);
-                        game.rocks.play();
-                        Thread.sleep(2000);
+                        gotStone();
                         break;
                     // 6: Gold!
                     case 6:
-                        game.mine.play();
-                        Thread.sleep(2000);
-                        say("got gold!");
-                        game.goldSound.play();
-                        game.gold += 4 + K.random.nextInt(5);
-                        Thread.sleep(2000);
+                        gotGold();
                         break;
                     default:
                         game.mine.play();
@@ -236,5 +199,37 @@ public class Troll extends TrollCastleEntityBase {
                 return true;
             }});
 
+    }
+
+    private void gotGold() throws InterruptedException{
+        game.mine.play();
+        Thread.sleep(2000);
+        say("got gold!");
+        game.goldSound.play();
+        game.gold += 4 + K.random.nextInt(5);
+        Thread.sleep(2000);
+    }
+
+    private void gotStone() throws InterruptedException{
+        game.mine.play();
+        Thread.sleep(2000);
+        say("got stone!");
+        game.stone += 17 + K.random.nextInt(19);
+        game.rocks.play();
+        Thread.sleep(2000);
+    }
+
+    private void encounterMonster() throws InterruptedException{
+        game.ui.bottomBar.writeLine("[ORANGE]" +name + " [RED]encounters a Monster!");
+        game.mystery.play();
+        Thread.sleep(4000);
+        if (K.random.nextInt(3) == 0) {
+            game.ui.bottomBar.writeLine("[ORANGE]" +name + " [RED]dies. :-(");
+            game.die.play();
+            destroy();
+        } else {
+            game.ui.bottomBar.writeLine("[ORANGE]" +name + " [GREEN]survives!");
+
+        }
     }
 }
