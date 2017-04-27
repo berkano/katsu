@@ -59,43 +59,13 @@ public class Troll extends TrollCastleEntityBase {
         map = (Map)getRoom();
 
         if (psychedelic) {
-            if (startPyschMillis < System.currentTimeMillis() - 30000) {
-                setPsychedelic(false);
-                game.currentMusic.pause();
-                game.currentMusic = game.music2;
-                game.currentMusic.play();
-                getAppearance().setSpriteColour(Color.WHITE);
-                // add a swimtube if not already got one
-                if (swimTube == null) {
-                    swimTube = new SwimTube();
-                    swimTube.setX(getX());
-                    swimTube.setY(getY());
-                    getRoom().addNewEntity(swimTube);
-                }
-            }
+            updatePsychedelics();
         }
 
         if (swimTube != null) {
             swimTube.setX(getX());
             swimTube.setY(getY());
             swimTube.getAppearance().setVisible(getAppearance().isVisible());
-        }
-
-        if (psychedelic) {
-            if (lastPsychMillls < System.currentTimeMillis() - 50) {
-                lastPsychMillls = System.currentTimeMillis();
-                int nextC = K.random.nextInt(6);
-                if (nextC == 0) getAppearance().setSpriteColour(Color.PURPLE);
-                if (nextC == 1) getAppearance().setSpriteColour(Color.LIME);
-                if (nextC == 2) getAppearance().setSpriteColour(Color.CYAN);
-                if (nextC == 3) getAppearance().setSpriteColour(Color.GOLD);
-                if (nextC == 4) getAppearance().setSpriteColour(Color.PINK);
-                if (nextC == 5) getAppearance().setSpriteColour(Color.RED);
-                if (K.random.nextInt(100) == 3){
-                    int w = K.random.nextInt(game.waffle.size());
-                    say(game.waffle.get(w));
-                }
-            }
         }
 
         int moveInterval = psychedelic ? 250 : 750;
@@ -131,6 +101,42 @@ public class Troll extends TrollCastleEntityBase {
         }
 
     }
+
+    private void updatePsychedelics() {
+
+        if (startPyschMillis < System.currentTimeMillis() - 30000) {
+            setPsychedelic(false);
+            game.currentMusic.pause();
+            game.currentMusic = game.music2;
+            game.currentMusic.play();
+            getAppearance().setSpriteColour(Color.WHITE);
+            // add a swimtube if not already got one
+            if (swimTube == null) {
+                swimTube = new SwimTube();
+                swimTube.setX(getX());
+                swimTube.setY(getY());
+                getRoom().addNewEntity(swimTube);
+            }
+        }
+
+        if (lastPsychMillls < System.currentTimeMillis() - 50) {
+            lastPsychMillls = System.currentTimeMillis();
+            int nextC = K.random.nextInt(6);
+            if (nextC == 0) getAppearance().setSpriteColour(Color.PURPLE);
+            if (nextC == 1) getAppearance().setSpriteColour(Color.LIME);
+            if (nextC == 2) getAppearance().setSpriteColour(Color.CYAN);
+            if (nextC == 3) getAppearance().setSpriteColour(Color.GOLD);
+            if (nextC == 4) getAppearance().setSpriteColour(Color.PINK);
+            if (nextC == 5) getAppearance().setSpriteColour(Color.RED);
+            if (K.random.nextInt(100) == 3){
+                int w = K.random.nextInt(game.waffle.size());
+                say(game.waffle.get(w));
+            }
+        }
+
+    }
+
+
 
     @Override
     public void onClick() {
