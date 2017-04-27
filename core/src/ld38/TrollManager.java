@@ -19,7 +19,7 @@ public class TrollManager extends KInputProcessor {
     private Map room;
 
     private TrollBuilder trollBuilder;
-    private TrollAction trollAction = new TrollAction();
+    private TrollAction trollAction;
 
     Logger logger = LoggerFactory.getLogger(TrollManager.class);
     private boolean hasSpawnedHint = false;
@@ -29,6 +29,7 @@ public class TrollManager extends KInputProcessor {
         this.game = game;
         this.room = room;
         trollBuilder = new TrollBuilder(game, this, room);
+        trollAction = new TrollAction(game, this, room);
     }
 
     public void update() {
@@ -76,50 +77,10 @@ public class TrollManager extends KInputProcessor {
 
             if (highest != null) {
                 if (highest.getX() != selectedTroll.getX() || highest.getY() != selectedTroll.getY()) {
-                    //selectedTroll.say("yerg " + highest.toString() + "pug.");
                 }
             }
 
-            if (highest instanceof Mushroom) {
-                selectedTroll.setPsychedelic(true);
-                game.hasEatenMushroom = true;
-                highest.destroy();
-                game.psych.play();
-            }
-
-            if (highest instanceof Mine) {
-                selectedTroll.mine();
-            }
-
-            if (highest instanceof Mud) {
-                BabyMushroom babyMushroom = new BabyMushroom();
-                babyMushroom.setX(selectedTroll.getX());
-                babyMushroom.setY(selectedTroll.getY());
-                room.addNewEntity(babyMushroom);
-                selectedTroll.say("mushroom planted!");
-                game.plant.play();
-            }
-
-            if (highest instanceof Fish) {
-                selectedTroll.hadFish = true;
-                selectedTroll.say("yum yum fish!");
-                selectedTroll.hunger = 0;
-                game.fish.play();
-                highest.destroy();
-                final int x = highest.getX();
-                final int y = highest.getY();
-                game.task(new Callable<Boolean>() {
-                    @Override
-                    public Boolean call() throws Exception {
-                        Thread.sleep(30000);
-                        Fish fish = new Fish();
-                        fish.setX(x);
-                        fish.setY(y);
-                        room.addNewEntity(fish);
-                        return true;
-                    }
-                });
-            }
+            trollAction.act(highest);
 
             if (highest instanceof Sand ||
                     highest instanceof Wall ||
@@ -127,6 +88,8 @@ public class TrollManager extends KInputProcessor {
                     ) {
                 handleBuildCommand();
             }
+
+
 
         }
 
