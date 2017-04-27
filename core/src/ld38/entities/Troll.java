@@ -23,14 +23,12 @@ public class Troll extends TrollCastleEntityBase {
 
     Logger logger = LoggerFactory.getLogger(Troll.class);
 
-    boolean psychedelic = false;
-    long lastPsychMillls = System.currentTimeMillis();
-    long startPyschMillis = 0;
-    public boolean hasHadPsychedelics = DevHelper.allTrollsPsychedOnStart;
     Map map;
     public boolean hadFish = false;
     public int hunger = 0;
     private SwimTube swimTube = null;
+
+    private TrollMind mind = new TrollMind(this, game);
 
     public Troll() {
         super();
@@ -58,9 +56,8 @@ public class Troll extends TrollCastleEntityBase {
 
         map = (Map)getRoom();
 
-        if (psychedelic) {
-            updatePsychedelics();
-        }
+        mind.updatePsychedelics();
+
 
         if (swimTube != null) {
             swimTube.setX(getX());
@@ -68,13 +65,13 @@ public class Troll extends TrollCastleEntityBase {
             swimTube.getAppearance().setVisible(getAppearance().isVisible());
         }
 
-        int moveInterval = psychedelic ? 250 : 750;
+        int moveInterval = mind.isPsychedelic() ? 250 : 750;
         if (!lastMovedMoreThan(moveInterval)) return;
 
         if (getTargetEntity() != null) {
 
             KEntity target = getTargetEntity();
-            if (hasHadPsychedelics) {
+            if (mind.hasHadPsychedelics()) {
                 map.makeWaterPassable();
             }
             KDirection suggestion = getGrid().doPathFinding(target.getGrid().getX(), target.getGrid().getY());
@@ -102,42 +99,6 @@ public class Troll extends TrollCastleEntityBase {
 
     }
 
-    private void updatePsychedelics() {
-
-        if (startPyschMillis < System.currentTimeMillis() - 30000) {
-            setPsychedelic(false);
-            game.currentMusic.pause();
-            game.currentMusic = game.music2;
-            game.currentMusic.play();
-            getAppearance().setSpriteColour(Color.WHITE);
-            // add a swimtube if not already got one
-            if (swimTube == null) {
-                swimTube = new SwimTube();
-                swimTube.setX(getX());
-                swimTube.setY(getY());
-                getRoom().addNewEntity(swimTube);
-            }
-        }
-
-        if (lastPsychMillls < System.currentTimeMillis() - 50) {
-            lastPsychMillls = System.currentTimeMillis();
-            int nextC = K.random.nextInt(6);
-            if (nextC == 0) getAppearance().setSpriteColour(Color.PURPLE);
-            if (nextC == 1) getAppearance().setSpriteColour(Color.LIME);
-            if (nextC == 2) getAppearance().setSpriteColour(Color.CYAN);
-            if (nextC == 3) getAppearance().setSpriteColour(Color.GOLD);
-            if (nextC == 4) getAppearance().setSpriteColour(Color.PINK);
-            if (nextC == 5) getAppearance().setSpriteColour(Color.RED);
-            if (K.random.nextInt(100) == 3){
-                int w = K.random.nextInt(game.waffle.size());
-                say(game.waffle.get(w));
-            }
-        }
-
-    }
-
-
-
     @Override
     public void onClick() {
         super.onClick();
@@ -154,17 +115,6 @@ public class Troll extends TrollCastleEntityBase {
         if (talkSound == 3) game.talk4.play();
 
         game.ui.bottomBar.writeLine("[ORANGE]"+ toString() + "[GRAY]: [GREEN]" + utterance+"[WHITE]");
-    }
-
-    public void setPsychedelic(boolean psychedelic) {
-        this.psychedelic = psychedelic;
-        if (psychedelic == true) {
-            startPyschMillis = System.currentTimeMillis();
-            hasHadPsychedelics = true;
-            game.currentMusic.pause();
-            game.currentMusic = game.music3;
-            game.currentMusic.play();
-        }
     }
 
     public void mine() {
@@ -237,5 +187,18 @@ public class Troll extends TrollCastleEntityBase {
             game.ui.bottomBar.writeLine("[ORANGE]" +name + " [GREEN]survives!");
 
         }
+    }
+
+    public void addSwimTube() {
+        if (swimTube == null) {
+            swimTube = new SwimTube();
+            swimTube.setX(getX());
+            swimTube.setY(getY());
+            getRoom().addNewEntity(swimTube);
+        }
+    }
+
+    public TrollMind getMind() {
+        return mind;
     }
 }

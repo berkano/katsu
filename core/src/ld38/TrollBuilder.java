@@ -105,10 +105,7 @@ public class TrollBuilder {
         int y = troll.getY();
 
         logger.info("Attempting to build tower at precise position " + x + "," + y);
-        // 144,112
-        // 208,112
-        // 208,48
-        // 144,48
+
         boolean allowedTowerLocation = false;
         if (x == 144 && y == 112) allowedTowerLocation = true;
         if (x == 208 && y == 112) allowedTowerLocation = true;

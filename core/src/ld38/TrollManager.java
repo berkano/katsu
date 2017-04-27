@@ -137,7 +137,7 @@ public class TrollManager extends KInputProcessor {
             if (clickedEntity != null) {
                 if (clickedEntity != selectedTroll) {
                     selectedTroll.setTargetEntity(clickedEntity);
-                    if ((clickedEntity instanceof Fish || clickedEntity instanceof Water) && !selectedTroll.hasHadPsychedelics) {
+                    if ((clickedEntity instanceof Fish || clickedEntity instanceof Water) && !selectedTroll.getMind().hasHadPsychedelics()) {
                         selectedTroll.say("[RED]Me want fish. Me scared of water. Mushroom stop me being scared.");
                     } else {
                         selectedTroll.say("i go " + clickedEntity.toString());

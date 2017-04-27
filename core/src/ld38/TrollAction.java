@@ -25,7 +25,7 @@ public class TrollAction {
         Troll selectedTroll = manager.getSelectedTroll();
 
         if (target instanceof Mushroom) {
-            selectedTroll.setPsychedelic(true);
+            selectedTroll.getMind().setPsychedelic(true);
             game.hasEatenMushroom = true;
             target.destroy();
             game.psych.play();
