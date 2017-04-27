@@ -13,12 +13,19 @@ import java.util.List;
 public class TrollBuilder {
 
     Logger logger = LoggerFactory.getLogger(TrollBuilder.class);
+    TrollCastleGame game;
+    TrollManager manager;
+    Map room;
 
-    public void build(TrollBuildContext context) {
+    public TrollBuilder(TrollCastleGame game, TrollManager manager, Map room) {
+        this.game = game;
+        this.manager = manager;
+        this.room = room;
+    }
 
-        Troll selectedTroll = context.getSelectedTroll();
-        TrollCastleGame game = context.getGame();
-        Map room = context.getRoom();
+    public void build() {
+
+        Troll selectedTroll = manager.getSelectedTroll();
 
         // do we have a selected troll?
         if (selectedTroll == null) {
@@ -48,17 +55,7 @@ public class TrollBuilder {
         }
 
         if (!foundWall) {
-            if (game.stone < 3) {
-                selectedTroll.say("need 3 stone.");
-                return;
-            }
-            game.stone -= 3;
-            Wall wall = new Wall();
-            wall.setX(selectedTroll.getX());
-            wall.setY(selectedTroll.getY());
-            room.addNewEntity(wall);
-            selectedTroll.say("built wall.");
-            game.build.play();
+            buildWall();
             return;
         }
 
@@ -127,6 +124,23 @@ public class TrollBuilder {
         }
 
         selectedTroll.say("[RED]is gold tower already!");
+
+    }
+
+    private void buildWall() {
+
+        Troll troll = manager.getSelectedTroll();
+        if (game.stone < 3) {
+            troll.say("need 3 stone.");
+            return;
+        }
+        game.stone -= 3;
+        Wall wall = new Wall();
+        wall.setX(troll.getX());
+        wall.setY(troll.getY());
+        room.addNewEntity(wall);
+        troll.say("built wall.");
+        game.build.play();
 
     }
 }

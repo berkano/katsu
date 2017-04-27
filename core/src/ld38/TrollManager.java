@@ -18,7 +18,7 @@ public class TrollManager extends KInputProcessor {
     private TrollCastleGame game;
     private Map room;
 
-    private TrollBuilder trollBuilder = new TrollBuilder();
+    private TrollBuilder trollBuilder;
     private TrollAction trollAction = new TrollAction();
 
     Logger logger = LoggerFactory.getLogger(TrollManager.class);
@@ -28,6 +28,7 @@ public class TrollManager extends KInputProcessor {
     public TrollManager(TrollCastleGame game, Map room) {
         this.game = game;
         this.room = room;
+        trollBuilder = new TrollBuilder(game, this, room);
     }
 
     public void update() {
@@ -53,12 +54,7 @@ public class TrollManager extends KInputProcessor {
     }
 
     private void handleBuildCommand() {
-        TrollBuildContext context = new TrollBuildContext();
-        context.setGame(game);
-        context.setRoom(room);
-        context.setSelectedTroll(selectedTroll);
-        trollBuilder.build(context);
-
+        trollBuilder.build();
     }
 
 
@@ -186,5 +182,9 @@ public class TrollManager extends KInputProcessor {
                 }
             }
         }
+    }
+
+    public Troll getSelectedTroll() {
+        return selectedTroll;
     }
 }
