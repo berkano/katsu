@@ -34,59 +34,68 @@ public class TrollBuilder {
         }
 
         // work out what we're on top of, first.
-        List<KEntity> under = room.findEntitiesAtPoint(selectedTroll.getX() + 2, selectedTroll.getY() + 2);
 
-        boolean foundSand = false;
-        boolean foundWall = false;
-        boolean foundTower = false;
-        boolean foundGoldTower = false;
+        Class allowedBuild = determineAllowedBuild(selectedTroll.getX() + 2, selectedTroll.getY() + 2);
 
-        for (KEntity e : under) {
-            if (e instanceof Sand) foundSand = true;
-            if (e instanceof Wall) foundWall = true;
-            if (e instanceof Tower) foundTower = true;
-            if (e instanceof GoldTower) foundGoldTower = true;
-        }
-
-        if (!foundSand) {
+        if (allowedBuild == null) {
             // we are not in a suitable place for building
             selectedTroll.say("we got to build on sand!");
             return;
         }
 
-        if (!foundWall) {
+        if (allowedBuild == Wall.class) {
             buildWall();
             return;
         }
 
-        if (!foundTower) {
+        if (allowedBuild == Tower.class) {
             buildTower();
             return;
         }
 
-        if (!foundGoldTower) {
+        if (allowedBuild == GoldTower.class) {
+            buildGoldTower();
+        }
 
-            if (game.towersBuilt < 4) {
-                selectedTroll.say("[RED]build more tower!");
-                return;
-            }
+    }
 
-            if (game.gold < 5) {
-                selectedTroll.say("[RED]need 5 gold");
-                return;
-            }
-            game.gold -= 5;
+    private void buildGoldTower() {
 
-            GoldTower tower = new GoldTower();
-            tower.setX(selectedTroll.getX());
-            tower.setY(selectedTroll.getY());
-            room.addNewEntity(tower);
-            game.build.play();
-            selectedTroll.say("built gold tower!");
+        Troll selectedTroll = manager.getSelectedTroll();
+
+        if (game.towersBuilt < 4) {
+            selectedTroll.say("[RED]build more tower!");
             return;
         }
 
-        selectedTroll.say("[RED]is gold tower already!");
+        if (game.gold < 5) {
+            selectedTroll.say("[RED]need 5 gold");
+            return;
+        }
+        game.gold -= 5;
+
+        GoldTower tower = new GoldTower();
+        tower.setX(selectedTroll.getX());
+        tower.setY(selectedTroll.getY());
+        room.addNewEntity(tower);
+        game.build.play();
+        selectedTroll.say("built gold tower!");
+    }
+
+    private Class determineAllowedBuild(int x, int y) {
+
+        Class result = null;
+
+        List<KEntity> under = room.findEntitiesAtPoint(x, y);
+
+        // we assume entities are in correct z order
+        for (KEntity e : under) {
+            if (e instanceof Sand) result = Wall.class;
+            if (e instanceof Wall) result = Tower.class;
+            if (e instanceof Tower) result = GoldTower.class;
+        }
+
+        return result;
 
     }
 
