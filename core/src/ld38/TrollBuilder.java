@@ -94,12 +94,35 @@ public class TrollBuilder {
 
         Troll troll = manager.getSelectedTroll();
 
-        if (game.wallsBuilt < 16) {
-            if (!DevHelper.skipWallRule) {
-                troll.say("[RED]build more walls!");
-                return;
-            }
+        if (!sufficientWallsCheck()) return;
+        if (!correctTowerLocationCheck()) return;
+        if (!sufficientStoneCheck()) return;
+
+        game.stone -= 10;
+        Tower tower = new Tower();
+        tower.setX(troll.getX());
+        tower.setY(troll.getY());
+        room.addNewEntity(tower);
+        game.build.play();
+        troll.say("built tower!");
+
+    }
+
+    private boolean sufficientStoneCheck() {
+
+        Troll troll = manager.getSelectedTroll();
+
+        if (game.stone < 10) {
+            troll.say("[RED]need 10 stone!");
+            return false;
         }
+        return true;
+
+    }
+
+    private boolean correctTowerLocationCheck() {
+
+        Troll troll = manager.getSelectedTroll();
 
         int x = troll.getX();
         int y = troll.getY();
@@ -114,21 +137,24 @@ public class TrollBuilder {
 
         if (!allowedTowerLocation) {
             troll.say("[RED]no build tower here!");
-            return;
+            return false;
         }
 
-        if (game.stone < 10) {
-            troll.say("[RED]need 10 stone!");
-            return;
-        }
-        game.stone -= 10;
-        Tower tower = new Tower();
-        tower.setX(troll.getX());
-        tower.setY(troll.getY());
-        room.addNewEntity(tower);
-        game.build.play();
-        troll.say("built tower!");
+        return true;
 
+    }
+
+    private boolean sufficientWallsCheck() {
+
+        Troll troll = manager.getSelectedTroll();
+
+        if (game.wallsBuilt < 16) {
+            if (!DevHelper.skipWallRule) {
+                troll.say("[RED]build more walls!");
+                return false;
+            }
+        }
+        return true;
     }
 
     private void buildWall() {
