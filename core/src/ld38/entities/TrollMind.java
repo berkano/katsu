@@ -42,29 +42,42 @@ public class TrollMind {
         if (!psychedelic) return;
 
         if (startPyschMillis < System.currentTimeMillis() - 30000) {
-            psychedelic = false;
-            game.currentMusic.pause();
-            game.currentMusic = game.music2;
-            game.currentMusic.play();
-            host.getAppearance().setSpriteColour(Color.WHITE);
-            // add a swimtube if not already got one
-            host.addSwimTube();
+            endPsychedelics();
         }
 
         if (lastPsychMillls < System.currentTimeMillis() - 50) {
             lastPsychMillls = System.currentTimeMillis();
-            int nextC = K.random.nextInt(6);
-            if (nextC == 0) host.getAppearance().setSpriteColour(Color.PURPLE);
-            if (nextC == 1) host.getAppearance().setSpriteColour(Color.LIME);
-            if (nextC == 2) host.getAppearance().setSpriteColour(Color.CYAN);
-            if (nextC == 3) host.getAppearance().setSpriteColour(Color.GOLD);
-            if (nextC == 4) host.getAppearance().setSpriteColour(Color.PINK);
-            if (nextC == 5) host.getAppearance().setSpriteColour(Color.RED);
-            if (K.random.nextInt(100) == 3){
-                int w = K.random.nextInt(game.waffle.size());
-                host.say(game.waffle.get(w));
-            }
+            displayPsychedelicSymptoms();
         }
+
+    }
+
+    private void displayPsychedelicSymptoms() {
+
+        int nextC = K.random.nextInt(6);
+        if (nextC == 0) host.getAppearance().setSpriteColour(Color.PURPLE);
+        if (nextC == 1) host.getAppearance().setSpriteColour(Color.LIME);
+        if (nextC == 2) host.getAppearance().setSpriteColour(Color.CYAN);
+        if (nextC == 3) host.getAppearance().setSpriteColour(Color.GOLD);
+        if (nextC == 4) host.getAppearance().setSpriteColour(Color.PINK);
+        if (nextC == 5) host.getAppearance().setSpriteColour(Color.RED);
+
+        if (K.random.nextInt(100) == 3){
+            int w = K.random.nextInt(game.waffle.size());
+            host.say(game.waffle.get(w));
+        }
+
+    }
+
+    private void endPsychedelics() {
+
+        psychedelic = false;
+        game.currentMusic.pause();
+        game.currentMusic = game.music2;
+        game.currentMusic.play();
+        host.getAppearance().setSpriteColour(Color.WHITE);
+        // add a swimtube if not already got one
+        host.addSwimTube();
 
     }
 

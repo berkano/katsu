@@ -53,17 +53,14 @@ public class Troll extends TrollCastleEntityBase {
     public void update() {
 
         super.update();
-
         map = (Map)getRoom();
-
         mind.updatePsychedelics();
+        moveSwimTube();
+        doMovement();
 
+    }
 
-        if (swimTube != null) {
-            swimTube.setX(getX());
-            swimTube.setY(getY());
-            swimTube.getAppearance().setVisible(getAppearance().isVisible());
-        }
+    private void doMovement() {
 
         int moveInterval = mind.isPsychedelic() ? 250 : 750;
         if (!lastMovedMoreThan(moveInterval)) return;
@@ -74,27 +71,44 @@ public class Troll extends TrollCastleEntityBase {
             if (mind.hasHadPsychedelics()) {
                 map.makeWaterPassable();
             }
+
             KDirection suggestion = getGrid().doPathFinding(target.getGrid().getX(), target.getGrid().getY());
 
             if (suggestion != null) {
-                boolean result = tryMoveGridDirection(suggestion);
-                if (result == true) {
-                    boolean onWater = false;
-                    List<KEntity> entityList = getRoom().findEntitiesAtPoint(getX() + 2, getY() + 2);
-                    for (KEntity e : entityList) {
-                        if (e instanceof Water) onWater = true;
-                    }
-                    if (!onWater) {
-                        game.walk.play();
-                    } else {
-                        game.water.play();
-                    }
-                    juiceRotation();
-                }
+                doMovementInDirection(suggestion);
             }
 
             map.makeWaterSolid();
 
+        }
+
+    }
+
+    private void doMovementInDirection(KDirection suggestion) {
+
+        boolean result = tryMoveGridDirection(suggestion);
+        if (result) {
+            boolean onWater = false;
+            List<KEntity> entityList = getRoom().findEntitiesAtPoint(getX() + 2, getY() + 2);
+            for (KEntity e : entityList) {
+                if (e instanceof Water) onWater = true;
+            }
+            if (!onWater) {
+                game.walk.play();
+            } else {
+                game.water.play();
+            }
+            juiceRotation();
+        }
+
+    }
+
+    private void moveSwimTube() {
+
+        if (swimTube != null) {
+            swimTube.setX(getX());
+            swimTube.setY(getY());
+            swimTube.getAppearance().setVisible(getAppearance().isVisible());
         }
 
     }
