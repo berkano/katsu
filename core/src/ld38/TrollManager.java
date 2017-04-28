@@ -100,35 +100,16 @@ public class TrollManager extends KInputProcessor {
         if (clickedEntity instanceof Troll) {
 
             // After we start selecting stuff, set a reminder about clicking everything else in the map.
-            if (!hasSpawnedHint) {
-                hasSpawnedHint = true;
-                game.task(new Callable<Boolean>() {
-                    @Override
-                    public Boolean call() throws Exception {
-                        Thread.sleep(30000);
-                        game.ui.bottomBar.writeLine("[MAGENTA]Don't forget, you can click things to find out what they are!");
-                        game.ui.bottomBar.writeLine("(Deselect any Trolls first by clicking them).");
-                        return true;
-                    }
-                });
-            }
+            remindAboutClickingMapItems();
 
             Troll clickedTroll = (Troll) clickedEntity;
             logger.info("Clicked Troll " + clickedTroll.toString());
+
             if (clickedTroll != selectedTroll) {
-                // deselect existing if we have it
-                if (selectedTroll != null) {
-                    selectedTroll.getAppearance().setTextureFrom(Troll.class);
-                }
-                logger.info("Selecting Troll " + clickedTroll.toString());
-                clickedTroll.onClick();
-                selectedTroll = clickedTroll;
-                selectedTroll.getAppearance().setTextureFrom(SelectedTroll.class);
+                selectNewTroll(clickedTroll);
             } else {
                 // it's already selected, so deselect it
-                logger.info("Deselecting Troll " + clickedTroll.toString());
-                clickedTroll.getAppearance().setTextureFrom(Troll.class);
-                selectedTroll = null;
+                deselectTroll(clickedTroll);
             }
 
         }
@@ -145,6 +126,42 @@ public class TrollManager extends KInputProcessor {
                 }
             }
         }
+    }
+
+    private void deselectTroll(Troll clickedTroll) {
+        logger.info("Deselecting Troll " + clickedTroll.toString());
+        clickedTroll.getAppearance().setTextureFrom(Troll.class);
+        selectedTroll = null;
+    }
+
+    private void selectNewTroll(Troll clickedTroll) {
+
+        // deselect existing if we have it
+        if (selectedTroll != null) {
+            selectedTroll.getAppearance().setTextureFrom(Troll.class);
+        }
+        logger.info("Selecting Troll " + clickedTroll.toString());
+        clickedTroll.onClick();
+        selectedTroll = clickedTroll;
+        selectedTroll.getAppearance().setTextureFrom(SelectedTroll.class);
+
+    }
+
+    private void remindAboutClickingMapItems() {
+
+        if (!hasSpawnedHint) {
+            hasSpawnedHint = true;
+            game.task(new Callable<Boolean>() {
+                @Override
+                public Boolean call() throws Exception {
+                    Thread.sleep(30000);
+                    game.ui.bottomBar.writeLine("[MAGENTA]Don't forget, you can click things to find out what they are!");
+                    game.ui.bottomBar.writeLine("(Deselect any Trolls first by clicking them).");
+                    return true;
+                }
+            });
+        }
+
     }
 
     public Troll getSelectedTroll() {
