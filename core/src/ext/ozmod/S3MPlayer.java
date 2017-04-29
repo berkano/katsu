@@ -109,17 +109,17 @@ public class S3MPlayer extends Thread implements ChipPlayer {
 		int vol;
 		int command;
 		int commandParam;
-	};
+	}
 
-	class Row {
+    class Row {
 		Note notes[];
-	};
+	}
 
-	class Pattern {
+    class Pattern {
 		Row rows[] = new Row[64];
-	};
+	}
 
-	class Voice {
+    class Voice {
 
 		Voice() {
 		}

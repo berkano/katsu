@@ -89,9 +89,9 @@ public class MODPlayer extends Thread implements ChipPlayer {
 		int lengthLoop;
 		int len;
 		AudioData audio = new AudioData();
-	};
+	}
 
-	class Note {
+    class Note {
 
 		Note() {
 		}
@@ -100,16 +100,16 @@ public class MODPlayer extends Thread implements ChipPlayer {
 		int effect;
 		int effectOperand;
 		int numInstru;
-	};
+	}
 
-	class Row {
+    class Row {
 		Row() {
 		}
 
 		Note notes[];
-	};
+	}
 
-	class Pattern {
+    class Pattern {
 
 		Pattern() {
 		}
@@ -616,8 +616,7 @@ public class MODPlayer extends Thread implements ChipPlayer {
 						voice.bGotArpeggio_ = true;
 						voice.arpeggioCount_ = 0;
 					}
-					;
-				break;
+                    break;
 
 				case 0x1:
 					// PORTAMENTO UP

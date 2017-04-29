@@ -34,7 +34,7 @@ public class Timer {
 
     public Timer() {
         reset();
-    };
+    }
 
     /**
      * Gets the time in ms elapsed between the last call to this method.

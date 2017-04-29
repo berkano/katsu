@@ -96,9 +96,9 @@ public class XMPlayer extends Thread implements ChipPlayer {
 		int type;
 
 		AudioData audioData = new AudioData();
-	};
+	}
 
-	class Instru {
+    class Instru {
 
 		byte name[] = new byte[22];
 		int type;
@@ -124,9 +124,9 @@ public class XMPlayer extends Thread implements ChipPlayer {
 		byte reserved[] = new byte[22];
 
 		Sample samples[];
-	};
+	}
 
-	class Voice {
+    class Voice {
 
 		int iVoice_;
 
@@ -454,7 +454,7 @@ public class XMPlayer extends Thread implements ChipPlayer {
 				y1 = y0;
 			}
 
-			actuY = (int) ((float) ((y1 - y0) * volEnvActuPos_) / x1 + y0);
+			actuY = (int) ((y1 - y0) * volEnvActuPos_ / x1 + y0);
 
 			if ((actuInstru_.volType & 2) != 0) {
 				// Sustain point
@@ -522,7 +522,7 @@ public class XMPlayer extends Thread implements ChipPlayer {
 				y1 = y0;
 			}
 
-			actuY = (int) ((float) ((y1 - y0) * panEnvActuPos_) / x1 + y0);
+			actuY = (int) ((y1 - y0) * panEnvActuPos_ / x1 + y0);
 
 			if ((actuInstru_.panType & 2) != 0) {
 				// Sustain point
@@ -889,7 +889,7 @@ public class XMPlayer extends Thread implements ChipPlayer {
 					nbBits = 16;
 					int old = 0;
 					for (int ii = 2; ii < dat.length; ii += 2) {
-						int b1 = (int) (dat[ii] & 0xff);
+						int b1 = dat[ii] & 0xff;
 						int b2 = (int) (dat[ii + 1]);
 						int n = b1 | (b2 << 8);
 
@@ -1041,11 +1041,11 @@ public class XMPlayer extends Thread implements ChipPlayer {
 		dp = p2 - p1;
 		di = p - p1;
 
-		return v1 + ((int) (di * dv) / dp);
+		return v1 + (di * dv / dp);
 	}
 
 	int getLinearPeriod(int note, int fine) {
-		return ((10 * 12 * 16 * 4) - ((int) note * 16 * 4) - (fine / 2) + 64);
+		return ((10 * 12 * 16 * 4) - (note * 16 * 4) - (fine / 2) + 64);
 	}
 
 	int getLogPeriod(int note, int fine) {
@@ -1270,8 +1270,7 @@ public class XMPlayer extends Thread implements ChipPlayer {
 						voice.bGotArpeggio_ = true;
 						voice.arpeggioCount_ = 0;
 					}
-					;
-				break;
+                    break;
 
 				case 0x1:
 					// PORTAMENTO UP

@@ -4,6 +4,6 @@ import ext.pathfinding.core.Path;
 
 public interface Astar {
 	
-	public Path getPath();
+	Path getPath();
 
 }

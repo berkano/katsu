@@ -31,7 +31,7 @@ public class OZMod {
 	boolean initialised_ = false;
 	static ERR lastError_;
 
-	static public enum ERR {
+	public enum ERR {
 		NOERR, ALREADYINIT, NEEDINIT, FILENOTFOUND, INVALIDFORMAT, DEVICESATURATE, READERROR, BADFORMAT, UNKNOWN
 	}
 

@@ -2,10 +2,10 @@ package ext.pathfinding.core;
 
 public interface Path {
 	
-	public boolean hasNextMove();
+	boolean hasNextMove();
 	
-	public Location getNextMove();
+	Location getNextMove();
 	
-	public Path clone();
+	Path clone();
 
 }

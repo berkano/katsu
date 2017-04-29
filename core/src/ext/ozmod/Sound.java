@@ -36,7 +36,7 @@ public class Sound {
         UPCM,
         ULAW,
         ALAW,
-    };
+    }
 
     Sound()
     {
