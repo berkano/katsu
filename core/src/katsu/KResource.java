@@ -52,6 +52,7 @@ public class KResource {
         return result;
     }
 
+    @SuppressWarnings("SameParameterValue")
     public BitmapFont loadBitmapFont(String fntFile, String pngFile) {
         return new BitmapFont(Gdx.files.internal(relativeResource(fntFile)), Gdx.files.internal(relativeResource(pngFile)), false);
     }
@@ -62,8 +63,7 @@ public class KResource {
     }
 
     public Music loadMusic(String name) {
-        Music m = Gdx.audio.newMusic(getResource(relativeResource("music/" + name)));
-        return m;
+        return Gdx.audio.newMusic(getResource(relativeResource("music/" + name)));
     }
 
     public FileHandle loadFile(String file) {

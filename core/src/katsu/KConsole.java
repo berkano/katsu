@@ -17,22 +17,19 @@ import lombok.Setter;
  */
 public class KConsole extends KInputProcessor {
 
-    Stage stage;
-    Label label;
-    Label.LabelStyle textStyle;
-    BitmapFont font;
-    KTextBuffer textBuffer = new KTextBuffer();
+    private Stage stage;
+    private Label label;
+    private BitmapFont font;
+    private KTextBuffer textBuffer = new KTextBuffer();
     private boolean visible = true;
-
-    boolean firstUpdateDone = false;
-
+    private boolean firstUpdateDone = false;
     private int toggleKey = -1;
 
     @Getter @Setter
     private boolean autoResize = true;
     private boolean shaded = true;
 
-    public int getToggleKey() { return this.toggleKey; };
+    private int getToggleKey() { return this.toggleKey; }
 
     public void clear() {
         textBuffer.clear();
@@ -113,10 +110,10 @@ public class KConsole extends KInputProcessor {
         //Gdx.input.setInputProcessor(stage);
 
         font = K.graphics.font;
-        textStyle = new Label.LabelStyle();
-        textStyle.font = font;
+        Label.LabelStyle labelStyle = new Label.LabelStyle();
+        labelStyle.font = font;
 
-        label = new Label("", textStyle);
+        label = new Label("", labelStyle);
 
         if (shaded) {
             Pixmap labelColor = new Pixmap(128, 128, Pixmap.Format.RGBA8888);

@@ -57,17 +57,17 @@ public class KEntity extends KInputProcessor {
 
     @Getter @Setter private long createTimeMillis = System.currentTimeMillis();
 
-    Logger logger = LoggerFactory.getLogger(KEntity.class);
+    private Logger logger = LoggerFactory.getLogger(KEntity.class);
 
     public long ageMillis() {
         return System.currentTimeMillis() - createTimeMillis;
     }
 
-    public void render() {
+    void render() {
         appearance.render();
     }
 
-    public boolean tryMoveAbsolutePoint(int newX, int newY) {
+    boolean tryMoveAbsolutePoint(int newX, int newY) {
 
         if (K.game.gamePaused()) {
             return false;
@@ -167,7 +167,7 @@ public class KEntity extends KInputProcessor {
     }
 
     // Intended to be overridden for special collision behaviour.
-    public boolean canCollideWith(Class clazz) {
+    private boolean canCollideWith(Class clazz) {
         return true;
     }
 
@@ -175,7 +175,7 @@ public class KEntity extends KInputProcessor {
         setDestroyed(true);
     }
 
-    public boolean lastMovedMoreThan(int timeLimit) {
+    protected boolean lastMovedMoreThan(int timeLimit) {
         return System.currentTimeMillis() > getLastMove() + timeLimit;
     }
 
@@ -190,7 +190,7 @@ public class KEntity extends KInputProcessor {
         return tryMoveGridDirection(KDirection.fromDelta(dx, dy));
     }
 
-    public boolean tryMoveGridDirection(KDirection direction) {
+    protected boolean tryMoveGridDirection(KDirection direction) {
 
         if (!lastMovedMoreThan(getMaxMoveInterval())) return false;
 
@@ -213,9 +213,9 @@ public class KEntity extends KInputProcessor {
     }
 
     // Override these to respond to events fired by framework
-    public void onCollide(KEntity other) {}
-    public void onMoved() {}
-    public void firstUpdate() {}
+    private void onCollide(KEntity other) {}
+    private void onMoved() {}
+    private void firstUpdate() {}
 
     public void addHealth(int delta) {
         this.setHealth(getHealth() + delta);

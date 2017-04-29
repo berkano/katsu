@@ -40,12 +40,12 @@ public class KSpatialMap {
         public boolean execute(int id) {
             ids.add(id);
             return true;
-        };
+        }
 
         private List<Integer> getIds() {
             return ids;
         }
-    };
+    }
 
 
 

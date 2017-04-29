@@ -8,7 +8,6 @@ import java.util.ArrayList;
 public class KTextBuffer {
 
     private ArrayList<KTextBufferLine> lines = new ArrayList<KTextBufferLine>();
-    private long decayMillis = 1000;
     public boolean updated = false;
     private int lineLimit = -1;
 
@@ -56,10 +55,6 @@ public class KTextBuffer {
         }
         updated = false;
         return result;
-    }
-
-    public void setDecayMillis(long decayMillis) {
-        this.decayMillis = decayMillis;
     }
 
     public void clear() {
