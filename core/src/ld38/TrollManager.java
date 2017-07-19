@@ -16,7 +16,7 @@ public class TrollManager extends KInputProcessor {
 
     private Troll selectedTroll = null;
     private TrollCastleGame game;
-    private Map room;
+    private TrollMap room;
 
     private TrollBuilder trollBuilder;
     private TrollAction trollAction;
@@ -25,7 +25,7 @@ public class TrollManager extends KInputProcessor {
     private boolean hasSpawnedHint = false;
 
 
-    public TrollManager(TrollCastleGame game, Map room) {
+    public TrollManager(TrollCastleGame game, TrollMap room) {
         this.game = game;
         this.room = room;
         trollBuilder = new TrollBuilder(game, this, room);

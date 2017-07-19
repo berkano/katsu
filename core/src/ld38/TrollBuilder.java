@@ -15,9 +15,9 @@ public class TrollBuilder {
     Logger logger = LoggerFactory.getLogger(TrollBuilder.class);
     TrollCastleGame game;
     TrollManager manager;
-    Map room;
+    TrollMap room;
 
-    public TrollBuilder(TrollCastleGame game, TrollManager manager, Map room) {
+    public TrollBuilder(TrollCastleGame game, TrollManager manager, TrollMap room) {
         this.game = game;
         this.manager = manager;
         this.room = room;
@@ -158,7 +158,7 @@ public class TrollBuilder {
         Troll troll = manager.getSelectedTroll();
 
         if (game.wallsBuilt < 16) {
-            if (!DevHelper.skipWallRule) {
+            if (!TrollDevFlags.skipWallRule) {
                 troll.say("[RED]build more walls!");
                 return false;
             }

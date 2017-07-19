@@ -12,9 +12,9 @@ public class TrollAction {
 
     private final TrollCastleGame game;
     private final TrollManager manager;
-    private final Map room;
+    private final TrollMap room;
 
-    public TrollAction(TrollCastleGame game, TrollManager trollManager, Map room) {
+    public TrollAction(TrollCastleGame game, TrollManager trollManager, TrollMap room) {
         this.game = game;
         this.manager = trollManager;
         this.room = room;

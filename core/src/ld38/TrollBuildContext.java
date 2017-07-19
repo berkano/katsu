@@ -8,7 +8,7 @@ import ld38.entities.Troll;
 public class TrollBuildContext {
 
     private TrollCastleGame game;
-    private Map room;
+    private TrollMap room;
     private Troll selectedTroll;
 
     public TrollCastleGame getGame() {
@@ -19,11 +19,11 @@ public class TrollBuildContext {
         this.game = game;
     }
 
-    public Map getRoom() {
+    public TrollMap getRoom() {
         return room;
     }
 
-    public void setRoom(Map room) {
+    public void setRoom(TrollMap room) {
         this.room = room;
     }
 

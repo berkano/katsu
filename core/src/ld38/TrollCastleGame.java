@@ -3,11 +3,9 @@ package ld38;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import katsu.*;
-import ld38.entities.Mushroom;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
 
 /**
  * Created by shaun on 21/04/2017.
@@ -73,13 +71,13 @@ public class TrollCastleGame extends KGame {
         super.start();
         ui = new TrollCastleUI();
         ui.start();
-        if (!DevHelper.showHelpOnStart) {
+        if (!TrollDevFlags.showHelpOnStart) {
             ui.toggleHelp();
         }
         loadWaffle();
         setupSounds();
 
-        if (DevHelper.cheatResources) {
+        if (TrollDevFlags.cheatResources) {
             gold = 1000;
             stone = 1000;
         }
@@ -126,7 +124,7 @@ public class TrollCastleGame extends KGame {
 
             currentMusic = music2;
 
-            if (DevHelper.playMusicOnStart) {
+            if (TrollDevFlags.playMusicOnStart) {
                 currentMusic.play();
 //                task(new Callable<Boolean>() {
 //                    @Override
@@ -159,7 +157,7 @@ public class TrollCastleGame extends KGame {
 
         if (rooms == null) {
             rooms = new ArrayList<>();
-            rooms.add(new Map());
+            rooms.add(new TrollMap());
         }
         return rooms;
     }
