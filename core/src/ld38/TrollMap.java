@@ -2,6 +2,7 @@ package ld38;
 
 import katsu.K;
 import katsu.KEntity;
+import katsu.KPanHandler;
 import katsu.KRoom;
 import ld38.entities.*;
 import org.slf4j.Logger;
@@ -19,7 +20,7 @@ public class TrollMap extends KRoom {
     private TrollCastleGame game;
     TrollManager trollManager;
     TrollGameState gameState;
-    MouseHandler mouseHandler = new MouseHandler();
+    KPanHandler panHandler = new KPanHandler();
 
     @Override
     public void update() {
@@ -43,7 +44,7 @@ public class TrollMap extends KRoom {
         gameState = new TrollGameState(game, this);
         trollManager = new TrollManager(game, this);
 
-        K.input.getMultiplexer().addProcessor(mouseHandler);
+        K.input.getMultiplexer().addProcessor(panHandler);
         K.input.getMultiplexer().addProcessor(trollManager);
 
         if (TrollDevFlags.randomMushroomOnStart) {
@@ -92,7 +93,7 @@ public class TrollMap extends KRoom {
 
         logger.info("Detected touch up");
 
-        if (mouseHandler.isDragging()) return false;
+        if (panHandler.isDragging()) return false;
 
         KEntity clickedEntity = null;
 

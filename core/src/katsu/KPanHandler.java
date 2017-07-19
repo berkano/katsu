@@ -1,19 +1,17 @@
-package ld38;
+package katsu;
 
-import katsu.K;
-import katsu.KInputProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * Created by shaun on 26/04/2017.
  */
-public class MouseHandler extends KInputProcessor {
+public class KPanHandler extends KInputProcessor {
 
     private int lastDragX = 0;
     private int lastDragY = 0;
     private boolean hasDragged = false;
-    Logger logger = LoggerFactory.getLogger(MouseHandler.class);
+    Logger logger = LoggerFactory.getLogger(KPanHandler.class);
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
