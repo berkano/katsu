@@ -13,12 +13,12 @@ import java.util.List;
 /**
  * Created by shaun on 21/04/2017.
  */
-public class Map extends KRoom {
+public class TrollMap extends KRoom {
 
-    private Logger logger = LoggerFactory.getLogger(Map.class);
+    private Logger logger = LoggerFactory.getLogger(TrollMap.class);
     private TrollCastleGame game;
     TrollManager trollManager;
-    GameState gameState;
+    TrollGameState gameState;
     MouseHandler mouseHandler = new MouseHandler();
 
     @Override
@@ -40,13 +40,13 @@ public class Map extends KRoom {
         loadFromTiledMap("map");
         setupCamera();
         game = TrollCastleGame.instance();
-        gameState = new GameState(game, this);
+        gameState = new TrollGameState(game, this);
         trollManager = new TrollManager(game, this);
 
         K.input.getMultiplexer().addProcessor(mouseHandler);
         K.input.getMultiplexer().addProcessor(trollManager);
 
-        if (DevHelper.randomMushroomOnStart) {
+        if (TrollDevFlags.randomMushroomOnStart) {
             Mushroom mushroom = new Mushroom();
             mushroom.setX(128);
             mushroom.setY(128);

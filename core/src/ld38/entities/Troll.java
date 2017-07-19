@@ -1,12 +1,10 @@
 package ld38.entities;
 
-import com.badlogic.gdx.graphics.Color;
 import katsu.K;
 import katsu.KDirection;
 import katsu.KEntity;
 import katsu.KTiledMapEntity;
-import ld38.DevHelper;
-import ld38.Map;
+import ld38.TrollMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +21,7 @@ public class Troll extends TrollCastleEntityBase {
 
     Logger logger = LoggerFactory.getLogger(Troll.class);
 
-    Map map;
+    TrollMap map;
     public boolean hadFish = false;
     public int hunger = 0;
     private SwimTube swimTube = null;
@@ -53,7 +51,7 @@ public class Troll extends TrollCastleEntityBase {
     public void update() {
 
         super.update();
-        map = (Map)getRoom();
+        map = (TrollMap)getRoom();
         mind.updatePsychedelics();
         moveSwimTube();
         doMovement();

@@ -2,7 +2,7 @@ package ld38.entities;
 
 import com.badlogic.gdx.graphics.Color;
 import katsu.K;
-import ld38.DevHelper;
+import ld38.TrollDevFlags;
 import ld38.TrollCastleGame;
 
 /**
@@ -10,7 +10,7 @@ import ld38.TrollCastleGame;
  */
 public class TrollMind {
 
-    boolean hasHadPsychedelics = DevHelper.allTrollsPsychedOnStart;
+    boolean hasHadPsychedelics = TrollDevFlags.allTrollsPsychedOnStart;
     boolean psychedelic = false;
     long lastPsychMillls = System.currentTimeMillis();
     long startPyschMillis = 0;

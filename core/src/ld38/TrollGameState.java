@@ -9,12 +9,12 @@ import java.util.List;
 /**
  * Created by shaun on 26/04/2017.
  */
-public class GameState {
+public class TrollGameState {
 
     TrollCastleGame game;
-    Map room;
+    TrollMap room;
 
-    public GameState(TrollCastleGame game, Map room) {
+    public TrollGameState(TrollCastleGame game, TrollMap room) {
         this.game = game;
         this.room = room;
     }
