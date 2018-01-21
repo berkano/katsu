@@ -14,6 +14,7 @@ public class TrollBuilder {
 
     Logger logger = LoggerFactory.getLogger(TrollBuilder.class);
     TrollCastleGame game;
+    TrollCastleSounds sounds;
     TrollManager manager;
     TrollMap room;
 
@@ -21,6 +22,7 @@ public class TrollBuilder {
         this.game = game;
         this.manager = manager;
         this.room = room;
+        this.sounds = game.sounds;
     }
 
     public void build() {
@@ -78,7 +80,7 @@ public class TrollBuilder {
         tower.setX(selectedTroll.getX());
         tower.setY(selectedTroll.getY());
         room.addNewEntity(tower);
-        game.build.play();
+        sounds.build.play();
         selectedTroll.say("built gold tower!");
     }
 
@@ -112,7 +114,7 @@ public class TrollBuilder {
         tower.setX(troll.getX());
         tower.setY(troll.getY());
         room.addNewEntity(tower);
-        game.build.play();
+        sounds.build.play();
         troll.say("built tower!");
 
     }
@@ -179,7 +181,7 @@ public class TrollBuilder {
         wall.setY(troll.getY());
         room.addNewEntity(wall);
         troll.say("built wall.");
-        game.build.play();
+        sounds.build.play();
 
     }
 }

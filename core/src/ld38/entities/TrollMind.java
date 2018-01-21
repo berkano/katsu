@@ -2,6 +2,7 @@ package ld38.entities;
 
 import com.badlogic.gdx.graphics.Color;
 import katsu.K;
+import ld38.TrollCastleSounds;
 import ld38.TrollDevFlags;
 import ld38.TrollCastleGame;
 
@@ -16,21 +17,23 @@ public class TrollMind {
     long startPyschMillis = 0;
     Troll host;
     TrollCastleGame game;
+    TrollCastleSounds sounds;
 
     public void setPsychedelic(boolean psychedelic) {
         this.psychedelic = psychedelic;
         if (psychedelic == true) {
             startPyschMillis = System.currentTimeMillis();
             hasHadPsychedelics = true;
-            game.currentMusic.pause();
-            game.currentMusic = game.music3;
-            game.currentMusic.play();
+            sounds.currentMusic.pause();
+            sounds.currentMusic = sounds.music3;
+            sounds.currentMusic.play();
         }
     }
 
     public TrollMind(Troll host, TrollCastleGame game) {
         this.host = host;
         this.game = game;
+        this.sounds = game.sounds;
     }
 
     public boolean hasHadPsychedelics() {
@@ -72,9 +75,9 @@ public class TrollMind {
     private void endPsychedelics() {
 
         psychedelic = false;
-        game.currentMusic.pause();
-        game.currentMusic = game.music2;
-        game.currentMusic.play();
+        sounds.currentMusic.pause();
+        sounds.currentMusic = sounds.music2;
+        sounds.currentMusic.play();
         host.getAppearance().setSpriteColour(Color.WHITE);
         // add a swimtube if not already got one
         host.addSwimTube();

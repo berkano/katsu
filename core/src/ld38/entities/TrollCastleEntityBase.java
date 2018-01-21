@@ -2,6 +2,7 @@ package ld38.entities;
 
 import katsu.KEntity;
 import ld38.TrollCastleGame;
+import ld38.TrollCastleSounds;
 import ld38.TrollNamer;
 
 /**
@@ -10,12 +11,14 @@ import ld38.TrollNamer;
 public class TrollCastleEntityBase extends KEntity {
 
     TrollCastleGame game;
+    TrollCastleSounds sounds;
     TrollNamer namer;
 
     TrollCastleEntityBase() {
         super();
         game = TrollCastleGame.instance();
         namer = TrollNamer.instance();
+        sounds = game.sounds;
     }
 
     @Override
@@ -25,7 +28,7 @@ public class TrollCastleEntityBase extends KEntity {
 
     public void describe(String desc) {
         game.ui.bottomBar.writeLine("[GRAY]" + desc);
-        game.select1.play();
+        game.sounds.select1.play();
     }
 
 

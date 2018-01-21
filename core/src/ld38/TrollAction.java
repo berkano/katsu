@@ -13,11 +13,13 @@ public class TrollAction {
     private final TrollCastleGame game;
     private final TrollManager manager;
     private final TrollMap room;
+    private TrollCastleSounds sounds;
 
     public TrollAction(TrollCastleGame game, TrollManager trollManager, TrollMap room) {
         this.game = game;
         this.manager = trollManager;
         this.room = room;
+        this.sounds = game.sounds;
     }
 
     public void act(KEntity target) {
@@ -28,7 +30,7 @@ public class TrollAction {
             selectedTroll.getMind().setPsychedelic(true);
             game.hasEatenMushroom = true;
             target.destroy();
-            game.psych.play();
+            sounds.psych.play();
         }
 
         if (target instanceof Mine) {
@@ -41,14 +43,14 @@ public class TrollAction {
             babyMushroom.setY(selectedTroll.getY());
             room.addNewEntity(babyMushroom);
             selectedTroll.say("mushroom planted!");
-            game.plant.play();
+            sounds.plant.play();
         }
 
         if (target instanceof Fish) {
             selectedTroll.hadFish = true;
             selectedTroll.say("yum yum fish!");
             selectedTroll.hunger = 0;
-            game.fish.play();
+            sounds.fish.play();
             target.destroy();
             final int x = target.getX();
             final int y = target.getY();

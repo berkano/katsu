@@ -92,9 +92,9 @@ public class Troll extends TrollCastleEntityBase {
                 if (e instanceof Water) onWater = true;
             }
             if (!onWater) {
-                game.walk.play();
+                game.sounds.walk.play();
             } else {
-                game.water.play();
+                game.sounds.water.play();
             }
             juiceRotation();
         }
@@ -121,10 +121,10 @@ public class Troll extends TrollCastleEntityBase {
 
         int talkSound = K.random.nextInt(4);
 
-        if (talkSound == 0) game.talk1.play();
-        if (talkSound == 1) game.talk2.play();
-        if (talkSound == 2) game.talk3.play();
-        if (talkSound == 3) game.talk4.play();
+        if (talkSound == 0) sounds.talk1.play();
+        if (talkSound == 1) sounds.talk2.play();
+        if (talkSound == 2) sounds.talk3.play();
+        if (talkSound == 3) sounds.talk4.play();
 
         game.ui.bottomBar.writeLine("[ORANGE]"+ toString() + "[GRAY]: [GREEN]" + utterance+"[WHITE]");
     }
@@ -160,7 +160,7 @@ public class Troll extends TrollCastleEntityBase {
                         gotGold();
                         break;
                     default:
-                        game.mine.play();
+                        sounds.mine.play();
                         Thread.sleep(4000);
                 }
                 getAppearance().setVisible(true);
@@ -170,30 +170,30 @@ public class Troll extends TrollCastleEntityBase {
     }
 
     private void gotGold() throws InterruptedException{
-        game.mine.play();
+        sounds.mine.play();
         Thread.sleep(2000);
         say("got gold!");
-        game.goldSound.play();
+        sounds.goldSound.play();
         game.gold += 4 + K.random.nextInt(5);
         Thread.sleep(2000);
     }
 
     private void gotStone() throws InterruptedException{
-        game.mine.play();
+        sounds.mine.play();
         Thread.sleep(2000);
         say("got stone!");
         game.stone += 17 + K.random.nextInt(19);
-        game.rocks.play();
+        sounds.rocks.play();
         Thread.sleep(2000);
     }
 
     private void encounterMonster() throws InterruptedException{
         game.ui.bottomBar.writeLine("[ORANGE]" +name + " [RED]encounters a Monster!");
-        game.mystery.play();
+        sounds.mystery.play();
         Thread.sleep(4000);
         if (K.random.nextInt(3) == 0) {
             game.ui.bottomBar.writeLine("[ORANGE]" +name + " [RED]dies. :-(");
-            game.die.play();
+            sounds.die.play();
             destroy();
         } else {
             game.ui.bottomBar.writeLine("[ORANGE]" +name + " [GREEN]survives!");
