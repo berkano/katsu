@@ -33,6 +33,4 @@ public class KInputProcessor implements InputProcessor {
         return false;
     }
 
-
-
 }

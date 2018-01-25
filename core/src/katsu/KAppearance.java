@@ -73,10 +73,6 @@ public class KAppearance {
         setTextureRegion(K.textureCache.get(clazz));
     }
 
-    public void applyTextureFor(Class clazz) {
-        setTextureRegion(K.textureCache.get(clazz));
-    }
-
     public void setSpriteColour(Color colour) {
         this.spriteColour = colour;
     }

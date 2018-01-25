@@ -107,7 +107,6 @@ public class KConsole extends KInputProcessor {
         firstUpdateDone = true;
 
         stage = new Stage();
-        //Gdx.input.setInputProcessor(stage);
 
         font = K.graphics.font;
         Label.LabelStyle labelStyle = new Label.LabelStyle();

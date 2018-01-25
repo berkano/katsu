@@ -42,7 +42,6 @@ public class KGraphics {
 
         font.getData().markupEnabled = true;
         font.getData().breakChars = new char[] {'-'};
-//        font.getData()
     }
 
     private void setupCamera() {

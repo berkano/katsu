@@ -82,7 +82,6 @@ public class KSpatialMap {
         idToRectangle.put(id, rect);
         entityToID.put(entity, id);
 
-
     }
 
     public List<KEntity> searchByIntersection(net.sf.jsi.Rectangle rect) {
@@ -95,7 +94,5 @@ public class KSpatialMap {
         }
         return results;
     }
-
-
 
 }

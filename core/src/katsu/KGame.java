@@ -42,7 +42,6 @@ public abstract class KGame extends KInputProcessor implements ApplicationListen
         Gdx.graphics.setTitle(K.settings.getGameName() + " :: " + K.settings.getGameAuthor() + " :: " + K.settings.getGameDescription());
 
         K.graphics.init();
-//        K.obsolete.ui.init();
         K.input.init(this);
         rooms = K.game.getRooms();
         if (rooms == null || rooms.size() <= 0) {
@@ -77,15 +76,10 @@ public abstract class KGame extends KInputProcessor implements ApplicationListen
         Gdx.gl.glEnable(GL20.GL_BLEND);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         K.graphics.uiShapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-
-//        K.obsolete.ui.renderShadowBoxes();
-
         K.graphics.uiShapeRenderer.end(); // TODO-POST: Don't need shape stuff any more?
         Gdx.gl.glDisable(GL20.GL_BLEND);
         K.graphics.uiSpriteBatch.begin();
-//        K.obsolete.ui.renderText();
         K.graphics.uiSpriteBatch.end();
-
     }
 
     public void update() {
