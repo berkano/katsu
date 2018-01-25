@@ -72,8 +72,6 @@ public class TrollCastleGame extends KGame {
         }
     }
 
-
-
     @Override
     public ArrayList<KRoom> getRooms() {
 
@@ -90,33 +88,8 @@ public class TrollCastleGame extends KGame {
     }
 
     @Override
-    public void toggleMusic() {
-
-    }
-
-    @Override
     public KSettings buildSettings() {
         return new TrollCastleSettings();
-    }
-
-    @Override
-    public void resize(int width, int height) {
-
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void dispose() {
-
     }
 
     @Override

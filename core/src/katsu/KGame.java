@@ -22,7 +22,6 @@ public abstract class KGame extends KInputProcessor implements ApplicationListen
 
     public abstract ArrayList<KRoom> getRooms();
     public abstract String getResourceRoot();
-    public abstract void toggleMusic();
 
     private ArrayList<KRoom> rooms;
     private Boolean paused = false;
@@ -152,6 +151,30 @@ public abstract class KGame extends KInputProcessor implements ApplicationListen
     public void task(Callable<Boolean> c) {
         Executors.newSingleThreadExecutor().submit(
                 new FutureTask<>(c));
+    }
+
+    @Override
+    public void resize(int width, int height) {
+
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void dispose() {
+
+    }
+
+    public void toggleMusic() {
+
     }
 
 }
