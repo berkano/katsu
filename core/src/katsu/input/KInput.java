@@ -1,8 +1,10 @@
-package katsu;
+package katsu.input;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
+import katsu.K;
+import katsu.game.KGame;
 import lombok.Getter;
 import lombok.Setter;
 

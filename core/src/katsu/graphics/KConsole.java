@@ -1,4 +1,4 @@
-package katsu;
+package katsu.graphics;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -9,6 +9,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
+import katsu.K;
+import katsu.input.KInputProcessor;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,6 +1,6 @@
 package ld38;
 
-import katsu.KSettings;
+import katsu.resources.KSettings;
 
 /**
  * Created by shaun on 21/04/2017.

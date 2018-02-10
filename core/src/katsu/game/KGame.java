@@ -1,9 +1,13 @@
-package katsu;
+package katsu.game;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import katsu.K;
+import katsu.input.KInputProcessor;
+import katsu.model.KRoom;
+import katsu.resources.KSettings;
 import lombok.Getter;
 import lombok.Setter;
 import org.slf4j.Logger;

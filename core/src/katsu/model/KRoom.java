@@ -1,8 +1,11 @@
-package katsu;
+package katsu.model;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
-import ld38.entities.SwimTube;
+import katsu.K;
+import katsu.input.KInputProcessor;
+import katsu.spatial.KSpatialMap;
+import katsu.spatial.KTiledMapLoader;
 import lombok.Getter;
 import lombok.Setter;
 

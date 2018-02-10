@@ -1,5 +1,9 @@
-package katsu;
+package katsu.model;
 
+import katsu.*;
+import katsu.input.KInputProcessor;
+import katsu.spatial.KDirection;
+import katsu.spatial.KGrid;
 import lombok.Getter;
 import lombok.Setter;
 import net.sf.jsi.Rectangle;
@@ -63,11 +67,11 @@ public class KEntity extends KInputProcessor {
         return System.currentTimeMillis() - createTimeMillis;
     }
 
-    void render() {
+    public void render() {
         appearance.render();
     }
 
-    boolean tryMoveAbsolutePoint(int newX, int newY) {
+    public boolean tryMoveAbsolutePoint(int newX, int newY) {
 
         if (K.game.gamePaused()) {
             return false;

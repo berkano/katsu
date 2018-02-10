@@ -1,4 +1,4 @@
-package katsu;
+package katsu.spatial;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapProperties;
@@ -6,6 +6,8 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import katsu.K;
+import katsu.model.KEntity;
 import lombok.Getter;
 import lombok.Setter;
 import org.slf4j.Logger;
@@ -95,7 +97,7 @@ public class KTiledMapProcessor {
                 entities.add(e);
             } catch (Exception ex) {
                 ex.printStackTrace();
-                throw new KException(ex);
+                throw new RuntimeException(ex);
             }
         }
     }

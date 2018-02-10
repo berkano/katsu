@@ -1,5 +1,8 @@
-package katsu;
+package katsu.spatial;
 
+import katsu.K;
+import katsu.model.KRoom;
+import katsu.model.KEntity;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,9 +1,9 @@
 package ld38.entities;
 
 import katsu.K;
-import katsu.KDirection;
-import katsu.KEntity;
-import katsu.KTiledMapEntity;
+import katsu.spatial.KDirection;
+import katsu.model.KEntity;
+import katsu.model.KTiledMapEntity;
 import ld38.TrollMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

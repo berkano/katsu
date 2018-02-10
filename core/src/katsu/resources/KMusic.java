@@ -1,7 +1,9 @@
-package katsu;
+package katsu.resources;
 
 
 import com.badlogic.gdx.audio.Music;
+import katsu.K;
+import katsu.graphics.KConsole;
 import lombok.Getter;
 import lombok.Setter;
 

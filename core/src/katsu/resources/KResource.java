@@ -1,4 +1,4 @@
-package katsu;
+package katsu.resources;
 
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Gdx;
@@ -7,6 +7,8 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import katsu.K;
+import katsu.model.KTiledMapEntity;
 import org.reflections.Reflections;
 
 import java.util.ArrayList;

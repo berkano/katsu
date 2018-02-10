@@ -1,6 +1,6 @@
 package ld38.entities;
 
-import katsu.KEntity;
+import katsu.model.KEntity;
 import ld38.TrollCastleGame;
 import ld38.TrollCastleSounds;
 import ld38.TrollNamer;

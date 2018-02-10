@@ -1,9 +1,9 @@
 package ld38;
 
 import katsu.K;
-import katsu.KEntity;
-import katsu.KPanHandler;
-import katsu.KRoom;
+import katsu.model.KEntity;
+import katsu.input.KPanHandler;
+import katsu.model.KRoom;
 import ld38.entities.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

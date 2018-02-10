@@ -1,5 +1,6 @@
-package katsu;
+package katsu.spatial;
 
+import katsu.K;
 import lombok.Getter;
 
 import java.util.HashMap;

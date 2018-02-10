@@ -1,7 +1,7 @@
 package ld38;
 
-import katsu.KEntity;
-import katsu.KInputProcessor;
+import katsu.model.KEntity;
+import katsu.input.KInputProcessor;
 import ld38.entities.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

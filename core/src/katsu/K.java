@@ -1,5 +1,12 @@
 package katsu;
 
+import katsu.game.KGame;
+import katsu.graphics.KGraphics;
+import katsu.graphics.KTextureCache;
+import katsu.input.KInput;
+import katsu.resources.KResource;
+import katsu.resources.KSettings;
+
 import java.util.Random;
 
 /**

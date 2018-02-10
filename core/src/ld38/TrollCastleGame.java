@@ -1,8 +1,9 @@
 package ld38;
 
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
 import katsu.*;
+import katsu.game.KGame;
+import katsu.model.KRoom;
+import katsu.resources.KSettings;
 
 import java.util.ArrayList;
 import java.util.List;

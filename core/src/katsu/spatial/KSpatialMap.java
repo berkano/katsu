@@ -1,6 +1,7 @@
-package katsu;
+package katsu.spatial;
 
 import gnu.trove.procedure.TIntProcedure;
+import katsu.model.KEntity;
 import net.sf.jsi.SpatialIndex;
 import net.sf.jsi.rtree.RTree;
 

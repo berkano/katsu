@@ -1,4 +1,4 @@
-package katsu;
+package katsu.resources;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;

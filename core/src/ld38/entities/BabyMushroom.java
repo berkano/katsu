@@ -1,6 +1,6 @@
 package ld38.entities;
 
-import katsu.KTiledMapEntity;
+import katsu.model.KTiledMapEntity;
 import ld38.TrollDevFlags;
 
 /**

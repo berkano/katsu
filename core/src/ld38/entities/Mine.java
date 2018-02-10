@@ -1,6 +1,6 @@
 package ld38.entities;
 
-import katsu.KTiledMapEntity;
+import katsu.model.KTiledMapEntity;
 
 /**
  * Created by shaun on 21/04/2017.

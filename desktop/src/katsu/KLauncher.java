@@ -2,6 +2,8 @@ package katsu;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import katsu.game.KGame;
+import katsu.resources.KSettings;
 import ld38.TrollCastleGame;
 
 public class KLauncher {

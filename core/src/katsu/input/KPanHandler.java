@@ -1,5 +1,6 @@
-package katsu;
+package katsu.input;
 
+import katsu.K;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

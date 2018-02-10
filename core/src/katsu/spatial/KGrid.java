@@ -1,9 +1,11 @@
-package katsu;
+package katsu.spatial;
 
 import ext.pathfinding.grid.GridLocation;
 import ext.pathfinding.grid.GridMap;
 import ext.pathfinding.grid.GridPath;
 import ext.pathfinding.grid.GridPathfinding;
+import katsu.K;
+import katsu.model.KEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

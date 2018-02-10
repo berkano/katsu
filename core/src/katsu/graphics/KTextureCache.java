@@ -1,4 +1,4 @@
-package katsu;
+package katsu.graphics;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 

@@ -3,7 +3,7 @@ package ld38;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Align;
 import katsu.K;
-import katsu.KConsole;
+import katsu.graphics.KConsole;
 
 /**
  * Created by shaun on 22/04/2017.

@@ -1,6 +1,6 @@
 package ld38;
 
-import katsu.KEntity;
+import katsu.model.KEntity;
 import ld38.entities.*;
 
 import java.util.ArrayList;

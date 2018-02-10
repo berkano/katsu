@@ -1,4 +1,4 @@
-package katsu;
+package katsu.input;
 
 import com.badlogic.gdx.InputProcessor;
 

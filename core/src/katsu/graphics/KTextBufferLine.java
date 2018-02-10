@@ -1,4 +1,4 @@
-package katsu;
+package katsu.graphics;
 
 /**
  * Created by shaun on 29/03/2017.

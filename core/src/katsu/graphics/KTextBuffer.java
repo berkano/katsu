@@ -1,4 +1,4 @@
-package katsu;
+package katsu.graphics;
 
 import java.util.ArrayList;
 
