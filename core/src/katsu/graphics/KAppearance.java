@@ -1,9 +1,10 @@
-package katsu.model;
+package katsu.graphics;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import katsu.K;
+import katsu.model.KEntity;
 import katsu.spatial.KDirection;
 import lombok.Getter;
 import lombok.Setter;

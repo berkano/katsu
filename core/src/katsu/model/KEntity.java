@@ -1,6 +1,7 @@
 package katsu.model;
 
 import katsu.*;
+import katsu.graphics.KAppearance;
 import katsu.input.KInputProcessor;
 import katsu.spatial.KDirection;
 import katsu.spatial.KGrid;
