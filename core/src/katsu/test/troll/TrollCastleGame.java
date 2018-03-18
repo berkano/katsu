@@ -85,7 +85,7 @@ public class TrollCastleGame extends KGame {
 
     @Override
     public String getResourceRoot() {
-        return "test/troll";
+        return "katsu/test/troll";
     }
 
     @Override
