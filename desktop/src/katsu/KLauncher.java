@@ -49,7 +49,6 @@ public class KLauncher {
 
         K.game = runner;
         K.settings = settings;
-//        K.obsolete.ui = (KObsolete)(Object)ui;
 
         K.settings.setWindowWidth(config.width);
         K.settings.setWindowHeight(config.height);
