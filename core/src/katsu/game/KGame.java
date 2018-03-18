@@ -65,6 +65,7 @@ public abstract class KGame extends KInputProcessor implements ApplicationListen
         K.graphics.camera.update();
         K.graphics.spriteBatch.setProjectionMatrix(K.graphics.camera.combined);
         K.graphics.shapeRenderer.setProjectionMatrix(K.graphics.camera.combined);
+
         // Clear screen
         Gdx.gl.glClearColor(0f, 0f, 0f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -151,28 +152,20 @@ public abstract class KGame extends KInputProcessor implements ApplicationListen
                 new FutureTask<>(c));
     }
 
+    // To be implemented (optionally) by games hence not abstract
+    public void toggleMusic() {}
+
+    // Provide default implementations for ApplicationListener
     @Override
-    public void resize(int width, int height) {
-
-    }
-
-    @Override
-    public void pause() {
-
-    }
+    public void resize(int width, int height) {}
 
     @Override
-    public void resume() {
-
-    }
+    public void pause() {}
 
     @Override
-    public void dispose() {
+    public void resume() {}
 
-    }
-
-    public void toggleMusic() {
-
-    }
+    @Override
+    public void dispose() {}
 
 }
