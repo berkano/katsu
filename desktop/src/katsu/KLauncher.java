@@ -4,7 +4,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import katsu.game.KGame;
 import katsu.resources.KSettings;
-import ld38.TrollCastleGame;
+import katsu.test.troll.TrollCastleGame;
 
 public class KLauncher {
 
