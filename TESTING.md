@@ -1,4 +1,3 @@
-***
 A sample implementation is included (katsu.test.troll.TrollCastleGame) which can also be used for regression testing. Some behaviours to test are documented below.
 ***
 * When I run the game, music starts playing.
@@ -51,4 +50,3 @@ A sample implementation is included (katsu.test.troll.TrollCastleGame) which can
 * I can press H to display the help screen again during the game.
 ***
 * When I press ESCAPE it exits the game.
-***
