@@ -1,7 +1,7 @@
-package ext.pathfinding.grid;
+package katsu.spatial.pathfinding.grid;
 
-import ext.pathfinding.core.Map;
-import ext.pathfinding.grid.util.GridDouble;
+import katsu.spatial.pathfinding.core.Map;
+import katsu.spatial.pathfinding.grid.util.GridDouble;
 
 public class GridMap extends GridDouble implements Map {
 

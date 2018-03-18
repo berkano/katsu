@@ -1,4 +1,4 @@
-package ext.pathfinding.grid.util;
+package katsu.spatial.pathfinding.grid.util;
 
 import java.util.ArrayList;
 

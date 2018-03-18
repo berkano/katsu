@@ -1,10 +1,10 @@
-package ext.pathfinding.grid.astar;
+package katsu.spatial.pathfinding.grid.astar;
 
-import ext.pathfinding.core.astar.Astar;
-import ext.pathfinding.grid.GridLocation;
-import ext.pathfinding.grid.GridMap;
-import ext.pathfinding.grid.GridPath;
-import ext.pathfinding.grid.util.GridDouble;
+import katsu.spatial.pathfinding.core.astar.Astar;
+import katsu.spatial.pathfinding.grid.GridLocation;
+import katsu.spatial.pathfinding.grid.GridMap;
+import katsu.spatial.pathfinding.grid.GridPath;
+import katsu.spatial.pathfinding.grid.util.GridDouble;
 
 import java.util.ArrayList;
 

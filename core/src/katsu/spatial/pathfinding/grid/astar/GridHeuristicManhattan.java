@@ -1,8 +1,8 @@
-package ext.pathfinding.grid.astar;
+package katsu.spatial.pathfinding.grid.astar;
 
-import ext.pathfinding.grid.GridLocation;
+import katsu.spatial.pathfinding.grid.GridLocation;
 
-public class GridHeuristicManathan implements GridHeuristic {
+public class GridHeuristicManhattan implements GridHeuristic {
 
 	public double getDistance(int x, int y, GridLocation location) {
 		double result = 0;

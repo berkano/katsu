@@ -1,7 +1,7 @@
-package ext.pathfinding.grid.astar;
+package katsu.spatial.pathfinding.grid.astar;
 
-import ext.pathfinding.core.Location;
-import ext.pathfinding.core.astar.SortedLocationList;
+import katsu.spatial.pathfinding.core.Location;
+import katsu.spatial.pathfinding.core.astar.SortedLocationList;
 
 import java.util.ArrayList;
 

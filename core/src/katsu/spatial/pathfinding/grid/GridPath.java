@@ -1,10 +1,10 @@
-package ext.pathfinding.grid;
+package katsu.spatial.pathfinding.grid;
 
-import ext.pathfinding.core.Path;
+import katsu.spatial.pathfinding.core.Path;
 
 import java.util.ArrayList;
 
-public class GridPath implements Path{
+public class GridPath implements Path {
 
 	private ArrayList<GridLocation> locationList;
 	

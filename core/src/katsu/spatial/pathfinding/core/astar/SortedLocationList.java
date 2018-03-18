@@ -1,6 +1,6 @@
-package ext.pathfinding.core.astar;
+package katsu.spatial.pathfinding.core.astar;
 
-import ext.pathfinding.core.Location;
+import katsu.spatial.pathfinding.core.Location;
 
 public interface SortedLocationList {
 	

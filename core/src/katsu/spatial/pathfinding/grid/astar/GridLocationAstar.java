@@ -1,8 +1,8 @@
-package ext.pathfinding.grid.astar;
+package katsu.spatial.pathfinding.grid.astar;
 
-import ext.pathfinding.grid.GridLocation;
+import katsu.spatial.pathfinding.grid.GridLocation;
 
-public class GridLocationAstar extends GridLocation{
+public class GridLocationAstar extends GridLocation {
 
 	private double doneDist;
 	private double todoDist;

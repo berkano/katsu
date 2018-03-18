@@ -1,4 +1,4 @@
-package ext.pathfinding.core;
+package katsu.spatial.pathfinding.core;
 
 public interface Pathfinding {
 	

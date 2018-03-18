@@ -1,6 +1,6 @@
-package ext.pathfinding.grid;
+package katsu.spatial.pathfinding.grid;
 
-import ext.pathfinding.core.Location;
+import katsu.spatial.pathfinding.core.Location;
 
 public class GridLocation implements Location {
 	
