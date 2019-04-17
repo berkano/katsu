@@ -7,8 +7,10 @@ import katsu.model.KTiledMapEntity;
  */
 @KTiledMapEntity
 public class Seeds extends TrollCastleEntityBase {
+
     @Override
     public void onClick() {
         describe("Seeds can be grown to provide crops.");
     }
+
 }

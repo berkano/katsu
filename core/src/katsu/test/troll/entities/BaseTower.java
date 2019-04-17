@@ -5,7 +5,7 @@ package katsu.test.troll.entities;
  */
 public class BaseTower extends TrollCastleEntityBase {
 
-    public BaseTower() {
+    BaseTower() {
         getAppearance().setSpriteScale(2.0f);
     }
 

@@ -9,7 +9,7 @@ import katsu.test.troll.TrollDevFlags;
 @KTiledMapEntity
 public class BabyMushroom extends TrollCastleEntityBase {
 
-    long createdMillis = System.currentTimeMillis();
+    private long createdMillis = System.currentTimeMillis();
 
     @Override
     public void onClick() {

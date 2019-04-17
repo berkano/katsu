@@ -5,8 +5,6 @@ import katsu.spatial.KDirection;
 import katsu.model.KEntity;
 import katsu.model.KTiledMapEntity;
 import katsu.test.troll.TrollMap;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -17,21 +15,17 @@ import java.util.concurrent.Callable;
 @KTiledMapEntity
 public class Troll extends TrollCastleEntityBase {
 
-    public String name;
-
-    Logger logger = LoggerFactory.getLogger(Troll.class);
-
-    TrollMap map;
     public boolean hadFish = false;
     public int hunger = 0;
-    private SwimTube swimTube = null;
 
+    private String name;
+    private TrollMap map;
+    private SwimTube swimTube = null;
     private TrollMind mind = new TrollMind(this, game);
 
     public Troll() {
         super();
         name = namer.nextName();
-        logger.info("A new Troll called " + name + " appeared!");
         setSolid(true);
         getAppearance().setSpriteScale(K.random.nextFloat() * 1.5f + 0.5f);
         juiceRotation();
@@ -201,7 +195,7 @@ public class Troll extends TrollCastleEntityBase {
         }
     }
 
-    public void addSwimTube() {
+    void addSwimTube() {
         if (swimTube == null) {
             swimTube = new SwimTube();
             swimTube.setX(getX());

@@ -7,8 +7,10 @@ import katsu.model.KTiledMapEntity;
  */
 @KTiledMapEntity
 public class Fish extends TrollCastleEntityBase {
+
     @Override
     public void onClick() {
         describe("That looks like a nice spot to try some fishing.");
     }
+
 }
