@@ -6,6 +6,7 @@ import katsu.model.KRoom;
 import katsu.resources.KSettings;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -13,33 +14,27 @@ import java.util.List;
  */
 public class TrollCastleGame extends KGame {
 
-    private static TrollCastleGame _instance;
-
     public TrollCastleUI ui;
-
-    public ArrayList<KRoom> rooms;
-
     public List<String> waffle;
-    public int trolls = 0;
+    public TrollCastleSounds sounds = new TrollCastleSounds();
     public int gold = 0;
     public int stone = 0;
-    public int complete = 0;
 
-    public int wallsBuilt = 0;
-    public int towersBuilt = 0;
-    public int goldTowersBuilt = 0;
+    int trolls = 0;
+    int wallsBuilt = 0;
+    int towersBuilt = 0;
+    int goldTowersBuilt = 0;
+    boolean hasEatenMushroom = false;
 
-    public boolean hasEatenMushroom = false;
+    private ArrayList<KRoom> rooms;
+    private boolean hasCompleted = false;
 
-    public TrollCastleSounds sounds = new TrollCastleSounds();
-
-    boolean hasCompleted = false;
+    private static TrollCastleGame _instance;
 
     public TrollCastleGame() {
         super();
         _instance = this;
     }
-
 
     @Override
     public void render() {
@@ -62,20 +57,16 @@ public class TrollCastleGame extends KGame {
             gold = 1000;
             stone = 1000;
         }
-
     }
 
     private void loadWaffle() {
         waffle = new ArrayList<>();
         String[] waffles = K.resource.loadText("random-troll-waffle.txt").split("\\r?\\n");
-        for (String w : waffles) {
-            waffle.add(w);
-        }
+        Collections.addAll(waffle, waffles);
     }
 
     @Override
     public ArrayList<KRoom> getRooms() {
-
         if (rooms == null) {
             rooms = new ArrayList<>();
             rooms.add(new TrollMap());
@@ -97,19 +88,13 @@ public class TrollCastleGame extends KGame {
     public void update() {
         super.update();
         ui.topBar.clear();
-        String welldone = "";
-        if (complete >= 100) {
-            welldone = " [GREEN]*** WELL DONE!!! ***";
-        }
         ui.topBar.writeLine("[GREEN]  " + trolls +" [GRAY]trolls    [YELLOW]" + gold + "[GRAY] Gold    [WHITE]" + stone + "[GRAY] Stone    "+completionStatus());
     }
 
     private String completionStatus() {
-
         if (trolls == 0) {
             return ("[RED]Game Over - All Trolls Died :-(");
         }
-
         String result = "[GRAY]Castle: [MAGENTA]";
         if (wallsBuilt < 16) {
             result += wallsBuilt+"[GRAY]/16 walls built";
@@ -131,9 +116,7 @@ public class TrollCastleGame extends KGame {
                 }
             }
         }
-
         return result;
-
     }
 
     public static TrollCastleGame instance() {
