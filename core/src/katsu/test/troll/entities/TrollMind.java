@@ -11,17 +11,17 @@ import katsu.test.troll.TrollCastleGame;
  */
 public class TrollMind {
 
-    boolean hasHadPsychedelics = TrollDevFlags.allTrollsPsychedOnStart;
-    boolean psychedelic = false;
-    long lastPsychMillls = System.currentTimeMillis();
-    long startPyschMillis = 0;
-    Troll host;
-    TrollCastleGame game;
-    TrollCastleSounds sounds;
+    private boolean hasHadPsychedelics = TrollDevFlags.allTrollsPsychedOnStart;
+    private boolean psychedelic = false;
+    private long lastPsychMillls = System.currentTimeMillis();
+    private long startPyschMillis = 0;
+    private Troll host;
+    private TrollCastleGame game;
+    private TrollCastleSounds sounds;
 
     public void setPsychedelic(boolean psychedelic) {
         this.psychedelic = psychedelic;
-        if (psychedelic == true) {
+        if (psychedelic) {
             startPyschMillis = System.currentTimeMillis();
             hasHadPsychedelics = true;
             sounds.currentMusic.pause();
@@ -30,7 +30,7 @@ public class TrollMind {
         }
     }
 
-    public TrollMind(Troll host, TrollCastleGame game) {
+    TrollMind(Troll host, TrollCastleGame game) {
         this.host = host;
         this.game = game;
         this.sounds = game.sounds;
@@ -40,7 +40,7 @@ public class TrollMind {
         return hasHadPsychedelics;
     }
 
-    public void updatePsychedelics() {
+    void updatePsychedelics() {
 
         if (!psychedelic) return;
 
@@ -84,7 +84,7 @@ public class TrollMind {
 
     }
 
-    public boolean isPsychedelic() {
+    boolean isPsychedelic() {
         return psychedelic;
     }
 }

@@ -9,6 +9,7 @@ import katsu.K;
  */
 public class TrollCastleSounds {
 
+    // TODO use an enum approach
     public Music currentMusic;
     public Music music1;
     public Music music2;
@@ -31,7 +32,7 @@ public class TrollCastleSounds {
     public Sound plant;
     public Sound grow;
 
-    protected void setupSounds() {
+    void setupSounds() {
 
         talk1 = K.resource.loadSound("troll-talk-1.ogg");
         talk2 = K.resource.loadSound("troll-talk-2.ogg");

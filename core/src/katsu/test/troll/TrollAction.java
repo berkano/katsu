@@ -8,21 +8,21 @@ import java.util.concurrent.Callable;
 /**
  * Created by shaun on 26/04/2017.
  */
-public class TrollAction {
+class TrollAction {
 
     private final TrollCastleGame game;
     private final TrollManager manager;
     private final TrollMap room;
     private TrollCastleSounds sounds;
 
-    public TrollAction(TrollCastleGame game, TrollManager trollManager, TrollMap room) {
+    TrollAction(TrollCastleGame game, TrollManager trollManager, TrollMap room) {
         this.game = game;
         this.manager = trollManager;
         this.room = room;
         this.sounds = game.sounds;
     }
 
-    public void act(KEntity target) {
+    void act(KEntity target) {
 
         Troll selectedTroll = manager.getSelectedTroll();
 

@@ -10,22 +10,21 @@ import java.util.List;
 /**
  * Created by shaun on 26/04/2017.
  */
-public class TrollBuilder {
+class TrollBuilder {
 
-    Logger logger = LoggerFactory.getLogger(TrollBuilder.class);
-    TrollCastleGame game;
-    TrollCastleSounds sounds;
-    TrollManager manager;
-    TrollMap room;
+    private TrollCastleGame game;
+    private TrollCastleSounds sounds;
+    private TrollManager manager;
+    private TrollMap room;
 
-    public TrollBuilder(TrollCastleGame game, TrollManager manager, TrollMap room) {
+    TrollBuilder(TrollCastleGame game, TrollManager manager, TrollMap room) {
         this.game = game;
         this.manager = manager;
         this.room = room;
         this.sounds = game.sounds;
     }
 
-    public void build() {
+    void build() {
 
         Troll selectedTroll = manager.getSelectedTroll();
 
@@ -137,8 +136,6 @@ public class TrollBuilder {
 
         int x = troll.getX();
         int y = troll.getY();
-
-        logger.info("Attempting to build tower at precise position " + x + "," + y);
 
         boolean allowedTowerLocation = false;
         if (x == 144 && y == 112) allowedTowerLocation = true;
