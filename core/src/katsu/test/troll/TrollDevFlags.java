@@ -7,12 +7,11 @@ import katsu.K;
  */
 public class TrollDevFlags {
 
-    public static boolean playMusicOnStart = K.settings.isProduction();
-    public static boolean showHelpOnStart = K.settings.isProduction();
-    public static boolean cheatResources = !K.settings.isProduction();
-    public static boolean skipWallRule = false; // !K.settings.isProduction();
+    static boolean playMusicOnStart = K.settings.isProduction();
+    static boolean showHelpOnStart = K.settings.isProduction();
+    static boolean cheatResources = !K.settings.isProduction();
+    static boolean skipWallRule = false;
     public static boolean allTrollsPsychedOnStart = !K.settings.isProduction();
-    public static boolean xKillsTroll = !K.settings.isProduction();
-    public static boolean randomMushroomOnStart = !K.settings.isProduction();
+    static boolean randomMushroomOnStart = !K.settings.isProduction();
     public static boolean quickMushGrow = !K.settings.isProduction();
 }

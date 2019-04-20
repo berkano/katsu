@@ -21,11 +21,11 @@ public class TrollManager extends KInputProcessor {
     private TrollBuilder trollBuilder;
     private TrollAction trollAction;
 
-    Logger logger = LoggerFactory.getLogger(TrollManager.class);
+    private Logger logger = LoggerFactory.getLogger(TrollManager.class);
     private boolean hasSpawnedHint = false;
 
 
-    public TrollManager(TrollCastleGame game, TrollMap room) {
+    TrollManager(TrollCastleGame game, TrollMap room) {
         this.game = game;
         this.room = room;
         trollBuilder = new TrollBuilder(game, this, room);
@@ -58,8 +58,7 @@ public class TrollManager extends KInputProcessor {
         trollBuilder.build();
     }
 
-
-    public void handleSpaceCommand() {
+    void handleSpaceCommand() {
 
         if (selectedTroll == null) {
 
@@ -95,7 +94,7 @@ public class TrollManager extends KInputProcessor {
 
     }
 
-    public void entityClicked(KEntity clickedEntity) {
+    void entityClicked(KEntity clickedEntity) {
 
         if (clickedEntity instanceof Troll) {
 
@@ -164,7 +163,7 @@ public class TrollManager extends KInputProcessor {
 
     }
 
-    public Troll getSelectedTroll() {
+    Troll getSelectedTroll() {
         return selectedTroll;
     }
 }

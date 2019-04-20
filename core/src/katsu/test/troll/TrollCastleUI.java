@@ -10,9 +10,9 @@ import katsu.graphics.KConsole;
  */
 public class TrollCastleUI {
 
-    public KConsole topBar = new KConsole();
+    KConsole topBar = new KConsole();
     public KConsole bottomBar = new KConsole();
-    public KConsole help = new KConsole();
+    private KConsole help = new KConsole();
 
     public void start() {
         setupTopBar();
@@ -22,7 +22,7 @@ public class TrollCastleUI {
         toggleHelp();
     }
 
-    public void render() {
+    void render() {
         topBar.render();
         help.render();
         bottomBar.render();
@@ -61,7 +61,7 @@ public class TrollCastleUI {
     }
 
 
-    public void toggleHelp() {
+    void toggleHelp() {
 
         if (help.isVisible()) {
             help.setVisible(false);

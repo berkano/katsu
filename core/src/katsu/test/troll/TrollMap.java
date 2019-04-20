@@ -18,9 +18,9 @@ public class TrollMap extends KRoom {
 
     private Logger logger = LoggerFactory.getLogger(TrollMap.class);
     private TrollCastleGame game;
-    TrollManager trollManager;
-    TrollGameState gameState;
-    KPanHandler panHandler = new KPanHandler();
+    private TrollManager trollManager;
+    private TrollGameState gameState;
+    private KPanHandler panHandler = new KPanHandler();
 
     @Override
     public void update() {
