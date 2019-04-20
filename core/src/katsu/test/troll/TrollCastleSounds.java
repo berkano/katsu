@@ -11,26 +11,27 @@ public class TrollCastleSounds {
 
     // TODO use an enum approach
     public Music currentMusic;
-    public Music music1;
-    public Music music2;
-    public Music music3;
+    public Music normalMusic;
+    public Music psychMusic;
+
     public Sound talk1;
     public Sound talk2;
     public Sound talk3;
     public Sound talk4;
     public Sound walk;
     public Sound select1;
-    public Sound psych;
     public Sound mine;
     public Sound goldSound;
     public Sound die;
     public Sound mystery;
-    public Sound build;
     public Sound rocks;
-    public Sound fish;
     public Sound water;
-    public Sound plant;
     public Sound grow;
+
+    Sound psych;
+    Sound build;
+    Sound fish;
+    Sound plant;
 
     void setupSounds() {
 
@@ -41,9 +42,8 @@ public class TrollCastleSounds {
         mine = K.resource.loadSound("mine.ogg");
         psych = K.resource.loadSound("psych.ogg");
         walk = K.resource.loadSound("walk.ogg");
-        music1 = K.resource.loadMusic("music1.ogg");
-        music2 = K.resource.loadMusic("music2.ogg");
-        music3 = K.resource.loadMusic("music3.ogg");
+        normalMusic = K.resource.loadMusic("normalMusic.ogg");
+        psychMusic = K.resource.loadMusic("psychMusic.ogg");
         select1 = K.resource.loadSound("beep-select.ogg");
         goldSound = K.resource.loadSound("gold.ogg");
         die = K.resource.loadSound("die.ogg");
@@ -55,14 +55,13 @@ public class TrollCastleSounds {
         plant = K.resource.loadSound("plant.ogg");
         grow = K.resource.loadSound("grow.ogg");
 
-        music1.setLooping(true);
-        music1.setVolume(0.5f);
-        music2.setLooping(true);
-        music2.setVolume(0.85f);
-        music3.setLooping(true);
-        music3.setVolume(0.25f);
+        normalMusic.setLooping(true);
+        normalMusic.setVolume(0.85f);
 
-        currentMusic = music2;
+        psychMusic.setLooping(true);
+        psychMusic.setVolume(0.25f);
+
+        currentMusic = normalMusic;
 
         if (TrollDevFlags.playMusicOnStart) {
             currentMusic.play();

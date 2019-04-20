@@ -25,7 +25,7 @@ public class TrollMind {
             startPyschMillis = System.currentTimeMillis();
             hasHadPsychedelics = true;
             sounds.currentMusic.pause();
-            sounds.currentMusic = sounds.music3;
+            sounds.currentMusic = sounds.psychMusic;
             sounds.currentMusic.play();
         }
     }
@@ -76,7 +76,7 @@ public class TrollMind {
 
         psychedelic = false;
         sounds.currentMusic.pause();
-        sounds.currentMusic = sounds.music2;
+        sounds.currentMusic = sounds.normalMusic;
         sounds.currentMusic.play();
         host.getAppearance().setSpriteColour(Color.WHITE);
         // add a swimtube if not already got one
