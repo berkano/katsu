@@ -1,8 +1,8 @@
-package katsu.katsu.desktop;
+package katsu.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import katsu.katsu.KLauncher;
+import katsu.KLauncher;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {

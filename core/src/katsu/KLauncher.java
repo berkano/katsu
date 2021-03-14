@@ -1,4 +1,4 @@
-package katsu.katsu;
+package katsu;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
