@@ -29,8 +29,6 @@ public class KInputProcessor implements InputProcessor {
     public boolean mouseMoved(int screenX, int screenY) {
         return false;
     }
-    public boolean scrolled(int amount) {
-        return false;
-    }
+    public boolean scrolled(float amountX, float amountY) {return false;}
 
 }
