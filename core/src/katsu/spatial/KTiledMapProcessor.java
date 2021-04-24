@@ -1,6 +1,7 @@
 package katsu.spatial;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.*;
 import com.badlogic.gdx.utils.Logger;
@@ -110,9 +111,10 @@ public class KTiledMapProcessor {
 
         List<TiledMapTileLayer> layerList = new ArrayList<TiledMapTileLayer>();
 
-        // In order of instantiation
-        layerList.add((TiledMapTileLayer) map.getLayers().get("terrain"));
-        layerList.add((TiledMapTileLayer) map.getLayers().get("objects"));
+        for (MapLayer layer : map.getLayers()) {
+            layerList.add((TiledMapTileLayer) layer);
+        }
+
         return layerList;
 
     }

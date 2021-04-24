@@ -1,11 +1,8 @@
 package katsu.ld48.entities;
 
 import com.badlogic.gdx.Input;
-import javafx.scene.input.KeyCode;
 import katsu.K;
-import katsu.input.KInput;
 import katsu.model.KTiledMapEntity;
-import katsu.spatial.KDirection;
 
 /**
  * Created by shaun on 21/04/2017.
