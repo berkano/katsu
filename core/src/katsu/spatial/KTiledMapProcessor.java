@@ -3,12 +3,11 @@ package katsu.spatial;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.*;
+import com.badlogic.gdx.utils.Logger;
 import katsu.K;
 import katsu.model.KEntity;
 import lombok.Getter;
 import lombok.Setter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +27,7 @@ public class KTiledMapProcessor {
     private String filename;
     private List<Class> classLookup;
 
-    Logger logger = LoggerFactory.getLogger(KTiledMapProcessor.class);
+    Logger logger = new Logger(KTiledMapProcessor.class.toString());
 
     public KTiledMapProcessor(String filename, List<Class> classLookup) {
         this.classLookup = classLookup;
@@ -79,6 +78,8 @@ public class KTiledMapProcessor {
             }
             if (c != null) {
                 createEntityFromClass(x, y, layer, c);
+            } else {
+                logger.error("Could not resolve tiled map entity to class: " + entityId);
             }
         }
     }
