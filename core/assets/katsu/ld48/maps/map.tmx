@@ -7,6 +7,21 @@
     <property name="entity" value="Water"/>
    </properties>
   </tile>
+  <tile id="1">
+   <properties>
+    <property name="entity" value="DomeLeft"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="entity" value="DomeRight"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="entity" value="Merson"/>
+   </properties>
+  </tile>
   <tile id="128">
    <properties>
     <property name="entity" value="SwimTube"/>
@@ -20,7 +35,7 @@
  </layer>
  <layer id="2" name="objects" width="160" height="160">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3XsQkAIBADwC/c1P13EJzARsLr3QSpElIFeSMdAKABXQn8QNcBwF2nW2uTgVfNdAAAYPM5AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgLQFhAWuwgCQAQA=
+   H4sIAAAAAAAACu3YsQkAIAwEwKBu6v476AiCgYjcQboU331IBNQb1QEAPtH29OoQAEnciAAAQLZ5uOfHAgD39CkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwsgV2j0g8AJABAA==
   </data>
  </layer>
 </map>

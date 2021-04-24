@@ -6,11 +6,12 @@ import katsu.model.KTiledMapEntity;
  * Created by shaun on 21/04/2017.
  */
 @KTiledMapEntity
-public class Submarine extends LD48EntityBase {
+public class DomeLeft extends LD48EntityBase {
 
-    @Override
-    public void onClick() {
-        describe("We all live here");
+    public DomeLeft() {
+        super();
+        setSolid(false);
     }
+
 
 }
