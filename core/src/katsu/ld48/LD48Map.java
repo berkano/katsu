@@ -15,9 +15,9 @@ import java.util.List;
  */
 public class LD48Map extends KRoom {
 
-    private Logger logger = LoggerFactory.getLogger(LD48Map.class);
+    private final Logger logger = LoggerFactory.getLogger(LD48Map.class);
     private LD48Game game;
-    private KPanHandler panHandler = new KPanHandler();
+    private final KPanHandler panHandler = new KPanHandler();
 
     @Override
     public void update() {

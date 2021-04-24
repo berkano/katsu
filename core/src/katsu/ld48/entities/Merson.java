@@ -2,6 +2,7 @@ package katsu.ld48.entities;
 
 import com.badlogic.gdx.Input;
 import katsu.K;
+import katsu.model.KEntity;
 import katsu.model.KTiledMapEntity;
 
 /**
@@ -10,7 +11,7 @@ import katsu.model.KTiledMapEntity;
 @KTiledMapEntity
 public class Merson extends LD48EntityBase {
 
-    int moveSpeed = 2;
+    int moveSpeed = 1;
 
     public Merson() {
         super();
@@ -37,6 +38,16 @@ public class Merson extends LD48EntityBase {
             getAppearance().setSpriteFlip(true);
         }
 
+        notifySharksOfPosition();
+
+    }
+
+    private void notifySharksOfPosition() {
+        for (KEntity e : getRoom().getEntities()) {
+            if (e instanceof Shark) {
+                e.setTargetEntity(this);
+            }
+        }
     }
 
 }
