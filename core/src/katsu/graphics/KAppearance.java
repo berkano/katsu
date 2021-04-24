@@ -56,6 +56,12 @@ public class KAppearance {
         this.setSpriteScale(K.random.nextFloat() * juiciness + 1.0f + juiciness);
     }
 
+    public void juiceMySpriteNoFlips(float juiciness) {
+        this.setSpriteRotation(K.random.nextInt(15) - 7);
+        this.setSpriteScale(K.random.nextFloat() * juiciness + 1.0f + juiciness);
+    }
+
+
     public void setSpriteForDirection(KDirection direction) {
 
         if (isRotateSpriteOnMove()) {

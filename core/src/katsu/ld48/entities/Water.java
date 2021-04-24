@@ -12,7 +12,7 @@ public class Water extends LD48EntityBase {
     public Water(){
         super();
         getAppearance().juiceMySprite(0.2f);
-        setSolid(true);
+        setSolid(false);
     }
 
     @Override

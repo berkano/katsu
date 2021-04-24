@@ -21,17 +21,17 @@ public class Merson extends LD48EntityBase {
         lookAtMe();
 
         if (K.input.isKeyDown(Input.Keys.SPACE)) {
-            setY(getY()+1);
+            tryMoveAbsolutePoint(getX(), getY() + 1);
         } else {
-            setY(getY()-1);
+            tryMoveAbsolutePoint(getX(), getY() - 1);
         }
 
         if (K.input.isKeyDown(Input.Keys.LEFT)) {
-            setX(getX()-1);
+            tryMoveAbsolutePoint(getX() - 1, getY());
             getAppearance().setSpriteFlip(false);
         }
         if (K.input.isKeyDown(Input.Keys.RIGHT)) {
-            setX(getX()+1);
+            tryMoveAbsolutePoint(getX() + 1, getY());
             getAppearance().setSpriteFlip(true);
         }
 

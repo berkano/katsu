@@ -10,8 +10,8 @@ public class RockSurfaceRight extends LD48EntityBase {
 
     public RockSurfaceRight(){
         super();
-        getAppearance().juiceMySprite(0.2f);
-        setSolid(true);
+        getAppearance().juiceMySpriteNoFlips(0.2f);
+        setSolid(false);
     }
 
 }
