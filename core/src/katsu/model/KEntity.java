@@ -250,4 +250,19 @@ public class KEntity extends KInputProcessor {
     public void onClick() {
 
     }
+
+    protected long distanceBetween(KEntity e1, KEntity e2) {
+
+        int dx = e1.getX() - e2.getX();
+        int dy = e1.getY() - e2.getY();
+
+        return Math.round(Math.sqrt(dx*dx + dy * dy));
+    }
+
+    protected void tryMoveTowards(KDirection direction) {
+        if (direction.getDx() < 0) tryMoveAbsolutePoint(getX() - 1, getY());
+        if (direction.getDx() > 0) tryMoveAbsolutePoint(getX() + 1, getY());
+        if (direction.getDy() < 0) tryMoveAbsolutePoint(getX(), getY() - 1);
+        if (direction.getDy() > 0) tryMoveAbsolutePoint(getX(), getY() + 1);
+    }
 }
