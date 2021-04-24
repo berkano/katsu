@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="32" tileheight="32" nextobjectid="1">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="1">
  <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" tilecount="1024" columns="32">
   <image source="tileset.png" width="1024" height="1024"/>
   <tile id="0">
@@ -72,25 +72,25 @@
     <property name="entity" value="BabyMushroom"/>
    </properties>
   </tile>
+  <tile id="98">
+   <properties>
+    <property name="entity" value="Submarine"/>
+   </properties>
+  </tile>
   <tile id="128">
    <properties>
     <property name="entity" value="SwimTube"/>
    </properties>
   </tile>
  </tileset>
- <layer name="terrain" width="16" height="16">
+ <layer id="1" name="terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NiYGBgGkSYGYpx8YnRi6wHXQyXWbjUkaufkLnk6iVkPyG9xIQnuloVLJgYfyDrx8antn5cZpCiH5tZxPqf2PAkRS+tMQD1UDZJAAQAAA==
+   H4sIAAAAAAAACmNiYGBgGsWjeBSPSAwA64dADQAEAAA=
   </data>
  </layer>
- <layer name="objects" width="16" height="16">
+ <layer id="2" name="objects" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgoD9gIcBHBspkmE+OHmKAIxIbm5sdsYgNF8CIg40MyA13fPHPiEQ7oomR6gZ8+qgB8PmDFPsJmUOsGmIAAKZz2LsABAAA
-  </data>
- </layer>
- <layer name="no-populate" width="16" height="16">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYBQMVZAIxElArAjETkDsDMQuQNxIpH4AUdJTiQAEAAA=
+   H4sIAAAAAAAACmNgoA5goZI59AD0dOtwDBda+ymZxuYPBBis6QAASC1abgAEAAA=
   </data>
  </layer>
 </map>

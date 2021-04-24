@@ -2,10 +2,7 @@ package katsu.spatial;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapProperties;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTile;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.*;
 import katsu.K;
 import katsu.model.KEntity;
 import lombok.Getter;
@@ -21,8 +18,12 @@ import java.util.List;
  */
 public class KTiledMapProcessor {
 
-    @Getter @Setter private ArrayList<KEntity> entities;
-    @Getter @Setter private TiledMap map;
+    @Getter
+    @Setter
+    private ArrayList<KEntity> entities;
+    @Getter
+    @Setter
+    private TiledMap map;
 
     private String filename;
     private List<Class> classLookup;
@@ -37,7 +38,7 @@ public class KTiledMapProcessor {
     public KTiledMapProcessor loadFromMap() {
 
         setMap(loadMap(filename));
-        entities = new ArrayList<KEntity>();
+        entities = new ArrayList<>();
 
         List<TiledMapTileLayer> layerList = getLayersFromMap(getMap());
 
@@ -83,22 +84,24 @@ public class KTiledMapProcessor {
     }
 
     private void createEntityFromClass(int x, int y, TiledMapTileLayer layer, Class c) {
+
+        // TODO load textures directly from tileset at map loading time
+        //  eliminating the need for special "no-populate" layers
         if (K.textureCache.get(c) == null) {
             TextureRegion textureRegion = layer.getCell(x, y).getTile().getTextureRegion();
             K.textureCache.put(c, textureRegion);
         }
-        if (!layer.getName().contains("no-populate")) { // no-populate just used for loading textures.
-            try {
-                KEntity e = (KEntity) c.newInstance();
 
-                e.setX(x * K.settings.getGridSize());
-                e.setY(y * K.settings.getGridSize());
-                e.getAppearance().setTextureRegion(K.textureCache.get(c));
-                entities.add(e);
-            } catch (Exception ex) {
-                ex.printStackTrace();
-                throw new RuntimeException(ex);
-            }
+        try {
+            KEntity e = (KEntity) c.newInstance();
+
+            e.setX(x * K.settings.getGridSize());
+            e.setY(y * K.settings.getGridSize());
+            e.getAppearance().setTextureRegion(K.textureCache.get(c));
+            entities.add(e);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new RuntimeException(ex);
         }
     }
 
@@ -107,15 +110,10 @@ public class KTiledMapProcessor {
         List<TiledMapTileLayer> layerList = new ArrayList<TiledMapTileLayer>();
 
         // In order of instantiation
-        layerList.add((TiledMapTileLayer) map.getLayers().get("no-populate"));
-        layerList.add((TiledMapTileLayer) map.getLayers().get("invisible"));
-        layerList.add((TiledMapTileLayer) map.getLayers().get("background"));
-        layerList.add((TiledMapTileLayer) map.getLayers().get("background-ontop"));
         layerList.add((TiledMapTileLayer) map.getLayers().get("terrain"));
         layerList.add((TiledMapTileLayer) map.getLayers().get("objects"));
-        layerList.add((TiledMapTileLayer) map.getLayers().get("passageways"));
-
         return layerList;
+
     }
 
     private TiledMap loadMap(String name) {
