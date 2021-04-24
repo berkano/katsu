@@ -10,6 +10,8 @@ import katsu.model.KTiledMapEntity;
 @KTiledMapEntity
 public class Merson extends LD48EntityBase {
 
+    int moveSpeed = 2;
+
     public Merson() {
         super();
         setSolid(true);
@@ -21,17 +23,17 @@ public class Merson extends LD48EntityBase {
         lookAtMe();
 
         if (K.input.isKeyDown(Input.Keys.SPACE)) {
-            tryMoveAbsolutePoint(getX(), getY() + 1);
+            tryMoveAbsolutePoint(getX(), getY() + moveSpeed);
         } else {
-            tryMoveAbsolutePoint(getX(), getY() - 1);
+            tryMoveAbsolutePoint(getX(), getY() - moveSpeed);
         }
 
         if (K.input.isKeyDown(Input.Keys.LEFT)) {
-            tryMoveAbsolutePoint(getX() - 1, getY());
+            tryMoveAbsolutePoint(getX() - moveSpeed, getY());
             getAppearance().setSpriteFlip(false);
         }
         if (K.input.isKeyDown(Input.Keys.RIGHT)) {
-            tryMoveAbsolutePoint(getX() + 1, getY());
+            tryMoveAbsolutePoint(getX() + moveSpeed, getY());
             getAppearance().setSpriteFlip(true);
         }
 

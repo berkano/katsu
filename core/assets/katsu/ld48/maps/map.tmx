@@ -22,6 +22,16 @@
     <property name="entity" value="Merson"/>
    </properties>
   </tile>
+  <tile id="32">
+   <properties>
+    <property name="entity" value="ShallowWater"/>
+   </properties>
+  </tile>
+  <tile id="35">
+   <properties>
+    <property name="entity" value="DeepWater"/>
+   </properties>
+  </tile>
   <tile id="64">
    <properties>
     <property name="entity" value="RockSurfaceTop"/>
@@ -55,7 +65,7 @@
  </tileset>
  <layer id="4" name="background" width="160" height="160">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3DAQ0AAAzDoM6/6Qs5JKyaqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqrqgwd1vtRtAJABAA==
+   H4sIAAAAAAAACu3DwQkAIAwEsHOUg+4/Y7fQhwmkSaqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqjx9VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV1c+PqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqpXLjzIut4AkAEA
   </data>
  </layer>
  <layer id="1" name="terrain" width="160" height="160">
