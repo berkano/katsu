@@ -26,12 +26,23 @@ public class Shark extends LD48EntityBase {
 
 
         KEntity target = getTargetEntity();
+
         if (target != null) {
             if (target instanceof Merson) {
 
                 if (distanceBetween(target, this) < 200) {
 
-                    KDirection suggestion = getGrid().doPathFinding(target.getGrid().getX(), target.getGrid().getY());
+                    // periodically invalidate cached pathfinder direction
+                    if ((K.random.nextInt(10)) ==0) {
+                        setPathFinderNextDirection(null);
+                    }
+
+                    // performance/cache
+                    if (getPathFinderNextDirection() == null) {
+                        setPathFinderNextDirection(getGrid().doPathFinding(target.getGrid().getX(), target.getGrid().getY()));
+                    }
+
+                    KDirection suggestion = getPathFinderNextDirection();
 
                     if (suggestion != null) {
                         // Slow down very slightly
