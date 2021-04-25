@@ -33,6 +33,12 @@ public class Shark extends LD48EntityBase {
                         // Slow down very slightly
                         if (K.random.nextInt(8) != 0) {
                             tryMoveTowards(suggestion);
+                            if (suggestion.getDx() <= 0) {
+                                getAppearance().setSpriteFlip(false);
+                            } else {
+                                getAppearance().setSpriteFlip(true);
+
+                            }
                         }
                     }
 
