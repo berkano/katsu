@@ -37,7 +37,6 @@ public class Shark extends LD48EntityBase {
                                 getAppearance().setSpriteFlip(false);
                             } else {
                                 getAppearance().setSpriteFlip(true);
-
                             }
                         }
                     }
