@@ -14,6 +14,10 @@ public class Shark extends LD48EntityBase {
     public Shark(){
         super();
         setSolid(true);
+        setLeftMargin(4 / 2);
+        setRightMargin(5 / 2);
+        setTopMargin(9 / 2);
+        setBottomMargin(13 / 2);
     }
 
     @Override

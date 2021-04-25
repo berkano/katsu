@@ -70,7 +70,9 @@ public class KSpatialMap {
         }
 
         // Create rectangle
-        net.sf.jsi.Rectangle rect = new net.sf.jsi.Rectangle(entity.getX(), entity.getY(), entity.getX() + entity.getWidth() - 1, entity.getY() - entity.getHeight() + 1);
+        net.sf.jsi.Rectangle rect = new net.sf.jsi.Rectangle(
+                entity.getX() + entity.getLeftMargin(),entity.getY() + entity.getTopMargin(),
+                entity.getX() + entity.getWidth() - 1 - entity.getRightMargin(), entity.getY() + entity.getHeight() - 1 - entity.getBottomMargin());
 
         id = lastID;
         lastID++;

@@ -16,6 +16,10 @@ public class Merson extends LD48EntityBase {
     public Merson() {
         super();
         setSolid(true);
+        setLeftMargin(10 / 2);
+        setRightMargin(13 / 2);
+        setTopMargin(7 / 2);
+        setBottomMargin(6 / 2);
     }
 
     @Override

@@ -34,6 +34,10 @@ public class KEntity extends KInputProcessor {
 
     // Physical
     @Getter @Setter private boolean solid;
+    @Getter @Setter private int leftMargin = 0;
+    @Getter @Setter private int rightMargin = 0;
+    @Getter @Setter private int topMargin = 0;
+    @Getter @Setter private int bottomMargin = 0;
 
     // Events / lifecycle
     @Getter @Setter private long lastMove = System.currentTimeMillis();
@@ -87,7 +91,11 @@ public class KEntity extends KInputProcessor {
 
         if (isSolid()) {
 
-            Rectangle newRect = new Rectangle(newX, newY, newX + getWidth() - 1, newY - getHeight() + 1);
+            int buffer = 2;
+            Rectangle newRect = new Rectangle(
+                    newX + leftMargin - buffer, newY + topMargin - buffer,
+                    newX + getWidth() - 1 - rightMargin + buffer, newY + getHeight() - 1 - bottomMargin + buffer);
+
             List<KEntity> overlappingEntities = getRoom().getSpatialMap().searchByIntersection(newRect);
 
             // Get all possible collision targets
